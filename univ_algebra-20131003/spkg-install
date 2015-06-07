@@ -23,7 +23,9 @@ tar xzvf $top_level/uacalc.tar.gz
 echo "Moving UACalc..."
 mv uacalc $SAGE_LOCAL/bin/uacalc
 
-mkdir $SAGE_ROOT/data/univ_algebra
+# mkdir $SAGE_ROOT/data/univ_algebra no parece que haga falta, no se copia nada ahi, y data no existe
 
 cd $top_level
-cp logic/* $SAGE_ROOT/devel/sage/sage/logic
+# antes era cp logic/* $SAGE_ROOT/devel/sage/sage/logic
+cp logic/* $SAGE_ROOT/src/sage/logic
+
