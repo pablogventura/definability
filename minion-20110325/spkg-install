@@ -2,6 +2,7 @@
 
 export top_level=`pwd`
 
+mkdir $top_level/src/
 cd $top_level/src/
 tar xzvf $top_level/minion-0.12-linux.tar.gz
 
