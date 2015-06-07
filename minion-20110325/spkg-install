@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export top_level=`pwd`
+
+cd $top_level/src/
+tar xzvf $top_level/minion-0.12-linux.tar.gz
+
+echo "Copying minion..."
+cp minion-0.12/bin/minion $SAGE_LOCAL/bin/minion

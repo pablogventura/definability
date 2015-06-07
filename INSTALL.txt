@@ -1,0 +1,54 @@
+Installation instructions for the Sage packages in this directory:
+
+1. In a Sage Notebook cell (or at the unix shell without %sh) enter
+
+   %sh
+   /path/to/sage -i http://math.chapman.edu/~jipsen/sagepkg/univ_algebra-yyyymmdd.spkg
+
+   # replace "path/to" with your path and "yyyymmdd" with date of latest version
+   # depending on your setup, you may need to be superuser or prefix with sudo 
+
+2. (Optional) In a Sage Notebook cell enter
+
+   %sh
+   /path/to/sage -i http://math.chapman.edu/~jipsen/sagepkg/minion-20110325.spkg
+
+   (Note: On an Apple Mac you may have to install Minion manually from 
+    minion.sourceforge.net and put bin/minion into SAGE_ROOT/local/bin )
+
+3. In a Sage Notebook cell enter
+
+   %sh
+   /path/to/sage -b
+
+4. On the Action menu of the Sage Notebook select "Restart Worksheet"
+
+
+5. To see if the installation works, try the following commands:
+
+   prover9(["x=x"],["x=x"],2,2)
+
+   prover9(["x=x"],["x!=x"],2,2)
+
+   FOclasses
+
+   a = all_lattices(5)
+
+   SI(a)
+
+   b = Lat.find_models(4)
+
+   show_posets(b)
+
+   Con(b[0])         # this assumes the Java Runtime Environment is installed
+
+   Hom(b[0],b[1])    # this assumes you installed the Minion package
+
+For a full list of commands, see the python code in
+
+$SAGE_HOME/devel/sage/sage/logic/UA.py
+
+The software installed above (prover9/mace4, uacalc, minion) is placed into 
+$SAGE_HOME/local/bin (look for files/folders starting with ua or minion)
+
+email jipsenATchapmanDOTedu if you have any problems or questions
