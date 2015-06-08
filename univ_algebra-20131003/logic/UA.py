@@ -79,7 +79,10 @@ def writefile(fname, st):
     fh.close()
 
 
-def opstr(m):  # convert 2-dim list to a compact string for display
+def opstr(m):
+    """
+    Convert 2-dim list to a compact string for display
+    """
     nr = len(m)
     if nr == 0:
         return "[]"
@@ -93,7 +96,10 @@ def opstr(m):  # convert 2-dim list to a compact string for display
     return s
 
 
-def oprelstr(oprel):  # convert a list of operations or relations to a string
+def oprelstr(oprel):
+    """
+    Convert a list of operations or relations to a string
+    """
     st = ''
     for x in oprel:
         if type(oprel[x]) == list and type(oprel[x][0]) == list:
@@ -104,6 +110,9 @@ def oprelstr(oprel):  # convert a list of operations or relations to a string
 
 
 def op_var_pos_diag(op, s, c):
+    """
+    Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s de op, usando el prefijo c
+    """
     if type(op[s]) == list:
         base = range(len(op[s]))
         if type(op[s][0]) == list:
@@ -118,6 +127,9 @@ def op_var_pos_diag(op, s, c):
 
 
 def rel_var_pos_diag(rel, s, c):
+    """
+    Genera una lista de formulas con el diagrama positivo, de la relacion s de rel, usando el prefijo c
+    """
     if type(rel[s]) == list:
         base = range(len(rel[s]))
         if type(rel[s][0]) == list:
@@ -134,6 +146,9 @@ def rel_var_pos_diag(rel, s, c):
 
 
 def op_var_diag(op, s, c, n=0):
+    """
+    Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s de op, usando el prefijo c, y sumando n a cada elemento
+    """
     if type(op[s]) == list:
         base = range(len(op[s]))
         if type(op[s][0]) == list:
@@ -148,6 +163,9 @@ def op_var_diag(op, s, c, n=0):
 
 
 def rel_var_diag(rel, s, c, n=0):
+    """
+    Genera una lista de formulas con el diagrama positivo, de la relacion s de rel, usando el prefijo c, y sumando n a cada elemento
+    """
     if type(rel[s]) == list:
         base = range(len(rel[s]))
         if type(rel[s][0]) == list:
@@ -168,7 +186,10 @@ def rel_var_diag(rel, s, c, n=0):
         return "not a relation"
 
 
-def op_hom(A, B):  # return string of homomorphism equations
+def op_hom(A, B):
+    """
+    return string of homomorphism equations
+    """
     st = ''
     for s in B.operations:
         if type(B.operations[s]) == list:
@@ -384,7 +405,7 @@ class Model():
 
     def positive_diagram(self, c):
         """
-        Return the positive diagram of the algebra or structure
+        Return the positive diagram of the algebra or structure, prefix c
         """
         li = []
         for x in self.operations:
