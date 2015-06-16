@@ -1,0 +1,17 @@
+## viendo lo de show_posets
+b1,b2=Lat.find_models(4)
+
+b1.uc=meet2uc(b1.operations["^"])
+b2.uc=meet2uc(b2.operations["^"])
+# tener uc no implica tener leq...
+b1.relations["<="] = b1.get_leq()
+b2.relations["<="] = b2.get_leq()
+
+show_posets([b1,b2])
+
+# da un error, pero es de sage, porque:
+P = Poset({0:[1,2],1:[3],2:[3],3:[]})
+P.show()
+# da el mismo error, y no usa UA.py
+
+

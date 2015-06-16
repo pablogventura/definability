@@ -3199,7 +3199,8 @@ def Aut(A):
     return Embeddings(A, A)
 
 
-def is_hom_image(A, B):  # return true if B is a homomorphic image of A
+def is_hom_image(A, B):
+    """return true if B is a homomorphic image of A (uses Minion)"""
     st = minion_hom_algebras(A, B, surj=True)
     writefile('tmp.minion', st)
     os.system('minion -noprintsols -solsout tmp.txt tmp.minion >tmpout.txt')
