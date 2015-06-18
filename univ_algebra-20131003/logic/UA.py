@@ -31,51 +31,14 @@ import sys
 import tempfile
 import subprocess
 import timeit
+
 from sage.functions.trig import cos, sin
 from sage.functions.other import sqrt
 
 import config
 
-
-
-class Proof():
-
-    def __init__(self, formula_list, syntax='Prover9'):
-        """
-        Stores a proof as a list of formulas.
-
-        INPUT:
-            syntax -- a string that indicates what syntax is used for the
-                formulas that prepresent the proof, e.g. "Prover9".
-            formula_list -- a list of lists. Each list entry is a list of the
-                form [formula, line_number, [references_to_preceding_lines]].
-                The references indicate which preceding lines are used in the
-                derivation of the current line.
-        """
-        self.syntax = syntax
-        self.proof = formula_list
-
-    def __repr__(self):
-        """
-        Display a proof as a list of lines.
-        """
-        st = '\nProof(syntax=\"' + self.syntax + '\", formula_list=[\n'
-        for l in self.proof[:-1]:
-            st += str(l) + ',\n'
-        return st + str(self.proof[-1]) + '])'
-
-
-def readfile(fname):
-    fh = open(fname)
-    st = fh.read()
-    fh.close()
-    return st
-
-
-def writefile(fname, st):
-    fh = open(fname, 'w')
-    fh.write(st)
-    fh.close()
+from proof import Proof
+from misc import readfile, writefile
 
 
 def opstr(m):
@@ -108,104 +71,23 @@ def oprelstr(oprel):
     return st[:-2]
 
 
-def op_var_pos_diag(op, s, c):
-    """
-    Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s de op, usando el prefijo c
-    """
-    if type(op[s]) == list:
-        base = range(len(op[s]))
-        if type(op[s][0]) == list:
-            return [c + str(x) + " " + s + " " + c + str(y) + " = " + c + str(op[s][x][y])
-                    for x in base for y in base]
-        elif s == "'":
-            return [c + str(x) + s + " = " + c + str(op[s][x]) for x in base]
-        else:
-            return [s + "(" + c + str(x) + ") = " + c + str(op[s][x]) for x in base]
-    else:
-        return [s + " = " + c + str(op[s])]
 
 
-def rel_var_pos_diag(rel, s, c):
-    """
-    Genera una lista de formulas con el diagrama positivo, de la relacion s de rel, usando el prefijo c
-    """
-    if type(rel[s]) == list:
-        base = range(len(rel[s]))
-        if type(rel[s][0]) == list:
-            if type(rel[s][0][0]) == list:  # if prefix ternary relation
-                return [s + "(" + c + str(x) + "," + c + str(y) + "," + c + str(z) + ")"
-                        for x in base for y in base for z in base if rel[s][x][y][z]]
-            else:  # if infix binary relation
-                return [c + str(x) + " " + s + " " + c + str(y)
-                        for x in base for y in base if rel[s][x][y]]
-        else:
-            return [s + "(" + c + str(x) + ")" for x in base if rel[s][x]]
-    else:
-        return "not a relation"
 
 
-def op_var_diag(op, s, c, n=0):
-    """
-    Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s de op, usando el prefijo c, y sumando n a cada elemento
-    """
-    if type(op[s]) == list:
-        base = range(len(op[s]))
-        if type(op[s][0]) == list:
-            return [c + str(x + n) + " " + s + " " + c + str(y + n) + " = " + c + str(op[s][x][y] + n)
-                    for x in base for y in base]
-        elif s == "'":
-            return [c + str(x + n) + s + " = " + c + str(op[s][x] + n) for x in base]
-        else:
-            return [s + "(" + c + str(x + n) + ") = " + c + str(op[s][x] + n) for x in base]
-    else:
-        return [s + " = " + c + str(op[s] + n)]
 
 
-def rel_var_diag(rel, s, c, n=0):
-    """
-    Genera una lista de formulas con el diagrama positivo, de la relacion s de rel, usando el prefijo c, y sumando n a cada elemento
-    """
-    if type(rel[s]) == list:
-        base = range(len(rel[s]))
-        if type(rel[s][0]) == list:
-            if type(rel[s][0][0]) == list:  # prefix ternary relation
-                return [("" if rel[s][x][y][z] else "-") + s + "(" + c + str(x + n) +
-                        "," + c + str(y + n) + "," + c + str(z + n) + ")"
-                        for x in base for y in base for z in base]
-            elif s >= "A" and s <= "Z":  # prefix binary relation
-                return [("" if rel[s][x][y] else "-") + s + "(" + c + str(x + n) +
-                        "," + c + str(y + n) + ")" for x in base for y in base]
-            else:  # infix binary relation
-                return [("(" if rel[s][x][y] else "-(") + c + str(x + n) + " " +
-                        s + " " + c + str(y + n) + ")" for x in base for y in base]
-        else:
-            return [("" if rel[s][x] else "-") + s + "(" + c + str(x + n) + ")"
-                    for x in base]
-    else:
-        return "not a relation"
 
 
-def op_hom(A, B):
-    """
-    return string of homomorphism equations
-    """
-    st = ''
-    for s in B.operations:
-        if type(B.operations[s]) == list:
-            base = range(len(B.operations[s]))
-            if type(B.operations[s][0]) == list:
-                st += " & h(x " + s + " y) = h(x) " + s + " h(y)"
-            elif s == "'":
-                st += " & h(x') = h(x)'"
-            else:
-                st += " & h(" + s + "(x)) = " + s + "(h(x))"
-        else:
-            st += " & h(" + str(B.operations[s] + A.cardinality) + ") = " + str(A.operations[s])
-    return st
+
+
+
+
+
 
 
 def checkSubalgebra(A, sub):  # sub is a partial subalgebra
-    # Check that sub is closed under the operations of A
+    """Check that sub is closed under the operations of A"""
     for x in range(A.cardinality):
         for r in A.operations:
             op = A.operations[r]
@@ -242,25 +124,14 @@ def completeSubalgebra(A, sub, i, subl):
             sub[i] = 2
 
 
-def bin(x):  # convert integer to binary list of 0s and 1s
-    b = []
-    while x != 0:
-        b = [x % 2] + b
-        x = x // 2
-    return b
-
-
-def intb(b):
-    n = len(b)
-    return sum(1 << (n - i - 1) for i in range(n) if b[i] == 1)
-
-
 def permuted_binary_op(m, q):
+
     qi = inverse_permutation(q)
     return [[q[m[qi[x]][qi[y]]] for y in range(len(m))] for x in range(len(m))]
 
 
-def linExt(U):  # Listing 11.3 Freese-Jezek-Nation, a-<b => a in U[b] => a<=b
+def linExt(U):
+    """Listing 11.3 Freese-Jezek-Nation, a-<b => a in U[b] => a<=b"""
     P = range(len(U))
     S = []
     Z = []
@@ -408,9 +279,9 @@ class Model():
         """
         li = []
         for x in self.operations:
-            li += op_var_pos_diag(self.operations, x, c)
+            li += self.__op_var_pos_diag(x, c)
         for x in self.relations:
-            li += rel_var_pos_diag(self.relations, x, c)
+            li += self.__rel_var_pos_diag(x, c)
         return li
 
     def diagram(self, c, s=0):
@@ -422,7 +293,7 @@ class Model():
             for y in range(x + 1, self.cardinality):
                 li += ["-(" + c + str(x + s) + "=" + c + str(y + s) + ")"]
         for x in self.operations:
-            li += op_var_diag(self.operations, x, c, s)
+            li += self.__op_var_diag(x, c, s)
         for x in self.relations:
             li += rel_var_diag(self.relations, x, c, s)
         return li
@@ -460,7 +331,7 @@ class Model():
             ['-B(' + str(i) + ')' for i in range(self.cardinality)] +\
             ['B(' + str(i) + ')' for i in range(self.cardinality, self.cardinality + B.cardinality)] +\
             ['-A(' + str(i) + ')' for i in range(self.cardinality, self.cardinality + B.cardinality)] +\
-            ['B(x) & B(y) -> A(h(x)) & A(h(y))' + op_hom(self, B),
+            ['B(x) & B(y) -> A(h(x)) & A(h(y))' + self.__op_hom(B),
              'A(y) -> exists x (B(x) & h(x) = y)']
         if info:
             print formulas
@@ -1149,7 +1020,97 @@ class Model():
             st += ',\n'
         st += ',\n'.join([" relation(" + s + aritystr(A.relations[s]) + ", " + str(op2li(A.relations[s])).replace(" ", "") + ")" for s in A.relations])
         return st + "])."
-
+    def __op_var_pos_diag(self, s, c):
+        """
+        Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s, usando el prefijo c
+        """
+        op = self.operations
+        if type(op[s]) == list:
+            base = range(len(op[s]))
+            if type(op[s][0]) == list:
+                return [c + str(x) + " " + s + " " + c + str(y) + " = " + c + str(op[s][x][y])
+                        for x in base for y in base]
+            elif s == "'":
+                return [c + str(x) + s + " = " + c + str(op[s][x]) for x in base]
+            else:
+                return [s + "(" + c + str(x) + ") = " + c + str(op[s][x]) for x in base]
+        else:
+            return [s + " = " + c + str(op[s])]
+    def __rel_var_pos_diag(self, s, c):
+        """
+        Genera una lista de formulas con el diagrama positivo, de la relacion s, usando el prefijo c
+        """
+        rel = self.relations
+        if type(rel[s]) == list:
+            base = range(len(rel[s]))
+            if type(rel[s][0]) == list:
+                if type(rel[s][0][0]) == list:  # if prefix ternary relation
+                    return [s + "(" + c + str(x) + "," + c + str(y) + "," + c + str(z) + ")"
+                            for x in base for y in base for z in base if rel[s][x][y][z]]
+                else:  # if infix binary relation
+                    return [c + str(x) + " " + s + " " + c + str(y)
+                            for x in base for y in base if rel[s][x][y]]
+            else:
+                return [s + "(" + c + str(x) + ")" for x in base if rel[s][x]]
+        else:
+            return "not a relation"
+    def __op_var_diag(self, s, c, n=0):
+        """
+        Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s, usando el prefijo c, y sumando n a cada elemento
+        """
+        op=self.operations
+        if type(op[s]) == list:
+            base = range(len(op[s]))
+            if type(op[s][0]) == list:
+                return [c + str(x + n) + " " + s + " " + c + str(y + n) + " = " + c + str(op[s][x][y] + n)
+                        for x in base for y in base]
+            elif s == "'":
+                return [c + str(x + n) + s + " = " + c + str(op[s][x] + n) for x in base]
+            else:
+                return [s + "(" + c + str(x + n) + ") = " + c + str(op[s][x] + n) for x in base]
+        else:
+            return [s + " = " + c + str(op[s] + n)]
+            
+    def __rel_var_diag(s, c, n=0):
+        """
+        Genera una lista de formulas con el diagrama, de la relacion s de rel, usando el prefijo c, y sumando n a cada elemento
+        """
+        rel = self.relations
+        if type(rel[s]) == list:
+            base = range(len(rel[s]))
+            if type(rel[s][0]) == list:
+                if type(rel[s][0][0]) == list:  # prefix ternary relation
+                    return [("" if rel[s][x][y][z] else "-") + s + "(" + c + str(x + n) +
+                            "," + c + str(y + n) + "," + c + str(z + n) + ")"
+                            for x in base for y in base for z in base]
+                elif s >= "A" and s <= "Z":  # prefix binary relation
+                    return [("" if rel[s][x][y] else "-") + s + "(" + c + str(x + n) +
+                            "," + c + str(y + n) + ")" for x in base for y in base]
+                else:  # infix binary relation
+                    return [("(" if rel[s][x][y] else "-(") + c + str(x + n) + " " +
+                            s + " " + c + str(y + n) + ")" for x in base for y in base]
+            else:
+                return [("" if rel[s][x] else "-") + s + "(" + c + str(x + n) + ")"
+                        for x in base]
+        else:
+            return "not a relation"
+    def __op_hom(self, B):
+        """
+        return string of homomorphism equations
+        """
+        st = ''
+        for s in B.operations:
+            if type(B.operations[s]) == list:
+                base = range(len(B.operations[s]))
+                if type(B.operations[s][0]) == list:
+                    st += " & h(x " + s + " y) = h(x) " + s + " h(y)"
+                elif s == "'":
+                    st += " & h(x') = h(x)'"
+                else:
+                    st += " & h(" + s + "(x)) = " + s + "(h(x))"
+            else:
+                st += " & h(" + str(B.operations[s] + A.cardinality) + ") = " + str(self.operations[s])
+        return st
 
 def Posetuc(uppercovers, leq=None):
     mdl = Model(cardinality=len(uppercovers), operations={}, relations={})
