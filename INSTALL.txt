@@ -30,15 +30,15 @@ Installation instructions for the Sage packages in this directory:
 
    prover9(["x=x"],["x!=x"],2,2)
 
-   FOclasses
+   FOclass.FOclasses
 
    a = all_lattices(5)
 
    SI(a)
 
-   b = Lat.find_models(4)
+   b = fotheories.Lat.find_models(4)
 
-   show_posets(b)
+   #show_posets(b) # no funciona porque no tienen uc los elementos de b
 
    Con(b[0])         # this assumes the Java Runtime Environment is installed
 

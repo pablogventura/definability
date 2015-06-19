@@ -3,6 +3,15 @@ import os
 import config
 from model import Model # para los contraejemplos
 
+def getops(li, st):
+    # TODO , PARECIERA QUE DEBERIA SER UN METODO INTERNO DE LOS MODELOS QUE DEVUELVE MACE4
+    """extract operations/relations from the Prover9 model, se usa en isofilter y prover9"""
+    result = {}
+    for op in li:
+        if op[0] == st:
+            result[op[1]] = op[3]
+    return result
+
 class Proof():
 
     def __init__(self, formula_list, syntax='Prover9'):
