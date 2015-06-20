@@ -42,7 +42,7 @@ Installation instructions for the Sage packages in this directory:
 
    Con(b[0])         # this assumes the Java Runtime Environment is installed
 
-   Hom(b[0],b[1])    # this assumes you installed the Minion package
+   minion.Hom(b[0],b[1])    # this assumes you installed the Minion package
 
 For a full list of commands, see the python code in
 

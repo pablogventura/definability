@@ -3,19 +3,80 @@
 # requires sage.chapman.edu/sage/minion_20110326.spkg
 
 import os
-import subprocess
+import subprocess as sp
 from misc import readfile, writefile
 
 
 # TODO ESTO ES PRUEBA, PERO ANDA MUCHO MEJOR DE VELOCIDAD
-os.mkfifo("input_minion")
 
-def minion(entrada):
-    minionapp = subprocess.Popen(["minion","-printsolsonly","-findallsols","input_minion"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    writefile("input_minion",entrada)
-    return minionapp.stdout.read()
+
+class MinionSol():
+    __count = 0
+    def __init__(self, inputdata):
+        self.id = MinionSol.__count
+        MinionSol.__count += 1
+        
+        os.mkfifo("input_minion%s" % self.id)
+        self.minionapp = sp.Popen(["minion","-printsolsonly","-findallsols","input_minion%s" % self.id],
+                                  stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        writefile("input_minion%s" % self.id ,inputdata)
+        self.buffer = ""
+        self.EOF = False
+        self.values = []
+        
+        self.__read() # primer lectura
+        self.__parsebuffer() # primer parseo
+        # TODO en el futuro habria que manejar pausas al proceso, por si se adelanta muy mucho y se hace muy grande
+        
+    def __parsebuffer(self):
+        if self.buffer:
+            buf = self.buffer.split("\n")
+            if self.buffer[-1] != "\n": # no era el ultimo
+                self.buffer = buf[-1]
+            else:
+                self.buffer = "" # lo vacio porque era el ultimo
+            
+            del buf[-1] # porque o habia parte de otra solucion, o era [] porque siempre hay un \n al final
+            
+            for fila in buf:
+                self.values.append(map(int,fila.strip().split(" ")))
     
+    def __read(self,size=1024):
+        if not self.EOF:
+            self.buffer += self.minionapp.stdout.readline()
+            self.buffer += self.minionapp.stdout.read(size)
+            if not self.buffer:
+                self.EOF = True
+                self.minionapp.terminate()
+                os.remove("input_minion%s" % self.id)
 
+    def __readall(self):
+        if not self.EOF:
+            data = self.minionapp.stdout.read()
+            while data:
+                self.buffer += data
+                data = self.minionapp.stdout.read()
+
+    def __iter__(self):
+        for x in self.values:
+            yield x
+            if not self.EOF:
+                self.__read()
+                self.__parsebuffer()
+    #def getitem TODO SE PODRIA AGREGAR
+            
+    def __len__(self):
+        if not self.EOF:
+            self.__readall() # yo no queria, pero me veo obligado a leer todo
+            self.__parsebuffer()
+        return len(self.values)
+
+    def __del__(self):
+        self.minionapp.kill()
+        del self.minionapp
+        if os.path.isfile("input_minion%s" % self.id):
+            os.remove("input_minion%s" % self.id)
+        
 
 def t_op(st):
     # Minion accepts only letters for first character of names
@@ -66,18 +127,12 @@ def minion_hom_algebras(A, B, inj=False, surj=False):
     return st + "**EOF**\n"
 
 
-def Hom1(A, B):
+def Hom(A, B):
     """
     call Minion to calculate all homomorphisms from algebra A to algebra B
     """
-    # TODO parece que se puede ir haciendo que minion vaya imprimiendo cada homo por vez
     st = minion_hom_algebras(A, B)
-    st = minion(st)
-    #writefile('tmp.minion', st)
-    #os.system('minion -noprintsols -findallsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    #st = readfile('tmp.txt')
-    #os.system('rm tmp.txt')
-    return [[int(y) for y in x.strip().split(" ")] for x in st.split("\n")[:-1]]
+    return MinionSol(st)
 
 def Hom2(A, B):
     """
