@@ -17,8 +17,10 @@ class MinionSol():
         MinionSol.__count += 1
         
         os.mkfifo("input_minion%s" % self.id)
-        self.minionapp = sp.Popen(["minion","-printsolsonly","-findallsols","input_minion%s" % self.id],
-                                  stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        
+        minionargs = ["-printsolsonly","-findallsols","input_minion%s" % self.id]
+            
+        self.minionapp = sp.Popen(["minion"]+minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         writefile("input_minion%s" % self.id ,inputdata)
         self.buffer = ""
         self.EOF = False
@@ -159,11 +161,7 @@ def Embeddings(A, B):
     call Minion to calculate all embeddings of algebra A into algebra B
     """
     st = minion_hom_algebras(A, B, True)
-    writefile('tmp.minion', st)
-    os.system('minion -noprintsols -findallsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    st = readfile('tmp.txt')
-    os.system('rm tmp.txt')
-    return [[int(y) for y in x.strip().split(" ")] for x in st.split("\n")[:-1]]
+    return MinionSol(st)
 
 
 def Aut(A):
@@ -176,12 +174,7 @@ def Aut(A):
 def is_hom_image(A, B):
     """return true if B is a homomorphic image of A (uses Minion)"""
     st = minion_hom_algebras(A, B, surj=True)
-    writefile('tmp.minion', st)
-    os.system('minion -noprintsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    st = readfile('tmp.txt')
-    os.system('rm tmp.txt')
-    return len(st.split("\n")[:-1]) > 0
-
+    return len(MinionSol(st)) > 0
 
 
 def is_subalgebra(A, B):
@@ -189,11 +182,7 @@ def is_subalgebra(A, B):
     return true if A is a subalgebra of B (uses Minion)
     """
     st = minion_hom_algebras(A, B, inj=True)
-    writefile('tmp.minion', st)
-    os.system('minion -noprintsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    st = readfile('tmp.txt')
-    os.system('rm tmp.txt')
-    return len(st.split("\n")[:-1]) > 0
+    return len(MinionSol(st)) > 0
 
 
 
