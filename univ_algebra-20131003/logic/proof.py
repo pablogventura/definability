@@ -1,7 +1,10 @@
 import os
+import subprocess as sp
 
 import config
 from model import Model # para los contraejemplos
+
+from misc import writefile,readfile
 
 def getops(li, st):
     # TODO , PARECIERA QUE DEBERIA SER UN METODO INTERNO DE LOS MODELOS QUE DEVUELVE MACE4
@@ -46,9 +49,8 @@ def proofstep2list(st):
     # return [li[0][ind+1:]]+[eval(li[0][:ind])]+[eval(li[-2])]
 
 
-def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60,
-            domain_cardinality=None, one=False, options=[], noniso=True, hints_list=None, keep_list=None,
-            delete_list=None):
+def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_cardinality=None,
+             one=False, options=[], noniso=True, hints_list=None, keep_list=None, delete_list=None):
     """
     Invoke Prover9/Mace4 with lists of formulas and some (limited) options
 
@@ -76,44 +78,49 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60,
         >>> prover9(BooleanGroup, [], 3, 0, 50) # No model of cardinality 50
                                                 # Boolean groups have cardinality 2^k
     """
-    fh = open('tmp.in', 'w')
-    for st in options:
-        fh.write(st + '.\n')
-    fh.write('formulas(assumptions).\n')
-    for st in assume_list:
-        fh.write(st + '.\n')
-    fh.write('end_of_list.\nformulas(goals).\n')
-    for st in goal_list:
-        fh.write(st + '.\n')
-    fh.write('end_of_list.\n')
-    fh.close()
+    inputp9m4 = generateinput(assume_list,goal_list,options)
+    #writefile("tmp.in", inputp9m4)
+    
 
-    if mace_seconds != 0:
-        mace_params = ''
-        if domain_cardinality != None:
+    if mace_seconds:
+        maceargs = []
+        if domain_cardinality:
             st = str(domain_cardinality)
-            mace_params = ' -n ' + st + ' -N ' + st + ('' if one else ' -m -1') + ' -S 1'  # set skolem_last
-        res = os.system(config.uapth + 'mace4 -t ' + str(mace_seconds) + mace_params + ' -f tmp.in >tmp.out 2>tmpe')
-        fh = open('tmp.out')
-        out_str = fh.read()
-        fh.close()
-        ind = out_str.find("%%ERROR")
-        if ind != -1:
+            maceargs = ["-n",st,"-N",st] + ([] if one else ["-m","-1"]) + ["-S", "1"]  # set skolem_last
+        mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        mace4app.stdin.write(inputp9m4)
+        mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
+
+        #TODO ASI ERA ANTES res = os.system(config.uapth + 'mace4 -t ' + str(mace_seconds) + mace_params + ' -f tmp.in >tmp.out 2>tmpe')
+
+        out_str = mace4app.stdout.read()
+        
+        if "%%ERROR" in out_str:
             print out_str[ind + 2:]
             return
-        if out_str.find('Exiting with failure') == -1:
+        if 'Exiting with failure' not in out_str:
             if domain_cardinality != None and not one and noniso:
-                os.system(config.uapth + 'interpformat standard -f tmp.out | ' + config.uapth + 'isofilter ' +
-                          'check \"+ * v ^ \' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<\" ' +
-                          'output \"+ * v ^ \' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<\" | ' +
-                          config.uapth + 'interpformat portable >tmpe')
+                interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+                isofilterapp = sp.Popen([config.uapth + 'isofilter',
+                                         'check',
+                                         "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
+                                         'output',
+                                         "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
+                                        , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+                interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+                interp1app.stdin.write(out_str)
+                interp1app.stdin.close()
+                out_str = interp2app.stdout.read()
             else:
-                os.system(config.uapth + 'interpformat portable -f tmp.out >tmpe')
-            fh = open('tmpe')
-            out_str = fh.read()
-            fh.close()
+                interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+                interpapp.stdin.write(out_str)
+                interpapp.stdin.close()
+                out_str = interpapp.stdout.read()
+            #interpformatapp = sp.Popen([config.uapth + "mace4"]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+            #out_str = readfile("tmpe")
+
             if out_str != "":
-                li = eval(out_str.replace("\\", "\\\\"))
+                li = eval(out_str.replace("\\", "\\\\")) # como viene habiendo pasado por interpformat portable tiene "un poco" de sentido
             else:
                 print "No models found (so far)"
                 return
@@ -128,20 +135,23 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60,
             if not one:
                 print 'No model of cardinality ' + str(domain_cardinality)
             return []
-
-    res = os.system(config.uapth + 'prover9 -t ' + str(prover_seconds) + ' -f tmp.in >tmp.out 2>tmpe')
-    fh = open('tmp.out')
-    out_str = fh.read()
-    fh.close()
+    prover9app = sp.Popen([config.uapth + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+    prover9app.stdin.write(inputp9m4)
+    prover9app.stdin.close() # TENGO QUE MANDAR EL EOF!
+    #res = os.system(config.uapth + 'prover9 -t ' + str(prover_seconds) + ' -f tmp.in >tmp.out')
+    
+    out_str = prover9app.stdout.read()
     ind = out_str.find("%%ERROR")
     if ind != -1:
         print out_str[ind + 2:]
         return
     if True:  # res==0 or res==1 or res==256:
-        os.system(config.uapth + 'prooftrans expand renumber parents_only -f tmp.out >tmpe')
-        fh = open('tmpe')
-        out_str = fh.read()
-        fh.close()
+        ptransapp = sp.Popen([config.uapth + "prooftrans",
+                              "expand", "renumber", "parents_only"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        #os.system(config.uapth + 'prooftrans expand renumber parents_only -f tmp.out >tmpe')
+        ptransapp.stdin.write(out_str)
+        ptransapp.stdin.close() # TENGO QUE MANDAR EL EOF!
+        out_str = ptransapp.stdout.read()
         lst = []
         ind1 = out_str.find("PROOF ===")
         ind2 = out_str.find("end of proof ===")
@@ -152,3 +162,17 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60,
         return [Proof(li) for li in lst]
     print 'No conclusion (timeout)'
     return 'No conclusion (timeout)'
+
+def generateinput(assume_list,goal_list,options):
+    result = ""
+    for st in options:
+        result += st + ".\n"
+    result += 'formulas(assumptions).\n'        
+    for st in assume_list:
+        result += st + '.\n'
+    result += 'end_of_list.\nformulas(goals).\n'        
+    for st in goal_list:
+        result += st + '.\n'
+    result += 'end_of_list.\n'
+    return result
+
