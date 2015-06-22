@@ -1,5 +1,8 @@
 import os
 import subprocess as sp
+import Queue
+import threading
+import re
 
 import config
 from model import Model # para los contraejemplos
@@ -49,6 +52,48 @@ def proofstep2list(st):
     # return [li[0][ind+1:]]+[eval(li[0][:ind])]+[eval(li[-2])]
 
 
+class Mace4():
+    def __init__(self, mace_input, mace_seconds=2, domain_cardinality=None, one=False, noniso=True):
+        maceargs = []
+        if domain_cardinality:
+            st = str(domain_cardinality)
+            maceargs = ["-n",st,"-N",st] + ([] if one else ["-m","-1"]) + ["-S", "1"]  # set skolem_last
+        mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        mace4app.stdin.write(mace_input)
+        mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
+        
+        self.macerunning = True
+
+        if domain_cardinality != None and not one and noniso:
+            interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            isofilterapp = sp.Popen([config.uapth + 'isofilter',
+                                     'check',
+                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
+                                     'output',
+                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
+                                    , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.stdout = interp2app.stdout
+        else:
+            interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.stdout = interpapp.stdout
+        self.stderr = mace4app.stderr
+
+        self.equeue = Queue.Queue()
+        t = threading.Thread(target=self.parse_stderr, args=())
+        t.start()
+
+    def parse_stderr(self):
+        for line in iter(self.stderr.readline, b''):
+            if "exit" in line:
+                self.macerunning = False
+                self.exitcomment = re.search("\((.+)\)",line).group(1)
+
+
+
+
+
+
 def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_cardinality=None,
              one=False, options=[], noniso=True, hints_list=None, keep_list=None, delete_list=None):
     """
@@ -83,50 +128,7 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_ca
     
 
     if mace_seconds:
-        maceargs = []
-        if domain_cardinality:
-            st = str(domain_cardinality)
-            maceargs = ["-n",st,"-N",st] + ([] if one else ["-m","-1"]) + ["-S", "1"]  # set skolem_last
-        mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-        mace4app.stdin.write(inputp9m4)
-        mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
-        out_str = ""
-        if "%%ERROR" in out_str:
-            print out_str[ind + 2:]
-            return
-        if 'Exiting with failure' not in out_str:
-            if domain_cardinality != None and not one and noniso:
-                interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-                isofilterapp = sp.Popen([config.uapth + 'isofilter',
-                                         'check',
-                                         "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
-                                         'output',
-                                         "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
-                                        , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-                interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-                out_str = interp2app.stdout.read()
-            else:
-                interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-                out_str = interpapp.stdout.read()
-
-            import ipdb; ipdb.set_trace() 
-            #if "exit (max_sec_no)" in mace4.stdeer
-            if out_str != "":
-                li = eval(out_str.replace("\\", "\\\\")) # como viene habiendo pasado por interpformat portable tiene "un poco" de sentido
-            else:
-                print "No models found (so far)"
-                return
-            models = []
-            for m in li:
-                models += [Model(m[0], len(models), getops(m[2], 'function'), getops(m[2], 'relation'))]
-            if domain_cardinality != None and not one:
-                print "Number of " + ("nonisomorphic " if noniso else "") + "models of cardinality", domain_cardinality, " is ", len(models)
-            # else: print "(Counter)example of minimal cardinality:"
-            return models
-        elif domain_cardinality and 'exit (exhausted)' in out_str:
-            if not one:
-                print 'No model of cardinality ' + str(domain_cardinality)
-            return []
+        return Mace4(inputp9m4, mace_seconds, domain_cardinality, one, noniso)
     
     prover9app = sp.Popen([config.uapth + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
     prover9app.stdin.write(inputp9m4)
