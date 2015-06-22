@@ -90,17 +90,13 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_ca
         mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         mace4app.stdin.write(inputp9m4)
         mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
-
-        #TODO ASI ERA ANTES res = os.system(config.uapth + 'mace4 -t ' + str(mace_seconds) + mace_params + ' -f tmp.in >tmp.out 2>tmpe')
-
-        out_str = mace4app.stdout.read()
-        
+        out_str = ""
         if "%%ERROR" in out_str:
             print out_str[ind + 2:]
             return
         if 'Exiting with failure' not in out_str:
             if domain_cardinality != None and not one and noniso:
-                interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+                interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
                 isofilterapp = sp.Popen([config.uapth + 'isofilter',
                                          'check',
                                          "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
@@ -108,17 +104,13 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_ca
                                          "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
                                         , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
                 interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-                interp1app.stdin.write(out_str)
-                interp1app.stdin.close()
                 out_str = interp2app.stdout.read()
             else:
-                interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-                interpapp.stdin.write(out_str)
-                interpapp.stdin.close()
+                interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
                 out_str = interpapp.stdout.read()
-            #interpformatapp = sp.Popen([config.uapth + "mace4"]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-            #out_str = readfile("tmpe")
 
+            import ipdb; ipdb.set_trace() 
+            #if "exit (max_sec_no)" in mace4.stdeer
             if out_str != "":
                 li = eval(out_str.replace("\\", "\\\\")) # como viene habiendo pasado por interpformat portable tiene "un poco" de sentido
             else:
@@ -131,10 +123,11 @@ def prover9(assume_list, goal_list, mace_seconds=2, prover_seconds=60, domain_ca
                 print "Number of " + ("nonisomorphic " if noniso else "") + "models of cardinality", domain_cardinality, " is ", len(models)
             # else: print "(Counter)example of minimal cardinality:"
             return models
-        elif domain_cardinality != None and out_str.find('exit (exhausted)') != -1:
+        elif domain_cardinality and 'exit (exhausted)' in out_str:
             if not one:
                 print 'No model of cardinality ' + str(domain_cardinality)
             return []
+    
     prover9app = sp.Popen([config.uapth + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
     prover9app.stdin.write(inputp9m4)
     prover9app.stdin.close() # TENGO QUE MANDAR EL EOF!
