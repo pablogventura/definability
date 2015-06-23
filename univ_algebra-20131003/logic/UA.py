@@ -37,7 +37,7 @@ from sage.functions.other import sqrt
 
 import config
 
-from proof import prover9, getops
+from proof import ProverMaceSol, getops
 from misc import readfile, writefile
 from model import Model
 from display import opstr, oprelstr
@@ -412,6 +412,8 @@ def ConL(A):
 
 
 def Con(A):
+    print A
+    print type(A)
     """
     Return a list of strings that represent congruences of A as partitions
     """

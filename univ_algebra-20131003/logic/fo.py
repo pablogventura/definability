@@ -1,4 +1,4 @@
-from proof import prover9
+from proof import ProverMaceSol
 
 class FOclass():
     FOclasses = []
@@ -99,10 +99,7 @@ class FOclass():
         Find models of given (finite) cardinality for the axioms 
         of the FOclass self.
         """
-        if self.syntax == 'Prover9':
-            return prover9(self.axioms, [], seconds, 0, cardinality, False, self.options)
-        else:
-            return "Don't know how to handle the syntax of " + self.syntax
+        return ProverMaceSol(self.axioms, [], seconds, 0, cardinality, False, self.options).models
 
     def count_models(self, upto=20, seconds=60000):
         """

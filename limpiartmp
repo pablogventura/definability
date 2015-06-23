@@ -1,5 +1,7 @@
 #!/bin/sh
 
+find . -name "*.out" -type f -delete
+find . -name "*.in" -type f -delete
 find . -name "*.pyc" -type f -delete
 find . -name "tmp*" -type f -delete
 

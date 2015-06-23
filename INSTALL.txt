@@ -26,23 +26,25 @@ Installation instructions for the Sage packages in this directory:
 
 5. To see if the installation works, try the following commands:
 
-   prover9(["x=x"],["x=x"],2,2)
+    bool(ProverMaceSol(["x=x"],["x=x"],2,2))
 
-   prover9(["x=x"],["x!=x"],2,2)
+    bool(ProverMaceSol(["x=x"],["x!=x"],2,2))
 
-   FOclass.FOclasses
+    #FOclass.FOclasses # enumera las teorias de primer orden
 
-   a = all_lattices(5)
+    a = all_lattices(5)
 
-   SI(a)
+    SI(a)
 
-   b = fotheories.Lat.find_models(4)
+    b = list(fotheories.Lat.find_models(4))
 
-   #show_posets(b) # no funciona porque no tienen uc los elementos de b
+    #show_posets(b) # no funciona porque no tienen uc los elementos de b
 
-   Con(b[0])         # this assumes the Java Runtime Environment is installed
+    Con(b[0])         # this assumes the Java Runtime Environment is installed
 
-   minion.Hom(b[0],b[1])    # this assumes you installed the Minion package
+    for i in minion.Hom(b[0],b[1]):    # this assumes you installed the Minion package
+        print i
+        
 
 For a full list of commands, see the python code in
 
