@@ -54,6 +54,12 @@ def proofstep2list(st):
 
 class Mace4():
     def __init__(self, mace_input, mace_seconds=2, domain_cardinality=None, one=False, noniso=True):
+        
+        self.apps = [] # subprocesos
+        self.ts = [] # hilos
+        
+        self.stop = False
+        
         maceargs = []
         if domain_cardinality:
             st = str(domain_cardinality)
@@ -61,8 +67,13 @@ class Mace4():
         mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         mace4app.stdin.write(mace_input)
         mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
+        self.apps.append(mace4app)
         
         self.macerunning = True
+        self.parsing = True
+        
+        self.models = []
+        self.count = 0
 
         if domain_cardinality != None and not one and noniso:
             interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
@@ -73,21 +84,72 @@ class Mace4():
                                      "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
                                     , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.apps += [interp1app,isofilterapp,interp2app]
             self.stdout = interp2app.stdout
         else:
             interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.apps.append(interpapp)
             self.stdout = interpapp.stdout
         self.stderr = mace4app.stderr
 
-        self.equeue = Queue.Queue()
-        t = threading.Thread(target=self.parse_stderr, args=())
-        t.start()
+        tparseerr = threading.Thread(target=self.parse_stderr, args=())
+        tparseerr.start()
+        self.ts.append(tparseerr)
+        
+        self.parse_enc_stdout()
+        
+        self.qmodels = Queue.Queue()
+        tparseout = threading.Thread(target=self.parse_stdout, args=())
+        tparseout.start()
+        self.ts.append(tparseout)
+        
+    def parse_enc_stdout(self):
+        self.stdout.readline() # quita el [ del principio
+        
+    def parse_stdout(self):
+        if not self.stop:
+            buf = ""
+            for line in iter(self.stdout.readline, b''):
+                buf += line
+                if buf.count("[")==buf.count("]"):
+                    # hay un modelo completo
+                    buf = buf.replace("\n","") #quito saltos de linea
+                    buf = buf.strip() # quito espacios para poder sacar la coma
+                    if buf[-1] == ",":
+                        buf=buf[:-1] # saco la coma!
+                                    
+                    m = eval(buf)
+
+                    self.qmodels.put([Model(m[0],self.count,getops(m[2],'function'),getops(m[2],'relation'))])
+                    self.count+=1
+                    buf = "" 
+            self.parsing = False #hubo eof
+
+    def __iter__(self):
+        if self.models:
+            for m in self.models:
+                yield m
+        else:
+            while self.parsing or not self.qmodels.empty():
+                self.models.append(self.qmodels.get())
+                yield self.models[-1]
+        
 
     def parse_stderr(self):
-        for line in iter(self.stderr.readline, b''):
-            if "exit" in line:
-                self.macerunning = False
-                self.exitcomment = re.search("\((.+)\)",line).group(1)
+        if not self.stop:
+            for line in iter(self.stderr.readline, b''):
+                if "exit" in line:
+                    self.macerunning = False
+                    self.exitcomment = re.search("\((.+)\)",line).group(1)
+                
+    def __del__(self):
+        # no queda claro que ande bien
+        self.stop = True
+        print dir(self.ts[0])
+        for app in self.apps:
+            app.kill()
+            app.wait()
+            del app
 
 
 
