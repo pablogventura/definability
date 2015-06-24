@@ -68,25 +68,25 @@ class Mace4():
         if domain_cardinality:
             st = str(domain_cardinality)
             maceargs = ["-n",st,"-N",st] + ([] if one else ["-m","-1"]) + ["-S", "1"]  # set skolem_last
-        mace4app = sp.Popen([config.uapth + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        mace4app = sp.Popen([config.ladrpath + "mace4","-t",str(mace_seconds)]+maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         mace4app.stdin.write(mace_input)
         mace4app.stdin.close() # TENGO QUE MANDAR EL EOF!
         self.apps.append(mace4app)
         
 
         if domain_cardinality != None and not one and noniso:
-            interp1app = sp.Popen([config.uapth + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-            isofilterapp = sp.Popen([config.uapth + 'isofilter',
+            interp1app = sp.Popen([config.ladrpath + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            isofilterapp = sp.Popen([config.ladrpath + 'isofilter',
                                      'check',
                                      "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
                                      'output',
                                      "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"]
                                     , stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-            interp2app = sp.Popen([config.uapth + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            interp2app = sp.Popen([config.ladrpath + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             self.apps += [interp1app,isofilterapp,interp2app]
             self.__stdout = interp2app.stdout
         else:
-            interpapp = sp.Popen([config.uapth + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            interpapp = sp.Popen([config.ladrpath + "interpformat", "portable"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             self.apps.append(interpapp)
             self.__stdout = interpapp.stdout
         self.__stderr = mace4app.stderr
@@ -169,11 +169,11 @@ class Prover9():
         self.proffs = []
         self.count = 0
         
-        prover9app = sp.Popen([config.uapth + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        prover9app = sp.Popen([config.ladrpath + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         prover9app.stdin.write(prover9_input)
         prover9app.stdin.close() # TENGO QUE MANDAR EL EOF!
 
-        ptransapp = sp.Popen([config.uapth + "prooftrans",
+        ptransapp = sp.Popen([config.ladrpath + "prooftrans",
                               "expand", "renumber", "parents_only"], stdin=prover9app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
         self.apps = [prover9app,ptransapp]
         self.stderr = prover9app.stderr

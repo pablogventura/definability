@@ -5,7 +5,7 @@
 import os
 import subprocess as sp
 from misc import readfile, writefile
-
+import config
 
 
 class MinionSol():
@@ -13,13 +13,18 @@ class MinionSol():
     def __init__(self, inputdata):
         self.id = MinionSol.__count
         MinionSol.__count += 1
+        self.inputfilename = config.minionpath + "input_minion%s" % self.id
+        print self.inputfilename
         
-        os.mkfifo("input_minion%s" % self.id)
+        try:
+            os.mkfifo(self.inputfilename)
+        except OSError:
+            pass
         
-        minionargs = ["-printsolsonly","-findallsols","input_minion%s" % self.id]
+        minionargs = ["-printsolsonly","-findallsols",self.inputfilename]
             
-        self.minionapp = sp.Popen(["minion"]+minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-        writefile("input_minion%s" % self.id ,inputdata)
+        self.minionapp = sp.Popen([config.minionpath + "minion"]+minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        writefile(self.inputfilename,inputdata)
         self.buffer = ""
         self.EOF = False
         self.values = []
@@ -48,7 +53,10 @@ class MinionSol():
             if not self.buffer:
                 self.EOF = True
                 self.minionapp.terminate()
-                os.remove("input_minion%s" % self.id)
+                try:
+                    os.remove(self.inputfilename)
+                except OSError:
+                    pass
 
     def __readall(self):
         if not self.EOF:
@@ -74,8 +82,10 @@ class MinionSol():
     def __del__(self):
         self.minionapp.kill()
         del self.minionapp
-        if os.path.isfile("input_minion%s" % self.id):
-            os.remove("input_minion%s" % self.id)
+        try:
+            os.remove(self.inputfilename)
+        except OSError:
+            pass
         
 
 def t_op(st):
