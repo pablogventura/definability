@@ -3,6 +3,23 @@ import os # TODO NO DEBERIA USARSE
 import config
 from display import opstr, oprelstr, xmlopstr
 from misc import readfile, writefile
+import subprocess as sp
+import threading
+
+
+def UASol(inputua, example, options=[]):
+
+    inputfn = config.clspth + "inputUA.ua"
+    os.mkfifo(inputfn)
+    
+    uaapp = sp.Popen(["java", "-classpath", config.clspth + "uacalc/classes/",
+                      "org.uacalc.example.%s" % example, inputfn] + options, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+    writefile(inputfn,inputua)
+    
+    result = uaapp.stdout.read()
+    os.remove(inputfn)
+    return result
+
 
 class Model():
 
@@ -155,9 +172,8 @@ class Model():
         if hasattr(self, "con"):
             return self.con
         st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgCon.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.ConUACalc tmpalgCon.ua >tmpoutCon.txt')
-        st = readfile('tmpoutCon.txt')
+
+        st = UASol(st,"ConUACalc")
         st = st[st.index("["):]     # remove diagnostic output
         self.con = eval(st)
         return self.con
@@ -169,9 +185,7 @@ class Model():
         if hasattr(self, "jcon"):
             return self.jcon
         st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgCon.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.JConUACalc tmpalgCon.ua >tmpoutCon.txt')
-        st = readfile('tmpoutCon.txt')
+        st = UASol(st,"JConUACalc")
         while st[0] == "k":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         self.jcon = eval(st)
@@ -184,9 +198,7 @@ class Model():
         if hasattr(self, "mcon"):
             return self.mcon
         st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgCon.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.MConUACalc tmpalgCon.ua >tmpoutCon.txt')
-        st = readfile('tmpoutCon.txt')
+        st = UASol(st,"MConUACalc")
         while st[0] == "k":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         self.mcon = eval(st)
@@ -197,9 +209,7 @@ class Model():
         use the uacalculator to compute the subalgebras of self
         """
         st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgSub.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.SubUACalc tmpalgSub.ua >tmpoutSub.txt')
-        st = readfile('tmpoutSub.txt')
+        st = UASol(st,"SubUACalc")
         while st[0] != "[" and st[0] != "]":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         li = eval(st)
@@ -217,25 +227,23 @@ class Model():
         use the uacalculator to compute the type set of self
         """
         st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgCon.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.FindTypeSet tmpalgCon.ua >tmpoutCon.txt')
-        st = readfile('tmpoutCon.txt')
+        st = UASol(st,"FindTypeSet")
         st = st[st.index("type set: ") + 10:]     # remove diagnostic output
         return eval(st)
 
     def inVar(self, B, info=False):
+        #TODO ESTE FALTA, PORQUE TOMA DOS COSAS
         """
         use the uacalculator to compute if self is in the variety gen by B
         """
-        st = self.uacalc_format("A" + str(self.index))
-        writefile('tmpalgA.ua', st)
-        st = B.uacalc_format("B" + str(B.index))
-        writefile('tmpalgB.ua', st)
-        os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.AinVB tmpalgA.ua tmpalgB.ua >tmpout.txt')
-        st = readfile('tmpout.txt')
+        stA = self.uacalc_format("A" + str(self.index))
+        stB = B.uacalc_format("B" + str(B.index))
+
+        st = UASol([stA,stB],"FindTypeSet")
+
         if info:
             print st
-        return st.find("eq is null") != -1
+        return "eq is null" in st
 
     def Free(self, n, info=False):
         """
@@ -245,6 +253,7 @@ class Model():
         writefile('tmpalgA.ua', st)
         os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.FreeAlg tmpalgA.ua ' + str(n) + ' >tmpout.txt')
         st = readfile('tmpout.txt')
+        
         if info:
             print st
         return int(st[st.find("fr size = ") + 10:st.find(" elements")])
