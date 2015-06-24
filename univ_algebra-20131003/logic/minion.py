@@ -7,8 +7,6 @@ import subprocess as sp
 from misc import readfile, writefile
 
 
-# TODO ESTO ES PRUEBA, PERO ANDA MUCHO MEJOR DE VELOCIDAD
-
 
 class MinionSol():
     __count = 0

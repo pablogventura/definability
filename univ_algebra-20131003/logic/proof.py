@@ -119,6 +119,7 @@ class Mace4():
                     self.count+=1
                     buf = "" 
             self.parsing = False #hubo eof
+            self.__qmodels.put(None) # para marcar el final
 
     def __parse_stderr(self):
         if not self.__aborting:
@@ -133,8 +134,13 @@ class Mace4():
                 yield m
         else:
             while self.parsing or not self.__qmodels.empty():
-                self.models.append(self.__qmodels.get())
-                yield self.models[-1]
+                m = self.__qmodels.get()
+                if m != None:
+                    self.models.append(m)
+                    yield m
+                else:
+                    break
+
     def __len__(self):
         if self.parsing:
             self.ts[1].join() # este es el que parsea la stdout
@@ -203,6 +209,9 @@ class Prover9():
                     self.count+=1
                     buf = [] # vacio el buffer
             self.parsing = False #hubo eof
+            self.qproffs.put(None) # para marcar el fina
+            
+            
             
     def __iter__(self):
         if self.proffs:
@@ -210,8 +219,13 @@ class Prover9():
                 yield p
         else:
             while self.parsing or not self.qproffs.empty():
-                self.proffs.append(self.qproffs.get())
-                yield self.proffs[-1]
+                p = self.qproffs.get()
+                if p != None:
+                    self.proffs.append(p)
+                    yield p
+                else:
+                    break
+
                 
     def __len__(self):
         if self.parsing:
