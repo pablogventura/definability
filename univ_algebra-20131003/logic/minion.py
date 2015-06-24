@@ -136,18 +136,6 @@ def Hom(A, B):
     st = minion_hom_algebras(A, B)
     return MinionSol(st)
 
-def Hom2(A, B):
-    """
-    call Minion to calculate all homomorphisms from algebra A to algebra B
-    """
-    # TODO parece que se puede ir haciendo que minion vaya imprimiendo cada homo por vez
-    st = minion_hom_algebras(A, B)
-    writefile('tmp.minion', st)
-    os.system('minion -noprintsols -findallsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    st = readfile('tmp.txt')
-    os.system('rm tmp.txt')
-    return [[int(y) for y in x.strip().split(" ")] for x in st.split("\n")[:-1]]
-
 
 def End(A):
     """
@@ -220,11 +208,8 @@ def Pol_1(U):
     the binary relational structure U
     """
     st = minion_hom_bin_rel(U, U)
-    writefile('tmp.minion', st)
-    os.system('minion -noprintsols -findallsols -solsout tmp.txt tmp.minion >tmpout.txt')
-    st = readfile('tmp.txt')
-    os.system('rm tmp.txt')
-    return [tuple(int(y) for y in x.strip().split(" ")) for x in st.split("\n")[:-1]]
+    # antes devolvia una lista de tuplas, ahora es un generador de listas
+    return MinionSol(st)
 
 
 def ops2alg(ops):
