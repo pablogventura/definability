@@ -99,25 +99,26 @@ def input_homomorfisms(A, B, inj=False, surj=False):
     """
     Genera un string para darle a Minion para tener los homomorfismos de A en B
     """
-    st  = "MINION 3\n\n"
-    st += "**VARIABLES**\n"
-    st += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
-    st += "**TUPLELIST**\n"
+    result  = "MINION 3\n\n"
+    result += "**VARIABLES**\n"
+    result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+    result += "**TUPLELIST**\n"
     for s in B.operations:
-        st += B.operations[s].minion_table(t_op(s)) + "\n"
-    st += "**CONSTRAINTS**\n"
+        result += B.operations[s].minion_table(t_op(s)) + "\n"
+    result += "**CONSTRAINTS**\n"
     if inj:
-        st += "alldiff(f)\n"
+        result += "alldiff(f)\n" # exige que todos los valores de f sean distintos
     if surj:
         for i in range(B.cardinality):
-            st += "occurrencegeq(f, " + str(i) + ", 1)\n"
+            result += "occurrencegeq(f, " + str(i) + ", 1)\n" # exige que i aparezca al menos una vez en el "vector" f
 
     for s in A.operations:
         cons = A.operations[s].table()
         cons = map(lambda x: "table([f[%s],f[%s],f[%s]],%s)" % (x[0],x[1],x[2],t_op(s)),cons)
-        st += "\n".join(cons)
-        st += "\n\n"
-    return st + "**EOF**\n"
+        result += "\n".join(cons)
+        result += "\n\n"
+    result += "**EOF**\n"
+    return result
 
 
 
