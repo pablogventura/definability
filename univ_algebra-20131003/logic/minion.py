@@ -96,15 +96,6 @@ def t_op(st):
     return st
 
 
-def prueba(a):
-    print a.cardinality
-    
-    for op in a.operations:
-        print op
-        for (i,j) in product(range(a.cardinality), repeat=2): # depende de la aridad
-            print "%s %s %s" % (i,j,a.operations[op][i][j])
-
-
 def minion_hom_algebras(A, B, inj=False, surj=False):
     # A,B are algebras CURRENTLY with only unary or binary operations
     if hasattr(A, "uc"):
@@ -114,8 +105,8 @@ def minion_hom_algebras(A, B, inj=False, surj=False):
         B.get_join()
     st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
     for s in B.operations:
-        if type(B.operations[s]) == list:
-            if type(B.operations[s][0]) == list:  # binary
+        if issubclass(type(B.operations[s]),list):
+            if issubclass(type(B.operations[s][0]),list):  # binary
                 st += t_op(s) + " " + str(B.cardinality * B.cardinality) + " 3\n"
                 for i in range(B.cardinality):
                     for j in range(B.cardinality):
@@ -133,8 +124,8 @@ def minion_hom_algebras(A, B, inj=False, surj=False):
         for i in range(B.cardinality):
             st += "occurrencegeq(f, " + str(i) + ", 1)\n"
     for s in A.operations:
-        if type(A.operations[s]) == list:
-            if type(A.operations[s][0]) == list:  # binary
+        if issubclass(type(A.operations[s]),list):
+            if issubclass(type(A.operations[s][0]), list):  # binary
                 for i in range(A.cardinality):
                     for j in range(A.cardinality):
                         st += "table([f[" + str(i) + "],f[" + str(j) + "],f[" + str(A.operations[s][i][j]) + "]]," + t_op(s) + ")\n"

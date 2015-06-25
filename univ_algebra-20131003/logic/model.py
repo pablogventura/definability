@@ -5,6 +5,7 @@ from display import opstr, xmlopstr
 from misc import readfile, writefile
 import subprocess as sp
 import threading
+from itertools import product
 
 
 class ListWithArity(list):
@@ -33,7 +34,30 @@ class ListWithArity(list):
             result += repr(row) + "\n"
         result += "]"
         return result
-
+    
+    def minion_table(self,table_name,relation=False):
+        """
+        Devuelve la tabla que representa a la relacion/operacion en minion
+        """
+        if not relation:
+            print "op"
+            cardinality = len(self)
+            result = "%s %s %s\n" % (table_name, cardinality ** self.arity(), self.arity() + 1)
+            for t in product(range(cardinality), repeat=self.arity()):
+                result += " ".join(map(str,t)) + " "
+                result += "%s\n" % self(*t)
+            return result
+        else:
+            print "relation"
+            cardinality = len(self)
+            height = 0
+            result = ""
+            for t in product(range(cardinality), repeat=self.arity()):
+                if self(*t):
+                    result += " ".join(map(str,t)) + "\n"
+                    height += 1
+            result = "%s %s %s\n" % (table_name, height, self.arity())+ result
+            return result
 
 
 
