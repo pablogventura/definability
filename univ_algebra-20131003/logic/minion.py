@@ -90,12 +90,12 @@ class MinionSol():
 
 def t_op(st):
     # Minion accepts only letters for first character of names
-    ops = {"^": "m", "+": "p", "-": "s", "*": "t"}
+    ops = {"^": "m", "+": "p", "-": "s", "*": "t" ,"<=":"leq"}
     if st in ops:
         return ops[st]
     return st
 
-def input_homomorfisms(A, B, inj=False, surj=False):
+def input_homo(A, B, inj=False, surj=False):
     """
     Genera un string para darle a Minion para tener los homomorfismos de A en B
     """
@@ -105,8 +105,8 @@ def input_homomorfisms(A, B, inj=False, surj=False):
     result += "**TUPLELIST**\n"
     for op in B.operations:
         result += B.operations[op].minion_table(t_op(op)) + "\n"
-    #for rel in B.relations:
-    #    result += B.operations[rel].minion_table(t_op(rel)) + "\n"
+    for rel in B.relations:
+        result += B.relations[rel].minion_table(t_op(rel),relation=True) + "\n"
     result += "**CONSTRAINTS**\n"
     if inj:
         result += "alldiff(f)\n" # exige que todos los valores de f sean distintos
@@ -114,10 +114,15 @@ def input_homomorfisms(A, B, inj=False, surj=False):
         for i in range(B.cardinality):
             result += "occurrencegeq(f, " + str(i) + ", 1)\n" # exige que i aparezca al menos una vez en el "vector" f
 
-    for s in A.operations:
-        cons = A.operations[s].table()
+    for op in A.operations:
+        cons = A.operations[op].table()
         for row in cons:
-            result += "table([f[" + "],f[".join(map(str,row)) + "]],%s)\n" % t_op(s)
+            result += "table([f[" + "],f[".join(map(str,row)) + "]],%s)\n" % t_op(op)
+        result += "\n"
+    for rel in A.relations:
+        cons = A.relations[rel].table(relation=True)
+        for row in cons:
+            result += "table([f[" + "],f[".join(map(str,row)) + "]],%s)\n" % t_op(rel)
         result += "\n"
     result += "**EOF**\n"
     return result

@@ -39,7 +39,7 @@ class ListWithArity(list):
         """
         Devuelve un string con la tabla que representa a la relacion/operacion en minion
         """
-        table = self.table()
+        table = self.table(relation)
         height = len(table)
         width = len(table[0])
         result = ""
