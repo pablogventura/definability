@@ -1,10 +1,41 @@
 import os # TODO NO DEBERIA USARSE
 
 import config
-from display import opstr, oprelstr, xmlopstr
+from display import opstr, xmlopstr
 from misc import readfile, writefile
 import subprocess as sp
 import threading
+
+
+class ListWithArity(list):
+    """
+    Define a las listas que se usan para tener operaciones y relaciones.
+    Las relaciones simplemente son operaciones con 0 o 1 como salida.
+    """
+    
+    def arity(self):
+        result = 0
+        t=self
+        while issubclass(type(t), list):
+            t=t[0]
+            result+=1
+        return result
+        
+    def __call__(self, *args):
+        assert len(args) == self.arity()
+        result = self
+        for i in args:
+            result = result[i]
+        return result
+    def __repr__(self):
+        result = "ListWithArity([\n"
+        for row in self:
+            result += repr(row) + "\n"
+        result += "]"
+        return result
+
+
+
 
 
 def UASol(inputua, example, options=[]):
@@ -58,25 +89,37 @@ class Model():
 
         self.cardinality = cardinality
         self.index = index
-        self.operations = operations
-        self.relations = relations
+        self.operations={}
+        for op in operations:
+            self.operations[op] = ListWithArity(operations[op])
+        self.relations={}
+        for r in relations:
+            self.relations[r] = ListWithArity(relations[r])
         for attr in kwargs:
             setattr(self, attr, kwargs[attr])
 
     def __repr__(self):
         """
-        display a model
+        Display a model
         """
-        st = '\nModel(cardinality = ' + str(self.cardinality) +\
-             (', index = ' + str(self.index) if self.index != None else '')
-        if self.operations != {}:
-            st += ', operations = {' + oprelstr(self.operations) + '}'
-        if self.relations != {}:
-            st += ', relations = {' + oprelstr(self.relations) + '}'
-        other = set(vars(self)) - set(["cardinality", "index", "operations", "relations"])
+        result  = "Model(cardinality=%s, index=%s,\n" % (self.cardinality,self.index)
+        
+        result += "operations = {"
+        for op in self.operations:
+            result += "\n%s:\n" % repr(op)
+            result += repr(self.operations[op]) + ","
+            
+        result += "\n},\nrelations = {"
+        for r in self.relations:
+            result += "\n%s:\n" % repr(r)
+            result += repr(self.relations[r]) + ","
+        result += "\n}"
+        
+        other = set(vars(self)) - set(["cardinality", "index", "operations", "relations"]) 
         for attr in other:
-            st += ',\n' + attr + ' = ' + str(getattr(self, attr))
-        return st + ')'
+            result += "%s = %s,\n" % (repr(attr),repr(getattr(self, attr)))
+        result += ")"
+        return result
 
     def positive_diagram(self, c):
         """

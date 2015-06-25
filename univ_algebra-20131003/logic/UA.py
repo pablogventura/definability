@@ -40,7 +40,7 @@ import config
 from proof import ProverMaceSol, getops
 from misc import readfile, writefile
 from model import Model
-from display import opstr, oprelstr
+from display import opstr
 from fo import FOclass
 import fotheories
 

@@ -15,18 +15,6 @@ def opstr(m):
     return s
 
 
-def oprelstr(oprel):
-    """
-    Convert a list of operations or relations to a string
-    """
-    st = ''
-    for x in oprel:
-        if type(oprel[x]) == list and type(oprel[x][0]) == list:
-            st += '\n"' + x + '":' + opstr(oprel[x]) + ', '
-        else:
-            st += '"' + x + '":' + str(oprel[x]) + ', '
-    return st[:-2]
-
 def xmlopstr(m):  # convert 2-dim list to a compact string for display
     nr = len(m)
     nc = len(m[0])

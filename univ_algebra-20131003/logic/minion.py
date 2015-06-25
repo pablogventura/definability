@@ -6,7 +6,7 @@ import os
 import subprocess as sp
 from misc import readfile, writefile
 import config
-
+from itertools import product
 
 class MinionSol():
     __count = 0
@@ -94,6 +94,15 @@ def t_op(st):
     if st in ops:
         return ops[st]
     return st
+
+
+def prueba(a):
+    print a.cardinality
+    
+    for op in a.operations:
+        print op
+        for (i,j) in product(range(a.cardinality), repeat=2): # depende de la aridad
+            print "%s %s %s" % (i,j,a.operations[op][i][j])
 
 
 def minion_hom_algebras(A, B, inj=False, surj=False):
