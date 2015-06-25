@@ -166,7 +166,7 @@ class Prover9():
         self.proverrunning = True
         self.parsing = True
         
-        self.proffs = []
+        self.proofs = []
         self.count = 0
         
         prover9app = sp.Popen([config.ladrpath + "prover9", "-t", str(prover_seconds)], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
@@ -183,7 +183,7 @@ class Prover9():
         tparseerr.start()
         self.ts.append(tparseerr)
         
-        self.qproffs = Queue.Queue()
+        self.qproofs = Queue.Queue()
         tparseout = threading.Thread(target=self.__parse_stdout, args=())
         tparseout.start()
         self.ts.append(tparseout)
@@ -204,24 +204,24 @@ class Prover9():
                     buf = buf[-1:] # borro todo lo otro que ha sido el encabezado
                 if "= end of proof =" in buf[-1]:
                     # esta entera una prueba
-                    self.qproffs.put(Proof(map(proofstep2list, buf[10:-2])))
+                    self.qproofs.put(Proof(map(proofstep2list, buf[10:-2])))
                     
                     self.count+=1
                     buf = [] # vacio el buffer
             self.parsing = False #hubo eof
-            self.qproffs.put(None) # para marcar el fina
+            self.qproofs.put(None) # para marcar el fina
             
             
             
     def __iter__(self):
-        if self.proffs:
-            for p in self.proffs:
+        if self.proofs:
+            for p in self.proofs:
                 yield p
         else:
-            while self.parsing or not self.qproffs.empty():
-                p = self.qproffs.get()
+            while self.parsing or not self.qproofs.empty():
+                p = self.qproofs.get()
                 if p != None:
-                    self.proffs.append(p)
+                    self.proofs.append(p)
                     yield p
                 else:
                     break
@@ -276,19 +276,19 @@ class ProverMaceSol():
         inputp9m4 = self.generateinput(assume_list,goal_list,options)
 
         self.models = None
-        self.proffs = None
+        self.proofs = None
 
         if mace_seconds:
             self.models = Mace4(inputp9m4, mace_seconds, domain_cardinality, one, noniso)
 
         if prover_seconds:
-            self.proffs = Prover9(inputp9m4, prover_seconds)
+            self.proofs = Prover9(inputp9m4, prover_seconds)
             
     def __nonzero__(self):
         # define la conversion a bool
-        while self.models.count + self.proffs.count <= 0:
+        while self.models.count + self.proofs.count <= 0:
             pass
-        if self.proffs.count:
+        if self.proofs.count:
             return True
         else:
             return False
