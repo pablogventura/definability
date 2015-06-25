@@ -95,46 +95,30 @@ def t_op(st):
         return ops[st]
     return st
 
-
-def minion_hom_algebras(A, B, inj=False, surj=False):
-    # A,B are algebras CURRENTLY with only unary or binary operations
-    if hasattr(A, "uc"):
-        A.get_meet()
-        A.get_join()
-        B.get_meet()
-        B.get_join()
-    st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
+def input_homomorfisms(A, B, inj=False, surj=False):
+    """
+    Genera un string para darle a Minion para tener los homomorfismos de A en B
+    """
+    st  = "MINION 3\n\n"
+    st += "**VARIABLES**\n"
+    st += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+    st += "**TUPLELIST**\n"
     for s in B.operations:
-        if issubclass(type(B.operations[s]),list):
-            if issubclass(type(B.operations[s][0]),list):  # binary
-                st += t_op(s) + " " + str(B.cardinality * B.cardinality) + " 3\n"
-                for i in range(B.cardinality):
-                    for j in range(B.cardinality):
-                        st += str(i) + " " + str(j) + " " + str(B.operations[s][i][j]) + "\n"
-            else:  # unary
-                st += t_op(s) + " " + str(B.cardinality) + " 2\n"
-                for i in range(B.cardinality):
-                    st += str(i) + " " + str(B.operations[s][i]) + "\n"
-        # still need to do constants and arity>2
-        st += "\n"
+        st += B.operations[s].minion_table(t_op(s)) + "\n"
     st += "**CONSTRAINTS**\n"
     if inj:
         st += "alldiff(f)\n"
     if surj:
         for i in range(B.cardinality):
             st += "occurrencegeq(f, " + str(i) + ", 1)\n"
+
     for s in A.operations:
-        if issubclass(type(A.operations[s]),list):
-            if issubclass(type(A.operations[s][0]), list):  # binary
-                for i in range(A.cardinality):
-                    for j in range(A.cardinality):
-                        st += "table([f[" + str(i) + "],f[" + str(j) + "],f[" + str(A.operations[s][i][j]) + "]]," + t_op(s) + ")\n"
-            else:  # unary
-                for i in range(A.cardinality):
-                    st += "table([f[" + str(i) + "],f[" + str(A.operations[s][i]) + "]]," + t_op(s) + ")\n"
-        # still need to do constants and arity>2
-        st += "\n"
+        cons = A.operations[s].table()
+        cons = map(lambda x: "table([f[%s],f[%s],f[%s]],%s)" % (x[0],x[1],x[2],t_op(s)),cons)
+        st += "\n".join(cons)
+        st += "\n\n"
     return st + "**EOF**\n"
+
 
 
 def Hom(A, B):
