@@ -234,7 +234,6 @@ class Model():
         """
         Display a model in UAcalc format (uacalc.org) using XML
         """
-        # TODO ESTO NO ESTA MANEJANDO ARIDADES MENORES A DOS!!!!
         from xml.etree.ElementTree import Element, SubElement, Comment
         from xml.etree import ElementTree
         from xml.dom import minidom
@@ -259,15 +258,19 @@ class Model():
             optable = SubElement(op, 'opTable')
             intarray = SubElement(optable, 'intArray')
             temp = {}
-            for row in self.operations[symop].table(relation=False):
-                try:
-                    temp[tuple(row[:-2])].append(row[-1])
-                except KeyError:
-                    temp[tuple(row[:-2])] = [row[-1]]
-
-            for key in sorted(temp):
-                xrow = SubElement(intarray, 'row', {'r': str(list(key))})
-                xrow.text = ",".join(map(str, temp[key]))
+            # TODO nunca se probo con aridad 1
+            if self.operations[symop].arity() < 2:
+                xrow = SubElement(intarray, 'row')
+                xrow.text = ",".join(map(str, self.operations[symop]))
+            elif self.operations[symop].arity() >= 2:
+                for row in self.operations[symop].table(relation=False):
+                    try:
+                        temp[tuple(row[:-2])].append(row[-1])
+                    except KeyError:
+                        temp[tuple(row[:-2])] = [row[-1]]
+                for key in sorted(temp):
+                    xrow = SubElement(intarray, 'row', {'r': str(list(key))})
+                    xrow.text = ",".join(map(str, temp[key]))
 
         rough_string = ElementTree.tostring(algebra, 'utf-8')
         reparsed = minidom.parseString(rough_string)
