@@ -14,18 +14,24 @@ class ListWithArity(list):
     Define a las listas que se usan para tener operaciones y relaciones.
     Las relaciones simplemente son operaciones con 0 o 1 como salida.
     """
+    def __init__(self, *args, **kwargs):
+        if not issubclass(type(args[0]),list):
+            args = list(args)
+            args[0] = [args[0]]
+            args = tuple(args)
+        super(ListWithArity, self).__init__(*args, **kwargs)
 
     def arity(self):
         result = 0
         t = self
-        while issubclass(type(t), list):
+        while issubclass(type(t), list) and len(t) > 1:
             t = t[0]
             result += 1
         return result
 
     def __call__(self, *args):
         assert len(args) == self.arity()
-        result = self
+        result = list(self)
         for i in args:
             result = result[i]
         return result
@@ -54,6 +60,7 @@ class ListWithArity(list):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
         """
+            
         cardinality = len(self)
         result = []
         for t in product(range(cardinality), repeat=self.arity()):
@@ -62,6 +69,12 @@ class ListWithArity(list):
                 if not relation:
                     result[-1].append(self(*t))
         return result
+    def is_constant(self):
+        return self.arity() == 0
+    def is_relation(self):
+        return not self.is_constant() and set([x[-1] for x in self.table()]) == set([0,1])
+    def is_operation(self):
+        return not self.is_constant() and not self.is_relation()
 
 
 def UASol(inputua, example, options=[]):
@@ -221,6 +234,7 @@ class Model():
         """
         Display a model in UAcalc format (uacalc.org) using XML
         """
+        # TODO ESTO NO ESTA MANEJANDO ARIDADES MENORES A DOS!!!!
         from xml.etree.ElementTree import Element, SubElement, Comment
         from xml.etree import ElementTree
         from xml.dom import minidom
