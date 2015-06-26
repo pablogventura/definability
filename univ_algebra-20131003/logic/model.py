@@ -216,11 +216,12 @@ class Model():
             return False
         return m[0].operations['h'][self.cardinality:]
 
-    def uacalc_format(self, name):
+    def olduacalc_format(self, name):
+        # TODO EMPROLIJAR ESTO!
         """
         display a model in UAcalc format (uacalc.org)
         """
-        st = '<?xml version="1.0"?>\n<algebra>\n  <basicAlgebra>\n    <algName>' +\
+        st = '<?xml version="1.0" ?>\n<algebra>\n  <basicAlgebra>\n    <algName>' +\
              name + (str(self.index) if self.index != None else '') +\
              '</algName>\n    <cardinality>' + str(self.cardinality) +\
              '</cardinality>\n    <operations>\n'
@@ -235,6 +236,50 @@ class Model():
                     (str(self.operations[x])[1:-1] if oplst else str(self.operations[x])) + '</row>\n'
             st += '          </intArray>\n        </opTable>\n      </op>\n'
         return st + '    </operations>\n  </basicAlgebra>\n</algebra>\n'
+
+    def uacalc_format(self, name):
+        """
+        Display a model in UAcalc format (uacalc.org) using XML
+        """
+        from xml.etree.ElementTree import Element, SubElement, Comment
+        from xml.etree import ElementTree
+        from xml.dom import minidom
+
+
+        algebra = Element('algebra')
+
+        balgebra = SubElement(algebra, 'basicAlgebra')
+        algname = SubElement(balgebra, 'algName')
+        algname.text = name
+        if self.index is not None:
+            algname.text += str(self.index)
+        cardinality = SubElement(balgebra, 'cardinality')
+        cardinality.text = str(self.cardinality)
+        operations = SubElement(balgebra, 'operations')
+        for symop in self.operations:
+            op = SubElement(operations, 'op')
+            opsymbol = SubElement(op, 'opSymbol')
+            opname = SubElement(opsymbol, 'opName')
+            opname.text=symop
+            arity = SubElement(opsymbol, 'arity')
+            arity.text=str(self.operations[symop].arity())
+            optable = SubElement(op, 'opTable')
+            intarray = SubElement(optable, 'intArray')
+            temp = {}
+            for row in self.operations[symop].table(relation=False):
+                try:
+                    temp[tuple(row[:-2])].append(row[-1])
+                except KeyError:
+                    temp[tuple(row[:-2])] = [row[-1]]
+            
+            for key in sorted(temp):
+                xrow = SubElement(intarray, 'row', {'r':str(list(key))})
+                xrow.text = ",".join(map(str,temp[key]))
+
+        rough_string = ElementTree.tostring(algebra, 'utf-8')
+        reparsed = minidom.parseString(rough_string)
+        return reparsed.toprettyxml(indent="  ")
+
 
     def ConUACalc(self):
         """
