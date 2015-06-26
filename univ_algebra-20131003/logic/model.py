@@ -70,9 +70,12 @@ def UASol(inputua, example, options=[]):
     
     uaapp = sp.Popen(["java", "-classpath", config.clspth + "uacalc/classes/",
                       "org.uacalc.example.%s" % example, inputfn] + options, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+    #import ipdb;ipdb.set_trace()
     writefile(inputfn,inputua)
     
     result = uaapp.stdout.read()
+    error = uaapp.stderr.read()
+    print error
     os.remove(inputfn)
     return result
 
@@ -224,8 +227,8 @@ class Model():
         for x in self.operations:
             st += '      <op>\n        <opSymbol>\n          <opName>' +\
                   x + '</opName>\n'
-            oplst = type(self.operations[x]) == list
-            if oplst and type(self.operations[x][0]) == list:
+            oplst = issubclass(type(self.operations[x]),list)
+            if oplst and issubclass(type(self.operations[x][0]), list):
                 st += '          <arity>2</arity>\n        </opSymbol>\n        <opTable>\n          <intArray>\n' + xmlopstr(self.operations[x])
             else:
                 st += '          <arity>' + ('1' if oplst else '0') + '</arity>\n        </opSymbol>\n        <opTable>\n          <intArray>\n            <row>' + \
@@ -278,7 +281,8 @@ class Model():
         """
         st = self.uacalc_format("A" + str(self.index))
         st = UASol(st,"SubUACalc")
-        while st[0] != "[" and st[0] != "]":
+        #import ipdb;ipdb.set_trace()
+        while st[0] not in "[]":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         li = eval(st)
         cardf = {}
