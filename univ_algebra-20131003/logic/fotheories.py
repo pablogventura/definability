@@ -1,6 +1,7 @@
 
 from fo import FOclass
 
+
 def assoc(s): return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
 
 

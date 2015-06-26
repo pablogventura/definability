@@ -51,6 +51,7 @@ Model.is_hom_image = minion.is_hom_image
 Model.is_subalgebra = minion.is_subalgebra
 Model.is_isomorphic = minion.is_isomorphic
 
+
 def checkSubalgebra(A, sub):  # sub is a partial subalgebra
     """Check that sub is closed under the operations of A"""
     for x in range(A.cardinality):
@@ -87,9 +88,6 @@ def completeSubalgebra(A, sub, i, subl):
             if ok:
                 completeSubalgebra(A, sub, i + 1, subl)
             sub[i] = 2
-
-
-
 
 
 def linExt(U):
@@ -195,7 +193,6 @@ def isofilter(li):
     for m in l:
         models += [Model(m[0], m[1][0][9:-1], getops(m[2], 'function'), getops(m[2], 'relation'))]
     return models
-
 
 
 #############################################
@@ -666,9 +663,6 @@ class GaloisStr():
         U = [[j for j in range(n) if le[i][j]] for i in range(n)]
         # print U,linExt(U)
         return Posetuc(leq2uc(permutedleq(le, linExt(U))))
-
-
-
 
 
 def SI(As):
@@ -1204,5 +1198,3 @@ def counts(li):
     for x in li:
         d[x] = d.get(x, 0) + 1
     return dict(sorted([x, d[x]] for x in d))
-
-

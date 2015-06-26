@@ -8,45 +8,47 @@ from misc import readfile, writefile
 import config
 from itertools import product
 
+
 class MinionSol():
     __count = 0
+
     def __init__(self, inputdata):
         self.id = MinionSol.__count
         MinionSol.__count += 1
         self.inputfilename = config.minionpath + "input_minion%s" % self.id
         print self.inputfilename
-        
+
         try:
             os.mkfifo(self.inputfilename)
         except OSError:
             pass
-        
-        minionargs = ["-printsolsonly","-findallsols",self.inputfilename]
-            
-        self.minionapp = sp.Popen([config.minionpath + "minion"]+minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-        writefile(self.inputfilename,inputdata)
+
+        minionargs = ["-printsolsonly", "-findallsols", self.inputfilename]
+
+        self.minionapp = sp.Popen([config.minionpath + "minion"] + minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        writefile(self.inputfilename, inputdata)
         self.buffer = ""
         self.EOF = False
         self.values = []
-        
-        self.__read() # primer lectura
-        self.__parsebuffer() # primer parseo
+
+        self.__read()  # primer lectura
+        self.__parsebuffer()  # primer parseo
         # TODO en el futuro habria que manejar pausas al proceso, por si se adelanta muy mucho y se hace muy grande
-        
+
     def __parsebuffer(self):
         if self.buffer:
             buf = self.buffer.split("\n")
-            if self.buffer[-1] != "\n": # no era el ultimo
+            if self.buffer[-1] != "\n":  # no era el ultimo
                 self.buffer = buf[-1]
             else:
-                self.buffer = "" # lo vacio porque era el ultimo
-            
-            del buf[-1] # porque o habia parte de otra solucion, o era [] porque siempre hay un \n al final
-            
+                self.buffer = ""  # lo vacio porque era el ultimo
+
+            del buf[-1]  # porque o habia parte de otra solucion, o era [] porque siempre hay un \n al final
+
             for fila in buf:
-                self.values.append(map(int,fila.strip().split(" ")))
-    
-    def __read(self,size=1024):
+                self.values.append(map(int, fila.strip().split(" ")))
+
+    def __read(self, size=1024):
         if not self.EOF:
             self.buffer += self.minionapp.stdout.readline()
             self.buffer += self.minionapp.stdout.read(size)
@@ -71,11 +73,11 @@ class MinionSol():
             if not self.EOF:
                 self.__read()
                 self.__parsebuffer()
-    #def getitem TODO SE PODRIA AGREGAR
-            
+    # def getitem TODO SE PODRIA AGREGAR
+
     def __len__(self):
         if not self.EOF:
-            self.__readall() # yo no queria, pero me veo obligado a leer todo
+            self.__readall()  # yo no queria, pero me veo obligado a leer todo
             self.__parsebuffer()
         return len(self.values)
 
@@ -86,85 +88,89 @@ class MinionSol():
             os.remove(self.inputfilename)
         except OSError:
             pass
-        
+
 
 def t_op(st):
     # Minion accepts only letters for first character of names
-    ops = {"^": "m", "+": "p", "-": "s", "*": "t" ,"<=":"leq"}
+    ops = {"^": "m", "+": "p", "-": "s", "*": "t", "<=": "leq"}
     if st in ops:
         return ops[st]
     return st
+
 
 def input_homo(A, B, inj=False, surj=False):
     """
     Genera un string para darle a Minion para tener los homomorfismos de A en B
     """
-    result  = "MINION 3\n\n"
+    result = "MINION 3\n\n"
     result += "**VARIABLES**\n"
     result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
     result += "**TUPLELIST**\n"
     for op in B.operations:
         result += B.operations[op].minion_table(t_op(op)) + "\n"
     for rel in B.relations:
-        result += B.relations[rel].minion_table(t_op(rel),relation=True) + "\n"
+        result += B.relations[rel].minion_table(t_op(rel), relation=True) + "\n"
     result += "**CONSTRAINTS**\n"
     if inj:
-        result += "alldiff(f)\n" # exige que todos los valores de f sean distintos
+        result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
     if surj:
         for i in range(B.cardinality):
-            result += "occurrencegeq(f, " + str(i) + ", 1)\n" # exige que i aparezca al menos una vez en el "vector" f
+            result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
 
     for op in A.operations:
         cons = A.operations[op].table()
         for row in cons:
-            result += "table([f[" + "],f[".join(map(str,row)) + "]],%s)\n" % t_op(op)
+            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % t_op(op)
         result += "\n"
     for rel in A.relations:
         cons = A.relations[rel].table(relation=True)
         for row in cons:
-            result += "table([f[" + "],f[".join(map(str,row)) + "]],%s)\n" % t_op(rel)
+            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % t_op(rel)
         result += "\n"
     result += "**EOF**\n"
     return result
 
-def minion_hom_algebras(A,B,inj=False,surj=False):
+
+def minion_hom_algebras(A, B, inj=False, surj=False):
     # A,B are algebras CURRENTLY with only unary or binary operations
-    if hasattr(A,"uc"):
+    if hasattr(A, "uc"):
         A.get_meet()
         A.get_join()
         B.get_meet()
         B.get_join()
-    st = "MINION 3\n\n**VARIABLES**\nDISCRETE f["+str(A.cardinality)+"]{0.."+str(B.cardinality-1)+"}\n\n**TUPLELIST**\n"
+    st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
     for s in B.operations:
-        if issubclass(type(B.operations[s]),list):
-            if issubclass(type(B.operations[s][0]),list): #binary
-                st += t_op(s)+" "+str(B.cardinality*B.cardinality)+" 3\n"
+        if issubclass(type(B.operations[s]), list):
+            if issubclass(type(B.operations[s][0]), list):  # binary
+                st += t_op(s) + " " + str(B.cardinality * B.cardinality) + " 3\n"
                 for i in range(B.cardinality):
                     for j in range(B.cardinality):
-                        st += str(i)+" "+str(j)+" "+str(B.operations[s][i][j])+"\n"
-            else: #unary
-                st += t_op(s)+" "+str(B.cardinality)+" 2\n"
+                        st += str(i) + " " + str(j) + " " + str(B.operations[s][i][j]) + "\n"
+            else:  # unary
+                st += t_op(s) + " " + str(B.cardinality) + " 2\n"
                 for i in range(B.cardinality):
-                    st += str(i)+" "+str(B.operations[s][i])+"\n"
-        ######## still need to do constants and arity>2
+                    st += str(i) + " " + str(B.operations[s][i]) + "\n"
+        # still need to do constants and arity>2
         st += "\n"
     st += "**CONSTRAINTS**\n"
-    if inj: st += "alldiff(f)\n"
+    if inj:
+        st += "alldiff(f)\n"
     if surj:
         for i in range(B.cardinality):
-            st += "occurrencegeq(f, "+str(i)+", 1)\n"
+            st += "occurrencegeq(f, " + str(i) + ", 1)\n"
     for s in A.operations:
-        if issubclass(type(A.operations[s]),list):
-            if issubclass(type(A.operations[s][0]),list): #binary
+        if issubclass(type(A.operations[s]), list):
+            if issubclass(type(A.operations[s][0]), list):  # binary
                 for i in range(A.cardinality):
                     for j in range(A.cardinality):
-                        st += "table([f["+str(i)+"],f["+str(j)+"],f["+str(A.operations[s][i][j])+"]],"+t_op(s)+")\n"
-            else: #unary
+                        st += "table([f[" + str(i) + "],f[" + str(j) + "],f[" + str(A.operations[s][i][j]) + "]]," + t_op(s) + ")\n"
+            else:  # unary
                 for i in range(A.cardinality):
-                    st += "table([f["+str(i)+"],f["+str(A.operations[s][i])+"]],"+t_op(s)+")\n"
-        ######## still need to do constants and arity>2
+                    st += "table([f[" + str(i) + "],f[" + str(A.operations[s][i]) + "]]," + t_op(s) + ")\n"
+        # still need to do constants and arity>2
         st += "\n"
-    return st+"**EOF**\n"
+    return st + "**EOF**\n"
+
 
 def Hom(A, B):
     """
@@ -210,14 +216,11 @@ def is_subalgebra(A, B):
     return len(MinionSol(st)) > 0
 
 
-
 def is_isomorphic(A, B):
     """
     return true if A is isomorphic to B (uses Minion)
     """
     return A.cardinality == B.cardinality and is_subalgebra(A, B)
-
-
 
 
 def minion_hom_bin_rel(A, B):

@@ -1,8 +1,10 @@
 from proof import ProverMaceSol
 
+
 class FOclass():
     FOclasses = []
     FirstOrderClasses = []
+
     def __init__(self, abbr, name, axioms, results=[], options=[], syntax='Prover9'):
         """
         Define a first-order class of models by a list of first-order axioms

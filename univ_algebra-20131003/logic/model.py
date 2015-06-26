@@ -1,4 +1,4 @@
-import os # TODO NO DEBERIA USARSE
+import os  # TODO NO DEBERIA USARSE
 
 import config
 from display import opstr, xmlopstr
@@ -9,33 +9,35 @@ from itertools import product
 
 
 class ListWithArity(list):
+
     """
     Define a las listas que se usan para tener operaciones y relaciones.
     Las relaciones simplemente son operaciones con 0 o 1 como salida.
     """
-    
+
     def arity(self):
         result = 0
-        t=self
+        t = self
         while issubclass(type(t), list):
-            t=t[0]
-            result+=1
+            t = t[0]
+            result += 1
         return result
-        
+
     def __call__(self, *args):
         assert len(args) == self.arity()
         result = self
         for i in args:
             result = result[i]
         return result
+
     def __repr__(self):
         result = "ListWithArity([\n"
         for row in self:
             result += repr(row) + "\n"
         result += "]"
         return result
-    
-    def minion_table(self,table_name,relation=False):
+
+    def minion_table(self, table_name, relation=False):
         """
         Devuelve un string con la tabla que representa a la relacion/operacion en minion
         """
@@ -44,10 +46,10 @@ class ListWithArity(list):
         width = len(table[0])
         result = ""
         for row in table:
-            result += " ".join(map(str,row)) + "\n"
+            result += " ".join(map(str, row)) + "\n"
         result = "%s %s %s\n" % (table_name, height, width) + result
         return result
-        
+
     def table(self, relation=False):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
@@ -62,17 +64,16 @@ class ListWithArity(list):
         return result
 
 
-
 def UASol(inputua, example, options=[]):
 
     inputfn = config.clspth + "inputUA.ua"
     os.mkfifo(inputfn)
-    
+
     uaapp = sp.Popen(["java", "-classpath", config.clspth + "uacalc/classes/",
                       "org.uacalc.example.%s" % example, inputfn] + options, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
     #import ipdb;ipdb.set_trace()
-    writefile(inputfn,inputua)
-    
+    writefile(inputfn, inputua)
+
     result = uaapp.stdout.read()
     error = uaapp.stderr.read()
     print error
@@ -117,10 +118,10 @@ class Model():
 
         self.cardinality = cardinality
         self.index = index
-        self.operations={}
+        self.operations = {}
         for op in operations:
             self.operations[op] = ListWithArity(operations[op])
-        self.relations={}
+        self.relations = {}
         for r in relations:
             self.relations[r] = ListWithArity(relations[r])
         for attr in kwargs:
@@ -130,22 +131,22 @@ class Model():
         """
         Display a model
         """
-        result  = "Model(cardinality=%s, index=%s,\n" % (self.cardinality,self.index)
-        
+        result = "Model(cardinality=%s, index=%s,\n" % (self.cardinality, self.index)
+
         result += "operations = {"
         for op in self.operations:
             result += "\n%s:\n" % repr(op)
             result += repr(self.operations[op]) + ","
-            
+
         result += "\n},\nrelations = {"
         for r in self.relations:
             result += "\n%s:\n" % repr(r)
             result += repr(self.relations[r]) + ","
         result += "\n}"
-        
-        other = set(vars(self)) - set(["cardinality", "index", "operations", "relations"]) 
+
+        other = set(vars(self)) - set(["cardinality", "index", "operations", "relations"])
         for attr in other:
-            result += "%s = %s,\n" % (repr(attr),repr(getattr(self, attr)))
+            result += "%s = %s,\n" % (repr(attr), repr(getattr(self, attr)))
         result += ")"
         return result
 
@@ -216,27 +217,6 @@ class Model():
             return False
         return m[0].operations['h'][self.cardinality:]
 
-    def olduacalc_format(self, name):
-        # TODO EMPROLIJAR ESTO!
-        """
-        display a model in UAcalc format (uacalc.org)
-        """
-        st = '<?xml version="1.0" ?>\n<algebra>\n  <basicAlgebra>\n    <algName>' +\
-             name + (str(self.index) if self.index != None else '') +\
-             '</algName>\n    <cardinality>' + str(self.cardinality) +\
-             '</cardinality>\n    <operations>\n'
-        for x in self.operations:
-            st += '      <op>\n        <opSymbol>\n          <opName>' +\
-                  x + '</opName>\n'
-            oplst = issubclass(type(self.operations[x]),list)
-            if oplst and issubclass(type(self.operations[x][0]), list):
-                st += '          <arity>2</arity>\n        </opSymbol>\n        <opTable>\n          <intArray>\n' + xmlopstr(self.operations[x])
-            else:
-                st += '          <arity>' + ('1' if oplst else '0') + '</arity>\n        </opSymbol>\n        <opTable>\n          <intArray>\n            <row>' + \
-                    (str(self.operations[x])[1:-1] if oplst else str(self.operations[x])) + '</row>\n'
-            st += '          </intArray>\n        </opTable>\n      </op>\n'
-        return st + '    </operations>\n  </basicAlgebra>\n</algebra>\n'
-
     def uacalc_format(self, name):
         """
         Display a model in UAcalc format (uacalc.org) using XML
@@ -244,7 +224,6 @@ class Model():
         from xml.etree.ElementTree import Element, SubElement, Comment
         from xml.etree import ElementTree
         from xml.dom import minidom
-
 
         algebra = Element('algebra')
 
@@ -260,9 +239,9 @@ class Model():
             op = SubElement(operations, 'op')
             opsymbol = SubElement(op, 'opSymbol')
             opname = SubElement(opsymbol, 'opName')
-            opname.text=symop
+            opname.text = symop
             arity = SubElement(opsymbol, 'arity')
-            arity.text=str(self.operations[symop].arity())
+            arity.text = str(self.operations[symop].arity())
             optable = SubElement(op, 'opTable')
             intarray = SubElement(optable, 'intArray')
             temp = {}
@@ -271,15 +250,14 @@ class Model():
                     temp[tuple(row[:-2])].append(row[-1])
                 except KeyError:
                     temp[tuple(row[:-2])] = [row[-1]]
-            
+
             for key in sorted(temp):
-                xrow = SubElement(intarray, 'row', {'r':str(list(key))})
-                xrow.text = ",".join(map(str,temp[key]))
+                xrow = SubElement(intarray, 'row', {'r': str(list(key))})
+                xrow.text = ",".join(map(str, temp[key]))
 
         rough_string = ElementTree.tostring(algebra, 'utf-8')
         reparsed = minidom.parseString(rough_string)
         return reparsed.toprettyxml(indent="  ")
-
 
     def ConUACalc(self):
         """
@@ -289,7 +267,7 @@ class Model():
             return self.con
         st = self.uacalc_format("A" + str(self.index))
 
-        st = UASol(st,"ConUACalc")
+        st = UASol(st, "ConUACalc")
         st = st[st.index("["):]     # remove diagnostic output
         self.con = eval(st)
         return self.con
@@ -301,7 +279,7 @@ class Model():
         if hasattr(self, "jcon"):
             return self.jcon
         st = self.uacalc_format("A" + str(self.index))
-        st = UASol(st,"JConUACalc")
+        st = UASol(st, "JConUACalc")
         while st[0] == "k":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         self.jcon = eval(st)
@@ -314,7 +292,7 @@ class Model():
         if hasattr(self, "mcon"):
             return self.mcon
         st = self.uacalc_format("A" + str(self.index))
-        st = UASol(st,"MConUACalc")
+        st = UASol(st, "MConUACalc")
         while st[0] == "k":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
         self.mcon = eval(st)
@@ -325,7 +303,7 @@ class Model():
         use the uacalculator to compute the subalgebras of self
         """
         st = self.uacalc_format("A" + str(self.index))
-        st = UASol(st,"SubUACalc")
+        st = UASol(st, "SubUACalc")
         #import ipdb;ipdb.set_trace()
         while st[0] not in "[]":
             st = st[st.index("\n") + 1:]  # remove diagnostic output
@@ -344,19 +322,19 @@ class Model():
         use the uacalculator to compute the type set of self
         """
         st = self.uacalc_format("A" + str(self.index))
-        st = UASol(st,"FindTypeSet")
+        st = UASol(st, "FindTypeSet")
         st = st[st.index("type set: ") + 10:]     # remove diagnostic output
         return eval(st)
 
     def inVar(self, B, info=False):
-        #TODO ESTE FALTA, PORQUE TOMA DOS COSAS
+        # TODO ESTE FALTA, PORQUE TOMA DOS COSAS
         """
         use the uacalculator to compute if self is in the variety gen by B
         """
         stA = self.uacalc_format("A" + str(self.index))
         stB = B.uacalc_format("B" + str(B.index))
 
-        st = UASol([stA,stB],"FindTypeSet")
+        st = UASol([stA, stB], "FindTypeSet")
 
         if info:
             print st
@@ -370,7 +348,7 @@ class Model():
         writefile('tmpalgA.ua', st)
         os.system('java -classpath ' + config.clspth + 'uacalc/classes/ org.uacalc.example.FreeAlg tmpalgA.ua ' + str(n) + ' >tmpout.txt')
         st = readfile('tmpout.txt')
-        
+
         if info:
             print st
         return int(st[st.find("fr size = ") + 10:st.find(" elements")])
@@ -532,7 +510,7 @@ class Model():
         for i in range(1, n - 1):
             if all([le[i][j] for j in range(i + 1, n - 1)]) and\
                all([le[j][i] for j in range(1, i)]):
-                   return True
+                return True
         return False
 
     def ordinal_sum_count(self):
@@ -542,7 +520,7 @@ class Model():
         for i in range(1, n - 1):
             if all([le[i][j] for j in range(i + 1, n - 1)]) and\
                all([le[j][i] for j in range(1, i)]):
-                   count += 1
+                count += 1
         return count
 
     def get_lowercovers(self):
@@ -818,7 +796,7 @@ class Model():
         d = self.depths()
         h = self.heights()
         lth = self.length()
-        return [(h[i] + lth - d[i])/2.0 for i in range(self.cardinality)] # antes en vez de hacer /2.0, hacia half
+        return [(h[i] + lth - d[i]) / 2.0 for i in range(self.cardinality)]  # antes en vez de hacer /2.0, hacia half
 
     def dlevels(self):  # P topological
         d = self.depths()
@@ -847,7 +825,7 @@ class Model():
         for l in range(len(lev)):
             n = len(lev[l])
             for i in range(n):
-                pos[lev[l][i]] = [i - (n - 1)/2.0, y[lev[l][i]]] # antes en vez de hacer /2.0, hacia half
+                pos[lev[l][i]] = [i - (n - 1) / 2.0, y[lev[l][i]]]  # antes en vez de hacer /2.0, hacia half
         self.pos = pos
         return pos
 
@@ -934,6 +912,7 @@ class Model():
             st += ',\n'
         st += ',\n'.join([" relation(" + s + self.aritystr(self.relations[s]) + ", " + str(self.op2li(self.relations[s])).replace(" ", "") + ")" for s in self.relations])
         return st + "])."
+
     def __op_var_pos_diag(self, s, c):
         """
         Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s, usando el prefijo c
@@ -950,6 +929,7 @@ class Model():
                 return [s + "(" + c + str(x) + ") = " + c + str(op[s][x]) for x in base]
         else:
             return [s + " = " + c + str(op[s])]
+
     def __rel_var_pos_diag(self, s, c):
         """
         Genera una lista de formulas con el diagrama positivo, de la relacion s, usando el prefijo c
@@ -968,11 +948,12 @@ class Model():
                 return [s + "(" + c + str(x) + ")" for x in base if rel[s][x]]
         else:
             return "not a relation"
+
     def __op_var_diag(self, s, c, n=0):
         """
         Genera una lista de formulas con el diagrama positivo, de la operacion (funcion) s, usando el prefijo c, y sumando n a cada elemento
         """
-        op=self.operations
+        op = self.operations
         if type(op[s]) == list:
             base = range(len(op[s]))
             if type(op[s][0]) == list:
@@ -984,7 +965,7 @@ class Model():
                 return [s + "(" + c + str(x + n) + ") = " + c + str(op[s][x] + n) for x in base]
         else:
             return [s + " = " + c + str(op[s] + n)]
-            
+
     def __rel_var_diag(s, c, n=0):
         """
         Genera una lista de formulas con el diagrama, de la relacion s de rel, usando el prefijo c, y sumando n a cada elemento
@@ -1008,6 +989,7 @@ class Model():
                         for x in base]
         else:
             return "not a relation"
+
     def __op_hom(self, B):
         """
         return string of homomorphism equations
@@ -1025,6 +1007,7 @@ class Model():
             else:
                 st += " & h(" + str(B.operations[s] + A.cardinality) + ") = " + str(self.operations[s])
         return st
+
     def __permuted_binary_op(self, m, q):
 
         qi = inverse_permutation(q)
@@ -1052,10 +1035,11 @@ class Model():
                 "(_)"
         else:
             return ""
+
     def op2li(self, t):
         # lo usa para generar una entrada para mace4
         if type(t) == list:
-            if type(t[0])==list:
+            if type(t[0]) == list:
                 return [x for y in t for x in y]
             else:
                 t
