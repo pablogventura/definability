@@ -79,7 +79,12 @@ class MinionSol():
                 self.__read()
                 self.__parsebuffer()
     # def getitem TODO SE PODRIA AGREGAR
-
+    def __nonzero__(self):
+        if not self.EOF:
+            self.__read()
+            self.__parsebuffer()
+        return len(self.values) > 0
+    
     def __len__(self):
         if not self.EOF:
             self.__readall()  # yo no queria, pero me veo obligado a leer todo
@@ -237,15 +242,15 @@ def Aut(A):
 def is_hom_image(A, B):
     """return true if B is a homomorphic image of A (uses Minion)"""
     st = input_homo(A, B, surj=True)
-    return len(MinionSol(st,allsols=False)) > 0
+    return bool(MinionSol(st,allsols=False))
 
 
-def is_subalgebra(A, B):
+def is_substructure(A, B):
     """
-    return true if A is a subalgebra of B (uses Minion)
+    return true if A is a substructure of B (uses Minion)
     """
     st = input_embedd(A, B)
-    return len(MinionSol(st,allsols=False)) > 0
+    return bool(MinionSol(st,allsols=False))
 
 
 def is_isomorphic(A, B):
@@ -253,7 +258,7 @@ def is_isomorphic(A, B):
     return true if A is isomorphic to B (uses Minion)
     """
     st = input_embedd(A, B,surj=True)
-    return len(MinionSol(st,allsols=False)) > 0
+    return bool(MinionSol(st,allsols=False))
 
 
 def minion_hom_bin_rel(A, B):
