@@ -1,5 +1,7 @@
 import os  # TODO NO DEBERIA USARSE
 
+from sage.misc.misc import powerset
+
 import config
 from display import opstr, xmlopstr
 from misc import readfile, writefile
@@ -96,8 +98,7 @@ def UASol(inputua, example, options=[]):
 
 class Model():
 
-    def __init__(self, cardinality, index=None, operations={}, relations={},
-                 **kwargs):
+    def __init__(self, cardinality, index=None, operations={}, relations={}, sub_of=None, **kwargs):
         """
         Construct a finite first-order model.
 
@@ -121,6 +122,7 @@ class Model():
                 given as ordered lists.
                 n >= 0 is the arity of the relation (not explicitly coded 
                 but can be computed from the table).
+            sub_of -- este modelo es subestructura del que va aca.
             other optional arguments --
                 uc  -- a dictionary with keys [0..cardinality-1] and values 
                     an ordered list of upper covers. Used for posets.
@@ -397,7 +399,18 @@ class Model():
                 rel[r] = [1 if rA[p[0]] == 1 and rB[p[1]] == 1 else 0 for p in base]
         return Model(len(base), None, op, rel)
 
-    def subuniverses(A):
+    def subuniverses(self):
+        """
+        Generador que va devolviendo los subuniversos.
+        Intencionalmente no filtra por isomorfismos.
+        """
+        result = []
+        for s in powerset(range(self.cardinality)):
+            if any([self.operations[op](*param) not in s for op in self.operations for param in product(s,repeat=self.operations[op].arity())]):
+                    continue
+            yield s
+
+    def subuniverses2(A):
         # A=self is a finite algebra (Python Model)
         subl = []
         sub = [2 for i in range(A.cardinality)]
