@@ -131,6 +131,65 @@ def input_homo(A, B, inj=False, surj=False):
     return result
 
 
+def input_iso(A, B, inj=False, surj=False):
+    """
+    Genera un string para darle a Minion para tener los homomorfismos de A en B
+    """
+    assert A.cardinality == B.cardinality
+    
+    result = "MINION 3\n\n"
+    result += "**VARIABLES**\n"
+    result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+    result += "DISCRETE g[%s]{0..%s}\n\n" % (B.cardinality, A.cardinality - 1)
+    result += "**SEARCH**\n"
+    result += "PRINT [f]\n\n" # para que no me imprima los valores de g
+    result += "**TUPLELIST**\n"
+    
+    for op in B.operations:
+        result += B.operations[op].minion_table("b"+t_op(op)) + "\n"
+    for rel in B.relations:
+        result += B.relations[rel].minion_table("b"+t_op(rel), relation=True) + "\n"
+    for op in A.operations:
+        result += A.operations[op].minion_table("a"+t_op(op)) + "\n"
+    for rel in A.relations:
+        result += A.relations[rel].minion_table("a"+t_op(rel), relation=True) + "\n"
+        
+    result += "**CONSTRAINTS**\n"
+    if inj:
+        result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
+    if surj:
+        for i in range(B.cardinality):
+            result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
+
+    for op in A.operations:
+        cons = A.operations[op].table()
+        for row in cons:
+            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+t_op(op))
+        result += "\n"
+    for rel in A.relations:
+        cons = A.relations[rel].table(relation=True)
+        for row in cons:
+            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+t_op(rel))
+        result += "\n"
+    for op in B.operations:
+        cons = B.operations[op].table()
+        for row in cons:
+            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)\n" % ("a"+t_op(op))
+        result += "\n"
+    for rel in B.relations:
+        cons = B.relations[rel].table(relation=True)
+        for row in cons:
+            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)\n" % ("a"+t_op(rel))
+        result += "\n"
+    for i in range(A.cardinality):
+        result += "element(f, g[%s], %s)\n" % (i,i) # f(g(x))=x
+        result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
+
+    result += "**EOF**\n"
+    return result
+
+
+
 def minion_hom_algebras(A, B, inj=False, surj=False):
     # A,B are algebras CURRENTLY with only unary or binary operations
     if hasattr(A, "uc"):
@@ -174,11 +233,17 @@ def minion_hom_algebras(A, B, inj=False, surj=False):
 
 def Hom(A, B):
     """
-    call Minion to calculate all homomorphisms from algebra A to algebra B
+    call Minion to calculate all homomorphisms from A to B
     """
-    st = minion_hom_algebras(A, B)
+    st = input_homo(A, B)
     return MinionSol(st)
 
+def Iso(A, B):
+    """
+    call Minion to calculate all homomorphisms from A to B
+    """
+    st = input_iso(A, B)
+    return MinionSol(st)
 
 def End(A):
     """
