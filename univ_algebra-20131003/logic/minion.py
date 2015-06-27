@@ -12,7 +12,7 @@ from itertools import product
 class MinionSol():
     __count = 0
 
-    def __init__(self, inputdata):
+    def __init__(self, inputdata, allsols=True):
         self.id = MinionSol.__count
         MinionSol.__count += 1
         self.inputfilename = config.minionpath + "input_minion%s" % self.id
@@ -23,7 +23,10 @@ class MinionSol():
         except OSError:
             pass
 
-        minionargs = ["-printsolsonly", "-findallsols", self.inputfilename]
+        minionargs = ["-printsolsonly"] 
+        if allsols:
+            minionargs += ["-findallsols"]
+        minionargs += [self.inputfilename]
 
         self.minionapp = sp.Popen([config.minionpath + "minion"] + minionargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         writefile(self.inputfilename, inputdata)
@@ -46,7 +49,9 @@ class MinionSol():
             del buf[-1]  # porque o habia parte de otra solucion, o era [] porque siempre hay un \n al final
 
             for fila in buf:
-                self.values.append(map(int, fila.strip().split(" ")))
+                sol = map(int, fila.strip().split(" "))
+                if sol not in self.values: # no quiero soluciones dobles, (culpa de que la inversa es distinta)
+                    self.values.append(sol)
 
     def __read(self, size=1024):
         if not self.EOF:
@@ -91,11 +96,19 @@ class MinionSol():
 
 
 def t_op(st):
+    """
+    Traduce los nombres de las operaciones/relaciones
+    """
     # Minion accepts only letters for first character of names
+    if st.isalpha():
+        return st
+        
     ops = {"^": "m", "+": "p", "-": "s", "*": "t", "<=": "leq"}
     if st in ops:
         return ops[st]
-    return st
+    else:
+        st += " " * ((3-len(st))%3) # le agrego espacios para evitar los = que mete b64
+        return st.encode("base64")[:-1]
 
 
 def input_homo(A, B, inj=False, surj=False):
@@ -130,12 +143,10 @@ def input_homo(A, B, inj=False, surj=False):
     result += "**EOF**\n"
     return result
 
-
-def input_iso(A, B, inj=False, surj=False):
+def input_embedd(A, B, inj=True, surj=False):
     """
-    Genera un string para darle a Minion para tener los homomorfismos de A en B
+    Genera un string para darle a Minion para tener los embeddings de A en B
     """
-    assert A.cardinality == B.cardinality
     
     result = "MINION 3\n\n"
     result += "**VARIABLES**\n"
@@ -182,54 +193,10 @@ def input_iso(A, B, inj=False, surj=False):
             result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)\n" % ("a"+t_op(rel))
         result += "\n"
     for i in range(A.cardinality):
-        result += "element(f, g[%s], %s)\n" % (i,i) # f(g(x))=x
         result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
 
     result += "**EOF**\n"
     return result
-
-
-
-def minion_hom_algebras(A, B, inj=False, surj=False):
-    # A,B are algebras CURRENTLY with only unary or binary operations
-    if hasattr(A, "uc"):
-        A.get_meet()
-        A.get_join()
-        B.get_meet()
-        B.get_join()
-    st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
-    for s in B.operations:
-        if issubclass(type(B.operations[s]), list):
-            if issubclass(type(B.operations[s][0]), list):  # binary
-                st += t_op(s) + " " + str(B.cardinality * B.cardinality) + " 3\n"
-                for i in range(B.cardinality):
-                    for j in range(B.cardinality):
-                        st += str(i) + " " + str(j) + " " + str(B.operations[s][i][j]) + "\n"
-            else:  # unary
-                st += t_op(s) + " " + str(B.cardinality) + " 2\n"
-                for i in range(B.cardinality):
-                    st += str(i) + " " + str(B.operations[s][i]) + "\n"
-        # still need to do constants and arity>2
-        st += "\n"
-    st += "**CONSTRAINTS**\n"
-    if inj:
-        st += "alldiff(f)\n"
-    if surj:
-        for i in range(B.cardinality):
-            st += "occurrencegeq(f, " + str(i) + ", 1)\n"
-    for s in A.operations:
-        if issubclass(type(A.operations[s]), list):
-            if issubclass(type(A.operations[s][0]), list):  # binary
-                for i in range(A.cardinality):
-                    for j in range(A.cardinality):
-                        st += "table([f[" + str(i) + "],f[" + str(j) + "],f[" + str(A.operations[s][i][j]) + "]]," + t_op(s) + ")\n"
-            else:  # unary
-                for i in range(A.cardinality):
-                    st += "table([f[" + str(i) + "],f[" + str(A.operations[s][i]) + "]]," + t_op(s) + ")\n"
-        # still need to do constants and arity>2
-        st += "\n"
-    return st + "**EOF**\n"
-
 
 def Hom(A, B):
     """
@@ -242,53 +209,55 @@ def Iso(A, B):
     """
     call Minion to calculate all homomorphisms from A to B
     """
-    st = input_iso(A, B)
+    st = input_embedd(A, B, surj=True)
     return MinionSol(st)
 
 def End(A):
     """
-    call Minion to calculate all endomorphisms of algebra A
+    call Minion to calculate all endomorphisms of A
     """
     return Hom(A, A)
 
 
 def Embeddings(A, B):
     """
-    call Minion to calculate all embeddings of algebra A into algebra B
+    call Minion to calculate all embeddings of A into B
     """
-    st = minion_hom_algebras(A, B, True)
+    st = input_embedd(A, B)
     return MinionSol(st)
 
 
 def Aut(A):
     """
-    call Minion to calculate all automorphisms of algebra A
+    call Minion to calculate all automorphisms of A
     """
     return Embeddings(A, A)
 
 
 def is_hom_image(A, B):
     """return true if B is a homomorphic image of A (uses Minion)"""
-    st = minion_hom_algebras(A, B, surj=True)
-    return len(MinionSol(st)) > 0
+    st = input_homo(A, B, surj=True)
+    return len(MinionSol(st,allsols=False)) > 0
 
 
 def is_subalgebra(A, B):
     """
     return true if A is a subalgebra of B (uses Minion)
     """
-    st = minion_hom_algebras(A, B, inj=True)
-    return len(MinionSol(st)) > 0
+    st = input_embedd(A, B)
+    return len(MinionSol(st,allsols=False)) > 0
 
 
 def is_isomorphic(A, B):
     """
     return true if A is isomorphic to B (uses Minion)
     """
-    return A.cardinality == B.cardinality and is_subalgebra(A, B)
+    st = input_embedd(A, B,surj=True)
+    return len(MinionSol(st,allsols=False)) > 0
 
 
 def minion_hom_bin_rel(A, B):
+    # TODO PARECE QUE DEBERIA IRSE
     # A,B are relational structures with only BINARY relations
     st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
     for s in B.relations:
@@ -308,6 +277,7 @@ def minion_hom_bin_rel(A, B):
 
 
 def Pol_1(U):
+    # TODO NO TENGO IDEA QUE ES, PARECE QUE DEBERIA IRSE
     """
     Find unary polynomials that preserve all relations of 
     the binary relational structure U
