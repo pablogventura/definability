@@ -48,7 +48,7 @@ import fotheories
 import minion
 Model.is_congruence_closed = minion.is_congruence_closed
 Model.is_hom_image = minion.is_hom_image
-Model.is_subalgebra = minion.is_subalgebra
+Model.is_substructure = minion.is_substructure
 Model.is_isomorphic = minion.is_isomorphic
 
 
