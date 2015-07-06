@@ -406,7 +406,7 @@ class Model():
         """
         result = []
         for s in powerset(range(self.cardinality)):
-            if any([self.operations[op](*param) not in s for op in self.operations for param in product(s,repeat=self.operations[op].arity())]):
+            if any([self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())]):
                     continue
             yield s
 
