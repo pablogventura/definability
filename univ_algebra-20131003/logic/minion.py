@@ -50,8 +50,7 @@ class MinionSol():
 
             for fila in buf:
                 sol = map(int, fila.strip().split(" "))
-                if sol not in self.values: # no quiero soluciones dobles, (culpa de que la inversa es distinta)
-                    self.values.append(sol)
+                self.values.append(sol)
 
     def __read(self, size=1024):
         if not self.EOF:
@@ -156,7 +155,7 @@ def input_embedd(A, B, inj=True, surj=False):
     result = "MINION 3\n\n"
     result += "**VARIABLES**\n"
     result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
-    result += "DISCRETE g[%s]{0..%s}\n\n" % (B.cardinality, A.cardinality - 1)
+    result += "DISCRETE g[%s]{-1..%s}\n\n" % (B.cardinality, A.cardinality - 1)
     result += "**SEARCH**\n"
     result += "PRINT [f]\n\n" # para que no me imprima los valores de g
     result += "**TUPLELIST**\n"
@@ -165,8 +164,6 @@ def input_embedd(A, B, inj=True, surj=False):
         result += B.operations[op].minion_table("b"+t_op(op)) + "\n"
     for rel in B.relations:
         result += B.relations[rel].minion_table("b"+t_op(rel), relation=True) + "\n"
-    for op in A.operations:
-        result += A.operations[op].minion_table("a"+t_op(op)) + "\n"
     for rel in A.relations:
         result += A.relations[rel].minion_table("a"+t_op(rel), relation=True) + "\n"
         
@@ -187,19 +184,17 @@ def input_embedd(A, B, inj=True, surj=False):
         for row in cons:
             result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+t_op(rel))
         result += "\n"
-    for op in B.operations:
-        cons = B.operations[op].table()
-        for row in cons:
-            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)\n" % ("a"+t_op(op))
-        result += "\n"
     for rel in B.relations:
         cons = B.relations[rel].table(relation=True)
         for row in cons:
-            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)\n" % ("a"+t_op(rel))
+            result += "watched-or({"
+            for i in row:
+                result += "element(g, %s, -1)," % i
+            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)})\n" % ("a"+t_op(rel))
         result += "\n"
     for i in range(A.cardinality):
         result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
-
+    result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality)
     result += "**EOF**\n"
     return result
 

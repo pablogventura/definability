@@ -43,6 +43,7 @@ from model import Model
 from display import opstr
 from fo import FOclass
 import fotheories
+import ejemplos
 
 # TODO emprolijar lo que sigue, seria mejor que estuvieran adentro del modelo directamente
 import minion
