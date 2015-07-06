@@ -4,20 +4,45 @@ from sage.misc.misc import powerset
 
 import config
 from display import opstr, xmlopstr
-from misc import readfile, writefile
+from misc import *
 import subprocess as sp
 import threading
 from itertools import product
+from types import GeneratorType
 
 def use_buffer(buf):
+    """
+    Devuelve un decorador que usa el atributo "buf" para guardar un buffer de la funcion.
+    """
     def dec(func):
+        """
+        Este es el decorador
+        """
         def f(self,*args,**kwargs):
+            """
+            La nueva funcion que se llama a cambio de la decorada.
+            """
             if hasattr(self,buf):
-                print "ya estaba calculado!"
+                printlog("Ya estaba calculado!")
                 return getattr(self, buf)
             else:
-                setattr(self,buf,func(self,*args,**kwargs))
-                return getattr(self, buf)
+                #Nunca antes habia sido calculado
+                result = func(self,*args,**kwargs)
+                if issubclass(type(result),GeneratorType):
+                    #yo tengo que ser un generador tambien
+                    def newgen():
+                        """
+                        El nuevo generador, despues de haber generado, lo guarda en el objeto.
+                        """
+                        b=[]
+                        for value in result:
+                            b.append(value)
+                            yield value
+                        setattr(self,buf,b)
+                    return newgen()
+                else:
+                    setattr(self,buf,func(self,*args,**kwargs))
+                    return getattr(self, buf)
         return f
     return dec
                 
@@ -103,7 +128,8 @@ def UASol(inputua, example, options=[]):
 
     result = uaapp.stdout.read()
     error = uaapp.stderr.read()
-    print error
+    if error:
+        printlog(error)
     os.remove(inputfn)
     return result
 
@@ -417,21 +443,7 @@ class Model():
         Generador que va devolviendo los subuniversos.
         Intencionalmente no filtra por isomorfismos.
         """
-        print "se calcula"
-        result = []
-        for s in powerset(range(self.cardinality)):
-            if any([self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())]):
-                    continue
-            result.append(s)
-        return result
-
-
-
-    def subuniversesoriginal(self):
-        """
-        Generador que va devolviendo los subuniversos.
-        Intencionalmente no filtra por isomorfismos.
-        """
+        printlog("Se tiene que calcular")
         result = []
         for s in powerset(range(self.cardinality)):
             if any([self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())]):

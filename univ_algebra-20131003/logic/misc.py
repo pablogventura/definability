@@ -1,11 +1,17 @@
 import pickle
 
+DEBUG = True
+
+def printlog(text):
+    global DEBUG
+    if DEBUG:
+        print "DEBUG MSG: %s" % text
+
 def readfile(fname):
     fh = open(fname)
     st = fh.read()
     fh.close()
     return st
-
 
 def writefile(fname, st):
     fh = open(fname, 'w')
@@ -22,4 +28,5 @@ def filetoobj(path):
     result = pickle.load(f)
     f.close()
     return result
-    
+
+
