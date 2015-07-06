@@ -38,7 +38,7 @@ from sage.functions.other import sqrt
 import config
 
 from proof import ProverMaceSol, getops
-from misc import readfile, writefile
+from misc import *
 from model import Model
 from display import opstr
 from fo import FOclass
