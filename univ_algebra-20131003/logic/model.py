@@ -9,6 +9,18 @@ import subprocess as sp
 import threading
 from itertools import product
 
+def use_buffer(buf):
+    def dec(func):
+        def f(self,*args,**kwargs):
+            if hasattr(self,buf):
+                print "ya estaba calculado!"
+                return getattr(self, buf)
+            else:
+                setattr(self,buf,func(self,*args,**kwargs))
+                return getattr(self, buf)
+        return f
+    return dec
+                
 
 class ListWithArity(list):
 
@@ -399,7 +411,23 @@ class Model():
                 rel[r] = [1 if rA[p[0]] == 1 and rB[p[1]] == 1 else 0 for p in base]
         return Model(len(base), None, op, rel)
 
+    @use_buffer("sub_univ")
     def subuniverses(self):
+        """
+        Generador que va devolviendo los subuniversos.
+        Intencionalmente no filtra por isomorfismos.
+        """
+        print "se calcula"
+        result = []
+        for s in powerset(range(self.cardinality)):
+            if any([self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())]):
+                    continue
+            result.append(s)
+        return result
+
+
+
+    def subuniversesoriginal(self):
         """
         Generador que va devolviendo los subuniversos.
         Intencionalmente no filtra por isomorfismos.
