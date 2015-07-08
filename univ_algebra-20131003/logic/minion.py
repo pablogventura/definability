@@ -4,9 +4,18 @@
 
 import os
 import subprocess as sp
-from misc import readfile, writefile
+from misc import *
 import config
 from itertools import product
+
+def em_check(A,B,f):
+    for rel in A.relations:
+        frelA = [map(lambda x: f[x], row) for row in A.relations[rel].table(relation=True)]
+        for row in B.relations[rel].table(relation=True):
+            if all(x in f for x in row):
+                if not row in frelA:
+                    return False
+    return True
 
 
 class MinionSol():
@@ -16,7 +25,7 @@ class MinionSol():
         self.id = MinionSol.__count
         MinionSol.__count += 1
         self.inputfilename = config.minionpath + "input_minion%s" % self.id
-        print self.inputfilename
+        printlog(self.inputfilename)
 
         try:
             os.mkfifo(self.inputfilename)
@@ -198,11 +207,11 @@ def input_embedd(A, B, inj=True, surj=False):
     result += "**EOF**\n"
     return result
 
-def Hom(A, B):
+def Hom(A, B, inj=False, surj=False):
     """
     call Minion to calculate all homomorphisms from A to B
     """
-    st = input_homo(A, B)
+    st = input_homo(A, B,inj,surj)
     return MinionSol(st)
 
 def Iso(A, B):
@@ -226,6 +235,13 @@ def Embeddings(A, B):
     st = input_embedd(A, B)
     return MinionSol(st)
 
+def Embeddingsfiltrando(A, B):
+    """
+    call Minion to calculate all embeddings of A into B
+    """
+    for h in Hom(A,B,inj=True):
+        if em_check(A,B,h):
+            yield h
 
 def Aut(A):
     """
