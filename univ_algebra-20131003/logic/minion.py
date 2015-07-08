@@ -9,6 +9,9 @@ import config
 from itertools import product
 
 def em_check(A,B,f):
+    """
+    Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
+    """
     for rel in A.relations:
         frelA = [map(lambda x: f[x], row) for row in A.relations[rel].table(relation=True)]
         for row in B.relations[rel].table(relation=True):
