@@ -1,14 +1,15 @@
 import os  # TODO NO DEBERIA USARSE
+from itertools import product
+import subprocess as sp
+import threading
+from types import GeneratorType
+import numpy as np
 
 from sage.misc.misc import powerset
 
 import config
 from display import opstr, xmlopstr
 from misc import *
-import subprocess as sp
-import threading
-from itertools import product
-from types import GeneratorType
 
 def use_buffer(buf):
     """
@@ -61,15 +62,42 @@ class ListWithArity(list):
         super(ListWithArity, self).__init__(*args, **kwargs)
 
     def arity(self):
-        result = 0
         t = self
-        while issubclass(type(t), list) and len(t) > 1:
+        if issubclass(type(t), list) and not issubclass(type(t[0]),list):
+            if len(t) <= 1:
+                return 0
+            else:
+                return 1
+
+        result = 0
+        while issubclass(type(t), list):
             t = t[0]
             result += 1
         return result
+        
+    def restrict(self,elements):
+        """
+        Restringe el dominio a sorted(elements).
+        """
+        elements.sort() # lo ordeno para tener una forma clara de armar el embedding
+        temp = np.array(self)
+
+        # tengo que hacer reemplazos de nombre
+        result = np.copy(temp)
+        i=0
+        for k in elements:
+            result[temp==k] = i
+            i+=1
+        
+        # tengo que borrar filas y columnas
+        args = [elements for i in range(self.arity())]
+        return ListWithArity(result[np.ix_(*args)].tolist())
+        
 
     def __call__(self, *args):
         assert len(args) == self.arity()
+        if len(args)==0:
+            args = [0]
         result = list(self)
         for i in args:
             result = result[i]
@@ -136,7 +164,7 @@ def UASol(inputua, example, options=[]):
 
 class Model():
 
-    def __init__(self, cardinality, index=None, operations={}, relations={}, sub_of=None, **kwargs):
+    def __init__(self, cardinality, index=None, operations={}, relations={}, **kwargs):
         """
         Construct a finite first-order model.
 
@@ -160,7 +188,6 @@ class Model():
                 given as ordered lists.
                 n >= 0 is the arity of the relation (not explicitly coded 
                 but can be computed from the table).
-            sub_of -- este modelo es subestructura del que va aca.
             other optional arguments --
                 uc  -- a dictionary with keys [0..cardinality-1] and values 
                     an ordered list of upper covers. Used for posets.
@@ -448,7 +475,22 @@ class Model():
         for s in powerset(range(self.cardinality)):
             if any([self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())]):
                     continue
-            yield s
+            if s != []:
+                s.sort()
+                yield s
+                
+    def substructures(self):
+        """
+        Generador que va devolviendo las subestructuras.
+        Intencionalmente no filtra por isomorfismos.
+        Devuelve una subestructura y un embedding.
+        """
+        for sub in self.subuniverses():
+            yield (Model(len(sub),None, {op: self.operations[op].restrict(sub) for op in self.operations},
+                                       {rel: self.relations[rel].restrict(sub) for rel in self.relations})
+                   ,sub)
+                                 
+
 
     def subuniverses2(A):
         # A=self is a finite algebra (Python Model)
