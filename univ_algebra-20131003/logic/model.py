@@ -92,7 +92,23 @@ class ListWithArity(list):
         # tengo que borrar filas y columnas
         args = [elements for i in range(self.arity())]
         return ListWithArity(result[np.ix_(*args)].tolist())
-        
+
+
+    def permute(self,elements):
+        """
+        Deberia permutar nombres de los elementos, no funciona bien.
+        """
+        # TODO CORREGIR PARA QUE FUNCIONE BIEN
+        temp = np.array(self)
+        args = [elements for i in range(self.arity())]
+        temp = temp[np.ix_(*args)]
+        result = np.copy(temp)
+        i=0
+        for k in elements:
+            result[temp==k] = i
+            i+=1
+        return result
+            
 
     def __call__(self, *args):
         assert len(args) == self.arity()
