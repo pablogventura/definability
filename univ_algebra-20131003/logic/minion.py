@@ -7,6 +7,7 @@ import subprocess as sp
 from misc import *
 import config
 from itertools import product
+from listwitharity import ListWithArity
 
 def em_check(A,B,f):
     """
@@ -236,7 +237,7 @@ def Embeddings(A, B):
     call Minion to calculate all embeddings of A into B
     """
     st = input_embedd(A, B)
-    return MinionSol(st)
+    return (ListWithArity(emb) for emb in MinionSol(st))
 
 def Embeddingsfiltrando(A, B):
     """
