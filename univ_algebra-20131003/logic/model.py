@@ -11,6 +11,8 @@ import config
 from display import opstr, xmlopstr
 from misc import *
 
+import minion
+
 def use_buffer(buf):
     """
     Devuelve un decorador que usa el atributo "buf" para guardar un buffer de la funcion.
@@ -46,7 +48,6 @@ def use_buffer(buf):
                     return getattr(self, buf)
         return f
     return dec
-                
 
 class ListWithArity(list):
 
@@ -60,6 +61,12 @@ class ListWithArity(list):
             args[0] = [args[0]]
             args = tuple(args)
         super(ListWithArity, self).__init__(*args, **kwargs)
+    
+    def domain(self):
+        """
+        Un generador del dominio
+        """
+        return product(range(len(self)), repeat=self.arity())
 
     def arity(self):
         t = self
@@ -109,6 +116,13 @@ class ListWithArity(list):
             i+=1
         return result
             
+    def composition(self,g):
+        """
+        Compone con otra list with arity, F.compone(G) = F o G
+        y devuelve una nueva list with arity
+        """
+        result = list(self)
+        #for 
 
     def __call__(self, *args):
         assert len(args) == self.arity()
@@ -146,7 +160,7 @@ class ListWithArity(list):
             
         cardinality = len(self)
         result = []
-        for t in product(range(cardinality), repeat=self.arity()):
+        for t in self.domain():
             if not relation or self(*t):
                 result.append(list(t))
                 if not relation:
@@ -245,6 +259,9 @@ class Model():
             result += "%s = %s,\n" % (repr(attr), repr(getattr(self, attr)))
         result += ")"
         return result
+    
+    def __len__(self):
+        return self.cardinality
 
     def positive_diagram(self, c):
         """
@@ -975,9 +992,7 @@ class Model():
         return True
 
     def Aut(self):
-        n = len(self.uc)
-        auto = [p for p in permutations(0, n) if self.is_auto(p)]
-        return auto
+        return minion.Aut(self)
 
     def permuted(self, p):  # return permuted copy of self
         puc = range(len(p))

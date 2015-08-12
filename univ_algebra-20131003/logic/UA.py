@@ -39,6 +39,7 @@ import config
 
 from proof import ProverMaceSol, getops
 from misc import *
+from constellation import Constellation
 from model import Model
 from display import opstr
 from fo import FOclass
