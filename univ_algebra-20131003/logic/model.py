@@ -104,6 +104,9 @@ class ListWithArity(object):
         
         
     def map_in_place(self, f):
+        """
+        Funciona como un map, pero respeta la estructura de la matriz.
+        """
         a = self.array.reshape(-1)
         for i, v in enumerate(a):
             a[i] = f(v)
