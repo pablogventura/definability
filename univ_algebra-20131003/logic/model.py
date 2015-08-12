@@ -97,8 +97,16 @@ class ListWithArity(object):
         Compone con otra list with arity, F.compone(G) = F o G
         y devuelve una nueva list with arity
         """
-        result = list(self)
-        #for 
+        assert self.arity() == 1 and g.arity() == 1
+        result = ListWithArity(g)
+        result.map_in_place(self)
+        return result
+        
+        
+    def map_in_place(self, f):
+        a = self.array.reshape(-1)
+        for i, v in enumerate(a):
+            a[i] = f(v)
 
     def __call__(self, *args):
         assert len(args) == self.arity()
