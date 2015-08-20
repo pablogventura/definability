@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
 import os  # TODO NO DEBERIA USARSE
 from itertools import product
 import subprocess as sp

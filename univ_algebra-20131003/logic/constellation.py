@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
 import networkx
 from model import Model
 from misc import *
@@ -5,11 +8,27 @@ import minion
 
 class Constellation():
     """
-    Maneja una coleccion de modelos relacionados por homomorfismos
+    Maneja una coleccion de modelos relacionados por flechas
     """
     def __init__(self, models):
+        self.planets = {} # diccionario con key de len(planet)
         self.graph = networkx.DiGraph()
-        self.graph.add_nodes_from(models)
+        for model in models:
+            self.add_planet(model)
+
+    def add_planet(self, planet):
+        """un planeta es un modelo padre de subestructuras a revisar"""
+        self.graph.add_node(planet)
+        try:
+            self.planets[len(planet)].append(planet)
+        except:
+            self.planets[len(planet)] = [planet]
+            
+    def remove_planet(self, planet):
+        """un planeta es un modelo padre de subestructuras a revisar"""
+        self.graph.remove_node(planet)
+        self.planets[len(planet)] = filter(lambda p: p!=planet, self.planets[len(planet)])
+            
     def generate(self):
         # asumo que hay un solo modelo original
         # TODO NO SE ROMPERIA CON LOS ISOMORFISMOS?
@@ -22,8 +41,23 @@ class Constellation():
             auts = substr.Aut() # busco los automorfismos
             for aut in auts:
                 self.graph.add_edge(substr, model, arrow_type = "embedding", arrow=emb.composition(aut)) # agrego las composiciones
-                
-                
+    def generate2(self):
+        """
+        Ordeno planetas por tamaño
+        Recorro subestructuras de menor a mayor haciendo 'lo de siempre',
+            si son del mismo tamaño que que un planeta no revisado me fijo si es isomorfo y preserva*, y en ese caso se borra ese planeta
+                * es muy posible que no haga falta revisar si preserva ya que es isomorfo, y mediante automorfismos de la original basta.
+        Lo de siempre:
+            Revisar automorfismos de la subestructrura, y revisar un solo isomorfismo contra las subestructuras isomorfas.
+        """
+        for len_planet in sorted(self.planets.keys(), reverse=True):
+            for planet in self.planets[len_planet]:
+                #recorro subestructuras de planet, haciendo lo de siempre
+                pass
+
+    def lo_de_siempre(self, planeta, satelites):
+        for sub in planeta.substructures():
+            pass
                 
             
             
