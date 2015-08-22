@@ -62,8 +62,13 @@ class Constellation():
         """
         Agrega una flecha, pero tiene que preservar dif_rel para ser agregada
         """
-        for x in function.domain():
-            pass
+        for t in dif_rel.table(relation=True):
+            ft = map(function, t)
+            if dif_rel(*ft):
+                # Preserva! se puede agregar efectivamente
+                self.graph.add_edge(source, destination, arrow_type, arrow=function)
+            else:
+                raise ValueError
             
     def calculate_substructures(self):
         for model in self.graph.nodes():
