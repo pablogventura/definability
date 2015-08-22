@@ -11,8 +11,10 @@ class Constellation():
     Maneja una coleccion de modelos relacionados por flechas
     """
     def __init__(self, models):
-        self.planets = {} # diccionario con key de len(planet)
         self.graph = networkx.DiGraph()
+        
+        self.planets = {} # diccionario con key de len(planet)
+        self.satellites = {} # diccionario con key de len(satellite)
         for model in models:
             self.add_planet(model)
 
@@ -43,7 +45,7 @@ class Constellation():
                 self.graph.add_edge(substr, model, arrow_type = "embedding", arrow=emb.composition(aut)) # agrego las composiciones
     def generate2(self):
         """
-        Ordeno planetas por tamaño
+        Ordeno planetas por tamaño de mayor a menor
         Recorro subestructuras de menor a mayor haciendo 'lo de siempre',
             si son del mismo tamaño que que un planeta no revisado me fijo si es isomorfo y preserva*, y en ese caso se borra ese planeta
                 * es muy posible que no haga falta revisar si preserva ya que es isomorfo, y mediante automorfismos de la original basta.
@@ -52,14 +54,16 @@ class Constellation():
         """
         for len_planet in sorted(self.planets.keys(), reverse=True):
             for planet in self.planets[len_planet]:
-                #recorro subestructuras de planet, haciendo lo de siempre
-                pass
-
-    def lo_de_siempre(self, planeta, satelites):
-        for sub in planeta.substructures():
-            pass
+                for satellite, embbedding in planet.substructures():
+                    # substructures los devuelve de menor a mayor
+                    pass
                 
-            
+    def add_arrow(self, source, destination, arrow_type, function, dif_rel):
+        """
+        Agrega una flecha, pero tiene que preservar dif_rel para ser agregada
+        """
+        for x in function.domain():
+            pass
             
     def calculate_substructures(self):
         for model in self.graph.nodes():
