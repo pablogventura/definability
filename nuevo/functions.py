@@ -3,6 +3,7 @@
 
 import numpy as np
 from itertools import product
+import copy
 
 class Function(object):
 
@@ -53,6 +54,14 @@ class Function(object):
     def __init__(self, l):
         self.array = np.array(l)
         self.relation = False # maneja si la funcion es booleana
+        
+    def copy(self):
+        """
+        Devuelve una copia de si mismo
+        """
+        result = copy.copy(self)
+        result.array = np.copy(result.array)
+        return result
     
     def domain(self):
         """
@@ -87,7 +96,7 @@ class Function(object):
         y devuelve una nueva list with arity
         """
         assert self.arity() == 1
-        result = Function(g)
+        result = g.copy()
         result.map_in_place(self)
         return result
         
@@ -157,4 +166,4 @@ class Function(object):
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod(verbose=True)
+    doctest.testmod()

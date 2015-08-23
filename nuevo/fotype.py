@@ -34,4 +34,4 @@ class FO_Type(object):
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod(verbose=True)
+    doctest.testmod()
