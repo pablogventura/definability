@@ -76,7 +76,8 @@ class Function(object):
 
     def restrict(self,elements):
         """
-        Restringe el dominio a sorted(elements).
+        Restringe el dominio a elements, en ese orden.
+        Necesita certeza de que elements es cerrado bajo esta funcion!
         """
 
         # tengo que hacer reemplazos de nombre
