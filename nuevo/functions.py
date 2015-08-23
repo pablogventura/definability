@@ -49,21 +49,10 @@ class Function(object):
     
     >>> sum_mod3.table()
     [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
-    
-    >>> sum_mod3.is_constant()
-    False
-    >>> sum_mod3.is_relation()
-    False
-    >>> sum_mod3.is_operation()
-    True
     """
     def __init__(self, l):
-        if issubclass(type(l),Function):
-            # clono el arreglo
-            self.array = np.copy(l.array)
-        else:
-            # nuevo array
-            self.array = np.array(l)
+        self.array = np.array(l)
+        self.relation = False # maneja si la funcion es booleana
     
     def domain(self):
         """
@@ -118,7 +107,10 @@ class Function(object):
         result = self.array
         for i in args:
             result = result[i]
-        return result
+        if self.relation:
+            return bool(result)
+        else:
+            return result
     
     def __len__(self):
         """
@@ -133,11 +125,11 @@ class Function(object):
         result += "])"
         return result
 
-    def minion_table(self, table_name, relation=False):
+    def minion_table(self, table_name):
         """
         Devuelve un string con la tabla que representa a la relacion/operacion en minion
         """
-        table = self.table(relation)
+        table = self.table()
         height = len(table)
         width = len(table[0])
         result = ""
@@ -146,7 +138,7 @@ class Function(object):
         result = "%s %s %s\n" % (table_name, height, width) + result
         return result
 
-    def table(self, relation=False):
+    def table(self):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
         """
@@ -154,19 +146,13 @@ class Function(object):
         cardinality = len(self)
         result = []
         for t in self.domain():
-            if not relation or self(*t):
+            if not self.relation or self(*t):
                 result.append(list(t))
-                if not relation:
+                if not self.relation:
                     result[-1].append(self(*t))
         if len(result)==0:
             result.append([])
         return result
-    def is_constant(self):
-        return self.arity() == 0
-    def is_relation(self):
-        return not self.is_constant() and set([x[-1] for x in self.table()]) == set([0,1])
-    def is_operation(self):
-        return not self.is_constant() and not self.is_relation()
 
 
 if __name__ == "__main__":

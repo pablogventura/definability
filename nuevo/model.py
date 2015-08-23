@@ -11,6 +11,16 @@ class FO_Model(object):
         self.universe = universe # TODO en el futuro universe podria manejar renombres, para que los elementos puedan ser cualquier cosa
         assert sorted(operations.keys()) == sorted(fo_type.operations.keys()), "Estan mal definidas las funciones"
         assert sorted(relations.keys()) == sorted(fo_type.relations.keys()), "Estan mal definidas las relaciones"
+        self.operations = operations
+        self.relations = relations
+    def __repr__(self):
+        result = "FO_Model(\n"
+        result += repr(self.fo_type) + ",\n"
+        result += repr(self.cardinality) + ",\n"
+        result += repr(self.operations) + ",\n"
+        result += repr(self.relations) + ")"
+        return result
+
 
 if __name__ == "__main__":
     import doctest
