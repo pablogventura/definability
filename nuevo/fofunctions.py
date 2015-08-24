@@ -21,8 +21,6 @@ class FO_Operation(FO_OpRel):
     1
     >>> sum.table()
     [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
-    >>> sum.minion_table()
-    '+ 9 3\n0 0 0\n0 1 1\n0 2 2\n1 0 1\n1 1 2\n1 2 0\n2 0 2\n2 1 0\n2 2 1\n'
     """
     def __init__(self, l, fo_type, symbol):
         super(FO_Operation, self).__init__(l, fo_type, symbol)
@@ -43,8 +41,6 @@ class FO_Relation(FO_OpRel):
     0
     >>> par.table()
     [[0], [2], [4]]
-    >>> par.minion_table()
-    'p 3 1\n0\n2\n4\n'
     """
     def __init__(self, l, fo_type, symbol):
         super(FO_Relation, self).__init__(l, fo_type, symbol)

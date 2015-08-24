@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 from functions import Function
+from misc import indent
 
 class Morphism(Function):
     """
@@ -27,20 +28,18 @@ class Morphism(Function):
         """
         return self.source == self.target
     def __repr__(self):
-        
-        result = ""
+        result =  "%s(\n" % self.stype
+        result += indent(repr(self.array.tolist()) + ",")
+        result += indent(repr(self.source) + ",")
+        result += indent(repr(self.target) + ",")
+        result += indent(repr(self.subtype) + ",")
         if self.inj:
-            result += "Injective, \n"
+            result += indent("Injective,")
         if self.surj:
-            result += "Surjective, \n"
-        result +=")"
+            result += indent("Surjective,")
+        result += ")"
+        return result
 
-        return "%s(%s,\n%s,\n%s,\n%s,\n%s" % (self.stype,
-                                         self.array.tolist(),
-                                         self.source,
-                                         self.target,
-                                         self.subtype,
-                                         result)
 
 class Homomorphism(Morphism):
     """
@@ -49,24 +48,29 @@ class Homomorphism(Morphism):
     >>> import examples
     >>> h = Homomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Homeomorphism([1, 1],
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Type({},{'<=': 2}),
+    Homeomorphism(
+      [1, 1],
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Type({},{'<=': 2}),
     )
     """
     def __init__(self, l, source, target, subtype, inj=None, surj=None):
@@ -83,25 +87,30 @@ class Embedding(Homomorphism):
     >>> import examples
     >>> h = Embedding([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Autoembedding([1, 1],
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Type({},{'<=': 2}),
-    Injective, 
+    Autoembedding(
+      [1, 1],
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Type({},{'<=': 2}),
+      Injective,
     )
     """
     def __init__(self, l, source, target, subtype, inj=True, surj=None):
@@ -119,26 +128,31 @@ class Isomorphism(Embedding):
     >>> import examples
     >>> h = Isomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Automorphism([1, 1],
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Model(
-    FO_Type({},{'<=': 2}),
-    2,
-    {},
-    {'<=': Function([
-    [1 0],
-    [1 1],
-    ])}),
-    FO_Type({},{'<=': 2}),
-    Injective, 
-    Surjective, 
+    Automorphism(
+      [1, 1],
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Model(
+        FO_Type({},{'<=': 2}),
+        2,
+        {},
+        {'<=': Relation(
+          [0, 0],
+          [1, 0],
+          [1, 1],
+        )}
+      ),
+      FO_Type({},{'<=': 2}),
+      Injective,
+      Surjective,
     )
     """
     def __init__(self, l, source, target, subtype, inj=True, surj=True):

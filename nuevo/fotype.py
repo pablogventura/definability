@@ -12,25 +12,25 @@ class FO_Type(object):
     FO_Type({'+': 2},{'<': 2})
     >>> st = t.subtype(["+"],[])
     >>> st
-    FO_Type({'+': 2},{},supertype=FO_Type({'+': 2},{'<': 2}))
+    FO_Type({'+': 2},{})
     >>> st.is_subtype_of(t)
     True
     """
-    def __init__(self,operations,relations,supertype=None):
+    def __init__(self,operations,relations):
         self.operations = operations
         self.relations = relations
-        self.supertype = supertype
+
     def __repr__(self):
-        if self.supertype:
-            return "FO_Type(%s,%s,supertype=%s)"%(repr(self.operations),repr(self.relations),repr(self.supertype))
-        else:
-            return "FO_Type(%s,%s)"%(repr(self.operations),repr(self.relations))
+        return "FO_Type(%s,%s)"%(repr(self.operations),repr(self.relations))
     def __eq__(self,other):
         return self.operations == other.operations and self.relations == other.relations
     def subtype(self,operations,relations):
-        return FO_Type({op:self.operations[op] for op in operations},{rel:self.relations[rel] for rel in relations},supertype=self)
+        return FO_Type({op:self.operations[op] for op in operations},{rel:self.relations[rel] for rel in relations})
     def is_subtype_of(self, supertype):
-        return self == supertype or self.supertype == supertype
+        result = all(op in supertype.operations and self.operations[op] == supertype.operations[op] for op in self.operations)
+        result = result and all(rel in supertype.relations and self.relations[rel] == supertype.relations[rel] for rel in self.relations)
+        return result
+
 
 if __name__ == "__main__":
     import doctest

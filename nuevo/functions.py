@@ -14,11 +14,17 @@ class Function(object):
 
     >>> sum_mod3=Function([[0,1,2],[1,2,0],[2,0,1]])
     >>> sum_mod3
-    Function([
-    [0 1 2],
-    [1 2 0],
-    [2 0 1],
-    ])
+    Function(
+      [0, 0] -> 0,
+      [0, 1] -> 1,
+      [0, 2] -> 2,
+      [1, 0] -> 1,
+      [1, 1] -> 2,
+      [1, 2] -> 0,
+      [2, 0] -> 2,
+      [2, 1] -> 0,
+      [2, 2] -> 1,
+    )
     
     >>> list(sum_mod3.domain())
     [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
@@ -46,13 +52,11 @@ class Function(object):
     >>> len(sum_mod3) # debe dar 3 porque los argumentos estan en range(0,3)
     3
     
-    >>> sum_mod3.minion_table("a") # minion toma estas tablas
-    'a 9 3\n0 0 0\n0 1 1\n0 2 2\n1 0 1\n1 1 2\n1 2 0\n2 0 2\n2 1 0\n2 2 1\n'
-    
     >>> sum_mod3.table()
     [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
     """
     def __init__(self, l):
+        assert issubclass(type(l),list)
         self.array = np.array(l)
         self.relation = False # maneja si la funcion es booleana
         

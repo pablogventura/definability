@@ -60,7 +60,7 @@ class MinionSol(object):
         except IndexError:
             for i,solution in enumerate(self):
                 if i==index:
-                    return self.fun(solution)
+                    return solution # no hace falta aplicar self.fun porque esta llamando a __iter__
             raise IndexError("There aren't so many solutions.")
                 
     def __nonzero__(self):
