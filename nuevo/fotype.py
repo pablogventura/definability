@@ -30,7 +30,7 @@ class FO_Type(object):
     def subtype(self,operations,relations):
         return FO_Type({op:self.operations[op] for op in operations},{rel:self.relations[rel] for rel in relations},supertype=self)
     def is_subtype_of(self, supertype):
-        return self.supertype == supertype
+        return self == supertype or self.supertype == supertype
 
 if __name__ == "__main__":
     import doctest

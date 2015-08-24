@@ -52,11 +52,6 @@ class FO_Relation(FO_OpRel):
         self.relation = True
     def __call__(self, *args):
         return bool(super(FO_Relation, self).__call__(*args))
-    def minion_table(self):
-        return super(FO_Relation, self).minion_table(self.symbol)
-
-
-
 
 
 

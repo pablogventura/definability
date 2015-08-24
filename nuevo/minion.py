@@ -7,14 +7,16 @@
 import subprocess as sp
 from itertools import product
 
+from morphisms import *
 import config
 import files
 
 
-class MinionSol():
+class MinionSol(object):
     __count = 0
-    def __init__(self, input_data, allsols=True):
+    def __init__(self, input_data, allsols=True, fun=lambda x: x):
         self.id = MinionSol.__count
+        self.fun = fun
         MinionSol.__count += 1
         self.input_filename = config.minion_path + "input_minion%s" % self.id
         print self.input_filename
@@ -44,21 +46,21 @@ class MinionSol():
 
     def __iter__(self):
         for solution in self.solutions:
-            yield solution
+            yield self.fun(solution)
 
         while not self.EOF:
             solution = self.__parse_solution()
             if solution:
                 self.solutions.append(solution)
-                yield solution
+                yield self.fun(solution)
             
     def __getitem__(self, index):
         try:
-            return self.solutions[index]
+            return self.fun(self.solutions[index])
         except IndexError:
             for i,solution in enumerate(self):
                 if i==index:
-                    return solution
+                    return self.fun(solution)
             raise IndexError("There aren't so many solutions.")
                 
     def __nonzero__(self):
@@ -84,104 +86,159 @@ class MinionSol():
         files.remove(self.input_filename)
 
 
-def t_op(st):
-    """
-    Traduce los nombres de las operaciones/relaciones
-    """
-    # Minion accepts only letters for first character of names
-    if st.isalpha():
-        return st
+
+
+
+
+
+
+
+class MorphMinionSol(MinionSol):
+    def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True):
+        self.morph_type = morph_type
+        self.subtype = subtype
+        self.source = source
+        self.target = target
+        self.inj = inj
+        self.surj = surj
         
-    ops = {"^": "m", "+": "p", "-": "s", "*": "t", "<=": "leq"}
-    if st in ops:
-        return ops[st]
-    else:
-        st += " " * ((3-len(st))%3) # le agrego espacios para evitar los = que mete b64
-        return st.encode("base64")[:-1]
+        if self.morph_type == Homomorphism:
+            input_data = self.__input_homo()
+        elif self.morph_type == Embedding:
+            self.inj = True
+            input_data = self.__input_embedd()
+        elif self.morph_type == Isomorphism:
+            self.inj = True
+            self.surj = True
+            input_data = self.__input_embedd()
+        else:
+            raise IndexError("Morphism unknown")
 
+        self.fun = lambda x: self.morph_type(x,
+                                             self.source,
+                                             self.target,
+                                             self.subtype,
+                                             self.inj,
+                                             self.surj) # funcion que tipa los morfismos
+        print input_data
+        super(MorphMinionSol, self).__init__(input_data, allsols,fun=self.fun)
 
-def input_homo(A, B, inj=False, surj=False):
-    """
-    Genera un string para darle a Minion para tener los homomorfismos de A en B
-    """
-    result = "MINION 3\n\n"
-    result += "**VARIABLES**\n"
-    result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
-    result += "**TUPLELIST**\n"
-    for op in B.operations:
-        result += B.operations[op].minion_table(t_op(op)) + "\n"
-    for rel in B.relations:
-        result += B.relations[rel].minion_table(t_op(rel), relation=True) + "\n"
-    result += "**CONSTRAINTS**\n"
-    if inj:
-        result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
-    if surj:
-        for i in range(B.cardinality):
-            result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
+    def __minion_name(self, oprel):
+        """
+        Traduce los nombres de las operaciones/relaciones
+        """
+        # Minion accepts only letters for first character of names
+        if oprel.isalpha():
+            return oprel
+            
+        ops = {"^": "m", "+": "p", "-": "s", "*": "t", "<=": "leq"}
+        if oprel in ops:
+            return ops[oprel]
+        else:
+            oprel += " " * ((3-len(oprel))%3) # le agrego espacios para evitar los = que mete b64
+            return oprel.encode("base64")[:-1]
 
-    for op in A.operations:
-        cons = A.operations[op].table()
-        for row in cons:
-            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % t_op(op)
-        result += "\n"
-    for rel in A.relations:
-        cons = A.relations[rel].table(relation=True)
-        for row in cons:
-            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % t_op(rel)
-        result += "\n"
-    result += "**EOF**\n"
-    return result
+    def __oprel_table(self, oprel, prefix=""):
+        """
+        Devuelve un string con la tabla que representa a la relacion/operacion en minion
+        """
+        table = oprel.table()
+        table_name = prefix + self.__minion_name(oprel.symbol)
+        height = len(table)
+        width = len(table[0])
+        result = ""
+        for row in table:
+            result += " ".join(map(str, row)) + "\n"
+        result = "%s %s %s\n" % (table_name, height, width) + result
+        return result
 
-def input_embedd(A, B, inj=True, surj=False):
-    """
-    Genera un string para darle a Minion para tener los embeddings de A en B
-    """
-    
-    result = "MINION 3\n\n"
-    result += "**VARIABLES**\n"
-    result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
-    result += "DISCRETE g[%s]{-1..%s}\n\n" % (B.cardinality, A.cardinality - 1)
-    result += "**SEARCH**\n"
-    result += "PRINT [f]\n\n" # para que no me imprima los valores de g
-    result += "**TUPLELIST**\n"
-    
-    for op in B.operations:
-        result += B.operations[op].minion_table("b"+t_op(op)) + "\n"
-    for rel in B.relations:
-        result += B.relations[rel].minion_table("b"+t_op(rel), relation=True) + "\n"
-    for rel in A.relations:
-        result += A.relations[rel].minion_table("a"+t_op(rel), relation=True) + "\n"
+    def __input_homo(self):
+        """
+        Genera un string para darle a Minion para tener los homomorfismos de source en target
+        """
+        A = self.source
+        B = self.target
         
-    result += "**CONSTRAINTS**\n"
-    if inj:
-        result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
-    if surj:
-        for i in range(B.cardinality):
-            result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
+        result = "MINION 3\n\n"
+        result += "**VARIABLES**\n"
+        result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+        result += "**TUPLELIST**\n"
+        for op in self.subtype.operations:
+            result += self.__oprel_table(B.operations[op]) + "\n"
+        for rel in self.subtype.relations:
+            result += self.__oprel_table(B.relations[rel]) + "\n"
+        result += "**CONSTRAINTS**\n"
+        if self.inj:
+            result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
+        if self.surj:
+            for i in range(B.cardinality):
+                result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
 
-    for op in A.operations:
-        cons = A.operations[op].table()
-        for row in cons:
-            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+t_op(op))
-        result += "\n"
-    for rel in A.relations:
-        cons = A.relations[rel].table(relation=True)
-        for row in cons:
-            result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+t_op(rel))
-        result += "\n"
-    for rel in B.relations:
-        cons = B.relations[rel].table(relation=True)
-        for row in cons:
-            result += "watched-or({"
-            for i in row:
-                result += "element(g, %s, -1)," % i
-            result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)})\n" % ("a"+t_op(rel))
-        result += "\n"
-    for i in range(A.cardinality):
-        result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
-    result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality)
-    result += "**EOF**\n"
-    return result
+        for op in self.subtype.operations:
+            cons = A.operations[op].table()
+            for row in cons:
+                result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % self.__minion_name(op)
+            result += "\n"
+        for rel in self.subtype.relations:
+            cons = A.relations[rel].table()
+            for row in cons:
+                result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % self.__minion_name(rel)
+            result += "\n"
+        result += "**EOF**\n"
+        return result
+
+    def __input_embedd(self):
+        """
+        Genera un string para darle a Minion para tener los embeddings de A en B
+        """
+        A = self.source
+        B = self.target
+        
+        result = "MINION 3\n\n"
+        result += "**VARIABLES**\n"
+        result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+        result += "DISCRETE g[%s]{-1..%s}\n\n" % (B.cardinality, A.cardinality - 1)
+        result += "**SEARCH**\n"
+        result += "PRINT [f]\n\n" # para que no me imprima los valores de g
+        result += "**TUPLELIST**\n"
+        
+        for op in self.subtype.operations:
+            result += self.__oprel_table(B.operations[op],prefix="b") + "\n"
+        for rel in self.subtype.relations:
+            result += self.__oprel_table(B.relations[rel],prefix="b") + "\n"
+        for rel in self.subtype.relations:
+            result += self.__oprel_table(A.relations[rel],prefix="a") + "\n"
+            
+        result += "**CONSTRAINTS**\n"
+        if self.inj:
+            result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
+        if self.surj:
+            for i in range(B.cardinality):
+                result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
+
+        for op in self.subtype.operations:
+            cons =A.operations[op].table()
+            for row in cons:
+                result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+self.__minion_name(op))
+            result += "\n"
+        for rel in self.subtype.relations:
+            cons = A.relations[rel].table()
+            for row in cons:
+                result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % ("b"+self.__minion_name(rel))
+            result += "\n"
+        for rel in self.subtype.relations:
+            cons = B.relations[rel].table()
+            for row in cons:
+                result += "watched-or({"
+                for i in row:
+                    result += "element(g, %s, -1)," % i
+                result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)})\n" % ("a"+self.__minion_name(rel))
+            result += "\n"
+        for i in range(A.cardinality):
+            result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
+        result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality)
+        result += "**EOF**\n"
+        return result
 
 def Hom(A, B, inj=False, surj=False):
     """
@@ -247,36 +304,6 @@ def is_isomorphic(A, B):
     st = input_embedd(A, B,surj=True)
     return bool(MinionSol(st,allsols=False))
 
-
-def minion_hom_bin_rel(A, B):
-    # TODO PARECE QUE DEBERIA IRSE
-    # A,B are relational structures with only BINARY relations
-    st = "MINION 3\n\n**VARIABLES**\nDISCRETE f[" + str(A.cardinality) + "]{0.." + str(B.cardinality - 1) + "}\n\n**TUPLELIST**\n"
-    for s in B.relations:
-        cnt = [x for y in B.relations[s] for x in y].count(1)
-        st += s + " " + str(cnt) + " 2\n"
-        for i in range(B.cardinality):
-            for j in range(B.cardinality):
-                if B.relations[s][i][j] == 1:
-                    st += str(i) + " " + str(j) + "\n"
-    st += "\n**CONSTRAINTS**\n"
-    for s in A.relations:
-        for i in range(A.cardinality):
-            for j in range(A.cardinality):
-                if A.relations[s][i][j] == 1:
-                    st += "table([f[" + str(i) + "],f[" + str(j) + "]]," + s + ")\n"
-    return st + "\n**EOF**\n"
-
-
-def Pol_1(U):
-    # TODO NO TENGO IDEA QUE ES, PARECE QUE DEBERIA IRSE
-    """
-    Find unary polynomials that preserve all relations of 
-    the binary relational structure U
-    """
-    st = minion_hom_bin_rel(U, U)
-    # antes devolvia una lista de tuplas, ahora es un generador de listas
-    return MinionSol(st)
 
 
 def ops2alg(ops):

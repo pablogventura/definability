@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+from misc import indent
 
 class FO_Model(object):
     """
@@ -15,10 +16,10 @@ class FO_Model(object):
         self.relations = relations
     def __repr__(self):
         result = "FO_Model(\n"
-        result += repr(self.fo_type) + ",\n"
-        result += repr(self.cardinality) + ",\n"
-        result += repr(self.operations) + ",\n"
-        result += repr(self.relations) + ")"
+        result += indent(repr(self.fo_type)) + ",\n"
+        result += indent(repr(self.cardinality)) + ",\n"
+        result += indent(repr(self.operations)) + ",\n"
+        result += indent(repr(self.relations)) + ")"
         return result
 
 

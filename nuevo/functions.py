@@ -134,19 +134,6 @@ class Function(object):
         result += "])"
         return result
 
-    def minion_table(self, table_name):
-        """
-        Devuelve un string con la tabla que representa a la relacion/operacion en minion
-        """
-        table = self.table()
-        height = len(table)
-        width = len(table[0])
-        result = ""
-        for row in table:
-            result += " ".join(map(str, row)) + "\n"
-        result = "%s %s %s\n" % (table_name, height, width) + result
-        return result
-
     def table(self):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion

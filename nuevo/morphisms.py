@@ -7,10 +7,15 @@ class Morphism(Function):
     """
     Clase general de los morfismos
     """
-    def __init__(self, l, source, target):
+    def __init__(self, l, source, target, subtype, inj=None, surj=None):
         super(Morphism, self).__init__(l)
         self.source = source
         self.target = target
+        self.subtype = subtype
+        self.inj = inj
+        self.surj = surj
+        assert self.subtype.is_subtype_of(source.fo_type) and self.subtype.is_subtype_of(target.fo_type)
+        
         if self.is_auto():
             self.stype = "Automorphism"
         else:
@@ -23,25 +28,28 @@ class Morphism(Function):
         return self.source == self.target
     def __repr__(self):
         
-        result = super(Morphism, self).__repr__()
-        result = result[len("Function("):-1]
-        result += ",\n"
-        result += repr(self.source) + ",\n"
-        result += repr(self.target) + ")"
-        return self.stype + "(\n" + result
+        result = ""
+        if self.inj:
+            result += "Injective, \n"
+        if self.surj:
+            result += "Surjective, \n"
+        result +=")"
+
+        return "%s(%s,\n%s,\n%s,\n%s,\n%s" % (self.stype,
+                                         self.array.tolist(),
+                                         self.source,
+                                         self.target,
+                                         self.subtype,
+                                         result)
 
 class Homomorphism(Morphism):
     """
     Homomorfismos
     
     >>> import examples
-    >>> h = Homomorphism([[1,1],[1,1]],examples.posetcadena2,examples.posetcadena2)
+    >>> h = Homomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Homeomorphism(
-    [
-    [1 1],
-    [1 1],
-    ],
+    Homeomorphism([1, 1],
     FO_Model(
     FO_Type({},{'<=': 2}),
     2,
@@ -57,10 +65,12 @@ class Homomorphism(Morphism):
     {'<=': Function([
     [1 0],
     [1 1],
-    ])}))
+    ])}),
+    FO_Type({},{'<=': 2}),
+    )
     """
-    def __init__(self,l,source,target):
-        super(Homomorphism, self).__init__(l,source,target)
+    def __init__(self, l, source, target, subtype, inj=None, surj=None):
+        super(Homomorphism, self).__init__(l,source,target,subtype,inj,surj)
         if self.is_auto():
             self.stype = "Homeomorphism"
         else:
@@ -71,13 +81,9 @@ class Embedding(Homomorphism):
     Embeddings
 
     >>> import examples
-    >>> h = Embedding([[1,1],[1,1]],examples.posetcadena2,examples.posetcadena2)
+    >>> h = Embedding([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Autoembedding(
-    [
-    [1 1],
-    [1 1],
-    ],
+    Autoembedding([1, 1],
     FO_Model(
     FO_Type({},{'<=': 2}),
     2,
@@ -93,10 +99,14 @@ class Embedding(Homomorphism):
     {'<=': Function([
     [1 0],
     [1 1],
-    ])}))
+    ])}),
+    FO_Type({},{'<=': 2}),
+    Injective, 
+    )
     """
-    def __init__(self,l,source,target):
-        super(Embedding, self).__init__(l,source,target)
+    def __init__(self, l, source, target, subtype, inj=True, surj=None):
+        assert inj
+        super(Embedding, self).__init__(l,source,target,subtype,inj,surj)
         if self.is_auto():
             self.stype = "Autoembedding"
         else:
@@ -107,13 +117,9 @@ class Isomorphism(Embedding):
     Isomorfismos
     
     >>> import examples
-    >>> h = Isomorphism([[1,1],[1,1]],examples.posetcadena2,examples.posetcadena2)
+    >>> h = Isomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
-    Automorphism(
-    [
-    [1 1],
-    [1 1],
-    ],
+    Automorphism([1, 1],
     FO_Model(
     FO_Type({},{'<=': 2}),
     2,
@@ -129,10 +135,15 @@ class Isomorphism(Embedding):
     {'<=': Function([
     [1 0],
     [1 1],
-    ])}))
+    ])}),
+    FO_Type({},{'<=': 2}),
+    Injective, 
+    Surjective, 
+    )
     """
-    def __init__(self,l,source,target):
-        super(Isomorphism, self).__init__(l,source,target)
+    def __init__(self, l, source, target, subtype, inj=True, surj=True):
+        assert inj and surj
+        super(Isomorphism, self).__init__(l,source,target,subtype,inj,surj)
         if self.is_auto():
             self.stype = "Automorphism"
         else:
