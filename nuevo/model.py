@@ -16,11 +16,11 @@ class FO_Model(object):
         self.relations = relations
     def __repr__(self):
         result = "FO_Model(\n"
-        result += indent(repr(self.fo_type)) + ",\n"
-        result += indent(repr(self.cardinality)) + ",\n"
-        result += indent(repr(self.operations)) + ",\n"
-        result += indent(repr(self.relations)) + ")"
-        return result
+        result += indent(repr(self.fo_type) + ",\n")
+        result += indent(repr(self.cardinality) + ",\n")
+        result += indent(repr(self.operations) + ",\n")
+        result += indent(repr(self.relations))
+        return result + ")"
 
 
 if __name__ == "__main__":

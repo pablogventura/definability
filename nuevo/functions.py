@@ -3,6 +3,7 @@
 
 import numpy as np
 from itertools import product
+from misc import indent
 import copy
 
 class Function(object):
@@ -128,11 +129,15 @@ class Function(object):
         return len(self.array)
         
     def __repr__(self):
-        result = "Function([\n"
-        for row in self.array:
-            result += str(row) + ",\n"
-        result += "])"
-        return result
+        if self.relation:
+            result = "Relation(\n"
+            table = map(lambda x:"%s," % x,self.table())
+        else:
+            result = "Function(\n"
+            table = map(lambda x: "%s -> %s," % (x[:-1],x[-1]) ,self.table())
+        table = indent("\n".join(table))
+
+        return result + table + ")"
 
     def table(self):
         """
