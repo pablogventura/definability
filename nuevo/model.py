@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
 from misc import indent
 import minion
 
@@ -15,6 +16,7 @@ class FO_Model(object):
         assert sorted(relations.keys()) == sorted(fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
         self.relations = relations
+        
     def __repr__(self):
         result = "FO_Model(\n"
         result += indent(repr(self.fo_type) + ",\n")

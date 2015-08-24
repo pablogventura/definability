@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
 """
 Modulo con ejemplos rapidos, para hacer pruebas
 """
+
 from model import FO_Model
 from fotype import FO_Type
 from fofunctions import FO_Relation

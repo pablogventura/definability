@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
 from functions import Function
 
 class FO_OpRel(Function):

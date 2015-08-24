@@ -4,6 +4,7 @@
 """
 Modulo de configuracion
 """
+
 import os
 
 home = os.getenv('HOME')
