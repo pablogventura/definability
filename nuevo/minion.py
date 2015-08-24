@@ -19,7 +19,7 @@ class MinionSol(object):
         self.fun = fun
         MinionSol.__count += 1
         self.input_filename = config.minion_path + "input_minion%s" % self.id
-        print self.input_filename
+        # print self.input_filename
 
         files.create_pipe(self.input_filename)
 
@@ -113,7 +113,6 @@ class MorphMinionSol(MinionSol):
                                              self.subtype,
                                              self.inj,
                                              self.surj) # funcion que tipa los morfismos
-        print input_data
         super(MorphMinionSol, self).__init__(input_data, allsols,fun=self.fun)
 
     def __minion_name(self, oprel):
@@ -238,34 +237,87 @@ class MorphMinionSol(MinionSol):
 def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True):
     """
     call Minion to calculate all homomorphisms from A to B
+    
+    >>> from examples import *
+    >>> len(homomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    12
     """
     return MorphMinionSol(Homomorphism, subtype, source, target, inj, surj, allsols)
 
 def embeddings(source, target, subtype, surj=None, allsols=True):
     """
     call Minion to calculate all embeddings of A into B
+
+    >>> from examples import *
+    >>> len(embeddings(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    7
     """
     return MorphMinionSol(Embedding, subtype, source, target, True, surj, allsols)
 
 def isomorphisms(source, target, subtype, allsols=True):
     """
     call Minion to calculate all homomorphisms from A to B
+
+    >>> from examples import *
+    >>> len(isomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    0
+    >>> len(isomorphisms(posetcadena2,posetcadena2,posetcadena2.fo_type))
+    1
+    >>> len(isomorphisms(posetdiamante,posetdiamante,posetdiamante.fo_type))
+    6
     """
     return MorphMinionSol(Isomorphism, subtype, source, target, True, True, allsols)
 
 def is_homomorphic_image(source, target, subtype):
-    """return true if B is a homomorphic image of A (uses Minion)"""
-    return homomorphisms(source, target, subtype, allsols=False)
+    """
+    return homomorphism if B is a homomorphic image of A (uses Minion)
+    else returns False
+    
+    >>> from examples import *
+    >>> bool(is_homomorphic_image(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    True
+    >>> bool(is_homomorphic_image(posetdiamante,posetcadena2,posetcadena2.fo_type))
+    True
+    """
+    h = homomorphisms(source, target, subtype, allsols=False)
+    if h:
+        return h[0]
+    else:
+        return False
 
 def is_substructure(source, target, subtype):
-    """return true if B is a substructure of A (uses Minion)"""
-    return embeddings(source, target, subtype, allsols=False)
+    """
+    return embedding if B is a substructure of A (uses Minion)
+    else returns False
+    
+    >>> from examples import *
+    >>> bool(is_substructure(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    True
+    >>> bool(is_substructure(posetdiamante,posetcadena2,posetcadena2.fo_type))
+    False
+    """
+    e = embeddings(source, target, subtype, allsols=False)
+    if e:
+        return e[0]
+    else:
+        return False
 
 def is_isomorphic(source, target, subtype):
     """
-    return true if A is isomorphic to B (uses Minion)
+    return isomorphism if A is isomorphic to B (uses Minion)
+    else returns False
+    
+    >>> from examples import *
+    >>> bool(is_isomorphic(posetcadena2,posetdiamante,posetcadena2.fo_type))
+    False
+    >>> bool(is_isomorphic(posetdiamante,posetdiamante,posetdiamante.fo_type))
+    True
     """
-    return isomorphisms(source, target, subtype, allsols=False)
+    i = isomorphisms(source, target, subtype, allsols=False)
+    if i:
+        return i[0]
+    else:
+        return False
 
 
 
