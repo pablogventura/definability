@@ -268,3 +268,7 @@ def is_isomorphic(source, target, subtype):
     return isomorphisms(source, target, subtype, allsols=False)
 
 
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

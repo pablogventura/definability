@@ -4,6 +4,9 @@
 import os
 
 def create_pipe(path):
+    """
+    Crea un named pipe
+    """
     try:
         os.mkfifo(path)
     except OSError:
@@ -24,7 +27,14 @@ def read(path):
     return data
 
 def write(path, data):
+    """
+    Escribe datos en un archivo
+    """
     f = open(path, 'w')
     f.write(data)
     f.close()
 
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
