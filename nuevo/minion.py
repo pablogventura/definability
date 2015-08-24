@@ -86,13 +86,6 @@ class MinionSol(object):
         files.remove(self.input_filename)
 
 
-
-
-
-
-
-
-
 class MorphMinionSol(MinionSol):
     def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True):
         self.morph_type = morph_type
@@ -240,96 +233,38 @@ class MorphMinionSol(MinionSol):
         result += "**EOF**\n"
         return result
 
-def Hom(A, B, inj=False, surj=False):
+
+
+def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True):
     """
     call Minion to calculate all homomorphisms from A to B
     """
-    st = input_homo(A, B,inj,surj)
-    return MinionSol(st)
+    return MorphMinionSol(Homomorphism, subtype, source, target, inj, surj, allsols)
 
-def Iso(A, B):
+def embeddings(source, target, subtype, surj=None, allsols=True):
+    """
+    call Minion to calculate all embeddings of A into B
+    """
+    return MorphMinionSol(Embedding, subtype, source, target, True, surj, allsols)
+
+def isomorphisms(source, target, subtype, allsols=True):
     """
     call Minion to calculate all homomorphisms from A to B
     """
-    st = input_embedd(A, B, surj=True)
-    return MinionSol(st)
+    return MorphMinionSol(Isomorphism, subtype, source, target, True, True, allsols)
 
-def End(A):
-    """
-    call Minion to calculate all endomorphisms of A
-    """
-    return Hom(A, A)
-
-
-def Embeddings(A, B):
-    """
-    call Minion to calculate all embeddings of A into B
-    """
-    st = input_embedd(A, B)
-    return (ListWithArity(emb) for emb in MinionSol(st))
-
-def Embeddingsfiltrando(A, B):
-    """
-    call Minion to calculate all embeddings of A into B
-    """
-    for h in Hom(A,B,inj=True):
-        if em_check(A,B,h):
-            yield h
-
-def Aut(A):
-    """
-    call Minion to calculate all automorphisms of A
-    """
-    return Embeddings(A, A)
-
-
-def is_hom_image(A, B):
+def is_homomorphic_image(source, target, subtype):
     """return true if B is a homomorphic image of A (uses Minion)"""
-    st = input_homo(A, B, surj=True)
-    return bool(MinionSol(st,allsols=False))
+    return homomorphisms(source, target, subtype, allsols=False)
 
+def is_substructure(source, target, subtype):
+    """return true if B is a substructure of A (uses Minion)"""
+    return embeddings(source, target, subtype, allsols=False)
 
-def is_substructure(A, B):
-    """
-    return true if A is a substructure of B (uses Minion)
-    """
-    st = input_embedd(A, B)
-    return bool(MinionSol(st,allsols=False))
-
-
-def is_isomorphic(A, B):
+def is_isomorphic(source, target, subtype):
     """
     return true if A is isomorphic to B (uses Minion)
     """
-    st = input_embedd(A, B,surj=True)
-    return bool(MinionSol(st,allsols=False))
+    return isomorphisms(source, target, subtype, allsols=False)
 
 
-
-def ops2alg(ops):
-    """
-    Convert a list of operations to an algebra
-    """
-    return Model(cardinality=len(ops[0]),
-                 operations=dict(["h" + str(i), list(ops[i])] for i in range(len(ops))))
-
-
-def parts2relst(Ps):
-    """
-    Convert a list of partitions (strings) to a relational structure
-    """
-    return Model(cardinality=max(max(b) for b in str2part(Ps[0])) + 1,
-                 relations=dict(["R" + str(i), part2eqrel(str2part(Ps[i]))]
-                                for i in range(len(Ps))))
-
-
-def is_congruence_closed(B):
-    return len(B.relations) + 2 == len(Con(ops2alg(Pol_1(B))))
-
-
-def congruence_closure(parts):
-    return Con(ops2alg(Pol_1(parts2relst(parts))))
-
-
-def monoid_closure(ops):
-    return Pol_1(parts2relst(Con(ops2alg(ops))))
