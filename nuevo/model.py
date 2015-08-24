@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 from misc import indent
+import minion
 
 class FO_Model(object):
     """
@@ -21,8 +22,48 @@ class FO_Model(object):
         result += indent(repr(self.operations) + ",\n")
         result += indent(repr(self.relations))
         return result + ")"
+        
+    def homomorphisms_to(self, target, subtype):
+        """
+        Genera todos los homomorfismos de este modelo a target, en el subtype.
+        """
+        return minion.homomorphisms(self,target,subtype)
+    
+    def embeddings_to(self, target, subtype):
+        """
+        Genera todos los embeddings de este modelo a target, en el subtype.
+        """
+        return minion.embeddings(self,target,subtype)
+        
+    def isomorphisms_to(self, target, subtype):
+        """
+        Genera todos los isomorfismos de este modelo a target, en el subtype.
+        """
+        return minion.isomorphisms(self,target,subtype)
 
-
+    def is_homomorphic_image(self, target, subtype):
+        """
+        Si existe, devuelve un homomorfismo de este modelo a target, en el subtype;
+        Si no, devuelve False
+        """
+        return minion.is_homomorphic_image(self, target, subtype)
+        
+    def is_substructure(self, target, subtype):
+        """
+        Si existe, devuelve un embedding de este modelo a target, en el subtype;
+        Si no, devuelve False
+        """
+        return minion.is_substructure(self, target, subtype)
+        
+    def is_isomorphic(self, target, subtype):
+        """
+        Si existe, devuelve un isomorfismo de este modelo a target, en el subtype;
+        Si no, devuelve False
+        """
+        return minion.is_isomorphic(self, target, subtype)
+        
+        
+        
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
