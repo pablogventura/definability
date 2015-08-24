@@ -52,7 +52,15 @@ class MinionSol():
                 self.solutions.append(solution)
                 yield solution
             
-    # def getitem TODO SE PODRIA AGREGAR
+    def __getitem__(self, index):
+        try:
+            return self.solutions[index]
+        except IndexError:
+            for i,solution in enumerate(self):
+                if i==index:
+                    return solution
+            raise IndexError("There aren't so many solutions.")
+                
     def __nonzero__(self):
         if self.solutions or self.EOF:
             return bool(self.solutions)
