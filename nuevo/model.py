@@ -77,9 +77,9 @@ class FO_Model(object):
         >>> retrombo.subuniverse([1],tiporet)
         ([1], [[1]])
         >>> retrombo.subuniverse([2,3],tiporet)
-        ([2, 3, 1, 0], [[2, 3], [2, 3, 1], [2, 3, 1, 0]])
+        ([0, 1, 2, 3], [[2, 3], [1, 2, 3], [0, 1, 2, 3]])
         >>> retrombo.subuniverse([2,3],tiporet.subtype(["^"],[]))
-        ([2, 3, 0], [[2, 3], [2, 3, 0]])
+        ([0, 2, 3], [[2, 3], [0, 2, 3]])
         """
         result = subset
         result.sort()
@@ -127,6 +127,14 @@ class FO_Model(object):
         Generador que va devolviendo las subestructuras.
         Intencionalmente no filtra por isomorfismos.
         Devuelve una subestructura y un embedding.
+        
+        >>> from examples import *
+        >>> len(list(retrombo.substructures(tiporet)))
+        12
+        >>> len(list(retrombo.substructures(tiporet.subtype(["v"],[])))) # debe dar uno mas por el triangulo de arriba
+        13
+        >>> len(list(retrombo.substructures(tiporet.subtype([],[])))) # debe dar (2**cardinalidad)-1
+        15
         """
 
         for sub in self.subuniverses(subtype):

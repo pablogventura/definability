@@ -50,26 +50,6 @@ class Homomorphism(Morphism):
     >>> print h
     Homeomorphism(
       [1, 1],
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
       FO_Type({},{'<=': 2}),
     )
     """
@@ -89,26 +69,6 @@ class Embedding(Homomorphism):
     >>> print h
     Autoembedding(
       [1, 1],
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
       FO_Type({},{'<=': 2}),
       Injective,
     )
@@ -130,26 +90,6 @@ class Isomorphism(Embedding):
     >>> print h
     Automorphism(
       [1, 1],
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
-      FO_Model(
-        FO_Type({},{'<=': 2}),
-        2,
-        {},
-        {'<=': Relation(
-          [0, 0],
-          [1, 0],
-          [1, 1],
-        )}
-      ),
       FO_Type({},{'<=': 2}),
       Injective,
       Surjective,
