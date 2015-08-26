@@ -30,8 +30,8 @@ class Morphism(Function):
     def __repr__(self):
         result =  "%s(\n" % self.stype
         result += indent(repr(self.array.tolist()) + ",")
-        result += indent(repr(self.source) + ",")
-        result += indent(repr(self.target) + ",")
+        #result += indent(repr(self.source) + ",")
+        #result += indent(repr(self.target) + ",")
         result += indent(repr(self.subtype) + ",")
         if self.inj:
             result += indent("Injective,")
