@@ -110,11 +110,9 @@ class FO_Model(object):
         """
         result = []
         subsets = powerset(range(self.cardinality))
-        print subsets
         for subset in subsets:
             if subset:
                 subuniverse,partials = self.subuniverse(subset,subtype)
-                print partials
                 for partial in partials:
                     try:
                         subsets[subsets.index(partial)]=None
