@@ -18,10 +18,10 @@ posetdiamante = FO_Model(tipoposet,5,{},{"<=":FO_Relation([[1,1,1,1,1],
                                                            [0,1,1,0,0],
                                                            [0,1,0,1,0],
                                                            [0,1,0,0,1]],
-                                                           tipoposet,"<=")})
+                                                           "<=")})
 
 posetcadena2 = FO_Model(tipoposet, 2,{},{"<=":FO_Relation([[1, 0],
-                                                           [1, 1]],tipoposet,"<=")})
+                                                           [1, 1]],"<=")})
 
 
 retrombo = FO_Model(tiporet, 4, {'^': FO_Operation([
@@ -29,13 +29,13 @@ retrombo = FO_Model(tiporet, 4, {'^': FO_Operation([
                                                     [0,1,2,3],
                                                     [0,2,2,0],
                                                     [0,3,0,3],
-                                                   ], tiporet, "^"),
+                                                   ], "^"),
                                  'v': FO_Operation([
                                                     [0,1,2,3],
                                                     [1,1,1,1],
                                                     [2,1,2,1],
                                                     [3,1,1,3],
-                                                   ], tiporet, "v")
+                                                   ], "v")
                                 },{})
 
 
