@@ -4,12 +4,20 @@
 from functions import Function
 from misc import indent
 
-class Morphism(Function):
+class Homomorphism(Function):
     """
-    Clase general de los morfismos
+    Homomorfismos
+    
+    >>> import examples
+    >>> h = Homomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
+    >>> print h
+    Homeomorphism(
+      [1, 1],
+      FO_Type({},{'<=': 2}),
+    )
     """
     def __init__(self, l, source, target, subtype, inj=None, surj=None):
-        super(Morphism, self).__init__(l)
+        super(Homomorphism, self).__init__(l)
         self.source = source
         self.target = target
         self.subtype = subtype
@@ -18,9 +26,9 @@ class Morphism(Function):
         assert self.subtype.is_subtype_of(source.fo_type) and self.subtype.is_subtype_of(target.fo_type)
         
         if self.is_auto():
-            self.stype = "Automorphism"
+            self.stype = "Homeomorphism"
         else:
-            self.stype = "Morphism"
+            self.stype = "Homomorphism"
 
     def is_auto(self):
         """
@@ -39,26 +47,6 @@ class Morphism(Function):
             result += indent("Surjective,")
         result += ")"
         return result
-
-
-class Homomorphism(Morphism):
-    """
-    Homomorfismos
-    
-    >>> import examples
-    >>> h = Homomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
-    >>> print h
-    Homeomorphism(
-      [1, 1],
-      FO_Type({},{'<=': 2}),
-    )
-    """
-    def __init__(self, l, source, target, subtype, inj=None, surj=None):
-        super(Homomorphism, self).__init__(l,source,target,subtype,inj,surj)
-        if self.is_auto():
-            self.stype = "Homeomorphism"
-        else:
-            self.stype = "Homomorphism"
 
 class Embedding(Homomorphism):
     """

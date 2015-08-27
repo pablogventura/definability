@@ -11,7 +11,7 @@ home = os.getenv('HOME')
 
 minion_path = os.path.join(home, "minion-1.8/bin/")  # siempre tienen que terminar en barra
 
-print "Minion path: %s" % minion_path
+# print "Minion path: %s" % minion_path
 
 if __name__ == "__main__":
     import doctest
