@@ -130,12 +130,12 @@ class MorphMinionSol(MinionSol):
             oprel += " " * ((3-len(oprel))%3) # le agrego espacios para evitar los = que mete b64
             return oprel.encode("base64")[:-1]
 
-    def __oprel_table(self, oprel, prefix=""):
+    def __oprel_table(self, symbol, oprel, prefix=""):
         """
         Devuelve un string con la tabla que representa a la relacion/operacion en minion
         """
         table = oprel.table()
-        table_name = prefix + self.__minion_name(oprel.symbol)
+        table_name = prefix + self.__minion_name(symbol)
         height = len(table)
         width = len(table[0])
         result = ""
@@ -156,9 +156,9 @@ class MorphMinionSol(MinionSol):
         result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
         result += "**TUPLELIST**\n"
         for op in self.subtype.operations:
-            result += self.__oprel_table(B.operations[op]) + "\n"
+            result += self.__oprel_table(op,B.operations[op]) + "\n"
         for rel in self.subtype.relations:
-            result += self.__oprel_table(B.relations[rel]) + "\n"
+            result += self.__oprel_table(rel,B.relations[rel]) + "\n"
         result += "**CONSTRAINTS**\n"
         if self.inj:
             result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
@@ -195,11 +195,11 @@ class MorphMinionSol(MinionSol):
         result += "**TUPLELIST**\n"
         
         for op in self.subtype.operations:
-            result += self.__oprel_table(B.operations[op],prefix="b") + "\n"
+            result += self.__oprel_table(op,B.operations[op],prefix="b") + "\n"
         for rel in self.subtype.relations:
-            result += self.__oprel_table(B.relations[rel],prefix="b") + "\n"
+            result += self.__oprel_table(rel,B.relations[rel],prefix="b") + "\n"
         for rel in self.subtype.relations:
-            result += self.__oprel_table(A.relations[rel],prefix="a") + "\n"
+            result += self.__oprel_table(rel,A.relations[rel],prefix="a") + "\n"
             
         result += "**CONSTRAINTS**\n"
         if self.inj:

@@ -7,23 +7,22 @@ class FO_OpRel(Function):
     """
     Clase general de las operaciones y relaciones de primer orden
     """
-    def __init__(self, l, symbol):
+    def __init__(self, l):
         super(FO_OpRel, self).__init__(l)
-        self.symbol = symbol
 
 class FO_Operation(FO_OpRel):
     r"""
     Operacion de primer orden
     
     >>> from fotype import FO_Type
-    >>> sum = FO_Operation([[0,1,2],[1,2,0],[2,0,1]],"+")
+    >>> sum = FO_Operation([[0,1,2],[1,2,0],[2,0,1]])
     >>> sum(2,2)
     1
     >>> sum.table()
     [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
     """
-    def __init__(self, l, symbol):
-        super(FO_Operation, self).__init__(l, symbol)
+    def __init__(self, l):
+        super(FO_Operation, self).__init__(l)
         self.relation = False
 
 
@@ -32,7 +31,7 @@ class FO_Relation(FO_OpRel):
     Relacion de primer orden
     
     >>> from fotype import FO_Type
-    >>> par = FO_Relation([1,0,1,0,1],"p")
+    >>> par = FO_Relation([1,0,1,0,1])
     >>> par(2)
     1
     >>> par(3)
@@ -40,9 +39,8 @@ class FO_Relation(FO_OpRel):
     >>> par.table()
     [[0], [2], [4]]
     """
-    def __init__(self, l, symbol):
-        super(FO_Relation, self).__init__(l, symbol)
-
+    def __init__(self, l):
+        super(FO_Relation, self).__init__(l)
         self.relation = True
 
 
