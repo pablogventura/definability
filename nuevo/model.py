@@ -94,19 +94,20 @@ class FO_Model(object):
                         result.sort()
                         partials.append(list(result))
                         increasing = True
-            for rel in subtype.relations:
-                for x in product(result, repeat=self.relations[rel].arity()):
-                    if self.relations[rel](*x) not in result:
-                        result.append(self.relations[rel](*x))
-                        result.sort()
-                        partials.append(list(result))
-                        increasing = True
+
         return (result,partials)
                     
     def subuniverses(self,subtype):
         """
+        NO DEVUELVE EL SUBUNIVERSO VACIO
         Generador que va devolviendo los subuniversos.
         Intencionalmente no filtra por isomorfismos.
+
+        >>> from examples import *
+        >>> list(retrombo.subuniverses(tiporet))
+        [[0], [1], [2], [3], [0, 1], [0, 2], [1, 2], [0, 3], [1, 3], [0, 1, 2, 3], [0, 1, 2], [0, 1, 3]]
+        >>> list(posetcadena2.subuniverses(tipoposet)) # debe dar el conjunto de partes sin el vacio, porque no tiene ops
+        [[0], [1], [0, 1]]
         """
         result = []
         subsets = powerset(range(self.cardinality))
