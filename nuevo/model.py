@@ -11,22 +11,34 @@ class FO_Model(object):
     """
     Modelos de algun tipo de primer orden.
     """
-    def __init__(self,fo_type, cardinality, operations, relations, universe=None):
+    def __init__(self,fo_type, cardinality, operations, relations, embedding=None):
         self.fo_type = fo_type
         self.cardinality = cardinality
-        self.universe = universe # TODO en el futuro universe podria manejar renombres, para que los elementos puedan ser cualquier cosa
+        self.embedding = embedding # para manejar subestructuras!
         assert sorted(operations.keys()) == sorted(fo_type.operations.keys()), "Estan mal definidas las funciones"
         assert sorted(relations.keys()) == sorted(fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
         self.relations = relations
         
     def __repr__(self):
-        result = "FO_Model(\n"
+        if self.embedding:
+            result = "FO_SubModel(\n"
+        else:
+            result = "FO_Model(\n"
         result += indent(repr(self.fo_type) + ",\n")
         result += indent(repr(self.cardinality) + ",\n")
         result += indent(repr(self.operations) + ",\n")
         result += indent(repr(self.relations))
         return result + ")"
+        
+    def universe(self):
+        """
+        Un generador del universo del modelo
+        """
+        if self.embedding:
+            return iter(self.embedding.array)
+        else:
+            return xrange(self.cardinality)
         
     def homomorphisms_to(self, target, subtype):
         """
@@ -143,22 +155,6 @@ class FO_Model(object):
                                                      {rel: self.relations[rel].restrict(sub) for rel in subtype.relations})
             emb = Embedding(sub, substructure, self, subtype)
             yield (substructure,emb)
-
-
-    
-    def subuniversesviejo(self):
-        """
-        Generador que va devolviendo los subuniversos.
-        Intencionalmente no filtra por isomorfismos.
-        """
-        result = []
-
-        for s in powerset(range(self.cardinality)):
-            if any(self.operations[op](*param) not in s for op in sorted(self.operations,key=lambda x:self.operations[x].arity()) for param in product(s,repeat=self.operations[op].arity())):
-                    continue
-            if s != []:
-                s.sort()
-                yield s
                 
         
         
