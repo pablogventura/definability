@@ -37,23 +37,19 @@ class Function(object):
     >>> g(emb.index(1),emb.index(2)) == sum_mod3(1,2)
     True
     
-    >>> suma1 = Function([1,2,0])
-    >>> suma1asum_mod3 = suma1.composition(sum_mod3)
-    >>> suma1asum_mod3(1,2)
-    1
     
-    >>> suma1asum_mod3.map_in_place(lambda x: x+3)
-    >>> suma1asum_mod3(1,2)
-    4
+    >>> sum_mod3.map_in_place(lambda x: x+3)
+    >>> sum_mod3(1,2)
+    3
     
     >>> sum_mod3(2,2)
-    1
+    4
     
     >>> len(sum_mod3) # debe dar 3 porque los argumentos estan en range(0,3)
     3
     
     >>> sum_mod3.table()
-    [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
+    [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
     """
     def __init__(self, l):
         assert issubclass(type(l),list)
@@ -93,17 +89,6 @@ class Function(object):
         # tengo que borrar filas y columnas
         args = [elements for i in range(self.arity())]
         return Function(result[np.ix_(*args)].tolist())
-
-            
-    def composition(self,g):
-        """
-        Compone con otra list with arity, F.compone(G) = F o G
-        y devuelve una nueva list with arity
-        """
-        assert self.arity() == 1
-        result = g.copy()
-        result.map_in_place(self)
-        return result
         
         
     def map_in_place(self, f):
@@ -112,7 +97,8 @@ class Function(object):
         """
         a = self.array.reshape(-1)
         for i, v in enumerate(a):
-            a[i] = f(v)
+            if a[i] is not None:
+                a[i] = f(v)
 
     def __call__(self, *args):
         assert len(args) == self.arity()

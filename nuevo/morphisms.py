@@ -39,6 +39,21 @@ class Homomorphism(Function):
             l[y]=x
         return type(self)(l,self.target,self.source,self.subtype,self.inj,self.surj)
         
+    def composition(self,g):
+        """
+        Compone con otro morfismo, F.compone(G) = F o G
+        y devuelve un nuevo morfismo
+        El tipo del morfismo esta dado por el de menor 'grado' entre los dos
+        """
+        if issubclass(type(self),type(g)):
+            morph_type = type(g)
+        else:
+            morph_type = type(self)
+        
+        result = morph_type.copy(g)
+        result.map_in_place(self)
+        return result
+        
     def is_auto(self):
         """
         Es un 'auto-morfismo'?
