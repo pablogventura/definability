@@ -11,20 +11,16 @@ class FO_Model(object):
     """
     Modelos de algun tipo de primer orden.
     """
-    def __init__(self,fo_type, cardinality, operations, relations, embedding=None):
+    def __init__(self,fo_type, cardinality, operations, relations):
         self.fo_type = fo_type
         self.cardinality = cardinality
-        self.embedding = embedding # para manejar subestructuras!
         assert sorted(operations.keys()) == sorted(fo_type.operations.keys()), "Estan mal definidas las funciones"
         assert sorted(relations.keys()) == sorted(fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
         self.relations = relations
         
     def __repr__(self):
-        if self.embedding:
-            result = "FO_SubModel(\n"
-        else:
-            result = "FO_Model(\n"
+        result = "FO_Model(\n"
         result += indent(repr(self.fo_type) + ",\n")
         result += indent(repr(self.cardinality) + ",\n")
         result += indent(repr(self.operations) + ",\n")
@@ -35,10 +31,7 @@ class FO_Model(object):
         """
         Un generador del universo del modelo
         """
-        if self.embedding:
-            return iter(self.embedding.array)
-        else:
-            return xrange(self.cardinality)
+        return xrange(self.cardinality)
         
     def homomorphisms_to(self, target, subtype):
         """
