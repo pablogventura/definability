@@ -23,6 +23,7 @@ class Homomorphism(Function):
         self.subtype = subtype
         self.inj = inj
         self.surj = surj
+        assert self.arity() == 1
         assert self.subtype.is_subtype_of(source.fo_type) and self.subtype.is_subtype_of(target.fo_type)
         
         if self.is_auto():
@@ -30,6 +31,14 @@ class Homomorphism(Function):
         else:
             self.stype = "Homomorphism"
 
+    def inverse(self):
+        assert self.inj
+
+        l = [None] * (max(self.array) + 1)
+        for x,y in enumerate(self.array):
+            l[y]=x
+        return type(self)(l,self.target,self.source,self.subtype,self.inj,self.surj)
+        
     def is_auto(self):
         """
         Es un 'auto-morfismo'?

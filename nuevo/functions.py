@@ -121,6 +121,8 @@ class Function(object):
         result = self.array
         for i in args:
             result = result[i]
+        if result is None:
+            raise ValueError("Value '%s' not in domain" % args)
         if self.relation:
             return bool(result)
         else:
