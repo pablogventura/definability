@@ -1,0 +1,25 @@
+= Minion spkg =
+
+== Description ==
+
+Minion 0.12 is a Constraint Satisfaction Problem (CSP) solver.
+See http://minion.sourceforge.net
+
+== License ==
+
+Minion is distributed under the terms of the GNU General 
+Public License (v2).
+
+== SPKG Maintainer ==
+
+Peter Jipsen
+
+== Upstream Contact ==
+
+minion.sourceforge.net
+
+== Dependencies ==
+
+== Changelog ==
+
+* 2011-03-26: Initial version.
