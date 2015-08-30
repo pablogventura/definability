@@ -14,8 +14,8 @@ class FO_Model(object):
     def __init__(self,fo_type, cardinality, operations, relations):
         self.fo_type = fo_type
         self.cardinality = cardinality
-        assert sorted(operations.keys()) == sorted(fo_type.operations.keys()), "Estan mal definidas las funciones"
-        assert sorted(relations.keys()) == sorted(fo_type.relations.keys()), "Estan mal definidas las relaciones"
+        assert set(operations.keys()) >= set(fo_type.operations.keys()), "Estan mal definidas las funciones"
+        assert set(relations.keys()) >= set(fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
         self.relations = relations
         
@@ -144,8 +144,10 @@ class FO_Model(object):
         """
 
         for sub in self.subuniverses(subtype):
-            substructure = FO_Model(subtype,len(sub),{op: self.operations[op].restrict(sub) for op in subtype.operations},
-                                                     {rel: self.relations[rel].restrict(sub) for rel in subtype.relations})
+            # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
+            # independientemente de el subtipo del que se buscan embeddings.
+            substructure = FO_Model(self.fo_type,len(sub),{op: self.operations[op].restrict(sub) for op in self.operations},
+                                                     {rel: self.relations[rel].restrict(sub) for rel in self.relations})
             emb = Embedding(sub, substructure, self, subtype)
             yield (substructure,emb)
                 

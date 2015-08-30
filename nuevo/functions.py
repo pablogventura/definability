@@ -12,7 +12,8 @@ class Function(object):
     Define el arreglo n dimensional que se usan para tener operaciones y relaciones n-arias.
     Necesariamente toma numeros desde 0
 
-    >>> sum_mod3=Function([[0,1,2],[1,2,0],[2,0,1]])
+    >>> sum_mod3=Function    ([[0,1,2],[1,2,0],[2,0,1]])
+    >>> sum_mod3mas3=Function([[3,4,5],[4,5,3],[5,3,4]])
     >>> sum_mod3
     Function(
       [0, 0] -> 0,
@@ -37,8 +38,11 @@ class Function(object):
     >>> g(emb.index(1),emb.index(2)) == sum_mod3(1,2)
     True
     
-    
+    >>> sum_mod3 == sum_mod3mas3
+    False
     >>> sum_mod3.map_in_place(lambda x: x+3)
+    >>> sum_mod3 == sum_mod3mas3
+    True
     >>> sum_mod3(1,2)
     3
     
@@ -99,9 +103,13 @@ class Function(object):
         for i, v in enumerate(a):
             if a[i] is not None:
                 a[i] = f(v)
+    
+    def vector_call(self, vector):
+        return map(self,vector)
 
     def __call__(self, *args):
-        assert len(args) == self.arity()
+        if not len(args) == self.arity():
+            raise ValueError("Arity is %s, not %s. Maybe you need use vector_call?" % (self.arity(),len(args)))
         if len(args)==0:
             args = [0]
         result = self.array
@@ -119,6 +127,20 @@ class Function(object):
         Devuelve la cardinalidad del conjunto de partida.
         """
         return len(self.array)
+    
+    def __eq__(self,other):
+        """
+        Dos funciones son iguales si tienen el mismo dominio y el mismo comportamiento.
+        """
+        # basta con revisar el arreglo, ya que contiene el dominio y el comportamiento
+        return (self.array == other.array).all()
+    
+    def __hash__(self):
+        """
+        Hash de las funciones para manejar funciones en conjuntos.
+        No es muy rapida.
+        """
+        return hash(self.array.tostring())
         
     def __repr__(self):
         if self.relation:

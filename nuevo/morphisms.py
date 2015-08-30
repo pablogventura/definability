@@ -31,6 +31,31 @@ class Homomorphism(Function):
         else:
             self.stype = "Homomorphism"
 
+    def preserves_relation(self, rel):
+        """
+        Revisa si el morfismo preserva la relacion.
+        
+        >>> from examples import *
+        >>> e1=[x[1] for x in retrombo.substructures(tiporetacotado)]
+        >>> e2=[x[1] for x in retrombo.substructures(tiporet)]
+        >>> len(e1) < len(e2)
+        True
+        >>> g = filter(lambda e: e.preserves_relation("Max"),e2)
+        >>> g = filter(lambda e: e.preserves_relation("Min"),g)
+        >>> set(g) == set(e1)
+        True
+        """
+
+        if rel in self.subtype.relations:
+            return True
+        else:
+            result = True
+            for t in self.source.relations[rel].domain():
+                if self.source.relations[rel](*t):
+                    result = result and self.target.relations[rel](*self.vector_call(t))
+            return result
+                
+        
     def inverse(self):
         assert self.inj
 
