@@ -12,7 +12,7 @@ from fofunctions import FO_Relation, FO_Operation
 
 tipoposet = FO_Type({},{"<=":2})
 tiporet = FO_Type({"^":2,"v":2},{})
-tiporetacotado = FO_Type({"^":2,"v":2},{"Max":1,"Min":1})
+tiporetacotado = FO_Type({"^":2,"v":2, "Max":1,"Min":1},{})
 
 posetdiamante = FO_Model(tipoposet,5,{},{"<=":FO_Relation([[1,1,1,1,1],
                                                            [0,1,0,0,0],
@@ -35,15 +35,16 @@ retrombo = FO_Model(tiporetacotado, 4, {'^': FO_Operation([
                                                            [1,1,1,1],
                                                            [2,1,2,1],
                                                            [3,1,1,3],
-                                                          ])
+                                                          ]),
+                                        "Max":FO_Operation(1),
+                                        "Min":FO_Operation(0),
                                        },{'<=': FO_Relation([
                                                              [1,1,1,1],
                                                              [0,1,0,0],
                                                              [0,1,1,0],
                                                              [0,1,0,1],
                                                             ]),
-                                          'Max':FO_Relation([0,1,0,0]),
-                                          'Min':FO_Relation([1,0,0,0]),
+                                          "P":FO_Relation([0,0,1,1]) # Relacion de prueba
                                        })
 
 

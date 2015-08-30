@@ -40,9 +40,9 @@ class Homomorphism(Function):
         >>> e2=[x[1] for x in retrombo.substructures(tiporet)]
         >>> len(e1) < len(e2)
         True
-        >>> g = filter(lambda e: e.preserves_relation("Max"),e2)
-        >>> g = filter(lambda e: e.preserves_relation("Min"),g)
-        >>> set(g) == set(e1)
+        >>> # print map(lambda e: e.source,e2)
+        >>> g=filter(lambda e: e.preserves_relation("P"),e2)
+        >>> set(g)==set(e2) 
         True
         """
 
@@ -51,10 +51,14 @@ class Homomorphism(Function):
         else:
             result = True
             for t in self.source.relations[rel].domain():
-                if self.source.relations[rel](*t):
-                    result = result and self.target.relations[rel](*self.vector_call(t))
+                try:
+                    if self.source.relations[rel](*t):
+                        result = result and self.target.relations[rel](*self.vector_call(t))
+                except ValueError:
+                    # no estaba en el dominio
+                    pass
             return result
-                
+
         
     def inverse(self):
         assert self.inj

@@ -35,9 +35,10 @@ class Function(object):
     
     >>> emb = [2,1]
     >>> g=sum_mod3.restrict(emb)
-    >>> g(emb.index(1),emb.index(2)) == sum_mod3(1,2)
+    >>> emb[g(emb.index(2),emb.index(2))] == sum_mod3(2,2)
     True
-    
+    >>> emb[g(emb.index(1),emb.index(1))] == sum_mod3(1,1)
+    True
     >>> sum_mod3 == sum_mod3mas3
     False
     >>> sum_mod3.map_in_place(lambda x: x+3)
@@ -56,8 +57,8 @@ class Function(object):
     [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
     """
     def __init__(self, l):
-        assert issubclass(type(l),list)
-        self.array = np.array(l)
+        # assert issubclass(type(l),list)
+        self.array = np.array(l, dtype=np.dtype(object))
         self.relation = False # maneja si la funcion es booleana
         
     def copy(self):
@@ -84,15 +85,24 @@ class Function(object):
         """
 
         # tengo que hacer reemplazos de nombre
-        result = np.copy(self.array)
+        
+        result = np.full(self.array.shape, None,dtype=np.dtype(object))
         i=0
         for k in elements:
-            result[self.array==k] = i
+            if result.ndim == 0:
+                if self.array == k:
+                    result.itemset(i)
+            else:
+                result[self.array==k] = i
             i+=1
         
         # tengo que borrar filas y columnas
+        
         args = [elements for i in range(self.arity())]
-        return Function(result[np.ix_(*args)].tolist())
+        if result.ndim == 0:    
+            return type(self)(result.item())
+        else:
+            return type(self)(result[np.ix_(*args)].tolist())
         
         
     def map_in_place(self, f):
@@ -109,14 +119,12 @@ class Function(object):
 
     def __call__(self, *args):
         if not len(args) == self.arity():
-            raise ValueError("Arity is %s, not %s. Maybe you need use vector_call?" % (self.arity(),len(args)))
-        if len(args)==0:
-            args = [0]
-        result = self.array
+            raise ValueError("Arity is %s, not %s. Do you need use vector_call?" % (self.arity(),len(args)))
+        result = self.array.tolist()
         for i in args:
             result = result[i]
         if result is None:
-            raise ValueError("Value '%s' not in domain" % args)
+            raise ValueError("Value '%s' not in domain" % str(args))
         if self.relation:
             return bool(result)
         else:
@@ -147,8 +155,12 @@ class Function(object):
             result = "Relation(\n"
             table = map(lambda x:"%s," % x,self.table())
         else:
-            result = "Function(\n"
-            table = map(lambda x: "%s -> %s," % (x[:-1],x[-1]) ,self.table())
+            if self.arity():
+                result = "Function(\n"
+                table = map(lambda x: "%s -> %s," % (x[:-1],x[-1]) ,self.table())
+            else:
+                result = "Constant(\n"
+                table = str(self.table()[0][0])
         table = indent("\n".join(table))
 
         return result + table + ")"
@@ -157,17 +169,24 @@ class Function(object):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
         """
-            
-        cardinality = len(self)
-        result = []
-        for t in self.domain():
-            if not self.relation or self(*t):
-                result.append(list(t))
-                if not self.relation:
-                    result[-1].append(self(*t))
-        if len(result)==0:
-            result.append([])
-        return result
+        if self.arity():
+            cardinality = len(self)
+            result = []
+            for t in self.domain():
+                try:
+                    if self.relation:
+                        if self(*t):
+                            result.append(list(t))
+                    else:
+                        result.append(list(t)+[self(*t)])
+                except ValueError:
+                    # no estaba en el dominio, no se agrega a la tabla
+                    pass
+            if len(result)==0:
+                result.append([])
+            return result
+        else:
+            return [[self.array.item()]]
 
 
 if __name__ == "__main__":
