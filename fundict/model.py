@@ -145,8 +145,7 @@ class FO_Model(object):
             # independientemente de el subtipo del que se buscan embeddings.
             substructure = FO_Model(subtype,sub,{op:self.operations[op].restrict(sub) for op in self.operations}
                                                ,{rel:self.relations[rel].restrict(sub) for rel in self.relations})
-            emb = Embedding(sub, substructure, self, subtype)
-            yield (substructure,emb)
+            yield substructure
 
         
         

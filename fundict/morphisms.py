@@ -36,11 +36,17 @@ class Homomorphism(Function):
 
         
     def inverse(self):
+        """
+        Devuelve la inversa del morfismo
+        """
         assert self.inj
 
         d = {}
         for k in self.dict:
-            d[self.dict[k]]=k
+            if len(k) > 1:
+                d[(self.dict[k],)]=k
+            else:
+                d[(self.dict[k],)]=k[0]
         return type(self)(d,self.target,self.source,self.subtype,self.inj,self.surj)
         
     def composition(self,g):
@@ -75,6 +81,44 @@ class Homomorphism(Function):
             result += indent("Surjective,")
         result += ")"
         return result
+        
+    def preserves_relation(self, rel):
+        """
+        Revisa si el morfismo preserva la relacion.
+        
+        Sean A un conjunto, R ⊆ Aⁿ y 𝛾:D ⊆ A → A una función.
+        Diremos que 𝛾  preserva a R si para todo (a₁,...,aₙ) ∈ R∩Dⁿ
+        se tiene que (𝛾(a₁),...,𝛾(aₙ)) ∈ R.
+        
+        >>> from examples import *
+        >>> retrombo.is_homomorphic_image(retrombo, tiporet)
+        Homeomorphism(
+          [0] -> 0,
+          [1] -> 0,
+          [2] -> 0,
+          [3] -> 0,
+        ,
+          FO_Type({'v': 2, '^': 2},{})
+        ,
+        )
+
+        >>> h=retrombo.is_homomorphic_image(retrombo, tiporet)
+
+        >>> h.preserves_relation("<=")
+        True
+
+        >>> h.preserves_relation("P")
+        False
+        """
+
+        if rel in self.subtype.relations:
+            return True
+        else:
+            result = True
+            for t in self.source.relations[rel].domain():
+                if self.source.relations[rel](*t):
+                    result = result and self.target.relations[rel](*self.vector_call(t))
+            return result
 
 class Embedding(Homomorphism):
     """
