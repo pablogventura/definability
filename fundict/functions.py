@@ -84,7 +84,17 @@ class Function(object):
         self.dict = self.dict.copy()
         for key in self.dict:
             self.dict[key]=f(self.dict[key])
-    
+    def restrict(self,subuniverse):
+        """
+        Restringe la funcion a un subconjunto.
+        """
+
+        result = self.copy()
+        for t in self.dict:
+            if any(e not in subuniverse for e in t):
+                del result.dict[t]
+        return result
+        
     def vector_call(self, vector):
         return map(self,vector)
 

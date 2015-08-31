@@ -143,7 +143,8 @@ class FO_Model(object):
         for sub in self.subuniverses(subtype):
             # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
             # independientemente de el subtipo del que se buscan embeddings.
-            substructure = FO_Model(subtype,sub,self.operations,self.relations)
+            substructure = FO_Model(subtype,sub,{op:self.operations[op].restrict(sub) for op in self.operations}
+                                               ,{rel:self.relations[rel].restrict(sub) for rel in self.relations})
             emb = Embedding(sub, substructure, self, subtype)
             yield (substructure,emb)
 
