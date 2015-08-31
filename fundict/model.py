@@ -11,9 +11,11 @@ class FO_Model(object):
     """
     Modelos de algun tipo de primer orden.
     """
-    def __init__(self,fo_type, cardinality, operations, relations):
+    def __init__(self,fo_type, universe, operations, relations):
         self.fo_type = fo_type
-        self.cardinality = cardinality
+        assert not isinstance(universe,int)
+        self.universe = universe
+        self.cardinality = len(universe)
         assert set(operations.keys()) >= set(fo_type.operations.keys()), "Estan mal definidas las funciones"
         assert set(relations.keys()) >= set(fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
@@ -22,16 +24,10 @@ class FO_Model(object):
     def __repr__(self):
         result = "FO_Model(\n"
         result += indent(repr(self.fo_type) + ",\n")
-        result += indent(repr(self.cardinality) + ",\n")
+        result += indent(repr(self.universe) + ",\n")
         result += indent(repr(self.operations) + ",\n")
         result += indent(repr(self.relations))
         return result + ")"
-        
-    def universe(self):
-        """
-        Un generador del universo del modelo
-        """
-        return xrange(self.cardinality)
         
     def homomorphisms_to(self, target, subtype):
         """
@@ -94,8 +90,9 @@ class FO_Model(object):
             increasing = False
             for op in subtype.operations:
                 for x in product(result, repeat=self.operations[op].arity()):
-                    if self.operations[op](*x) not in result:
-                        result.append(self.operations[op](*x))
+                    elem = self.operations[op](*x)
+                    if elem not in result and elem in self.universe:
+                        result.append(elem)
                         result.sort()
                         partials.append(list(result))
                         increasing = True
@@ -115,7 +112,7 @@ class FO_Model(object):
         [[0], [1], [0, 1]]
         """
         result = []
-        subsets = powerset(range(self.cardinality))
+        subsets = powerset(self.universe)
         for subset in subsets:
             if subset:
                 subuniverse,partials = self.subuniverse(subset,subtype)
@@ -146,11 +143,11 @@ class FO_Model(object):
         for sub in self.subuniverses(subtype):
             # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
             # independientemente de el subtipo del que se buscan embeddings.
-            substructure = FO_Model(self.fo_type,len(sub),{op: self.operations[op].restrict(sub) for op in self.operations},
-                                                     {rel: self.relations[rel].restrict(sub) for rel in self.relations})
-            emb = Embedding(sub, substructure, self, subtype)
+            substructure = FO_Model(self.fo_type,sub,self.operations,self.relations)
+            emb =  {(k,):v for k,v in enumerate(sub)}
+            emb = Embedding(emb, substructure, self, subtype)
             yield (substructure,emb)
-                
+        
         
         
         

@@ -40,6 +40,7 @@ class MinionSol(object):
             str_sol = str_sol[:-1] # borro el \n
             try:
                 result = map(int, str_sol.strip().split(" "))
+                result = {(k,):v for k,v in enumerate(result)}
             except ValueError:
                 str_sol += "\n"
                 str_sol += self.minionapp.stdout.read() # leo toda la respuesta de minion para saber que paso
@@ -174,7 +175,7 @@ class MorphMinionSol(MinionSol):
         if self.inj:
             result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
         if self.surj:
-            for i in B.universe():
+            for i in B.universe:
                 result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
 
         for op in self.subtype.operations:
@@ -222,7 +223,7 @@ class MorphMinionSol(MinionSol):
         if self.inj:
             result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
         if self.surj:
-            for i in B.universe():
+            for i in B.universe:
                 result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
 
         for op in self.subtype.operations:
@@ -243,7 +244,7 @@ class MorphMinionSol(MinionSol):
                     result += "element(g, %s, -1)," % i
                 result += "table([g[" + "],g[".join(map(str, row)) + "]],%s)})\n" % ("a"+self.__minion_name(rel))
             result += "\n"
-        for i in A.universe():
+        for i in A.universe:
             result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
         result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality)
         result += "**EOF**\n"

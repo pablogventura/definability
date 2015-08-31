@@ -12,8 +12,10 @@ class Function(object):
     Define el arreglo n dimensional que se usan para tener operaciones y relaciones n-arias.
     Necesariamente toma numeros desde 0
 
-    >>> sum_mod3=Function    ([[0,1,2],[1,2,0],[2,0,1]])
-    >>> sum_mod3mas3=Function([[3,4,5],[4,5,3],[5,3,4]])
+    >>> sum_mod3=Function({(0,0):0, (0,1):1, (0,2):2, (1,0):1, (1,1):2, (1,2):0, (2,0):2, (2,1):0, (2,2):1,})
+    >>> sum_mod3mas3=Function({(0,0):3, (0,1):4, (0,2):5, (1,0):4, (1,1):5, (1,2):3, (2,0):5, (2,1):3, (2,2):4,})
+    >>> sum_mod3.table()
+    [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
     >>> sum_mod3
     Function(
       [0, 0] -> 0,
@@ -28,17 +30,11 @@ class Function(object):
     )
     
     >>> list(sum_mod3.domain())
-    [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    [(0, 1), (1, 2), (0, 0), (2, 0), (1, 0), (2, 2), (0, 2), (2, 1), (1, 1)]
     
     >>> sum_mod3.arity()
     2
     
-    >>> emb = [2,1]
-    >>> g=sum_mod3.restrict(emb)
-    >>> emb[g(emb.index(2),emb.index(2))] == sum_mod3(2,2)
-    True
-    >>> emb[g(emb.index(1),emb.index(1))] == sum_mod3(1,1)
-    True
     >>> sum_mod3 == sum_mod3mas3
     False
     >>> sum_mod3.map_in_place(lambda x: x+3)
@@ -50,15 +46,13 @@ class Function(object):
     >>> sum_mod3(2,2)
     4
     
-    >>> len(sum_mod3) # debe dar 3 porque los argumentos estan en range(0,3)
-    3
-    
     >>> sum_mod3.table()
     [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
     """
-    def __init__(self, l):
+    def __init__(self, d):
         # assert issubclass(type(l),list)
-        self.array = np.array(l, dtype=np.dtype(object))
+        self.dict = d
+        assert all(isinstance(t,tuple) for t in self.dict.keys())
         self.relation = False # maneja si la funcion es booleana
         
     def copy(self):
@@ -66,53 +60,28 @@ class Function(object):
         Devuelve una copia de si mismo
         """
         result = copy.copy(self)
-        result.array = np.copy(result.array)
+        result.dict = self.dict.copy()
         return result
     
     def domain(self):
         """
         Un generador del dominio
         """
-        return product(range(len(self)), repeat=self.arity())
+        return self.dict.iterkeys()
 
     def arity(self):
-        return self.array.ndim
-
-    def restrict(self,elements):
         """
-        Restringe el dominio a elements, en ese orden.
-        Necesita certeza de que elements es cerrado bajo esta funcion!
+        Devuelve la aridad de la funcion, revisando la 'primer' tupla del diccionario.
         """
-
-        # tengo que hacer reemplazos de nombre
-        
-        result = np.full(self.array.shape, None,dtype=np.dtype(object))
-        i=0
-        for k in elements:
-            if result.ndim == 0:
-                if self.array == k:
-                    result.itemset(i)
-            else:
-                result[self.array==k] = i
-            i+=1
-        
-        # tengo que borrar filas y columnas
-        
-        args = [elements for i in range(self.arity())]
-        if result.ndim == 0:    
-            return type(self)(result.item())
-        else:
-            return type(self)(result[np.ix_(*args)].tolist())
-        
+        return len(self.dict.keys()[0])
         
     def map_in_place(self, f):
         """
         Funciona como un map, pero respeta la estructura de la matriz.
         """
-        a = self.array.reshape(-1)
-        for i, v in enumerate(a):
-            if a[i] is not None:
-                a[i] = f(v)
+        self.dict = self.dict.copy()
+        for key in self.dict:
+            self.dict[key]=f(self.dict[key])
     
     def vector_call(self, vector):
         return map(self,vector)
@@ -120,17 +89,17 @@ class Function(object):
     def __call__(self, *args):
         if not len(args) == self.arity():
             raise ValueError("Arity is %s, not %s. Do you need use vector_call?" % (self.arity(),len(args)))
-        result = self.array.tolist()
-        for i in args:
-            result = result[i]
-        if result is None:
+        try:
+            result = self.dict[args]
+        except KeyError:
             raise ValueError("Value '%s' not in domain" % str(args))
+
         if self.relation:
             return bool(result)
         else:
             return result
     
-    def __len__(self):
+    def __lasfen__(self):
         """
         Devuelve la cardinalidad del conjunto de partida.
         """
@@ -141,15 +110,27 @@ class Function(object):
         Dos funciones son iguales si tienen el mismo dominio y el mismo comportamiento.
         """
         # basta con revisar el arreglo, ya que contiene el dominio y el comportamiento
-        return (self.array == other.array).all()
+        return self.dict == other.dict
     
     def __hash__(self):
         """
         Hash de las funciones para manejar funciones en conjuntos.
         No es muy rapida.
         """
-        return hash(self.array.tostring())
+        return hash(sorted(self.iteritems()))
         
+    def table(self):
+        """
+        Devuelve una lista de listas con la tabla que representa a la relacion/operacion
+        """
+        result = sorted(self.dict.iteritems())
+        if self.relation:
+            result = filter(lambda (k,v):v, result)
+            result = map(lambda (k,v):list(k),result)
+        else:
+            result = map(lambda (k,v):list(k)+[v],result)
+        return result
+
     def __repr__(self):
         if self.relation:
             result = "Relation(\n"
@@ -165,28 +146,6 @@ class Function(object):
 
         return result + table + ")"
 
-    def table(self):
-        """
-        Devuelve una lista de listas con la tabla que representa a la relacion/operacion
-        """
-        if self.arity():
-            cardinality = len(self)
-            result = []
-            for t in self.domain():
-                try:
-                    if self.relation:
-                        if self(*t):
-                            result.append(list(t))
-                    else:
-                        result.append(list(t)+[self(*t)])
-                except ValueError:
-                    # no estaba en el dominio, no se agrega a la tabla
-                    pass
-            if len(result)==0:
-                result.append([])
-            return result
-        else:
-            return [[self.array.item()]]
 
 
 if __name__ == "__main__":

@@ -9,15 +9,18 @@ class Homomorphism(Function):
     Homomorfismos
     
     >>> import examples
-    >>> h = Homomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
+    >>> h = Homomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
     Homeomorphism(
-      [1, 1],
-      FO_Type({},{'<=': 2}),
+      [0] -> 1,
+      [1] -> 1,
+    ,
+      FO_Type({},{'<=': 2})
+    ,
     )
     """
-    def __init__(self, l, source, target, subtype, inj=None, surj=None):
-        super(Homomorphism, self).__init__(l)
+    def __init__(self, d, source, target, subtype, inj=None, surj=None):
+        super(Homomorphism, self).__init__(d)
         self.source = source
         self.target = target
         self.subtype = subtype
@@ -31,42 +34,14 @@ class Homomorphism(Function):
         else:
             self.stype = "Homomorphism"
 
-    def preserves_relation(self, rel):
-        """
-        Revisa si el morfismo preserva la relacion.
-        
-        >>> from examples import *
-        >>> e1=[x[1] for x in retrombo.substructures(tiporetacotado)]
-        >>> e2=[x[1] for x in retrombo.substructures(tiporet)]
-        >>> len(e1) < len(e2)
-        True
-        >>> # print map(lambda e: e.source,e2)
-        >>> g=filter(lambda e: e.preserves_relation("P"),e2)
-        >>> set(g)==set(e2) 
-        True
-        """
-
-        if rel in self.subtype.relations:
-            return True
-        else:
-            result = True
-            for t in self.source.relations[rel].domain():
-                try:
-                    if self.source.relations[rel](*t):
-                        result = result and self.target.relations[rel](*self.vector_call(t))
-                except ValueError:
-                    # no estaba en el dominio
-                    pass
-            return result
-
         
     def inverse(self):
         assert self.inj
 
-        l = [None] * (max(self.array) + 1)
-        for x,y in enumerate(self.array):
-            l[y]=x
-        return type(self)(l,self.target,self.source,self.subtype,self.inj,self.surj)
+        d = {}
+        for k in self.dict:
+            d[self.dict[k]]=k
+        return type(self)(d,self.target,self.source,self.subtype,self.inj,self.surj)
         
     def composition(self,g):
         """
@@ -90,10 +65,10 @@ class Homomorphism(Function):
         return self.source == self.target
     def __repr__(self):
         result =  "%s(\n" % self.stype
-        result += indent(repr(self.array.tolist()) + ",")
+        result += indent("\n".join(map(lambda x: "%s -> %s," % (x[:-1],x[-1]) ,self.table()))) + ",\n"
         #result += indent(repr(self.source) + ",")
         #result += indent(repr(self.target) + ",")
-        result += indent(repr(self.subtype) + ",")
+        result += indent(repr(self.subtype)) + ",\n"
         if self.inj:
             result += indent("Injective,")
         if self.surj:
@@ -106,17 +81,20 @@ class Embedding(Homomorphism):
     Embeddings
 
     >>> import examples
-    >>> h = Embedding([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
+    >>> h = Embedding({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
     Autoembedding(
-      [1, 1],
-      FO_Type({},{'<=': 2}),
+      [0] -> 1,
+      [1] -> 1,
+    ,
+      FO_Type({},{'<=': 2})
+    ,
       Injective,
     )
     """
-    def __init__(self, l, source, target, subtype, inj=True, surj=None):
+    def __init__(self, d, source, target, subtype, inj=True, surj=None):
         assert inj
-        super(Embedding, self).__init__(l,source,target,subtype,inj,surj)
+        super(Embedding, self).__init__(d,source,target,subtype,inj,surj)
         if self.is_auto():
             self.stype = "Autoembedding"
         else:
@@ -127,18 +105,22 @@ class Isomorphism(Embedding):
     Isomorfismos
     
     >>> import examples
-    >>> h = Isomorphism([1,1],examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
+    >>> h = Isomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print h
     Automorphism(
-      [1, 1],
-      FO_Type({},{'<=': 2}),
+      [0] -> 1,
+      [1] -> 1,
+    ,
+      FO_Type({},{'<=': 2})
+    ,
       Injective,
       Surjective,
     )
+
     """
-    def __init__(self, l, source, target, subtype, inj=True, surj=True):
+    def __init__(self, d, source, target, subtype, inj=True, surj=True):
         assert inj and surj
-        super(Isomorphism, self).__init__(l,source,target,subtype,inj,surj)
+        super(Isomorphism, self).__init__(d,source,target,subtype,inj,surj)
         if self.is_auto():
             self.stype = "Automorphism"
         else:
