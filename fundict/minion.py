@@ -172,7 +172,7 @@ class MorphMinionSol(MinionSol):
             result += "# que sean suryectivos\n"
         result += "\n"
         result += "**VARIABLES**\n"
-        result += "DISCRETE f[%s]{0..%s}\n\n" % (max(A.universe)+1, max(B.universe))
+        result += "DISCRETE f[%s]{-1..%s}\n\n" % (max(A.universe)+1, max(B.universe))
         result += "**TUPLELIST**\n"
         for op in self.subtype.operations:
             result += self.__oprel_table(op,B.operations[op]) + "\n"
