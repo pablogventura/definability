@@ -34,13 +34,6 @@ def powerset(lst):
         result.extend(sorted([subset + [x] for subset in result]))
     return sorted(result,key=len)
 
-def l2dict(l,arity=2):
-    from itertools import product
-    result = {}
-    for x,y in product(range(len(l)),repeat=arity):
-        result[(x,y)] = l[x][y]
-    return result
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

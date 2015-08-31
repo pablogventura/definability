@@ -40,7 +40,6 @@ class MinionSol(object):
             str_sol = str_sol[:-1] # borro el \n
             try:
                 result = map(int, str_sol.strip().split(" "))
-                result = {(k,):v for k,v in enumerate(result)}
             except ValueError:
                 str_sol += "\n"
                 str_sol += self.minionapp.stdout.read() # leo toda la respuesta de minion para saber que paso

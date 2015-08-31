@@ -51,6 +51,8 @@ class Function(object):
     """
     def __init__(self, d):
         # assert issubclass(type(l),list)
+        if isinstance(d,list):
+            d = self.__list_to_dict(d)
         self.dict = d
         assert all(isinstance(t,tuple) for t in self.dict.keys())
         self.relation = False # maneja si la funcion es booleana
@@ -130,7 +132,17 @@ class Function(object):
         else:
             result = map(lambda (k,v):list(k)+[v],result)
         return result
-
+        
+    def __list_to_dict(self,l):
+        from itertools import product
+        import numpy as np
+        l = np.array(l, dtype=np.dtype(object))
+        arity = l.ndim
+        result = {}
+        for t in product(range(len(l)),repeat=arity):
+            result[t] = l.item(*t)
+        return result
+        
     def __repr__(self):
         if self.relation:
             result = "Relation(\n"
