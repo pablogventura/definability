@@ -23,7 +23,7 @@ class MinionSol(object):
 
         files.create_pipe(self.input_filename)
 
-        minionargs = ["-printsolsonly"] 
+        minionargs = ["-printsolsonly","-randomseed","0"] 
         if allsols:
             minionargs += ["-findallsols"]
         minionargs += [self.input_filename]
@@ -40,6 +40,10 @@ class MinionSol(object):
             str_sol = str_sol[:-1] # borro el \n
             try:
                 result = map(int, str_sol.strip().split(" "))
+                # ACA IRIAN LAS TRADUCCIONES DE NOMBRES EN EL FUTURO
+                for i,v in enumerate(result):
+                    if v == -1:
+                        result[i]=None
             except ValueError:
                 str_sol += "\n"
                 str_sol += self.minionapp.stdout.read() # leo toda la respuesta de minion para saber que paso
@@ -89,6 +93,10 @@ class MinionSol(object):
         self.minionapp.kill()
         del self.minionapp
         files.remove(self.input_filename)
+    
+    def __del__(self):
+        if not self.EOF:
+            self.__terminate()
 
 
 class MorphMinionSol(MinionSol):
@@ -164,7 +172,7 @@ class MorphMinionSol(MinionSol):
             result += "# que sean suryectivos\n"
         result += "\n"
         result += "**VARIABLES**\n"
-        result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
+        result += "DISCRETE f[%s]{0..%s}\n\n" % (max(A.universe)+1, max(B.universe))
         result += "**TUPLELIST**\n"
         for op in self.subtype.operations:
             result += self.__oprel_table(op,B.operations[op]) + "\n"
@@ -187,6 +195,7 @@ class MorphMinionSol(MinionSol):
             for row in cons:
                 result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % self.__minion_name(rel)
             result += "\n"
+        result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality)
         result += "**EOF**\n"
         return result
 
@@ -205,8 +214,8 @@ class MorphMinionSol(MinionSol):
             result += "# que sean suryectivos\n"
         result += "\n"
         result += "**VARIABLES**\n"
-        result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality - 1)
-        result += "DISCRETE g[%s]{-1..%s}\n\n" % (B.cardinality, A.cardinality - 1)
+        result += "DISCRETE f[%s]{-1..%s}\n\n" % (max(A.universe)+1, max(B.universe))
+        result += "DISCRETE g[%s]{-1..%s}\n\n" % (max(B.universe)+1, max(A.universe))
         result += "**SEARCH**\n"
         result += "PRINT [f]\n\n" # para que no me imprima los valores de g
         result += "**TUPLELIST**\n"
@@ -245,7 +254,8 @@ class MorphMinionSol(MinionSol):
             result += "\n"
         for i in A.universe:
             result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
-        result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality)
+        result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality)
+        result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality + (max(A.universe)+1 - A.cardinality))
         result += "**EOF**\n"
         return result
 

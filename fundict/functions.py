@@ -150,7 +150,8 @@ class Function(object):
         arity = l.ndim
         result = {}
         for t in product(range(len(l)),repeat=arity):
-            result[t] = l.item(*t)
+            if l.item(*t) is not None:
+                result[t] = l.item(*t)
         return result
         
     def __repr__(self):
