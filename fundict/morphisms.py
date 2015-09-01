@@ -143,6 +143,12 @@ class Embedding(Homomorphism):
             self.stype = "Autoembedding"
         else:
             self.stype = "Embedding"
+    
+    def isomorphism_to_image(self):
+        """
+        Devuelve un isomorfismo a la imagen del embedding.
+        """
+        return Isomorphism(self.dict,self.source,self.target.restrict(list(self.image()),self.subtype),self.subtype)
 
 class Isomorphism(Embedding):
     """

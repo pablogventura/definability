@@ -151,7 +151,26 @@ class FO_Model(object):
             substructure = self.restrict(sub,subtype)
             yield substructure
 
-        
+    def __eq__(self,other):
+        """
+        Para ser iguales tienen que tener el mismo tipo
+        y el mismo comportamiento en las operaciones/relaciones del tipo
+        """
+        if self.fo_type != other.fo_type:
+            return False
+        for op in self.fo_type.operations:
+            if self.operations[op] != other.operations[op]:
+                return False
+        for rel in self.fo_type.relations:
+            if self.relations[rel] != other.relations[rel]:
+                return False
+        return True
+    def __ne__(self,other):
+        """
+        Triste necesidad para la antiintuitiva logica de python
+        'A==B no implica !(A!=B)'
+        """
+        return not self.__eq__(other)
         
 if __name__ == "__main__":
     import doctest

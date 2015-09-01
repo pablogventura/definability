@@ -47,9 +47,12 @@ class MinionSol(object):
             except ValueError:
                 str_sol += "\n"
                 str_sol += self.minionapp.stdout.read() # leo toda la respuesta de minion para saber que paso
-                raise ValueError("Error parsing this Minion output: '%s'" % str_sol)
+                raise ValueError("Minion Error:\n%s" % str_sol)
             return result
         else:
+            str_err = self.minionapp.stderr.read()
+            if str_err:
+                raise ValueError("Minion Error:\n%s" % str_err)
             self.EOF = True
             self.__terminate()
 
@@ -180,7 +183,8 @@ class MorphMinionSol(MinionSol):
             result += self.__oprel_table(rel,B.relations[rel]) + "\n"
         result += "**CONSTRAINTS**\n"
         if self.inj:
-            result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
+            result += "alldiff([f[%s]])\n" % "],f[".join(map(str, A.universe))  # exige que todos los valores de f
+                                                                               # sean distintos para el univ de partida
         if self.surj:
             for i in B.universe:
                 result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
@@ -229,7 +233,8 @@ class MorphMinionSol(MinionSol):
             
         result += "**CONSTRAINTS**\n"
         if self.inj:
-            result += "alldiff(f)\n"  # exige que todos los valores de f sean distintos
+            result += "alldiff([f[%s]])\n" % "],f[".join(map(str, A.universe))  # exige que todos los valores de f
+                                                                               # sean distintos para el univ de partida
         if self.surj:
             for i in B.universe:
                 result += "occurrencegeq(f, " + str(i) + ", 1)\n"  # exige que i aparezca al menos una vez en el "vector" f
@@ -254,8 +259,8 @@ class MorphMinionSol(MinionSol):
             result += "\n"
         for i in A.universe:
             result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
-        result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality)
-        result += "occurrencegeq(g, -1, %s)\n" % (B.cardinality - A.cardinality + (max(A.universe)+1 - A.cardinality))
+        result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio 
+        result += "occurrencegeq(g, -1, %s)\n" % max(B.cardinality - A.cardinality, (max(A.universe)+1 - A.cardinality))
         result += "**EOF**\n"
         return result
 

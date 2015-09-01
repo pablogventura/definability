@@ -75,7 +75,7 @@ class Function(object):
         """
         Un generador de la imagen
         """
-        return set(self.dict.values())
+        return iter(set(self.dict.values()))
 
     def arity(self):
         """
@@ -129,6 +129,9 @@ class Function(object):
         """
         # basta con revisar el arreglo, ya que contiene el dominio y el comportamiento
         return self.dict == other.dict
+    
+    def __ne__(self,other):
+        return not self.__eq__(other)
     
     def __hash__(self):
         """

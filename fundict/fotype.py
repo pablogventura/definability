@@ -24,6 +24,8 @@ class FO_Type(object):
         return "FO_Type(%s,%s)"%(repr(self.operations),repr(self.relations))
     def __eq__(self,other):
         return self.operations == other.operations and self.relations == other.relations
+    def __ne__(self,other):
+        return not self.__eq__(other)
     def subtype(self,operations,relations):
         return FO_Type({op:self.operations[op] for op in operations},{rel:self.relations[rel] for rel in relations})
     def is_subtype_of(self, supertype):
