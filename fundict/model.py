@@ -124,7 +124,12 @@ class FO_Model(object):
                 if subuniverse not in result:
                     result.append(subuniverse)
                     yield subuniverse
-            
+    def restrict(self,subuniverse, subtype):
+        """
+        Devuelve la restriccion del modelo al subuniverso que se supone que es cerrado en en subtype
+        """
+        return FO_Model(subtype,subuniverse,{op:self.operations[op].restrict(subuniverse) for op in self.operations}
+                                           ,{rel:self.relations[rel].restrict(subuniverse) for rel in self.relations})
     def substructures(self,subtype):
         """
         Generador que va devolviendo las subestructuras.
@@ -143,8 +148,7 @@ class FO_Model(object):
         for sub in self.subuniverses(subtype):
             # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
             # independientemente de el subtipo del que se buscan embeddings.
-            substructure = FO_Model(subtype,sub,{op:self.operations[op].restrict(sub) for op in self.operations}
-                                               ,{rel:self.relations[rel].restrict(sub) for rel in self.relations})
+            substructure = self.restrict(sub,subtype)
             yield substructure
 
         
