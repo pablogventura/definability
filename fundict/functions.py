@@ -70,6 +70,12 @@ class Function(object):
         Un generador del dominio
         """
         return self.dict.iterkeys()
+    
+    def image(self):
+        """
+        Un generador de la imagen
+        """
+        return set(self.dict.values())
 
     def arity(self):
         """
