@@ -149,7 +149,8 @@ class FO_Model(object):
             # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
             # independientemente de el subtipo del que se buscan embeddings.
             substructure = self.restrict(sub,subtype)
-            yield substructure
+            emb = Embedding({(k,):k for k in sub},substructure,self,subtype)
+            yield (emb,substructure)
 
     def __eq__(self,other):
         """
