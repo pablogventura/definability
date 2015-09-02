@@ -172,6 +172,8 @@ class FO_Model(object):
         'A==B no implica !(A!=B)'
         """
         return not self.__eq__(other)
+    def __len__(self):
+        return self.cardinality
         
 if __name__ == "__main__":
     import doctest
