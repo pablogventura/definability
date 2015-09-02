@@ -259,8 +259,9 @@ class MorphMinionSol(MinionSol):
             result += "\n"
         for i in A.universe:
             result += "element(g, f[%s], %s)\n" % (i,i) # g(f(x))=X
+        
         result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio 
-        result += "occurrencegeq(g, -1, %s)\n" % max(B.cardinality - A.cardinality, (max(A.universe)+1 - A.cardinality))
+        result += "occurrencegeq(g, -1, %s)\n" % (max(B.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio
         result += "**EOF**\n"
         return result
 
