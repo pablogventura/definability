@@ -23,13 +23,8 @@ class Constellation():
             self.planets[len(planet)].append(planet)
         except:
             self.planets[len(planet)] = [planet]
-            
-    def remove_planet(self, planet):
-        """un planeta es un modelo padre de subestructuras a revisar"""
-        self.graph.remove_node(planet)
-        self.planets[len(planet)] = filter(lambda p: p!=planet, self.planets[len(planet)])
 
-    def add_satellite(self, satellite):
+    def add_satellite(self, satellite, planet):
         """un satellite es una subestructura"""
         self.graph.add_node(satellite)
         try:
@@ -37,22 +32,7 @@ class Constellation():
         except:
             self.satellites[len(satellite)] = [satellite]
 
-    def planet_to_satellite(self,planet):
-        pass
-        
-    def generate(self):
-        # asumo que hay un solo modelo original
-        # TODO NO SE ROMPERIA CON LOS ISOMORFISMOS?
-        model = self.graph.nodes()[0]
-        subs = list(model.substructures())
-        subs.sort(key=lambda x:len(x[0])) # ordeno por tamanno
-        subs.pop(-1) # es el mismo "model"
-        for substr,emb in subs:
-            self.graph.add_edge(substr, model, arrow_type = "embedding", arrow=emb) # agrego el embbeding original
-            auts = substr.Aut() # busco los automorfismos
-            for aut in auts:
-                self.graph.add_edge(substr, model, arrow_type = "embedding", arrow=emb.composition(aut)) # agrego las composiciones
-    def generate2(self,subtype):
+    def generate(self,subtype):
         """
         Ordeno planetas por tamaño de mayor a menor
         Recorro subestructuras de menor a mayor haciendo 'lo de siempre',
@@ -63,25 +43,15 @@ class Constellation():
         """
         for len_planet in sorted(self.planets.keys(), reverse=True):
             for planet in self.planets[len_planet]:
-                for satellite, embbedding in planet.substructures(subtype):
-                    iso = satellite.is_isomorphic(self.satellites,subtype)
+                for proto_satellite, embbedding in planet.substructures(subtype):
+                    iso = proto_satellite.is_isomorphic(self.satellites,subtype)
                     if iso:
                         # hay isomorfismo, solo agrego embedding
-                        pass
+                        emb = iso.inverted().compone(embedding) # no queda claro el tipo de este embedding
+                        self.add_arrow(emb)
                     else:
                         # agrego el satelite
-                        pass
+                        self.add_satellite(proto_satellite,planet)
                     
-                
-    def add_arrow(self, source, destination, arrow_type, function, dif_rel):
-        """
-        Agrega una flecha, pero tiene que preservar dif_rel para ser agregada
-        """
-        for t in dif_rel.table(relation=True):
-            ft = map(function, t)
-            if dif_rel(*ft):
-                # Preserva! se puede agregar efectivamente
-                self.graph.add_edge(source, destination, arrow_type, arrow=function)
-            else:
-                raise ValueError
+
 
