@@ -24,7 +24,7 @@ class TipedMultiDiGraph(object):
         """
         Agrega un satellite y una funcion de inclusion
         """
-        self.satellite[len(satellite)].append(satellite)
+        self.satellites[len(satellite)].append(satellite)
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
     
@@ -89,3 +89,40 @@ class TipedMultiDiGraph(object):
         plt.savefig('%s.png' % archivo)
         plt.show()
 
+
+class Constellation(TipedMultiDiGraph):
+    def generate(self,subtype):
+        for len_planets in sorted(self.planets.iterkeys()):
+            for planet in self.planets[len_planets]:
+                for (inc,protosatellite) in planet.substructures(subtype):
+                    iso = protosatellite.is_isomorphic_to_any(self.satellites[len(protosatellite)],subtype)
+                    if iso:
+                        #comprobar preservacion para iso
+                        #agregar embedding desde satellite a planet
+                        satellite = iso.target
+                        
+                    else:
+                        self.add_satellite(protosatellite,inc,planet)
+                        self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
