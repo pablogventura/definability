@@ -138,7 +138,7 @@ class Function(object):
         Hash de las funciones para manejar funciones en conjuntos.
         No es muy rapida.
         """
-        return hash(sorted(self.iteritems()))
+        return hash(str(sorted(self.dict.iteritems())))
         
     def table(self):
         """

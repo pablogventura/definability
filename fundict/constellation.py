@@ -26,25 +26,29 @@ class TipedMultiDiGraph(object):
     
     def add_arrow(self,arrow):
         assert self.graph.has_node(arrow.source) and self.graph.has_node(arrow.target)
-        duplicate=self.__find_arrow(arrow)
+        duplicate = self.__find_arrow(arrow)
         if duplicate:
             print "esa flecha ya estaba! capaz con otro tipo?"
-        
-        self.graph.add_edge(arrow.source,arrow.target,arrow=arrow)
+            if type(arrow) < type(duplicate): # el min es el tipo de morfismo mas restrictivo
+                print "queda el %s" % type(arrow)
+                self.graph.remove_edge(duplicate.source,duplicate.target,hash(duplicate))
+                self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
+        else:
+            self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
     
     def add_arrows(self,arrows):
         for arrow in arrows:
             self.add_arrow(arrow)
             
     def __find_arrow(self,arrow):
-        result=self.find_arrows(arrow.source,arrow.target)
-        result=filter(lambda x: x==arrow,result)
-        return result
+        if self.graph.has_edge(arrow.source,arrow.target,key=hash(arrow)):
+            return self.graph[arrow.source][arrow.target][hash(arrow)]["arrow"]
+        else:
+            return None
         
     def find_arrows(self, source, target, morphtype=None):
         if self.graph.has_edge(source,target):
-            result = self.graph[source][target].values()
-            result = map(lambda x: x["arrow"],result)
+            result = [x["arrow"] for x in self.graph[source][target].values()]
             if morphtype:
                 result = filter(lambda x: isinstance(x,morphtype),result)
             return result
