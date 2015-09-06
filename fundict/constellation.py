@@ -1,36 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import networkx
+from networkx import MultiDiGraph
 from examples import *
+from collections import defaultdict
 
-class Constellation():
+
+class Constellation(object):
     """
     Maneja una coleccion de modelos relacionados por flechas
     """
-    def __init__(self, models):
-        self.graph = networkx.DiGraph()
-        
-        self.planets = {} # diccionario con key de len(planet)
-        self.satellites = {} # diccionario con key de len(satellite)
-        for model in models:
-            self.add_planet(model)
+    def __init__(self):
+        self.graph = MultiDiGraph()
+        self.planets = defaultdict(list) # diccionario con key de len(planet)
+        self.satellites = defaultdict(list) # diccionario con key de len(satellite)
 
     def add_planet(self, planet):
-        """un planeta es un modelo padre de subestructuras a revisar"""
+        #agrega un planeta
+        self.planets[len(planet)].append(planet)
         self.graph.add_node(planet)
-        try:
-            self.planets[len(planet)].append(planet)
-        except:
-            self.planets[len(planet)] = [planet]
 
-    def add_satellite(self, satellite, planet):
-        """un satellite es una subestructura"""
-        self.graph.add_node(satellite)
-        try:
-            self.satellites[len(satellite)].append(satellite)
-        except:
-            self.satellites[len(satellite)] = [satellite]
+    def add_satellite(self, satellite, inclusion, planet):
+        #agrega un satellite y por una funcion de inclusion
+        self.satellite[len(satellite)].append(satellite)
+        self.graph.add_node(planet)
 
     def generate(self,subtype):
         """
@@ -41,17 +34,16 @@ class Constellation():
         Lo de siempre:
             Revisar automorfismos de la subestructrura, y revisar un solo isomorfismo contra las subestructuras isomorfas.
         """
-        for len_planet in sorted(self.planets.keys(), reverse=True):
-            for planet in self.planets[len_planet]:
-                for proto_satellite, embbedding in planet.substructures(subtype):
-                    iso = proto_satellite.is_isomorphic(self.satellites,subtype)
-                    if iso:
-                        # hay isomorfismo, solo agrego embedding
-                        emb = iso.inverted().compone(embedding) # no queda claro el tipo de este embedding
-                        self.add_arrow(emb)
-                    else:
-                        # agrego el satelite
-                        self.add_satellite(proto_satellite,planet)
-                    
+    def ppnetwork(na,archivo):
+        G = nx.DiGraph()
+        G.add_edges_from([tuple(k) for k in na])
 
+        pos=nx.graphviz_layout(G,prog='dot',args='')
+        plt.figure(figsize=(8,8))
+        nombres = {tuple(k):back(na[k][1]) for k in na}
+        edge_labels=nx.draw_networkx_edge_labels(G,pos,edge_labels=nombres,label_pos=0.8)
+        nx.draw(G,pos,node_size=200,alpha=1,node_color="white", with_labels=True)
+        plt.axis('equal')
+        plt.savefig('%s.png' % archivo)
+        plt.show()
 
