@@ -14,17 +14,25 @@ class TipedMultiDiGraph(object):
         self.satellites = defaultdict(list) # diccionario con key de len(satellite)
 
     def add_planet(self, planet):
-        #agrega un planeta
+        """
+        Agrega un planeta
+        """
         self.planets[len(planet)].append(planet)
         self.graph.add_node(planet)
 
     def add_satellite(self, satellite, inclusion, planet):
-        #agrega un satellite y una funcion de inclusion
+        """
+        Agrega un satellite y una funcion de inclusion
+        """
         self.satellite[len(satellite)].append(satellite)
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
     
     def add_arrow(self,arrow):
+        """
+        Agrega una flecha, si ya habia una flecha con comportamiento igual, se queda con la
+        que tiene mas informacion (i.e. entre embedding y homomorfismo se queda con embedding)
+        """
         assert self.graph.has_node(arrow.source) and self.graph.has_node(arrow.target)
         duplicate = self.__find_arrow(arrow)
         if duplicate:
@@ -37,16 +45,25 @@ class TipedMultiDiGraph(object):
             self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
     
     def add_arrows(self,arrows):
+        """
+        Agrega flechas llamando varias veces a add_arrow
+        """
         for arrow in arrows:
             self.add_arrow(arrow)
             
     def __find_arrow(self,arrow):
+        """
+        Busca si hay una flecha entre los mismos nodos, con el mismo comportamiento y la devuelve.
+        """
         if self.graph.has_edge(arrow.source,arrow.target,key=hash(arrow)):
             return self.graph[arrow.source][arrow.target][hash(arrow)]["arrow"]
         else:
             return None
         
     def find_arrows(self, source, target, morphtype=None):
+        """
+        Busca las flechas entre source y target, del tipo morphtype
+        """
         if self.graph.has_edge(source,target):
             result = [x["arrow"] for x in self.graph[source][target].values()]
             if morphtype:
@@ -57,6 +74,9 @@ class TipedMultiDiGraph(object):
         
         
     def show(self):
+        """
+        Dibuja la constelacion,NO FUNCIONA
+        """
         import networkx as nx
         G = self
         archivo = "constellation"
