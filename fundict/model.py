@@ -68,6 +68,17 @@ class FO_Model(object):
         """
         return minion.is_isomorphic(self, target, subtype)
 
+    def is_isomorphic_to_any(self, targets, subtype):
+        """
+        Si lo es, devuelve el primer isomorfismo encontrado desde este modelo a alguno en targets, en el subtype;
+        Si no, devuelve False
+        """
+        for target in targets:
+            iso = self.is_isomorphic(target,subtype)
+            if iso:
+                return iso
+        return False
+
     def subuniverse(self,subset,subtype):
         """
         Devuelve el subuniverso generado por subset para el subtype
