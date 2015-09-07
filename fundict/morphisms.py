@@ -54,14 +54,22 @@ class Homomorphism(Function):
         Compone con otro morfismo, F.compone(G) = F o G
         y devuelve un nuevo morfismo
         El tipo del morfismo esta dado por el de menor 'grado' entre los dos
+        El tipo de primer orden es el mas chico entre los dos.
         """
         if issubclass(type(self),type(g)):
             morph_type = type(g)
         else:
             morph_type = type(self)
-        
+        if self.subtype.is_subtype_of(g.subtype):
+            subtype = self.subtype
+        else:
+            subtype = g.subtype      
+
         result = morph_type.copy(g)
+        result.target = self.target
         result.map_in_place(self)
+        result.subtype = subtype
+        
         return result
         
     def is_auto(self):
