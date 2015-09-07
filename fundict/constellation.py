@@ -77,14 +77,28 @@ class TipedMultiDiGraph(object):
         """
         Dibuja la constelacion,NO FUNCIONA
         """
+        """
+        In [1]: import networkx as nx
+
+        In [2]: G=nx.MultiGraph()
+
+        In [3]: G.add_edge(1,2)
+
+        In [4]: G.add_edge(1,2)
+
+        In [5]: nx.write_dot(G,'multi.dot')
+
+        In [6]: !dot -T png multi.dot > multi.png
+        """
         import networkx as nx
-        G = self
+        import matplotlib.pyplot as plt
+        G = self.graph
         archivo = "constellation"
         pos=nx.graphviz_layout(G,prog='dot',args='')
-        plt.figure(figsize=(8,8))
+        plt.figure(figsize=(10,10))
         #nombres = {tuple(k):back(na[k][1]) for k in na}
         #edge_labels=nx.draw_networkx_edge_labels(G,pos,edge_labels=nombres,label_pos=0.8)
-        nx.draw(G,pos,node_size=200,alpha=1,node_color="white", with_labels=True)
+        nx.draw(G,pos) #node_size=200,alpha=1,node_color="white", with_labels=False)
         plt.axis('equal')
         plt.savefig('%s.png' % archivo)
         plt.show()
