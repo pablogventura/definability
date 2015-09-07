@@ -98,12 +98,10 @@ class Constellation(TipedMultiDiGraph):
                     iso = protosatellite.is_isomorphic_to_any(self.satellites[len(protosatellite)],subtype)
                     if iso:
                         #comprobar preservacion para iso
-                        #agregar embedding desde satellite a planet
-                        satellite = iso.target
-                        
+                        self.add_arrow(inc.composition(iso.inverse())) #agregar embedding desde satellite a planet
                     else:
-                        self.add_satellite(protosatellite,inc,planet)
-                        self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype))
+                        self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
+                        self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
         
         
         
