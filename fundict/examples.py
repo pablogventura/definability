@@ -13,6 +13,7 @@ from fofunctions import FO_Relation, FO_Operation
 tipoposet = FO_Type({},{"<=":2})
 tiporet = FO_Type({"^":2,"v":2},{})
 tiporetacotado = FO_Type({"^":2,"v":2, "Max":1,"Min":1},{})
+tipotest = FO_Type({},{"P":1,"<=":2})
 
 posetdiamante = FO_Model(tipoposet,range(5),{},{"<=":FO_Relation({(0, 0): 1,
                                                                   (0, 1): 1,
