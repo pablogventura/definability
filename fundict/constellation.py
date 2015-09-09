@@ -38,10 +38,12 @@ class TipedMultiDiGraph(object):
         if duplicate:
             print "esa flecha ya estaba! capaz con otro morphtype, o fotype?"
             print "%s de %s y %s de %s" % (type(arrow),arrow.subtype,type(duplicate),duplicate.subtype)
-            if type(arrow) < type(duplicate): # el min es el tipo de morfismo mas restrictivo
+            if type(arrow) > type(duplicate): # el max es el tipo de morfismo mas restrictivo
                 print "queda el %s" % type(arrow)
                 self.graph.remove_edge(duplicate.source,duplicate.target,hash(duplicate))
                 self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
+            else:
+                print "queda el %s" % type(duplicate)
         else:
             self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
     
