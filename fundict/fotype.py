@@ -15,6 +15,10 @@ class FO_Type(object):
     FO_Type({'+': 2},{})
     >>> st.is_subtype_of(t)
     True
+    >>> FO_Type({'+': 2},{'<': 2}) + FO_Type({'-': 2},{'<=': 2})
+    FO_Type({'+': 2, '-': 2},{'<=': 2, '<': 2})
+    >>> FO_Type({'+': 2, '-': 2},{'<=': 2, '<': 2}) - FO_Type({'-': 2},{'<=': 2})
+    FO_Type({'+': 2},{'<': 2})
     """
     def __init__(self,operations,relations):
         self.operations = operations
@@ -44,6 +48,18 @@ class FO_Type(object):
             del result.operations[op]
         for rel in other.relations:
             del result.relations[rel]
+        return result
+    def __add__(self, other):
+        """
+        Suma de tipos, genera un tipo por union de los diccionarios.
+        """
+        result = self.copy()
+        for rel in other.relations:
+            assert rel not in result.relations
+            result.relations[rel]=other.relations[rel]
+        for op in other.operations:
+            assert op not in result.operations
+            result.operations[op]=other.operations[op]
         return result
 
 if __name__ == "__main__":
