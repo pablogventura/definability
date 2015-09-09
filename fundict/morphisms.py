@@ -128,6 +128,43 @@ class Homomorphism(Function):
                     result = result and self.target.relations[rel](*self.vector_call(t))
             return result
 
+    def preserves_type(self, supertype):
+        """
+        Revisa preservacion de las relaciones que tiene supertype, que no tiene el morfismo en su tipo.
+        Si preserva el tipo, se cambia de tipo a ese.
+
+        >>> from examples import *
+        >>> retrombo.is_homomorphic_image(retrombo, tiporet)
+        Homeomorphism(
+          [0] -> 0,
+          [1] -> 0,
+          [2] -> 0,
+          [3] -> 0,
+        ,
+          FO_Type({'v': 2, '^': 2},{})
+        ,
+        )
+
+        >>> h=retrombo.is_homomorphic_image(retrombo, tiporet)
+
+        >>> h.preserves_type(tiporet+tipoposet)
+        True
+
+        >>> h.preserves_type(tiporet+tipotest)
+        False
+        """
+        checktype = supertype - self.subtype
+        
+        assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
+        
+        for rel in checktype.relations:
+            if not self.preserves_relation(rel):
+                return False
+        
+        self.subtype = supertype # se auto promueve a un morfismo de ese tipo
+        
+        return True
+            
 class Embedding(Homomorphism):
     """
     Embeddings
