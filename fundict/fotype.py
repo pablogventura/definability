@@ -19,7 +19,9 @@ class FO_Type(object):
     def __init__(self,operations,relations):
         self.operations = operations
         self.relations = relations
-
+        
+    def copy(self):
+        return FO_Type(self.operations.copy(),self.relations.copy())
     def __repr__(self):
         return "FO_Type(%s,%s)"%(repr(self.operations),repr(self.relations))
     def __eq__(self,other):
@@ -32,7 +34,17 @@ class FO_Type(object):
         result = all(op in supertype.operations and self.operations[op] == supertype.operations[op] for op in self.operations)
         result = result and all(rel in supertype.relations and self.relations[rel] == supertype.relations[rel] for rel in self.relations)
         return result
-
+    def __sub__(self, other):
+        """
+        Resta de tipos, devuelve un nuevo tipo con las rel/op que pertenecen a self, pero no a other.
+        """
+        assert other.is_subtype_of(self)
+        result = self.copy()
+        for op in other.operations:
+            del result.operations[op]
+        for rel in other.relations:
+            del result.relations[rel]
+        return result
 
 if __name__ == "__main__":
     import doctest
