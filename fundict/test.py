@@ -13,12 +13,13 @@ import minion
 import misc
 import model
 import morphisms
+import constellation
 from examples import *
 from morphisms import *
 
 
 def load_tests(loader, tests, ignore):
-    modules = [config,examples,files,fofunctions,fotype,functions,minion,misc,model,morphisms]
+    modules = [config,examples,files,fofunctions,fotype,functions,minion,misc,model,morphisms,constellation]
     for module in modules:
         tests.addTests(doctest.DocTestSuite(module))
     return tests

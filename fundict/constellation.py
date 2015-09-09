@@ -36,7 +36,8 @@ class TipedMultiDiGraph(object):
         assert self.graph.has_node(arrow.source) and self.graph.has_node(arrow.target)
         duplicate = self.__find_arrow(arrow)
         if duplicate:
-            print "esa flecha ya estaba! capaz con otro tipo?"
+            print "esa flecha ya estaba! capaz con otro morphtype, o fotype?"
+            print "%s de %s y %s de %s" % (type(arrow),arrow.subtype,type(duplicate),duplicate.subtype)
             if type(arrow) < type(duplicate): # el min es el tipo de morfismo mas restrictivo
                 print "queda el %s" % type(arrow)
                 self.graph.remove_edge(duplicate.source,duplicate.target,hash(duplicate))
@@ -75,7 +76,7 @@ class TipedMultiDiGraph(object):
         
     def show(self):
         """
-        Dibuja la constelacion,NO FUNCIONA
+        Dibuja la constelacion
         """
         import networkx as nx
         import matplotlib.pyplot as plt
@@ -90,36 +91,34 @@ class TipedMultiDiGraph(object):
 
 
 class Constellation(TipedMultiDiGraph):
-    def generate(self,subtype):
+    """
+    
+    >>> from examples import *
+    >>> from constellation import *
+    >>> c = Constellation()
+    >>> c.add_planet(retrombo)
+    >>> c.is_open_definable(tiporet,tiporet+tipoposet)
+    True
+    >>> c.is_open_definable(tiporet,tiporet+tipotest)
+    False
+    """
+    def is_open_definable(self,subtype,supertype):
         for len_planets in sorted(self.planets.iterkeys()):
             for planet in self.planets[len_planets]:
                 for (inc,protosatellite) in planet.substructures(subtype):
                     iso = protosatellite.is_isomorphic_to_any(self.satellites[len(protosatellite)],subtype)
                     if iso:
-                        #comprobar preservacion para iso
+                        if not iso.preserves_type(supertype):
+                            return False
                         self.add_arrow(inc.composition(iso.inverse())) #agregar embedding desde satellite a planet
                     else:
                         self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
                         self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
+        return True
         
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

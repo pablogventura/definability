@@ -27,7 +27,7 @@ class Homomorphism(Function):
         self.inj = inj
         self.surj = surj
         assert self.arity() == 1
-        assert self.subtype.is_subtype_of(source.fo_type) and self.subtype.is_subtype_of(target.fo_type)
+        #assert self.subtype.is_subtype_of(source.fo_type) and self.subtype.is_subtype_of(target.fo_type)
         
         if self.is_auto():
             self.stype = "Homeomorphism"
