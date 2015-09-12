@@ -20,6 +20,8 @@ class Metahomomorphism(type):
     
     def __eq__(cls, other):
         return super(Metahomomorphism, cls).__eq__(other)
+    def __repr__(cls):
+        return cls.__name__
 
 class Homomorphism(Function):
     """
@@ -56,6 +58,7 @@ class Homomorphism(Function):
     def inverse(self):
         """
         Devuelve la inversa del morfismo
+        Para que sea funcion la inversa tiene que ser injectivo.
         """
         assert self.inj
 
@@ -74,16 +77,24 @@ class Homomorphism(Function):
         El tipo del morfismo esta dado por el de menor 'grado' entre los dos
         El tipo de primer orden es el mas chico entre los dos.
         """
+        assert self.source == g.target
         morph_type = min(type(self),type(g))
         if self.subtype.is_subtype_of(g.subtype):
             subtype = self.subtype
         else:
             subtype = g.subtype      
-
+            
         result = morph_type.copy(g)
         result.target = self.target
         result.map_in_place(self)
         result.subtype = subtype
+        
+        result.inj = None
+        result.surj = None
+        if self.inj and g.inj:
+            result.inj = True
+        if self.surj and g.surj:
+            result.surj = True
         
         return result
         
