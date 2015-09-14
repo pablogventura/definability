@@ -3,25 +3,6 @@
 
 from functions import Function
 from misc import indent
-from functools import total_ordering
-
-@total_ordering
-class Metahomomorphism(type):
-    """
-    Metaclase para los morfismos.
-    Necesaria para definir el orden:
-        Homomorfismo<Embedding<Isomorfismo
-    """
-    def __init__(cls, name, bases, attrs):
-        super(Metahomomorphism, cls).__init__(name, bases, attrs)
-
-    def __le__(cls, other):
-        return issubclass(cls, other)
-    
-    def __eq__(cls, other):
-        return super(Metahomomorphism, cls).__eq__(other)
-    def __repr__(cls):
-        return cls.__name__
 
 class Homomorphism(Function):
     """
@@ -38,7 +19,6 @@ class Homomorphism(Function):
     ,
     )
     """
-    __metaclass__ = Metahomomorphism
     def __init__(self, d, source, target, subtype, inj=None, surj=None):
         super(Homomorphism, self).__init__(d)
         self.source = source
@@ -78,7 +58,10 @@ class Homomorphism(Function):
         El tipo de primer orden es el mas chico entre los dos.
         """
         assert set(g.target.universe).issubset(set(self.source.universe))
-        morph_type = min(type(self),type(g))
+        if issubclass(type(g),type(self)): # el padre es el tipo menos restrictivo
+            morph_type = type(self)
+        else:
+            morph_type = type(g)
         if self.subtype.is_subtype_of(g.subtype):
             subtype = self.subtype
         else:
