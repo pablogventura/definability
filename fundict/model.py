@@ -74,11 +74,7 @@ class FO_Model(object):
         Si lo es, devuelve el primer isomorfismo encontrado desde este modelo a alguno en targets, en el subtype;
         Si no, devuelve False
         """
-        for target in targets:
-            iso = self.is_isomorphic(target,subtype)
-            if iso:
-                return iso
-        return False
+        return minion.is_isomorphic_to_any(self,targets,subtype)
 
     def subuniverse(self,subset,subtype):
         """

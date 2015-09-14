@@ -6,6 +6,7 @@
 
 import subprocess as sp
 from itertools import product
+from select import poll, POLLIN
 
 from morphisms import *
 import config
@@ -265,7 +266,63 @@ class MorphMinionSol(MinionSol):
         result += "**EOF**\n"
         return result
 
+class ParallelMorphMinionSol(object):
+    def __init__(self, morph_type, subtype, source, targets, inj=None, surj=None, allsols=False, cores=0):
 
+        self.queue = list(targets)
+        self.morph_type = morph_type
+        self.subtype = subtype
+        self.source = source
+        self.inj = inj
+        self.surj = surj
+        self.allsols = allsols
+        self.solution = None
+        
+        self.poll = poll()
+        self.minions={}
+        
+        for i in range(cores):
+            self.next_to_running()
+        
+    def next_to_running(self):
+        if self.queue:
+            target = self.queue.pop()
+            new_minion = MorphMinionSol(self.morph_type,
+                                        self.subtype,
+                                        self.source,
+                                        target,
+                                        inj=self.inj,
+                                        surj=self.inj,
+                                        allsols=self.allsols)
+            fd = new_minion.minionapp.stdout.fileno()
+            self.minions[fd] = new_minion
+            self.poll.register(fd,POLLIN)
+
+    def read(self,fd):
+        if self.minions[fd]:
+            result = self.minions[fd][0]
+        else:
+            result = False
+        del self.minions[fd]
+        self.poll.unregister(fd)
+        return result
+            
+    def solve(self):
+        if self.solution is None:
+            while self.queue or self.minions:
+                for (fd,event) in self.poll.poll():
+                    result = self.read(fd)
+                    if result:
+                        self.solution = result
+                        return self.solution
+                    else:
+                        if self.queue:
+                            self.next_to_running()
+            self.solution = False
+            return False
+        else:
+            return self.solution
+        
 
 def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True):
     """
@@ -352,41 +409,16 @@ def is_isomorphic(source, target, subtype):
     else:
         return False
 
-def is_isomorphic_to_any(source, targets, subtype, cores=8):
+def is_isomorphic_to_any(source, targets, subtype, cores=1):
     """
     return isomorphism if A is isomorphic to B (uses Minion)
     else returns False
     """
-    if not targets:
-        return False
-    from select import poll, POLLIN
-    import os
-    p = poll()
-    cant = len(targets)
-    minions={}
-    actuales = targets[:cores]
-    targets=targets[cores:]
-    for target in actuales:
-        j = isomorphisms(source, target, subtype, allsols=False)
-        minions[j.minionapp.stdout.fileno()] = j
-        p.register(j.minionapp.stdout,POLLIN)
-        
+    i = ParallelMorphMinionSol(Isomorphism, subtype, source, targets,cores=cores)
+    return i.solve()
 
-    while True:
-        for (fd,event) in p.poll(250):
-            if minions[fd]:
-                return minions[fd][0]
-            else:
-                #print len(minions)
-                p.unregister(fd)
-                cant -= 1
-                #print cant
-                if cant <= 0:
-                    return False
-                if targets:
-                    j = isomorphisms(source, targets.pop(0), subtype, allsols=False)
-                    minions[j.minionapp.stdout.fileno()] = j
-                    p.register(j.minionapp.stdout,POLLIN)
+    
+
         
 
 if __name__ == "__main__":
