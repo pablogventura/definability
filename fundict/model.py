@@ -5,6 +5,7 @@ from itertools import product
 
 from misc import indent, powerset
 from morphisms import Embedding
+from fofunctions import FO_Relation, FO_Operation
 import minion
 
 class FO_Model(object):
@@ -185,6 +186,35 @@ class FO_Model(object):
         return not self.__eq__(other)
     def __len__(self):
         return self.cardinality
+
+    def join_to_le(self):
+        """
+        Genera una relacion <= a partir de v
+        
+        >>> from examples import retrombo
+        >>> del retrombo.relations["<="]
+        >>> retrombo.join_to_le()
+        >>> retrombo.relations["<="]
+        Relation(
+          [0, 0],
+          [0, 1],
+          [0, 2],
+          [0, 3],
+          [1, 1],
+          [2, 1],
+          [2, 2],
+          [3, 1],
+          [3, 3],
+        )
+        """
+        assert "<=" not in self.relations
+        result = {}
+        for t in self.operations["v"].domain():
+            if self.operations["v"](*t) == t[1]:
+                result[t] = 1
+            else:
+                result[t] = 0
+        self.relations["<="] = FO_Relation(result)
         
 if __name__ == "__main__":
     import doctest
