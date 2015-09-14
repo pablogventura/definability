@@ -32,18 +32,38 @@ class TipedMultiDiGraph(object):
         """
         Agrega una flecha, si ya habia una flecha con comportamiento igual, se queda con la
         que tiene mas informacion (i.e. entre embedding y homomorfismo se queda con embedding)
+        
+        >>> from morphisms import *
+        >>> from examples import retrombo
+        >>> c = TipedMultiDiGraph()
+        >>> c.add_planet(retrombo)
+        >>> c.add_arrow(Homomorphism([0,1,2,3],retrombo,retrombo,tiporet))
+        >>> c.add_arrow(Embedding([0,1,2,3],retrombo,retrombo,tiporet))
+        >>> c.add_arrow(Isomorphism([0,1,2,3],retrombo,retrombo,tiporet))
+        >>> c.add_arrow(Embedding([0,1,2,3],retrombo,retrombo,tiporet))
+        >>> c.add_arrow(Homomorphism([0,1,2,3],retrombo,retrombo,tiporet))
+        >>> c.graph[retrombo][retrombo].values()
+        [{'arrow': Automorphism(
+          [0] -> 0,
+          [1] -> 1,
+          [2] -> 2,
+          [3] -> 3,
+        ,
+          FO_Type({'v': 2, '^': 2},{})
+        ,
+          Injective,
+          Surjective,
+        )}]
         """
         assert self.graph.has_node(arrow.source) and self.graph.has_node(arrow.target)
         duplicate = self.__find_arrow(arrow)
         if duplicate:
-            print "esa flecha ya estaba! capaz con otro morphtype, o fotype?"
-            print "%s de %s y %s de %s" % (type(arrow),arrow.subtype,type(duplicate),duplicate.subtype)
+            #print "esa flecha ya estaba! capaz con otro morphtype, o fotype?"
+            #print "%s de %s y %s de %s" % (type(arrow),arrow.subtype,type(duplicate),duplicate.subtype)
             if issubclass(type(arrow),type(duplicate)): # el hijo es el tipo de morfismo mas restrictivo
-                print "queda el %s" % type(arrow)
+                #print "queda el %s" % type(arrow)
                 self.graph.remove_edge(duplicate.source,duplicate.target,hash(duplicate))
                 self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
-            else:
-                print "queda el %s" % type(duplicate)
         else:
             self.graph.add_edge(arrow.source,arrow.target,key=hash(arrow),arrow=arrow)
     
@@ -100,23 +120,34 @@ class Constellation(TipedMultiDiGraph):
     >>> c = Constellation()
     >>> c.add_planet(retrombo)
     >>> c.is_open_definable(tiporet,tiporet+tipoposet)
-    True
+    (True, None)
     >>> c.is_open_definable(tiporet,tiporet+tipotest)
-    False
+    (False, Isomorphism(
+      [2] -> 0,
+    ,
+      FO_Type({'v': 2, '^': 2},{})
+    ,
+      Injective,
+      Surjective,
+    ))
     """
     def is_open_definable(self,subtype,supertype):
+        """
+        Busca isomorfismos internos en subtype para saber si preservan supertype-subtype
+        Devuelve una tupla (booleano, contraejemplo)
+        """
         for len_planets in sorted(self.planets.iterkeys()):
             for planet in self.planets[len_planets]:
                 for (inc,protosatellite) in planet.substructures(subtype):
                     iso = protosatellite.is_isomorphic_to_any(self.satellites[len(protosatellite)],subtype)
                     if iso:
                         if not iso.preserves_type(supertype):
-                            return iso
+                            return (False,iso)
                         self.add_arrow(inc.composition(iso.inverse())) #agregar embedding desde satellite a planet
                     else:
                         self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
                         self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
-        return True
+        return (True,None)
         
         
         

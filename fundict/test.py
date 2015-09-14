@@ -27,6 +27,7 @@ def load_tests(loader, tests, ignore):
 class Test(unittest.TestCase):
 
     def test_split(self):
+        
         r13= list(retrombo.substructures(tiporet))[3][1]
         r12= list(retrombo.substructures(tiporet))[2][1]
         self.assertEqual(r13.cardinality,1)
@@ -42,6 +43,15 @@ class Test(unittest.TestCase):
         self.assertIsInstance(r21.is_isomorphic(r22,tiporet),Isomorphism)
         self.assertEqual(len(r21.isomorphisms_to(r22,tiporet)),1)
         self.assertEqual(len(r21.homomorphisms_to(r22,tiporet)),3)
+        
+    def test_constellation(self):
+        from constellation import Constellation
+        
+        rettest10.join_to_le()
+        c = Constellation()
+        c.add_planet(rettest10)
+        self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
+        
 
 if __name__ == '__main__':
     unittest.main()
