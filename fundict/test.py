@@ -56,6 +56,7 @@ class Test(unittest.TestCase):
         tock = datetime.now()   
         diff = tock - tick    # the result is a datetime.timedelta object
         print "is_open_definable tomo %s segundos" % diff.total_seconds()
+        print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
 
 if __name__ == '__main__':
     unittest.main()
