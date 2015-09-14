@@ -16,6 +16,7 @@ import morphisms
 import constellation
 from examples import *
 from morphisms import *
+from datetime import datetime
 
 
 def load_tests(loader, tests, ignore):
@@ -50,8 +51,11 @@ class Test(unittest.TestCase):
         rettest10.join_to_le()
         c = Constellation()
         c.add_planet(rettest10)
+        tick = datetime.now()
         self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
-        
+        tock = datetime.now()   
+        diff = tock - tick    # the result is a datetime.timedelta object
+        print "is_open_definable tomo %s segundos" % diff.total_seconds()
 
 if __name__ == '__main__':
     unittest.main()
