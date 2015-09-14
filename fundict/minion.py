@@ -352,7 +352,42 @@ def is_isomorphic(source, target, subtype):
     else:
         return False
 
+def is_isomorphic_to_any(source, targets, subtype, cores=8):
+    """
+    return isomorphism if A is isomorphic to B (uses Minion)
+    else returns False
+    """
+    if not targets:
+        return False
+    from select import poll, POLLIN
+    import os
+    p = poll()
+    cant = len(targets)
+    minions={}
+    actuales = targets[:cores]
+    targets=targets[cores:]
+    for target in actuales:
+        j = isomorphisms(source, target, subtype, allsols=False)
+        minions[j.minionapp.stdout.fileno()] = j
+        p.register(j.minionapp.stdout,POLLIN)
+        
 
+    while True:
+        for (fd,event) in p.poll(250):
+            if minions[fd]:
+                return minions[fd][0]
+            else:
+                #print len(minions)
+                p.unregister(fd)
+                cant -= 1
+                #print cant
+                if cant <= 0:
+                    return False
+                if targets:
+                    j = isomorphisms(source, targets.pop(0), subtype, allsols=False)
+                    minions[j.minionapp.stdout.fileno()] = j
+                    p.register(j.minionapp.stdout,POLLIN)
+        
 
 if __name__ == "__main__":
     import doctest
