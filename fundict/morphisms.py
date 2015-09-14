@@ -77,7 +77,7 @@ class Homomorphism(Function):
         El tipo del morfismo esta dado por el de menor 'grado' entre los dos
         El tipo de primer orden es el mas chico entre los dos.
         """
-        assert self.source == g.target
+        assert set(g.target.universe).issubset(set(self.source.universe))
         morph_type = min(type(self),type(g))
         if self.subtype.is_subtype_of(g.subtype):
             subtype = self.subtype
