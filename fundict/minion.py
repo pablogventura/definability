@@ -417,7 +417,7 @@ def is_isomorphic_to_any(source, targets, subtype, cores=1, parallel=True):
     if not targets:
         return False
     if not parallel:
-        for target in targets:
+        for target in reversed(targets):
             iso = source.is_isomorphic(target,subtype)
             if iso:
                 return iso
