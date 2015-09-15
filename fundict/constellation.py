@@ -27,7 +27,15 @@ class TipedMultiDiGraph(object):
         self.satellites[len(satellite)].append(satellite)
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
-    
+
+    def degrade(self, explanet, inclusion, planet):
+        """
+        Degrada un planeta a satelite.
+        """
+        self.planets[len(explanet)].remove(explanet)
+        self.satellites[len(explanet)].append(explanet)
+        self.add_arrow(inclusion)
+
     def add_arrow(self,arrow):
         """
         Agrega una flecha, si ya habia una flecha con comportamiento igual, se queda con la
