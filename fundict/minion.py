@@ -14,11 +14,11 @@ import files
 
 
 class MinionSol(object):
-    __count = 0
+    count = 0
     def __init__(self, input_data, allsols=True, fun=lambda x: x):
-        self.id = MinionSol.__count
+        self.id = MinionSol.count
         self.fun = fun
-        MinionSol.__count += 1
+        MinionSol.count += 1
         self.input_filename = config.minion_path + "input_minion%s" % self.id
         # print self.input_filename
 

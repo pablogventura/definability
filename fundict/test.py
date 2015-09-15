@@ -57,6 +57,7 @@ class Test(unittest.TestCase):
         diff = tock - tick    # the result is a datetime.timedelta object
         print "is_open_definable tomo %s segundos" % diff.total_seconds()
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
+        print "Hubo %s llamadas a minion" % minion.MinionSol.count
 
 if __name__ == '__main__':
     unittest.main()
