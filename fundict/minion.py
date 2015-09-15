@@ -414,6 +414,8 @@ def is_isomorphic_to_any(source, targets, subtype, cores=1, parallel=True):
     return isomorphism if A is isomorphic to B (uses Minion)
     else returns False
     """
+    if not targets:
+        return False
     if not parallel:
         for target in targets:
             iso = source.is_isomorphic(target,subtype)
