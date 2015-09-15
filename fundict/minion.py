@@ -267,6 +267,9 @@ class MorphMinionSol(MinionSol):
         return result
 
 class ParallelMorphMinionSol(object):
+    """
+    Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
+    """
     def __init__(self, morph_type, subtype, source, targets, inj=None, surj=None, allsols=False, cores=0):
 
         self.queue = list(targets)
@@ -411,8 +414,8 @@ def is_isomorphic(source, target, subtype):
 
 def is_isomorphic_to_any(source, targets, subtype, cores=4):
     """
-    return isomorphism if A is isomorphic to B (uses Minion)
-    else returns False
+    Devuelve un iso si source es isomorfa a algun target
+    sino, false. Usa multiples preguntas a minion en paralelo.
     """
     if not targets:
         return False
