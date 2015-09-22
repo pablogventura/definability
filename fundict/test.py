@@ -45,8 +45,9 @@ class Test(unittest.TestCase):
         self.assertEqual(len(r21.isomorphisms_to(r22,tiporet)),1)
         self.assertEqual(len(r21.homomorphisms_to(r22,tiporet)),3)
         
-    def test_constellation(self):
+    def test_open_definable_one_planet(self):
         from constellation import Constellation
+        habia = minion.MinionSol.count
         
         rettest10.join_to_le()
         c = Constellation()
@@ -57,7 +58,24 @@ class Test(unittest.TestCase):
         diff = tock - tick    # the result is a datetime.timedelta object
         print "is_open_definable tomo %s segundos" % diff.total_seconds()
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
-        print "Hubo %s llamadas a minion" % minion.MinionSol.count
+        print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
 
+    def test_open_definable_multi_planet(self):
+        from constellation import Constellation
+        habia = minion.MinionSol.count
+        
+        rettest10.join_to_le()
+        rettest102.join_to_le()
+        c = Constellation()
+        c.add_planet(rettest10)
+        c.add_planet(rettest102)
+        tick = datetime.now()
+        self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
+        tock = datetime.now()   
+        diff = tock - tick    # the result is a datetime.timedelta object
+        print "is_open_definable con 2 planets tomo %s segundos" % diff.total_seconds()
+        print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
+        print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
+        
 if __name__ == '__main__':
     unittest.main()

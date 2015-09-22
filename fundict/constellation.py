@@ -15,10 +15,11 @@ class TipedMultiDiGraph(object):
 
     def add_planet(self, planet):
         """
-        Agrega un planeta
+        Agrega un planeta, solo si no esta.
         """
-        self.planets[len(planet)].append(planet)
-        self.graph.add_node(planet)
+        if planet not in self.planets[len(planet)]:
+            self.planets[len(planet)].append(planet)
+            self.graph.add_node(planet)
 
     def add_satellite(self, satellite, inclusion, planet):
         """
@@ -139,22 +140,46 @@ class Constellation(TipedMultiDiGraph):
       Surjective,
     ))
     """
+    def iter_satellites(self, cardinality, without=[]):
+        """
+        Itera sobre los satelites de largo cardinality, quitando los que estan en without
+        """
+        for satellite in self.satellites[cardinality]:
+            if satellite not in without:
+                yield satellite
+
+    def iter_planets(self, cardinality, without=[]):
+        """
+        Itera sobre los planetas de largo cardinality, quitando los que estan en without
+        """
+        for planets in self.planets[cardinality]:
+            if planets not in without:
+                yield planets
+                
     def is_open_definable(self,subtype,supertype):
         """
         Busca isomorfismos internos en subtype para saber si preservan supertype-subtype
         Devuelve una tupla (booleano, contraejemplo)
         """
-        for len_planets in sorted(self.planets.iterkeys()):
+        for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
             for planet in self.planets[len_planets]:
                 for (inc,protosatellite) in planet.substructures(subtype):
-                    iso = protosatellite.is_isomorphic_to_any(self.satellites[len(protosatellite)],subtype)
+                    iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(len(protosatellite)),subtype)
                     if iso:
                         if not iso.preserves_type(supertype):
                             return (False,iso)
                         self.add_arrow(inc.composition(iso.inverse())) #agregar embedding desde satellite a planet
                     else:
-                        self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
-                        self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
+                        iso = protosatellite.is_isomorphic_to_any(self.iter_planets(len(protosatellite),[planet]),subtype)
+                        if iso:
+                            if not iso.preserves_type(supertype):
+                                return (False,iso)
+                            explanet = iso.target
+                            self.degrade(explanet,inc.composition(iso.inverse()),planet)
+                            self.add_arrows(explanet.isomorphisms_to(explanet,subtype))
+                        else:
+                            self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
+                            self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
         return (True,None)
         
         

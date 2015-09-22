@@ -186,6 +186,7 @@ class FO_Model(object):
     def join_to_le(self):
         """
         Genera una relacion <= a partir de v
+        Solo si no tiene ninguna relacion "<="
         
         >>> from examples import retrombo
         >>> del retrombo.relations["<="]
@@ -203,14 +204,14 @@ class FO_Model(object):
           [3, 3],
         )
         """
-        assert "<=" not in self.relations
-        result = {}
-        for t in self.operations["v"].domain():
-            if self.operations["v"](*t) == t[1]:
-                result[t] = 1
-            else:
-                result[t] = 0
-        self.relations["<="] = FO_Relation(result)
+        if "<=" not in self.relations:
+            result = {}
+            for t in self.operations["v"].domain():
+                if self.operations["v"](*t) == t[1]:
+                    result[t] = 1
+                else:
+                    result[t] = 0
+            self.relations["<="] = FO_Relation(result)
         
 if __name__ == "__main__":
     import doctest
