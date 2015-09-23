@@ -148,11 +148,12 @@ class FO_Model(object):
         return (emb,substructure)
 
 
-    def substructures(self,subtype):
+    def substructures(self,subtype,without=[]):
         """
         Generador que va devolviendo las subestructuras.
         Intencionalmente no filtra por isomorfismos.
         Devuelve una subestructura y un embedding.
+        No devuelve las subestructuras cuyos universos estan en without.
         
         >>> from examples import *
         >>> len(list(retrombo.substructures(tiporet)))
@@ -162,11 +163,12 @@ class FO_Model(object):
         >>> len(list(retrombo.substructures(tiporet.subtype([],[])))) # debe dar (2**cardinalidad)-1
         15
         """
-
+        without = map(set,without)
         for sub in self.subuniverses(subtype):
-            # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
-            # independientemente de el subtipo del que se buscan embeddings.
-            yield self.substructure(sub,subtype)
+            if set(sub) not in without:
+                # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
+                # independientemente de el subtipo del que se buscan embeddings.
+                yield self.substructure(sub,subtype)
 
     def __eq__(self,other):
         """
