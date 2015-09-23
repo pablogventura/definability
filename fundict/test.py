@@ -56,6 +56,7 @@ class Test(unittest.TestCase):
         self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
         tock = datetime.now()   
         diff = tock - tick    # the result is a datetime.timedelta object
+        self.assertEqual((len(c.graph.edges()),len(c.graph.nodes())),(2364,26))
         print "is_open_definable tomo %s segundos" % diff.total_seconds()
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
         print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
@@ -73,6 +74,7 @@ class Test(unittest.TestCase):
         self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
         tock = datetime.now()   
         diff = tock - tick    # the result is a datetime.timedelta object
+        self.assertEqual((len(c.graph.edges()),len(c.graph.nodes())),(2364,26))
         print "is_open_definable con 2 planets tomo %s segundos" % diff.total_seconds()
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
         print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
