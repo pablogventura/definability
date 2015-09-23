@@ -119,7 +119,44 @@ class TipedMultiDiGraph(object):
         img = Image.open('multi.png')
         plt.imshow(img)
         plt.show()
+        
+    def add_check_arrows(self, arrows, subtype, supertype):
+        """
+        Agrega flechas y chequea que preserven.
+        Devuelve la primera que encuentre que no preserva, sino None.
+        """
+        for arrow in arrows:
+            ce = self.add_check_arrow(arrow,subtype,supertype)
+            if ce:
+                return ce
+                
+    def add_check_arrow(self, arrow, subtype, supertype):
+        """
+        Agrega una flecha y chequea que preserve.
+        Si no preserva, la devuelve, sino None.
+        """
+        assert subtype.is_subtype_of(arrow.subtype) # checkeo por las dudas
+        
+        if arrow.preserves_type(supertype):
+            self.add_arrow(arrow)
+        else:
+            return arrow
 
+    def iter_satellites(self, cardinality, without=[]):
+        """
+        Itera sobre los satelites de largo cardinality, quitando los que estan en without
+        """
+        for satellite in self.satellites[cardinality]:
+            if satellite not in without:
+                yield satellite
+
+    def iter_planets(self, cardinality, without=[]):
+        """
+        Itera sobre los planetas de largo cardinality, quitando los que estan en without
+        """
+        for planets in self.planets[cardinality]:
+            if planets not in without:
+                yield planets
 
 class Constellation(TipedMultiDiGraph):
     """
@@ -140,48 +177,64 @@ class Constellation(TipedMultiDiGraph):
       Surjective,
     ))
     """
-    def iter_satellites(self, cardinality, without=[]):
-        """
-        Itera sobre los satelites de largo cardinality, quitando los que estan en without
-        """
-        for satellite in self.satellites[cardinality]:
-            if satellite not in without:
-                yield satellite
 
-    def iter_planets(self, cardinality, without=[]):
+    def __open_check_protosatellite(self,protosatellite, inc, planet, subtype, supertype):
         """
-        Itera sobre los planetas de largo cardinality, quitando los que estan en without
+        Calcula el lugar que le toca al protosatellite y lo coloca ahi.
+        Si encuentra un contraejemplo para definir por formulas abiertas, lo devuelve.
+        Si no encuentra contraejemplo devuelve None
         """
-        for planets in self.planets[cardinality]:
-            if planets not in without:
-                yield planets
-                
+        iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(len(protosatellite)),subtype)
+        if iso:
+            if not iso.preserves_type(supertype):
+                return iso
+            self.add_arrow(inc.composition(iso.inverse())) #agregar embedding de satellite a planet
+        else:
+            iso = protosatellite.is_isomorphic_to_any(self.iter_planets(len(protosatellite),[planet]),subtype)
+            if iso:
+                if not iso.preserves_type(supertype):
+                    return iso
+                explanet = iso.target
+                self.degrade(explanet,inc.composition(iso.inverse()),planet)
+                ce = self.add_check_arrows(explanet.isomorphisms_to(explanet,subtype), subtype, supertype)
+                if ce:
+                    return ce
+            else:
+                self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
+                ce = self.add_check_arrows(protosatellite.isomorphisms_to(protosatellite,subtype), subtype, supertype)#autos
+                if ce:
+                    return ce
+    
+    def is_existential_definable(self, subtype, supertype):
+        """
+        Busca automorfismos en subtype para saber si preservan supertype-subtype
+        Devuelve una tupla (booleano, contraejemplo)
+        """
+        for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
+            for planet in self.planets[len_planets]:
+                inc,protosatellite = planet.substructure(planet.universe, subtype)
+                ce = self.__open_check_protosatellite(protosatellite, inc, planet, subtype, supertype)
+                if ce:
+                    return (False, ce)
+        return (True,None)
+        
     def is_open_definable(self,subtype,supertype):
         """
         Busca isomorfismos internos en subtype para saber si preservan supertype-subtype
         Devuelve una tupla (booleano, contraejemplo)
         """
+
+        (b,ce)=self.is_existential_definable(subtype,supertype)
+        if not b:
+            return (b,ce) # no llego ni a ser definible
+
         for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
             for planet in self.planets[len_planets]:
-                for (inc,protosatellite) in planet.substructures(subtype):
-                    iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(len(protosatellite)),subtype)
-                    if iso:
-                        if not iso.preserves_type(supertype):
-                            return (False,iso)
-                        self.add_arrow(inc.composition(iso.inverse())) #agregar embedding desde satellite a planet
-                    else:
-                        iso = protosatellite.is_isomorphic_to_any(self.iter_planets(len(protosatellite),[planet]),subtype)
-                        if iso:
-                            if not iso.preserves_type(supertype):
-                                return (False,iso)
-                            explanet = iso.target
-                            self.degrade(explanet,inc.composition(iso.inverse()),planet)
-                            self.add_arrows(explanet.isomorphisms_to(explanet,subtype))
-                        else:
-                            self.add_satellite(protosatellite,inc,planet) # merece ser un satellite
-                            self.add_arrows(protosatellite.isomorphisms_to(protosatellite,subtype)) # le busco automorfismos
+                for (inc,protosatellite) in planet.substructures(subtype, without=[planet.universe]):
+                    ce = self.__open_check_protosatellite(protosatellite, inc, planet, subtype, supertype)
+                    if ce:
+                        return (False, ce)
         return (True,None)
-        
         
         
         
