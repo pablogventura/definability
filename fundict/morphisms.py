@@ -66,11 +66,8 @@ class Homomorphism(Function):
             subtype = self.subtype
         else:
             subtype = g.subtype      
-            
-        result = morph_type.copy(g)
-        result.target = self.target
+        result = morph_type(g.dict, g.source, self.target, subtype)
         result.map_in_place(self)
-        result.subtype = subtype
         
         result.inj = None
         result.surj = None
