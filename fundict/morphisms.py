@@ -227,6 +227,18 @@ class Isomorphism(Embedding):
         else:
             self.stype = "Isomorphism"
 
+# TODO esta funcion chequea que un embedding preserve a la inversa
+def em_check(A,B,f):
+    """
+    Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
+    """
+    for rel in A.relations:
+        frelA = [map(lambda x: f[x], row) for row in A.relations[rel].table(relation=True)]
+        for row in B.relations[rel].table(relation=True):
+            if all(x in f for x in row):
+                if not row in frelA:
+                    return False
+    return True
 
 
 if __name__ == "__main__":
