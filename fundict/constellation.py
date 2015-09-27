@@ -186,9 +186,9 @@ class Constellation(TipedMultiDiGraph):
         """
         iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(len(protosatellite)),subtype)
         if iso:
-            if not iso.preserves_type(supertype):
-                return iso
-            self.add_arrow(inc.composition(iso.inverse())) #agregar embedding de satellite a planet
+            ce = self.add_check_arrow(inc.composition(iso.inverse()),subtype,supertype) #agregar embedding de satellite a planet
+            if ce:
+                return ce
         else:
             iso = protosatellite.is_isomorphic_to_any(self.iter_planets(len(protosatellite),[planet]),subtype)
             if iso:

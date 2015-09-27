@@ -211,9 +211,9 @@ class Embedding(Homomorphism):
         Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
         Funcion de Camper
         """
-        frelSource = [map(lambda x: f(x), row) for row in self.source.relations[rel].table(relation=True)]
-        for row in self.target.relations[rel].table(relation=True):
-            if all(x in f for x in row):
+        frelSource = [map(lambda x: self(x), row) for row in self.source.relations[rel].table()]
+        for row in self.target.relations[rel].table():
+            if all(x in self.image() for x in row):
                 if not row in frelSource:
                     return False
         return True
@@ -223,7 +223,6 @@ class Embedding(Homomorphism):
         Revisa que desde la imagen del morfismo hacia el dominio, por la inversa, se preserve el tipo.
         """
         checktype = supertype - self.subtype
-        
         assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
         
         for rel in checktype.relations:
@@ -239,10 +238,11 @@ class Embedding(Homomorphism):
         Revisa preservacion de las relaciones que tiene supertype, que no tiene el embedding en su tipo.
         Si preserva el tipo, se cambia de tipo a ese.
         """
-
+        subtype = self.subtype
         if not Homomorphism.preserves_type(self,supertype):
             # no preserva hacia adenante
             return False
+        self.subtype = subtype
         if check_inverse and not self.inverse_preserves_type(supertype):
             # no preserva hacia atras
             return False
