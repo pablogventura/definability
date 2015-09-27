@@ -98,7 +98,7 @@ class Homomorphism(Function):
         
     def preserves_relation(self, rel):
         """
-        Revisa si el morfismo preserva la relacion.
+        Revisa si el homomorfismo preserva la relacion.
         
         Sean A un conjunto, R ⊆ Aⁿ y 𝛾:D ⊆ A → A una función.
         Diremos que 𝛾  preserva a R si para todo (a₁,...,aₙ) ∈ R∩Dⁿ
@@ -136,6 +136,8 @@ class Homomorphism(Function):
 
     def preserves_type(self, supertype):
         """
+        Revisa que el homomorfismo tambien sea un homomorfismo para el supertipo.
+        
         Revisa preservacion de las relaciones que tiene supertype, que no tiene el morfismo en su tipo.
         Si preserva el tipo, se cambia de tipo a ese.
 
@@ -166,8 +168,8 @@ class Homomorphism(Function):
         for rel in checktype.relations:
             if not self.preserves_relation(rel):
                 return False
-        
-        self.subtype = supertype # se auto promueve a un morfismo de ese tipo
+                
+        self.subtype = supertype # se auto promueve a un homomorfismo de ese tipo
         
         return True
             
@@ -201,6 +203,52 @@ class Embedding(Homomorphism):
         """
         return Isomorphism(self.dict,self.source,self.target.restrict(list(self.image()),self.subtype),self.subtype)
 
+
+    def inverse_preserves_rel(self, rel):
+        """
+        Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
+        Funcion de Camper
+        """
+        frelSource = [map(lambda x: f(x), row) for row in self.source.relations[rel].table(relation=True)]
+        for row in self.target.relations[rel].table(relation=True):
+            if all(x in f for x in row):
+                if not row in frelSource:
+                    return False
+        return True
+
+    def inverse_preserves_type(self, supertype):
+        """
+        Revisa que desde la imagen del morfismo hacia el dominio, por la inversa, se preserve el tipo.
+        """
+        checktype = supertype - self.subtype
+        
+        assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
+        
+        for rel in checktype.relations:
+            if not self.inverse_preserves_rel(rel):
+                return False
+        
+        return True
+        
+    def preserves_type(self, supertype, check_inverse=True):
+        """
+        Revisa que el embedding tambien sea un embedding para el supertipo.
+        
+        Revisa preservacion de las relaciones que tiene supertype, que no tiene el embedding en su tipo.
+        Si preserva el tipo, se cambia de tipo a ese.
+        """
+
+        if not Homomorphism.preserves_type(self,supertype):
+            # no preserva hacia adenante
+            return False
+        if check_inverse and not self.inverse_preserves_type(supertype):
+            # no preserva hacia atras
+            return False
+        self.subtype = supertype # se auto promueve a un embedding de ese tipo
+        return True
+            
+        
+
 class Isomorphism(Embedding):
     """
     Isomorfismos
@@ -227,18 +275,7 @@ class Isomorphism(Embedding):
         else:
             self.stype = "Isomorphism"
 
-# TODO esta funcion chequea que un embedding preserve a la inversa
-def em_check(A,B,f):
-    """
-    Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
-    """
-    for rel in A.relations:
-        frelA = [map(lambda x: f[x], row) for row in A.relations[rel].table(relation=True)]
-        for row in B.relations[rel].table(relation=True):
-            if all(x in f for x in row):
-                if not row in frelA:
-                    return False
-    return True
+
 
 
 if __name__ == "__main__":
