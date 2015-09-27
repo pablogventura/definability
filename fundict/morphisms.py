@@ -134,7 +134,7 @@ class Homomorphism(Function):
                     result = result and self.target.relations[rel](*self.vector_call(t))
             return result
 
-    def preserves_type(self, supertype):
+    def preserves_type(self, supertype, check_inverse=False):
         """
         Revisa que el homomorfismo tambien sea un homomorfismo para el supertipo.
         
@@ -161,6 +161,8 @@ class Homomorphism(Function):
         >>> h.preserves_type(tiporet+tipotest)
         False
         """
+        assert not check_inverse # solo por mantener interfaz igual con embeddings y isos
+        
         checktype = supertype - self.subtype
         
         assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
