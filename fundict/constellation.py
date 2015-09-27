@@ -168,13 +168,12 @@ class Constellation(TipedMultiDiGraph):
     >>> c.is_open_definable(tiporet,tiporet+tipoposet)
     (True, None)
     >>> c.is_open_definable(tiporet,tiporet+tipotest)
-    (False, Isomorphism(
-      [2] -> 0,
+    (False, Embedding(
+      [0] -> 2,
     ,
       FO_Type({'v': 2, '^': 2},{})
     ,
       Injective,
-      Surjective,
     ))
     """
 
