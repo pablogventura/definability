@@ -134,6 +134,18 @@ class Homomorphism(Function):
                     result = result and self.target.relations[rel](*self.vector_call(t))
             return result
 
+    def inverse_preserves_rel(self, rel):
+        """
+        Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
+        Funcion de Camper
+        """
+        frelSource = [map(lambda x: self(x), row) for row in self.source.relations[rel].table()]
+        for row in self.target.relations[rel].table():
+            if all(x in self.image() for x in row):
+                if not row in frelSource:
+                    return False
+        return True
+
     def preserves_type(self, supertype, check_inverse=False):
         """
         Revisa que el homomorfismo tambien sea un homomorfismo para el supertipo.
@@ -161,19 +173,17 @@ class Homomorphism(Function):
         >>> h.preserves_type(tiporet+tipotest)
         False
         """
-        assert not check_inverse # solo por mantener interfaz igual con embeddings y isos
-        
+
         checktype = supertype - self.subtype
-        
         assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
         
         for rel in checktype.relations:
-            if not self.preserves_relation(rel):
+            if not self.preserves_relation(rel) or (check_inverse and not self.inverse_preserves_rel(rel)):
                 return False
-                
+
         self.subtype = supertype # se auto promueve a un homomorfismo de ese tipo
         
-        return True
+        return True  
             
 class Embedding(Homomorphism):
     """
@@ -205,50 +215,9 @@ class Embedding(Homomorphism):
         """
         return Isomorphism(self.dict,self.source,self.target.restrict(list(self.image()),self.subtype),self.subtype)
 
-
-    def inverse_preserves_rel(self, rel):
-        """
-        Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
-        Funcion de Camper
-        """
-        frelSource = [map(lambda x: self(x), row) for row in self.source.relations[rel].table()]
-        for row in self.target.relations[rel].table():
-            if all(x in self.image() for x in row):
-                if not row in frelSource:
-                    return False
-        return True
-
-    def inverse_preserves_type(self, supertype):
-        """
-        Revisa que desde la imagen del morfismo hacia el dominio, por la inversa, se preserve el tipo.
-        """
-        checktype = supertype - self.subtype
-        assert not checktype.operations # no tiene que haber diferencia en las operaciones con el supertipo
-        
-        for rel in checktype.relations:
-            if not self.inverse_preserves_rel(rel):
-                return False
-        
-        return True
-        
     def preserves_type(self, supertype, check_inverse=True):
-        """
-        Revisa que el embedding tambien sea un embedding para el supertipo.
-        
-        Revisa preservacion de las relaciones que tiene supertype, que no tiene el embedding en su tipo.
-        Si preserva el tipo, se cambia de tipo a ese.
-        """
-        subtype = self.subtype
-        if not Homomorphism.preserves_type(self,supertype):
-            # no preserva hacia adenante
-            return False
-        self.subtype = subtype
-        if check_inverse and not self.inverse_preserves_type(supertype):
-            # no preserva hacia atras
-            return False
-        self.subtype = supertype # se auto promueve a un embedding de ese tipo
-        return True
-            
+        return super(Embedding, self).preserves_type(supertype,check_inverse)
+       
         
 
 class Isomorphism(Embedding):
