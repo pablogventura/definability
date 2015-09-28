@@ -119,6 +119,17 @@ class TipedMultiDiGraph(object):
         img = Image.open('multi.png')
         plt.imshow(img)
         plt.show()
+    def arrows(self, source, target):
+        """
+        Devuelve la lista de flechas desde source a target
+        """
+        try:
+            result = self.graph[source][target]
+        except KeyError:
+            result = []
+        if result:
+            result = [e['arrow'] for e in result.values()]
+        return result
         
     def add_check_arrows(self, arrows, subtype, supertype):
         """
