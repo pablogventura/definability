@@ -276,7 +276,28 @@ class Constellation(TipedMultiDiGraph):
                 if ce:
                     return (False, ce)
         return (True,None)
-        
+
+    def is_positive_open_definable(self,subtype,supertype):
+        """
+        Busca homomorfismos internos en subtype para saber si preservan supertype-subtype
+        Devuelve una tupla (booleano, contraejemplo)
+        """
+
+        (b,ce)=self.is_existential_positive_definable(subtype,supertype)
+        if not b:
+            return (b,ce) # no llego ni a ser definible por una formula existencial positiva
+
+        satellites = reduce(lambda x,y:x+y,self.satellites.values())
+
+        ce = self.add_check_arrows(promiscuous.homomorphisms_to(satellite,
+                                                                subtype,
+                                                                without=self.arrows(satellite,
+                                                                                    satellite)),
+                                   subtype,
+                                   supertype)
+        if ce:
+            return (False, ce)
+        return (True,None)
         
 if __name__ == "__main__":
     import doctest
