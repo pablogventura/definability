@@ -169,6 +169,16 @@ class TipedMultiDiGraph(object):
             if planets not in without:
                 yield planets
 
+    def satellites_of(self, planet, cardinality=None):
+        """
+        Devuelve una lista con los satelites de planet, ordenados de mayor a menor en cardinalidad.
+        """
+        result = sorted(self.graph.predecessors(planet),reverse=True, key=len)
+        if not cardinality:
+            return result
+        else:
+            return filter(lambda x: len(x) == cardinality, result)
+
 class Constellation(TipedMultiDiGraph):
     """
     
@@ -245,7 +255,29 @@ class Constellation(TipedMultiDiGraph):
                     if ce:
                         return (False, ce)
         return (True,None)
-        
+
+    def is_existential_positive_definable(self, subtype, supertype):
+        """
+        Busca automorfismos en subtype para saber si preservan supertype-subtype
+        Devuelve una tupla (booleano, contraejemplo)
+        """
+        (b,ce)=self.is_open_definable(subtype,supertype)
+        if not b:
+            return (b,ce) # no llego ni a ser definible por una formula abierta
+        print (len(self.graph.nodes()), len(self.graph.edges()))
+        for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
+            for planet in self.planets[len_planets]:
+                satellite = self.satellites_of(planet, len_planets)[0] # satelite principal
+                ce = self.add_check_arrows(satellite.homomorphisms_to(satellite,
+                                                                      subtype,
+                                                                      without=self.arrows(satellite,
+                                                                                          satellite)),
+                                           subtype,
+                                           supertype)
+                if ce:
+                    return (False, ce)
+        print (len(self.graph.nodes()), len(self.graph.edges()))
+        return (True,None)
         
         
 if __name__ == "__main__":
