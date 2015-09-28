@@ -79,7 +79,10 @@ class Test(unittest.TestCase):
         todos = planets + satellites
         for x in todos:
             for y in todos:
-                if x != y:
+                if x == y:
+                    for flecha in c.arrows(x,y):
+                        self.assertIsInstance(flecha, morphisms.Isomorphism)
+                else:
                     for flecha in c.arrows(x,y):
                         self.assertIsInstance(flecha, morphisms.Embedding)
         
