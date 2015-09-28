@@ -258,7 +258,7 @@ class Constellation(TipedMultiDiGraph):
 
     def is_existential_positive_definable(self, subtype, supertype):
         """
-        Busca automorfismos en subtype para saber si preservan supertype-subtype
+        Busca endomorfismos en subtype para saber si preservan supertype-subtype
         Devuelve una tupla (booleano, contraejemplo)
         """
         (b,ce)=self.is_open_definable(subtype,supertype)
