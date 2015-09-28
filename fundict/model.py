@@ -30,51 +30,51 @@ class FO_Model(object):
         result += indent(repr(self.relations))
         return result + ")"
         
-    def homomorphisms_to(self, target, subtype):
+    def homomorphisms_to(self, target, subtype, without=[]):
         """
         Genera todos los homomorfismos de este modelo a target, en el subtype.
         """
-        return minion.homomorphisms(self,target,subtype)
+        return minion.homomorphisms(self,target,subtype,without=without)
     
-    def embeddings_to(self, target, subtype):
+    def embeddings_to(self, target, subtype, without=[]):
         """
         Genera todos los embeddings de este modelo a target, en el subtype.
         """
-        return minion.embeddings(self,target,subtype)
+        return minion.embeddings(self,target,subtype,without=without)
         
-    def isomorphisms_to(self, target, subtype):
+    def isomorphisms_to(self, target, subtype, without=[]):
         """
         Genera todos los isomorfismos de este modelo a target, en el subtype.
         """
-        return minion.isomorphisms(self,target,subtype)
+        return minion.isomorphisms(self,target,subtype,without=without)
 
-    def is_homomorphic_image(self, target, subtype):
+    def is_homomorphic_image(self, target, subtype, without=[]):
         """
         Si existe, devuelve un homomorfismo de este modelo a target, en el subtype;
         Si no, devuelve False
         """
-        return minion.is_homomorphic_image(self, target, subtype)
+        return minion.is_homomorphic_image(self, target, subtype,without=without)
         
-    def is_substructure(self, target, subtype):
+    def is_substructure(self, target, subtype, without=[]):
         """
         Si existe, devuelve un embedding de este modelo a target, en el subtype;
         Si no, devuelve False
         """
-        return minion.is_substructure(self, target, subtype)
+        return minion.is_substructure(self, target, subtype,without=without)
         
-    def is_isomorphic(self, target, subtype):
+    def is_isomorphic(self, target, subtype, without=[]):
         """
         Si existe, devuelve un isomorfismo de este modelo a target, en el subtype;
         Si no, devuelve False
         """
-        return minion.is_isomorphic(self, target, subtype)
+        return minion.is_isomorphic(self, target, subtype,without=without)
 
-    def is_isomorphic_to_any(self, targets, subtype):
+    def is_isomorphic_to_any(self, targets, subtype, without=[]):
         """
         Si lo es, devuelve el primer isomorfismo encontrado desde este modelo a alguno en targets, en el subtype;
         Si no, devuelve False
         """
-        return minion.is_isomorphic_to_any(self,targets,subtype)
+        return minion.is_isomorphic_to_any(self,targets,subtype,without=without)
 
     def subuniverse(self,subset,subtype):
         """

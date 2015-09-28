@@ -104,7 +104,7 @@ class MinionSol(object):
 
 
 class MorphMinionSol(MinionSol):
-    def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True):
+    def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True, without=[]):
         self.morph_type = morph_type
         self.subtype = subtype
         self.source = source
@@ -113,14 +113,14 @@ class MorphMinionSol(MinionSol):
         self.surj = surj
         
         if self.morph_type == Homomorphism:
-            input_data = self.__input_homo()
+            input_data = self.__input_homo(without)
         elif self.morph_type == Embedding:
             self.inj = True
-            input_data = self.__input_embedd()
+            input_data = self.__input_embedd(without)
         elif self.morph_type == Isomorphism:
             self.inj = True
             self.surj = True
-            input_data = self.__input_embedd()
+            input_data = self.__input_embedd(without)
         else:
             raise IndexError("Morphism unknown")
 
@@ -209,12 +209,12 @@ class MorphMinionSol(MinionSol):
         result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality)
         
         if without:
-            result += "table(f,without)\n"
+            result += "negativetable(f,without)\n"
         
         result += "**EOF**\n"
         return result
 
-    def __input_embedd(self):
+    def __input_embedd(self,without=[]):
         """
         Genera un string para darle a Minion para tener los embeddings de A en B
         """
@@ -241,7 +241,8 @@ class MorphMinionSol(MinionSol):
             result += self.__oprel_table(rel,B.relations[rel],prefix="b") + "\n"
         for rel in self.subtype.relations:
             result += self.__oprel_table(rel,A.relations[rel],prefix="a") + "\n"
-            
+        if without:
+            result += self.morphisms_to_minion_table(without) + "\n"
         result += "**CONSTRAINTS**\n"
         if self.inj:
             result += "alldiff([f[%s]])\n" % "],f[".join(map(str, A.universe))  # exige que todos los valores de f
@@ -273,6 +274,8 @@ class MorphMinionSol(MinionSol):
         
         result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio 
         result += "occurrencegeq(g, -1, %s)\n" % (max(B.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio
+        if without:
+            result += "negativetable(f,without)\n"
         result += "**EOF**\n"
         return result
         
@@ -291,16 +294,16 @@ class MorphMinionSol(MinionSol):
         """
         Genera la entrada de minion para un morfismo.
         """
-        result =[-1] * (max(map(lambda x:x[0],self.dict.keys()))+1)
-        for i in self.dict.keys():
-            result[i[0]] = self.dict[i]
+        result =[-1] * (max(map(lambda x:x[0],morph.dict.keys()))+1)
+        for i in morph.dict.keys():
+            result[i[0]] = morph.dict[i]
         return result
 
 class ParallelMorphMinionSol(object):
     """
     Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
     """
-    def __init__(self, morph_type, subtype, source, targets, inj=None, surj=None, allsols=False, cores=0):
+    def __init__(self, morph_type, subtype, source, targets, inj=None, surj=None, allsols=False, cores=0,without=[]):
 
         self.queue = list(targets)
         self.morph_type = morph_type
@@ -310,6 +313,7 @@ class ParallelMorphMinionSol(object):
         self.surj = surj
         self.allsols = allsols
         self.solution = None
+        self.without=without
         
         self.poll = poll()
         self.minions={}
@@ -326,7 +330,8 @@ class ParallelMorphMinionSol(object):
                                         target,
                                         inj=self.inj,
                                         surj=self.inj,
-                                        allsols=self.allsols)
+                                        allsols=self.allsols,
+                                        without=self.without)
             fd = new_minion.minionapp.stdout.fileno()
             self.minions[fd] = new_minion
             self.poll.register(fd,POLLIN)
@@ -357,7 +362,7 @@ class ParallelMorphMinionSol(object):
             return self.solution
         
 
-def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True):
+def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True,without=[]):
     """
     call Minion to calculate all homomorphisms from A to B
     
@@ -365,9 +370,9 @@ def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True):
     >>> len(homomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
     12
     """
-    return MorphMinionSol(Homomorphism, subtype, source, target, inj, surj, allsols)
+    return MorphMinionSol(Homomorphism, subtype, source, target, inj, surj, allsols, without)
 
-def embeddings(source, target, subtype, surj=None, allsols=True):
+def embeddings(source, target, subtype, surj=None, allsols=True,without=[]):
     """
     call Minion to calculate all embeddings of A into B
 
@@ -375,9 +380,9 @@ def embeddings(source, target, subtype, surj=None, allsols=True):
     >>> len(embeddings(posetcadena2,posetdiamante,posetcadena2.fo_type))
     7
     """
-    return MorphMinionSol(Embedding, subtype, source, target, True, surj, allsols)
+    return MorphMinionSol(Embedding, subtype, source, target, True, surj, allsols, without)
 
-def isomorphisms(source, target, subtype, allsols=True):
+def isomorphisms(source, target, subtype, allsols=True,without=[]):
     """
     call Minion to calculate all homomorphisms from A to B
 
@@ -389,9 +394,9 @@ def isomorphisms(source, target, subtype, allsols=True):
     >>> len(isomorphisms(posetdiamante,posetdiamante,posetdiamante.fo_type))
     6
     """
-    return MorphMinionSol(Isomorphism, subtype, source, target, True, True, allsols)
+    return MorphMinionSol(Isomorphism, subtype, source, target, True, True, allsols, without)
 
-def is_homomorphic_image(source, target, subtype):
+def is_homomorphic_image(source, target, subtype,without=[]):
     """
     return homomorphism if B is a homomorphic image of A (uses Minion)
     else returns False
@@ -402,13 +407,13 @@ def is_homomorphic_image(source, target, subtype):
     >>> bool(is_homomorphic_image(posetdiamante,posetcadena2,posetcadena2.fo_type))
     True
     """
-    h = homomorphisms(source, target, subtype, allsols=False)
+    h = homomorphisms(source, target, subtype, allsols=False, without=without)
     if h:
         return h[0]
     else:
         return False
 
-def is_substructure(source, target, subtype):
+def is_substructure(source, target, subtype,without=[]):
     """
     return embedding if B is a substructure of A (uses Minion)
     else returns False
@@ -419,13 +424,13 @@ def is_substructure(source, target, subtype):
     >>> bool(is_substructure(posetdiamante,posetcadena2,posetcadena2.fo_type))
     False
     """
-    e = embeddings(source, target, subtype, allsols=False)
+    e = embeddings(source, target, subtype, allsols=False, without=without)
     if e:
         return e[0]
     else:
         return False
 
-def is_isomorphic(source, target, subtype):
+def is_isomorphic(source, target, subtype,without=[]):
     """
     return isomorphism if A is isomorphic to B (uses Minion)
     else returns False
@@ -436,13 +441,13 @@ def is_isomorphic(source, target, subtype):
     >>> bool(is_isomorphic(posetdiamante,posetdiamante,posetdiamante.fo_type))
     True
     """
-    i = isomorphisms(source, target, subtype, allsols=False)
+    i = isomorphisms(source, target, subtype, allsols=False, without=without)
     if i:
         return i[0]
     else:
         return False
 
-def is_isomorphic_to_any(source, targets, subtype, cores=4):
+def is_isomorphic_to_any(source, targets, subtype, cores=4,without=[]):
     """
     Devuelve un iso si source es isomorfa a algun target
     sino, false. Usa multiples preguntas a minion en paralelo.
@@ -450,7 +455,7 @@ def is_isomorphic_to_any(source, targets, subtype, cores=4):
     if not targets:
         return False
 
-    i = ParallelMorphMinionSol(Isomorphism, subtype, source, targets,cores=cores)
+    i = ParallelMorphMinionSol(Isomorphism, subtype, source, targets,cores=cores, without=without)
     return i.solve()
 
     
