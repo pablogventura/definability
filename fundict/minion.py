@@ -161,9 +161,10 @@ class MorphMinionSol(MinionSol):
         result = "%s %s %s\n" % (table_name, height, width) + result
         return result
 
-    def __input_homo(self):
+    def __input_homo(self,without=[]):
         """
-        Genera un string para darle a Minion para tener los homomorfismos de source en target
+        Genera un string para darle a Minion para tener los homomorfismos de source en target quitando
+        los que aparecen en without.
         """
         A = self.source
         B = self.target
@@ -182,6 +183,10 @@ class MorphMinionSol(MinionSol):
             result += self.__oprel_table(op,B.operations[op]) + "\n"
         for rel in self.subtype.relations:
             result += self.__oprel_table(rel,B.relations[rel]) + "\n"
+        
+        if without:
+            result += self.morphisms_to_minion_table(without) + "\n"
+            
         result += "**CONSTRAINTS**\n"
         if self.inj:
             result += "alldiff([f[%s]])\n" % "],f[".join(map(str, A.universe))  # exige que todos los valores de f
@@ -195,12 +200,17 @@ class MorphMinionSol(MinionSol):
             for row in cons:
                 result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % self.__minion_name(op)
             result += "\n"
+        
         for rel in self.subtype.relations:
             cons = A.relations[rel].table()
             for row in cons:
                 result += "table([f[" + "],f[".join(map(str, row)) + "]],%s)\n" % self.__minion_name(rel)
             result += "\n"
         result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality)
+        
+        if without:
+            result += "table(f,without)\n"
+        
         result += "**EOF**\n"
         return result
 
@@ -264,6 +274,26 @@ class MorphMinionSol(MinionSol):
         result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio 
         result += "occurrencegeq(g, -1, %s)\n" % (max(B.universe)+1 - A.cardinality) # cant de valores en el rango no en dominio
         result += "**EOF**\n"
+        return result
+        
+    def morphisms_to_minion_table(self,morphs):
+        table = [self.morphism_to_minion_format(morph) for morph in morphs]
+        table_name = "without"
+        height = len(table)
+        width = len(table[0])
+        result = ""
+        for row in table:
+            result += " ".join(map(str, row)) + "\n"
+        result = "%s %s %s\n" % (table_name, height, width) + result
+        return result
+        
+    def morphism_to_minion_format(self,morph):
+        """
+        Genera la entrada de minion para un morfismo.
+        """
+        result =[-1] * (max(map(lambda x:x[0],self.dict.keys()))+1)
+        for i in self.dict.keys():
+            result[i[0]] = self.dict[i]
         return result
 
 class ParallelMorphMinionSol(object):
