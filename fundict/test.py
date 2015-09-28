@@ -74,6 +74,15 @@ class Test(unittest.TestCase):
         self.assertEqual(c.is_open_definable(tiporet,tiporet+tipoposet),(True,None))
         tock = datetime.now()   
         diff = tock - tick    # the result is a datetime.timedelta object
+        planets = reduce(lambda x,y:x+y,c.planets.values())
+        satellites = reduce(lambda x,y:x+y,c.satellites.values())
+        todos = planets + satellites
+        for x in todos:
+            for y in todos:
+                if x != y:
+                    for flecha in c.arrows(x,y):
+                        self.assertIsInstance(flecha, morphisms.Embedding)
+        
         self.assertEqual((len(c.graph.edges()),len(c.graph.nodes())),(2364,26))
         print "is_open_definable con 2 planets tomo %s segundos" % diff.total_seconds()
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
