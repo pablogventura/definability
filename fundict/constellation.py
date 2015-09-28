@@ -264,7 +264,6 @@ class Constellation(TipedMultiDiGraph):
         (b,ce)=self.is_open_definable(subtype,supertype)
         if not b:
             return (b,ce) # no llego ni a ser definible por una formula abierta
-        print (len(self.graph.nodes()), len(self.graph.edges()))
         for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
             for planet in self.planets[len_planets]:
                 satellite = self.satellites_of(planet, len_planets)[0] # satelite principal
@@ -276,7 +275,6 @@ class Constellation(TipedMultiDiGraph):
                                            supertype)
                 if ce:
                     return (False, ce)
-        print (len(self.graph.nodes()), len(self.graph.edges()))
         return (True,None)
         
         
