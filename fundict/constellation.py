@@ -3,6 +3,7 @@
 from networkx import MultiDiGraph
 from examples import *
 from collections import defaultdict
+from itertools import product
 
 class TipedMultiDiGraph(object):
     """
@@ -288,15 +289,15 @@ class Constellation(TipedMultiDiGraph):
             return (b,ce) # no llego ni a ser definible por una formula existencial positiva
 
         satellites = reduce(lambda x,y:x+y,self.satellites.values())
-
-        ce = self.add_check_arrows(promiscuous.homomorphisms_to(satellite,
-                                                                subtype,
-                                                                without=self.arrows(satellite,
-                                                                                    satellite)),
-                                   subtype,
-                                   supertype)
-        if ce:
-            return (False, ce)
+        
+        for a,b in product(satellites, repeat=2):
+            ce = self.add_check_arrows(a.homomorphisms_to(b,
+                                                          subtype,
+                                                          without=self.arrows(a,b)),
+                                       subtype,
+                                       supertype)
+            if ce:
+                return (False, ce)
         return (True,None)
         
 if __name__ == "__main__":
