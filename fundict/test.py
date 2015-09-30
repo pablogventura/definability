@@ -91,5 +91,20 @@ class Test(unittest.TestCase):
         print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
         print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
         
+    def test_is_positive_open_definable(self):
+        from constellation import Constellation
+        habia = minion.MinionSol.count
+        c = Constellation()
+        rettest10.join_to_le()
+        c.add_planet(rettest10)
+        tick = datetime.now()
+        self.assertEqual(c.is_positive_open_definable(tiporet,tiporet+tipoposet),(True,None))
+        tock = datetime.now()
+        print len(c.graph.edges()), len(c.graph.nodes())
+        diff = tock - tick
+        print "is_positive_open_definable con 1 planets tomo %s segundos" % diff.total_seconds()
+        print "Genero %s flechas entre %s nodos" % (len(c.graph.edges()),len(c.graph.nodes()))
+        print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
+        
 if __name__ == '__main__':
     unittest.main()
