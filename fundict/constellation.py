@@ -180,6 +180,12 @@ class TipedMultiDiGraph(object):
         else:
             return filter(lambda x: len(x) == cardinality, result)
 
+    def satellites(self):
+        """
+        Devuelve todos los satelites
+        """
+        return reduce(lambda x,y:x+y,self.satellites.values())
+
 class Constellation(TipedMultiDiGraph):
     """
     
