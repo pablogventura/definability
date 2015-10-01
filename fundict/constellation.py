@@ -4,6 +4,7 @@ from networkx import MultiDiGraph
 from examples import *
 from collections import defaultdict
 from itertools import product
+from minion import GroupMinionSol
 
 class TipedMultiDiGraph(object):
     """
@@ -318,15 +319,13 @@ class Constellation(TipedMultiDiGraph):
         (b,ce)=self.is_existential_positive_definable(subtype,supertype)
         if not b:
             return (b,ce) # no llego ni a ser definible por una formula existencial positiva
-
+        
+        homos = GroupMinionSol()
         for a,b in product(self.iter_satellites(), repeat=2):
-            ce = self.add_check_arrows(a.homomorphisms_to(b,
-                                                          subtype,
-                                                          without=self.arrows(a,b)),
-                                       subtype,
-                                       supertype)
-            if ce:
-                return (False, ce)
+            homos.append(a.homomorphisms_to(b,subtype,without=self.arrows(a,b)))
+        ce = self.add_check_arrows(homos,subtype,supertype)
+        if ce:
+            return (False, ce)
         return (True,None)
         
 if __name__ == "__main__":

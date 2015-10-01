@@ -299,6 +299,40 @@ class MorphMinionSol(MinionSol):
             result[i[0]] = morph.dict[i]
         return result
 
+class GroupMinionSol(object):
+    """
+    Maneja varias consultas a Minion que corren en paralelo.
+    """
+    def __init__(self, allsols=True):
+
+        self.queue = []
+        self.allsols = allsols
+        self.solutions = None
+        
+        self.poll = poll()
+        self.minions={}
+    def append(self, query):
+        fd = query.minionapp.stdout.fileno()
+        self.minions[fd] = (query,query.__iter__())
+        self.poll.register(fd,POLLIN)
+
+    def read(self,fd):
+        try:
+            result = self.minions[fd][1].next()
+            self.poll.register(fd,POLLIN)
+        except StopIteration:
+            result = False
+            del self.minions[fd]
+            self.poll.unregister(fd)
+        return result
+
+    def __iter__(self):
+        while self.queue or self.minions:
+            for (fd,event) in self.poll.poll():
+                result = self.read(fd)
+                if result:
+                    yield result
+
 class ParallelMorphMinionSol(object):
     """
     Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
