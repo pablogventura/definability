@@ -154,21 +154,31 @@ class TipedMultiDiGraph(object):
         else:
             return arrow
 
-    def iter_satellites(self, cardinality, without=[]):
+    def iter_satellites(self, cardinality=None, without=[]):
         """
         Itera sobre los satelites de largo cardinality, quitando los que estan en without
         """
-        for satellite in self.satellites[cardinality]:
-            if satellite not in without:
-                yield satellite
+        if cardinality:
+            for satellite in self.satellites[cardinality]:
+                if satellite not in without:
+                    yield satellite
+        else:
+            for lensat in sorted(self.satellites.keys(),reverse=True):
+                for satellite in self.satellites[lensat]:
+                    yield satellite
 
-    def iter_planets(self, cardinality, without=[]):
+    def iter_planets(self, cardinality=None, without=[]):
         """
         Itera sobre los planetas de largo cardinality, quitando los que estan en without
         """
-        for planets in self.planets[cardinality]:
-            if planets not in without:
-                yield planets
+        if cardinality:
+            for planet in self.planets[cardinality]:
+                if planet not in without:
+                    yield planet
+        else:
+            for lenplanet in sorted(self.planets.keys(),reverse=True):
+                for planet in self.planets[lenplanet]:
+                    yield planet
 
     def satellites_of(self, planet, cardinality=None):
         """
@@ -179,13 +189,19 @@ class TipedMultiDiGraph(object):
             return result
         else:
             return filter(lambda x: len(x) == cardinality, result)
-
-    def satellites(self):
+        
+    def main_satellite_of(self, planet):
         """
-        Devuelve todos los satelites
+        Devuelve el satelite principal, o sea el que tiene el mismo universo que planet.
         """
-        return reduce(lambda x,y:x+y,self.satellites.values())
+        return self.satellites_of(planet, len(planet))[0]
 
+    def main_satellites(self):
+        """
+        Devuelve los satelites principales de todos los planetas.
+        """
+        return (self.main_satellite_of(planet) for planet in self.iter_planets())
+        
 class Constellation(TipedMultiDiGraph):
     """
     
@@ -239,7 +255,7 @@ class Constellation(TipedMultiDiGraph):
         """
         for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
             for planet in self.planets[len_planets]:
-                inc,protosatellite = planet.substructure(planet.universe, subtype)
+                inc,protosatellite = planet.substructure(planet.universe, subtype) #satellite principal
                 ce = self.__open_check_protosatellite(protosatellite, inc, planet, subtype, supertype)
                 if ce:
                     return (False, ce)
@@ -273,7 +289,7 @@ class Constellation(TipedMultiDiGraph):
             return (b,ce) # no llego ni a ser definible por una formula abierta
         for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
             for planet in self.planets[len_planets]:
-                satellite = self.satellites_of(planet, len_planets)[0] # satelite principal
+                satellite = self.main_satellite_of(planet) # satelite principal
                 ce = self.add_check_arrows(satellite.homomorphisms_to(satellite,
                                                                       subtype,
                                                                       without=self.arrows(satellite,
@@ -282,6 +298,15 @@ class Constellation(TipedMultiDiGraph):
                                            supertype)
                 if ce:
                     return (False, ce)
+                    
+        for a,b in product(self.main_satellites(), repeat=2):
+            ce = self.add_check_arrows(a.homomorphisms_to(b,
+                                                          subtype,
+                                                          without=self.arrows(a,b)),
+                                       subtype,
+                                       supertype)
+            if ce:
+                return (False, ce)
         return (True,None)
 
     def is_positive_open_definable(self,subtype,supertype):
@@ -294,9 +319,7 @@ class Constellation(TipedMultiDiGraph):
         if not b:
             return (b,ce) # no llego ni a ser definible por una formula existencial positiva
 
-        satellites = reduce(lambda x,y:x+y,self.satellites.values())
-        
-        for a,b in product(satellites, repeat=2):
+        for a,b in product(self.iter_satellites(), repeat=2):
             ce = self.add_check_arrows(a.homomorphisms_to(b,
                                                           subtype,
                                                           without=self.arrows(a,b)),
