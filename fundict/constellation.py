@@ -288,26 +288,14 @@ class Constellation(TipedMultiDiGraph):
         (b,ce)=self.is_open_definable(subtype,supertype)
         if not b:
             return (b,ce) # no llego ni a ser definible por una formula abierta
-        for len_planets in sorted(self.planets.iterkeys(),reverse=True): # desde el planeta mas grande
-            for planet in self.planets[len_planets]:
-                satellite = self.main_satellite_of(planet) # satelite principal
-                ce = self.add_check_arrows(satellite.homomorphisms_to(satellite,
-                                                                      subtype,
-                                                                      without=self.arrows(satellite,
-                                                                                          satellite)),
-                                           subtype,
-                                           supertype)
-                if ce:
-                    return (False, ce)
-                    
+
+        # homomorfismos entre planetas
+        homos = GroupMinionSol()
         for a,b in product(self.main_satellites(), repeat=2):
-            ce = self.add_check_arrows(a.homomorphisms_to(b,
-                                                          subtype,
-                                                          without=self.arrows(a,b)),
-                                       subtype,
-                                       supertype)
-            if ce:
-                return (False, ce)
+            homos.append(a.homomorphisms_to(b,subtype,without=self.arrows(a,b)))
+        ce = self.add_check_arrows(homos,subtype,supertype)
+        if ce:
+            return (False, ce)
         return (True,None)
 
     def is_positive_open_definable(self,subtype,supertype):
