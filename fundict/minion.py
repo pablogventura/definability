@@ -128,8 +128,8 @@ class MorphMinionSol(MinionSol):
                                              self.source,
                                              self.target,
                                              self.subtype,
-                                             self.inj,
-                                             self.surj) # funcion que tipa los morfismos
+                                             inj=self.inj,
+                                             surj=self.surj) # funcion que tipa los morfismos
         super(MorphMinionSol, self).__init__(input_data, allsols,fun=self.fun)
 
     def __minion_name(self, oprel):

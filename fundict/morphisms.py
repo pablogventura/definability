@@ -19,11 +19,13 @@ class Homomorphism(Function):
     ,
     )
     """
-    def __init__(self, d, source, target, subtype, inj=None, surj=None):
+    def __init__(self, d, source, target, subtype, antitype=[], inj=None, surj=None):
         super(Homomorphism, self).__init__(d)
         self.source = source
         self.target = target
         self.subtype = subtype
+        self.antitype = antitype # lleva una lista de relaciones/operaciones que rompen el morfismo
+        assert isinstance(antitype,list), type(antitype)
         self.inj = inj
         self.surj = surj
         assert self.arity() == 1
@@ -48,7 +50,7 @@ class Homomorphism(Function):
                 d[(self.dict[k],)]=k
             else:
                 d[(self.dict[k],)]=k[0]
-        return type(self)(d,self.target,self.source,self.subtype,self.inj,self.surj)
+        return type(self)(d,self.target,self.source,self.subtype, self.antitype,self.inj,self.surj)
         
     def composition(self,g):
         """
@@ -65,8 +67,10 @@ class Homomorphism(Function):
         if self.subtype.is_subtype_of(g.subtype):
             subtype = self.subtype
         else:
-            subtype = g.subtype      
-        result = morph_type(g.dict, g.source, self.target, subtype)
+            subtype = g.subtype     
+        antitype = self.antitype + g.antitype
+        
+        result = morph_type(g.dict, g.source, self.target, subtype, antitype)
         result.map_in_place(self)
         
         result.inj = None
@@ -89,6 +93,8 @@ class Homomorphism(Function):
         #result += indent(repr(self.source) + ",")
         #result += indent(repr(self.target) + ",")
         result += indent(repr(self.subtype)) + ",\n"
+        if self.antitype:
+            result += indent(repr(self.antitype)) + ",\n"
         if self.inj:
             result += indent("Injective,")
         if self.surj:
@@ -201,9 +207,9 @@ class Embedding(Homomorphism):
       Injective,
     )
     """
-    def __init__(self, d, source, target, subtype, inj=True, surj=None):
+    def __init__(self, d, source, target, subtype, antitype=[], inj=True, surj=None):
         assert inj
-        super(Embedding, self).__init__(d,source,target,subtype,inj,surj)
+        super(Embedding, self).__init__(d,source,target,subtype, antitype, inj,surj)
         if self.is_auto():
             self.stype = "Autoembedding"
         else:
@@ -213,7 +219,7 @@ class Embedding(Homomorphism):
         """
         Devuelve un isomorfismo a la imagen del embedding.
         """
-        return Isomorphism(self.dict,self.source,self.target.restrict(list(self.image()),self.subtype),self.subtype)
+        return Isomorphism(self.dict,self.source,self.target.restrict(list(self.image()),self.subtype),self.subtype, self.antitype)
 
     def preserves_type(self, supertype, check_inverse=True):
         return super(Embedding, self).preserves_type(supertype,check_inverse)
@@ -238,9 +244,9 @@ class Isomorphism(Embedding):
     )
 
     """
-    def __init__(self, d, source, target, subtype, inj=True, surj=True):
+    def __init__(self, d, source, target, subtype, antitype=[], inj=True, surj=True):
         assert inj and surj
-        super(Isomorphism, self).__init__(d,source,target,subtype,inj,surj)
+        super(Isomorphism, self).__init__(d,source,target,subtype,antitype,inj,surj)
         if self.is_auto():
             self.stype = "Automorphism"
         else:
