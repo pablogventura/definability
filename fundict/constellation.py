@@ -150,9 +150,8 @@ class TipedMultiDiGraph(object):
         """
         assert subtype.is_subtype_of(arrow.subtype) # checkeo por las dudas
         
-        if arrow.preserves_type(supertype):
-            self.add_arrow(arrow)
-        else:
+        self.add_arrow(arrow)
+        if not arrow.preserves_type(supertype):
             return arrow
 
     def iter_satellites(self, cardinality=None, without=[]):
@@ -166,7 +165,8 @@ class TipedMultiDiGraph(object):
         else:
             for lensat in sorted(self.satellites.keys(),reverse=True):
                 for satellite in self.satellites[lensat]:
-                    yield satellite
+                    if satellite not in without:
+                        yield satellite
 
     def iter_planets(self, cardinality=None, without=[]):
         """
@@ -179,7 +179,8 @@ class TipedMultiDiGraph(object):
         else:
             for lenplanet in sorted(self.planets.keys(),reverse=True):
                 for planet in self.planets[lenplanet]:
-                    yield planet
+                    if planet not in without:
+                        yield planet
 
     def satellites_of(self, planet, cardinality=None):
         """
@@ -217,6 +218,8 @@ class Constellation(TipedMultiDiGraph):
       [0] -> 2,
     ,
       FO_Type({'v': 2, '^': 2},{})
+    ,
+      antitype= ['P']
     ,
       Injective,
     ))

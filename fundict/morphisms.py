@@ -94,7 +94,7 @@ class Homomorphism(Function):
         #result += indent(repr(self.target) + ",")
         result += indent(repr(self.subtype)) + ",\n"
         if self.antitype:
-            result += indent(repr(self.antitype)) + ",\n"
+            result += indent("antitype= " + repr(self.antitype)) + ",\n"
         if self.inj:
             result += indent("Injective,")
         if self.surj:
@@ -133,6 +133,8 @@ class Homomorphism(Function):
 
         if rel in self.subtype.relations:
             return True
+        elif rel in self.antitype:
+            return False
         else:
             result = True
             for t in self.source.relations[rel].domain():
@@ -145,12 +147,17 @@ class Homomorphism(Function):
         Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
         Funcion de Camper
         """
-        frelSource = [map(lambda x: self(x), row) for row in self.source.relations[rel].table()]
-        for row in self.target.relations[rel].table():
-            if all(x in self.image() for x in row):
-                if not row in frelSource:
-                    return False
-        return True
+        if rel in self.subtype.relations:
+            return True
+        elif rel in self.antitype:
+            return False
+        else:
+            frelSource = [map(lambda x: self(x), row) for row in self.source.relations[rel].table()]
+            for row in self.target.relations[rel].table():
+                if all(x in self.image() for x in row):
+                    if not row in frelSource:
+                        return False
+            return True
 
     def preserves_type(self, supertype, check_inverse=False):
         """
@@ -185,10 +192,10 @@ class Homomorphism(Function):
         
         for rel in checktype.relations:
             if not self.preserves_relation(rel) or (check_inverse and not self.inverse_preserves_rel(rel)):
+                self.antitype.append(rel)
                 return False
-
-        self.subtype = supertype # se auto promueve a un homomorfismo de ese tipo
         
+        self.subtype = supertype # se auto promueve a un homo del supertipo
         return True  
             
 class Embedding(Homomorphism):
