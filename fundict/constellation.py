@@ -121,9 +121,10 @@ class TipedMultiDiGraph(object):
         img = Image.open('multi.png')
         plt.imshow(img)
         plt.show()
-    def arrows(self, source, target):
+    def arrows(self, source, target, morphtype=None, subtype=None):
         """
         Devuelve la lista de flechas desde source a target
+        del tipo de morfismo en morphtype, del subtype
         """
         try:
             result = self.graph[source][target]
@@ -131,6 +132,10 @@ class TipedMultiDiGraph(object):
             result = []
         if result:
             result = [e['arrow'] for e in result.values()]
+        if morphtype:
+            result = filter(lambda x: isinstance(x,morphtype),result)
+        if subtype:
+            result = filter(lambda x: x.subtype.is_subtype_of(subtype),result)
         return result
         
     def add_check_arrows(self, arrows, subtype, supertype):
