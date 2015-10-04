@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-from networkx import MultiDiGraph
+import networkx
 from examples import *
 from collections import defaultdict
 from itertools import product
@@ -11,7 +11,7 @@ class TipedMultiDiGraph(object):
     Maneja una coleccion de modelos relacionados por flechas
     """
     def __init__(self):
-        self.graph = MultiDiGraph()
+        self.graph = networkx.MultiDiGraph()
         self.planets = defaultdict(list) # diccionario con key de len(planet)
         self.satellites = defaultdict(list) # diccionario con key de len(satellite)
 
@@ -203,6 +203,13 @@ class TipedMultiDiGraph(object):
         Devuelve los satelites principales de todos los planetas.
         """
         return (self.main_satellite_of(planet) for planet in self.iter_planets())
+    
+    def is_isomorphic(self, other):
+        """
+        Busca un isomorfismo entre constellations
+        """
+        return networkx.is_isomorphic(self.graph, other.graph)
+        
         
 class Constellation(TipedMultiDiGraph):
     """
