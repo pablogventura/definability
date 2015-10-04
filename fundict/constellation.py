@@ -207,6 +207,7 @@ class TipedMultiDiGraph(object):
     def is_isomorphic(self, other):
         """
         Busca un isomorfismo entre constellations
+        No esta muy probado, es mas que nada para usar en testing
         """
         return networkx.is_isomorphic(self.graph, other.graph)
         
