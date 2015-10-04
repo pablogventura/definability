@@ -5,6 +5,7 @@ from examples import *
 from collections import defaultdict
 from itertools import product
 from minion import GroupMinionSol
+from morphisms import Homomorphism, Embedding, Isomorphism
 
 class TipedMultiDiGraph(object):
     """
@@ -94,18 +95,6 @@ class TipedMultiDiGraph(object):
         else:
             return None
         
-    def find_arrows(self, source, target, morphtype=None):
-        """
-        Busca las flechas entre source y target, del tipo morphtype
-        """
-        if self.graph.has_edge(source,target):
-            result = [x["arrow"] for x in self.graph[source][target].values()]
-            if morphtype:
-                result = filter(lambda x: isinstance(x,morphtype),result)
-            return result
-        else:
-            return []
-        
         
     def show(self):
         """
@@ -159,18 +148,21 @@ class TipedMultiDiGraph(object):
         if not arrow.preserves_type(supertype):
             return arrow
 
-    def iter_satellites(self, cardinality=None, without=[]):
+    def iter_satellites(self, subtype, cardinality=None, without=[]):
         """
         Itera sobre los satelites de largo cardinality, quitando los que estan en without
         """
+        # TODO iter_satellite trata diferente al subtype, comparado con satellites_of
+        # esto es muy poco intuitivo y puede ser peligroso
+        assert not isinstance(subtype,int), subtype
         if cardinality:
             for satellite in self.satellites[cardinality]:
-                if satellite not in without:
+                if satellite.fo_type.is_subtype_of(subtype) and satellite not in without:
                     yield satellite
         else:
             for lensat in sorted(self.satellites.keys(),reverse=True):
                 for satellite in self.satellites[lensat]:
-                    if satellite not in without:
+                    if satellite.fo_type.is_subtype_of(subtype) and satellite not in without:
                         yield satellite
 
     def iter_planets(self, cardinality=None, without=[]):
@@ -187,27 +179,30 @@ class TipedMultiDiGraph(object):
                     if planet not in without:
                         yield planet
 
-    def satellites_of(self, planet, cardinality=None):
+    def satellites_of(self, planet, subtype, cardinality=None):
         """
         Devuelve una lista con los satelites de planet, ordenados de mayor a menor en cardinalidad.
         """
         result = sorted(self.graph.predecessors(planet),reverse=True, key=len)
+        
+        result = filter(lambda s: bool(self.arrows(s,planet,Embedding,subtype)), result)
+            
         if not cardinality:
             return result
         else:
             return filter(lambda x: len(x) == cardinality, result)
         
-    def main_satellite_of(self, planet):
+    def main_satellite_of(self, planet, subtype):
         """
         Devuelve el satelite principal, o sea el que tiene el mismo universo que planet.
         """
-        return self.satellites_of(planet, len(planet))[0]
+        return self.satellites_of(planet, subtype, len(planet))[0]
 
-    def main_satellites(self):
+    def main_satellites(self, subtype):
         """
         Devuelve los satelites principales de todos los planetas.
         """
-        return (self.main_satellite_of(planet) for planet in self.iter_planets())
+        return (self.main_satellite_of(planet, subtype) for planet in self.iter_planets())
     
     def is_isomorphic(self, other):
         """
@@ -244,7 +239,7 @@ class Constellation(TipedMultiDiGraph):
         Si encuentra un contraejemplo para definir por formulas abiertas, lo devuelve.
         Si no encuentra contraejemplo devuelve None
         """
-        iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(len(protosatellite)),subtype)
+        iso = protosatellite.is_isomorphic_to_any(self.iter_satellites(subtype,len(protosatellite)),subtype)
         if iso:
             ce = self.add_check_arrow(inc.composition(iso.inverse()),subtype,supertype) #agregar embedding de satellite a planet
             if ce:
@@ -307,7 +302,7 @@ class Constellation(TipedMultiDiGraph):
 
         # homomorfismos entre planetas
         homos = GroupMinionSol()
-        for a,b in product(self.main_satellites(), repeat=2):
+        for a,b in product(self.main_satellites(subtype), repeat=2):
             homos.append(a.homomorphisms_to(b,subtype,without=self.arrows(a,b)))
         ce = self.add_check_arrows(homos,subtype,supertype)
         if ce:
@@ -325,7 +320,7 @@ class Constellation(TipedMultiDiGraph):
             return (b,ce) # no llego ni a ser definible por una formula existencial positiva
         
         homos = GroupMinionSol()
-        for a,b in product(self.iter_satellites(), repeat=2):
+        for a,b in product(self.iter_satellites(subtype), repeat=2):
             homos.append(a.homomorphisms_to(b,subtype,without=self.arrows(a,b)))
         ce = self.add_check_arrows(homos,subtype,supertype)
         if ce:
