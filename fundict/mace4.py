@@ -1,7 +1,5 @@
 import subprocess as sp
-import threading
 import re
-import Queue
 import config
 from model import FO_Model  # para los contraejemplos
 from fofunctions import FO_Operation, FO_Relation
@@ -22,22 +20,22 @@ def getops(li, st):
             raise KeyError
     return result
 
-class Mace4():
 
-    def __init__(self, assume_list, goal_list, mace_seconds=30, domain_cardinality=None, one=False, noniso=True, options=[], fo_type=None):
+class Mace4Sol(object):
+    """
+    Maneja las soluciones que genera Mace4 sin usar threads
+    """
+    def __init__(self, assume_list, fo_type, mace_seconds=30, domain_cardinality=None, one=False, noniso=True, options=[]):
+
+        self.EOF = False
+        self.solutions = []
+
         self.apps = []  # subprocesos
-        self.ts = []  # hilos
 
-        self.__aborting = False
-        self.macerunning = True
-        self.parsing = True
         self.assume_list = assume_list
-        self.goal_list = goal_list
-        self.options = options
         self.fo_type = fo_type
-        self.models = []
-        self.count = 0
-
+        self.options = options
+        self.goal_list = []
         maceargs = []
         if domain_cardinality:
             st = str(domain_cardinality)
@@ -53,7 +51,8 @@ class Mace4():
                                      'check',
                                      "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
                                      'output',
-                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"], stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"],
+                                    stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             interp2app = sp.Popen([config.ladr_path + "interpformat", "portable"], stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             self.apps += [interp1app, isofilterapp, interp2app]
             self.__stdout = interp2app.stdout
@@ -63,15 +62,6 @@ class Mace4():
             self.__stdout = interpapp.stdout
         self.__stderr = mace4app.stderr
 
-        tparseerr = threading.Thread(target=self.__parse_stderr, args=())
-        tparseerr.start()
-        self.ts.append(tparseerr)
-
-        self.__qmodels = Queue.Queue()
-        tparseout = threading.Thread(target=self.__parse_stdout, args=())
-        tparseout.start()
-        self.ts.append(tparseout)
-        
     def generate_input(self):
         result = ""
         for st in self.options:
@@ -84,59 +74,94 @@ class Mace4():
             result += st + '.\n'
         result += 'end_of_list.\n'
         return result
-        
-    def __parse_stdout(self):
-        if not self.__aborting:
-            self.__stdout.readline()  # quita el [ del principio
-            buf = ""
-            for line in iter(self.__stdout.readline, b''):
+
+    def __parse_solution(self):
+        buf = ""
+        line = self.__stdout.readline()  # quita el [ del principio
+        while line:
+            # No hubo EOF
+            if line == "[\n" or line == "]\n":
+                # son las lineas del principio o del final
+                line = self.__stdout.readline()
+                continue
+            else:
                 buf += line
-                if buf.count("[") == buf.count("]"):
-                    # hay un modelo completo
-                    buf = buf.replace("\n", "")  # quito saltos de linea
-                    buf = buf.strip()  # quito espacios para poder sacar la coma
-                    if buf[-1] == ",":
-                        buf = buf[:-1]  # saco la coma!
 
-                    m = eval(buf)
+            if buf.count("[") == buf.count("]"):
+                # hay un modelo completo
+                buf = buf.replace("\n", "")  # quito saltos de linea
+                buf = buf.strip()  # quito espacios para poder sacar la coma
+                if buf[-1] == ",":
+                    buf = buf[:-1]  # saco la coma!
+                m = eval(buf)
+                return FO_Model(self.fo_type, range(m[0]), getops(m[2], 'function'), getops(m[2], 'relation'))
+            else:
+                # no hay un modelo completo
+                line = self.__stdout.readline() # necesita otra linea
+                continue
 
-                    self.__qmodels.put(FO_Model(self.fo_type, range(m[0]), getops(m[2], 'function'), getops(m[2], 'relation')))
-                    self.count += 1
-                    buf = ""
-            self.parsing = False  # hubo eof
-            self.__qmodels.put(None)  # para marcar el final
-
-    def __parse_stderr(self):
-        if not self.__aborting:
-            for line in iter(self.__stderr.readline, b''):
-                if "exit" in line:
-                    self.macerunning = False
-                    self.exitcomment = re.search("\((.+)\)", line).group(1)
+        assert not line
+        # Hubo EOF
+        self.EOF = True
+        self.__terminate()
 
     def __iter__(self):
-        if self.models:
-            for m in self.models:
-                yield m
+        """
+        Itera sobre las soluciones ya parseadas y despues
+        sigue con las sin parsear.
+        """
+        for solution in self.solutions:
+            yield solution
+
+        while not self.EOF:
+            solution = self.__parse_solution()
+            if solution:
+                self.solutions.append(solution)
+                yield solution
+            
+    def __getitem__(self, index):
+        """
+        Toma un elemento usando __iter__
+        """
+        try:
+            return self.solutions[index]
+        except IndexError:
+            for i,solution in enumerate(self):
+                if i==index:
+                    return solution # no hace falta aplicar self.fun porque esta llamando a __iter__
+            raise IndexError("There aren't so many solutions.")
+                
+    def __nonzero__(self):
+        """
+        Devuelve True si hay soluciones, o bloquea hasta confirmar que no
+        hay y devuelve False.
+        """
+        if self.solutions or self.EOF:
+            return bool(self.solutions)
         else:
-            while self.parsing or not self.__qmodels.empty():
-                m = self.__qmodels.get()
-                if m is not None:
-                    self.models.append(m)
-                    yield m
-                else:
-                    break
-
+            solution = self.__parse_solution()
+            if solution:
+                self.solutions.append(solution)
+                return True
+            else:
+                return False
+                
     def __len__(self):
-        if self.parsing:
-            self.ts[1].join()  # este es el que parsea la stdout
-        return self.count
-
-    def abort(self):
-        self.__aborting = True
+        """
+        Bloquea hasta parsear todas las soluciones y devuelve la cantidad.
+        """
+        if not self.EOF:
+            for i in self:
+                pass
+        return len(self.solutions)
+        
+    def __terminate(self):
+        self.EOF = True
         for app in self.apps:
             app.kill()
             app.wait()
             del app
 
     def __del__(self):
-        self.abort()
+        if not self.EOF:
+            self.__terminate()
