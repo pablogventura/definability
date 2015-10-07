@@ -16,6 +16,10 @@ import files
 class MinionSol(object):
     count = 0
     def __init__(self, input_data, allsols=True, fun=lambda x: x):
+        """
+        Toma el input para minion, si espera todas las soluciones y una funcion para aplicar
+        a las listas que van a ir siendo soluciones.
+        """
         self.id = MinionSol.count
         self.fun = fun
         MinionSol.count += 1
@@ -36,6 +40,10 @@ class MinionSol(object):
         self.solutions = []
 
     def __parse_solution(self):
+        """
+        Bloquea hasta conseguir una solucion, o el EOF
+        La parsea y devuelve una lista
+        """
         str_sol = self.minionapp.stdout.readline()
         if str_sol:
             str_sol = str_sol[:-1] # borro el \n
@@ -94,11 +102,17 @@ class MinionSol(object):
         return len(self.solutions)
 
     def __terminate(self):
+        """
+        Mata a Minion
+        """
         self.minionapp.kill()
         del self.minionapp
         files.remove(self.input_filename)
     
     def __del__(self):
+        """
+        Si no lo habia matado, mata a Minion.
+        """
         if not self.EOF:
             self.__terminate()
 
