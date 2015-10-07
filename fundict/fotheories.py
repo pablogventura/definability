@@ -1,22 +1,28 @@
 from fotheory import FO_Theory
 import examples
 
-def assoc(s): return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
+def assoc(s):
+    return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
 
 
-def comm(s): return 'x' + s + 'y = y' + s + 'x'
+def comm(s):
+    return 'x' + s + 'y = y' + s + 'x'
 
 
-def idem(s): return 'x' + s + 'x = x'
+def idem(s):
+    return 'x' + s + 'x = x'
 
 
-def absorption(s, t): return '(x' + s + 'y)' + t + 'x = x'
+def absorption(s, t):
+    return '(x' + s + 'y)' + t + 'x = x'
 
 
-def distr(s, t): return 'x' + s + '(y' + t + 'z) = (x' + s + 'y)' + t + '(x' + s + 'z)'
+def distr(s, t):
+    return 'x' + s + '(y' + t + 'z) = (x' + s + 'y)' + t + '(x' + s + 'z)'
 
 
-def rdistr(s, t): return '(x' + t + 'y)' + s + 'z = (x' + s + 'z)' + t + '(y' + s + 'z)'
+def rdistr(s, t):
+    return '(x' + t + 'y)' + s + 'z = (x' + s + 'z)' + t + '(y' + s + 'z)'
 
 #########################
 # (Semi) groups and rings
@@ -406,25 +412,32 @@ STS = Qgrp.subclass("STS", "Steiner triple systems", [idem("*"), comm("*")])
 #####################
 # First-order classes
 
-def refl(r): return "x" + r + "x"
+def refl(r):
+    return "x" + r + "x"
 
 
-def irrefl(r): return "-(x" + r + "x)"
+def irrefl(r):
+    return "-(x" + r + "x)"
 
 
-def symm(r): return "x" + r + "y -> y" + r + "x"
+def symm(r):
+    return "x" + r + "y -> y" + r + "x"
 
 
-def asymm(r): return "x" + r + "y -> -(y" + r + "x)"
+def asymm(r):
+    return "x" + r + "y -> -(y" + r + "x)"
 
 
-def antisymm(r): return "x" + r + "y & y" + r + "x -> x = y"
+def antisymm(r):
+    return "x" + r + "y & y" + r + "x -> x = y"
 
 
-def trans(r): return "x" + r + "y & y" + r + "z -> x" + r + "z"
+def trans(r):
+    return "x" + r + "y & y" + r + "z -> x" + r + "z"
 
 
-def linear(r): return "x" + r + "y || y" + r + "x"
+def linear(r):
+    return "x" + r + "y || y" + r + "x"
 
 PreOrd = FO_Theory("PreOrd", "Preordered sets", [refl("<="), trans("<=")])
 
