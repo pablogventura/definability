@@ -8,6 +8,7 @@ fi
 
 echo "Removing previous versions of Definability."
 rm -rf $SAGE_ROOT/local/lib/python/site-packages/definability*
+rm -rf $SAGE_ROOT/local/lib/python2.7/site-packages/definability*
 
 cd src
 
