@@ -222,6 +222,14 @@ class FO_Model(object):
                 else:
                     result[t] = 0
             self.relations["<="] = FO_Relation(result)
+
+    def to_sage_lattice(self):
+        """
+        Devuelve un reticulado de Sage.
+        """
+        from sage.combinat.posets.lattices import LatticePoset
+        self.join_to_le()
+        return LatticePoset((self.universe,self.relations["<="].table()))
         
 if __name__ == "__main__":
     import doctest
