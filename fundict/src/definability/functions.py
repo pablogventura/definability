@@ -102,7 +102,8 @@ class Function(object):
         return result
         
     def vector_call(self, vector):
-        return map(self,vector)
+        return type(vector)(map(self,vector))
+        
 
     def __call__(self, *args):
         if not len(args) == self.arity():
