@@ -26,9 +26,12 @@ def existencial_definable_algebra(constellation, subtype, arity):
 
 def closure(t,arrows):
     """
-    Calcula la clausura de la tupla t para todo el grupo de flechas.
+    Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
-    result = [t]
+    if isinstance(t,list):
+        result = t
+    else:
+        result = [t]
     checked = []
 
     while len(result) != len(checked):
