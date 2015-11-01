@@ -3,3 +3,4 @@ from fotype import FO_Type
 from constellation import Constellation
 from model import FO_Model
 import examples, fotheories
+import algebra
