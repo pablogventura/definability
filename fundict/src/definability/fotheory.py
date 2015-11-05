@@ -101,8 +101,7 @@ class FO_Theory():
         Find models of given (finite) cardinality for the axioms 
         of the FO_Theory self.
         """
-        #return Mace4(self.axioms, [], mace_seconds=seconds, domain_cardinality=cardinality, options=self.options, fo_type=self.fo_type)
-        return Mace4Sol(self.axioms, self.fo_type, mace_seconds=seconds, domain_cardinality=cardinality, options=self.options)
+        return Mace4Sol(self.axioms, mace_seconds=seconds, domain_cardinality=cardinality, options=self.options)
 
     def count_models(self, upto=20, seconds=60000):
         """

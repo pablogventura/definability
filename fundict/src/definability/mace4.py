@@ -27,7 +27,7 @@ class Mace4Sol(object):
     """
     Maneja las soluciones que genera Mace4 sin usar threads
     """
-    def __init__(self, assume_list, fo_type, mace_seconds=30, domain_cardinality=None, one=False, noniso=True, options=[]):
+    def __init__(self, assume_list, mace_seconds=30, domain_cardinality=None, one=False, noniso=True, options=[]):
 
         self.EOF = False
         self.solutions = []
@@ -35,7 +35,6 @@ class Mace4Sol(object):
         self.apps = []  # subprocesos
 
         self.assume_list = assume_list
-        self.fo_type = fo_type
         self.options = options
         self.goal_list = []
         maceargs = []
