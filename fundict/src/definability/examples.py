@@ -5,6 +5,8 @@
 Modulo con ejemplos rapidos, para hacer pruebas
 """
 
+import fotheories
+
 from model import FO_Model
 from fotype import FO_Type
 from fofunctions import FO_Relation, FO_Operation
@@ -44,7 +46,7 @@ posetdiamante = FO_Model(tipoposet,range(5),{},{"<=":FO_Relation({(0, 0): 1,
 
 posetcadena2 = FO_Model(tipoposet, range(2),{},{"<=":FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1})})
 
-
+retdiamante = fotheories.Lat.find_models(5)[0]
 retrombo = FO_Model(tiporetacotado,range(4), {'^': FO_Operation({(0, 0): 0,
                                                                  (0, 1): 0,
                                                                  (0, 2): 0,
