@@ -3,6 +3,8 @@ import re
 import config
 from model import FO_Model  # para los contraejemplos
 from fofunctions import FO_Operation, FO_Relation
+from fotype import FO_Type
+
 
 def getops(li, st):
     # TODO , PARECIERA QUE DEBERIA SER UN METODO INTERNO DE LOS MODELOS QUE DEVUELVE MACE4
@@ -94,7 +96,12 @@ class Mace4Sol(object):
                 if buf[-1] == ",":
                     buf = buf[:-1]  # saco la coma!
                 m = eval(buf)
-                return FO_Model(self.fo_type, range(m[0]), getops(m[2], 'function'), getops(m[2], 'relation'))
+                operations = getops(m[2], 'function')
+                relations = getops(m[2], 'relation')
+                fo_type = FO_Type({name:operations[name].arity() for name in operations.iterkeys()},
+                                  {name:relations[name].arity() for name in relations.iterkeys()}
+                                 )
+                return FO_Model(fo_type, range(m[0]), getops(m[2], 'function'), getops(m[2], 'relation'))
             else:
                 # no hay un modelo completo
                 line = self.__stdout.readline() # necesita otra linea

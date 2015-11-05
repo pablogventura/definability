@@ -5,7 +5,7 @@ class FO_Theory():
     FO_Theories = []
     FirstOrderClasses = []
 
-    def __init__(self, abbr, name, axioms, results=[], options=[], syntax='Prover9', fo_type=None):
+    def __init__(self, abbr, name, axioms, results=[], options=[], syntax='Prover9'):
         """
         Define a first-order class of models by a list of first-order axioms
 
@@ -24,7 +24,6 @@ class FO_Theory():
         self.axioms = axioms
         self.results = results
         self.options = options
-        self.fo_type = fo_type
         FO_Theory.FO_Theories.append(abbr)
         FO_Theory.FO_Theories.sort(key=str.lower)
         FO_Theory.FirstOrderClasses.append(name + " (" + abbr + ")")

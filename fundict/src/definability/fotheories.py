@@ -1,5 +1,4 @@
 from fotheory import FO_Theory
-import examples
 
 def assoc(s):
     return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
@@ -85,7 +84,7 @@ Slat = FO_Theory("Slat", "Semilattices", [assoc("*"), comm("*"), "x*x = x"])
 Lat = FO_Theory("Lat", "Lattices",
               [assoc(" v "), comm(" v "), assoc("^"), comm("^"),
                absorption(" v ", "^"), absorption("^", " v ")],
-              results=["x v x = x", "x^x = x"],fo_type=examples.tiporet)
+              results=["x v x = x", "x^x = x"])
 
 DLat = Lat.subclass("DLat", "Distributive lattices", [distr("^", " v ")],
                     results=[distr(" v ", "^"),
