@@ -115,23 +115,22 @@ class FO_Model(object):
 
         >>> from examples import *
         >>> list(retrombo.subuniverses(tiporet))
-        [[0], [1], [2], [3], [0, 1], [0, 2], [1, 2], [0, 3], [1, 3], [0, 1, 2, 3], [0, 1, 2], [0, 1, 3]]
+        [[0], [1], [2], [3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [0, 1, 2, 3], [0, 1, 2], [0, 1, 3]]
         >>> list(posetcadena2.subuniverses(tipoposet)) # debe dar el conjunto de partes sin el vacio, porque no tiene ops
         [[0], [1], [0, 1]]
         """
         result = []
         subsets = powerset(self.universe)
+        checked = [[]]
         for subset in subsets:
-            if subset:
+            if subset not in checked:
                 subuniverse,partials = self.subuniverse(subset,subtype)
                 for partial in partials:
-                    try:
-                        subsets[subsets.index(partial)]=None
-                    except ValueError:
-                        pass
+                    checked.append(partial)
                 if subuniverse not in result:
                     result.append(subuniverse)
                     yield subuniverse
+                    
     def restrict(self,subuniverse, subtype):
         """
         Devuelve la restriccion del modelo al subuniverso que se supone que es cerrado en en subtype
