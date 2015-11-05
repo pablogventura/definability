@@ -47,6 +47,7 @@ posetdiamante = FO_Model(tipoposet,range(5),{},{"<=":FO_Relation({(0, 0): 1,
 posetcadena2 = FO_Model(tipoposet, range(2),{},{"<=":FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1})})
 
 retdiamante = fotheories.Lat.find_models(5)[0]
+rettestlinden = fotheories.DLat.find_models(7)[0]
 retrombo = FO_Model(tiporetacotado,range(4), {'^': FO_Operation({(0, 0): 0,
                                                                  (0, 1): 0,
                                                                  (0, 2): 0,
