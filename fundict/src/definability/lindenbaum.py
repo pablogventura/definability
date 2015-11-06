@@ -50,10 +50,11 @@ def existencial_positive_definable_algebra(constellation, subtype, arity):
 
     return result
 
-def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+def neww_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve todas las relaciones de una cierta aridad definibles por una formula existencial
     positiva en el tipo subtype en el unico planeta de constellation.
+    usando el algoritmo que va filtrando las que no son ji.
     """
     at = atoms_of_existencial_definable_algebra(constellation, subtype, arity)
     constellation.is_existential_positive_definable(subtype,subtype)
@@ -82,7 +83,7 @@ def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, ari
                     result.append(s)
                     yield s
 
-def no_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
@@ -101,8 +102,26 @@ def no_ji_of_existencial_positive_definable_algebra(constellation, subtype, arit
         result.append(closure(k,endos))
         del singuletes[0]
     
-    return result
+    return join_irreducibles(result)
 
+def join_irreducibles(lst):
+    """
+    Dada una lista de listas, devuelve una lista dejando solo las que son join-irreducibles
+    """
+    result = []
+    for s in lst:
+        s = list(set(s))
+        sf = [False] * len(s)
+        if s and s not in result: # el vacio no va
+            for ji in result:
+                if set(ji).issubset(set(s)):
+                    for i in range(len(s)):
+                        if s[i] in ji:
+                            sf[i] = True
+            if not all(sf):                
+                result.append(s)
+    return result
+    
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve las relaciones join-irreducibles del casireticulado de relaciones
