@@ -66,9 +66,9 @@ def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, ari
     endos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism)
     jjj= 2**len(at)
     for cant,s in enumerate(powerset(at)):
+        s = list(set(reduce(lambda x,y:x+y, s, [])))
         print "%s porciento (%s de %s)" % (float(cant)/jjj, cant, jjj)
         print s
-        s = list(set(reduce(lambda x,y:x+y, s, [])))
         if is_closed(s, endos):
             s = list(set(s))
             sf = [False] * len(s)
@@ -80,9 +80,28 @@ def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, ari
                                 sf[i] = True
                 if not all(sf):                
                     result.append(s)
-                    print len(result)
-    return result
+                    yield s
 
+def no_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+    """
+    Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
+    en la constelacion que DEBE TENER UN SOLO PLANETA
+    """
+    constellation.is_existential_positive_definable(subtype,subtype)
+    
+    mainsatellite, = constellation.main_satellites(subtype)
+    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
+    
+    result = []
+    
+    endos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism)
+    
+    while singuletes:
+        k = singuletes[0]
+        result.append(closure(k,endos))
+        del singuletes[0]
+    
+    return result
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
