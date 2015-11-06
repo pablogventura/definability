@@ -3,7 +3,7 @@
 import networkx
 from examples import *
 from collections import defaultdict
-from itertools import product
+from itertools import product, chain
 from minion import GroupMinionSol
 from morphisms import Homomorphism, Embedding, Isomorphism
 
@@ -164,7 +164,12 @@ class TipedMultiDiGraph(object):
                 for satellite in self.satellites[lensat]:
                     if satellite.fo_type.is_subtype_of(subtype) and satellite not in without:
                         yield satellite
-
+                        
+    def iter_arrows(self, subtype, morphtype=None):
+        for source, target in product(chain(self.iter_planets(),self.iter_satellites(subtype)), repeat=2):
+            for arrow in self.arrows(source, target,morphtype,subtype):
+                yield arrow
+    
     def iter_planets(self, cardinality=None, without=[]):
         """
         Itera sobre los planetas de largo cardinality, quitando los que estan en without
