@@ -25,7 +25,49 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
             singuletes.remove(t)
     
     return result
+
+def atoms_of_open_definable_algebra(constellation, subtype, arity):
+    """
+    Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
+    en la constelacion que DEBE TENER UN SOLO PLANETA
+    """
+    constellation.is_open_definable(subtype,subtype)
     
+    mainsatellite, = constellation.main_satellites(subtype)
+
+    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
+    
+    result = []
+    
+    isos = list(constellation.iter_arrows(subtype,morphtype=Isomorphism))
+    
+    while singuletes:
+        k = singuletes[0]
+        result.append(closure(k,isos))
+        for t in result[-1]:
+            singuletes.remove(t)
+    
+    return result
+
+def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
+    """
+    Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
+    en la constelacion que DEBE TENER UN SOLO PLANETA
+    """
+    constellation.is_positive_open_definable(subtype,subtype)
+    
+    mainsatellite, = constellation.main_satellites(subtype)
+    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
+    
+    result = []
+    
+    homos = list(constellation.iter_arrows(subtype,morphtype=Homomorphism))
+    
+    for k in singuletes:
+        result.append(closure(k,homos))
+    
+    return join_irreducibles(result)
+
 def older_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve todas las relaciones de una cierta aridad definibles por una formula existencial
