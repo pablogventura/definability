@@ -229,7 +229,29 @@ class FO_Model(object):
         from sage.combinat.posets.lattices import LatticePoset
         self.join_to_le()
         return LatticePoset((self.universe,self.relations["<="].table()))
-        
+
+    def diagram(self, c, s=0):
+        """
+        Devuelve el diagrama de la estructura con el prefijo c y con un
+        shift de s.
+        """
+        result = []
+        for x, y in product(self.universe, repeat=2):
+            result += ["-(%s%s=%s%s)" % (c ,x + s,c ,y + s)]
+        for op in self.operations:
+            if self.operations[op].arity() == 0:
+                result += ["(%s=%s%s)" % (op,c ,self.operations[op]() + s)]
+            else:
+                for x,y,z in iter(self.operations[op].table()):
+                    result += ["%s%s %s %s%s = %s%s" % (c, x + s, op, c, y + s, c, z + s)]
+        for rel in self.relations:
+            for x, y in product(self.universe, repeat=2):
+                if self.relations[rel](x,y):
+                    result += ["(%s%s %s %s%s)" % (c, x + s, rel, c, y + s)]
+                else:
+                    result += ["-(%s%s %s %s%s)" % (c, x + s, rel, c, y + s)]
+        return result
+                    
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
