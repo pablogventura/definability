@@ -26,7 +26,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     
     return result
     
-def existencial_positive_definable_algebra(constellation, subtype, arity):
+def older_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve todas las relaciones de una cierta aridad definibles por una formula existencial
     positiva en el tipo subtype en el unico planeta de constellation.
@@ -50,7 +50,7 @@ def existencial_positive_definable_algebra(constellation, subtype, arity):
 
     return result
 
-def neww_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+def old_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve todas las relaciones de una cierta aridad definibles por una formula existencial
     positiva en el tipo subtype en el unico planeta de constellation.
@@ -81,9 +81,9 @@ def neww_ji_of_existencial_positive_definable_algebra(constellation, subtype, ar
                                 sf[i] = True
                 if not all(sf):                
                     result.append(s)
-                    yield s
+    return result
 
-def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
@@ -97,10 +97,8 @@ def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, ari
     
     endos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism)
     
-    while singuletes:
-        k = singuletes[0]
+    for k in singuletes:
         result.append(closure(k,endos))
-        del singuletes[0]
     
     return join_irreducibles(result)
 
@@ -121,31 +119,6 @@ def join_irreducibles(lst):
             if not all(sf):                
                 result.append(s)
     return result
-    
-def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
-    """
-    Devuelve las relaciones join-irreducibles del casireticulado de relaciones
-    existencial-positivo definibles.
-    """
-    # lplus lleva las relaciones definibles por existenciales positivas
-    lplus = map(set,sorted(existencial_positive_definable_algebra(constellation, subtype, arity),key=len))
-    join_irreducibles = [True] * len(filter(lambda e: len(e) == len(lplus[0]), lplus)) # el conjunto de los minimales es j-irre
-    join_irreducibles += [False] * (len(lplus)-len(join_irreducibles))
-    
-    for i,rel in enumerate(lplus):
-        for j,ji in enumerate(lplus):
-            if not join_irreducibles[j]:
-                continue
-            if not join_irreducibles[i]:
-                if rel.issuperset(ji):
-                    if (rel-ji) not in lplus:
-                        join_irreducibles[i]=True
-                        print "no estaba %s" % (rel-ji)
-                else:
-                    join_irreducibles[i]=True
-                    print "no tenia un ir"
-
-    return join_irreducibles
     
 def is_closed(l, arrows):
     """
