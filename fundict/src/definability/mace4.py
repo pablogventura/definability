@@ -88,7 +88,7 @@ class Mace4Sol(object):
             else:
                 buf += line
 
-            if buf.count("[") == buf.count("]"):
+            if buf.count("[") and buf.count("[") == buf.count("]"):
                 # hay un modelo completo
                 buf = buf.replace("\n", "")  # quito saltos de linea
                 buf = buf.strip()  # quito espacios para poder sacar la coma
