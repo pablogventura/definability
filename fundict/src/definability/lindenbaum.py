@@ -45,10 +45,44 @@ def existencial_positive_definable_algebra(constellation, subtype, arity):
         s = list(set(reduce(lambda x,y:x+y, s, [])))
         if is_closed(s, endos):
             s = set(s)
-            if s not in result:
+            if s and s not in result: # el vacio no va
                 result.append(s)
 
     return result
+
+def new_ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
+    """
+    Devuelve todas las relaciones de una cierta aridad definibles por una formula existencial
+    positiva en el tipo subtype en el unico planeta de constellation.
+    """
+    at = atoms_of_existencial_definable_algebra(constellation, subtype, arity)
+    constellation.is_existential_positive_definable(subtype,subtype)
+
+    mainsatellite, = constellation.main_satellites(subtype)
+
+    result = []
+    
+    #endos = filter(lambda x: not isinstance(x, Isomorphism), constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism))
+    endos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism)
+    jjj= 2**len(at)
+    for cant,s in enumerate(powerset(at)):
+        print "%s porciento (%s de %s)" % (float(cant)/jjj, cant, jjj)
+        print s
+        s = list(set(reduce(lambda x,y:x+y, s, [])))
+        if is_closed(s, endos):
+            s = list(set(s))
+            sf = [False] * len(s)
+            if s and s not in result: # el vacio no va
+                for ji in result:
+                    if set(ji).issubset(set(s)):
+                        for i in range(len(s)):
+                            if s[i] in ji:
+                                sf[i] = True
+                if not all(sf):                
+                    result.append(s)
+                    print len(result)
+    return result
+
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
@@ -56,16 +90,23 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     existencial-positivo definibles.
     """
     # lplus lleva las relaciones definibles por existenciales positivas
-    lplus = map(set,sorted(existencial_positive_definable_algebra(constellation, subtype, arity),key=len)[1:])
-    join_irreducibles = filter(lambda e: len(e) == len(lplus[0]), lplus) # el conjunto de los minimales es j-irre
+    lplus = map(set,sorted(existencial_positive_definable_algebra(constellation, subtype, arity),key=len))
+    join_irreducibles = [True] * len(filter(lambda e: len(e) == len(lplus[0]), lplus)) # el conjunto de los minimales es j-irre
+    join_irreducibles += [False] * (len(lplus)-len(join_irreducibles))
     
-    for rel in lplus:
-        for ji in join_irreducibles:
-            if rel not in join_irreducibles:
-                if not rel.issuperset(ji) or (rel-ji) not in lplus:
-                    join_irreducibles.append(rel)
-                    print join_irreducibles[-1]
-        print rel
+    for i,rel in enumerate(lplus):
+        for j,ji in enumerate(lplus):
+            if not join_irreducibles[j]:
+                continue
+            if not join_irreducibles[i]:
+                if rel.issuperset(ji):
+                    if (rel-ji) not in lplus:
+                        join_irreducibles[i]=True
+                        print "no estaba %s" % (rel-ji)
+                else:
+                    join_irreducibles[i]=True
+                    print "no tenia un ir"
+
     return join_irreducibles
     
 def is_closed(l, arrows):
