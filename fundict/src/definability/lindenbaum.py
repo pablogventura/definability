@@ -151,7 +151,11 @@ def closure(t,arrows):
         for t in result:
             if t not in checked:
                 for i in arrows:
-                    it = i.vector_call(t)
+                    try:
+                        it = i.vector_call(t)
+                    except ValueError:
+                        # no estaba en el dominio
+                        continue
                     if it not in result:
                         result.append(it)
                 checked.append(t)
