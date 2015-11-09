@@ -6,7 +6,7 @@ setup(name='definability',
       version='0.1',
       description='',
       author='Pablo Ventura',
-      author_email='gward@python.net',
+      author_email='pablogventura@gmail.com',
       url='',
       packages =['definability'],
      )
