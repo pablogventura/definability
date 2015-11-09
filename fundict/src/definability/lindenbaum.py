@@ -203,3 +203,26 @@ def old_ji_of_existencial_positive_definable_algebra(constellation, subtype, ari
                     result.append(s)
     return result
 
+def sets_to_poset(lst):
+    """
+    Convierte una lista de conjuntos en un poset por la inclusion.
+    """
+    from sage.combinat.posets.posets import Poset
+    sets = map(tuple, lst)
+    return Poset((sets,lambda x,y:set(x)<=set(y)))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
