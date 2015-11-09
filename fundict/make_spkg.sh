@@ -5,6 +5,10 @@ PKG_NAME="definability"
 
 echo "Packaging $PKG_NAME version $PKG_VERSION"
 
+# remove old
+echo "Remove old version"
+rm *.spkg
+
 # build dir
 echo "Building..."
 find . -name '*.pyc' -delete
