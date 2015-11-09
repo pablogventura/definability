@@ -178,7 +178,12 @@ class Function(object):
         table = indent("\n".join(table))
 
         return result + table + ")"
-
+    def __iter__(self):
+        """
+        Vuelve a las funciones iterables a partir de su grafico
+        o a las relaciones directamente desde su conjunto de tuplas.
+        """
+        return iter(self.table())
 
 
 if __name__ == "__main__":
