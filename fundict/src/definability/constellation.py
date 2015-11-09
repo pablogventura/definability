@@ -11,10 +11,15 @@ class TipedMultiDiGraph(object):
     """
     Maneja una coleccion de modelos relacionados por flechas
     """
-    def __init__(self):
+    def __init__(self, planets=[]):
         self.graph = networkx.MultiDiGraph()
         self.planets = defaultdict(list) # diccionario con key de len(planet)
         self.satellites = defaultdict(list) # diccionario con key de len(satellite)
+        try:
+            for planet in iter(planets):
+                self.add_planet(planet)
+        except TypeError:
+            self.add_planet(planets)
 
     def add_planet(self, planet):
         """
