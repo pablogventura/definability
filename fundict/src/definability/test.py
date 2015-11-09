@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
+import coverage
+import glob
+cv = coverage.Coverage(include=glob.glob("*.py"))
+cv.start()
+
 import unittest
 import doctest
+
 import config
 import examples
 import files
@@ -18,7 +24,6 @@ import lindenbaum
 from examples import *
 from morphisms import *
 from datetime import datetime
-
 constellations = []
 
 def load_tests(loader, tests, ignore):
@@ -120,4 +125,8 @@ class Test(unittest.TestCase):
         print "Hubo %s llamadas a minion" % (minion.MinionSol.count-habia)
         
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(exit=False)
+    print "=" * 80
+    print "Coverage:"
+    cv.stop()
+    cv.report()
