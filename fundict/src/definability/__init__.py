@@ -4,3 +4,4 @@ from constellation import Constellation
 from model import FO_Model
 import examples, fotheories
 import lindenbaum
+from sage_to import sage_lattice_to_model
