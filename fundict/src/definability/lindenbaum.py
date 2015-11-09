@@ -2,6 +2,7 @@ from itertools import product
 
 from morphisms import Homomorphism, Isomorphism
 from misc import powerset
+from fofunctions import FO_Relation
 
 def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     """
@@ -24,7 +25,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singuletes.remove(t)
     
-    return result
+    return lists_to_fo_relations(result)
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
@@ -43,7 +44,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     for k in singuletes:
         result.append(closure(k,endos))
     
-    return join_irreducibles(result)
+    return lists_to_fo_relations(join_irreducibles(result))
 
 def atoms_of_open_definable_algebra(constellation, subtype, arity):
     """
@@ -66,7 +67,7 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singuletes.remove(t)
     
-    return result
+    return lists_to_fo_relations(result)
 
 def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     """
@@ -85,7 +86,7 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     for k in singuletes:
         result.append(closure(k,homos))
     
-    return join_irreducibles(result)
+    return lists_to_fo_relations(join_irreducibles(result))
 
 def join_irreducibles(lst):
     """
@@ -144,6 +145,12 @@ def closure(t,arrows):
                     if it not in result:
                         result.append(it)
                 checked.append(t)
+    return result
+
+def lists_to_fo_relations(lst):
+    result = []
+    for l in lst:
+        result.append(FO_Relation({tuple(k):True for k in l}))
     return result
 
 def sets_to_poset(lst):
