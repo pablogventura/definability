@@ -8,6 +8,36 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
+    >>> import constellation, examples
+    >>> c = constellation.Constellation(examples.retrombo)
+    >>> atoms_of_existencial_definable_algebra(c,examples.tiporet,2)
+    [Relation(
+      [0, 0],
+    ), Relation(
+      [0, 1],
+    ), Relation(
+      [0, 2],
+      [0, 3],
+    ), Relation(
+      [1, 0],
+    ), Relation(
+      [1, 1],
+    ), Relation(
+      [1, 2],
+      [1, 3],
+    ), Relation(
+      [2, 0],
+      [3, 0],
+    ), Relation(
+      [2, 1],
+      [3, 1],
+    ), Relation(
+      [2, 2],
+      [3, 3],
+    ), Relation(
+      [2, 3],
+      [3, 2],
+    )]
     """
     constellation.is_existential_definable(subtype,subtype)
     
@@ -31,6 +61,52 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
+    >>> import constellation, examples
+    >>> c = constellation.Constellation(examples.retrombo)
+    >>> ji_of_existencial_positive_definable_algebra(c,examples.tiporet,2)
+    [Relation(
+      [0, 0],
+      [1, 1],
+      [2, 2],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [1, 1],
+      [2, 1],
+      [2, 2],
+      [3, 1],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [2, 0],
+      [2, 2],
+      [3, 0],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+    )]
     """
     constellation.is_existential_positive_definable(subtype,subtype)
     
@@ -50,6 +126,36 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
+    >>> import constellation, examples
+    >>> c = constellation.Constellation(examples.retrombo)
+    >>> atoms_of_open_definable_algebra(c,examples.tiporet,2)
+    [Relation(
+      [0, 0],
+    ), Relation(
+      [0, 1],
+    ), Relation(
+      [0, 2],
+      [0, 3],
+    ), Relation(
+      [1, 0],
+    ), Relation(
+      [1, 1],
+    ), Relation(
+      [1, 2],
+      [1, 3],
+    ), Relation(
+      [2, 0],
+      [3, 0],
+    ), Relation(
+      [2, 1],
+      [3, 1],
+    ), Relation(
+      [2, 2],
+      [3, 3],
+    ), Relation(
+      [2, 3],
+      [3, 2],
+    )]
     """
     constellation.is_open_definable(subtype,subtype)
     
@@ -73,6 +179,52 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
+    >>> import constellation, examples
+    >>> c = constellation.Constellation(examples.retrombo)
+    >>> ji_of_open_positive_definable_algebra(c,examples.tiporet,2)
+    [Relation(
+      [0, 0],
+      [1, 1],
+      [2, 2],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [1, 1],
+      [2, 1],
+      [2, 2],
+      [3, 1],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [2, 0],
+      [2, 2],
+      [3, 0],
+      [3, 3],
+    ), Relation(
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+    )]
     """
     constellation.is_positive_open_definable(subtype,subtype)
     
@@ -91,6 +243,8 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
 def join_irreducibles(lst):
     """
     Dada una lista de listas, devuelve una lista dejando solo las que son join-irreducibles
+    >>> join_irreducibles([[1,2],[2,3],[1,2,3],[1,2,3,4]])
+    [[1, 2], [2, 3], [1, 2, 3, 4]]
     """
     result = []
     for s in lst:
@@ -161,18 +315,7 @@ def sets_to_poset(lst):
     sets = map(lambda l: tuple(map(tuple,l)), lst) # lista de tuplas de tuplas.
     return Poset((sets,lambda x,y:set(x)<=set(y)))
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

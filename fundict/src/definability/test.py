@@ -14,6 +14,7 @@ import misc
 import model
 import morphisms
 import constellation
+import lindenbaum
 from examples import *
 from morphisms import *
 from datetime import datetime
@@ -21,7 +22,9 @@ from datetime import datetime
 constellations = []
 
 def load_tests(loader, tests, ignore):
-    modules = [config,examples,files,fofunctions,fotype,functions,minion,misc,model,morphisms,constellation]
+    modules = [config,examples,files,fofunctions,
+               fotype,functions,minion,misc,model,
+               morphisms,constellation,lindenbaum]
     for module in modules:
         tests.addTests(doctest.DocTestSuite(module))
     return tests
