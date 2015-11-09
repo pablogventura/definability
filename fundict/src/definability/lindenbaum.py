@@ -208,7 +208,7 @@ def sets_to_poset(lst):
     Convierte una lista de conjuntos en un poset por la inclusion.
     """
     from sage.combinat.posets.posets import Poset
-    sets = map(tuple, lst)
+    sets = map(lambda l: tuple(map(tuple,l)), lst) # lista de tuplas de tuplas.
     return Poset((sets,lambda x,y:set(x)<=set(y)))
     
     
