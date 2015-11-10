@@ -87,7 +87,8 @@ class FO_Theory():
         """
         s = lst + [lst[0]]
         for i in range(len(lst)):
-            p = prover9(self.axioms + [s[i]], [s[i + 1]], seconds, self.options)
+            p = prover9(
+                self.axioms + [s[i]], [s[i + 1]], seconds, self.options)
             if type(p) == list:
                 print i, "->", i + 1, ":", s[i + 1], "proved"
             else:
@@ -117,9 +118,11 @@ class FO_Theory():
         Find models that extend the two given models in the FO_Theory self.
         """
         n = modelb.cardinality
-        ne = ['b' + str(x) + '!=b' + str(y) for x in range(n) for y in range(x + 1, n)]
+        ne = ['b' + str(x) + '!=b' + str(y) for x in range(n)
+              for y in range(x + 1, n)]
         n = modelc.cardinality
-        ne += ['c' + str(x) + '!=c' + str(y) for x in range(n) for y in range(x + 1, n)]
+        ne += ['c' + str(x) + '!=c' + str(y) for x in range(n)
+               for y in range(x + 1, n)]
         return prover9(self.axioms + ne + modelb.positive_diagram('b') +
                        modelc.positive_diagram('c'), [], mace_time, prover_time)
 
@@ -142,7 +145,8 @@ class FO_Theory():
         if indices is None:
             indices = range(len(ax))
         for i in indices:
-            m = prover9(ax[:i] + ax[i + 1:], [ax[i]], seconds, 0, options=self.options)
+            m = prover9(
+                ax[:i] + ax[i + 1:], [ax[i]], seconds, 0, options=self.options)
             if type(m) == str:
                 print ax[i], "is redundant"
                 return False

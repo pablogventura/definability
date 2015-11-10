@@ -9,7 +9,8 @@ import os
 
 home = os.getenv('HOME')
 
-minion_path = os.path.join(home, "minion-1.8/bin/")  # siempre tienen que terminar en barra
+# siempre tienen que terminar en barra
+minion_path = os.path.join(home, "minion-1.8/bin/")
 
 ladr_path = os.path.join(home, "LADR-2009-11A/bin/")
 # print "Minion path: %s" % minion_path

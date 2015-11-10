@@ -4,6 +4,7 @@ from morphisms import Homomorphism, Isomorphism
 from misc import powerset
 from fofunctions import FO_Relation
 
+
 def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
@@ -39,23 +40,26 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
       [3, 2],
     )]
     """
-    constellation.is_existential_definable(subtype,subtype)
-    
+    constellation.is_existential_definable(subtype, subtype)
+
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
-    
+    singuletes = map(
+        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+
     result = []
-    
-    autos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Isomorphism)
-    
+
+    autos = constellation.arrows(
+        mainsatellite, mainsatellite, morphtype=Isomorphism)
+
     while singuletes:
         k = singuletes[0]
-        result.append(closure(k,autos))
+        result.append(closure(k, autos))
         for t in result[-1]:
             singuletes.remove(t)
-    
+
     return lists_to_fo_relations(result)
+
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     """
@@ -108,19 +112,22 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
       [3, 3],
     )]
     """
-    constellation.is_existential_positive_definable(subtype,subtype)
-    
+    constellation.is_existential_positive_definable(subtype, subtype)
+
     mainsatellite, = constellation.main_satellites(subtype)
-    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
-    
+    singuletes = map(
+        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+
     result = []
-    
-    endos = constellation.arrows(mainsatellite,mainsatellite,morphtype=Homomorphism)
-    
+
+    endos = constellation.arrows(
+        mainsatellite, mainsatellite, morphtype=Homomorphism)
+
     for k in singuletes:
-        result.append(closure(k,endos))
-    
+        result.append(closure(k, endos))
+
     return lists_to_fo_relations(join_irreducibles(result))
+
 
 def atoms_of_open_definable_algebra(constellation, subtype, arity):
     """
@@ -157,23 +164,25 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
       [3, 2],
     )]
     """
-    constellation.is_open_definable(subtype,subtype)
-    
+    constellation.is_open_definable(subtype, subtype)
+
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
-    
+    singuletes = map(
+        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+
     result = []
-    
-    isos = list(constellation.iter_arrows(subtype,morphtype=Isomorphism))
-    
+
+    isos = list(constellation.iter_arrows(subtype, morphtype=Isomorphism))
+
     while singuletes:
         k = singuletes[0]
-        result.append(closure(k,isos))
+        result.append(closure(k, isos))
         for t in result[-1]:
             singuletes.remove(t)
-    
+
     return lists_to_fo_relations(result)
+
 
 def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     """
@@ -226,19 +235,21 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
       [3, 3],
     )]
     """
-    constellation.is_positive_open_definable(subtype,subtype)
-    
+    constellation.is_positive_open_definable(subtype, subtype)
+
     mainsatellite, = constellation.main_satellites(subtype)
-    singuletes = map(lambda x: tuple(x),list(product(mainsatellite.universe,repeat=arity)))
-    
+    singuletes = map(
+        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+
     result = []
-    
-    homos = list(constellation.iter_arrows(subtype,morphtype=Homomorphism))
-    
+
+    homos = list(constellation.iter_arrows(subtype, morphtype=Homomorphism))
+
     for k in singuletes:
-        result.append(closure(k,homos))
-    
+        result.append(closure(k, homos))
+
     return lists_to_fo_relations(join_irreducibles(result))
+
 
 def join_irreducibles(lst):
     """
@@ -250,16 +261,17 @@ def join_irreducibles(lst):
     for s in lst:
         s = list(set(s))
         sf = [False] * len(s)
-        if s and s not in result: # el vacio no va
+        if s and s not in result:  # el vacio no va
             for ji in result:
                 if set(ji).issubset(set(s)):
                     for i in range(len(s)):
                         if s[i] in ji:
                             sf[i] = True
-            if not all(sf):                
+            if not all(sf):
                 result.append(s)
     return result
-    
+
+
 def is_closed(l, arrows):
     """
     Devuelve si la lista de tuplas es cerrada bajo las flechas
@@ -277,11 +289,12 @@ def is_closed(l, arrows):
                 checked.append(t)
     return True
 
-def closure(t,arrows):
+
+def closure(t, arrows):
     """
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
-    if isinstance(t,list):
+    if isinstance(t, list):
         result = t
     else:
         result = [t]
@@ -301,21 +314,24 @@ def closure(t,arrows):
                 checked.append(t)
     return result
 
+
 def lists_to_fo_relations(lst):
     result = []
     for l in lst:
-        result.append(FO_Relation({tuple(k):True for k in l}))
+        result.append(FO_Relation({tuple(k): True for k in l}))
     return result
+
 
 def sets_to_poset(lst):
     """
     Convierte una lista de conjuntos en un poset por la inclusion.
     """
     from sage.combinat.posets.posets import Poset
-    sets = map(lambda l: tuple(map(tuple,l)), lst) # lista de tuplas de tuplas.
-    return Poset((sets,lambda x,y:set(x)<=set(y)))
-    
-        
+    # lista de tuplas de tuplas.
+    sets = map(lambda l: tuple(map(tuple, l)), lst)
+    return Poset((sets, lambda x, y: set(x) <= set(y)))
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

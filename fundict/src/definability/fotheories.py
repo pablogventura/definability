@@ -1,5 +1,6 @@
 from fotheory import FO_Theory
 
+
 def assoc(s):
     return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
 
@@ -54,7 +55,7 @@ InMon = Mon.subclass("InMon", "Involutive monoids",
                      ["(x*y)' = y'*x'", "x'' = x"])
 
 Grp = FO_Theory("Grp", "Groups", [assoc("*"), "x*1 = x", "x*x' = 1"],
-              results=["1*x = x", "x'*x = 1", "x'' = x", "(x*y)' = y'*x'"])
+                results=["1*x = x", "x'*x = 1", "x'' = x", "(x*y)' = y'*x'"])
 
 AbGrp = CMon.subclass("AbGrp", "Abelian groups", ["x + -x = 0"])
 
@@ -82,15 +83,16 @@ BRing = URing.subclass("BRing", "Boolean rings",
 Slat = FO_Theory("Slat", "Semilattices", [assoc("*"), comm("*"), "x*x = x"])
 
 Lat = FO_Theory("Lat", "Lattices",
-              [assoc(" v "), comm(" v "), assoc("^"), comm("^"),
-               absorption(" v ", "^"), absorption("^", " v ")],
-              results=["x v x = x", "x^x = x"])
+                [assoc(" v "), comm(" v "), assoc("^"), comm("^"),
+                 absorption(" v ", "^"), absorption("^", " v ")],
+                results=["x v x = x", "x^x = x"])
 
 DLat = Lat.subclass("DLat", "Distributive lattices", [distr("^", " v ")],
                     results=[distr(" v ", "^"),
                              "((x v y)^(x v z))^(y v z) = ((x^y)v(x^z))v(y^z)"])
 
-MLat = Lat.subclass("MLat", "Modular lattices", ["x^(y v (x^z)) = (x^y) v (x^z)"])
+MLat = Lat.subclass(
+    "MLat", "Modular lattices", ["x^(y v (x^z)) = (x^y) v (x^z)"])
 
 SDjLat = Lat.subclass("SDjLat", "Join-semidistributive lattices",
                       ["x v y = x v z -> x v y = x v(y^z)"])
@@ -215,7 +217,8 @@ CDIRL = CDRL.subclass("CDIRL", "Commutative distributive integral residuated lat
 
 FL_o = RL.subclass("FL_o", "Full Lambek algebras with bottom", ["x v 0 = x"])
 
-FL_eo = CRL.subclass("FL_eo", "Full Lambek algebras with bottom", ["x v 0 = x"])
+FL_eo = CRL.subclass(
+    "FL_eo", "Full Lambek algebras with bottom", ["x v 0 = x"])
 
 FL_w = FL_o.subclass("FL_w", "Full Lambek algebras with weakening",
                      ["x v 1 = 1"])
@@ -236,7 +239,8 @@ InFL = LMon.subclass("InFL", "Involutive FL-algebras", ["(x*~(-z*x))v z = z",
                      options=['op(350, prefix, "~")'],
                      results=["(x*y) v z = z -> y^-(~z*x) = y"])
 
-DInFL = InFL.subclass("DInFL", "Distributive involutive FL-algebras", [distr("^", " v ")])
+DInFL = InFL.subclass(
+    "DInFL", "Distributive involutive FL-algebras", [distr("^", " v ")])
 
 CyInFL = LMon.subclass("CyInFL", "Cyclic involutive FL-algebras", ["~~x = x", "0 = ~1",
                                                                    "~(x^y)=~x v ~y", "(x*~(~z*x))v z = z", "(~(y*~z)*y) v z = z",
@@ -244,7 +248,8 @@ CyInFL = LMon.subclass("CyInFL", "Cyclic involutive FL-algebras", ["~~x = x", "0
                        options=['op(350, prefix, "~")'],
                        results=["(x*y) v z = z -> y^~(~z*x) = y"])
 
-MTL = FL_ew.subclass("MTL", "Monoidal t-norm logic algebras", ["(x->y)v(y->x) = 1"])
+MTL = FL_ew.subclass(
+    "MTL", "Monoidal t-norm logic algebras", ["(x->y)v(y->x) = 1"])
 
 HA = BDLat.subclass("HA", "Heyting algebras", ["(x->x) = 1", "(x->y)^y = y",
                                                "x^(x->y) = x^y", "(x->(y^z)) = (x->y)^(x->z)",
@@ -259,7 +264,8 @@ MValg = CMon.subclass("MValg", "MV-algebras", ["~~x = x", "x+~0 = ~0",
 
 BLalg = MTL.subclass("BLalg", "Basic logic algebras", ["x^y = x*(x->y)"])
 
-# defined above OLat = BLat.subclass("", "Ortholattices", ["x v x' = 1", "x^x'=0"])
+# defined above OLat = BLat.subclass("", "Ortholattices", ["x v x' = 1",
+# "x^x'=0"])
 
 # OMLat =
 
@@ -270,24 +276,25 @@ BLalg = MTL.subclass("BLalg", "Basic logic algebras", ["x^y = x*(x->y)"])
 # Sequent calculi (quasi-equational form)
 
 RLseq = FO_Theory("RLseq", "Residuated lattice sequent calculus", ["(x*y)*z = x*(y*z)",
-                                                                 "x*1 = x", "1*x = x", "x <= x",
-                                                                 "x <= y  &  y <= x  ->  x = y",
-                                                                 "u <= x  ->  u <= x v y",
-                                                                 "u <= y  ->  u <= x v y",
-                                                                 "(u*x)*v <= z & (u*y)*v <= z  ->  (u*(x v y))*v <= z",
-                                                                 "x <= z & y <= z  ->  x v y <= z",
-                                                                 "u <= x & v <= y  ->  u*v <= x*y",
-                                                                 "u <= x & u <= y  ->  u <= x^y",
-                                                                 "(u*x)*v <= z  ->  (u*(x^y))*v <= z",
-                                                                 "(u*y)*v <= z  ->  (u*(x^y))*v <= z",
-                                                                 "u*y <= x  ->  u <= x/y",
-                                                                 "v <= y  &  (u*x)*w <= z  ->  (u*(x/y))*(v*w) <= z",
-                                                                 "y*u <= x  ->  u <= y\\x",
-                                                                 "v <= y  &  (u*x)*w <= z  ->  (u*v)*((y\\x)*w) <= z"],
-                results=["x v x <= x", "x <= x v x",
-                         "x*(y v z) <= (x*y)v(x*z)", "(x*y)v(x*z) <= x*(y v z)"])
+                                                                   "x*1 = x", "1*x = x", "x <= x",
+                                                                   "x <= y  &  y <= x  ->  x = y",
+                                                                   "u <= x  ->  u <= x v y",
+                                                                   "u <= y  ->  u <= x v y",
+                                                                   "(u*x)*v <= z & (u*y)*v <= z  ->  (u*(x v y))*v <= z",
+                                                                   "x <= z & y <= z  ->  x v y <= z",
+                                                                   "u <= x & v <= y  ->  u*v <= x*y",
+                                                                   "u <= x & u <= y  ->  u <= x^y",
+                                                                   "(u*x)*v <= z  ->  (u*(x^y))*v <= z",
+                                                                   "(u*y)*v <= z  ->  (u*(x^y))*v <= z",
+                                                                   "u*y <= x  ->  u <= x/y",
+                                                                   "v <= y  &  (u*x)*w <= z  ->  (u*(x/y))*(v*w) <= z",
+                                                                   "y*u <= x  ->  u <= y\\x",
+                                                                   "v <= y  &  (u*x)*w <= z  ->  (u*v)*((y\\x)*w) <= z"],
+                  results=["x v x <= x", "x <= x v x",
+                           "x*(y v z) <= (x*y)v(x*z)", "(x*y)v(x*z) <= x*(y v z)"])
 
-FL_oseq = FO_Theory("FL_oseq", "FL-algebras with bottom sequent calculus", ["(x*0)*y = z"])
+FL_oseq = FO_Theory(
+    "FL_oseq", "FL-algebras with bottom sequent calculus", ["(x*0)*y = z"])
 
 
 ###################################
@@ -371,37 +378,38 @@ KA = CMon.subclass("KA", "Kleene algebras", ["x+x = x", assoc(";"),
                    options=["op(300, postfix, *)", "op(400, infix_left, ;)"])
 
 KAseq = FO_Theory("KAseq", "Kleene algebra sequent calculus", ["(x;y);z = x;(y;z)",
-                                                             "x;1 = x", "1;x = x", "x <= x", "x;0;y <= z",
-                                                             "u <= x  ->  u <= x+y",
-                                                             "u <= y  ->  u <= x+y",
-                                                             "u;x;v <= z & u;y;v <= z  ->  u;(x+y);v <= z",
-                                                             "u <= x & v <= y  ->  u;v <= x;y",
-                                                             "u <= 1  ->  u <= x*",
-                                                             "u <= x  ->  u <= x*",
-                                                             "u <= x* & v <= x*  ->  u;v <= x*",
-                                                             "u <= y & x;y <= y  ->  x*;u <= y",
-                                                             "u <= y & y;x <= y  ->  u;x* <= y"],
-                results=["x <= x*", "x*;x* <= x*", "x <= x*;x*", "x** <= x*",
-                         "x* <= x**", "x*;(y;x*)* <= (x+y)*",
-                         "(x+y)* <= x* ;(y;x*)*"],
-                options=["op(300, postfix, *)", "op(400, infix_left, ;)"])
+                                                               "x;1 = x", "1;x = x", "x <= x", "x;0;y <= z",
+                                                               "u <= x  ->  u <= x+y",
+                                                               "u <= y  ->  u <= x+y",
+                                                               "u;x;v <= z & u;y;v <= z  ->  u;(x+y);v <= z",
+                                                               "u <= x & v <= y  ->  u;v <= x;y",
+                                                               "u <= 1  ->  u <= x*",
+                                                               "u <= x  ->  u <= x*",
+                                                               "u <= x* & v <= x*  ->  u;v <= x*",
+                                                               "u <= y & x;y <= y  ->  x*;u <= y",
+                                                               "u <= y & y;x <= y  ->  u;x* <= y"],
+                  results=["x <= x*", "x*;x* <= x*", "x <= x*;x*", "x** <= x*",
+                           "x* <= x**", "x*;(y;x*)* <= (x+y)*",
+                           "(x+y)* <= x* ;(y;x*)*"],
+                  options=["op(300, postfix, *)", "op(400, infix_left, ;)"])
 
 Alleg = InMon.subclass("Alleg", "Unisorted allegories", [assoc("^"), comm("^"),
-                                                         idem("^"), "(x^y)'=x'^y'", "(x*(y^z)) ^ (x*y) = x*(y^z)",
+                                                         idem(
+                                                             "^"), "(x^y)'=x'^y'", "(x*(y^z)) ^ (x*y) = x*(y^z)",
                                                          "(x*y)^z = ((x^(z*y'))*y)^z"])
 
 ##########################
 # Other equational classes
 
 Qdl = FO_Theory("Qdl", "Quandels",
-              [idem("*"), "(x*y)/y = x", "(x/y)*y = x", rdistr("*", "*")])
+                [idem("*"), "(x*y)/y = x", "(x/y)*y = x", rdistr("*", "*")])
 
 Band = FO_Theory("Band", "Bands", [assoc("*"), idem("*")])
 
 RectBand = Band.subclass("RectBand", "Rectangular bands", ["(x*y)*z = x*z"])
 
 Qgrp = FO_Theory("Qgrp", "Quasigroups",
-               ["(x*y)/y = x", "(x/y)*y = x", "x\\(x*y) = y", "x*(x\\y) = y"])
+                 ["(x*y)/y = x", "(x/y)*y = x", "x\\(x*y) = y", "x*(x\\y) = y"])
 
 Loop = Qgrp.subclass("Loop", "Loops", ["x*1 = x", "1*x = x"])
 
@@ -442,7 +450,8 @@ PreOrd = FO_Theory("PreOrd", "Preordered sets", [refl("<="), trans("<=")])
 
 Pos = PreOrd.subclass("Pos", "Partially ordered sets", [antisymm("<=")])
 
-StrPos = FO_Theory("StrPos", "Strict partially ordered sets", [irrefl("<"), trans("<")])
+StrPos = FO_Theory(
+    "StrPos", "Strict partially ordered sets", [irrefl("<"), trans("<")])
 
 Chains = Pos.subclass("Chains", "Linearly ordered sets", ["x<=y | y<=x"])
 
@@ -458,23 +467,28 @@ poCGrpoid = Pos.subclass("poCGrpoid", "Partially ordered commutative groupoids",
 oGrpoid = Chains.subclass("oGrpoid", "Linearly ordered groupoids",
                           ["x<=y -> x*z<=y*z", "x<=y -> z*x<=z*y"])
 
-oCGrpoid = oGrpoid.subclass("oCGrpoid", "Linearly ordered commutative groupoids", [comm("*")])
+oCGrpoid = oGrpoid.subclass(
+    "oCGrpoid", "Linearly ordered commutative groupoids", [comm("*")])
 
 poSgrp = poGrpoid.subclass("poSgrp", "po-semigroups", Sgrp)
 
-poCSgrp = poSgrp.subclass("poCSgrp", "Partially ordered commutative semigroups", [comm("*")])
+poCSgrp = poSgrp.subclass(
+    "poCSgrp", "Partially ordered commutative semigroups", [comm("*")])
 
 oSgrp = oGrpoid.subclass("oSgrp", "Linearly ordered semigroups", Sgrp)
 
-oCSgrp = oSgrp.subclass("oCSgrp", "Linearly ordered commutative semigroups", [comm("*")])
+oCSgrp = oSgrp.subclass(
+    "oCSgrp", "Linearly ordered commutative semigroups", [comm("*")])
 
 poMon = poGrpoid.subclass("poMon", "po-monoids", Mon)
 
-poCMon = poMon.subclass("poCMon", "Partially ordered commutative monoids", [comm("*")])
+poCMon = poMon.subclass(
+    "poCMon", "Partially ordered commutative monoids", [comm("*")])
 
 oMon = oGrpoid.subclass("oMon", "Linearly ordered monoids", Mon)
 
-oCMon = oMon.subclass("oCMon", "Linearly ordered commutative monoids", [comm("*")])
+oCMon = oMon.subclass(
+    "oCMon", "Linearly ordered commutative monoids", [comm("*")])
 
 proGrp = poMon.subclass("proGrp", "Protogroups", ["f(x)*x <= 1", "1 <= x*f(x)"],
                         results=["f(x*y) = f(y)*f(x)", "(x*f(x))*x = x"])
@@ -519,7 +533,8 @@ rpoSgrp = rpoGrpoid.subclass("rpoSgrp", "Residuated po-semigroups", Sgrp)
 rpoCSgrp = rpoSgrp.subclass("rpoCSgrp", "Residuated partially ordered commutative semigroups",
                             [comm("*")])
 
-roSgrp = roGrpoid.subclass("roSgrp", "Residuated linearly ordered semigroups", Sgrp)
+roSgrp = roGrpoid.subclass(
+    "roSgrp", "Residuated linearly ordered semigroups", Sgrp)
 
 roCSgrp = roSgrp.subclass("roCSgrp", "Residuated linearly ordered commutative semigroups",
                           [comm("*")])
@@ -548,7 +563,8 @@ iroGrpoid = roGrpoid.subclass("iroGrpoid", "Integral residuated linearly ordered
 iroCGrpoid = roCGrpoid.subclass("iroCGrpoid", "Integral residuated linearly ordered commutative groupoids",
                                 ["y<=x\\x", "x\\x = y/y"])
 
-irpoSgrp = irpoGrpoid.subclass("irpoSgrp", "Integral residuated po-semigroups", Sgrp)
+irpoSgrp = irpoGrpoid.subclass(
+    "irpoSgrp", "Integral residuated po-semigroups", Sgrp)
 
 irpoCSgrp = rpoCSgrp.subclass("irpoCSgrp", "Integral residuated partially ordered commutative semigroups",
                               ["y<=x\\x", "x\\x = y/y"])
@@ -578,24 +594,24 @@ iroCMon = roCMon.subclass("iroCMon", "Integral residuated linearly ordered commu
 # Atom structures
 
 NAat = FO_Theory("NAat", "Nonassociative relation algebra atomstructures",
-               ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
-                "x=y <-> exists u(E(u) & C(x,u,y))"])
+                 ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
+                  "x=y <-> exists u(E(u) & C(x,u,y))"])
 
 INAat = FO_Theory("INAat", "Integral nonassociative relation algebra atomstructures",
-                ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
-                 "C(x,0,y) <-> x=y"],
-                results=["C(x',z,y) -> C(x,y,z)", "C(z,y',x) -> C(x,y,z)",
-                         "x''=x", "C(0,x,y) <-> x=y"])
+                  ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
+                   "C(x,0,y) <-> x=y"],
+                  results=["C(x',z,y) -> C(x,y,z)", "C(z,y',x) -> C(x,y,z)",
+                           "x''=x", "C(0,x,y) <-> x=y"])
 
 INAat1 = FO_Theory("INAat1", "Integral nonassociative relation algebra atomstructures",
-                 ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
-                  "C(x,1,y) <-> x=y"],
-                 results=["C(x',z,y) -> C(x,y,z)", "C(z,y',x) -> C(x,y,z)",
-                          "x''=x", "C(1,x,y) <-> x=y"])
+                   ["C(x,y,z) -> C(x',z,y)", "C(x,y,z) -> C(z,y',x)",
+                    "C(x,1,y) <-> x=y"],
+                   results=["C(x',z,y) -> C(x,y,z)", "C(z,y',x) -> C(x,y,z)",
+                            "x''=x", "C(1,x,y) <-> x=y"])
 
 SNAat = FO_Theory("SNAat", "Symmetric nonassociative relation algebra atomstructures",
-                ["C(x,y,z) -> C(x,z,y)", "C(x,y,z) -> C(z,y,x)",
-                 "C(x,0,y) <-> x=y"])
+                  ["C(x,y,z) -> C(x,z,y)", "C(x,y,z) -> C(z,y,x)",
+                   "C(x,0,y) <-> x=y"])
 
 RAat = NAat.subclass("RAat", "Relation algebra atomstructures",
                      ["exists u(C(x,y,u) & C(u,z,w)) <-> exists v(C(x,v,w) & C(y,z,v))"])
@@ -610,9 +626,9 @@ SRAat = SNAat.subclass("SRAat", "Symmetric relation algebra atomstructures",
                        ["exists u(C(x,y,u) & C(u,z,w)) <-> exists v(C(x,v,w) & C(y,z,v))"])
 
 SeqAat = FO_Theory("SeqAat", "Sequential algebra atomstructures",
-                 ["C(x,y,0) <-> C(y,x,0)", "C(x,0,y) <-> x=y", "C(0,x,y) <-> x=y",
-                  "exists u(C(x,y,u) & C(u,z,w)) <-> exists v(C(x,v,w) & C(y,z,v))",
-                  "exists u(C(x,u,y) & C(u,w,z)) -> exists v(C(x,z,v) & C(y,w,v))"])
+                   ["C(x,y,0) <-> C(y,x,0)", "C(x,0,y) <-> x=y", "C(0,x,y) <-> x=y",
+                    "exists u(C(x,y,u) & C(u,z,w)) <-> exists v(C(x,v,w) & C(y,z,v))",
+                    "exists u(C(x,u,y) & C(u,w,z)) -> exists v(C(x,z,v) & C(y,w,v))"])
 
 
 #############################################################
@@ -631,16 +647,19 @@ DN = "P(--x->x)"                        # Double negation
 CP = "P((x->-y)->(y->-x))"              # Contraposition
 
 BK = FO_Theory("BK", "BK logic,  reduct of FL_w", [Bb, Kk, MP,
-                                                 "P(y) & P(x->(y->z)) -> P(x->z)"])
+                                                   "P(y) & P(x->(y->z)) -> P(x->z)"])
 
 BCK = FO_Theory("BCK", "BCK logic, -> reduct of FL_ew", [Bb, Cc, Kk, MP])
 
-BCKP = FO_Theory("BCKP", "BCK logic + Pierce law, -> reduct of CL", [Bb, Cc, Kk, Pierce, MP])
+BCKP = FO_Theory(
+    "BCKP", "BCK logic + Pierce law, -> reduct of CL", [Bb, Cc, Kk, Pierce, MP])
 
 BCI = FO_Theory("BCI", "BCI logic, -> reduct of FL_e", [Bb, Cc, Ii, MP])
 
-BCIS = FO_Theory("BCIS", "BCIS=BCIW logic, -> reduct of FL_ec", [Bb, Cc, Ii, Ss, MP])
+BCIS = FO_Theory(
+    "BCIS", "BCIS=BCIW logic, -> reduct of FL_ec", [Bb, Cc, Ii, Ss, MP])
 
-SK = FO_Theory("SK", "Hilbert logic, -> reduct of intuitionistic logic", [Ss, Kk, MP])
+SK = FO_Theory(
+    "SK", "Hilbert logic, -> reduct of intuitionistic logic", [Ss, Kk, MP])
 
 CL = FO_Theory("CL", "Classical logic", [Ss, Kk, DN, CP, MP])

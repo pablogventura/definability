@@ -8,5 +8,5 @@ setup(name='definability',
       author='Pablo Ventura',
       author_email='pablogventura@gmail.com',
       url='',
-      packages =['definability'],
-     )
+      packages=['definability'],
+      )

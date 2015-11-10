@@ -3,6 +3,7 @@
 
 import os
 
+
 def create_pipe(path):
     """
     Crea un named pipe
@@ -13,6 +14,7 @@ def create_pipe(path):
         # ya existe
         pass
 
+
 def remove(path):
     try:
         os.remove(path)
@@ -20,11 +22,13 @@ def remove(path):
         # no existe
         pass
 
+
 def read(path):
     f = open(path)
     data = f.read()
     f.close()
     return data
+
 
 def write(path, data):
     """
