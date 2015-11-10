@@ -8,6 +8,23 @@ from minion import GroupMinionSol
 from morphisms import Homomorphism, Embedding, Isomorphism
 
 
+def check_history(func):
+    """
+    Decorador para llevar la historia y no recalcular
+    """
+
+    def f(self, subtype, supertype):
+        param = (func, subtype, supertype)
+        if param in self.history:
+            return self.history[param]
+        else:
+            result = func(self, subtype, supertype)
+            self.history[param] = result
+            return result
+    f.func_doc = func.func_doc
+    return f
+
+
 class TipedMultiDiGraph(object):
 
     """
@@ -19,6 +36,7 @@ class TipedMultiDiGraph(object):
         self.planets = defaultdict(list)  # diccionario con key de len(planet)
         # diccionario con key de len(satellite)
         self.satellites = defaultdict(list)
+        self.history = {}
         try:
             for planet in iter(planets):
                 self.add_planet(planet)
@@ -289,6 +307,7 @@ class Constellation(TipedMultiDiGraph):
                 if ce:
                     return ce
 
+    @check_history
     def is_existential_definable(self, subtype, supertype):
         """
         Busca automorfismos en subtype para saber si preservan supertype-subtype
@@ -304,6 +323,7 @@ class Constellation(TipedMultiDiGraph):
                     return (False, ce)
         return (True, None)
 
+    @check_history
     def is_open_definable(self, subtype, supertype):
         """
         Busca isomorfismos internos en subtype para saber si preservan supertype-subtype
@@ -324,6 +344,7 @@ class Constellation(TipedMultiDiGraph):
                         return (False, ce)
         return (True, None)
 
+    @check_history
     def is_existential_positive_definable(self, subtype, supertype):
         """
         Busca endomorfismos en subtype para saber si preservan supertype-subtype
@@ -344,6 +365,7 @@ class Constellation(TipedMultiDiGraph):
             return (False, ce)
         return (True, None)
 
+    @check_history
     def is_positive_open_definable(self, subtype, supertype):
         """
         Busca homomorfismos internos en subtype para saber si preservan supertype-subtype
@@ -363,6 +385,7 @@ class Constellation(TipedMultiDiGraph):
         if ce:
             return (False, ce)
         return (True, None)
+
 
 if __name__ == "__main__":
     import doctest
