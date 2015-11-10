@@ -5,10 +5,9 @@
 # requires sage.chapman.edu/sage/minion_20110326.spkg
 
 import subprocess as sp
-from itertools import product
 from select import poll, POLLIN
 
-from morphisms import *
+from morphisms import Homomorphism, Embedding, Isomorphism
 import config
 import files
 
@@ -334,7 +333,7 @@ class MorphMinionSol(MinionSol):
         """
         Genera la entrada de minion para un morfismo.
         """
-        result = [-1] * (max(map(lambda x: x[0], morph.dict.keys())) + 1)
+        result = [-1] * (max([x[0] for x in morph.dict.keys()]) + 1)
         for i in morph.dict.keys():
             result[i[0]] = morph.dict[i]
         return result
