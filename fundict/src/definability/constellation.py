@@ -157,7 +157,7 @@ class TipedMultiDiGraph(object):
         if morphtype:
             result = filter(lambda x: isinstance(x, morphtype), result)
         if subtype:
-            result = filter(lambda x: x.subtype.is_subtype_of(subtype), result)
+            result = filter(lambda x: subtype.is_subtype_of(x.subtype), result)
         return result
 
     def add_check_arrows(self, arrows, subtype, supertype):
@@ -261,6 +261,16 @@ class Constellation(TipedMultiDiGraph):
     >>> c.add_planet(retrombo)
     >>> c.is_open_definable(tiporet,tiporet+tipoposet)
     (True, None)
+    >>> c.is_open_definable(tiporet,tiporet+tipotest)
+    (False, Embedding(
+      [0] -> 2,
+    ,
+      FO_Type({'v': 2, '^': 2},{})
+    ,
+      antitype= ['P']
+    ,
+      Injective,
+    ))
     >>> c.is_open_definable(tiporet,tiporet+tipotest)
     (False, Embedding(
       [0] -> 2,
