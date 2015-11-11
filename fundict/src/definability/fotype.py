@@ -73,6 +73,8 @@ class FO_Type(object):
             assert op not in result.operations
             result.operations[op] = other.operations[op]
         return result
+    def __hash__(self):
+        return hash((tuple(self.operations.items()), tuple(self.relations.items())))
 
 if __name__ == "__main__":
     import doctest

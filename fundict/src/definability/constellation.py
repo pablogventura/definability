@@ -14,7 +14,7 @@ def check_history(func):
     """
 
     def f(self, subtype, supertype):
-        param = (func, subtype, supertype)
+        param = (func.func_name, subtype, supertype)
         if param in self.history:
             return self.history[param]
         else:
@@ -257,6 +257,7 @@ class Constellation(TipedMultiDiGraph):
 
     >>> from examples import *
     >>> from constellation import *
+    >>> from minion import MinionSol
     >>> c = Constellation()
     >>> c.add_planet(retrombo)
     >>> c.is_open_definable(tiporet,tiporet+tipoposet)
@@ -271,6 +272,7 @@ class Constellation(TipedMultiDiGraph):
     ,
       Injective,
     ))
+    >>> old = MinionSol.count
     >>> c.is_open_definable(tiporet,tiporet+tipotest)
     (False, Embedding(
       [0] -> 2,
@@ -281,6 +283,8 @@ class Constellation(TipedMultiDiGraph):
     ,
       Injective,
     ))
+    >>> old == MinionSol.count
+    True
     """
 
     def __open_check_protosatellite(self, protosatellite, inc, planet, subtype, supertype):
