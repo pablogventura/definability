@@ -227,7 +227,7 @@ class FO_Model(object):
                     result[t] = 1
                 else:
                     result[t] = 0
-            self.relations["<="] = FO_Relation(result)
+            self.relations["<="] = FO_Relation(result,self.universe)
 
     def to_sage_lattice(self):
         """

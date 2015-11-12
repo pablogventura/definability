@@ -58,7 +58,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singuletes.remove(t)
 
-    return lists_to_fo_relations(result)
+    return lists_to_fo_relations(result, mainsatellite.universe)
 
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
@@ -126,7 +126,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     for k in singuletes:
         result.append(closure(k, endos))
 
-    return lists_to_fo_relations(join_irreducibles(result))
+    return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
 
 
 def atoms_of_open_definable_algebra(constellation, subtype, arity):
@@ -181,7 +181,7 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singuletes.remove(t)
 
-    return lists_to_fo_relations(result)
+    return lists_to_fo_relations(result, mainsatellite.universe)
 
 
 def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
@@ -248,7 +248,7 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     for k in singuletes:
         result.append(closure(k, homos))
 
-    return lists_to_fo_relations(join_irreducibles(result))
+    return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
 
 
 def join_irreducibles(lst):
@@ -315,10 +315,10 @@ def closure(t, arrows):
     return result
 
 
-def lists_to_fo_relations(lst):
+def lists_to_fo_relations(lst,d_universe):
     result = []
     for l in lst:
-        result.append(FO_Relation({tuple(k): True for k in l}))
+        result.append(FO_Relation({tuple(k): True for k in l},d_universe))
     return result
 
 

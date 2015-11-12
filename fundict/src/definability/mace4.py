@@ -6,7 +6,7 @@ from fofunctions import FO_Operation, FO_Relation
 from fotype import FO_Type
 
 
-def getops(li, st):
+def getops(li, st, d_universe=None):
     # TODO , PARECIERA QUE DEBERIA SER UN METODO INTERNO DE LOS MODELOS QUE
     # DEVUELVE MACE4
     """extract operations/relations from the Prover9 model, se usa en isofilter y prover9"""
@@ -18,7 +18,8 @@ def getops(li, st):
         if st == "function":
             result[oprel] = FO_Operation(result[oprel])
         elif st == "relation":
-            result[oprel] = FO_Relation(result[oprel])
+            assert d_universe
+            result[oprel] = FO_Relation(result[oprel],d_universe)
         else:
             raise KeyError
     return result
@@ -105,12 +106,12 @@ class Mace4Sol(object):
                     buf = buf[:-1]  # saco la coma!
                 m = eval(buf)
                 operations = getops(m[2], 'function')
-                relations = getops(m[2], 'relation')
+                relations = getops(m[2], 'relation',range(m[0]))
                 fo_type = FO_Type({name: operations[name].arity() for name in operations.iterkeys()},
                                   {name: relations[name].arity()
                                    for name in relations.iterkeys()}
                                   )
-                return FO_Model(fo_type, range(m[0]), getops(m[2], 'function'), getops(m[2], 'relation'))
+                return FO_Model(fo_type, range(m[0]),operations, relations)
             else:
                 # no hay un modelo completo
                 line = self.__stdout.readline()  # necesita otra linea

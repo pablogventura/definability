@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 from functions import Function
+from itertools import product
 
 
 class FO_OpRel(Function):
@@ -30,7 +31,7 @@ class FO_Relation(FO_OpRel):
     r"""
     Relacion de primer orden
 
-    >>> par = FO_Relation({(0,):1,(1,):0,(2,):1,(3,):0,(4,):1})
+    >>> par = FO_Relation({(0,):1,(1,):0,(2,):1,(3,):0,(4,):1},range(4))
     >>> par(2)
     True
     >>> par(3)
@@ -39,8 +40,10 @@ class FO_Relation(FO_OpRel):
     [[0], [2], [4]]
     """
 
-    def __init__(self, d):
+    def __init__(self, d, d_universe):
+        assert d_universe
         super(FO_Relation, self).__init__(d)
+        self.d_universe = d_universe
         self.relation = True
 
     def is_a_function_graph(self, universe):

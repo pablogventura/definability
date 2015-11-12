@@ -71,7 +71,10 @@ class Function(object):
         """
         Un generador del dominio
         """
-        return self.dict.iterkeys()
+        if self.relation:
+            return product(self.d_universe, repeat=self.arity())
+        else:
+            return self.dict.iterkeys()
 
     def image(self):
         """
@@ -114,6 +117,8 @@ class Function(object):
         try:
             result = self.dict[args]
         except KeyError:
+            if self.relation and all(x in self.d_universe for x in args):
+                return False
             raise ValueError("Value '%s' not in domain" % str(args))
 
         if self.relation:
