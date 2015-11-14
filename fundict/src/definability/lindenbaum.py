@@ -128,6 +128,22 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
 
     return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
 
+def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype, arity):
+    
+    atomos = map(lambda x:map(tuple,x),atomos)
+
+    constellation.is_existential_positive_definable(subtype, subtype)
+
+    mainsatellite, = constellation.main_satellites(subtype)
+
+    result = []
+
+    homos = [x for x in constellation.iter_arrows(subtype, morphtype=Homomorphism) if not isinstance(x,Isomorphism)]
+
+    for a in atomos:
+        result.append(closure(a[0], homos) + a[1:])
+
+    return result 
 
 def atoms_of_open_definable_algebra(constellation, subtype, arity):
     """
