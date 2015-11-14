@@ -45,7 +45,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     mainsatellite, = constellation.main_satellites(subtype)
 
     singletons = map(
-        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+        tuple, list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
@@ -116,7 +116,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
     singletons = map(
-        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+        tuple, list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
@@ -129,13 +129,11 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
 
 
-def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype, arity):
+def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
 
     atomos = map(lambda x: map(tuple, x), atomos)
 
     constellation.is_existential_positive_definable(subtype, subtype)
-
-    mainsatellite, = constellation.main_satellites(subtype)
 
     result = []
 
@@ -188,7 +186,7 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
     mainsatellite, = constellation.main_satellites(subtype)
 
     singletons = map(
-        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+        tuple, list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
@@ -258,7 +256,7 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
     singletons = map(
-        lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
+        tuple, list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
