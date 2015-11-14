@@ -5,7 +5,7 @@ from examples import *
 from collections import defaultdict
 from itertools import product, chain
 from minion import GroupMinionSol
-from morphisms import Homomorphism, Embedding, Isomorphism
+from morphisms import Embedding
 
 
 def check_history(func):
@@ -51,7 +51,7 @@ class TipedMultiDiGraph(object):
             self.planets[len(planet)].append(planet)
             self.graph.add_node(planet)
 
-    def add_satellite(self, satellite, inclusion, planet):
+    def add_satellite(self, satellite, inclusion):
         """
         Agrega un satellite y una funcion de inclusion
         """
@@ -59,7 +59,7 @@ class TipedMultiDiGraph(object):
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
 
-    def degrade(self, explanet, inclusion, planet):
+    def degrade(self, explanet, inclusion):
         """
         Degrada un planeta a satelite.
         """
@@ -132,12 +132,11 @@ class TipedMultiDiGraph(object):
         """
         Dibuja la constelacion
         """
-        import networkx as nx
         import matplotlib.pyplot as plt
         import os
         from PIL import Image
         os.system("rm multi.png")
-        nx.write_dot(self.graph, 'multi.dot')
+        networkx.write_dot(self.graph, 'multi.dot')
         os.system("rm multi.png;dot -T png multi.dot > multi.png")
         img = Image.open('multi.png')
         plt.imshow(img)
@@ -308,14 +307,14 @@ class Constellation(TipedMultiDiGraph):
                 if not iso.preserves_type(supertype):
                     return iso
                 explanet = iso.target
-                self.degrade(explanet, inc.composition(iso.inverse()), planet)
+                self.degrade(explanet, inc.composition(iso.inverse()))
                 ce = self.add_check_arrows(
                     explanet.isomorphisms_to(explanet, subtype), subtype, supertype)
                 if ce:
                     return ce
             else:
                 # merece ser un satellite
-                self.add_satellite(protosatellite, inc, planet)
+                self.add_satellite(protosatellite, inc)
                 ce = self.add_check_arrows(protosatellite.isomorphisms_to(
                     protosatellite, subtype), subtype, supertype)  # autos
                 if ce:
