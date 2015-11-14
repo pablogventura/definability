@@ -44,7 +44,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singuletes = map(
+    singletons = map(
         lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
@@ -52,11 +52,11 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     autos = constellation.arrows(
         mainsatellite, mainsatellite, morphtype=Isomorphism)
 
-    while singuletes:
-        k = singuletes[0]
+    while singletons:
+        k = singletons[0]
         result.append(closure(k, autos))
         for t in result[-1]:
-            singuletes.remove(t)
+            singletons.remove(t)
 
     return lists_to_fo_relations(result, mainsatellite.universe)
 
@@ -115,7 +115,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_existential_positive_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singuletes = map(
+    singletons = map(
         lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
@@ -123,7 +123,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     endos = constellation.arrows(
         mainsatellite, mainsatellite, morphtype=Homomorphism)
 
-    for k in singuletes:
+    for k in singletons:
         result.append(closure(k, endos))
 
     return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
@@ -168,18 +168,18 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singuletes = map(
+    singletons = map(
         lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
     isos = list(constellation.iter_arrows(subtype, morphtype=Isomorphism))
 
-    while singuletes:
-        k = singuletes[0]
+    while singletons:
+        k = singletons[0]
         result.append(closure(k, isos))
         for t in result[-1]:
-            singuletes.remove(t)
+            singletons.remove(t)
 
     return lists_to_fo_relations(result, mainsatellite.universe)
 
@@ -238,14 +238,14 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_positive_open_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singuletes = map(
+    singletons = map(
         lambda x: tuple(x), list(product(mainsatellite.universe, repeat=arity)))
 
     result = []
 
     homos = list(constellation.iter_arrows(subtype, morphtype=Homomorphism))
 
-    for k in singuletes:
+    for k in singletons:
         result.append(closure(k, homos))
 
     return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
