@@ -33,8 +33,7 @@ posetrombo = FO_Model(tipoposet, range(4), {},
                                           (3, 0): 0,
                                           (3, 1): 1,
                                           (3, 2): 0,
-                                          (3, 3): 1}
-                                         ,range(4)),})
+                                          (3, 3): 1}, range(4)), })
 
 posetdiamante = FO_Model(tipoposet, range(5), {}, {"<=": FO_Relation({(0, 0): 1,
                                                                       (0, 1): 1,
@@ -60,11 +59,10 @@ posetdiamante = FO_Model(tipoposet, range(5), {}, {"<=": FO_Relation({(0, 0): 1,
                                                                       (4, 1): 1,
                                                                       (4, 2): 0,
                                                                       (4, 3): 0,
-                                                                      (4, 4): 1}
-                                                                     ,range(5))})
+                                                                      (4, 4): 1}, range(5))})
 
 posetcadena2 = FO_Model(tipoposet, range(
-    2), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1},range(2))})
+    2), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, range(2))})
 
 retdiamante = fotheories.Lat.find_models(5)[0]
 rettestlinden = fotheories.DLat.find_models(7)[0]
@@ -119,10 +117,9 @@ retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
                                         (3, 0): 0,
                                         (3, 1): 1,
                                         (3, 2): 0,
-                                        (3, 3): 1}
-                                       ,range(4)),
+                                        (3, 3): 1}, range(4)),
                      # Relacion de prueba
-                     "P": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 1},range(4))
+                     "P": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 1}, range(4))
                      })
 
 retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1,
@@ -176,10 +173,9 @@ retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1
                                          (4, 1): 0,
                                          (4, 2): 1,
                                          (4, 3): 0,
-                                         (4, 4): 1}
-                                        ,[1,2,3,4]),
+                                         (4, 4): 1}, [1, 2, 3, 4]),
                       # Relacion de prueba
-                      "P": FO_Relation({(1,): 0, (2,): 0, (3,): 1, (4,): 1},[1,2,3,4])
+                      "P": FO_Relation({(1,): 0, (2,): 0, (3,): 1, (4,): 1}, [1, 2, 3, 4])
                       })
 
 
