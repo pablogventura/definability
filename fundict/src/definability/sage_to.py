@@ -3,6 +3,7 @@
 
 import examples
 import model
+import fofunctions
 
 
 def sage_lattice_to_model(lat):
@@ -12,7 +13,7 @@ def sage_lattice_to_model(lat):
     meet = [list(r) for r in lat.meet_matrix().rows()]
     join = [list(r) for r in lat.join_matrix().rows()]
 
-    meet = model.FO_Operation(meet)
-    join = model.FO_Operation(join)
+    meet = fofunctions.FO_Operation(meet)
+    join = fofunctions.FO_Operation(join)
 
     return model.FO_Model(examples.tiporet, range(lat.cardinality()), {"v": join, "^": meet}, {})
