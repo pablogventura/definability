@@ -1,7 +1,12 @@
 import networkx, itertools, random
 
-le=lambda x,y:y%x==0
+def le(x,y):
+    if x % 7 == 0:
+        x = x / 7
+    return y % x == 0
+
 nodos = range(-3,0) + range(1,4) + [6,-6]
+nodos = nodos + map(lambda x:x*7, nodos)
 lados = []
 for a,b in itertools.product(nodos,repeat=2):
     if le(a,b):
@@ -49,5 +54,6 @@ def arbolDFS(grafo,origen):
         if not agrego:
             #result[v].sort() # ya esta listo, lo ordeno
             del s[-1] # lo borra porque todos sus vecinos fueron visitados
+            
     
     return le,equal
