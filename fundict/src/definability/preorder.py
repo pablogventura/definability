@@ -1,4 +1,4 @@
-import networkx, itertools
+import networkx, itertools, random
 
 le=lambda x,y:y%x==0
 nodos = range(-3,0) + range(1,4) + [6,-6]
@@ -18,15 +18,19 @@ def arbolDFS(grafo,origen):
     s.append(origen)
     le=[]
     equal = []
-    nodes = grafo.nodes()
+    nodes = random.sample(grafo.nodes(),len(grafo.nodes())) # para probar con muchos ordenes
     
     while s:
-        raw_input()
-        print s
         v = s[-1] # lo toma del final
+        if len(s) >= 2:
+            pv = s[-2]
+        else:
+            pv = None
         agrego = False
+        if pv in nodes:
+            nodes.remove(pv)
+            nodes = [pv] + nodes
         for w in nodes:
-            print nodes
             if v!=w and (v,w) in grafo.edges():
                 if (v,w) not in visitado:
                     agrego = True 
