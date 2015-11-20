@@ -27,14 +27,7 @@ def arbolDFS(grafo,origen):
     
     while s:
         v = s[-1] # lo toma del final
-        if len(s) >= 2:
-            pv = s[-2] # el padre para preguntar si puedo volver
-        else:
-            pv = None
-        agrego = False
-        if pv in nodes:
-            nodes.remove(pv)
-            nodes = [pv] + nodes
+        father_first_sort(nodes, s)
         for w in nodes:
             if v!=w and (v,w) not in visitado:
                 if (v,w) in grafo.edges():
@@ -45,10 +38,15 @@ def arbolDFS(grafo,origen):
                         equal.append((w,v))
                         nodes.remove(v)
                     else:
-                        agrego = True 
                         s.append(w) # ahora el camino es mas largo
                         le.append((v,w))
                     break
-        if not agrego:
-            del s[-1] # lo borra porque todos sus vecinos fueron visitados
+        if v == s[-1]:
+            del s[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
+
     return le,equal
+
+def father_first_sort(nodes, path):
+    if len(path) >= 2 and path[-2] in nodes:
+        nodes.remove(path[-2])
+        nodes.insert(0,path[-2])
