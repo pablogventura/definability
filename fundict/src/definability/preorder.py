@@ -46,6 +46,8 @@ def arbolDFS(grafo,origen):
     return le,equal
 
 def father_first_sort(nodes, path):
+    # TODO DEBERIA SER UN ITERADOR, Y DEBERIA SACAR A LOS QUE ESTAN EN PATH DE NODES
     if len(path) >= 2 and path[-2] in nodes:
         nodes.remove(path[-2])
         nodes.insert(0,path[-2])
+    
