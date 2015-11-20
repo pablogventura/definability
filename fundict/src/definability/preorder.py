@@ -1,4 +1,5 @@
 import networkx, itertools, random
+from collections import defaultdict
 
 def le(x,y):
     if x % 7 == 0:
@@ -21,7 +22,7 @@ def arbolDFS(nodes, func_le, origen):
     path = [origen] # es una pila LIFO (lleva el camino actual)
     visitado = [] # lados ya recorridos
     le=[] # lista de tuplas de <=
-    equal = [] # lista de tuplas de = cocientado
+    equal = defaultdict(list) # lista de tuplas de = cocientado
     nodes = random.sample(nodes,len(nodes)) # para probar con muchos ordenes
     
     while path:
@@ -33,7 +34,7 @@ def arbolDFS(nodes, func_le, origen):
                     if (w,v) in le:
                         assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
                         le.remove((w,v))
-                        equal.append((w,v))
+                        equal[w].append(v)
                         nodes.remove(v)
                     else:
                         path.append(w) # ahora el camino es mas largo
