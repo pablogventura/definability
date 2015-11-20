@@ -38,17 +38,15 @@ def arbolDFS(grafo,origen):
         for w in nodes:
             if v!=w and (v,w) not in visitado:
                 if (v,w) in grafo.edges():
-                    agrego = True 
-                    visitado.append((v,w))
-                    s.append(w) # lo inserta al final
+                    visitado.append((v,w)) # no quiero volver a pasar por aca
                     if (w,v) in le:
-                        assert w in s[:-1]
+                        assert w in s[:-1] # entonces ya habia pasado por w antes
                         le.remove((w,v))
                         equal.append((w,v))
                         nodes.remove(v)
-                        s = s[:-1] # borra el ultimo
-                        agrego = False
                     else:
+                        agrego = True 
+                        s.append(w) # ahora el camino es mas largo
                         le.append((v,w))
                     break
         if not agrego:
