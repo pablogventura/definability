@@ -14,17 +14,23 @@ for a,b in itertools.product(nodos,repeat=2):
         lados.append((a,b))
 
 
-def arbolDFS(nodes, func_le):
+def preorder_to_poset(nodes, func_le, source=None):
     """
     Devuelve el arbol DFS de un grafo desde un origen dado.
     """
-    checked_edges = [] # lados ya recorridos
     nodes_to_check = random.sample(nodes,len(nodes)) # vertices ya recorridos
+    if source:
+        nodes_to_check.remove(source)
+        nodes_to_check.insert(0,source)
+
+    checked_edges = [] # lados ya recorridos
     le=[] # lista de tuplas de <=
     equal = defaultdict(list) # lista de tuplas de = cocientado
     quo_nodes = random.sample(nodes,len(nodes)) # los nodos que van quedando al cocientar
+    
     while nodes_to_check:
         path =  [nodes_to_check[0]] # es una pila LIFO (lleva el camino actual)
+        
         while path:
             v = path[-1] # lo toma del final
             if v in nodes_to_check:
