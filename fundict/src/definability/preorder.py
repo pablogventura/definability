@@ -2,7 +2,11 @@ from collections import defaultdict
 
 def preorder_to_poset(nodes, func_le, source=None):
     """
-    Devuelve el arbol DFS de un grafo desde un origen dado.
+    Recorre con DFS el preorden y siempre trata de encontrar una ida y venida
+    con el siguiente vertice del camino, para poder ir cocientando y disminuir
+    el tamaño del grafo formado por el preorden.
+    Empieza desde source, si no llega a recorrer todo, sigue por un vertice sin explorar.
+    Devuelve la lista de tuplas en <= en el poset y un diccionario con las equivalencias.
     
     >>> import itertools, random
     >>> le = lambda x,y: y % x == 0
