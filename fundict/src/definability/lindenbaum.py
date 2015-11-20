@@ -4,6 +4,7 @@ from morphisms import Homomorphism, Isomorphism
 from misc import powerset
 from fofunctions import FO_Relation
 from preorder import preorder_to_poset
+from datetime import datetime
 
 
 def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
@@ -131,7 +132,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
 
 
 def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
-
+    tack = datetime.now()
     atomos = map(lambda x: map(tuple, x), atomos)
 
     constellation.is_existential_positive_definable(subtype, subtype)
@@ -143,9 +144,11 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
 
     drep = {a[0]:i for i,a in enumerate(atomos)}
     le = lambda x,y: any(h.vector_call(y)==x for h in endos)
-    
+    teck = datetime.now()
+    print "tomo %s segundos" % (teck-tack).total_seconds()
     rel,equi = preorder_to_poset(drep.keys(),le)
-    
+    tick = datetime.now()
+    print "tomo %s segundos" % (tick-teck).total_seconds()
     ji=list(atomos)
     for k in equi.keys():
         for v in equi[k]:
@@ -157,6 +160,8 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     ji = filter(lambda x: x is not None, ji)
     ji = map(tuple,ji)
     new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
+    tock = datetime.now()
+    print "tomo %s segundos" % (tock-tick).total_seconds()
     return ji,new_rel    
         
         
