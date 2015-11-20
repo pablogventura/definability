@@ -1,4 +1,4 @@
-import networkx, itertools, random
+import itertools, random
 from collections import defaultdict
 
 def le(x,y):
@@ -13,35 +13,37 @@ for a,b in itertools.product(nodos,repeat=2):
     if le(a,b):
         lados.append((a,b))
 
-g=networkx.MultiDiGraph(lados)
 
-def arbolDFS(nodes, func_le, origen):
+def arbolDFS(nodes, func_le):
     """
     Devuelve el arbol DFS de un grafo desde un origen dado.
     """
-    path = [origen] # es una pila LIFO (lleva el camino actual)
-    visitado = [] # lados ya recorridos
+    checked_edges = [] # lados ya recorridos
+    nodes_to_check = random.sample(nodes,len(nodes)) # vertices ya recorridos
     le=[] # lista de tuplas de <=
     equal = defaultdict(list) # lista de tuplas de = cocientado
-    nodes = random.sample(nodes,len(nodes)) # para probar con muchos ordenes
-    
-    while path:
-        v = path[-1] # lo toma del final
-        for w in father_first_sort(nodes, path):
-            if (v,w) not in visitado:
-                if func_le(v,w):
-                    visitado.append((v,w)) # no quiero volver a pasar por aca
-                    if (w,v) in le:
-                        assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
-                        le.remove((w,v))
-                        equal[w].append(v)
-                        nodes.remove(v)
-                    else:
-                        path.append(w) # ahora el camino es mas largo
-                        le.append((v,w))
-                    break
-        if v == path[-1]:
-            del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
+    quo_nodes = random.sample(nodes,len(nodes)) # los nodos que van quedando al cocientar
+    while nodes_to_check:
+        path =  [nodes_to_check[0]] # es una pila LIFO (lleva el camino actual)
+        while path:
+            v = path[-1] # lo toma del final
+            if v in nodes_to_check:
+                nodes_to_check.remove(v)
+            for w in father_first_sort(quo_nodes, path):
+                if (v,w) not in checked_edges:
+                    if func_le(v,w):
+                        checked_edges.append((v,w)) # no quiero volver a pasar por aca
+                        if (w,v) in le:
+                            assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
+                            le.remove((w,v))
+                            equal[w].append(v)
+                            quo_nodes.remove(v)
+                        else:
+                            path.append(w) # ahora el camino es mas largo
+                            le.append((v,w))
+                        break
+            if v == path[-1]:
+                del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
 
     return le,equal
 
