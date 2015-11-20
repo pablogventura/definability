@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
 from collections import defaultdict
 
 def preorder_to_poset(nodes, func_le, source=None):
