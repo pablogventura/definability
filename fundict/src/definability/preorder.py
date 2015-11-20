@@ -18,9 +18,8 @@ def arbolDFS(grafo,origen):
     """
     Devuelve el arbol DFS de un grafo desde un origen dado.
     """
-    path = [] # es una pila LIFO (lleva el camino actual)
+    path = [origen] # es una pila LIFO (lleva el camino actual)
     visitado = [] # lados ya recorridos
-    path.append(origen)
     le=[] # lista de tuplas de <=
     equal = [] # lista de tuplas de = cocientado
     nodes = random.sample(grafo.nodes(),len(grafo.nodes())) # para probar con muchos ordenes
