@@ -50,6 +50,5 @@ def arbolDFS(grafo,origen):
                         le.append((v,w))
                     break
         if not agrego:
-            #result[v].sort() # ya esta listo, lo ordeno
             del s[-1] # lo borra porque todos sus vecinos fueron visitados
     return le,equal
