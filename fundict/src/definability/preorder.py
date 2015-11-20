@@ -40,7 +40,7 @@ def arbolDFS(grafo,origen):
                 if (v,w) in grafo.edges():
                     visitado.append((v,w)) # no quiero volver a pasar por aca
                     if (w,v) in le:
-                        assert w in s[:-1] # entonces ya habia pasado por w antes
+                        assert w == s[-2] # entonces ya habia pasado por w antes de llegar a v
                         le.remove((w,v))
                         equal.append((w,v))
                         nodes.remove(v)
