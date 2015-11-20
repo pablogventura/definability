@@ -36,8 +36,8 @@ def arbolDFS(grafo,origen):
             nodes.remove(pv)
             nodes = [pv] + nodes
         for w in nodes:
-            if v!=w and (v,w) in grafo.edges():
-                if (v,w) not in visitado:
+            if v!=w and (v,w) not in visitado:
+                if (v,w) in grafo.edges():
                     agrego = True 
                     visitado.append((v,w))
                     s.append(w) # lo inserta al final
@@ -54,6 +54,4 @@ def arbolDFS(grafo,origen):
         if not agrego:
             #result[v].sort() # ya esta listo, lo ordeno
             del s[-1] # lo borra porque todos sus vecinos fueron visitados
-            
-    
     return le,equal
