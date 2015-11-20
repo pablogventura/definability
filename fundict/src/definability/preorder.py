@@ -14,7 +14,7 @@ for a,b in itertools.product(nodos,repeat=2):
 
 g=networkx.MultiDiGraph(lados)
 
-def arbolDFS(grafo,origen):
+def arbolDFS(nodes, func_le, origen):
     """
     Devuelve el arbol DFS de un grafo desde un origen dado.
     """
@@ -22,13 +22,13 @@ def arbolDFS(grafo,origen):
     visitado = [] # lados ya recorridos
     le=[] # lista de tuplas de <=
     equal = [] # lista de tuplas de = cocientado
-    nodes = random.sample(grafo.nodes(),len(grafo.nodes())) # para probar con muchos ordenes
+    nodes = random.sample(nodes,len(nodes)) # para probar con muchos ordenes
     
     while path:
         v = path[-1] # lo toma del final
         for w in father_first_sort(nodes, path):
             if (v,w) not in visitado:
-                if (v,w) in grafo.edges():
+                if func_le(v,w):
                     visitado.append((v,w)) # no quiero volver a pasar por aca
                     if (w,v) in le:
                         assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
