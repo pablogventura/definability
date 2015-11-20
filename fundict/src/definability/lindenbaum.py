@@ -3,6 +3,7 @@ from itertools import product
 from morphisms import Homomorphism, Isomorphism
 from misc import powerset
 from fofunctions import FO_Relation
+from preorder import preorder_to_poset
 
 
 def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
@@ -136,14 +137,29 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     constellation.is_existential_positive_definable(subtype, subtype)
 
     result = []
+    mainsatellite, = constellation.main_satellites(subtype)
+    endos = constellation.arrows(
+        mainsatellite, mainsatellite, morphtype=Homomorphism)
 
-    homos = [x for x in constellation.iter_arrows(
-        subtype, morphtype=Homomorphism) if not isinstance(x, Isomorphism)]
-
-    for a in atomos:
-        result.append(closure(a[0], homos) + a[1:])
-
-    return result
+    drep = {a[0]:i for i,a in enumerate(atomos)}
+    le = lambda x,y: any(h.vector_call(y)==x for h in endos)
+    
+    rel,equi = preorder_to_poset(drep.keys(),le)
+    
+    ji=list(atomos)
+    for k in equi.keys():
+        for v in equi[k]:
+            ji[drep[k]] += atomos[drep[v]]
+            ji[drep[v]] = None
+    new_rel = []
+    for (a,b) in rel:
+        new_rel.append((ji[drep[a]],ji[drep[b]]))
+    ji = filter(lambda x: x is not None, ji)
+    ji = map(tuple,ji)
+    new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
+    return ji,new_rel    
+        
+        
 
 
 def atoms_of_open_definable_algebra(constellation, subtype, arity):
