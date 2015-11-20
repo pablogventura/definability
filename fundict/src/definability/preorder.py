@@ -18,31 +18,31 @@ def arbolDFS(grafo,origen):
     """
     Devuelve el arbol DFS de un grafo desde un origen dado.
     """
-    s = [] # es una pila LIFO (lleva el camino actual)
+    path = [] # es una pila LIFO (lleva el camino actual)
     visitado = [] # lados ya recorridos
-    s.append(origen)
+    path.append(origen)
     le=[] # lista de tuplas de <=
     equal = [] # lista de tuplas de = cocientado
     nodes = random.sample(grafo.nodes(),len(grafo.nodes())) # para probar con muchos ordenes
     
-    while s:
-        v = s[-1] # lo toma del final
-        father_first_sort(nodes, s)
+    while path:
+        v = path[-1] # lo toma del final
+        father_first_sort(nodes, path)
         for w in nodes:
             if v!=w and (v,w) not in visitado:
                 if (v,w) in grafo.edges():
                     visitado.append((v,w)) # no quiero volver a pasar por aca
                     if (w,v) in le:
-                        assert w == s[-2] # entonces ya habia pasado por w antes de llegar a v
+                        assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
                         le.remove((w,v))
                         equal.append((w,v))
                         nodes.remove(v)
                     else:
-                        s.append(w) # ahora el camino es mas largo
+                        path.append(w) # ahora el camino es mas largo
                         le.append((v,w))
                     break
-        if v == s[-1]:
-            del s[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
+        if v == path[-1]:
+            del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
 
     return le,equal
 
