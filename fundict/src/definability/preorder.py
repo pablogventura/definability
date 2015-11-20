@@ -26,9 +26,8 @@ def arbolDFS(grafo,origen):
     
     while path:
         v = path[-1] # lo toma del final
-        father_first_sort(nodes, path)
-        for w in nodes:
-            if v!=w and (v,w) not in visitado:
+        for w in father_first_sort(nodes, path):
+            if (v,w) not in visitado:
                 if (v,w) in grafo.edges():
                     visitado.append((v,w)) # no quiero volver a pasar por aca
                     if (w,v) in le:
@@ -46,8 +45,13 @@ def arbolDFS(grafo,origen):
     return le,equal
 
 def father_first_sort(nodes, path):
-    # TODO DEBERIA SER UN ITERADOR, Y DEBERIA SACAR A LOS QUE ESTAN EN PATH DE NODES
+    """
+    Iterador que devuelve primero el padre del ultimo elemento del camino
+    y luego va devolviendo aquellos nodos que no estan en el camino en cualquier orden.
+    """
     if len(path) >= 2 and path[-2] in nodes:
-        nodes.remove(path[-2])
-        nodes.insert(0,path[-2])
+        yield path[-2]
+    for node in nodes:
+        if node not in path:
+            yield node
     
