@@ -43,11 +43,16 @@ def preorder_to_poset(nodes, func_le, source=None):
                             le.remove((w,v))
                             equal[w].append(v)
                             quo_nodes.remove(v)
+                            del path[-1]
                         else:
                             path.append(w) # ahora el camino es mas largo
                             le.append((v,w))
                         break
             if v == path[-1]:
+                for vv in path[:-1]:
+                    if (vv,v) not in le:
+                        le.append((vv,v))
+                        checked_edges.append((vv,v))
                 del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
 
     return le,equal
