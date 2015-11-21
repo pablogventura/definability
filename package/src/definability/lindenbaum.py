@@ -146,7 +146,7 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     le = lambda x,y: any(h.vector_call(y)==x for h in endos)
     teck = datetime.now()
     print "tomo %s segundos" % (teck-tack).total_seconds()
-    rel,equi = preorder_to_poset(drep.keys(),le)
+    rel,equi = preorder_to_poset(drep.keys(),le,atomos[0][0])
     tick = datetime.now()
     print "tomo %s segundos" % (tick-teck).total_seconds()
     ji=list(atomos)
