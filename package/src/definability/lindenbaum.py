@@ -132,6 +132,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
 
 
 def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
+    # TODO emprolijar muchisimo!
     tack = datetime.now()
     atomos = map(lambda x: map(tuple, x), atomos)
 
