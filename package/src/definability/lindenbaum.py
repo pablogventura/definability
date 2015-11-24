@@ -1,4 +1,4 @@
-from itertools import product
+from itertools import product, imap
 
 from morphisms import Homomorphism, Isomorphism
 from misc import powerset
@@ -117,18 +117,19 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_existential_positive_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singletons = map(
-        tuple, list(product(mainsatellite.universe, repeat=arity)))
-
-    result = []
+    singletons = imap(
+        tuple, product(mainsatellite.universe, repeat=arity))
 
     endos = constellation.arrows(
         mainsatellite, mainsatellite, morphtype=Homomorphism)
 
+    result = []
+        
     for k in singletons:
-        result.append(closure(k, endos))
-
-    return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
+        c = set(closure(k,endos)) # para poder comparar
+        if c not in result:
+            result.append(c)
+    return lists_to_fo_relations(result, mainsatellite.universe)
 
 
 def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
