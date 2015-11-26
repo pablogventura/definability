@@ -22,8 +22,8 @@ def preorder_to_poset(nodes, func_le, source=None):
         nodes_to_check.remove(source)
         nodes_to_check.insert(0,source)
 
-    checked_edges = defaultdict(list) # lados ya recorridos
-    inaccesibles = defaultdict(list)
+    checked_edges = defaultdict(set) # lados ya recorridos
+    inaccesibles = defaultdict(set)
     quo_nodes = list(nodes) # los nodos que van quedando al cocientar
     
     le=[] # lista de tuplas de <=
@@ -38,26 +38,28 @@ def preorder_to_poset(nodes, func_le, source=None):
                 nodes_to_check.remove(v)
             for w in father_first_sort(quo_nodes, path):
                 if w not in checked_edges[v]:
-                    checked_edges[v].append(w) # no quiero volver a pasar por aca
+                    checked_edges[v].add(w) # no quiero volver a pasar por aca
                     if func_le(v,w):
                         if len(path) >= 2 and path[-2] == w: # puedo volver!
                             le.remove((w,v))
                             equal[w].append(v)
+                            inaccesibles[w] = inaccesibles[w].union(inaccesibles[v])
+                            checked_edges[w] = checked_edges[w].union(inaccesibles[w])
                             quo_nodes.remove(v)
                             del path[-1]
                         else:
                             path.append(w) # ahora el camino es mas largo
                             le.append((v,w))
-                            inaccesibles[w]+=inaccesibles[v]
-                            checked_edges[w] += inaccesibles[w]
+                            inaccesibles[w] = inaccesibles[w].union(inaccesibles[v])
+                            checked_edges[w] = checked_edges[w].union(inaccesibles[w])
                         break
                     else:
-                        inaccesibles[v].append(w)
+                        inaccesibles[v].add(w)
             if v == path[-1]:
                 for vv in path[:-1]:
                     if (vv,v) not in le:
                         le.append((vv,v))
-                        checked_edges[vv].append(v)
+                        checked_edges[vv].add(v)
                 del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
 
     return le,equal
