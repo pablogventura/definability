@@ -156,12 +156,8 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     ji=list(atomos)
     for k in equi.keys():
         for v in equi[k]:
-            raw_input()
-            print k,v
-            print ji[drep[k]],atomos[drep[v]]
             ji[drep[k]] += atomos[drep[v]]
             ji[drep[v]] = None
-        assert is_closed(ji[drep[k]],endos), (ji[drep[k]],closure(ji[drep[k]],endos))
     new_rel = []
     for (a,b) in rel:
         new_rel.append((ji[drep[a]],ji[drep[b]]))
