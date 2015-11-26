@@ -22,7 +22,7 @@ def preorder_to_poset(nodes, func_le, source=None):
         nodes_to_check.remove(source)
         nodes_to_check.insert(0,source)
 
-    checked_edges = [] # lados ya recorridos
+    checked_edges = defaultdict(list) # lados ya recorridos
     le=[] # lista de tuplas de <=
     equal = defaultdict(list) # lista de tuplas de = cocientado
     quo_nodes = list(nodes) # los nodos que van quedando al cocientar
@@ -35,11 +35,10 @@ def preorder_to_poset(nodes, func_le, source=None):
             if v in nodes_to_check:
                 nodes_to_check.remove(v)
             for w in father_first_sort(quo_nodes, path):
-                if (v,w) not in checked_edges:
+                if w not in checked_edges[v]:
+                    checked_edges[v].append(w) # no quiero volver a pasar por aca
                     if func_le(v,w):
-                        checked_edges.append((v,w)) # no quiero volver a pasar por aca
-                        if (w,v) in le:
-                            assert w == path[-2] # entonces ya habia pasado por w antes de llegar a v
+                        if len(path) > 2 and path[-2] == w: # puedo volver!
                             le.remove((w,v))
                             equal[w].append(v)
                             quo_nodes.remove(v)
@@ -52,7 +51,7 @@ def preorder_to_poset(nodes, func_le, source=None):
                 for vv in path[:-1]:
                     if (vv,v) not in le:
                         le.append((vv,v))
-                        checked_edges.append((vv,v))
+                        checked_edges[vv].append(v)
                 del path[-1] # lo borra porque no agrego a nadie nuevo FINAL DEL CAMINO
 
     return le,equal
