@@ -60,7 +60,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singletons.remove(t)
 
-    return lists_to_fo_relations(result, mainsatellite.universe)
+    return result
 
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
@@ -129,7 +129,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
         c = set(closure(k,endos)) # para poder comparar
         if c not in result:
             result.append(c)
-    return lists_to_fo_relations(result, mainsatellite.universe)
+    return join_irreducibles(result)
 
 
 def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
@@ -151,11 +151,17 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     rel,equi = preorder_to_poset(drep.keys(),le,atomos[0][0])
     tick = datetime.now()
     print "tomo %s segundos" % (tick-teck).total_seconds()
+    
+    
     ji=list(atomos)
     for k in equi.keys():
         for v in equi[k]:
+            raw_input()
+            print k,v
+            print ji[drep[k]],atomos[drep[v]]
             ji[drep[k]] += atomos[drep[v]]
             ji[drep[v]] = None
+        assert is_closed(ji[drep[k]],endos), (ji[drep[k]],closure(ji[drep[k]],endos))
     new_rel = []
     for (a,b) in rel:
         new_rel.append((ji[drep[a]],ji[drep[b]]))
@@ -335,7 +341,7 @@ def closure(t, arrows):
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
     if isinstance(t, list):
-        result = t
+        result = list(t)
     else:
         result = [t]
     checked = []
