@@ -23,6 +23,7 @@ def preorder_to_poset(nodes, func_le, source=None):
         nodes_to_check.insert(0,source)
 
     checked_edges = defaultdict(list) # lados ya recorridos
+    inaccesibles = defaultdict(list)
     le=[] # lista de tuplas de <=
     equal = defaultdict(list) # lista de tuplas de = cocientado
     quo_nodes = list(nodes) # los nodos que van quedando al cocientar
@@ -46,7 +47,11 @@ def preorder_to_poset(nodes, func_le, source=None):
                         else:
                             path.append(w) # ahora el camino es mas largo
                             le.append((v,w))
+                            inaccesibles[w]+=inaccesibles[v]
+                            checked_edges[w] += inaccesibles[w]
                         break
+                    else:
+                        inaccesibles[v].append(w)
             if v == path[-1]:
                 for vv in path[:-1]:
                     if (vv,v) not in le:
