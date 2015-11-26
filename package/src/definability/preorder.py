@@ -24,12 +24,13 @@ def preorder_to_poset(nodes, func_le, source=None):
 
     checked_edges = defaultdict(list) # lados ya recorridos
     inaccesibles = defaultdict(list)
-    le=[] # lista de tuplas de <=
-    equal = defaultdict(list) # lista de tuplas de = cocientado
     quo_nodes = list(nodes) # los nodos que van quedando al cocientar
     
+    le=[] # lista de tuplas de <=
+    equal = defaultdict(list) # lista de tuplas de = cocientado
+    
     while nodes_to_check:
-        path =  [nodes_to_check[0]] # es una pila LIFO (lleva el camino actual)
+        path = [nodes_to_check[0]] # es una pila LIFO (lleva el camino actual)
         
         while path:
             v = path[-1] # lo toma del final
