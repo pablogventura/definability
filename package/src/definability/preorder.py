@@ -38,7 +38,7 @@ def preorder_to_poset(nodes, func_le, source=None):
                 if w not in checked_edges[v]:
                     checked_edges[v].append(w) # no quiero volver a pasar por aca
                     if func_le(v,w):
-                        if (w,v) in le: # puedo volver!
+                        if len(path) >= 2 and path[-2] == w: # puedo volver!
                             le.remove((w,v))
                             equal[w].append(v)
                             quo_nodes.remove(v)
