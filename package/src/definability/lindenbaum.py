@@ -141,8 +141,8 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
 
     result = []
     mainsatellite, = constellation.main_satellites(subtype)
-    endos = constellation.arrows(
-        mainsatellite, mainsatellite, morphtype=Homomorphism)
+    endos = filter(lambda x: not isinstance(x,Isomorphism),constellation.arrows(
+        mainsatellite, mainsatellite, morphtype=Homomorphism))
 
     drep = {a[0]:i for i,a in enumerate(atomos)}
     le = lambda x,y: any(h.vector_call(y)==x for h in endos)
