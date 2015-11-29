@@ -173,7 +173,9 @@ class MorphMinionSol(MinionSol):
         table = oprel.table()
         table_name = prefix + self.__minion_name(symbol)
         height = len(table)
-        width = len(table[0])
+        width = oprel.arity()
+        if not oprel.relation:
+            width += 1
         result = ""
         for row in table:
             result += " ".join(map(str, row)) + "\n"
