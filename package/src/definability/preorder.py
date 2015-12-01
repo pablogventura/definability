@@ -64,6 +64,49 @@ def preorder_to_poset(nodes, func_le, source=None):
 
     return le,equal
 
+
+
+def pre_to_poset(nodes, fun_le, origen):
+    """
+    Version mas lenta, pero mas conceptual
+    """
+    nodes = list(nodes)
+    c = [origen]
+    cs = []
+    inal = defaultdict(set)
+    eq = defaultdict(set)
+
+    while c:
+
+        v = c[-1]
+
+        orden = [x for x in nodes if x not in inal[v] and x != v]
+        if len(c) >= 2 and c[-2] in orden:
+            orden.remove(c[-2])
+            orden = [c[-2]] + orden
+        for w in orden:
+
+            if w not in inal[v] and ((len(c) >= 2 and w == c[-2]) or not any(v in p and w in p for p in [c]+cs)):
+                if fun_le(v,w):
+                    if len(c) >= 2 and c[-2] == w:
+                        del c[-1]
+                        nodes.remove(v)
+                        eq[w].add(v)
+                    else:
+                        c.append(w)
+                        inal[w] = inal[w].union(inal[v])
+                    break
+                else:
+                    inal[v].add(w)
+        if v == c[-1]:
+            if (not cs) or (cs and c != cs[-1][:len(c)]):
+                cs.append(list(c))
+            del c[-1]
+    return cs, eq
+    
+
+
+
 def father_first_sort(nodes, path):
     """
     Iterador que devuelve primero el padre del ultimo elemento del camino
