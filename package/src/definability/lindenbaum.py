@@ -60,7 +60,7 @@ def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
         for t in result[-1]:
             singletons.remove(t)
 
-    return result
+    return lists_to_fo_relations(result,mainsatellite.universe)
 
 
 def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
@@ -129,7 +129,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
         c = set(closure(k,endos)) # para poder comparar
         if c not in result:
             result.append(c)
-    return join_irreducibles(result)
+    return lists_to_fo_relations(result,mainsatellite.universe)
 
 
 def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
@@ -288,9 +288,11 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     homos = list(constellation.iter_arrows(subtype, morphtype=Homomorphism))
 
     for k in singletons:
-        result.append(closure(k, homos))
+        c = set(closure(k, homos))
+        if c not in result:
+            result.append(c)
 
-    return lists_to_fo_relations(join_irreducibles(result), mainsatellite.universe)
+    return lists_to_fo_relations(result, mainsatellite.universe)
 
 
 def join_irreducibles(lst):
