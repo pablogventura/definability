@@ -50,6 +50,10 @@ class FO_Relation(FO_OpRel):
         """
         Revisa si la relacion es el grafico de una funcion para un universo dado.
         Si lo es, devuelve la funcion, y sino devuelve False.
+        
+        >>> rel = FO_Relation({(0,0,1):1,(0,0,2):1,(1,1,2):1},range(4))
+        >>> rel.is_a_function_graph(range(4))
+        False
         """
         table = self.table()
         # filtra los que estan en el universo
