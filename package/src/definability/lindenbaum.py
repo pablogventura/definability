@@ -280,8 +280,8 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_positive_open_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singletons = map(
-        tuple, list(product(mainsatellite.universe, repeat=arity)))
+    singletons = imap(
+        tuple, product(mainsatellite.universe, repeat=arity))
 
     result = []
 
