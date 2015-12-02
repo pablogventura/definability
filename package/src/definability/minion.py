@@ -14,7 +14,6 @@ import files
 
 class MinionSol(object):
     count = 0
-
     def __init__(self, input_data, allsols=True, fun=lambda x: x):
         """
         Toma el input para minion, si espera todas las soluciones y una funcion para aplicar
@@ -406,7 +405,7 @@ class ParallelMorphMinionSol(object):
                         self.solution = result
                         if not self.allsols:
                             for f in self.minions.keys():
-                                del self.minions[f]
+                                self.minions[f].__del__()
                         return self.solution
                     else:
                         if self.queue:
@@ -508,7 +507,7 @@ def is_isomorphic(source, target, subtype, without=[]):
         return False
 
 
-def is_isomorphic_to_any(source, targets, subtype, cores=4, without=[]):
+def is_isomorphic_to_any(source, targets, subtype, cores=10, without=[]):
     """
     Devuelve un iso si source es isomorfa a algun target
     sino, false. Usa multiples preguntas a minion en paralelo.
