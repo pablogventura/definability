@@ -105,6 +105,18 @@ def pre_to_poset(nodes, fun_le, origen):
     return cs, eq
     
 
+def transitive_closure(relation, universe):
+    """
+    Clausura transitiva con el algoritmo de Warshall (modificado!)
+    http://people.cs.pitt.edu/~adamlee/courses/cs0441/lectures/lecture27-closures.pdf
+    """
+    relation = set(relation)   
+    for k in universe:
+        for i in universe:
+            for j in universe:
+                if (i,k) in relation and (k,j) in relation:
+                    relation.add((i,j))
+    return relation
 
 
 def father_first_sort(nodes, path):
