@@ -369,13 +369,11 @@ class Constellation(TipedMultiDiGraph):
             return (b, ce)
 
         # homomorfismos entre planetas
-        homos = GroupMinionSol()
+
         for a, b in product(self.main_satellites(subtype), repeat=2):
-            homos.append(
-                a.homomorphisms_to(b, subtype, without=self.arrows(a, b)))
-        ce = self.add_check_arrows(homos, subtype, supertype)
-        if ce:
-            return (False, ce)
+            ce = self.add_check_arrows(a.homomorphisms_to(b, subtype, without=self.arrows(a, b)), subtype, supertype)
+            if ce:
+                return (False, ce)
         return (True, None)
 
     @check_history
@@ -390,13 +388,11 @@ class Constellation(TipedMultiDiGraph):
             # no llego ni a ser definible por una formula existencial positiva
             return (b, ce)
 
-        homos = GroupMinionSol()
+
         for a, b in product(self.iter_satellites(subtype), repeat=2):
-            homos.append(
-                a.homomorphisms_to(b, subtype, without=self.arrows(a, b)))
-        ce = self.add_check_arrows(homos, subtype, supertype)
-        if ce:
-            return (False, ce)
+            ce = self.add_check_arrows(a.homomorphisms_to(b, subtype, without=self.arrows(a, b)), subtype, supertype)
+            if ce:
+                return (False, ce)
         return (True, None)
 
 
