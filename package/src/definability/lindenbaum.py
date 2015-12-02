@@ -113,6 +113,11 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
       [3, 2],
       [3, 3],
     )]
+    >>> rels = ji_of_existencial_positive_definable_algebra(c,examples.tiporet,3)
+    >>> # hay 4 relaciones que son el grafico de una funcion
+    >>> # el supremo, el infimo y la proyeccion 1 y 2
+    >>> len([x for x in rels if x.is_a_function_graph(examples.retrombo.universe)]) 
+    4
     """
     constellation.is_existential_positive_definable(subtype, subtype)
 
