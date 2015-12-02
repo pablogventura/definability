@@ -4,7 +4,6 @@ import networkx
 from examples import *
 from collections import defaultdict
 from itertools import product, chain
-from minion import GroupMinionSol
 from morphisms import Embedding
 
 

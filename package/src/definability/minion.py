@@ -22,6 +22,7 @@ class MinionSol(object):
         """
         self.id = MinionSol.count
         self.fun = fun
+        self.allsols = allsols
         MinionSol.count += 1
         self.input_filename = config.minion_path + "input_minion%s" % self.id
         # print self.input_filename
@@ -58,6 +59,9 @@ class MinionSol(object):
                 # leo toda la respuesta de minion para saber que paso
                 str_sol += self.minionapp.stdout.read()
                 raise ValueError("Minion Error:\n%s" % str_sol)
+            if not self.allsols:
+                self.EOF = True
+                self.__terminate()
             return result
         else:
             str_err = self.minionapp.stderr.read()
@@ -108,7 +112,11 @@ class MinionSol(object):
         """
         Mata a Minion
         """
+        self.minionapp.stdout.close()
+        self.minionapp.stdin.close()
+        self.minionapp.stderr.close()
         self.minionapp.kill()
+        
         del self.minionapp
         files.remove(self.input_filename)
 
@@ -341,44 +349,6 @@ class MorphMinionSol(MinionSol):
         return result
 
 
-class GroupMinionSol(object):
-
-    """
-    Maneja varias consultas a Minion que corren en paralelo.
-    """
-
-    def __init__(self, allsols=True):
-
-        self.queue = []
-        self.allsols = allsols
-        self.solutions = None
-
-        self.poll = poll()
-        self.minions = {}
-
-    def append(self, query):
-        fd = query.minionapp.stdout.fileno()
-        self.minions[fd] = (query, query.__iter__())
-        self.poll.register(fd, POLLIN)
-
-    def read(self, fd):
-        try:
-            result = self.minions[fd][1].next()
-            self.poll.register(fd, POLLIN)
-        except StopIteration:
-            result = False
-            del self.minions[fd]
-            self.poll.unregister(fd)
-        return result
-
-    def __iter__(self):
-        while self.queue or self.minions:
-            for (fd, event) in self.poll.poll():
-                result = self.read(fd)
-                if result:
-                    yield result
-
-
 class ParallelMorphMinionSol(object):
 
     """
@@ -434,6 +404,9 @@ class ParallelMorphMinionSol(object):
                     result = self.read(fd)
                     if result:
                         self.solution = result
+                        if not self.allsols:
+                            for f in self.minions.keys():
+                                del self.minions[f]
                         return self.solution
                     else:
                         if self.queue:
