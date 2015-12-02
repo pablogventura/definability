@@ -69,12 +69,6 @@ def preorder_to_poset(nodes, func_le, source=None):
 def pre_to_poset(nodes, fun_le, origen):
     """
     Version mas lenta, pero mas conceptual
-    
-    >>> import itertools, random
-    >>> le = lambda x,y: y % x == 0
-    >>> nodos = range(-3,0) + range(1,4) + [6,-6]
-    >>> filter(lambda n: map(len,pre_to_poset(n, le,1)) != [5,4],itertools.permutations(nodos))
-    []
     """
     nodes = list(nodes)
     c = [origen]
