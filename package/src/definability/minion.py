@@ -10,6 +10,7 @@ from select import poll, POLLIN
 from morphisms import Homomorphism, Embedding, Isomorphism
 import config
 import files
+from itertools import product
 
 
 class MinionSol(object):
@@ -354,17 +355,21 @@ class ParallelMorphMinionSol(object):
     Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
     """
 
-    def __init__(self, morph_type, subtype, source, targets, inj=None, surj=None, allsols=False, cores=0, without=[]):
+    def __init__(self, morph_type, subtype, sources, targets, inj=None, surj=None, allsols=False, cores=10, without=[]):
 
-        self.queue = list(targets)
+        self.targets = list(targets)
         self.morph_type = morph_type
         self.subtype = subtype
-        self.source = source
+        try:
+            self.sources = list(sources)
+        except TypeError:
+            self.sources = [sources]
         self.inj = inj
         self.surj = surj
         self.allsols = allsols
         self.solution = None
         self.without = without
+        self.queue = list(product(self.sources,self.targets))
 
         self.poll = poll()
         self.minions = {}
@@ -374,10 +379,10 @@ class ParallelMorphMinionSol(object):
 
     def next_to_running(self):
         if self.queue:
-            target = self.queue.pop()
+            source,target = self.queue.pop()
             new_minion = MorphMinionSol(self.morph_type,
                                         self.subtype,
-                                        self.source,
+                                        source,
                                         target,
                                         inj=self.inj,
                                         surj=self.inj,
