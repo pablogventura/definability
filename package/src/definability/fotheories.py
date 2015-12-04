@@ -25,6 +25,13 @@ def rdistr(s, t):
     return '(x' + t + 'y)' + s + 'z = (x' + s + 'z)' + t + '(y' + s + 'z)'
 
 #########################
+# Graphs
+
+DiGraph = FO_Theory("DiGraph", "Directed Graphs", ["exists x exists y e(x,y)"])
+
+Graph = DiGraph.subclass("Graph", "Undirected Graphs", ["e(x,y) -> e(y,x)"])
+
+#########################
 # (Semi) groups and rings
 
 Sgrp = FO_Theory("Sgrp", "Semigroups", [assoc("*")])
