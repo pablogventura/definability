@@ -1,6 +1,7 @@
 from fotheory import FO_Theory
 
-
+#########################
+# Properties of operations
 def assoc(s):
     return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
 
@@ -24,6 +25,34 @@ def distr(s, t):
 def rdistr(s, t):
     return '(x' + t + 'y)' + s + 'z = (x' + s + 'z)' + t + '(y' + s + 'z)'
 
+#########################
+# Properties of relations
+def refl(r):
+    return "x" + r + "x"
+
+
+def irrefl(r):
+    return "-(x" + r + "x)"
+
+
+def symm(r):
+    return "x" + r + "y -> y" + r + "x"
+
+
+def asymm(r):
+    return "x" + r + "y -> -(y" + r + "x)"
+
+
+def antisymm(r):
+    return "x" + r + "y & y" + r + "x -> x = y"
+
+
+def trans(r):
+    return "x" + r + "y & y" + r + "z -> x" + r + "z"
+
+
+def linear(r):
+    return "x" + r + "y || y" + r + "x"
 #########################
 # Graphs
 
@@ -425,33 +454,6 @@ STS = Qgrp.subclass("STS", "Steiner triple systems", [idem("*"), comm("*")])
 
 #####################
 # First-order classes
-
-def refl(r):
-    return "x" + r + "x"
-
-
-def irrefl(r):
-    return "-(x" + r + "x)"
-
-
-def symm(r):
-    return "x" + r + "y -> y" + r + "x"
-
-
-def asymm(r):
-    return "x" + r + "y -> -(y" + r + "x)"
-
-
-def antisymm(r):
-    return "x" + r + "y & y" + r + "x -> x = y"
-
-
-def trans(r):
-    return "x" + r + "y & y" + r + "z -> x" + r + "z"
-
-
-def linear(r):
-    return "x" + r + "y || y" + r + "x"
 
 PreOrd = FO_Theory("PreOrd", "Preordered sets", [refl("<="), trans("<=")])
 
