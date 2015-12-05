@@ -127,6 +127,7 @@ class Test(unittest.TestCase):
         self.assertEqual(
             c.is_positive_open_definable(tiporet, tiporet + tipoposet), (True, None))
         tock = datetime.now()
+        self.assertEqual((len(c.graph.edges()), len(c.graph.nodes())),(84450, 26))
         print len(c.graph.edges()), len(c.graph.nodes())
         diff = tock - tick
         print "is_positive_open_definable con 1 planets tomo %s segundos" % diff.total_seconds()
