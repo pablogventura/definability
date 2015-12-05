@@ -11,6 +11,7 @@ from morphisms import Homomorphism, Embedding, Isomorphism
 import config
 import files
 from itertools import product
+from collections import defaultdict
 
 
 class MinionSol(object):
@@ -25,7 +26,6 @@ class MinionSol(object):
         self.allsols = allsols
         MinionSol.count += 1
         self.input_filename = config.minion_path + "input_minion%s" % self.id
-        # print self.input_filename
 
         files.create_pipe(self.input_filename)
 
@@ -355,7 +355,7 @@ class ParallelMorphMinionSol(object):
     Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
     """
 
-    def __init__(self, morph_type, subtype, sources, targets, inj=None, surj=None, allsols=False, cores=10, without=[]):
+    def __init__(self, morph_type, subtype, sources, targets, inj=None, surj=None, allsols=False, cores=100, without={}):
 
         self.targets = list(targets)
         self.morph_type = morph_type
@@ -368,11 +368,12 @@ class ParallelMorphMinionSol(object):
         self.surj = surj
         self.allsols = allsols
         self.solution = None
-        self.without = without
+        self.without = defaultdict(list,without)
         self.queue = list(product(self.sources,self.targets))
 
         self.poll = poll()
         self.minions = {}
+        self.iterators = {}
 
         for i in range(cores):
             self.next_to_running()
@@ -387,9 +388,10 @@ class ParallelMorphMinionSol(object):
                                         inj=self.inj,
                                         surj=self.inj,
                                         allsols=self.allsols,
-                                        without=self.without)
+                                        without=self.without[(source,target)])
             fd = new_minion.minionapp.stdout.fileno()
             self.minions[fd] = new_minion
+            self.iterators[fd] = iter(new_minion)
             self.poll.register(fd, POLLIN)
 
     def read(self, fd):
@@ -398,6 +400,7 @@ class ParallelMorphMinionSol(object):
         else:
             result = False
         del self.minions[fd]
+        del self.iterators[fd]
         self.poll.unregister(fd)
         return result
 
@@ -419,6 +422,22 @@ class ParallelMorphMinionSol(object):
             return False
         else:
             return self.solution
+
+    def __iter__(self):
+        while self.queue or self.minions:
+            for (fd, event) in self.poll.poll():
+                try:
+                    result = self.iterators[fd].next()
+                    assert not self.minions[fd].EOF
+                    self.poll.register(fd, POLLIN)
+                    yield result
+                except StopIteration:
+                    assert self.minions[fd].EOF
+                    self.poll.unregister(fd)
+                    self.minions[fd].__del__()
+                    del self.minions[fd]
+                    if self.queue:
+                        self.next_to_running()
 
 
 def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True, without=[]):

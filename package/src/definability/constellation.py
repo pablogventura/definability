@@ -4,8 +4,8 @@ import networkx
 from examples import *
 from collections import defaultdict
 from itertools import product, chain
-from morphisms import Embedding
-
+from morphisms import Embedding,Homomorphism
+from minion import ParallelMorphMinionSol
 
 def check_history(func):
     """
@@ -369,8 +369,8 @@ class Constellation(TipedMultiDiGraph):
 
         # homomorfismos entre planetas
 
-        for a, b in product(self.main_satellites(subtype), repeat=2):
-            ce = self.add_check_arrows(a.homomorphisms_to(b, subtype, without=self.arrows(a, b)), subtype, supertype)
+        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.main_satellites(subtype), self.main_satellites(subtype), allsols=True, without={(a,b):self.arrows(a, b) for a, b in product(self.main_satellites(subtype), repeat=2)}):
+            ce = self.add_check_arrow(homo, subtype, supertype)
             if ce:
                 return (False, ce)
         return (True, None)
@@ -387,9 +387,8 @@ class Constellation(TipedMultiDiGraph):
             # no llego ni a ser definible por una formula existencial positiva
             return (b, ce)
 
-
-        for a, b in product(self.iter_satellites(subtype), repeat=2):
-            ce = self.add_check_arrows(a.homomorphisms_to(b, subtype, without=self.arrows(a, b)), subtype, supertype)
+        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.iter_satellites(subtype), self.iter_satellites(subtype), allsols=True, without={(a,b):self.arrows(a, b) for a, b in product(self.iter_satellites(subtype), repeat=2)}):
+            ce = self.add_check_arrow(homo, subtype, supertype)
             if ce:
                 return (False, ce)
         return (True, None)
