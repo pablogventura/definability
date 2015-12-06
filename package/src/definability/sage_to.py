@@ -17,3 +17,12 @@ def sage_lattice_to_model(lat):
     join = fofunctions.FO_Operation(join)
 
     return model.FO_Model(examples.tiporet, range(lat.cardinality()), {"v": join, "^": meet}, {})
+
+
+def sage_poset_to_model(pos):
+    """
+    Convierte de un poset de sage a un modelo.
+    """
+    le = [list(r) for r in pos.lequal_matrix().rows()]
+    le = fofunctions.FO_Relation(le, range(pos.cardinality()))
+    return model.FO_Model(examples.tipoposet, range(pos.cardinality()), {}, {"<=":le})
