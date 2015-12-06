@@ -237,6 +237,13 @@ class FO_Model(object):
         self.join_to_le()
         return LatticePoset((self.universe, self.relations["<="].table()))
 
+    def to_sage_poset(self):
+        """
+        Devuelve un poset de Sage.
+        """
+        from sage.combinat.posets.posets import Poset
+        return Poset((self.universe, self.relations["<="].table()))
+
     def diagram(self, c, s=0):
         """
         Devuelve el diagrama de la estructura con el prefijo c y con un
