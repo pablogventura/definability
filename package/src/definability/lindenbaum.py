@@ -182,6 +182,37 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     print "tomo %s segundos" % (tock-tick).total_seconds()
     return ji,new_rel    
         
+def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
+    # TODO emprolijar muchisimo!
+    tack = datetime.now()
+    atomos = map(lambda x: map(tuple, x), atomos)
+
+    constellation.is_existential_positive_definable(subtype, subtype)
+
+    result = []
+    mainsatellite, = constellation.main_satellites(subtype)
+    endos = filter(lambda x: not isinstance(x,Isomorphism),constellation.arrows(
+        mainsatellite, mainsatellite, morphtype=Homomorphism))
+
+    drep = {a[0]:i for i,a in enumerate(atomos)}
+
+    def le(x,y):
+        for h in endos:
+            try:
+                if h.vector_call(y)==x:
+                    return True
+            except ValueError:
+                continue
+        return False
+
+    teck = datetime.now()
+    print "tomo %s segundos" % (teck-tack).total_seconds()
+    rel,equi = preorder_to_poset(drep.keys(),le,atomos[0][0])
+    tick = datetime.now()
+    print "tomo %s segundos" % (tick-teck).total_seconds()
+    
+    
+    return set([t[0] for t in rel]+[t[1] for t in rel]),rel    
         
 
 
