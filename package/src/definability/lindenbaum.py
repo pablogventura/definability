@@ -308,6 +308,50 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
 
     return lists_to_fo_relations(result, mainsatellite.universe)
 
+def new_ji_of_open_positive_definable_algebra(atomos, constellation, subtype):
+    # TODO emprolijar muchisimo!
+    tack = datetime.now()
+    atomos = map(lambda x: map(tuple, x), atomos)
+
+    constellation.is_positive_open_definable(subtype, subtype)
+
+    result = []
+    mainsatellite, = constellation.main_satellites(subtype)
+    homos = filter(lambda x: not isinstance(x,Isomorphism),constellation.iter_arrows(subtype, morphtype=Homomorphism))
+
+    drep = {a[0]:i for i,a in enumerate(atomos)}
+
+    def le(x,y):
+        for h in homos:
+            try:
+                if h.vector_call(y)==x:
+                    return True
+            except ValueError:
+                continue
+        return False
+
+    teck = datetime.now()
+    print "tomo %s segundos" % (teck-tack).total_seconds()
+    rel,equi = preorder_to_poset(drep.keys(),le,atomos[0][0])
+    tick = datetime.now()
+    print "tomo %s segundos" % (tick-teck).total_seconds()
+    
+    
+    ji=list(atomos)
+    for k in equi.keys():
+        for v in equi[k]:
+            ji[drep[k]] += atomos[drep[v]]
+            ji[drep[v]] = None
+    new_rel = []
+    for (a,b) in rel:
+        new_rel.append((ji[drep[a]],ji[drep[b]]))
+    ji = filter(lambda x: x is not None, ji)
+    ji = map(tuple,ji)
+    new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
+    tock = datetime.now()
+    print "tomo %s segundos" % (tock-tick).total_seconds()
+    return ji,new_rel    
+
 
 def join_irreducibles(lst):
     """
