@@ -6,6 +6,8 @@ from fofunctions import FO_Relation
 from preorder import preorder_to_poset
 from datetime import datetime
 
+from collections import defaultdict
+
 
 def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
     """
@@ -180,7 +182,9 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
     tock = datetime.now()
     print "tomo %s segundos" % (tock-tick).total_seconds()
-    return ji,new_rel    
+    #return ji,new_rel    
+    return rel
+   
         
 def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
     # TODO emprolijar muchisimo!
@@ -189,30 +193,30 @@ def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, sub
 
     constellation.is_existential_positive_definable(subtype, subtype)
 
-    result = []
+    sucesor = defaultdict(set)
     mainsatellite, = constellation.main_satellites(subtype)
     endos = filter(lambda x: not isinstance(x,Isomorphism),constellation.arrows(
         mainsatellite, mainsatellite, morphtype=Homomorphism))
 
     drep = {a[0]:i for i,a in enumerate(atomos)}
-
-    def le(x,y):
-        for h in endos:
-            try:
-                if h.vector_call(y)==x:
-                    return True
-            except ValueError:
-                continue
-        return False
+    rep = set(drep.keys())
+    borrar = set()
+    for t in rep:
+        for e in endos:
+            et = e.vector_call(t)
+            if et in rep:
+                sucesor[t].add(et)
+        if sucesor.values().count(sucesor[t]) > 1:
+            borrar.add(t)
+            del sucesor[t]
+            
 
     teck = datetime.now()
     print "tomo %s segundos" % (teck-tack).total_seconds()
-    rel,equi = preorder_to_poset(drep.keys(),le,atomos[0][0])
-    tick = datetime.now()
-    print "tomo %s segundos" % (tick-teck).total_seconds()
     
-    
-    return set([t[0] for t in rel]+[t[1] for t in rel]),rel    
+    for t in sucesor:
+        sucesor[t] = filter(lambda x: x not in borrar, sucesor[t])
+    return sucesor
         
 
 
