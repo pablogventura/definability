@@ -223,13 +223,31 @@ def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, sub
     for t in sucesor:
         sucesor[t] = filter(lambda x: x not in borrar, sucesor[t])
 
-    le = set()
+    rel = set()
 
     for a in sucesor:
         for b in sucesor[a]:
-            le.add((b,a))
+            rel.add((b,a))
 
-    return le,equi
+    tick = datetime.now()
+    print "tomo %s segundos" % (tick-teck).total_seconds()
+    
+    
+    ji=list(atomos)
+    for k in equi.keys():
+        for v in equi[k]:
+            ji[drep[k]] += atomos[drep[v]]
+            ji[drep[v]] = None
+    new_rel = []
+    for (a,b) in rel:
+        new_rel.append((ji[drep[a]],ji[drep[b]]))
+    ji = filter(lambda x: x is not None, ji)
+    ji = map(tuple,ji)
+    new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
+    tock = datetime.now()
+    print "tomo %s segundos" % (tock-tick).total_seconds()
+    return ji,new_rel
+
         
 
 
