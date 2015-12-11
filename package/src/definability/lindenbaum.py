@@ -182,8 +182,7 @@ def new_ji_of_existencial_positive_definable_algebra(atomos, constellation, subt
     new_rel=map(lambda x:tuple(map(tuple,x)),new_rel)
     tock = datetime.now()
     print "tomo %s segundos" % (tock-tick).total_seconds()
-    #return ji,new_rel    
-    return rel
+    return ji,new_rel
    
         
 def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, subtype):
@@ -201,22 +200,36 @@ def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, sub
     drep = {a[0]:i for i,a in enumerate(atomos)}
     rep = set(drep.keys())
     borrar = set()
+    equi = defaultdict(set)
     for t in rep:
+        agregar = True
+        succ_t = set()
         for e in endos:
             et = e.vector_call(t)
             if et in rep:
-                sucesor[t].add(et)
-        if sucesor.values().count(sucesor[t]) > 1:
-            borrar.add(t)
-            del sucesor[t]
-            
+                succ_t.add(et)
+
+        for tt in sucesor:
+            if succ_t == sucesor[tt]:
+                equi[tt].add(t)
+                borrar.add(t)
+                agregar = False
+        if agregar:
+            sucesor[t] = succ_t            
 
     teck = datetime.now()
     print "tomo %s segundos" % (teck-tack).total_seconds()
     
     for t in sucesor:
         sucesor[t] = filter(lambda x: x not in borrar, sucesor[t])
-    return sucesor
+
+    le = set()
+
+    for a in sucesor:
+        for b in sucesor[a]:
+            le.add((b,a))
+
+    return le,equi
         
 
 
