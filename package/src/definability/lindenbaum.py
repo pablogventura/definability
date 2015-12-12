@@ -194,26 +194,27 @@ def new2_ji_of_existencial_positive_definable_algebra(atomos, constellation, sub
 
     sucesor = defaultdict(set)
     mainsatellite, = constellation.main_satellites(subtype)
-    endos = filter(lambda x: not isinstance(x,Isomorphism),constellation.arrows(
-        mainsatellite, mainsatellite, morphtype=Homomorphism))
+    endos = constellation.arrows(mainsatellite, mainsatellite, morphtype=Homomorphism)
 
     drep = {a[0]:i for i,a in enumerate(atomos)}
     rep = set(drep.keys())
     borrar = set()
     equi = defaultdict(set)
+    
     for t in rep:
-        agregar = True
         succ_t = set()
         for e in endos:
             et = e.vector_call(t)
             if et in rep:
                 succ_t.add(et)
 
+        agregar = True
         for tt in sucesor:
             if succ_t == sucesor[tt]:
                 equi[tt].add(t)
                 borrar.add(t)
                 agregar = False
+                break
         if agregar:
             sucesor[t] = succ_t            
 
