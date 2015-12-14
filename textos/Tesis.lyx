@@ -3,7 +3,8 @@
 \begin_document
 \begin_header
 \textclass classicthesis
-\use_default_options true
+\options fontsize=11pt,paper=a4,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=false,cleardoublepage=empty
+\use_default_options false
 \maintain_unincluded_children false
 \language spanish
 \language_package default
@@ -77,12 +78,67 @@ Introducción
 Preliminares y resultados básicos
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Definiciones, lemas semánticos dos lenguajes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Explicación general, pseudocódigo, prueba de que es correcto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
-Algebras de Lindenbaum
+Álgebras de Lindenbaum
+\end_layout
+
+\begin_layout Section
+Definiciones e ideas básicas
+\end_layout
+
+\begin_layout Section
+Preorden y algoritmo
+\end_layout
+
+\begin_layout Section
+Algoritmos para calcular álgebras
+\end_layout
+
+\begin_layout Section
+Ejemplos y aplicación
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Teorema de que en reticulados las formulas hablan sobre el orden nomas.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
