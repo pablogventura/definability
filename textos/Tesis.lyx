@@ -5,6 +5,10 @@
 \textclass classicthesis
 \options fontsize=11pt,paper=a4,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=false,cleardoublepage=empty
 \use_default_options false
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
 \maintain_unincluded_children false
 \language spanish
 \language_package default
@@ -75,7 +79,7 @@ Introducción
 \end_layout
 
 \begin_layout Chapter
-Preliminares y resultados básicos
+Preliminares
 \end_layout
 
 \begin_layout Standard
@@ -91,6 +95,161 @@ Definiciones, lemas semánticos dos lenguajes
 
 \end_layout
 
+\begin_layout Standard
+Si 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ son lenguajes de primer orden, para una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+, usaremos 
+\begin_inset Formula $\boldsymbol{A_{\mathcal{L}}}$
+\end_inset
+
+ para indicar el reducto de 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ al lenguaje 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}$
+\end_inset
+
+ son 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras, usaremos 
+\begin_inset Formula $\boldsymbol{A}\leq\boldsymbol{B}$
+\end_inset
+
+ para expresar que 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ es subestructura de 
+\begin_inset Formula $\boldsymbol{B}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Sean
+\begin_inset Formula 
+\[
+At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pm At(\mathcal{L})=At(\mathcal{L})\cup\{\neg\alpha:\alpha\in At(\mathcal{L})\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-formula abierta}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relacion n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Hay una formula en Op(
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+) que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para todas 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, todas 
+\begin_inset Formula $\boldsymbol{A_{0}}\leq\boldsymbol{A_{\mathcal{L}}}$
+\end_inset
+
+,
+\begin_inset Formula $\boldsymbol{B_{0}}\leq\boldsymbol{B_{\mathcal{L}}}$
+\end_inset
+
+, todo isomorfismo 
+\begin_inset Formula $\sigma:\boldsymbol{A_{0}}\rightarrow\boldsymbol{B_{0}}$
+\end_inset
+
+ y todos 
+\begin_inset Formula $a_{1},\ldots,a_{n}\in A_{0}$
+\end_inset
+
+ tenemos que 
+\begin_inset Formula $(a_{1},\ldots,a_{n})\in R^{\boldsymbol{A}}$
+\end_inset
+
+ implica 
+\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{\boldsymbol{B}}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
@@ -133,7 +292,8 @@ Ejemplos y aplicación
 status open
 
 \begin_layout Plain Layout
-Teorema de que en reticulados las formulas hablan sobre el orden nomas.
+Teorema de que en reticulados las formulas de dos variables libres hablan
+ sobre el orden nomas.
 \end_layout
 
 \end_inset
