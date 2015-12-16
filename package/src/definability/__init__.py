@@ -6,3 +6,4 @@ import examples
 import fotheories
 import lindenbaum
 from sage_to import sage_lattice_to_model
+from files import object_to_file, file_to_object
