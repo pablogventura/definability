@@ -74,6 +74,54 @@ theorems-ams-extended
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\enumeracion}[3][n][x][1]{#2_{#3},\dots,#2_{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\fee}[3][\gamma]{#1:\mathbb{#2}\rightarrow\mathbb{#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\embedding}[3][\gamma]{#1:\mathbb{#2}\hookrightarrow\mathbb{#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\deff}[2][\varphi][\bar{x}]{#1=#1(#2)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sat}[3]{\mathbb{#1}\vDash#2[#3]}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\nsat}[3]{\mathbb{#1}\not\vDash#2[#3]}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -180,6 +228,210 @@ Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\ma
 \end_layout
 
 \begin_layout Theorem
+Sea 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ una estructura finita, y sean 
+\begin_inset Formula $\enumeracion$
+\end_inset
+
+ variables.
+\end_layout
+
+\begin_layout Theorem
+Hay un conjunto finito de formulas 
+\begin_inset Formula $\Sigma\left(\overline{x}\right)$
+\end_inset
+
+ tal que para toda formula 
+\begin_inset Formula $\deff[\varphi][\overline{x}]$
+\end_inset
+
+ hay 
+\begin_inset Formula $\sigma\left(\overline{x}\right)\in\Sigma\left(\overline{x}\right)$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\varphi(\bar{x})$
+\end_inset
+
+ y 
+\begin_inset Formula $\sigma\left(\overline{x}\right)$
+\end_inset
+
+ son equivalentes sobre 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+(i.e.
+ modulo equivalencia sobre una estructura finita, la cantidad de formulas
+ en 
+\begin_inset Formula $\enumeracion{}{}xn$
+\end_inset
+
+ es finita)
+\end_layout
+
+\begin_layout Proof
+Veamos primero que las formulas son finitas modulo equivalencia:
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\deff$
+\end_inset
+
+ defino 
+\begin_inset Formula $T_{\varphi\mathbb{A}}=\left\{ \bar{a}\in A^{n}|\sat A{\varphi}{\bar{a}}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Supongamos 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ equivalente 
+\begin_inset Formula $\psi$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat A{\psi}{\bar{a}}\textnormal{ para cada \bar{a}\in A^{n} }
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\bar{a}\in T_{\varphi\mathbb{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbb{A}}\textnormal{  para cada \bar{a}\in A^{n} }
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\therefore T_{\varphi\mathbb{A}}=T_{\psi\mathbb{A}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Entonces basta con contar los subconjuntos de 
+\begin_inset Formula $A^{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Como 
+\begin_inset Formula $\#A^{n}=(\#A)^{n}$
+\end_inset
+
+ y 
+\begin_inset Formula $A$
+\end_inset
+
+ era finito, es claro que 
+\begin_inset Formula $A^{n}$
+\end_inset
+
+ es finito.
+\end_layout
+
+\begin_layout Proof
+Por lo tanto 
+\begin_inset Formula $\mathcal{P}(A^{n})$
+\end_inset
+
+ tambien lo es.
+\end_layout
+
+\begin_layout Proof
+Ahora veamos que existe 
+\begin_inset Formula $\Sigma(\bar{x})$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+Sean 
+\begin_inset Formula $\enumeracion Tk\subseteq A^{n}$
+\end_inset
+
+ tales que existe 
+\begin_inset Formula $\varphi_{i}(\bar{x})$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat A{\varphi_{i}}{T_{i}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\deff[\psi][\bar{x}]$
+\end_inset
+
+, tomo 
+\begin_inset Formula $T_{\psi\mathbb{A}}$
+\end_inset
+
+y como 
+\begin_inset Formula $\enumeracion Tk$
+\end_inset
+
+ es la sucesion de todos los subconjuntos que se definen con una formula,
+ hay un 
+\begin_inset Formula $j$
+\end_inset
+
+ tal que 
+\begin_inset Formula $T_{j}=T_{\psi\mathbb{A}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Entonces, 
+\begin_inset Formula $\sat A{\psi}{\bar{a}}\Leftrightarrow\sat A{\varphi_{j}}{\bar{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
 Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
@@ -200,7 +452,6 @@ Dados
 -estructuras, los siguientes son equivalentes:
 \end_layout
 
-\begin_deeper
 \begin_layout Enumerate
 Hay una formula en Op(
 \begin_inset Formula $\mathcal{L}$
@@ -249,7 +500,6 @@ Para todas
 .
 \end_layout
 
-\end_deeper
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
