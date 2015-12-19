@@ -2,11 +2,12 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass classicthesis
-\options fontsize=11pt,paper=a4,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=false,cleardoublepage=empty
+\textclass amsbook
 \use_default_options false
 \begin_modules
 theorems-ams
+eqs-within-sections
+figs-within-sections
 theorems-ams-extended
 \end_modules
 \maintain_unincluded_children false
@@ -32,8 +33,8 @@ theorems-ams-extended
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\papersize default
-\use_geometry false
+\papersize a4paper
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -57,6 +58,8 @@ theorems-ams-extended
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\rightmargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -92,6 +95,14 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
+\newcommand{\funcion}[3][\gamma]{#1:#2\rightarrow#3}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
 \newcommand{\embedding}[3][\gamma]{#1:\mathbb{#2}\hookrightarrow\mathbb{#3}}
 \end_inset
 
@@ -108,7 +119,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\sat}[3]{\mathbb{#1}\vDash#2[#3]}
+\newcommand{\sat}[3]{\mathbf{#1}\vDash#2[#3]}
 \end_inset
 
 
@@ -122,6 +133,14 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\subuniv}[2]{\left\langle \bar{#1}\right\rangle ^{\mathbf{#2}}}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -130,13 +149,346 @@ Introducción
 Preliminares
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Comment
+\begin_layout Section
+Definibilidad por formulas abiertas
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Definiciones, lemas semánticos dos lenguajes
+Los embeddings preservan formulas abiertas
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Sean 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{B}$
+\end_inset
+
+ estructuras y 
+\begin_inset Formula $\fee[\gamma]AB$
+\end_inset
+
+ una funcion.
+ Son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding de A en B.
+\end_layout
+
+\begin_layout Enumerate
+Para toda formula abierta 
+\begin_inset Formula $\deff$
+\end_inset
+
+ y para cada 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ de 
+\begin_inset Formula $A$
+\end_inset
+
+ vale que:
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\gamma(\bar{a})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2)
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un embedding de A en B, sea 
+\begin_inset Formula $\varphi(x_{1},...,x_{n})$
+\end_inset
+
+ una formula abierta y 
+\begin_inset Formula $\bar{a}\in A^{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Case
+\begin_inset Formula $\varphi\in F_{0}^{\tau}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Case
+\begin_inset Formula $\varphi(\bar{x})=(t\equiv s)(\bar{x})$
+\end_inset
+
+ con 
+\begin_inset Formula $t=t(\bar{x})$
+\end_inset
+
+ y 
+\begin_inset Formula $s=s(\bar{x})$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+A & \vDash & (t\equiv s)[\bar{a}]\\
+t^{A}[\bar{a}] & = & t^{B}[\bar{a}]\\
+t^{B}[\gamma(\bar{a})] & = & s^{B}[\gamma(\bar{a})]\\
+B & \vDash & (t\equiv s)[\gamma(\bar{a})]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Case
+\begin_inset Formula $\varphi(\bar{x})=r(t_{1},\dots,t_{m})(\bar{x})$
+\end_inset
+
+ con 
+\begin_inset Formula $r\in\mathcal{R}_{m}$
+\end_inset
+
+ y 
+\begin_inset Formula $t_{i}=t_{i}(\bar{x})$
+\end_inset
+
+ con 
+\begin_inset Formula $1\le i\le m$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+A & \vDash & r(t_{1},\dots,t_{m})[\bar{a}]\\
+(t_{1}^{A}[\bar{a}],\dots,t_{m}^{A}[\bar{a}]) & \in & r^{A}\\
+(\gamma(t_{1}^{A}[\bar{a}]),\dots,\gamma(t_{m}^{A}[\bar{a}])) & \in & r^{B}\\
+(t_{1}^{B}[\gamma(\bar{a})],\dots,t_{m}^{B}[\gamma(\bar{a})]) & \in & r^{B}\\
+B & \vDash & r(t_{1},\dots,t_{m})[\gamma(\bar{a})]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Case
+Caso 
+\begin_inset Formula $\varphi\in F_{k+1}^{\tau}-F_{k}^{\tau}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+HI: Si 
+\begin_inset Formula $\varphi\in F_{k}^{\tau}$
+\end_inset
+
+ entonces 
+\begin_inset Formula $A\vDash\varphi[\bar{a}]\Leftrightarrow B\vDash\varphi[\gamma(\bar{a})]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Case
+Caso 
+\begin_inset Formula $\varphi(\bar{x})=\neg\varphi_{1}(\bar{x})$
+\end_inset
+
+ con 
+\begin_inset Formula $\varphi_{1}\in F_{k}^{\tau}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+A & \vDash & \neg\varphi_{1}[\bar{a}]\\
+A & \not\vDash & \varphi_{1}[\bar{a}]\\
+B & \not\vDash & \varphi_{1}[\gamma(\bar{a})]\\
+B & \vDash & \neg\varphi_{1}[\gamma(\bar{a})]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Case
+Caso 
+\begin_inset Formula $\varphi(\bar{x})=(\varphi_{1}\eta\varphi_{2})(\bar{x})$
+\end_inset
+
+ con 
+\begin_inset Formula $\varphi_{1},\varphi_{2}\in F_{k}^{\tau}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+A & \vDash & (\varphi_{1}\eta\varphi_{2})[\bar{a}]\\
+A\vDash\varphi_{1}[\bar{a}] & "\eta" & A\vDash\varphi_{2}[\bar{a}]\\
+A\vDash\varphi_{1}[\gamma(\bar{a})] & "\eta" & B\vDash\varphi_{2}[\gamma(\bar{a})]\\
+B & \vDash & (\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1)
+\end_layout
+
+\begin_layout Proof
+Supongamos que para toda formula abierta 
+\begin_inset Formula $\varphi=\varphi(\bar{x})$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}\in A^{m}$
+\end_inset
+
+ vale que:
+\begin_inset Formula 
+\[
+A\vDash\varphi[\bar{a}]\Leftrightarrow B\vDash\varphi[\gamma(\bar{a})]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Veamos ahora que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es inyectiva:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sean 
+\begin_inset Formula $a,a'\in A$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\gamma(a)=\gamma(a')$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\gamma(a) & = & \gamma(a')\\
+\mathbb{B} & \vDash & (x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
+\mathbb{A} & \vDash & (x_{1}\equiv x_{2})[a,a']\\
+a & = & a'
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un homomorfismo:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $c\in\mathcal{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{A} & \vDash & (c\equiv x_{1})[c^{\mathbb{A}}]\\
+\mathbb{B} & \vDash & (c\equiv x_{1})[\gamma(c^{\mathbb{A}})]\\
+c^{\mathbb{B}} & = & \gamma(c^{\mathbb{A}})
+\end{eqnarray*}
 
 \end_inset
 
@@ -144,60 +496,402 @@ Definiciones, lemas semánticos dos lenguajes
 \end_layout
 
 \begin_layout Standard
+Sea 
+\begin_inset Formula $r\in\mathcal{R}_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+(a_{1},\dots,a_{n}) & \in & r^{\mathbb{A}}\\
+\mathbb{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
+\mathbb{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
+(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbb{B}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $f\in\mathcal{F}_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{A} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[a_{1},\dots,a_{n},f^{\mathbb{A}}(a_{1},\dots,a_{n})]\\
+\mathbb{B} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[\gamma(a_{1}),\dots,\gamma(a_{n}),\gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))]\\
+f^{\mathbb{B}}(\gamma(a_{1}),\dots,\gamma(a_{n})) & = & \gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es embedding:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $r\in\mathcal{R}_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbb{B}}\\
+\mathbb{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
+\mathbb{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
+(a_{1},\dots,a_{n}) & \in & r^{\mathbb{A}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
 Si 
-\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\begin_inset Formula $\mathbb{A}$
 \end_inset
 
- son lenguajes de primer orden, para una 
-\begin_inset Formula $\mathcal{L}'$
+ es una subestructura de 
+\begin_inset Formula $\mathbb{B}$
 \end_inset
 
--estructura 
-\begin_inset Formula $\boldsymbol{A}$
+ y 
+\begin_inset Formula $\deff$
 \end_inset
 
-, usaremos 
-\begin_inset Formula $\boldsymbol{A_{\mathcal{L}}}$
+ es una formula abierta, entonces para cada 
+\begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
- para indicar el reducto de 
-\begin_inset Formula $\boldsymbol{A}$
+ vale que
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\bar{a}}
+\]
+
 \end_inset
 
- al lenguaje 
-\begin_inset Formula $\mathcal{L}$
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+ una subestructura de 
+\begin_inset Formula $\mathbb{B}$
+\end_inset
+
+ y 
+\begin_inset Formula $\deff$
+\end_inset
+
+ una formula abierta.
+\end_layout
+
+\begin_layout Proof
+Como 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+ es subestructura es cerrada sobre 
+\begin_inset Formula $r$
+\end_inset
+
+,
+\begin_inset Formula $f$
+\end_inset
+
+ y 
+\begin_inset Formula $c^{\mathbb{B}}\in A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\fee AB$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma(a)=a$
+\end_inset
+
+ (ya que 
+\begin_inset Formula $A\subseteq B$
+\end_inset
+
+ por ser subestructura)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es homomorfismo:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $c\in\mathcal{C}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\gamma(c^{\mathbb{A}})=c^{\mathbb{A}}=c^{\mathbb{B}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $f\in\mathcal{F}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))=f^{\mathbb{A}}(a_{1},\dots,a_{n})=f^{\mathbb{B}}(\gamma(a_{1}),\dots,\gamma(a_{n}))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $r\in\mathcal{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como 
+\begin_inset Formula $r^{\mathbb{A}}=r^{\mathbb{B}}\cap A^{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(a_{1},\dots,a_{n})\in r^{\mathbb{A}}\Rightarrow(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbb{B}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es inyectiva:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma(a)=\gamma(a')\Rightarrow a=a'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ cumple 
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+ en 
+\begin_inset Formula $r$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbb{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbb{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbb{A}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Proof
+Entonces 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding
+\end_layout
+
+\begin_layout Proof
+Por el Teorema 1, 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\gamma(\bar{a})}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Proof
+Finalmente, por definicion de 
+\begin_inset Formula $\gamma$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\bar{a}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Notation
+Dado un conjunto de fórmulas 
+\begin_inset Formula $\Delta$
+\end_inset
+
+, escribiremos 
+\begin_inset Formula $\Delta\left(\bar{x}\right)$
+\end_inset
+
+ para anunciar que cada una de las formulas en 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ tiene sus variables libres contenidas en la tupla 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, y que consideramos cada 
+\begin_inset Formula $\delta\in\Delta(\bar{x})$
+\end_inset
+
+ declarada 
+\begin_inset Formula $\delta=\delta\left(\bar{x}\right)$
 \end_inset
 
 .
  Si 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
- son 
-\begin_inset Formula $\mathcal{L}$
+ es una estructura y 
+\begin_inset Formula $\bar{a}$
 \end_inset
 
--estructuras, usaremos 
-\begin_inset Formula $\boldsymbol{A}\leq\boldsymbol{B}$
+ es una tupla de elementos de 
+\begin_inset Formula $A$
 \end_inset
 
- para expresar que 
-\begin_inset Formula $\boldsymbol{A}$
+, escribiremos 
+\begin_inset Formula $\mathbf{A}\vDash\Delta\left[\bar{a}\right]$
 \end_inset
 
- es subestructura de 
-\begin_inset Formula $\boldsymbol{B}$
+ cuando 
+\begin_inset Formula $\mathbf{A}\vDash\delta\left[\bar{a}\right]$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\delta\in\Delta(\bar{x})$
 \end_inset
 
 .
- 
 \end_layout
 
-\begin_layout Standard
-Sean
+\begin_layout Definition
+Sea 
+\series bold
+
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+
+\series default
+ una estructura y sean 
+\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
+\end_inset
+
+.
+ Definimos 
 \begin_inset Formula 
 \[
-At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
+\Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\mbox{ es abierta y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}
 \]
 
 \end_inset
@@ -205,12 +899,171 @@ At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\pm At(\mathcal{L})=At(\mathcal{L})\cup\{\neg\alpha:\alpha\in At(\mathcal{L})\}
-\]
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.3"
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Sea 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+ una estructura y 
+\begin_inset Formula $b_{1},\dots,b_{n}\in B$
+\end_inset
+
+, son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Hay un isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ de 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ en 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma(\bar{a})=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+\noindent
+Veamos 1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2:
+\end_layout
+
+\begin_layout Proof
+Supongamos que 
+\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ formula abierta y 
+\begin_inset Formula $\sat A{\alpha}{\bar{a}}$
+\end_inset
+
+ entonces 
+\begin_inset Formula $\sat B{\text{\alpha}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Tomo 
+\begin_inset Formula $\subuniv aA=\{t^{\mathbb{A}}[a_{1},\dots,a_{n}]:t\in T^{\tau},a_{1},\dots,a_{n}\in\bar{a}\}$
+\end_inset
+
+ y 
+\begin_inset Formula $\subuniv bA=\{t^{\mathbb{A}}[b_{1},\dots,b_{n}]:t\in T^{\tau},b_{1},\dots,b_{n}\in\bar{b}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Defino 
+\begin_inset Formula 
+\begin{eqnarray*}
+ & \gamma & :A'\rightarrow B'\\
+ & \gamma & (t^{\mathbb{A}}[a_{1},\dots,a_{n}])=t^{\mathbb{B}}[\enumeracion bn]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un isomorfismo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un homomorfismo:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $c\in\mathcal{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbb{A}}[\enumeracion an])=c^{\mathbb{B}}[\enumeracion bn]=c^{\subuniv bB}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $f\in\mathcal{F}_{m}$
+\end_inset
+
+ y 
+\begin_inset Formula $\enumeracion[][']am\in A'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como 
+\begin_inset Formula $a'_{i}\in A'$
+\end_inset
+
+, para cada 
+\begin_inset Formula $i\in[1,m]$
+\end_inset
+
+ hay un 
+\begin_inset Formula $t_{i}^{\mathbb{A}}[\enumeracion an]=a_{i}$
 \end_inset
 
 
@@ -218,9 +1071,473 @@ At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
 
 \begin_layout Standard
 \begin_inset Formula 
+\begin{alignat*}{1}
+ & \gamma(f^{\subuniv aA}(\enumeracion[][']am))\\
+= & \gamma(f^{\mathbb{A}}(t_{1}^{\mathbb{A}}[\enumeracion an],\dots,t_{m}^{\mathbb{A}}[\enumeracion an]))\\
+= & \gamma(f(\enumeracion tm)^{\mathbb{A}}[\enumeracion an])\\
+= & f(\enumeracion tm)^{\mathbb{B}}[\enumeracion bn]\\
+= & f^{\mathbb{B}}(t_{1}^{\mathbb{B}}[\enumeracion bn],\dots,t_{m}^{\mathbb{B}}[\enumeracion bn])\\
+= & f^{\mathbb{B}}(\gamma(t_{1}^{\mathbb{A}}[\enumeracion an]),\dots,\gamma(t_{m}^{\mathbb{A}}[\enumeracion an]))\\
+= & f^{\mathbb{B}}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))\\
+= & f^{\subuniv bB}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))
+\end{alignat*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $r\in\mathcal{R}_{m}$
+\end_inset
+
+ y 
+\begin_inset Formula $\enumeracion[][']am\in A'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+(\enumeracion[][']am) & \in & r^{\subuniv aA}\nonumber \\
+(t_{1}^{\mathbb{A}}[\enumeracion an],\dots,t_{m}^{\mathbb{A}}[\enumeracion an]) & \in & r^{\mathbb{A}}\nonumber \\
+\mathbb{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
+\mathbb{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
+(t_{1}^{\mathbb{B}}[\bar{b}],\dots,t_{m}^{\mathbb{B}}[\bar{b}]) & \in & r^{\mathbb{B}}\nonumber \\
+(\gamma(t_{1}^{\mathbb{A}}[\bar{a}]),\dots,\gamma(t_{m}^{\mathbb{A}}[\bar{a}])) & \in & r^{\mathbb{B}}\nonumber \\
+(\gamma(a'_{1}),\dots,\gamma(a'_{m})) & \in & r^{\subuniv bB}\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2 ya que 
+\begin_inset Formula $r(\bar{t})$
+\end_inset
+
+es abierta y 
+\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es inyectiva
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sean 
+\begin_inset Formula $a'_{1},a'_{2}\in A'$
+\end_inset
+
+ tales que 
+\begin_inset Formula $a'_{1}\not=a'_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+a'_{1} & \not= & a'_{2}\nonumber \\
+t_{1}^{\mathbb{A}}\left[\bar{a}\right] & \not= & t_{2}^{\mathbb{A}}\left[\bar{a}\right]\nonumber \\
+\mathbb{A} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{a}\right]\\
+\mathbb{B} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{b}\right]\\
+t_{1}^{\mathbb{B}}\left[\bar{b}\right] & \not= & t_{2}^{\mathbb{B}}\left[\bar{b}\right]\nonumber \\
+\gamma\left(t_{1}^{\mathbb{A}}\left[\bar{a}\right]\right) & \not= & \gamma\left(t_{2}^{\mathbb{A}}\left[\bar{a}\right]\right)\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es sobreyectiva
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $b'\in B'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+b' & \in & B'\\
+t^{\mathbb{B}}\left[\bar{b}\right] & \in & B'
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tomo 
+\begin_inset Formula $t^{\mathbb{A}}\left[\bar{a}\right]=a'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\gamma\left(t^{\mathbb{A}}\left[\bar{a}\right]\right) & = & t^{\mathbb{B}}\left[\bar{b}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Veamos que 
+\begin_inset Formula $\gamma^{-1}$
+\end_inset
+
+ es un homomorfismo
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Sea 
+\begin_inset Formula $c\in\mathcal{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma^{-1}(c^{\subuniv bB})=\gamma^{-1}(c^{\mathbb{B}}[\bar{b}])=c^{\mathbb{A}}[\bar{a}]=c^{\subuniv aA}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $f\in\mathcal{F}_{m}$
+\end_inset
+
+ y 
+\begin_inset Formula $\enumeracion{b'}m\in B'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion{b'}m))=\gamma^{-1}(f(\enumeracion tm)^{\mathbb{B}}[\bar{b}])=f(\enumeracion tm)^{\mathbb{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sea 
+\begin_inset Formula $r\in\mathcal{R}_{m}$
+\end_inset
+
+ y 
+\begin_inset Formula $\enumeracion{b'}m\in B'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+(\enumeracion[][']bm) & \in & r^{\subuniv bB}\nonumber \\
+(t_{1}^{\mathbb{B}}[\enumeracion bn],\dots,t_{m}^{\mathbb{\mathbb{B}}}[\enumeracion bn]) & \in & r^{\mathbb{B}}\nonumber \\
+\mathbb{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
+\mathbb{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
+(t_{1}^{\mathbb{A}}[\bar{a}],\dots,t_{m}^{\mathbb{A}}[\bar{a}]) & \in & r^{\mathbb{A}}\nonumber \\
+(\gamma^{-1}(t_{1}^{\mathbb{B}}[\bar{b}]),\dots,\gamma^{-1}(t_{m}^{\mathbb{B}}[\bar{b}])) & \in & r^{\mathbb{A}}\nonumber \\
+(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m})) & \in & r^{\subuniv aA}\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Proof
+Por lo tanto 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un isomorfismo y 
+\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbb{A}}[\enumeracion an])=x_{j}^{\mathbb{B}}[\enumeracion bn]=b_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+Ahora veamos 2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1:
+\end_layout
+
+\begin_layout Proof
+Supongamos que hay un isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ de 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ en 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma(\bar{a})=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Entonces, es claro que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding de 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ en 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.1"
+
+\end_inset
+
+ para toda formula abierta 
+\begin_inset Formula $\deff$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}\in A'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
 \[
-Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-formula abierta}}\}
+\subuniv aA\vDash\varphi[\bar{a'}]\Leftrightarrow\subuniv bB\vDash\varphi[\gamma(\bar{a'})]
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Entonces en particular para 
+\begin_inset Formula $\bar{a}\in A'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\subuniv aA\vDash\varphi[\bar{a}]\Leftrightarrow\subuniv bB\vDash\varphi[\gamma(\bar{a})]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+ como 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ es subestructura de 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+, 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+ lo es de 
+\begin_inset Formula $\mathbb{B}$
+\end_inset
+
+ y 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es abierta
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\gamma(\bar{a})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}a
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Por lo tanto si 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ es abierta y 
+\begin_inset Formula $\sat A{\alpha}{\bar{a}}$
+\end_inset
+
+ entonces 
+\begin_inset Formula $\sat B{\alpha}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Finalmente, 
+\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:equiv-formulas"
+
+\end_inset
+
+Dos formulas 
+\begin_inset Formula $\alpha\left(\bar{x}\right)$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta\left(\bar{x}\right)$
+\end_inset
+
+ se dicen 
+\emph on
+equivalentes
+\emph default
+ sobre una familia de estructuras 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ si para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ de A vale que 
+\begin_inset Formula 
+\[
+\mathbf{A}\vDash\alpha\left[\bar{a}\right]\Longleftrightarrow\mathbf{A}\vDash\beta\left[\bar{a}\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.4"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Modulo equivalencia sobre una estructura finita, la cantidad de formulas
+ en 
+\begin_inset Formula $\enumeracion{}{}$
+\end_inset
+
+ es finita
+\end_layout
 
 \end_inset
 
@@ -265,16 +1582,6 @@ Hay un conjunto finito de formulas
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Theorem
-(i.e.
- modulo equivalencia sobre una estructura finita, la cantidad de formulas
- en 
-\begin_inset Formula $\enumeracion{}{}xn$
-\end_inset
-
- es finita)
 \end_layout
 
 \begin_layout Proof
@@ -323,7 +1630,7 @@ Supongamos
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\bar{a}\in T_{\varphi\mathbb{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbb{A}}\textnormal{  para cada \bar{a}\in A^{n} }
+\bar{a}\in T_{\varphi\mathbb{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbb{A}}\textnormal{ para cada \bar{a}\in A^{n} }
 \]
 
 \end_inset
@@ -432,6 +1739,330 @@ Entonces,
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.5"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+leavevmode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Sean 
+\begin_inset Formula $\mathbf{A,B}$
+\end_inset
+
+ estructuras finitas y 
+\begin_inset Formula $\enumeracion[][a]an\in A$
+\end_inset
+
+, entonces existe una formula abierta 
+\begin_inset Formula $\deff$
+\end_inset
+
+ tal que para todo 
+\begin_inset Formula $\bar{b}\in B^{n}$
+\end_inset
+
+ son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Hay un isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ de 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ en 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma(\bar{a})=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+leavevmode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Tomo 
+\begin_inset Formula $\varphi=\wedge([\Delta_{\mathbf{A}\bar{a}}])$
+\end_inset
+
+ que es una formula, por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Es claro que 
+\begin_inset Formula $\sat B{\wedge([\Delta_{\mathbb{A}\bar{a}}])}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Entonces por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.3"
+
+\end_inset
+
+, hay un isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ de 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ en 
+\begin_inset Formula $\subuniv bB$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma(\bar{a})=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden y 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un simbolo de relacion n-ario.
+ Diremos que 
+\begin_inset Formula $R$
+\end_inset
+
+ es 
+\series bold
+definible
+\series default
+ en una familia 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras cuando exista una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula 
+\begin_inset Formula $\deff[][\enumeracion]$
+\end_inset
+
+ tal que para todo 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y todas 
+\begin_inset Formula $\enumeracion[][a]\in A$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(\enumeracion[][a]\right)\in R^{\mathbf{A}}\iff\varphi\left(\enumeracion[][a]\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Definiciones, lemas semánticos dos lenguajes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ son lenguajes de primer orden, para una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+, usaremos 
+\begin_inset Formula $\boldsymbol{A_{\mathcal{L}}}$
+\end_inset
+
+ para indicar el reducto de 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ al lenguaje 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}$
+\end_inset
+
+ son 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras, usaremos 
+\begin_inset Formula $\boldsymbol{A}\leq\boldsymbol{B}$
+\end_inset
+
+ para expresar que 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ es subestructura de 
+\begin_inset Formula $\boldsymbol{B}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Sean
+\begin_inset Formula 
+\[
+At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pm At(\mathcal{L})=At(\mathcal{L})\cup\{\neg\alpha:\alpha\in At(\mathcal{L})\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-formula abierta}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Dados 
+\begin_inset Formula $A,B$
+\end_inset
+
+ conjuntos, 
+\begin_inset Formula $R^{A}\subseteq A^{n}$
+\end_inset
+
+, 
+\begin_inset Formula $R^{B}\subseteq B^{n}$
+\end_inset
+
+, diremos que una funcion 
+\begin_inset Formula $\funcion AB$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+ si para toda tupla 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in A_{0}$
+\end_inset
+
+ tenemos que si 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in R^{A}$
+\end_inset
+
+ implica que 
+\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
 Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
@@ -485,16 +2116,241 @@ Para todas
 \begin_inset Formula $\sigma:\boldsymbol{A_{0}}\rightarrow\boldsymbol{B_{0}}$
 \end_inset
 
- y todos 
-\begin_inset Formula $a_{1},\ldots,a_{n}\in A_{0}$
+ preserva 
+\begin_inset Formula $R$
 \end_inset
 
- tenemos que 
-\begin_inset Formula $(a_{1},\ldots,a_{n})\in R^{\boldsymbol{A}}$
+.
+\end_layout
+
+\begin_layout Proof
+Veamos 1
+\begin_inset Formula $\Rightarrow$
 \end_inset
 
- implica 
-\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{\boldsymbol{B}}$
+2:
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\varphi\left(\bar{x}\right)$
+\end_inset
+
+ la formula que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, sean 
+\begin_inset Formula $\mathbf{A,B}\in\mathcal{K}$
+\end_inset
+
+ y sean 
+\begin_inset Formula $\mathbf{A_{0}}\leq\mathbf{A_{\mathcal{L}}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B_{0}}\leq\mathbf{B_{\mathcal{L}}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\funcion[\sigma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ sea un isomorfismo.
+ Sea 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\cap A_{0}$
+\end_inset
+
+ veamos que 
+\begin_inset Formula $\sigma\left(\bar{a}\right)\in R^{\mathbf{B}_{0}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat A{\varphi}{\bar{a}}$
+\end_inset
+
+, por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+, 
+\begin_inset Formula $\sat{A_{0}}{\varphi}{\bar{a}}$
+\end_inset
+
+ y como 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ son isomorfos por 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, 
+\begin_inset Formula $\sat{B_{0}}{\varphi}{\sigma\left(\bar{a}\right)}$
+\end_inset
+
+.
+ Nuevamente por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\varphi}{\sigma\left(\bar{a}\right)}$
+\end_inset
+
+ y como por hipotesis 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Veamos 2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1:
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)$
+\end_inset
+
+, la cual es formula por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.4"
+
+\end_inset
+
+.
+ Veamos que 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+.
+ Sea 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+) Supongamos 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+, entonces en particular para algun 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, 
+\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]}{\bar{b}}$
+\end_inset
+
+.
+ Por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.5"
+
+\end_inset
+
+, hay un isomorfismo 
+\begin_inset Formula $\funcion[\gamma]{\subuniv aA}{\subuniv bB}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+ Entonces por hipotesis 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Finalmente como 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+ o sea que 
+\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+) Supongamos 
+\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbb{B}\bar{b}}\right]\right)$
+\end_inset
+
+, evidentemente 
+\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbb{B}\bar{b}}\right]}{\bar{b}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
 \end_inset
 
 .
