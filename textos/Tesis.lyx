@@ -2063,6 +2063,12 @@ Dados
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:1.7"
+
+\end_inset
+
 Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
@@ -2354,6 +2360,411 @@ reference "thm:1.5"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Definibilidad por formulas abiertas positivas y conjuncion de atomicas
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:2.1"
+
+\end_inset
+
+Sean 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ estructuras y 
+\begin_inset Formula $h:A\rightarrow B$
+\end_inset
+
+ una función.
+ Pruebe que son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h$
+\end_inset
+
+ es un homomorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para toda fórmula atómica 
+\begin_inset Formula $\varphi=\varphi\left(\bar{x}\right)$
+\end_inset
+
+ y para cada 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ de 
+\begin_inset Formula $A$
+\end_inset
+
+ vale que 
+\begin_inset Formula 
+\[
+\mathbf{A}\vDash\varphi\left[\bar{a}\right]\Longrightarrow\mathbf{B}\vDash\varphi\left[h\left(\bar{a}\right)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Para toda fórmula abierta positiva
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Una fórmulas es positiva si no tiene ocurrencias de 
+\begin_inset Formula $\neg$
+\end_inset
+
+, 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+, 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\varphi=\varphi\left(\bar{x}\right)$
+\end_inset
+
+ y para cada 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ de 
+\begin_inset Formula $A$
+\end_inset
+
+ vale que 
+\begin_inset Formula 
+\[
+\mathbf{A}\vDash\varphi\left[\bar{a}\right]\Longrightarrow\mathbf{B}\vDash\varphi\left[h\left(\bar{a}\right)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Sea 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ y sea 
+\begin_inset Formula $\deff[\varphi][\bar{x}]$
+\end_inset
+
+ atomica y 
+\begin_inset Formula $\bar{a}\in A^{n}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Case
+\begin_inset Formula $\varphi=(t\equiv s)$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+t^{\mathbf{A}}\left[\bar{a}\right] & = & s^{\mathbf{A}}\left[\bar{a}\right]\\
+h\left(t^{\mathbf{A}}\left[\bar{a}\right]\right) & = & h\left(s^{\mathbf{A}}\left[\bar{a}\right]\right)\\
+t^{\mathbf{B}}\left[h\left(\bar{a}\right)\right] & = & s^{\mathbf{B}}\left[h\left(\bar{a}\right)\right]\\
+\mathbf{B} & \vDash & \varphi\left[h\left(\bar{a}\right)\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Case
+\begin_inset Formula $\varphi=r\left(\enumeracion[][t]\right)$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right],\dots,t_{n}^{\mathbf{A}}\left[\bar{a}\right]\right) & \in & r^{\mathbf{A}}\\
+\left(h\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right]\right),\dots,h\left(t_{n}^{\mathbf{A}}\left[\bar{a}\right]\right)\right) & \in & r^{\mathbf{B}}\\
+\left(t_{1}^{\mathbf{B}}\left[h\left(\bar{a}\right)\right],\dots,t_{n}^{\mathbf{B}}\left[\left(\bar{a}\right)\right]\right) & \in & r^{\mathbf{B}}\\
+\mathbf{B} & \vDash & \varphi\left[h\left(\bar{a}\right)\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Supongamos 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}\Rightarrow\text{\sat B{\varphi}{h\left(\bar{a}\right)}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ atomica.
+ Veamos que h es homomorfismo.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $c\in\mathcal{C}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\sat A{\left(c\equiv x_{1}\right)}{c^{\mathbf{A}}}\Rightarrow\sat B{\left(c\equiv x_{1}\right)}{h\left(c^{\mathbf{A}}\right)}\Leftrightarrow c^{\mathbf{B}}=h\left(c^{\mathbf{A}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $f\in\mathcal{F}_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbf{A} & \vDash & \left(f\left(\enumeracion[][x]\right)\equiv x_{n+1}\right)\left[\enumeracion[][a],f^{\mathbf{A}}\left(\bar{a}\right)\right]\\
+\mathbf{B} & \vDash & \left(f\left(\enumeracion[][x]\right)\equiv x_{n+1}\right)\left[h\left(a_{1}\right),\dots,h\left(\bar{a}_{n}\right),h\left(f^{\mathbf{A}}\left(\bar{a}\right)\right)\right]\\
+f^{\mathbf{B}}\left(h\left(\bar{a}\right)\right) & = & h\left(f^{\mathbf{A}}\left(\bar{a}\right)\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $r\in\mathcal{R}_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bar{a}\in r^{\mathbf{A}}\Rightarrow\sat A{r\left(\bar{x}\right)}{\bar{a}}\Rightarrow\sat B{r\left(\bar{x}\right)}{h\left(\bar{a}\right)}\Rightarrow h\left(\bar{a}\right)\in r^{\mathbf{B}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+3) Directo por induccion estructural en las formulas.
+\end_layout
+
+\begin_layout Proof
+3
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Directo ya que toda atomica es abierta positiva.
+\end_layout
+
+\begin_layout Definition
+Sea 
+\series bold
+
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+
+\series default
+ una estructura y sean 
+\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
+\end_inset
+
+.
+ Definimos el diagrama atomico de 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ como 
+\begin_inset Formula 
+\[
+\Delta_{\mathbf{A},\bar{a}}^{+}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\mbox{ es atómica y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Sean 
+\series bold
+
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+
+\series default
+ una estructura y 
+\begin_inset Formula $b_{1},\ldots,b_{n}\in B$
+\end_inset
+
+, son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\mathbf{B}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[\bar{b}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hay un homomorfismo 
+\begin_inset Formula $h$
+\end_inset
+
+ de 
+\begin_inset Formula $\left\langle \bar{a}\right\rangle ^{\mathbf{A}}$
+\end_inset
+
+ en 
+\begin_inset Formula $\left\langle \bar{b}\right\rangle ^{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Defino 
+\begin_inset Formula $\funcion[h]{\subuniv aA}{\subuniv bB}$
+\end_inset
+
+, como 
+\begin_inset Formula 
+\[
+h\left(t^{\mathbf{A}}\left[\bar{a}\right]\right)=t^{\mathbf{B}}\left[\bar{b}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+El cual es trivialmente un homomorfismo que cumple 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Supongamos que hay un homomorfismo 
+\begin_inset Formula $h$
+\end_inset
+
+ de 
+\begin_inset Formula $\left\langle \bar{a}\right\rangle ^{\mathbf{A}}$
+\end_inset
+
+ en 
+\begin_inset Formula $\left\langle \bar{b}\right\rangle ^{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+, entonces como 
+\begin_inset Formula $\mathbf{A}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[\bar{a}\right]$
+\end_inset
+
+, por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:2.1"
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathbf{B}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[h\left(\bar{a}\right)\right]$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\mathbf{B}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[\bar{b}\right]$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
