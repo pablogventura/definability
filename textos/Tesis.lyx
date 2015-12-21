@@ -1746,19 +1746,6 @@ name "thm:1.5"
 \end_inset
 
 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-leavevmode
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Theorem
@@ -1811,18 +1798,6 @@ Hay un isomorfismo
 
 \end_deeper
 \begin_layout Proof
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-leavevmode
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
