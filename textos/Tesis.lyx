@@ -150,7 +150,7 @@ Preliminares
 \end_layout
 
 \begin_layout Section
-Definibilidad por formulas abiertas
+Definibilidad por fórmulas abiertas
 \end_layout
 
 \begin_layout Theorem
@@ -158,7 +158,7 @@ Definibilidad por formulas abiertas
 status open
 
 \begin_layout Plain Layout
-Los embeddings preservan formulas abiertas
+Los embeddings preservan fórmulas abiertas
 \end_layout
 
 \end_inset
@@ -186,7 +186,7 @@ Sean
 \begin_inset Formula $\fee[\gamma]AB$
 \end_inset
 
- una funcion.
+ una función.
  Son equivalentes:
 \end_layout
 
@@ -199,7 +199,7 @@ Sean
 \end_layout
 
 \begin_layout Enumerate
-Para toda formula abierta 
+Para toda fórmula abierta 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -240,7 +240,7 @@ Sea
 \begin_inset Formula $\varphi(x_{1},...,x_{n})$
 \end_inset
 
- una formula abierta y 
+ una fórmula abierta y 
 \begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
@@ -412,7 +412,7 @@ B & \vDash & (\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
 \end_layout
 
 \begin_layout Proof
-Supongamos que para toda formula abierta 
+Supongamos que para toda fórmula abierta 
 \begin_inset Formula $\varphi=\varphi(\bar{x})$
 \end_inset
 
@@ -595,7 +595,7 @@ Si
 \begin_inset Formula $\deff$
 \end_inset
 
- es una formula abierta, entonces para cada 
+ es una fórmula abierta, entonces para cada 
 \begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
@@ -623,7 +623,7 @@ Sea
 \begin_inset Formula $\deff$
 \end_inset
 
- una formula abierta.
+ una fórmula abierta.
 \end_layout
 
 \begin_layout Proof
@@ -803,7 +803,7 @@ Por el Teorema 1,
 \end_layout
 
 \begin_layout Proof
-Finalmente, por definicion de 
+Finalmente, por definición de 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -830,7 +830,7 @@ Dado un conjunto de fórmulas
 \begin_inset Formula $\Delta\left(\bar{x}\right)$
 \end_inset
 
- para anunciar que cada una de las formulas en 
+ para anunciar que cada una de las fórmulas en 
 \begin_inset Formula $\Delta$
 \end_inset
 
@@ -972,7 +972,7 @@ Si
 \begin_inset Formula $\alpha$
 \end_inset
 
- formula abierta y 
+ fórmula abierta y 
 \begin_inset Formula $\sat A{\alpha}{\bar{a}}$
 \end_inset
 
@@ -1359,7 +1359,7 @@ reference "thm:1.1"
 
 \end_inset
 
- para toda formula abierta 
+ para toda fórmula abierta 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -1484,7 +1484,7 @@ name "def:equiv-formulas"
 
 \end_inset
 
-Dos formulas 
+Dos fórmulas 
 \begin_inset Formula $\alpha\left(\bar{x}\right)$
 \end_inset
 
@@ -1531,7 +1531,7 @@ name "thm:1.4"
 status open
 
 \begin_layout Plain Layout
-Modulo equivalencia sobre una estructura finita, la cantidad de formulas
+Modulo equivalencia sobre una estructura finita, la cantidad de fórmulas
  en 
 \begin_inset Formula $\enumeracion{}{}$
 \end_inset
@@ -1557,11 +1557,11 @@ Sea
 \end_layout
 
 \begin_layout Theorem
-Hay un conjunto finito de formulas 
+Hay un conjunto finito de fórmulas 
 \begin_inset Formula $\Sigma\left(\overline{x}\right)$
 \end_inset
 
- tal que para toda formula 
+ tal que para toda fórmula 
 \begin_inset Formula $\deff[\varphi][\overline{x}]$
 \end_inset
 
@@ -1585,7 +1585,7 @@ Hay un conjunto finito de formulas
 \end_layout
 
 \begin_layout Proof
-Veamos primero que las formulas son finitas modulo equivalencia:
+Veamos primero que las fórmulas son finitas modulo equivalencia:
 \end_layout
 
 \begin_layout Proof
@@ -1678,7 +1678,7 @@ Por lo tanto
 \begin_inset Formula $\mathcal{P}(A^{n})$
 \end_inset
 
- tambien lo es.
+ también lo es.
 \end_layout
 
 \begin_layout Proof
@@ -1718,7 +1718,7 @@ y como
 \begin_inset Formula $\enumeracion Tk$
 \end_inset
 
- es la sucesion de todos los subconjuntos que se definen con una formula,
+ es la sucesión de todos los subconjuntos que se definen con una fórmula,
  hay un 
 \begin_inset Formula $j$
 \end_inset
@@ -1757,7 +1757,7 @@ Sean
 \begin_inset Formula $\enumeracion[][a]an\in A$
 \end_inset
 
-, entonces existe una formula abierta 
+, entonces existe una fórmula abierta 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -1802,7 +1802,7 @@ Tomo
 \begin_inset Formula $\varphi=\wedge([\Delta_{\mathbf{A}\bar{a}}])$
 \end_inset
 
- que es una formula, por el teorema 
+ que es una fórmula, por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:1.4"
@@ -1856,7 +1856,7 @@ Dados
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- un simbolo de relacion n-ario.
+ un símbolo de relación n-ario.
  Diremos que 
 \begin_inset Formula $R$
 \end_inset
@@ -1877,7 +1877,7 @@ definible
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula 
+-fórmula 
 \begin_inset Formula $\deff[][\enumeracion]$
 \end_inset
 
@@ -2010,7 +2010,7 @@ Dados
 \begin_inset Formula $R^{B}\subseteq B^{n}$
 \end_inset
 
-, diremos que una funcion 
+, diremos que una función 
 \begin_inset Formula $\funcion AB$
 \end_inset
 
@@ -2048,7 +2048,7 @@ Dados
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- un símbolo de relacion n-ario.
+ un símbolo de relación n-ario.
  Para una clase finita 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -2061,7 +2061,7 @@ Dados
 \end_layout
 
 \begin_layout Enumerate
-Hay una formula en Op(
+Hay una fórmula en Op(
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -2113,7 +2113,7 @@ Sea
 \begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
- la formula que define 
+ la fórmula que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2192,7 +2192,7 @@ reference "thm:1.2"
 \begin_inset Formula $\sat B{\varphi}{\sigma\left(\bar{a}\right)}$
 \end_inset
 
- y como por hipotesis 
+ y como por hipótesis 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -2224,7 +2224,7 @@ Sea
 \begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)$
 \end_inset
 
-, la cual es formula por el teorema 
+, la cual es fórmula por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:1.4"
@@ -2256,7 +2256,7 @@ reference "thm:1.4"
 \begin_inset Formula $\sat B{\varphi}{\bar{b}}$
 \end_inset
 
-, entonces en particular para algun 
+, entonces en particular para algún 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
@@ -2285,7 +2285,7 @@ reference "thm:1.5"
 \end_inset
 
 .
- Entonces por hipotesis 
+ Entonces por hipótesis 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -2334,7 +2334,7 @@ reference "thm:1.5"
 \end_layout
 
 \begin_layout Section
-Definibilidad por formulas abiertas positivas y conjuncion de atomicas
+Definibilidad por fórmulas abiertas positivas y conjunción de atómicas
 \end_layout
 
 \begin_layout Theorem
@@ -2456,7 +2456,7 @@ Una fórmulas es positiva si no tiene ocurrencias de
 \begin_inset Formula $\deff[\varphi][\bar{x}]$
 \end_inset
 
- atomica y 
+ atómica y 
 \begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
@@ -2518,8 +2518,12 @@ t^{\mathbf{B}}\left[h\left(\bar{a}\right)\right] & = & s^{\mathbf{B}}\left[h\lef
 \begin_inset Formula $\varphi$
 \end_inset
 
- atomica.
- Veamos que h es homomorfismo.
+ atómica.
+ Veamos que 
+\begin_inset Formula $h$
+\end_inset
+
+ es homomorfismo.
 \end_layout
 
 \begin_layout Proof
@@ -2577,7 +2581,7 @@ Sea
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-3) Directo por induccion estructural en las formulas.
+3) Directo por inducción estructural en las fórmulas.
 \end_layout
 
 \begin_layout Proof
@@ -2585,7 +2589,7 @@ Sea
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2) Directo ya que toda atomica es abierta positiva.
+2) Directo ya que toda atómica es abierta positiva.
 \end_layout
 
 \begin_layout Definition
@@ -2602,7 +2606,7 @@ Sea
 \end_inset
 
 .
- Definimos el diagrama atomico de 
+ Definimos el diagrama atómico de 
 \begin_inset Formula $\bar{a}$
 \end_inset
 
@@ -2694,7 +2698,7 @@ h\left(t^{\mathbf{A}}\left[\bar{a}\right]\right)=t^{\mathbf{B}}\left[\bar{b}\rig
 \end_layout
 
 \begin_layout Proof
-El cual es se ve facilmente que es un homomorfismo que cumple 
+El cual es se ve fácilmente que es un homomorfismo que cumple 
 \begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
 \end_inset
 
@@ -2763,7 +2767,7 @@ Sean
 \begin_inset Formula $\enumeracion[][a]an\in A$
 \end_inset
 
-, entonces existe una formula abierta 
+, entonces existe una fórmula abierta 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -2808,7 +2812,7 @@ Tomo
 \begin_inset Formula $\varphi=\wedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
 \end_inset
 
- que es una formula, por el teorema 
+ que es una fórmula, por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:1.4"
@@ -2868,7 +2872,7 @@ Dados
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- un símbolo de relacion n-ario.
+ un símbolo de relación n-ario.
  Para una clase finita 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -2885,7 +2889,7 @@ Hay una
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula abierta positiva que define 
+-fórmula abierta positiva que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2933,7 +2937,7 @@ Sea
 \begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
- la formula abierta positiva que define 
+ la fórmula abierta positiva que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3023,7 +3027,7 @@ reference "thm:1.2"
 \begin_inset Formula $\sat B{\varphi}{h\left(\bar{a}\right)}$
 \end_inset
 
- y como por hipotesis 
+ y como por hipótesis 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3055,7 +3059,7 @@ Sea
 \begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge_{\alpha\in\Delta_{\mathbb{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
-, la cual es formula por el teorema 
+, la cual es fórmula por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:1.4"
@@ -3078,7 +3082,7 @@ reference "thm:1.4"
 \begin_inset Formula $\sat B{\varphi}{\bar{b}}$
 \end_inset
 
-, entonces en particular para algun 
+, entonces en particular para algún 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
@@ -3107,7 +3111,7 @@ reference "thm:2.3.5"
 \end_inset
 
 .
- Entonces por hipotesis 
+ Entonces por hipótesis 
 \begin_inset Formula $h$
 \end_inset
 
@@ -3227,7 +3231,7 @@ Dados
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- un símbolo de relacion n-ario.
+ un símbolo de relación n-ario.
  Para una clase finita 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -3264,11 +3268,11 @@ Para cada
 \end_layout
 
 \begin_layout Enumerate
-Hay una conjuncion finita de 
+Hay una conjunción finita de 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formulas atómicas que define 
+-fórmulas atómicas que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3288,7 +3292,7 @@ Hay una conjuncion finita de
 \begin_inset Formula $\deff$
 \end_inset
 
- conjuncion de atomicas que define a 
+ conjunción de atómicas que define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3462,7 +3466,7 @@ Ejemplos y aplicación
 status open
 
 \begin_layout Plain Layout
-Teorema de que en reticulados las formulas de dos variables libres hablan
+Teorema de que en reticulados las fórmulas de dos variables libres hablan
  sobre el orden nomas.
 \end_layout
 
