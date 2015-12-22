@@ -34,7 +34,7 @@ theorems-ams-extended
 \spacing single
 \use_hyperref false
 \papersize a4paper
-\use_geometry true
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -3219,6 +3219,54 @@ se tiene que
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
+name "thm:preservacion conj atomicas producto"
+
+\end_inset
+
+Dadas 
+\begin_inset Formula $\enumeracion[m][\mathbf{A}]$
+\end_inset
+
+ estructuras y 
+\begin_inset Formula $\deff[][\enumeracion]$
+\end_inset
+
+ una conjunción de fórmulas atómicas.
+ Entonces son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para todo 
+\begin_inset Formula $i=1,\dots,m$
+\end_inset
+
+ se da que 
+\begin_inset Formula $\sat{A_{i}}{\varphi}{\enumeracion[ni][a][1i]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\sat{\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}}{\varphi}{\enumeracion[][\bar{a}]}$
+\end_inset
+
+, con 
+\begin_inset Formula $\bar{a}_{j}=\left(a_{j1},\dots,a_{jm}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Sale directamente por inducción estructural en las fórmulas.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
 name "thm:2.4"
 
 \end_inset
@@ -3356,7 +3404,14 @@ Veamos que
 \end_inset
 
 .
- Por !!!!!!!!!!!!! 
+ Por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:preservacion conj atomicas producto"
+
+\end_inset
+
+ 
 \begin_inset Formula $\sat{A_{1}\times\cdots\times A_{m}}{\varphi}{\enumeracion[][\bar{s}]}$
 \end_inset
 
@@ -3421,7 +3476,147 @@ reference "thm:2.1"
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2)
+2) Supongamos 
+\begin_inset Formula $\mathcal{K}=\left\{ \enumeracion[m][\mathbf{A}]\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ n-aria.
+ Sean 
+\begin_inset Formula $\enumeracion[][\bar{a}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\bar{a}_{i}=\left(\enumeracion[im][a][i1]\right)$
+\end_inset
+
+ para cada 
+\begin_inset Formula $i\in\left[1,m\right]$
+\end_inset
+
+ con 
+\begin_inset Formula $\cup_{\mathbf{A}\in\mathcal{K}}R^{\mathbf{A}}=\left\{ \left(\enumeracion[ni][a][1i]\text{ con }i\in\left[1,m\right]\right)\right\} $
+\end_inset
+
+.
+ Sea 
+\begin_inset Formula 
+\[
+\varphi=\vee_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{a}]\right)}^{+}}
+\]
+
+\end_inset
+
+.
+ Supongamos 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+ y veamos que 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{a}]\right)}^{+}}{\enumeracion[][b]}$
+\end_inset
+
+, por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:2.2"
+
+\end_inset
+
+ hay 
+\begin_inset Formula $h$
+\end_inset
+
+ homomorfismo de 
+\begin_inset Formula $\left\langle \enumeracion[][\bar{a}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}$
+\end_inset
+
+ en 
+\begin_inset Formula $\left\langle \enumeracion[][b]\right\rangle ^{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}_{i}\right)=b_{i}$
+\end_inset
+
+.
+ Como por hipótesis 
+\begin_inset Formula $h$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces como 
+\begin_inset Formula $\left(\text{\enumeracion[ni][a][1i]}\right)\in R^{B}$
+\end_inset
+
+, 
+\begin_inset Formula $\left(h\left(a_{1i}\right),\dots,h\left(a_{ni}\right)\right)\in R^{B}$
+\end_inset
+
+, que es exactamente 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Ahora supongamos 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+ y veamos que 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+, entonces hay algún 
+\begin_inset Formula $j$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\mathbf{A}_{j}=\mathbf{B}$
+\end_inset
+
+ y hay algún 
+\begin_inset Formula $k$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\left(\enumeracion[nk][a][1k]\right)=\left(\enumeracion[][b]\right)$
+\end_inset
+
+.
+ Por lo tanto 
+\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{a}]\right]$
+\end_inset
+
+ y por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:preservacion conj atomicas producto"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[nk][a][1k]}$
+\end_inset
+
+, por lo tanto
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Chapter
