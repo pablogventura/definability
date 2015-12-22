@@ -3212,6 +3212,214 @@ se tiene que
 .
 \end_layout
 
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:2.4"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relacion n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_layout Enumerate
+Para cada 
+\begin_inset Formula $m\geq1$
+\end_inset
+
+, para todas 
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, para cada 
+\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\end_inset
+
+, todo homomorfismo 
+\begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hay una conjuncion finita de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formulas atómicas que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Sea 
+\begin_inset Formula $\deff$
+\end_inset
+
+ conjuncion de atomicas que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Sean 
+\begin_inset Formula $m\geq1$
+\end_inset
+
+, 
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\end_inset
+
+, y 
+\begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+un homomorfismo.
+ Sean 
+\begin_inset Formula 
+\[
+\bar{s}_{1}=\left(s_{11},\ldots,s_{1m}\right),\ldots,\bar{s}_{n}=\left(s_{n1},\ldots,s_{nm}\right)\in S
+\]
+
+\end_inset
+
+ tales que 
+\begin_inset Formula 
+\[
+\left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}\text{para cada i\in[1,m] }
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Veamos que 
+\begin_inset Formula $\left(h\left(\bar{s}_{1}\right),\ldots,h\left(\bar{s}_{n}\right)\right)\in R^{B}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}$
+\end_inset
+
+, 
+\begin_inset Formula $\sat{A_{i}}{\varphi}{\enumeracion[ni][s]}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $i\in[1,m]$
+\end_inset
+
+.
+ Por !!!!!!!!!!!!! 
+\begin_inset Formula $\sat{A_{1}\times\cdots\times A_{m}}{\varphi}{\enumeracion[][\bar{s}]}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es abierta y 
+\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\end_inset
+
+ por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat S{\varphi}{\enumeracion[][\bar{s}]}$
+\end_inset
+
+.
+ Entonces por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:2.1"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\varphi}{h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+, 
+\begin_inset Formula $\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2)
+\end_layout
+
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
