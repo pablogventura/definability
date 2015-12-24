@@ -3704,7 +3704,11 @@ Sean
 \end_inset
 
  y sea 
-\begin_inset Formula $\varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)\right)$
+\begin_inset Formula 
+\[
+\varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)\right)
+\]
+
 \end_inset
 
 .
