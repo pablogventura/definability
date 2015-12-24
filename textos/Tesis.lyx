@@ -3695,7 +3695,140 @@ Hay un embedding
 
 \end_deeper
 \begin_layout Proof
-prueba
+Sean 
+\begin_inset Formula $\enumeracion[m][a']$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\left\langle \enumeracion[n][a],\enumeracion[m][a']\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y sea 
+\begin_inset Formula $\varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Supongamos 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+, entonces existen 
+\begin_inset Formula $\enumeracion[m][b']\in B$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\sat B{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+ por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.3"
+
+\end_inset
+
+ hay un isomorfismo 
+\begin_inset Formula $\funcion[\gamma]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma\left(\bar{a},\bar{a'}\right)=\left(\bar{b},\bar{b'}\right)$
+\end_inset
+
+, y como 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Supongamos que hay un embedding 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{S}\leq\mathbf{B}}$
+\end_inset
+
+ es un isomorfimo.
+ Como 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}$
+\end_inset
+
+, por ser 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un isomorfismo 
+\begin_inset Formula $\sat S{\varphi}{\gamma\left(\bar{a}\right)}$
+\end_inset
+
+ y entonces 
+\begin_inset Formula $\sat S{\varphi}{\bar{b}}$
+\end_inset
+
+.
+ Por lo tanto existe 
+\begin_inset Formula $\bar{b'}$
+\end_inset
+
+en 
+\begin_inset Formula $S\subseteq B$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat S{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ es una fórmula abierta, por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+, 
+\begin_inset Formula $\sat B{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Theorem
