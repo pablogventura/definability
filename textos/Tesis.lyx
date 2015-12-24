@@ -3497,26 +3497,30 @@ reference "thm:2.1"
 
  n-aria.
  Sean 
-\begin_inset Formula $\enumeracion[][\bar{a}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\begin_inset Formula $\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
 \end_inset
 
  tales que 
-\begin_inset Formula $\bar{a}_{i}=\left(\enumeracion[im][a][i1]\right)$
+\begin_inset Formula $\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)$
 \end_inset
 
  para cada 
-\begin_inset Formula $i\in\left[1,m\right]$
+\begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
 \end_inset
 
  con 
-\begin_inset Formula $\cup_{\mathbf{A}\in\mathcal{K}}R^{\mathbf{A}}=\left\{ \left(\enumeracion[ni][a][1i]\text{ con }i\in\left[1,m\right]\right)\right\} $
+\begin_inset Formula $\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} $
 \end_inset
 
-.
+ para cada 
+\begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
+\end_inset
+
+ .
  Sea 
 \begin_inset Formula 
 \[
-\varphi=\vee_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{a}]\right)}^{+}}
+\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}\alpha\left(\bar{x}\right)
 \]
 
 \end_inset
@@ -3532,7 +3536,7 @@ reference "thm:2.1"
 
 .
  Como 
-\begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{a}]\right)}^{+}}{\enumeracion[][b]}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]}$
 \end_inset
 
 , por teorema 
@@ -3547,7 +3551,7 @@ reference "thm:2.2"
 \end_inset
 
  homomorfismo de 
-\begin_inset Formula $\left\langle \enumeracion[][\bar{a}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}$
+\begin_inset Formula $\left\langle \enumeracion[][\bar{x}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}$
 \end_inset
 
  en 
@@ -3555,7 +3559,7 @@ reference "thm:2.2"
 \end_inset
 
  tal que 
-\begin_inset Formula $h\left(\bar{a}_{i}\right)=b_{i}$
+\begin_inset Formula $h\left(\bar{x}_{i}\right)=b_{i}$
 \end_inset
 
 .
@@ -3568,11 +3572,11 @@ reference "thm:2.2"
 \end_inset
 
 , entonces como 
-\begin_inset Formula $\left(\text{\enumeracion[ni][a][1i]}\right)\in R^{B}$
+\begin_inset Formula $\left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\in R^{\mathbf{A}_{j}}$
 \end_inset
 
 , 
-\begin_inset Formula $\left(h\left(a_{1i}\right),\dots,h\left(a_{ni}\right)\right)\in R^{B}$
+\begin_inset Formula $\left(h\left(\bar{x}_{1}\right),\dots,h\left(\bar{x}_{n}\right)\right)\in R^{\mathbf{B}}$
 \end_inset
 
 , que es exactamente 
@@ -3603,16 +3607,24 @@ Ahora supongamos
 \begin_inset Formula $k$
 \end_inset
 
+ y algun 
+\begin_inset Formula $j$
+\end_inset
+
  tal que 
-\begin_inset Formula $\left(\enumeracion[nk][a][1k]\right)=\left(\enumeracion[][b]\right)$
+\begin_inset Formula 
+\[
+\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right)
+\]
+
 \end_inset
 
 .
- Por lo tanto 
-\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{a}]\right]$
+ Entonces como 
+\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
 \end_inset
 
- y por teorema 
+ por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion conj atomicas producto"
@@ -3620,7 +3632,7 @@ reference "thm:preservacion conj atomicas producto"
 \end_inset
 
  
-\begin_inset Formula $\sat B{\varphi}{\enumeracion[nk][a][1k]}$
+\begin_inset Formula $\sat B{\varphi}{x_{1k}^{j},\dots,x_{nk}^{j}}$
 \end_inset
 
 , por lo tanto
