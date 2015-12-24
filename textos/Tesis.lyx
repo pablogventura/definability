@@ -3216,7 +3216,7 @@ se tiene que
 .
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:preservacion conj atomicas producto"
@@ -3261,7 +3261,7 @@ Para todo
 
 \end_deeper
 \begin_layout Proof
-Sale directamente por inducción estructural en las fórmulas.
+Rutina.
 \end_layout
 
 \begin_layout Theorem
@@ -3413,7 +3413,7 @@ Veamos que
 
 \end_inset
 
- Luego, por el Teorema 
+ Luego, por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion conj atomicas producto"
