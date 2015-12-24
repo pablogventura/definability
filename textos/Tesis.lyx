@@ -2606,7 +2606,7 @@ Sea
 \end_inset
 
 .
- Definimos el diagrama atómico de 
+ Definimos el diagrama atómico positivo de 
 \begin_inset Formula $\bar{a}$
 \end_inset
 
@@ -3635,7 +3635,7 @@ reference "thm:preservacion conj atomicas producto"
 \begin_inset Formula $\sat B{\varphi}{x_{1k}^{j},\dots,x_{nk}^{j}}$
 \end_inset
 
-, por lo tanto
+, por lo tanto 
 \begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
 \end_inset
 
