@@ -4052,7 +4052,7 @@ Para todas
 \begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
 \end_inset
 
-, todo isomorfismo 
+, todo embedding 
 \begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
@@ -4065,7 +4065,264 @@ Para todas
 
 \end_deeper
 \begin_layout Proof
-prueba
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Sea 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ existencial que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, y sea 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ un embedding.
+ Entonces 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{S}\leq\mathbf{B}}$
+\end_inset
+
+ es un isomorfismo.
+ Supongamos 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}$
+\end_inset
+
+ entonces 
+\begin_inset Formula $\sat S{\varphi}{\gamma\left(\bar{a}\right)}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es de la forma 
+\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\psi$
+\end_inset
+
+ abierta, existe un 
+\begin_inset Formula $\bar{s}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat S{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\psi$
+\end_inset
+
+ es abierta y 
+\begin_inset Formula $\mathbf{S}\leq\mathbf{B}$
+\end_inset
+
+, por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.2"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\sat B{\varphi}{\gamma\left(\bar{a}\right)}$
+\end_inset
+
+ y como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K},$
+\end_inset
+
+ cada 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, tomo 
+\begin_inset Formula $\bar{a'}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+.
+ Ahora tomo 
+\begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+, que es formula por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.4"
+
+\end_inset
+
+.
+ Ahora tomo 
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+ Entonces como 
+\begin_inset Formula $\varphi=\dots\vee\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots$
+\end_inset
+
+, y como 
+\begin_inset Formula $\sat B{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+, 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+.
+ Entonces para algún 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, y algún 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\sat B{\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b}}$
+\end_inset
+
+.
+ Entonces hay un 
+\begin_inset Formula $\bar{z}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat B{\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{z}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\sat B{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}{\bar{b},\bar{z}}$
+\end_inset
+
+, por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:1.3"
+
+\end_inset
+
+ hay 
+\begin_inset Formula $\funcion[\gamma]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
+\end_inset
+
+ isomorfismo tal que 
+\begin_inset Formula $\left(\gamma\left(\bar{a}\right),\gamma\left(\bar{a'}\right)\right)=\left(\bar{b},\bar{z}\right)$
+\end_inset
+
+ y como 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ y como 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+, 
+\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es disyunción de existenciales, por teorema puede ser convertida en una
+ formula existencial.
 \end_layout
 
 \begin_layout Theorem
@@ -4130,7 +4387,14 @@ Para todas
 
 \end_deeper
 \begin_layout Proof
-prueba
+Igual a la prueba del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:3.3.a"
+
+\end_inset
+
+, tomando el diagrama abierto positivo.
 \end_layout
 
 \begin_layout Theorem
