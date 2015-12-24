@@ -3291,6 +3291,7 @@ Dados
 -estructuras, los siguientes son equivalentes:
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 Para cada 
 \begin_inset Formula $m\geq1$
@@ -3331,6 +3332,7 @@ Hay una conjunción finita de
 .
 \end_layout
 
+\end_deeper
 \begin_layout Proof
 2
 \begin_inset Formula $\Rightarrow$
@@ -3365,7 +3367,7 @@ Hay una conjunción finita de
 \begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
-un homomorfismo.
+ un homomorfismo.
  Sean 
 \begin_inset Formula 
 \[
@@ -3377,15 +3379,11 @@ un homomorfismo.
  tales que 
 \begin_inset Formula 
 \[
-\left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}\text{para cada i\in[1,m] }
+\left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}\text{ para cada }i\in\{1,\dots,m\}.
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
 Veamos que 
 \begin_inset Formula $\left(h\left(\bar{s}_{1}\right),\ldots,h\left(\bar{s}_{n}\right)\right)\in R^{B}$
 \end_inset
@@ -3395,28 +3393,42 @@ Veamos que
 \begin_inset Formula $\left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}$
 \end_inset
 
-, 
-\begin_inset Formula $\sat{A_{i}}{\varphi}{\enumeracion[ni][s]}$
+ y 
+\begin_inset Formula $\varphi$
 \end_inset
 
- para cada 
-\begin_inset Formula $i\in[1,m]$
+ define a 
+\begin_inset Formula $R$
 \end_inset
 
-.
- Por el teorema 
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, tenemos que 
+\begin_inset Formula 
+\[
+\sat{A_{i}}{\varphi}{\enumeracion[ni][s]}\mbox{ para }i\in\{1,\dots,m\}.
+\]
+
+\end_inset
+
+ Luego, por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion conj atomicas producto"
 
 \end_inset
 
- 
-\begin_inset Formula $\sat{A_{1}\times\cdots\times A_{m}}{\varphi}{\enumeracion[][\bar{s}]}$
+, 
+\begin_inset Formula 
+\[
+\sat{A_{1}\times\cdots\times A_{m}}{\varphi}{\enumeracion[][\bar{s}]}.
+\]
+
 \end_inset
 
-.
- Como 
+Como 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3424,31 +3436,30 @@ reference "thm:preservacion conj atomicas producto"
 \begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
 \end_inset
 
- por teorema 
+, el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:1.2"
 
 \end_inset
 
- 
+ implica que 
 \begin_inset Formula $\sat S{\varphi}{\enumeracion[][\bar{s}]}$
 \end_inset
 
-.
- Entonces por el teorema 
+, y aplicando el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:2.1"
 
 \end_inset
 
- 
+ obtenemos que 
 \begin_inset Formula $\sat B{\varphi}{h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)}$
 \end_inset
 
 .
- Como 
+ Finalmente, como 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3464,11 +3475,11 @@ reference "thm:2.1"
 \begin_inset Formula $\mathbf{B}\in\mathcal{K}$
 \end_inset
 
-, 
+, concluimos que 
 \begin_inset Formula $\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Proof
@@ -3617,6 +3628,317 @@ reference "thm:preservacion conj atomicas producto"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:3.1"
+
+\end_inset
+
+Sea 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ una estructura finita y 
+\begin_inset Formula $\enumeracion[][a]\in A$
+\end_inset
+
+.
+ Entonces hay una fórmula existencial 
+\begin_inset Formula $\deff[\varphi][\enumeracion]$
+\end_inset
+
+ tal que para toda estructura 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ y para todo 
+\begin_inset Formula $\bar{b}\in B^{n}$
+\end_inset
+
+ los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hay un embedding 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+prueba
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:3.2"
+
+\end_inset
+
+Sea 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ una estructura finita y 
+\begin_inset Formula $\enumeracion[][a]\in A$
+\end_inset
+
+.
+ Entonces hay una fórmula existencial positiva 
+\begin_inset Formula $\deff[\varphi][\enumeracion]$
+\end_inset
+
+ tal que para toda estructura 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ y para todo 
+\begin_inset Formula $\bar{b}\in B^{n}$
+\end_inset
+
+ los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hay un homomorfismo 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+prueba
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:3.3.a"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Hay una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula existencial que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para todas 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, todo isomorfismo 
+\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+prueba
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:3.3.b"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Hay una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula existencial positiva que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para todas 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, todo homomorfismo 
+\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+prueba
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:3.3.c"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para cada 
+\begin_inset Formula $m\geq1$
+\end_inset
+
+, para todas 
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, todo homomorfismo 
+\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hay una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula primitiva positiva que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+prueba
 \end_layout
 
 \begin_layout Chapter
