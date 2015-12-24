@@ -3888,7 +3888,119 @@ Hay un homomorfismo
 
 \end_deeper
 \begin_layout Proof
-prueba
+Sean 
+\begin_inset Formula $\enumeracion[m][a']$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\left\langle \enumeracion[n][a],\enumeracion[m][a']\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y sea 
+\begin_inset Formula 
+\[
+\varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}\alpha\left(\bar{x},\bar{y}\right)\right)
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Supongamos 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+, entonces existen 
+\begin_inset Formula $\enumeracion[m][b']\in B$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\sat B{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+ por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:2.2"
+
+\end_inset
+
+ hay un homomorfismo 
+\begin_inset Formula $\funcion[h]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a},\bar{a'}\right)=\left(\bar{b},\bar{b'}\right)$
+\end_inset
+
+, y como 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+ es un homomorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Supongamos que hay un homomorfismo 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{a}\right)=\bar{b}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\sat A{\varphi}{\bar{a}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\sat A{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{\bar{a},\bar{a'}}$
+\end_inset
+
+ y por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:2.1"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{h\left(\bar{a}\right),h\left(\bar{a'}\right)}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\sat B{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{\bar{b},\bar{b'}}$
+\end_inset
+
+, por lo que claramente 
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
