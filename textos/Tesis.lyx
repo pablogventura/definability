@@ -166,7 +166,7 @@ Los embeddings preservan fórmulas abiertas
 
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.1"
+name "thm:embeddings preservan abiertas"
 
 \end_inset
 
@@ -575,7 +575,7 @@ Sea
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.2"
+name "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -902,7 +902,7 @@ Sea
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.3"
+name "thm:diagrama sii isomorfismo"
 
 \end_inset
 
@@ -1355,7 +1355,7 @@ Entonces, es claro que
 Por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.1"
+reference "thm:embeddings preservan abiertas"
 
 \end_inset
 
@@ -1404,7 +1404,7 @@ Entonces en particular para
 Por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -1522,7 +1522,7 @@ equivalentes
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.4"
+name "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -1741,7 +1741,7 @@ Entonces,
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.5"
+name "thm:formula para el diagrama"
 
 \end_inset
 
@@ -1754,7 +1754,7 @@ Sean
 \end_inset
 
  estructuras finitas y 
-\begin_inset Formula $\enumeracion[][a]an\in A$
+\begin_inset Formula $\enumeracion[][a]\in A$
 \end_inset
 
 , entonces existe una fórmula abierta 
@@ -1805,7 +1805,7 @@ Tomo
  que es una fórmula, por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.4"
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -1824,7 +1824,7 @@ Es claro que
 Entonces por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.3"
+reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
@@ -2036,7 +2036,7 @@ Dados
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:1.7"
+name "thm:definibilidad abierta"
 
 \end_inset
 
@@ -2156,7 +2156,7 @@ Sea
 , por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -2184,7 +2184,7 @@ reference "thm:1.2"
  Nuevamente por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -2227,7 +2227,7 @@ Sea
 , la cual es fórmula por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.4"
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -2272,7 +2272,7 @@ reference "thm:1.4"
  Por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.5"
+reference "thm:formula para el diagrama"
 
 \end_inset
 
@@ -2340,7 +2340,7 @@ Definibilidad por fórmulas abiertas positivas y conjunción de atómicas
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:2.1"
+name "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \end_inset
 
@@ -2628,7 +2628,7 @@ Sea
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:2.2"
+name "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
@@ -2733,7 +2733,7 @@ El cual es se ve fácilmente que es un homomorfismo que cumple
 , por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.1"
+reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \end_inset
 
@@ -2751,7 +2751,7 @@ reference "thm:2.1"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:2.3.5"
+name "thm:formula para diagrama abierto positivo"
 
 \end_inset
 
@@ -2815,7 +2815,7 @@ Tomo
  que es una fórmula, por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.4"
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -2834,7 +2834,7 @@ Es claro que
 Entonces por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.2"
+reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
@@ -2860,7 +2860,7 @@ reference "thm:2.2"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:2.3.7"
+name "thm:definibilidad abierta positiva"
 
 \end_inset
 
@@ -2980,7 +2980,7 @@ Sea
 , por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -3007,7 +3007,7 @@ reference "thm:1.2"
  es abierta positiva por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.1"
+reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \end_inset
 
@@ -3019,7 +3019,7 @@ reference "thm:2.1"
  Nuevamente por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -3062,7 +3062,7 @@ Sea
 , la cual es fórmula por el teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.4"
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -3098,7 +3098,7 @@ reference "thm:1.4"
  Por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.3.5"
+reference "thm:formula para diagrama abierto positivo"
 
 \end_inset
 
@@ -3219,7 +3219,7 @@ se tiene que
 \begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:preservacion conj atomicas producto"
+name "thm:preservacion existencial conj atomicas producto"
 
 \end_inset
 
@@ -3228,7 +3228,11 @@ Dadas
 \end_inset
 
  estructuras y 
-\begin_inset Formula $\deff[][\enumeracion]$
+\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\psi$
 \end_inset
 
  una conjunción de fórmulas atómicas.
@@ -3267,7 +3271,7 @@ Rutina.
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:2.4"
+name "thm:definibilidad conjuncion de atomicas"
 
 \end_inset
 
@@ -3416,7 +3420,7 @@ Veamos que
  Luego, por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:preservacion conj atomicas producto"
+reference "thm:preservacion existencial conj atomicas producto"
 
 \end_inset
 
@@ -3439,7 +3443,7 @@ Como
 , el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -3450,7 +3454,7 @@ reference "thm:1.2"
 , y aplicando el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.1"
+reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \end_inset
 
@@ -3542,7 +3546,7 @@ reference "thm:2.1"
 , por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.2"
+reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
@@ -3627,7 +3631,7 @@ Ahora supongamos
  por teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:preservacion conj atomicas producto"
+reference "thm:preservacion existencial conj atomicas producto"
 
 \end_inset
 
@@ -3645,7 +3649,7 @@ reference "thm:preservacion conj atomicas producto"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:3.1"
+name "thm:formula para diagrama existencial"
 
 \end_inset
 
@@ -3730,7 +3734,7 @@ Supongamos
  por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.3"
+reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
@@ -3820,7 +3824,7 @@ en
  es una fórmula abierta, por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -3838,7 +3842,7 @@ reference "thm:1.2"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:3.2"
+name "thm:formula para diagrama existencial positivo"
 
 \end_inset
 
@@ -3923,7 +3927,7 @@ Supongamos
  por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.2"
+reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
@@ -3983,7 +3987,7 @@ Supongamos que hay un homomorfismo
  y por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:2.1"
+reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \end_inset
 
@@ -4006,7 +4010,7 @@ reference "thm:2.1"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:3.3.a"
+name "thm:definibiliad existencial"
 
 \end_inset
 
@@ -4132,7 +4136,7 @@ Para todas
 , por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.2"
+reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
@@ -4193,7 +4197,7 @@ define a
 , que es formula por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.4"
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -4269,7 +4273,7 @@ Sea
 , por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:1.3"
+reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
@@ -4328,7 +4332,7 @@ Como
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:3.3.b"
+name "thm:definibilidad existencial positiva"
 
 \end_inset
 
@@ -4390,7 +4394,7 @@ Para todas
 Igual a la prueba del Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:3.3.a"
+reference "thm:definibiliad existencial"
 
 \end_inset
 
@@ -4400,7 +4404,7 @@ reference "thm:3.3.a"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:3.3.c"
+name "thm:definibilidad primitiva positiva"
 
 \end_inset
 
@@ -4463,7 +4467,334 @@ Hay una
 
 \end_deeper
 \begin_layout Proof
-prueba
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Sea 
+\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ primitiva positiva que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Sean 
+\begin_inset Formula $m\geq1$
+\end_inset
+
+, 
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+ y 
+\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ un homomorfismo.
+ Sean 
+\begin_inset Formula 
+\[
+\bar{a}_{1}=\left(a_{11},\ldots,a_{1m}\right),\ldots,\bar{a}_{n}=\left(a_{n1},\ldots,a_{nm}\right)\in S
+\]
+
+\end_inset
+
+ tales que 
+\begin_inset Formula 
+\[
+\left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}\text{ para cada }i\in\{1,\dots,m\}.
+\]
+
+\end_inset
+
+Veamos que 
+\begin_inset Formula $\left(h\left(\bar{a}_{1}\right),\ldots,h\left(\bar{a}_{n}\right)\right)\in R^{B}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, tenemos que 
+\begin_inset Formula 
+\[
+\sat{A_{i}}{\varphi}{\enumeracion[ni][a]}\mbox{ para }i\in\{1,\dots,m\}.
+\]
+
+\end_inset
+
+Luego, por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:preservacion existencial conj atomicas producto"
+
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\sat{A_{1}\times\cdots\times A_{m}}{\varphi}{\enumeracion[][\bar{a}]}.
+\]
+
+\end_inset
+
+Entonces hay 
+\begin_inset Formula $\enumeracion[k][b]\in A_{1}\times\cdots\times A_{m}$
+\end_inset
+
+, tales que 
+\begin_inset Formula 
+\[
+\sat{A_{1}\times\cdots\times A_{m}}{\psi}{\enumeracion[][\bar{a}],\enumeracion[k][b]}.
+\]
+
+\end_inset
+
+Como 
+\begin_inset Formula $\psi$
+\end_inset
+
+ es abierta positiva, aplicando el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:homomorfismos preservan atomicas y abiertas positivas"
+
+\end_inset
+
+ obtenemos que 
+\begin_inset Formula $\sat B{\varphi}{h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)}$
+\end_inset
+
+.
+ Finalmente, como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+, concluimos que 
+\begin_inset Formula $\left(h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2)Supongamos 
+\begin_inset Formula $\mathcal{K}=\left\{ \enumeracion[m][\mathbf{A}]\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ n-aria.
+ Sean 
+\begin_inset Formula $\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)$
+\end_inset
+
+ para cada 
+\begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
+\end_inset
+
+ con 
+\begin_inset Formula $\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} $
+\end_inset
+
+ para cada 
+\begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
+\end_inset
+
+ .
+ Sean 
+\begin_inset Formula $\enumeracion[k][\bar{x'}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\end_inset
+
+, tales que 
+\begin_inset Formula $\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}=\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\end_inset
+
+.
+ Sea 
+\begin_inset Formula 
+\[
+\varphi=\exists\bar{y}\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}\alpha\left(\bar{x},\bar{y}\right)
+\]
+
+\end_inset
+
+.
+ Supongamos 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+ y veamos que 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+ Entonces hay 
+\begin_inset Formula $\enumeracion[k][b']$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}{\enumeracion[][b],\enumeracion[k][b']}$
+\end_inset
+
+, por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:diagrama atomico positivo sii homomorfismo"
+
+\end_inset
+
+ hay 
+\begin_inset Formula $h$
+\end_inset
+
+ homomorfismo de 
+\begin_inset Formula $\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}$
+\end_inset
+
+ en 
+\begin_inset Formula $\left\langle \enumeracion[][b],\enumeracion[k][b']\right\rangle ^{\mathbf{B}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $h\left(\bar{x}_{i}\right)=b_{i}$
+\end_inset
+
+ y 
+\begin_inset Formula $h\left(\bar{x'}_{i}\right)=b'_{i}$
+\end_inset
+
+, claramente 
+\begin_inset Formula $h$
+\end_inset
+
+ es un homomorfismo de 
+\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+.
+ Como por hipótesis 
+\begin_inset Formula $h$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces como 
+\begin_inset Formula $\left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\in R^{\mathbf{A}_{j}}$
+\end_inset
+
+, 
+\begin_inset Formula $\left(h\left(\bar{x}_{1}\right),\dots,h\left(\bar{x}_{n}\right)\right)\in R^{\mathbf{B}}$
+\end_inset
+
+, que es exactamente 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Ahora supongamos 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+ y veamos que 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+, entonces hay algún 
+\begin_inset Formula $j$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\mathbf{A}_{j}=\mathbf{B}$
+\end_inset
+
+ y hay algún 
+\begin_inset Formula $k$
+\end_inset
+
+ y algun 
+\begin_inset Formula $j$
+\end_inset
+
+ tal que 
+\begin_inset Formula 
+\[
+\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right)
+\]
+
+\end_inset
+
+.
+ Entonces como 
+\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
+\end_inset
+
+ por teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:preservacion existencial conj atomicas producto"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat B{\varphi}{x_{1k}^{j},\dots,x_{nk}^{j}}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $\sat B{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Chapter
