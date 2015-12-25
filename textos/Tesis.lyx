@@ -795,7 +795,14 @@ Entonces
 \end_layout
 
 \begin_layout Proof
-Por el Teorema 1, 
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:embeddings preservan abiertas"
+
+\end_inset
+
+, 
 \begin_inset Formula $\sat A{\varphi}{\bar{a}}\Leftrightarrow\sat B{\varphi}{\gamma(\bar{a})}$
 \end_inset
 
