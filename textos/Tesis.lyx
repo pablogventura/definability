@@ -1974,7 +1974,7 @@ Si
 Sean
 \begin_inset Formula 
 \[
-At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
+At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
 \]
 
 \end_inset
@@ -1996,7 +1996,7 @@ At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-formulas atómicas}\}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-formula abierta}}\}
+Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
 \]
 
 \end_inset
@@ -4201,7 +4201,7 @@ define a
 \begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
 \end_inset
 
-, que es formula por Teorema 
+, que es fórmula por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -4333,7 +4333,7 @@ Como
 \end_inset
 
  es disyunción de existenciales, por teorema puede ser convertida en una
- formula existencial.
+ fórmula existencial.
 \end_layout
 
 \begin_layout Theorem
