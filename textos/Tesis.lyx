@@ -1359,7 +1359,7 @@ Entonces, es claro que
 \end_layout
 
 \begin_layout Proof
-Por el teorema 
+Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:embeddings preservan abiertas"
@@ -1408,7 +1408,7 @@ Entonces en particular para
 \end_layout
 
 \begin_layout Proof
-Por el teorema 
+Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -1809,7 +1809,7 @@ Tomo
 \begin_inset Formula $\varphi=\wedge([\Delta_{\mathbf{A}\bar{a}}])$
 \end_inset
 
- que es una fórmula, por el teorema 
+ que es una fórmula, por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -1828,7 +1828,7 @@ Es claro que
 \end_layout
 
 \begin_layout Proof
-Entonces por teorema 
+Entonces por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -2160,7 +2160,7 @@ Sea
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat A{\varphi}{\bar{a}}$
 \end_inset
 
-, por teorema 
+, por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -2188,7 +2188,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 .
- Nuevamente por teorema 
+ Nuevamente por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -2231,7 +2231,7 @@ Sea
 \begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)$
 \end_inset
 
-, la cual es fórmula por el teorema 
+, la cual es fórmula por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -2276,7 +2276,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Por teorema 
+ Por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para el diagrama"
@@ -2737,7 +2737,7 @@ El cual es se ve fácilmente que es un homomorfismo que cumple
 \begin_inset Formula $\mathbf{A}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[\bar{a}\right]$
 \end_inset
 
-, por el teorema 
+, por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -2819,7 +2819,7 @@ Tomo
 \begin_inset Formula $\varphi=\wedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
 \end_inset
 
- que es una fórmula, por el teorema 
+ que es una fórmula, por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -2838,7 +2838,7 @@ Es claro que
 \end_layout
 
 \begin_layout Proof
-Entonces por teorema 
+Entonces por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -2984,7 +2984,7 @@ Sea
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat A{\varphi}{\bar{a}}$
 \end_inset
 
-, por teorema 
+, por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -3011,7 +3011,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\varphi$
 \end_inset
 
- es abierta positiva por teorema 
+ es abierta positiva por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -3023,7 +3023,7 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
 .
- Nuevamente por teorema 
+ Nuevamente por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -3066,7 +3066,7 @@ Sea
 \begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge_{\alpha\in\Delta_{\mathbb{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
-, la cual es fórmula por el teorema 
+, la cual es fórmula por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -3102,7 +3102,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Por teorema 
+ Por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para diagrama abierto positivo"
@@ -3550,7 +3550,7 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]}$
 \end_inset
 
-, por teorema 
+, por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -3635,7 +3635,7 @@ Ahora supongamos
 \begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
 \end_inset
 
- por teorema 
+ por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
@@ -4685,7 +4685,7 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \begin_inset Formula $\sat B{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}{\enumeracion[][b],\enumeracion[k][b']}$
 \end_inset
 
-, por teorema 
+, por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -4786,7 +4786,7 @@ Ahora supongamos
 \begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
 \end_inset
 
- por teorema 
+ por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
