@@ -4821,6 +4821,327 @@ Explicación general, pseudocódigo, prueba de que es correcto
 
 \end_layout
 
+\begin_layout Theorem
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, 
+\begin_inset Formula $R$
+\end_inset
+
+ un simbolo de relacion n-ario tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, sean 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ es un isomorfismo.
+ Entonces si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ y todo automorfismo 
+\begin_inset Formula $\funcion[\alpha]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ preservan 
+\begin_inset Formula $R$
+\end_inset
+
+, se da que todo isomorfismo de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Llamaremos 
+\series bold
+planetas
+\series default
+ a las 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Los 
+\series bold
+satelites
+\series default
+ seran las 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-subestructuras modulo isomorfismo de los planetas.
+\end_layout
+
+\begin_layout Algorithm
+Sean 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden y 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ una familia finita de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, se construye la constelacion de la siguiente forma:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para cada planeta 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+, desde el mas grande al mas chico:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para cada subestructura 
+\begin_inset Formula $\mathbf{P}_{0}\leq\mathbf{P}_{\mathcal{L}}$
+\end_inset
+
+ , desde la mas chica a la mas grande:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{P}_{0}}{\mathbf{B_{\mathcal{L}}}}$
+\end_inset
+
+ isomorfismo, con 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ un planeta distinto de 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, degrado 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ a satelite de 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por formulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Si no, y ademas hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{P}_{0}}{\mathbf{S}}$
+\end_inset
+
+ isomorfismo, con 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ un satelite:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, agrego 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como embedding de 
+\begin_inset Formula $\mathbf{P}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{P}'$
+\end_inset
+
+, el planeta de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por formulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Si no:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Agrego a 
+\begin_inset Formula $\mathbf{P}_{0}$
+\end_inset
+
+ como un nuevo satelite 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ con su embedding (inclusion) en 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para cada 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ automorfismo de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, agrego 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como automorfismo en 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por formulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\end_deeper
+\end_deeper
 \begin_layout Chapter
 Álgebras de Lindenbaum
 \end_layout
