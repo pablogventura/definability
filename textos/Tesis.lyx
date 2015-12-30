@@ -4830,7 +4830,7 @@ Dados
 \begin_inset Formula $R$
 \end_inset
 
- un simbolo de relacion n-ario tal que 
+ un símbolo de relación n-ario tal que 
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
@@ -4898,9 +4898,9 @@ planetas
 .
  Los 
 \series bold
-satelites
+satélites
 \series default
- seran las 
+ serán las 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -4920,7 +4920,7 @@ Sean
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructuras, se construye la constelacion de la siguiente forma:
+-estructuras, se construye la constelación de la siguiente forma:
 \end_layout
 
 \begin_deeper
@@ -4972,7 +4972,7 @@ Si
 \begin_inset Formula $\mathbf{B}$
 \end_inset
 
- a satelite de 
+ a satélite de 
 \begin_inset Formula $\mathbf{P}$
 \end_inset
 
@@ -4992,7 +4992,11 @@ Si
 \begin_inset Formula $R$
 \end_inset
 
- no es definible por formulas abiertas y 
+ no es definible por form
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ulas abiertas y 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -5001,7 +5005,7 @@ Si
 
 \end_deeper
 \begin_layout Enumerate
-Si no, y ademas hay un 
+Si no, y además hay un 
 \begin_inset Formula $\funcion[\gamma]{\mathbf{P}_{0}}{\mathbf{S}}$
 \end_inset
 
@@ -5009,7 +5013,7 @@ Si no, y ademas hay un
 \begin_inset Formula $\mathbf{S}$
 \end_inset
 
- un satelite:
+ un satélite:
 \end_layout
 
 \begin_deeper
@@ -5072,11 +5076,11 @@ Agrego a
 \begin_inset Formula $\mathbf{P}_{0}$
 \end_inset
 
- como un nuevo satelite 
+ como un nuevo satélite 
 \begin_inset Formula $\mathbf{S}$
 \end_inset
 
- con su embedding (inclusion) en 
+ con su embedding (inclusión) en 
 \begin_inset Formula $\mathbf{P}$
 \end_inset
 
