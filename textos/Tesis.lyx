@@ -4821,6 +4821,56 @@ Explicación general, pseudocódigo, prueba de que es correcto
 
 \end_layout
 
+\begin_layout Standard
+Con el objetivo de aplicar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+, deberíamos explorar la categoría dada por las subestructuras de cada estructur
+a en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ y los isomorfismos entre e 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de una constelación
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema constelacion.svg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Theorem
 Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
@@ -5099,7 +5149,6 @@ Para cada
 :
 \end_layout
 
-\begin_deeper
 \begin_layout Enumerate
 Si 
 \begin_inset Formula $\gamma$
@@ -5141,7 +5190,6 @@ Si
  
 \end_layout
 
-\end_deeper
 \end_deeper
 \end_deeper
 \end_deeper
