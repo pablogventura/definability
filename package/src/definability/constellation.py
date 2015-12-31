@@ -34,6 +34,7 @@ class TipedMultiDiGraph(object):
     def __init__(self, planets=[]):
         self.graph = networkx.MultiDiGraph()
         self.planets = defaultdict(list)  # diccionario con key de len(planet)
+        self.shadows = defaultdict(list) # diccionario con key de cuerpo celeste
         # diccionario con key de len(satellite)
         self.satellites = defaultdict(list)
         self.history = {}
@@ -59,6 +60,14 @@ class TipedMultiDiGraph(object):
         self.satellites[len(satellite)].append(satellite)
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
+
+    def add_shadow(self, obj, shadow, iso):
+        """
+        Le agrega una sombra (una estructura isomorfa) a una de las estructuras.
+        """
+        self.shadows[obj].append(shadow)
+        self.graph.add_node(shadow)
+        self.add_arrow(iso)
 
     def degrade(self, explanet, inclusion):
         """
