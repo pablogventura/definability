@@ -4,9 +4,10 @@ import networkx
 from examples import *
 from collections import defaultdict
 from itertools import product, chain
-from morphisms import Embedding,Homomorphism
+from morphisms import Isomorphism, Embedding, Homomorphism
 from minion import ParallelMorphMinionSol
 from model import FO_Model
+
 
 def check_history(func):
     """
@@ -31,24 +32,26 @@ class TipedMultiDiGraph(object):
     Maneja una coleccion de modelos relacionados por flechas
     """
 
-    def __init__(self, planets=[]):
+    def __init__(self, astros=[]):
         self.graph = networkx.MultiDiGraph()
         self.planets = defaultdict(list)  # diccionario con key de len(planet)
         self.shadows = defaultdict(list) # diccionario con key de cuerpo celeste
+        self.astros = defaultdict(list)  # diccionario con key de len(astro), algunos van a ser planetas y otros sombras
         # diccionario con key de len(satellite)
         self.satellites = defaultdict(list)
         self.history = {}
         try:
-            for planet in iter(planets):
-                self.add_planet(planet)
+            for astro in iter(astros):
+                assert isinstance(astro,FO_Model)
+                self.astros[len(astro)].append(astro)
         except TypeError:
-            self.add_planet(planets)
+            assert isinstance(astros,FO_Model)
+            self.astros[len(astros)].append(astros)
 
     def add_planet(self, planet):
         """
         Agrega un planeta, solo si no esta.
         """
-        assert isinstance(planet,FO_Model)
         if planet not in self.planets[len(planet)]:
             self.planets[len(planet)].append(planet)
             self.graph.add_node(planet)
@@ -61,11 +64,11 @@ class TipedMultiDiGraph(object):
         self.graph.add_node(satellite)
         self.add_arrow(inclusion)
 
-    def add_shadow(self, obj, shadow, iso):
+    def add_shadow(self, astro, shadow, iso):
         """
         Le agrega una sombra (una estructura isomorfa) a una de las estructuras.
         """
-        self.shadows[obj].append(shadow)
+        self.shadows[astro].append(shadow)
         self.graph.add_node(shadow)
         self.add_arrow(iso)
 
@@ -314,6 +317,7 @@ class Constellation(TipedMultiDiGraph):
             iso = protosatellite.is_isomorphic_to_any(
                 self.iter_planets(len(protosatellite), [planet]), subtype)
             if iso:
+                print iso
                 if not iso.preserves_type(supertype):
                     return iso
                 explanet = iso.target
@@ -330,20 +334,51 @@ class Constellation(TipedMultiDiGraph):
                 if ce:
                     return ce
 
+    def preproceso(self, subtype):
+        """
+        Se fija si hay astros isomorfos para armar los planetas con sus sombras.
+        """
+        for cardinality in self.astros:
+            for i, astro in enumerate(self.astros[cardinality]):
+                if not astro:
+                    continue
+                assert astro
+                self.add_planet(astro)
+                self.astros[cardinality][i] = None
+                for j, other in enumerate(self.astros[cardinality]):
+                    if not other:
+                        continue
+                    iso = astro.is_isomorphic(other, subtype)
+                    if iso:
+                        self.astros[cardinality][j] = None
+                        assert other
+                        self.add_shadow(astro, other, iso)
+
     @check_history
     def is_existential_definable(self, subtype, supertype):
         """
-        Busca automorfismos en subtype para saber si preservan supertype-subtype
+        Revisa los isomorfismos dados por los planetas con sus sombras 
+        para saber si preservan supertype-subtype
         Devuelve una tupla (booleano, contraejemplo)
         """
+        self.preproceso(subtype)
+
+        # con este codigo viejo, creo los main satellites
         for len_planets in sorted(self.planets.iterkeys(), reverse=True):  # desde el planeta mas grande
             for planet in self.planets[len_planets]:
                 inc, protosatellite = planet.substructure(
                     planet.universe, subtype)  # satellite principal
-                ce = self.__open_check_protosatellite(
-                    protosatellite, inc, planet, subtype, supertype)
-                if ce:
-                    return (False, ce)
+                # en realidad no tiene sentido checkear, porque como son todos satelites principales, seguro no son isomorfos.
+                self.__open_check_protosatellite(protosatellite, inc, planet, subtype, supertype)
+        # termina el codigo viejo
+        
+        # ahora reviso los isomorfismos de cada planeta con sus sombras.
+        for planet in self.iter_planets():
+            for shadow in self.shadows[planet]: #tiene sombras
+                for arrow in self.arrows(planet, shadow, morphtype=Isomorphism, subtype=subtype):
+                    ce = self.add_check_arrow(arrow, subtype, supertype)
+                    if ce:
+                        return (False, ce)
         return (True, None)
 
     @check_history
@@ -355,7 +390,7 @@ class Constellation(TipedMultiDiGraph):
 
         (b, ce) = self.is_existential_definable(subtype, supertype)
         if not b:
-            return (b, ce)  # no llego ni a ser definible
+            return (b, ce)  # no llego ni a ser definible existencial
 
         # desde el planeta mas grande
         for len_planets in sorted(self.planets.iterkeys(), reverse=True):
