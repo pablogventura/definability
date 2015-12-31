@@ -6,6 +6,7 @@ from collections import defaultdict
 from itertools import product, chain
 from morphisms import Embedding,Homomorphism
 from minion import ParallelMorphMinionSol
+from model import FO_Model
 
 def check_history(func):
     """
@@ -46,6 +47,7 @@ class TipedMultiDiGraph(object):
         """
         Agrega un planeta, solo si no esta.
         """
+        assert isinstance(planet,FO_Model)
         if planet not in self.planets[len(planet)]:
             self.planets[len(planet)].append(planet)
             self.graph.add_node(planet)
