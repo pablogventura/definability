@@ -4829,16 +4829,73 @@ reference "thm:definibilidad abierta"
 
 \end_inset
 
-, deberíamos explorar la categoría dada por las subestructuras de cada estructur
-a en 
+, deberíamos explorar la categoría dada por las 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-subestructuras de cada 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- y los isomorfismos entre e 
+ y los 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos entre ellas.
+ En ese caso para que se cumpliera el teorema deberíamos ver que todos los
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos entre ellas preservan 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria pura"
+
+\end_inset
+
+, hay un esquema de esta categoría donde utilizamos las figuras geométricas
+ a fin de identificar el tipo de isomorfismo.
+ Las figuras en rojo representan a cada 
+\begin_inset Formula $\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, mientras que las figuras en verde representan cada 
+\begin_inset Formula $\mathbf{A}_{0}<\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y las flechas son los 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -4848,7 +4905,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Esquema de una constelación
+Esquema de una categoria
 \end_layout
 
 \end_inset
@@ -4858,8 +4915,15 @@ Esquema de una constelación
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename img/esquema constelacion.svg
-	scale 40
+	filename img/esquema categoria.svg
+	scale 30
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria pura"
 
 \end_inset
 
@@ -4869,9 +4933,22 @@ Esquema de una constelación
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Es claro que esta representacion del problema tiene informacion redundante,
+ como por ejemplo los tres circulos isomorfos, los cuales tienen cada uno,
+ dos automorfismos que serian revisados para preservacion.
+ El siguiente resultado nos permite reducir la cantidad de flechas a revisar.
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:constelacion"
+
+\end_inset
+
 Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
@@ -4929,7 +5006,162 @@ Dados
 \begin_inset Formula $R$
 \end_inset
 
-.
+, y todo automorfismo 
+\begin_inset Formula $\funcion[\beta]{\mathbf{B}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Utilizando este resultado, podemos quitar flechas a revisar en la categoria.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria despues del teorema"
+
+\end_inset
+
+ se puede notar como se reducen la cantidad de flechas a revisar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema al aplicar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema categoria con teorema.svg
+	scale 30
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria despues del teorema"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ademas, es claro que los isomorfismos entre subestructuras, pueden ser vistos
+ como
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:constelacion sombras"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, 
+\begin_inset Formula $R$
+\end_inset
+
+ un símbolo de relación n-ario tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, y 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{\mathcal{L}}}{\mathbf{B}_{\mathcal{L}}}$
+\end_inset
+
+ un isomorfismo.
+ Entonces si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces todo isomorfismo 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, y si ademas todo automorfismo , se da que todo isomorfismo de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, y todo automorfismo 
+\begin_inset Formula $\funcion[\beta]{\mathbf{B}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Definition
