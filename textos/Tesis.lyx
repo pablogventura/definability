@@ -5033,7 +5033,7 @@ reference "fig:categoria despues del teorema"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5081,8 +5081,23 @@ name "fig:categoria despues del teorema"
 \end_layout
 
 \begin_layout Standard
-Ademas, es claro que los isomorfismos entre subestructuras, pueden ser vistos
- como
+Ademas, dado que en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ puede haber estructuras 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfas (como los octagonos de la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria despues del teorema"
+
+\end_inset
+
+) la cantidad de flechas se puede reducir aun mas, como expresa el siguiente
+ resultado.
 \end_layout
 
 \begin_layout Theorem
@@ -5141,52 +5156,188 @@ Dados
 \begin_inset Formula $R$
 \end_inset
 
-, y si ademas todo automorfismo , se da que todo isomorfismo de 
-\begin_inset Formula $\mathbf{A}_{0}$
+.
+\end_layout
+
+\begin_layout Standard
+Este resultado nos permite cocientar a 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
- en 
-\begin_inset Formula $\mathbf{B}_{0}$
+ por isomorfismos, y ahora pensar a cada tipo de isormofismo en 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
- preserva 
-\begin_inset Formula $R$
+ como una estructura representante y un grupo de 
+\emph on
+sombras
+\emph default
+ que son las demas estructuras de ese tipo de isomorfismo en 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, y todo automorfismo 
-\begin_inset Formula $\funcion[\beta]{\mathbf{B}_{0}}{\mathbf{B}_{0}}$
+.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria con sombras"
+
 \end_inset
 
- preserva 
-\begin_inset Formula $R$
+ puede verse un esquema de la categoria modificada por este resultado, donde
+ la sombra esta coloreada con rojo oscuro, detrás de la estructura representante
+ del tipo de isomorfismo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de la categoría luego de usar los teoremas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion sombras"
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Definition
-Llamaremos 
-\series bold
-planetas
-\series default
- a las 
-\begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructuras en 
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema categoria con sombras.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria con sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+No obstante todas las reducciones que hemos hecho ya a la categoria original,
+ aun hay informacion redundante en nuestro esquema.
+ Es claro que la informacion relativa a las subestructuras (por ejemplo
+ los triangulos de la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria con sombras"
+
+\end_inset
+
+) ya esta contenida dentro de la estructura en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
 .
- Los 
-\series bold
-satélites
-\series default
- serán las 
-\begin_inset Formula $\mathcal{L}$
+ Esto nos permite quitar subestructuras isomorfas, dejando solo un representante
+ del tipo de isomorfismo, agregando la inclusion a su estructura madre y
+ embeddings a las demas estructuras.
+ Llamaremos a la categoria dada por esta sucesion de reducciones 
+\emph on
+constelacion
+\emph default
+, y llamaremos 
+\emph on
+planeta 
+\emph default
+a cada representante de un tipo de isomorfismo en 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
--subestructuras modulo isomorfismo de los planetas.
+, y llamaremos 
+\emph on
+satelite
+\emph default
+ de un planeta a un representante del tipo de isomorfismo de una subestructura
+ del planeta en cuestion.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion"
+
+\end_inset
+
+ se pueden ver el esquema de la situacion, donde los planetas son rojos,
+ los satelites son verdes, las inclusiones son flechas punteadas que preservan
+ trivialmente y las demas flechas son embeddings a revisar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de una 
+\emph on
+constelacion
+\emph default
+ luego de aplicar todas las reducciones a la categoria original.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema constelacion.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Algorithm
