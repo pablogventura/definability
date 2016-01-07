@@ -5604,6 +5604,239 @@ Algoritmos para calcular álgebras
 Ejemplos y aplicación
 \end_layout
 
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:relacion existencial definible es idempotente"
+
+\end_inset
+
+Dada 
+\begin_inset Formula $R^{L}$
+\end_inset
+
+ una relación binaria definible por una formula existencial positiva 
+\begin_inset Formula $\deff[][x_{1},x_{2}]$
+\end_inset
+
+ en un reticulado 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\Delta\subseteq R^{L}$
+\end_inset
+
+ (i.e.
+ los términos en reticulados son idempotentes).
+\end_layout
+
+\begin_layout Proof
+Veamos que los términos son idempotentes.
+ Veamos directamente el caso inductivo.
+ Sea 
+\begin_inset Formula $t\in T^{k+1}-T^{k}$
+\end_inset
+
+.
+ Supongamos 
+\begin_inset Formula $t=\vee\left(g_{1},g_{2}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $g_{1},g_{2}\in T^{k}$
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{eqnarray*}
+\vee\left(g_{1},g_{2}\right)^{\mathbf{L}}\left[a,\dots,a\right] & = & i\left(\vee\right)\left(g_{2}^{\mathbf{L}}\left[a,\dots,a\right],g_{2}^{\mathbf{L}}\left[a,\dots,a\right]\right)\\
+\textnormal{por HI} & = & i\left(\vee\right)\left(a,a\right)\\
+\textnormal{por idempotencia de \vee} & = & a
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Para 
+\begin_inset Formula $\wedge$
+\end_inset
+
+ es análogo.
+\end_layout
+
+\begin_layout Proof
+Entonces es claro que las formulas existenciales positivas son idempotentes
+ tambien, por lo que la formula 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es idempotente, y como define a 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ es idempotente.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:filtro primo"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Teorema del filtro primo
+\end_layout
+
+\end_inset
+
+ Sea 
+\begin_inset Formula $\left\langle L,\vee,\wedge\right\rangle $
+\end_inset
+
+ un reticulado distributivo y 
+\begin_inset Formula $F$
+\end_inset
+
+ un filtro.
+ Supongamos 
+\begin_inset Formula $x\in L-F$
+\end_inset
+
+.
+ Entonces hay un filtro primo 
+\begin_inset Formula $P$
+\end_inset
+
+ tal que 
+\begin_inset Formula $x\in P$
+\end_inset
+
+ y 
+\begin_inset Formula $F\subseteq P$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:relacion existencial definible incluye al mayor o igual o es la diagonal sino incluye al menor igual"
+
+\end_inset
+
+Dada 
+\begin_inset Formula $R^{\mathbf{L}}$
+\end_inset
+
+ una relación binaria definible por una formula existencial positiva 
+\begin_inset Formula $\deff[][x_{1},x_{2}]$
+\end_inset
+
+ en un reticulado distributivo 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+, entonces si 
+\begin_inset Formula $\leq^{\mathbf{L}}\,\not\subseteq R^{\mathbf{L}}$
+\end_inset
+
+ entonces, 
+\begin_inset Formula $R^{L}=\Delta$
+\end_inset
+
+ o 
+\begin_inset Formula $R^{L}\supseteq\;\geq^{\mathbf{L}}$
+\end_inset
+
+ (respectivamente si 
+\begin_inset Formula $\geq^{\mathbf{L}}\,\not\subseteq R^{\mathbf{L}}$
+\end_inset
+
+ entonces, 
+\begin_inset Formula $R^{L}=\Delta$
+\end_inset
+
+ o 
+\begin_inset Formula $R^{L}\supseteq\;\leq^{\mathbf{L}}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Proof
+Por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:relacion existencial definible es idempotente"
+
+\end_inset
+
+, tomo 
+\begin_inset Formula $\left(a,b\right)\in R^{\mathbf{L}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $a\nleq b$
+\end_inset
+
+.
+ Tomo ademas 
+\begin_inset Formula $\left(c,d\right)\in\;\geq^{\mathbf{L}}$
+\end_inset
+
+, veamos que 
+\begin_inset Formula $\left(c,d\right)\in R^{\mathbf{L}}$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $c=d$
+\end_inset
+
+ entonces por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:relacion existencial definible es idempotente"
+
+\end_inset
+
+ ya pertenecen a 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $c<d$
+\end_inset
+
+, tomo un filtro primo 
+\begin_inset Formula $P$
+\end_inset
+
+ dado por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:filtro primo"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Comment
 status open
