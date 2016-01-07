@@ -5604,26 +5604,6 @@ Algoritmos para calcular álgebras
 Ejemplos y aplicación
 \end_layout
 
-\begin_layout Standard
-En lo que sigue 
-\begin_inset Formula $\mathbf{L}$
-\end_inset
-
- será un reticulado y 
-\begin_inset Formula $R$
-\end_inset
-
- una relación binaria no vacía sobre 
-\begin_inset Formula $L$
-\end_inset
-
- preservada por endomorfismos de 
-\begin_inset Formula $\mathbf{L}$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
@@ -5631,7 +5611,23 @@ name "lem:relacion existencial definible es idempotente"
 
 \end_inset
 
-Vale que 
+Dado 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+ un reticulado y 
+\begin_inset Formula $R$
+\end_inset
+
+ una relación binaria no vacía sobre 
+\begin_inset Formula $L$
+\end_inset
+
+ preservada por endomorfismos en 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+, entonces vale que 
 \begin_inset Formula $\Delta^{L}\subseteq R$
 \end_inset
 
@@ -5651,7 +5647,7 @@ Esto es una consecuencia directa de que para cada
 \begin_inset Formula $L$
 \end_inset
 
- que vale constamente 
+ que vale constantemente 
 \begin_inset Formula $a$
 \end_inset
 
@@ -5711,11 +5707,23 @@ name "lem:relacion existencial definible incluye al mayor o igual o es la diagon
 
 \end_inset
 
-Supongamos 
+Sea 
 \begin_inset Formula $\mathbf{L}$
 \end_inset
 
- es distributivo.
+ un reticulado distributivo y 
+\begin_inset Formula $R$
+\end_inset
+
+ una relación binaria no vacía sobre 
+\begin_inset Formula $L$
+\end_inset
+
+ preservada por endomorfismos en 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+.
  Si hay 
 \begin_inset Formula $(a,b)\in R$
 \end_inset
@@ -5749,7 +5757,7 @@ reference "lem:relacion existencial definible es idempotente"
 \end_inset
 
 , tomo 
-\begin_inset Formula $\left(a,b\right)\in R^{\mathbf{L}}$
+\begin_inset Formula $\left(a,b\right)\in R$
 \end_inset
 
  tales que 
@@ -5757,12 +5765,16 @@ reference "lem:relacion existencial definible es idempotente"
 \end_inset
 
 .
- Tomo ademas 
-\begin_inset Formula $\left(c,d\right)\in\;\geq^{\mathbf{L}}$
+ Tomo además 
+\begin_inset Formula $\left(c,d\right)$
+\end_inset
+
+ tales que 
+\begin_inset Formula $c\geq d$
 \end_inset
 
 , veamos que 
-\begin_inset Formula $\left(c,d\right)\in R^{\mathbf{L}}$
+\begin_inset Formula $\left(c,d\right)\in R$
 \end_inset
 
 .
@@ -5797,18 +5809,41 @@ reference "thm:filtro primo"
 
 \end_inset
 
+ con el filtro generado por 
+\begin_inset Formula $a$
+\end_inset
 
-\end_layout
+, tal que 
+\begin_inset Formula $b\notin P$
+\end_inset
 
-\begin_layout Standard
-\begin_inset Note Comment
-status open
+.
+ Ahora defino la siguiente función 
+\begin_inset Formula 
+\[
+h\left(x\right)=\begin{cases}
+c & \textnormal{si }x\in P\\
+d & \textnormal{si }x\notin P
+\end{cases}
+\]
 
-\begin_layout Plain Layout
-Teorema de que en reticulados las fórmulas de dos variables libres hablan
- sobre el orden nomas.
-\end_layout
+\end_inset
 
+ la cual claramente puede verse que es un endomorfismo.
+ Finalmente como 
+\begin_inset Formula $\left(a,b\right)\in R$
+\end_inset
+
+ y 
+\begin_inset Formula $h$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $\left(h\left(a\right),h\left(b\right)\right)=\left(c,d\right)\in R$
 \end_inset
 
 
@@ -5872,6 +5907,178 @@ Sea
 \end_layout
 
 \end_deeper
+\begin_layout Proof
+Si 
+\begin_inset Formula $R\subseteq\Delta$
+\end_inset
+
+, por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:relacion existencial definible es idempotente"
+
+\end_inset
+
+ 
+\begin_inset Formula $R=\Delta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $R\subseteq\{(x,y):x\leq y\}$
+\end_inset
+
+, pero 
+\begin_inset Formula $R\nsubseteq\Delta$
+\end_inset
+
+, hay 
+\begin_inset Formula $\left(a,b\right)\in R$
+\end_inset
+
+ tales que 
+\begin_inset Formula $a<b$
+\end_inset
+
+, entonces 
+\begin_inset Formula $a\ngeq b$
+\end_inset
+
+ y por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:relacion existencial definible incluye al mayor o igual o es la diagonal sino incluye al menor igual"
+
+\end_inset
+
+ 
+\begin_inset Formula $R=\{(x,y):x\leq y\}$
+\end_inset
+
+.
+ Analogo para 
+\begin_inset Formula $R\subseteq\{(x,y):x\geq y\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $R\nsubseteq\{(x,y):x\leq y\}$
+\end_inset
+
+ y 
+\begin_inset Formula $R\nsubseteq\{(x,y):x\geq y\}$
+\end_inset
+
+, aplicando dos veces el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:relacion existencial definible incluye al mayor o igual o es la diagonal sino incluye al menor igual"
+
+\end_inset
+
+ 
+\begin_inset Formula $\left\{ \left(x,y\right):x\leq y\right\} \cup\left\{ \left(x,y\right):x\geq y\right\} \subseteq R$
+\end_inset
+
+.
+ Si ademas 
+\begin_inset Formula $\left(a,b\right)\in R$
+\end_inset
+
+ pero 
+\begin_inset Formula $a\nleq b$
+\end_inset
+
+ y 
+\begin_inset Formula $a\ngeq b$
+\end_inset
+
+, tomo 
+\begin_inset Formula $\left(c,d\right)\in R$
+\end_inset
+
+, si son comparables ya esta estan en 
+\begin_inset Formula $R$
+\end_inset
+
+ por lo anterior.
+ Si son incomparables aplico dos veces el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:filtro primo"
+
+\end_inset
+
+ y tomo dos filtros primos 
+\begin_inset Formula $P$
+\end_inset
+
+ y 
+\begin_inset Formula $Q$
+\end_inset
+
+ tales que 
+\begin_inset Formula $a\in P$
+\end_inset
+
+ pero 
+\begin_inset Formula $b\notin P$
+\end_inset
+
+ y 
+\begin_inset Formula $b\in Q$
+\end_inset
+
+ pero 
+\begin_inset Formula $a\notin Q$
+\end_inset
+
+.
+ Ahora defino la siguiente funcion
+\begin_inset Formula 
+\[
+h\left(x\right)=\begin{cases}
+c\vee d & \textnormal{si }x\in P\cup Q\\
+c & \textnormal{si }x\in P-Q\\
+d & \textnormal{si }x\in Q-P\\
+c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
+\end{cases}
+\]
+
+\end_inset
+
+ que facilmente puede verse que es un endomorfismo.
+ Por lo tanto como 
+\begin_inset Formula $\left(a,b\right)\in R$
+\end_inset
+
+ y 
+\begin_inset Formula $h$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $\left(h\left(a\right),h\left(b\right)\right)=\left(c,d\right)\in R$
+\end_inset
+
+.
+ Por lo tanto 
+\begin_inset Formula $R=L\times L$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Chapter
 Conclusiones y trabajo futuro
 \end_layout
