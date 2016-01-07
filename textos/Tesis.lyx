@@ -5410,15 +5410,160 @@ Ademas, desde el punto de vista del enunciado de los enunciados de los teoremas
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--isomorfismo para ver si tambien lo es respecto de 
+-isomorfismo para ver si también lo es respecto de 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Definibilidad abierta
+\end_layout
 
+\begin_layout Definition
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ una clase finita de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras finitas donde no hay estructuras 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfas.
+ Sea 
+\begin_inset Formula $\mathcal{K}_{0}\subseteq S\left(\mathcal{K}\right)$
+\end_inset
+
+ tal que contienen exactamente una estructura por cada tipo de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo en 
+\begin_inset Formula $S\left(\mathcal{K}\right)$
+\end_inset
+
+, y sea 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+ el conjunto que contiene las siguentes flechas:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Los 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-automorfismos de cada estructura de 
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Para cada 
+\begin_inset Formula $\mathbf{S}\in\mathcal{K}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{M}$
+\end_inset
+
+ maximal en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ respecto de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-embbeddings, si hay 
+\begin_inset Formula $\mathbf{S}'\leq\mathbf{M}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\mathbf{S}\cong_{\mathcal{L}}\mathbf{S}'$
+\end_inset
+
+ hay 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{S}'}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo en 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Theorem
+Los siguientes son equivalentes:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R$
+\end_inset
+
+ es definible por una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula abierta en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Todos los isomorfismos en 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+ son 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismos.
+\end_layout
+
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Directo del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) 
 \end_layout
 
 \begin_layout Standard
