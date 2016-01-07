@@ -5604,6 +5604,26 @@ Algoritmos para calcular álgebras
 Ejemplos y aplicación
 \end_layout
 
+\begin_layout Standard
+En lo que sigue 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+ será un reticulado y 
+\begin_inset Formula $R$
+\end_inset
+
+ una relación binaria no vacía sobre 
+\begin_inset Formula $L$
+\end_inset
+
+ preservada por endomorfismos de 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
@@ -5611,78 +5631,31 @@ name "lem:relacion existencial definible es idempotente"
 
 \end_inset
 
-Dada 
-\begin_inset Formula $R^{L}$
-\end_inset
-
- una relación binaria definible por una formula existencial positiva 
-\begin_inset Formula $\deff[][x_{1},x_{2}]$
-\end_inset
-
- en un reticulado 
-\begin_inset Formula $\mathbf{L}$
-\end_inset
-
-, entonces 
-\begin_inset Formula $\Delta\subseteq R^{L}$
-\end_inset
-
- (i.e.
- los términos en reticulados son idempotentes).
-\end_layout
-
-\begin_layout Proof
-Veamos que los términos son idempotentes.
- Veamos directamente el caso inductivo.
- Sea 
-\begin_inset Formula $t\in T^{k+1}-T^{k}$
+Vale que 
+\begin_inset Formula $\Delta^{L}\subseteq R$
 \end_inset
 
 .
- Supongamos 
-\begin_inset Formula $t=\vee\left(g_{1},g_{2}\right)$
-\end_inset
-
- con 
-\begin_inset Formula $g_{1},g_{2}\in T^{k}$
-\end_inset
-
-.
-\begin_inset Formula 
-\begin{eqnarray*}
-\vee\left(g_{1},g_{2}\right)^{\mathbf{L}}\left[a,\dots,a\right] & = & i\left(\vee\right)\left(g_{2}^{\mathbf{L}}\left[a,\dots,a\right],g_{2}^{\mathbf{L}}\left[a,\dots,a\right]\right)\\
-\textnormal{por HI} & = & i\left(\vee\right)\left(a,a\right)\\
-\textnormal{por idempotencia de \vee} & = & a
-\end{eqnarray*}
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
-Para 
-\begin_inset Formula $\wedge$
+Esto es una consecuencia directa de que para cada 
+\begin_inset Formula $a\in L$
 \end_inset
 
- es análogo.
-\end_layout
-
-\begin_layout Proof
-Entonces es claro que las formulas existenciales positivas son idempotentes
- tambien, por lo que la formula 
-\begin_inset Formula $\varphi$
+ la función de 
+\begin_inset Formula $L$
 \end_inset
 
- es idempotente, y como define a 
-\begin_inset Formula $R$
+ en 
+\begin_inset Formula $L$
 \end_inset
 
-, 
-\begin_inset Formula $R$
+ que vale constamente 
+\begin_inset Formula $a$
 \end_inset
 
- es idempotente.
+ es un endomorfismo.
 \end_layout
 
 \begin_layout Theorem
@@ -5721,7 +5694,7 @@ Teorema del filtro primo
 \end_inset
 
  tal que 
-\begin_inset Formula $x\in P$
+\begin_inset Formula $x\notin P$
 \end_inset
 
  y 
@@ -5738,40 +5711,30 @@ name "lem:relacion existencial definible incluye al mayor o igual o es la diagon
 
 \end_inset
 
-Dada 
-\begin_inset Formula $R^{\mathbf{L}}$
-\end_inset
-
- una relación binaria definible por una formula existencial positiva 
-\begin_inset Formula $\deff[][x_{1},x_{2}]$
-\end_inset
-
- en un reticulado distributivo 
+Supongamos 
 \begin_inset Formula $\mathbf{L}$
 \end_inset
 
-, entonces si 
-\begin_inset Formula $\leq^{\mathbf{L}}\,\not\subseteq R^{\mathbf{L}}$
+ es distributivo.
+ Si hay 
+\begin_inset Formula $(a,b)\in R$
 \end_inset
 
- entonces, 
-\begin_inset Formula $R^{L}=\Delta$
+ tal que 
+\begin_inset Formula $a\nleq b$
 \end_inset
 
- o 
-\begin_inset Formula $R^{L}\supseteq\;\geq^{\mathbf{L}}$
+ (respectivamente 
+\begin_inset Formula $b\nleq a$
 \end_inset
 
- (respectivamente si 
-\begin_inset Formula $\geq^{\mathbf{L}}\,\not\subseteq R^{\mathbf{L}}$
+), entonces 
+\begin_inset Formula $\{(x,y):x\geq y\}\subseteq R$
 \end_inset
 
- entonces, 
-\begin_inset Formula $R^{L}=\Delta$
-\end_inset
-
- o 
-\begin_inset Formula $R^{L}\supseteq\;\leq^{\mathbf{L}}$
+ (resp.
+ 
+\begin_inset Formula $\{(x,y):x\leq y\}\subseteq R$
 \end_inset
 
 ).
@@ -5851,6 +5814,64 @@ Teorema de que en reticulados las fórmulas de dos variables libres hablan
 
 \end_layout
 
+\begin_layout Theorem
+Sea 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+ un reticulado distributivo y 
+\begin_inset Formula $R$
+\end_inset
+
+ una relación binaria sobre 
+\begin_inset Formula $L$
+\end_inset
+
+ definible por un fórmula existencial positiva en 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+.
+ Se da una de las siguientes:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $R=\Delta$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R=\{(x,y):x\leq y\}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R=\{(x,y):x\geq y\}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R=\{(x,y):x\leq y\}\cup\{(x,y):x\geq y\}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R=L\times L$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Chapter
 Conclusiones y trabajo futuro
 \end_layout
