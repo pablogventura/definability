@@ -5563,7 +5563,193 @@ reference "thm:definibilidad abierta"
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-1) 
+1) Sean 
+\begin_inset Formula $\mathbf{B},\mathbf{B}'\in S(\mathcal{K})$
+\end_inset
+
+ y 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{B}'}$
+\end_inset
+
+ un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ es maximal, entonces 
+\begin_inset Formula $\mathbf{B}=\mathbf{B}'$
+\end_inset
+
+ y como todo maximal esta en 
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{B}\in Aut\left(\mathbf{B}\right)\subseteq\mathcal{E}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ no es maximal y 
+\begin_inset Formula $\mathbf{B},\mathbf{B}'\notin\mathcal{K}$
+\end_inset
+
+, tomo 
+\begin_inset Formula $\mathbf{C}\in\mathcal{K}_{0}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\funcion[\delta]{\mathbf{C}}{\mathbf{B}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\funcion[\delta']{\mathbf{C}}{\mathbf{B}'}$
+\end_inset
+
+ sean isomorfismos en 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+.
+ Claramente 
+\begin_inset Formula $\delta'^{-1}\gamma\delta=\lambda\in Aut\left(\mathbf{C}\right)\subseteq\mathcal{E}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\gamma=\delta'\lambda\delta^{-1}$
+\end_inset
+
+ es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo por ser composicion de estos.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ no es maximal y 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+ pero 
+\begin_inset Formula $\mathbf{B}'\notin\mathcal{K}$
+\end_inset
+
+, tomo 
+\begin_inset Formula $\funcion[\delta]{\mathbf{B}}{\mathbf{B}'}$
+\end_inset
+
+ isomorfismo en 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+.
+ Claramente 
+\begin_inset Formula $\gamma^{-1}\delta=\lambda\in Aut\left(\mathbf{B}\right)\subseteq\mathcal{E}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\gamma=\delta\lambda^{-1}$
+\end_inset
+
+ es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo por ser composicion de estos.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ no es maximal y 
+\begin_inset Formula $\mathbf{B},\mathbf{B}'\in\mathcal{K}$
+\end_inset
+
+, como en 
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+ no hay estructuras 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfas, 
+\begin_inset Formula $\mathbf{B}=\mathbf{B}'$
+\end_inset
+
+.
+ Por lo tanto 
+\begin_inset Formula $\gamma\in Aut\left(\mathbf{B}\right)\subseteq\mathcal{E}$
+\end_inset
+
+, por lo que es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo.
+\end_layout
+
+\begin_layout Proof
+Ahora bien, como todo 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo entre subestructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ es definible por una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula abierta en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
