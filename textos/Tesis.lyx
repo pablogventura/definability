@@ -4838,15 +4838,19 @@ Sean
 \begin_inset Formula $\mathbf{A},\tilde{\mathbf{A}}\in\mathcal{K}$
 \end_inset
 
- tales que hay 
-\begin_inset Formula $\funcion[\gamma]A{\tilde{A}}$
+, con 
+\begin_inset Formula $\mathbf{A}\neq\tilde{\mathbf{A}}$
 \end_inset
 
- un 
+, tales que hay un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--isomorfismo.
+-isomorfismo 
+\begin_inset Formula $\funcion[\gamma]A{\tilde{A}}$
+\end_inset
+
+.
  Entonces para toda 
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
@@ -4916,26 +4920,49 @@ Sean
 \end_inset
 
 1) 
-\begin_inset Formula $\tilde{\mathbf{A}}\vDash R\left(\bar{x}\right)\left[\bar{a}\right]$
+\begin_inset Formula $\tilde{\mathbf{A}}\vDash R\left[\bar{a}\right]$
 \end_inset
 
  sii 
-\begin_inset Formula $\mathbf{A}\vDash R\left(\bar{x}\right)\left[\gamma\left(\bar{a}\right)\right]$
+\begin_inset Formula $\mathbf{A}\vDash R\left[\gamma^{-1}\left(\bar{a}\right)\right]$
 \end_inset
 
  sii 
-\begin_inset Formula $\mathbf{A}\vDash\varphi\left[\gamma\left(\bar{a}\right)\right]$
+\begin_inset Formula $\mathbf{A}\vDash\varphi\left[\gamma^{-1}\left(\bar{a}\right)\right]$
 \end_inset
 
  sii 
 \begin_inset Formula $\tilde{\mathbf{A}}\vDash\varphi\left[\bar{a}\right]$
 \end_inset
 
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Independientemente del tipo de definibilidad que uno quiera chequear el
+ Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+ sugiere que uno puede comenzar por reducir 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ eliminando copias de estructuras 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfas.
  
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status open
@@ -5009,7 +5036,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{
 \end_layout
@@ -5040,7 +5067,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{
 \end_layout
@@ -5075,7 +5102,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 If{
 \end_layout
@@ -5110,7 +5137,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 State{
 \end_layout
@@ -5141,7 +5168,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 Else
 \end_layout
@@ -5157,7 +5184,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 State{
 \end_layout
@@ -5222,7 +5249,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 EndIf
 \end_layout
@@ -5238,7 +5265,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 EndIf
 \end_layout
@@ -5254,7 +5281,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 EndFor
 \end_layout
@@ -5367,24 +5394,18 @@ end{algorithmic}
 \end_layout
 
 \begin_layout Standard
-Independientemente del tipo de definibilidad que uno quiera chequear el
- Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:quito sombras"
-
-\end_inset
-
- sugiere que uno puede comenzar por reducir 
+Notar que los isomorfismos revisados por este algoritmo deben ser necesariamente
+ revisados para comprobar definibilidad en cualquiera de los formatos.
+ La ventaja de chequear estos en primer lugar es que podría reducirse la
+ clase 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- eliminando copias de estructuras 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
+ en el proceso.
+\end_layout
 
--isomorfas.
- Se obtiene una pequeña ganancia al chequear por 
+\begin_layout Standard
+Se obtiene una pequeña ganancia al chequear por 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -5393,11 +5414,9 @@ reference "lem:quito sombras"
 \end_inset
 
 -isomorfismo.
-\end_layout
-
-\begin_layout Standard
-Ademas, desde el punto de vista del enunciado de los enunciados de los teoremas
- semanticos correspondientes habria que verificar cada uno de los 
+ Observar además que, para poder aplicar los teoremas de definibilidad de
+ la seccion XXX (referencias cruzadas), habría que verificar que cada uno
+ de los 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -5409,15 +5428,7 @@ Ademas, desde el punto de vista del enunciado de los enunciados de los teoremas
 \begin_inset Formula $R$
 \end_inset
 
- y veremos que basta con chequear solo un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo para ver si también lo es respecto de 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
-.
+ y vemos que basta con chequear sólo uno.
 \end_layout
 
 \begin_layout Section
@@ -5756,6 +5767,24 @@ reference "thm:definibilidad abierta"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
+ los casos de la no preservación de 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -5872,7 +5901,7 @@ For{
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
-, desde la mayor a menor cardinalidad
+, desde el mas grande al mas chico
 \begin_inset ERT
 status open
 
@@ -6088,7 +6117,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  
@@ -6109,7 +6138,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  es contraejemplo
@@ -6175,7 +6204,7 @@ For{
 \begin_inset Formula $\mathbf{A}_{0}\in S_{\mathcal{L}}(\mathbf{A})$
 \end_inset
 
-, desde la menor a mayor cardinalidad
+
 \begin_inset ERT
 status open
 
@@ -6496,7 +6525,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  
@@ -6517,7 +6546,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  es contraejemplo
@@ -7052,7 +7081,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  
@@ -7073,7 +7102,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  es contraejemplo
@@ -7253,6 +7282,25 @@ end{algorithmic}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Está muy bueno que queda clarisimo siguiendo el código que, si uno no planea
+ reutilizar la información, no hace falta guardar los mapeos, sólo las estructur
+as de 
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Comment
 status open
 
@@ -7266,9 +7314,768 @@ Explicación general, pseudocódigo, prueba de que es correcto
 \end_layout
 
 \begin_layout Standard
+Con el objetivo de aplicar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+, deberíamos explorar la categoría dada por las 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-subestructuras de cada 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ y los 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos entre ellas.
+ En ese caso para que se cumpliera el teorema deberíamos ver que todos los
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos entre ellas preservan 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria pura"
+
+\end_inset
+
+, hay un esquema de esta categoría donde utilizamos las figuras geométricas
+ a fin de identificar el tipo de isomorfismo.
+ Las figuras en rojo representan a cada 
+\begin_inset Formula $\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, mientras que las figuras en verde representan cada 
+\begin_inset Formula $\mathbf{A}_{0}<\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y las flechas son los 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de una categoria
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema categoria.svg
+	scale 30
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria pura"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es claro que esta representacion del problema tiene informacion redundante,
+ como por ejemplo los tres circulos isomorfos, los cuales tienen cada uno,
+ dos automorfismos que serian revisados para preservacion.
+ El siguiente resultado nos permite reducir la cantidad de flechas a revisar.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:constelacion"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, 
+\begin_inset Formula $R$
+\end_inset
+
+ un símbolo de relación n-ario tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, sean 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ es un isomorfismo.
+ Entonces si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ y todo automorfismo 
+\begin_inset Formula $\funcion[\alpha]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ preservan 
+\begin_inset Formula $R$
+\end_inset
+
+, se da que todo isomorfismo de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, y todo automorfismo 
+\begin_inset Formula $\funcion[\beta]{\mathbf{B}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Utilizando este resultado, podemos quitar flechas a revisar en la categoria.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria despues del teorema"
+
+\end_inset
+
+ se puede notar como se reducen la cantidad de flechas a revisar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema al aplicar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema categoria con teorema.svg
+	scale 30
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria despues del teorema"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ademas, dado que en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ puede haber estructuras 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfas (como los octagonos de la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria despues del teorema"
+
+\end_inset
+
+) la cantidad de flechas se puede reducir aun mas, como expresa el siguiente
+ resultado.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:constelacion sombras"
+
+\end_inset
+
+Dados 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, 
+\begin_inset Formula $R$
+\end_inset
+
+ un símbolo de relación n-ario tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, y 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{\mathcal{L}}}{\mathbf{B}_{\mathcal{L}}}$
+\end_inset
+
+ un isomorfismo.
+ Entonces si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces todo isomorfismo 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Este resultado nos permite cocientar a 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ por isomorfismos, y ahora pensar a cada tipo de isormofismo en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ como una estructura representante y un grupo de 
+\emph on
+sombras
+\emph default
+ que son las demas estructuras de ese tipo de isomorfismo en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria con sombras"
+
+\end_inset
+
+ puede verse un esquema de la categoria modificada por este resultado, donde
+ la sombra esta coloreada con rojo oscuro, detrás de la estructura representante
+ del tipo de isomorfismo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de la categoría luego de usar los teoremas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:constelacion sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema categoria con sombras.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria con sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+No obstante todas las reducciones que hemos hecho ya a la categoria original,
+ aun hay informacion redundante en nuestro esquema.
+ Es claro que la informacion relativa a las subestructuras (por ejemplo
+ los triangulos de la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria con sombras"
+
+\end_inset
+
+) ya esta contenida dentro de la estructura en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Esto nos permite quitar subestructuras isomorfas, dejando solo un representante
+ del tipo de isomorfismo, agregando la inclusion a su estructura madre y
+ embeddings a las demas estructuras.
+ Llamaremos a la categoria dada por esta sucesion de reducciones 
+\emph on
+constelacion
+\emph default
+, y llamaremos 
+\emph on
+planeta 
+\emph default
+a cada representante de un tipo de isomorfismo en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, y llamaremos 
+\emph on
+satelite
+\emph default
+ de un planeta a un representante del tipo de isomorfismo de una subestructura
+ del planeta en cuestion.
+ En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion"
+
+\end_inset
+
+ se pueden ver el esquema de la situacion, donde los planetas son rojos,
+ los satelites son verdes, las inclusiones son flechas punteadas que preservan
+ trivialmente y las demas flechas son embeddings a revisar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de una 
+\emph on
+constelacion
+\emph default
+ luego de aplicar todas las reducciones a la categoria original.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/esquema constelacion.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Algorithm
+Sean 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden y 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ una familia finita de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, se construye la constelación de la siguiente forma:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para cada planeta 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+, desde el mas grande al mas chico:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para cada subestructura 
+\begin_inset Formula $\mathbf{P}_{0}\leq\mathbf{P}_{\mathcal{L}}$
+\end_inset
+
+ , desde la mas chica a la mas grande:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{P}_{0}}{\mathbf{B_{\mathcal{L}}}}$
+\end_inset
+
+ isomorfismo, con 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ un planeta distinto de 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, degrado 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ a satélite de 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por form
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Si no, y además hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{P}_{0}}{\mathbf{S}}$
+\end_inset
+
+ isomorfismo, con 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ un satélite:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, agrego 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como embedding de 
+\begin_inset Formula $\mathbf{P}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{P}'$
+\end_inset
+
+, el planeta de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por formulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Si no:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Agrego a 
+\begin_inset Formula $\mathbf{P}_{0}$
+\end_inset
+
+ como un nuevo satélite 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ con su embedding (inclusión) en 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para cada 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ automorfismo de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, agrego 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como automorfismo en 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible por formulas abiertas y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es el contraejemplo.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $R$
+\end_inset
+
+ es definible por formulas abiertas.
+\end_layout
+
+\end_deeper
 \begin_layout Chapter
 Álgebras de Lindenbaum
 \end_layout
@@ -7296,7 +8103,7 @@ name "lem:relacion existencial definible es idempotente"
 
 \end_inset
 
-Dado 
+Sea 
 \begin_inset Formula $\mathbf{L}$
 \end_inset
 
@@ -7312,7 +8119,8 @@ Dado
 \begin_inset Formula $\mathbf{L}$
 \end_inset
 
-, entonces vale que 
+.
+ Entonces vale que 
 \begin_inset Formula $\Delta^{L}\subseteq R$
 \end_inset
 
@@ -7434,87 +8242,68 @@ Sea
 \end_layout
 
 \begin_layout Proof
-Por el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:relacion existencial definible es idempotente"
-
-\end_inset
-
-, tomo 
+Fijamos 
 \begin_inset Formula $\left(a,b\right)\in R$
 \end_inset
 
- tales que 
+ tal que 
 \begin_inset Formula $a\nleq b$
 \end_inset
 
-.
- Tomo además 
-\begin_inset Formula $\left(c,d\right)$
+, y sean 
+\begin_inset Formula $c,d\in L$
 \end_inset
 
  tales que 
 \begin_inset Formula $c\geq d$
 \end_inset
 
-, veamos que 
+.
+ Veremos que 
 \begin_inset Formula $\left(c,d\right)\in R$
 \end_inset
 
 .
- Si 
-\begin_inset Formula $c=d$
-\end_inset
-
- entonces por el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:relacion existencial definible es idempotente"
-
-\end_inset
-
- ya pertenecen a 
-\begin_inset Formula $R$
-\end_inset
-
-.
- Si 
-\begin_inset Formula $c<d$
-\end_inset
-
-, tomo un filtro primo 
-\begin_inset Formula $P$
-\end_inset
-
- dado por Teorema 
+ Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:filtro primo"
 
 \end_inset
 
- con el filtro generado por 
+ hay un filtro primo 
+\begin_inset Formula $P$
+\end_inset
+
+ que contiene al filtro generado por 
 \begin_inset Formula $a$
 \end_inset
 
-, tal que 
+ y además 
 \begin_inset Formula $b\notin P$
 \end_inset
 
 .
- Ahora defino la siguiente función 
+ Definimos 
+\begin_inset Formula $h:L\rightarrow L$
+\end_inset
+
+ por 
 \begin_inset Formula 
 \[
 h\left(x\right)=\begin{cases}
-c & \textnormal{si }x\in P\\
-d & \textnormal{si }x\notin P
+c & \textnormal{si }x\in P,\\
+d & \textnormal{si }x\notin P.
 \end{cases}
 \]
 
 \end_inset
 
- la cual claramente puede verse que es un endomorfismo.
+ Es fácil ver que 
+\begin_inset Formula $h$
+\end_inset
+
+ es un endomorfismo.
  Finalmente como 
 \begin_inset Formula $\left(a,b\right)\in R$
 \end_inset
@@ -7531,7 +8320,7 @@ d & \textnormal{si }x\notin P
 \begin_inset Formula $\left(h\left(a\right),h\left(b\right)\right)=\left(c,d\right)\in R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Theorem
@@ -7726,7 +8515,7 @@ reference "thm:filtro primo"
 \end_inset
 
 .
- Ahora defino la siguiente funcion
+ Ahora definimos la siguiente funcion
 \begin_inset Formula 
 \[
 h\left(x\right)=\begin{cases}
