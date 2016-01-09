@@ -1879,9 +1879,9 @@ Dados
 \end_inset
 
  es 
-\series bold
+\emph on
 definible
-\series default
+\emph default
  en una familia 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
