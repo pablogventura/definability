@@ -1816,7 +1816,7 @@ Hay un isomorfismo
 \end_deeper
 \begin_layout Proof
 Tomo 
-\begin_inset Formula $\varphi=\wedge([\Delta_{\mathbf{A}\bar{a}}])$
+\begin_inset Formula $\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)$
 \end_inset
 
  que es una fórmula, por el Teorema 
@@ -1831,7 +1831,7 @@ reference "thm:cantidad de formulas es finita"
 
 \begin_layout Proof
 Es claro que 
-\begin_inset Formula $\sat B{\wedge([\Delta_{\mathbf{A}\bar{a}}])}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -2238,7 +2238,7 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)$
+\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -2282,7 +2282,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 , 
-\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]}{\bar{b}}$
+\begin_inset Formula $\sat B{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}$
 \end_inset
 
 .
@@ -2336,11 +2336,11 @@ reference "thm:formula para el diagrama"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]\right)$
+\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)=\cdots\vee\cdots\vee\left(\bigwedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}}\alpha\left(\bar{x}\right)\right)$
 \end_inset
 
 , evidentemente 
-\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{B}\bar{b}}}{\bar{b}}$
 \end_inset
 
 , entonces 
