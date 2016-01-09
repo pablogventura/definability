@@ -114,7 +114,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\deff}[2][\varphi][\bar{x}]{#1=#1(#2)}
+\newcommand{\deff}[2][\varphi][\bar{x}]{#1=#1\left(#2\right)}
 \end_inset
 
 
@@ -122,7 +122,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\sat}[3]{#1\vDash#2[#3]}
+\newcommand{\sat}[3]{#1\vDash#2\left[#3\right]}
 \end_inset
 
 
@@ -130,7 +130,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\nsat}[3]{\mathbf{#1}\not\vDash#2[#3]}
+\newcommand{\nsat}[3]{\mathbf{#1}\not\vDash#2\left[#3\right]}
 \end_inset
 
 
