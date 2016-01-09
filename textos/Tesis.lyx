@@ -254,109 +254,12 @@ Sea
 \begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
-
+, el caso base sale directo ya que los homomorfismos preservan términos.
+ Veamos los casos inductivos:
 \end_layout
 
-\begin_deeper
-\begin_layout Case
-\begin_inset Formula $\varphi\in F_{0}^{\tau}$
-\end_inset
-
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Case
-\begin_inset Formula $\varphi(\bar{x})=(t\equiv s)(\bar{x})$
-\end_inset
-
- con 
-\begin_inset Formula $t=t(\bar{x})$
-\end_inset
-
- y 
-\begin_inset Formula $s=s(\bar{x})$
-\end_inset
-
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & (t\equiv s)[\bar{a}]\\
-t^{A}[\bar{a}] & = & t^{B}[\bar{a}]\\
-t^{B}[\gamma(\bar{a})] & = & s^{B}[\gamma(\bar{a})]\\
-\mathbf{B} & \vDash & (t\equiv s)[\gamma(\bar{a})]
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Case
-\begin_inset Formula $\varphi(\bar{x})=r(t_{1},\dots,t_{m})(\bar{x})$
-\end_inset
-
- con 
-\begin_inset Formula $r\in\mathcal{R}_{m}$
-\end_inset
-
- y 
-\begin_inset Formula $t_{i}=t_{i}(\bar{x})$
-\end_inset
-
- con 
-\begin_inset Formula $1\le i\le m$
-\end_inset
-
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & r(t_{1},\dots,t_{m})[\bar{a}]\\
-(t_{1}^{A}[\bar{a}],\dots,t_{m}^{A}[\bar{a}]) & \in & r^{A}\\
-(\gamma(t_{1}^{A}[\bar{a}]),\dots,\gamma(t_{m}^{A}[\bar{a}])) & \in & r^{B}\\
-(t_{1}^{B}[\gamma(\bar{a})],\dots,t_{m}^{B}[\gamma(\bar{a})]) & \in & r^{B}\\
-\mathbf{B} & \vDash & r(t_{1},\dots,t_{m})[\gamma(\bar{a})]
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Case
-Caso 
-\begin_inset Formula $\varphi\in F_{k+1}^{\tau}-F_{k}^{\tau}$
-\end_inset
-
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-HI: Si 
-\begin_inset Formula $\varphi\in F_{k}^{\tau}$
-\end_inset
-
- entonces 
-\begin_inset Formula $\mathbf{A}\vDash\varphi[\bar{a}]\Leftrightarrow\mathbf{B}\vDash\varphi[\gamma(\bar{a})]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Case
-Caso 
+\begin_layout Proof
+Sea 
 \begin_inset Formula $\varphi(\bar{x})=\neg\varphi_{1}(\bar{x})$
 \end_inset
 
@@ -364,27 +267,19 @@ Caso
 \begin_inset Formula $\varphi_{1}\in F_{k}^{\tau}$
 \end_inset
 
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
+: 
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & \neg\varphi_{1}[\bar{a}]\\
-\mathbf{A} & \not\vDash & \varphi_{1}[\bar{a}]\\
-\mathbf{B} & \not\vDash & \varphi_{1}[\gamma(\bar{a})]\\
-\mathbf{B} & \vDash & \neg\varphi_{1}[\gamma(\bar{a})]
-\end{eqnarray*}
+\[
+\mathbf{A}\vDash\neg\varphi_{1}[\bar{a}]\textnormal{ sii }\mathbf{A}\not\vDash\varphi_{1}[\bar{a}]\textnormal{ sii }\mathbf{B}\not\vDash\varphi_{1}[\gamma(\bar{a})]\textnormal{ sii }\mathbf{B}\vDash\neg\varphi_{1}[\gamma(\bar{a})]
+\]
 
 \end_inset
 
 
 \end_layout
 
-\end_deeper
-\begin_layout Case
-Caso 
+\begin_layout Proof
+Sea 
 \begin_inset Formula $\varphi(\bar{x})=(\varphi_{1}\eta\varphi_{2})(\bar{x})$
 \end_inset
 
@@ -395,24 +290,17 @@ Caso
 :
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & (\varphi_{1}\eta\varphi_{2})[\bar{a}]\\
-\mathbf{A}\vDash\varphi_{1}[\bar{a}] & "\eta" & \mathbf{A}\vDash\varphi_{2}[\bar{a}]\\
-\mathbf{A}\vDash\varphi_{1}[\gamma(\bar{a})] & "\eta" & \mathbf{B}\vDash\varphi_{2}[\gamma(\bar{a})]\\
-\mathbf{B} & \vDash & (\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
-\end{eqnarray*}
+\[
+\mathbf{A}\vDash(\varphi_{1}\eta\varphi_{2})[\bar{a}]\textnormal{ sii }\mathbf{A}\vDash\varphi_{1}[\bar{a}]"\eta"\mathbf{A}\vDash\varphi_{2}[\bar{a}]\mathbf{\textnormal{ sii }A}\vDash\varphi_{1}[\gamma(\bar{a})]"\eta"\mathbf{B}\vDash\varphi_{2}[\gamma(\bar{a})]\textnormal{ sii }\mathbf{B}\vDash(\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
+\]
 
 \end_inset
 
 
 \end_layout
 
-\end_deeper
-\end_deeper
-\end_deeper
 \begin_layout Proof
 2
 \begin_inset Formula $\Rightarrow$
@@ -438,12 +326,12 @@ Supongamos que para toda fórmula abierta
 
 \end_inset
 
-
+ 
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Veamos ahora que 
+Veamos que 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -452,15 +340,6 @@ Veamos ahora que
 
 \begin_deeper
 \begin_layout Standard
-Sean 
-\begin_inset Formula $a,a'\in A$
-\end_inset
-
- tales que 
-\begin_inset Formula $\gamma(a)=\gamma(a')$
-\end_inset
-
-
 \begin_inset Formula 
 \begin{eqnarray*}
 \gamma(a) & = & \gamma(a')\\
@@ -661,151 +540,25 @@ Sea
 \begin_inset Formula $\fee AB$
 \end_inset
 
- tal que 
-\begin_inset Formula $\gamma(a)=a$
+ tal que para todo 
+\begin_inset Formula $x\in A$
 \end_inset
 
- (ya que 
-\begin_inset Formula $A\subseteq B$
+, 
+\begin_inset Formula $\gamma(x)=x$
 \end_inset
 
- por ser subestructura)
-\end_layout
+.
+ Como 
+\begin_inset Formula $\mathbf{A}\leq\mathbf{B}$
+\end_inset
 
-\begin_deeper
-\begin_layout Itemize
-Veamos que 
+, es directo que 
 \begin_inset Formula $\gamma$
 \end_inset
 
- es homomorfismo:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-Sea 
-\begin_inset Formula $c\in\mathcal{C}$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\gamma(c^{\mathbf{A}})=c^{\mathbf{A}}=c^{\mathbf{B}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $f\in\mathcal{F}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))=f^{\mathbf{A}}(a_{1},\dots,a_{n})=f^{\mathbf{B}}(\gamma(a_{1}),\dots,\gamma(a_{n}))
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $r\in\mathcal{R}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Como 
-\begin_inset Formula $r^{\mathbf{A}}=r^{\mathbf{B}}\cap A^{n}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-(a_{1},\dots,a_{n})\in r^{\mathbf{A}}\Rightarrow(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbf{B}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Veamos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es inyectiva:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\gamma(a)=\gamma(a')\Rightarrow a=a'
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Veamos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- cumple 
-\begin_inset Formula $\Leftarrow$
-\end_inset
-
- en 
-\begin_inset Formula $r$
-\end_inset
-
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbf{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbf{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbf{A}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Proof
-Entonces 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es un embedding
-\end_layout
-
-\begin_layout Proof
-Por el Teorema 
+ es un embedding.
+ Entonces por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:embeddings preservan abiertas"
@@ -905,7 +658,15 @@ Sea
 \end_inset
 
 .
- Definimos 
+ Definimos el diagrama abierto para 
+\begin_inset Formula $\enumeracion[n][a]$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ como: 
 \begin_inset Formula 
 \[
 \Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\mbox{ es abierta y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}
@@ -1026,11 +787,11 @@ Defino
 \end_layout
 
 \begin_layout Proof
-Veamos que 
+Es claro que 
 \begin_inset Formula $\gamma$
 \end_inset
 
- es un isomorfismo:
+ es un homomorfismo.
 \end_layout
 
 \begin_deeper
@@ -1039,123 +800,7 @@ Veamos que
 \begin_inset Formula $\gamma$
 \end_inset
 
- es un homomorfismo:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-Sea 
-\begin_inset Formula $c\in\mathcal{C}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbf{A}}[\enumeracion[n][a]])=c^{\mathbf{B}}[\enumeracion[n][b]]=c^{\subuniv bB}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $f\in\mathcal{F}_{m}$
-\end_inset
-
- y 
-\begin_inset Formula $\enumeracion[m][a']\in A'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Como 
-\begin_inset Formula $a'_{i}\in A'$
-\end_inset
-
-, para cada 
-\begin_inset Formula $i\in[1,m]$
-\end_inset
-
- hay un 
-\begin_inset Formula $t_{i}^{\mathbf{A}}[\enumeracion[n][a]]=a_{i}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{alignat*}{1}
- & \gamma(f^{\subuniv aA}(\enumeracion[m][a']))\\
-= & \gamma(f^{\mathbf{A}}(t_{1}^{\mathbf{A}}[\enumeracion[n][a]],\dots,t_{m}^{\mathbf{A}}[\enumeracion[n][a]]))\\
-= & \gamma(f(\enumeracion[m][t])^{\mathbf{A}}[\enumeracion[n][a]])\\
-= & f(\enumeracion[m][t])^{\mathbf{B}}[\enumeracion[n][b]]\\
-= & f^{\mathbf{B}}(t_{1}^{\mathbf{B}}[\enumeracion[n][b]],\dots,t_{m}^{\mathbf{B}}[\enumeracion[n][b]])\\
-= & f^{\mathbf{B}}(\gamma(t_{1}^{\mathbf{A}}[\enumeracion[n][a]]),\dots,\gamma(t_{m}^{\mathbf{A}}[\enumeracion[n][a]]))\\
-= & f^{\mathbf{B}}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))\\
-= & f^{\subuniv bB}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))
-\end{alignat*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $r\in\mathcal{R}_{m}$
-\end_inset
-
- y 
-\begin_inset Formula $\enumeracion[m][a']\in A'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-(\enumeracion[m][a']) & \in & r^{\subuniv aA}\nonumber \\
-(t_{1}^{\mathbf{A}}[\enumeracion[n][a]],\dots,t_{m}^{\mathbf{A}}[\enumeracion[n][a]]) & \in & r^{\mathbf{A}}\nonumber \\
-\mathbf{A} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][a]]\\
-\mathbf{B} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][b]]\\
-(t_{1}^{\mathbf{B}}[\bar{b}],\dots,t_{m}^{\mathbf{B}}[\bar{b}]) & \in & r^{\mathbf{B}}\nonumber \\
-(\gamma(t_{1}^{\mathbf{A}}[\bar{a}]),\dots,\gamma(t_{m}^{\mathbf{A}}[\bar{a}])) & \in & r^{\mathbf{B}}\nonumber \\
-(\gamma(a'_{1}),\dots,\gamma(a'_{m})) & \in & r^{\subuniv bB}\nonumber 
-\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Donde 1
-\begin_inset Formula $\Rightarrow$
-\end_inset
-
-2 ya que 
-\begin_inset Formula $r(\bar{t})$
-\end_inset
-
-es abierta y 
-\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Veamos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es inyectiva
+ es inyectivo
 \end_layout
 
 \begin_deeper
@@ -1193,7 +838,7 @@ Veamos que
 \begin_inset Formula $\gamma$
 \end_inset
 
- es sobreyectiva
+ es sobreyectivo
 \end_layout
 
 \begin_deeper
@@ -1230,79 +875,6 @@ Tomo
 \begin{eqnarray*}
 \gamma\left(t^{\mathbf{A}}\left[\bar{a}\right]\right) & = & t^{\mathbf{B}}\left[\bar{b}\right]
 \end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Veamos que 
-\begin_inset Formula $\gamma^{-1}$
-\end_inset
-
- es un homomorfismo
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-Sea 
-\begin_inset Formula $c\in\mathcal{C}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\gamma^{-1}(c^{\subuniv bB})=\gamma^{-1}(c^{\mathbf{B}}[\bar{b}])=c^{\mathbf{A}}[\bar{a}]=c^{\subuniv aA}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $f\in\mathcal{F}_{m}$
-\end_inset
-
- y 
-\begin_inset Formula $\enumeracion[m][b']\in B'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion[m][b']))=\gamma^{-1}(f(\enumeracion[m][t])^{\mathbf{B}}[\bar{b}])=f(\enumeracion[m][t])^{\mathbf{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $r\in\mathcal{R}_{m}$
-\end_inset
-
- y 
-\begin_inset Formula $\enumeracion[m][b']\in B'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-(\enumeracion[m][b']) & \in & r^{\subuniv bB}\nonumber \\
-(t_{1}^{\mathbf{B}}[\enumeracion[n][b]],\dots,t_{m}^{\mathbf{\mathbf{B}}}[\enumeracion[n][b]]) & \in & r^{\mathbf{B}}\nonumber \\
-\mathbf{B} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][b]]\\
-\mathbf{A} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][a]]\\
-(t_{1}^{\mathbf{A}}[\bar{a}],\dots,t_{m}^{\mathbf{A}}[\bar{a}]) & \in & r^{\mathbf{A}}\nonumber \\
-(\gamma^{-1}(t_{1}^{\mathbf{B}}[\bar{b}]),\dots,\gamma^{-1}(t_{m}^{\mathbf{B}}[\bar{b}])) & \in & r^{\mathbf{A}}\nonumber \\
-(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m})) & \in & r^{\subuniv aA}\nonumber 
-\end{eqnarray}
 
 \end_inset
 
@@ -1390,25 +962,6 @@ reference "thm:embeddings preservan abiertas"
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\subuniv aA\vDash\varphi[\bar{a'}]\Leftrightarrow\subuniv bB\vDash\varphi[\gamma(\bar{a'})]
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Entonces en particular para 
-\begin_inset Formula $\bar{a}\in A'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula 
-\[
 \subuniv aA\vDash\varphi[\bar{a}]\Leftrightarrow\subuniv bB\vDash\varphi[\gamma(\bar{a})]
 \]
 
@@ -1462,7 +1015,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\sat{\mathbf{A}}{\varphi}{\bar{a}}\Leftrightarrow\sat{\mathbf{B}}{\varphi}a
+\sat{\mathbf{A}}{\varphi}{\bar{a}}\Leftrightarrow\sat{\mathbf{B}}{\varphi}{\bar{b}}
 \]
 
 \end_inset
@@ -1602,11 +1155,8 @@ Hay un conjunto finito de fórmulas
 \end_layout
 
 \begin_layout Proof
-Veamos primero que las fórmulas son finitas modulo equivalencia:
-\end_layout
-
-\begin_layout Proof
-Sea 
+Veamos primero que las fórmulas son finitas modulo equivalencia.
+ Sea 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -1614,11 +1164,7 @@ Sea
 \begin_inset Formula $T_{\varphi\mathbf{A}}=\left\{ \bar{a}\in A^{n}|\sat{\mathbf{A}}{\varphi}{\bar{a}}\right\} $
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-Supongamos 
+ y supongamos 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -1630,18 +1176,7 @@ Supongamos
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula 
-\[
-\sat{\mathbf{A}}{\varphi}{\bar{a}}\Leftrightarrow\sat{\mathbf{A}}{\psi}{\bar{a}}\textnormal{ para cada \bar{a}\in A^{n} }
-\]
-
-\end_inset
-
- 
+, entonces
 \end_layout
 
 \begin_layout Proof
@@ -1652,30 +1187,16 @@ Supongamos
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula 
-\[
-\therefore T_{\varphi\mathbf{A}}=T_{\psi\mathbf{A}}
-\]
-
+lo que significa que 
+\begin_inset Formula $T_{\varphi\mathbf{A}}=T_{\psi\mathbf{A}}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-Entonces basta con contar los subconjuntos de 
+.
+ Entonces basta con contar los subconjuntos de 
 \begin_inset Formula $A^{n}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-Como 
+, como 
 \begin_inset Formula $\#A^{n}=(\#A)^{n}$
 \end_inset
 
@@ -1688,10 +1209,7 @@ Como
 \end_inset
 
  es finito.
-\end_layout
-
-\begin_layout Proof
-Por lo tanto 
+ Por lo tanto 
 \begin_inset Formula $\mathcal{P}(A^{n})$
 \end_inset
 
@@ -1703,11 +1221,8 @@ Ahora veamos que existe
 \begin_inset Formula $\Sigma(\bar{x})$
 \end_inset
 
-:
-\end_layout
-
-\begin_layout Proof
-Sean 
+.
+ Sean 
 \begin_inset Formula $\enumeracion[k][T]\subseteq A^{n}$
 \end_inset
 
@@ -1719,11 +1234,7 @@ Sean
 \begin_inset Formula $\sat{\mathbf{A}}{\varphi_{i}}{T_{i}}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-Sea 
+ y sea 
 \begin_inset Formula $\deff[\psi][\bar{x}]$
 \end_inset
 
@@ -1744,11 +1255,8 @@ y como
 \begin_inset Formula $T_{j}=T_{\psi\mathbf{A}}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-Entonces, 
+.
+ Entonces, 
 \begin_inset Formula $\sat{\mathbf{A}}{\psi}{\bar{a}}\Leftrightarrow\sat{\mathbf{A}}{\varphi_{j}}{\bar{a}}$
 \end_inset
 
@@ -2118,15 +1626,11 @@ Para todas
 \end_layout
 
 \begin_layout Proof
-Veamos 1
+1
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2:
-\end_layout
-
-\begin_layout Proof
-Sea 
+2) Sea 
 \begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
@@ -2163,10 +1667,8 @@ Sea
 \begin_inset Formula $\sigma\left(\bar{a}\right)\in R^{\mathbf{B}_{0}}$
 \end_inset
 
-:
-\end_layout
-
-\begin_layout Proof
+.
+ Como 
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat{\mathbf{A}}{\varphi}{\bar{a}}$
 \end_inset
 
@@ -2229,15 +1731,11 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_layout
 
 \begin_layout Proof
-Veamos 2
+2
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-1:
-\end_layout
-
-\begin_layout Proof
-Sea 
+1) Sea 
 \begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
@@ -2249,12 +1747,16 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Veamos que 
+ Veamos que para cada 
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+, 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
- para cada 
-\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+ sii 
+\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
 \end_inset
 
 .
@@ -2376,8 +1878,7 @@ Sean
 \begin_inset Formula $h:A\rightarrow B$
 \end_inset
 
- una función.
- Pruebe que son equivalentes:
+ una función, son equivalentes:
 \end_layout
 
 \begin_deeper
@@ -2472,63 +1973,9 @@ Una fórmulas es positiva si no tiene ocurrencias de
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2) Sea 
-\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
-\end_inset
-
- y sea 
-\begin_inset Formula $\deff[\varphi][\bar{x}]$
-\end_inset
-
- atómica y 
-\begin_inset Formula $\bar{a}\in A^{n}$
-\end_inset
-
- tal que 
-\begin_inset Formula $\sat{\mathbf{A}}{\varphi}{\bar{a}}$
-\end_inset
-
-.
+2) Directo, ya que los homomorfismos preservan términos.
 \end_layout
 
-\begin_deeper
-\begin_layout Case
-\begin_inset Formula $\varphi=(t\equiv s)$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-t^{\mathbf{A}}\left[\bar{a}\right] & = & s^{\mathbf{A}}\left[\bar{a}\right]\\
-h\left(t^{\mathbf{A}}\left[\bar{a}\right]\right) & = & h\left(s^{\mathbf{A}}\left[\bar{a}\right]\right)\\
-t^{\mathbf{B}}\left[h\left(\bar{a}\right)\right] & = & s^{\mathbf{B}}\left[h\left(\bar{a}\right)\right]\\
-\mathbf{B} & \vDash & \varphi\left[h\left(\bar{a}\right)\right]
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Case
-\begin_inset Formula $\varphi=r\left(\enumeracion[][t]\right)$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right],\dots,t_{n}^{\mathbf{A}}\left[\bar{a}\right]\right) & \in & r^{\mathbf{A}}\\
-\left(h\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right]\right),\dots,h\left(t_{n}^{\mathbf{A}}\left[\bar{a}\right]\right)\right) & \in & r^{\mathbf{B}}\\
-\left(t_{1}^{\mathbf{B}}\left[h\left(\bar{a}\right)\right],\dots,t_{n}^{\mathbf{B}}\left[\left(\bar{a}\right)\right]\right) & \in & r^{\mathbf{B}}\\
-\mathbf{B} & \vDash & \varphi\left[h\left(\bar{a}\right)\right]
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Proof
 2
 \begin_inset Formula $\Rightarrow$
@@ -2605,7 +2052,7 @@ Sea
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-3) Directo por inducción estructural en las fórmulas.
+3) Rutina.
 \end_layout
 
 \begin_layout Proof
@@ -3739,6 +3186,13 @@ Sean
 
 \end_inset
 
+que es fórmula por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantidad de formulas es finita"
+
+\end_inset
+
 .
 \end_layout
 
@@ -3929,6 +3383,13 @@ Sean
 \[
 \varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}\alpha\left(\bar{x},\bar{y}\right)\right)
 \]
+
+\end_inset
+
+que es fórmula por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
@@ -5423,7 +4884,7 @@ Se obtiene una pequeña ganancia al chequear por
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--isomorfismos y recien descubierto uno de estos comprobar si es un 
+-isomorfismos y recién descubierto uno de estos comprobar si es un 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -5496,7 +4957,7 @@ Dados
 \begin_inset Formula $\mathcal{E}$
 \end_inset
 
- el conjunto que contiene las siguentes flechas:
+ el conjunto que contiene las siguientes flechas:
 \end_layout
 
 \begin_deeper
@@ -5565,7 +5026,7 @@ Los siguientes son equivalentes:
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula abierta en 
+-fórmula abierta en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5685,7 +5146,7 @@ Si
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
--isomorfismo por ser composicion de estos.
+-isomorfismo por ser composición de estos.
 \end_layout
 
 \begin_layout Proof
@@ -5722,7 +5183,7 @@ Si
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
--isomorfismo por ser composicion de estos.
+-isomorfismo por ser composición de estos.
 \end_layout
 
 \begin_layout Proof
@@ -5786,7 +5247,7 @@ reference "thm:definibilidad abierta"
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula abierta en 
+-fórmula abierta en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5821,7 +5282,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelacion
+Constelación
 \end_layout
 
 \end_inset
@@ -7309,7 +6770,7 @@ end{algorithmic}
 status open
 
 \begin_layout Plain Layout
-Está muy bueno que queda clarisimo siguiendo el código que, si uno no planea
+Está muy bueno que queda clarísimo siguiendo el código que, si uno no planea
  reutilizar la información, no hace falta guardar los mapeos, sólo las estructur
 as de 
 \begin_inset Formula $\mathcal{K}_{0}$
@@ -7493,8 +6954,7 @@ Sea
 \begin_inset Formula $\{(x,y):x\geq y\}\subseteq R$
 \end_inset
 
- (resp.
- 
+ (respectivamente 
 \begin_inset Formula $\{(x,y):x\leq y\}\subseteq R$
 \end_inset
 
@@ -7694,7 +7154,7 @@ reference "lem:relacion existencial definible incluye al mayor o igual o es la d
 \end_inset
 
 .
- Analogo para 
+ Análogo para 
 \begin_inset Formula $R\subseteq\{(x,y):x\geq y\}$
 \end_inset
 
@@ -7722,7 +7182,7 @@ reference "lem:relacion existencial definible incluye al mayor o igual o es la d
 \end_inset
 
 .
- Si ademas 
+ Si además 
 \begin_inset Formula $\left(a,b\right)\in R$
 \end_inset
 
@@ -7738,7 +7198,7 @@ reference "lem:relacion existencial definible incluye al mayor o igual o es la d
 \begin_inset Formula $\left(c,d\right)\in R$
 \end_inset
 
-, si son comparables ya esta estan en 
+, si son comparables ya esta están en 
 \begin_inset Formula $R$
 \end_inset
 
@@ -7775,7 +7235,7 @@ reference "thm:filtro primo"
 \end_inset
 
 .
- Ahora definimos la siguiente funcion
+ Ahora definimos la siguiente función
 \begin_inset Formula 
 \[
 h\left(x\right)=\begin{cases}
@@ -7788,7 +7248,7 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 
 \end_inset
 
- que facilmente puede verse que es un endomorfismo.
+ que fácilmente puede verse que es un endomorfismo.
  Por lo tanto como 
 \begin_inset Formula $\left(a,b\right)\in R$
 \end_inset
