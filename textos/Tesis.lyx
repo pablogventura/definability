@@ -2238,7 +2238,7 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)$
+\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)$
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -2336,7 +2336,7 @@ reference "thm:formula para el diagrama"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]\right)$
+\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]\right)$
 \end_inset
 
 , evidentemente 
@@ -2833,7 +2833,7 @@ Hay un homomorfismo
 \end_deeper
 \begin_layout Proof
 Tomo 
-\begin_inset Formula $\varphi=\wedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
+\begin_inset Formula $\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
 \end_inset
 
  que es una fórmula, por el Teorema 
@@ -3080,7 +3080,7 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
+\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -3169,7 +3169,7 @@ reference "thm:formula para diagrama abierto positivo"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\cdots\vee\cdots\vee\left(\wedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}^{+}}\alpha\left(\bar{x}\right)\right)$
+\begin_inset Formula $\varphi=\cdots\vee\cdots\vee\left(\bigwedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}^{+}}\alpha\left(\bar{x}\right)\right)$
 \end_inset
 
 , evidentemente 
