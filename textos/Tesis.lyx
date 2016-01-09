@@ -90,7 +90,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\fee}[3][\gamma]{#1:\mathbb{#2}\rightarrow\mathbb{#3}}
+\newcommand{\fee}[3][\gamma]{#1:\mathbf{#2}\rightarrow\mathbf{#3}}
 \end_inset
 
 
@@ -106,7 +106,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\embedding}[3][\gamma]{#1:\mathbb{#2}\hookrightarrow\mathbb{#3}}
+\newcommand{\embedding}[3][\gamma]{#1:\mathbf{#2}\hookrightarrow\mathbf{#3}}
 \end_inset
 
 
@@ -130,7 +130,7 @@ theorems-ams-extended
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\nsat}[3]{\mathbb{#1}\not\vDash#2[#3]}
+\newcommand{\nsat}[3]{\mathbf{#1}\not\vDash#2[#3]}
 \end_inset
 
 
@@ -185,11 +185,11 @@ name "thm:embeddings preservan abiertas"
 
 \begin_layout Theorem
 Sean 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbb{B}$
+\begin_inset Formula $\mathbf{B}$
 \end_inset
 
  estructuras y 
@@ -464,8 +464,8 @@ Sean
 \begin_inset Formula 
 \begin{eqnarray*}
 \gamma(a) & = & \gamma(a')\\
-\mathbb{B} & \vDash & (x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
-\mathbb{A} & \vDash & (x_{1}\equiv x_{2})[a,a']\\
+\mathbf{B} & \vDash & (x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
+\mathbf{A} & \vDash & (x_{1}\equiv x_{2})[a,a']\\
 a & = & a'
 \end{eqnarray*}
 
@@ -495,9 +495,9 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{A} & \vDash & (c\equiv x_{1})[c^{\mathbb{A}}]\\
-\mathbb{B} & \vDash & (c\equiv x_{1})[\gamma(c^{\mathbb{A}})]\\
-c^{\mathbb{B}} & = & \gamma(c^{\mathbb{A}})
+\mathbf{A} & \vDash & (c\equiv x_{1})[c^{\mathbf{A}}]\\
+\mathbf{B} & \vDash & (c\equiv x_{1})[\gamma(c^{\mathbf{A}})]\\
+c^{\mathbf{B}} & = & \gamma(c^{\mathbf{A}})
 \end{eqnarray*}
 
 \end_inset
@@ -516,10 +516,10 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-(a_{1},\dots,a_{n}) & \in & r^{\mathbb{A}}\\
-\mathbb{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
-\mathbb{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
-(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbb{B}}
+(a_{1},\dots,a_{n}) & \in & r^{\mathbf{A}}\\
+\mathbf{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
+\mathbf{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
+(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbf{B}}
 \end{eqnarray*}
 
 \end_inset
@@ -538,9 +538,9 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{A} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[a_{1},\dots,a_{n},f^{\mathbb{A}}(a_{1},\dots,a_{n})]\\
-\mathbb{B} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[\gamma(a_{1}),\dots,\gamma(a_{n}),\gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))]\\
-f^{\mathbb{B}}(\gamma(a_{1}),\dots,\gamma(a_{n})) & = & \gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))
+\mathbf{A} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[a_{1},\dots,a_{n},f^{\mathbf{A}}(a_{1},\dots,a_{n})]\\
+\mathbf{B} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[\gamma(a_{1}),\dots,\gamma(a_{n}),\gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))]\\
+f^{\mathbf{B}}(\gamma(a_{1}),\dots,\gamma(a_{n})) & = & \gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))
 \end{eqnarray*}
 
 \end_inset
@@ -569,10 +569,10 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbb{B}}\\
-\mathbb{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
-\mathbb{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
-(a_{1},\dots,a_{n}) & \in & r^{\mathbb{A}}
+(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbf{B}}\\
+\mathbf{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
+\mathbf{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
+(a_{1},\dots,a_{n}) & \in & r^{\mathbf{A}}
 \end{eqnarray*}
 
 \end_inset
@@ -594,11 +594,11 @@ name "thm:abiertas valen en subestructuras y viceversa"
 
 \begin_layout Theorem
 Si 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
  es una subestructura de 
-\begin_inset Formula $\mathbb{B}$
+\begin_inset Formula $\mathbf{B}$
 \end_inset
 
  y 
@@ -622,11 +622,11 @@ Si
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
  una subestructura de 
-\begin_inset Formula $\mathbb{B}$
+\begin_inset Formula $\mathbf{B}$
 \end_inset
 
  y 
@@ -638,7 +638,7 @@ Sea
 
 \begin_layout Proof
 Como 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
  es subestructura es cerrada sobre 
@@ -650,7 +650,7 @@ Como
 \end_inset
 
  y 
-\begin_inset Formula $c^{\mathbb{B}}\in A$
+\begin_inset Formula $c^{\mathbf{B}}\in A$
 \end_inset
 
 
@@ -690,7 +690,7 @@ Sea
 
 \begin_inset Formula 
 \[
-\gamma(c^{\mathbb{A}})=c^{\mathbb{A}}=c^{\mathbb{B}}
+\gamma(c^{\mathbf{A}})=c^{\mathbf{A}}=c^{\mathbf{B}}
 \]
 
 \end_inset
@@ -709,7 +709,7 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\gamma(f^{\mathbb{A}}(a_{1},\dots,a_{n}))=f^{\mathbb{A}}(a_{1},\dots,a_{n})=f^{\mathbb{B}}(\gamma(a_{1}),\dots,\gamma(a_{n}))
+\gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))=f^{\mathbf{A}}(a_{1},\dots,a_{n})=f^{\mathbf{B}}(\gamma(a_{1}),\dots,\gamma(a_{n}))
 \]
 
 \end_inset
@@ -727,7 +727,7 @@ Sea
 
 \begin_layout Standard
 Como 
-\begin_inset Formula $r^{\mathbb{A}}=r^{\mathbb{B}}\cap A^{n}$
+\begin_inset Formula $r^{\mathbf{A}}=r^{\mathbf{B}}\cap A^{n}$
 \end_inset
 
 
@@ -736,7 +736,7 @@ Como
 \begin_layout Standard
 \begin_inset Formula 
 \[
-(a_{1},\dots,a_{n})\in r^{\mathbb{A}}\Rightarrow(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbb{B}}
+(a_{1},\dots,a_{n})\in r^{\mathbf{A}}\Rightarrow(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbf{B}}
 \]
 
 \end_inset
@@ -786,7 +786,7 @@ Veamos que
 \begin_layout Standard
 \begin_inset Formula 
 \[
-(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbb{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbb{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbb{A}}
+(\gamma(a_{1}),\dots,\gamma(a_{n}))\in r^{\mathbf{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbf{B}}\Rightarrow(a_{1},\dots,a_{n})\in r^{\mathbf{A}}
 \]
 
 \end_inset
@@ -928,7 +928,7 @@ name "thm:diagrama sii isomorfismo"
 
 \begin_layout Theorem
 Sea 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
  una estructura y 
@@ -940,7 +940,7 @@ Sea
 
 \begin_deeper
 \begin_layout Enumerate
-\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -978,7 +978,7 @@ Veamos 1
 
 \begin_layout Proof
 Supongamos que 
-\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -1002,11 +1002,11 @@ Si
 
 \begin_layout Proof
 Tomo 
-\begin_inset Formula $\subuniv aA=\{t^{\mathbb{A}}[a_{1},\dots,a_{n}]:t\in T^{\tau},a_{1},\dots,a_{n}\in\bar{a}\}$
+\begin_inset Formula $\subuniv aA=\{t^{\mathbf{A}}[a_{1},\dots,a_{n}]:t\in T^{\tau},a_{1},\dots,a_{n}\in\bar{a}\}$
 \end_inset
 
  y 
-\begin_inset Formula $\subuniv bA=\{t^{\mathbb{A}}[b_{1},\dots,b_{n}]:t\in T^{\tau},b_{1},\dots,b_{n}\in\bar{b}\}$
+\begin_inset Formula $\subuniv bA=\{t^{\mathbf{A}}[b_{1},\dots,b_{n}]:t\in T^{\tau},b_{1},\dots,b_{n}\in\bar{b}\}$
 \end_inset
 
 
@@ -1017,7 +1017,7 @@ Defino
 \begin_inset Formula 
 \begin{eqnarray*}
  & \gamma & :A'\rightarrow B'\\
- & \gamma & (t^{\mathbb{A}}[a_{1},\dots,a_{n}])=t^{\mathbb{B}}[\enumeracion bn]
+ & \gamma & (t^{\mathbf{A}}[a_{1},\dots,a_{n}])=t^{\mathbf{B}}[\enumeracion bn]
 \end{eqnarray*}
 
 \end_inset
@@ -1052,7 +1052,7 @@ Sea
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbb{A}}[\enumeracion an])=c^{\mathbb{B}}[\enumeracion bn]=c^{\subuniv bB}$
+\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbf{A}}[\enumeracion an])=c^{\mathbf{B}}[\enumeracion bn]=c^{\subuniv bB}$
 \end_inset
 
 
@@ -1080,7 +1080,7 @@ Como
 \end_inset
 
  hay un 
-\begin_inset Formula $t_{i}^{\mathbb{A}}[\enumeracion an]=a_{i}$
+\begin_inset Formula $t_{i}^{\mathbf{A}}[\enumeracion an]=a_{i}$
 \end_inset
 
 
@@ -1090,12 +1090,12 @@ Como
 \begin_inset Formula 
 \begin{alignat*}{1}
  & \gamma(f^{\subuniv aA}(\enumeracion[][']am))\\
-= & \gamma(f^{\mathbb{A}}(t_{1}^{\mathbb{A}}[\enumeracion an],\dots,t_{m}^{\mathbb{A}}[\enumeracion an]))\\
-= & \gamma(f(\enumeracion tm)^{\mathbb{A}}[\enumeracion an])\\
-= & f(\enumeracion tm)^{\mathbb{B}}[\enumeracion bn]\\
-= & f^{\mathbb{B}}(t_{1}^{\mathbb{B}}[\enumeracion bn],\dots,t_{m}^{\mathbb{B}}[\enumeracion bn])\\
-= & f^{\mathbb{B}}(\gamma(t_{1}^{\mathbb{A}}[\enumeracion an]),\dots,\gamma(t_{m}^{\mathbb{A}}[\enumeracion an]))\\
-= & f^{\mathbb{B}}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))\\
+= & \gamma(f^{\mathbf{A}}(t_{1}^{\mathbf{A}}[\enumeracion an],\dots,t_{m}^{\mathbf{A}}[\enumeracion an]))\\
+= & \gamma(f(\enumeracion tm)^{\mathbf{A}}[\enumeracion an])\\
+= & f(\enumeracion tm)^{\mathbf{B}}[\enumeracion bn]\\
+= & f^{\mathbf{B}}(t_{1}^{\mathbf{B}}[\enumeracion bn],\dots,t_{m}^{\mathbf{B}}[\enumeracion bn])\\
+= & f^{\mathbf{B}}(\gamma(t_{1}^{\mathbf{A}}[\enumeracion an]),\dots,\gamma(t_{m}^{\mathbf{A}}[\enumeracion an]))\\
+= & f^{\mathbf{B}}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))\\
 = & f^{\subuniv bB}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))
 \end{alignat*}
 
@@ -1120,11 +1120,11 @@ Sea
 \begin_inset Formula 
 \begin{eqnarray}
 (\enumeracion[][']am) & \in & r^{\subuniv aA}\nonumber \\
-(t_{1}^{\mathbb{A}}[\enumeracion an],\dots,t_{m}^{\mathbb{A}}[\enumeracion an]) & \in & r^{\mathbb{A}}\nonumber \\
-\mathbb{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
-\mathbb{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
-(t_{1}^{\mathbb{B}}[\bar{b}],\dots,t_{m}^{\mathbb{B}}[\bar{b}]) & \in & r^{\mathbb{B}}\nonumber \\
-(\gamma(t_{1}^{\mathbb{A}}[\bar{a}]),\dots,\gamma(t_{m}^{\mathbb{A}}[\bar{a}])) & \in & r^{\mathbb{B}}\nonumber \\
+(t_{1}^{\mathbf{A}}[\enumeracion an],\dots,t_{m}^{\mathbf{A}}[\enumeracion an]) & \in & r^{\mathbf{A}}\nonumber \\
+\mathbf{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
+\mathbf{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
+(t_{1}^{\mathbf{B}}[\bar{b}],\dots,t_{m}^{\mathbf{B}}[\bar{b}]) & \in & r^{\mathbf{B}}\nonumber \\
+(\gamma(t_{1}^{\mathbf{A}}[\bar{a}]),\dots,\gamma(t_{m}^{\mathbf{A}}[\bar{a}])) & \in & r^{\mathbf{B}}\nonumber \\
 (\gamma(a'_{1}),\dots,\gamma(a'_{m})) & \in & r^{\subuniv bB}\nonumber 
 \end{eqnarray}
 
@@ -1143,7 +1143,7 @@ Donde 1
 \end_inset
 
 es abierta y 
-\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -1175,11 +1175,11 @@ Sean
 \begin_inset Formula 
 \begin{eqnarray}
 a'_{1} & \not= & a'_{2}\nonumber \\
-t_{1}^{\mathbb{A}}\left[\bar{a}\right] & \not= & t_{2}^{\mathbb{A}}\left[\bar{a}\right]\nonumber \\
-\mathbb{A} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{a}\right]\\
-\mathbb{B} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{b}\right]\\
-t_{1}^{\mathbb{B}}\left[\bar{b}\right] & \not= & t_{2}^{\mathbb{B}}\left[\bar{b}\right]\nonumber \\
-\gamma\left(t_{1}^{\mathbb{A}}\left[\bar{a}\right]\right) & \not= & \gamma\left(t_{2}^{\mathbb{A}}\left[\bar{a}\right]\right)\nonumber 
+t_{1}^{\mathbf{A}}\left[\bar{a}\right] & \not= & t_{2}^{\mathbf{A}}\left[\bar{a}\right]\nonumber \\
+\mathbf{A} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{a}\right]\\
+\mathbf{B} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{b}\right]\\
+t_{1}^{\mathbf{B}}\left[\bar{b}\right] & \not= & t_{2}^{\mathbf{B}}\left[\bar{b}\right]\nonumber \\
+\gamma\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right]\right) & \not= & \gamma\left(t_{2}^{\mathbf{A}}\left[\bar{a}\right]\right)\nonumber 
 \end{eqnarray}
 
 \end_inset
@@ -1209,7 +1209,7 @@ Sea
 \begin_inset Formula 
 \begin{eqnarray*}
 b' & \in & B'\\
-t^{\mathbb{B}}\left[\bar{b}\right] & \in & B'
+t^{\mathbf{B}}\left[\bar{b}\right] & \in & B'
 \end{eqnarray*}
 
 \end_inset
@@ -1219,7 +1219,7 @@ t^{\mathbb{B}}\left[\bar{b}\right] & \in & B'
 
 \begin_layout Standard
 Tomo 
-\begin_inset Formula $t^{\mathbb{A}}\left[\bar{a}\right]=a'$
+\begin_inset Formula $t^{\mathbf{A}}\left[\bar{a}\right]=a'$
 \end_inset
 
 
@@ -1228,7 +1228,7 @@ Tomo
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-\gamma\left(t^{\mathbb{A}}\left[\bar{a}\right]\right) & = & t^{\mathbb{B}}\left[\bar{b}\right]
+\gamma\left(t^{\mathbf{A}}\left[\bar{a}\right]\right) & = & t^{\mathbf{B}}\left[\bar{b}\right]
 \end{eqnarray*}
 
 \end_inset
@@ -1255,7 +1255,7 @@ Sea
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\gamma^{-1}(c^{\subuniv bB})=\gamma^{-1}(c^{\mathbb{B}}[\bar{b}])=c^{\mathbb{A}}[\bar{a}]=c^{\subuniv aA}$
+\begin_inset Formula $\gamma^{-1}(c^{\subuniv bB})=\gamma^{-1}(c^{\mathbf{B}}[\bar{b}])=c^{\mathbf{A}}[\bar{a}]=c^{\subuniv aA}$
 \end_inset
 
 
@@ -1274,7 +1274,7 @@ Sea
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion{b'}m))=\gamma^{-1}(f(\enumeracion tm)^{\mathbb{B}}[\bar{b}])=f(\enumeracion tm)^{\mathbb{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
+\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion{b'}m))=\gamma^{-1}(f(\enumeracion tm)^{\mathbf{B}}[\bar{b}])=f(\enumeracion tm)^{\mathbf{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
 \end_inset
 
 
@@ -1296,11 +1296,11 @@ Sea
 \begin_inset Formula 
 \begin{eqnarray}
 (\enumeracion[][']bm) & \in & r^{\subuniv bB}\nonumber \\
-(t_{1}^{\mathbb{B}}[\enumeracion bn],\dots,t_{m}^{\mathbb{\mathbb{B}}}[\enumeracion bn]) & \in & r^{\mathbb{B}}\nonumber \\
-\mathbb{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
-\mathbb{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
-(t_{1}^{\mathbb{A}}[\bar{a}],\dots,t_{m}^{\mathbb{A}}[\bar{a}]) & \in & r^{\mathbb{A}}\nonumber \\
-(\gamma^{-1}(t_{1}^{\mathbb{B}}[\bar{b}]),\dots,\gamma^{-1}(t_{m}^{\mathbb{B}}[\bar{b}])) & \in & r^{\mathbb{A}}\nonumber \\
+(t_{1}^{\mathbf{B}}[\enumeracion bn],\dots,t_{m}^{\mathbf{\mathbf{B}}}[\enumeracion bn]) & \in & r^{\mathbf{B}}\nonumber \\
+\mathbf{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
+\mathbf{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
+(t_{1}^{\mathbf{A}}[\bar{a}],\dots,t_{m}^{\mathbf{A}}[\bar{a}]) & \in & r^{\mathbf{A}}\nonumber \\
+(\gamma^{-1}(t_{1}^{\mathbf{B}}[\bar{b}]),\dots,\gamma^{-1}(t_{m}^{\mathbf{B}}[\bar{b}])) & \in & r^{\mathbf{A}}\nonumber \\
 (\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m})) & \in & r^{\subuniv aA}\nonumber 
 \end{eqnarray}
 
@@ -1317,7 +1317,7 @@ Por lo tanto
 \end_inset
 
  es un isomorfismo y 
-\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbb{A}}[\enumeracion an])=x_{j}^{\mathbb{B}}[\enumeracion bn]=b_{j}$
+\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbf{A}}[\enumeracion an])=x_{j}^{\mathbf{B}}[\enumeracion bn]=b_{j}$
 \end_inset
 
 .
@@ -1430,7 +1430,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
  es subestructura de 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
 , 
@@ -1438,7 +1438,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
  lo es de 
-\begin_inset Formula $\mathbb{B}$
+\begin_inset Formula $\mathbf{B}$
 \end_inset
 
  y 
@@ -1488,7 +1488,7 @@ Por lo tanto si
 
 \begin_layout Proof
 Finalmente, 
-\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -1611,7 +1611,7 @@ Sea
 \end_inset
 
  defino 
-\begin_inset Formula $T_{\varphi\mathbb{A}}=\left\{ \bar{a}\in A^{n}|\sat A{\varphi}{\bar{a}}\right\} $
+\begin_inset Formula $T_{\varphi\mathbf{A}}=\left\{ \bar{a}\in A^{n}|\sat A{\varphi}{\bar{a}}\right\} $
 \end_inset
 
 
@@ -1627,7 +1627,7 @@ Supongamos
 \end_inset
 
  en 
-\begin_inset Formula $\mathbb{A}$
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
 
@@ -1647,7 +1647,7 @@ Supongamos
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\bar{a}\in T_{\varphi\mathbb{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbb{A}}\textnormal{ para cada \bar{a}\in A^{n} }
+\bar{a}\in T_{\varphi\mathbf{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbf{A}}\textnormal{ para cada \bar{a}\in A^{n} }
 \]
 
 \end_inset
@@ -1658,7 +1658,7 @@ Supongamos
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\therefore T_{\varphi\mathbb{A}}=T_{\psi\mathbb{A}}
+\therefore T_{\varphi\mathbf{A}}=T_{\psi\mathbf{A}}
 \]
 
 \end_inset
@@ -1728,7 +1728,7 @@ Sea
 \end_inset
 
 , tomo 
-\begin_inset Formula $T_{\psi\mathbb{A}}$
+\begin_inset Formula $T_{\psi\mathbf{A}}$
 \end_inset
 
 y como 
@@ -1741,7 +1741,7 @@ y como
 \end_inset
 
  tal que 
-\begin_inset Formula $T_{j}=T_{\psi\mathbb{A}}$
+\begin_inset Formula $T_{j}=T_{\psi\mathbf{A}}$
 \end_inset
 
 
@@ -1831,7 +1831,7 @@ reference "thm:cantidad de formulas es finita"
 
 \begin_layout Proof
 Es claro que 
-\begin_inset Formula $\sat B{\wedge([\Delta_{\mathbb{A}\bar{a}}])}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbb{A}\bar{a}}}{\bar{b}}$
+\begin_inset Formula $\sat B{\wedge([\Delta_{\mathbf{A}\bar{a}}])}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
 \end_inset
 
 
@@ -2238,7 +2238,7 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)$
+\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)$
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -2282,7 +2282,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 , 
-\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]}{\bar{b}}$
+\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]}{\bar{b}}$
 \end_inset
 
 .
@@ -2336,11 +2336,11 @@ reference "thm:formula para el diagrama"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbb{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbb{B}\bar{b}}\right]\right)$
+\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge\left[\Delta_{\mathbf{A}\bar{a}}\right]\right)\right)=\cdots\vee\cdots\vee\left(\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]\right)$
 \end_inset
 
 , evidentemente 
-\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbb{B}\bar{b}}\right]}{\bar{b}}$
+\begin_inset Formula $\sat B{\wedge\left[\Delta_{\mathbf{B}\bar{b}}\right]}{\bar{b}}$
 \end_inset
 
 , entonces 
@@ -2848,7 +2848,7 @@ reference "thm:cantidad de formulas es finita"
 
 \begin_layout Proof
 Es claro que 
-\begin_inset Formula $\sat B{\varphi}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbb{A}\bar{a}}^{+}}{\bar{b}}$
+\begin_inset Formula $\sat B{\varphi}{\bar{b}}\Leftrightarrow\sat B{\Delta_{\mathbf{A}\bar{a}}^{+}}{\bar{b}}$
 \end_inset
 
 
@@ -3080,7 +3080,7 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge_{\alpha\in\Delta_{\mathbb{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
+\begin_inset Formula $\varphi=\vee_{\mathbf{A}\in\mathcal{K}}\left(\vee_{\bar{a}\in R^{\mathbf{A}}}\left(\wedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -3115,7 +3115,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 , 
-\begin_inset Formula $\sat B{\Delta_{\mathbb{A}\bar{a}}^{+}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{A}\bar{a}}^{+}}{\bar{b}}$
 \end_inset
 
 .
@@ -3169,11 +3169,11 @@ reference "thm:formula para diagrama abierto positivo"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\cdots\vee\cdots\vee\left(\wedge_{\alpha\in\Delta_{\mathbb{B}\bar{b}}^{+}}\alpha\left(\bar{x}\right)\right)$
+\begin_inset Formula $\varphi=\cdots\vee\cdots\vee\left(\wedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}^{+}}\alpha\left(\bar{x}\right)\right)$
 \end_inset
 
 , evidentemente 
-\begin_inset Formula $\sat B{\Delta_{\mathbb{B}\bar{b}}^{+}}{\bar{b}}$
+\begin_inset Formula $\sat B{\Delta_{\mathbf{B}\bar{b}}^{+}}{\bar{b}}$
 \end_inset
 
 , entonces 
