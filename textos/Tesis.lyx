@@ -1944,7 +1944,7 @@ Si
 \end_inset
 
 , usaremos 
-\begin_inset Formula $\boldsymbol{A_{\mathcal{L}}}$
+\begin_inset Formula $\boldsymbol{A}_{\mathcal{L}}$
 \end_inset
 
  para indicar el reducto de 
@@ -2099,15 +2099,15 @@ Para todas
 \end_inset
 
 , todas 
-\begin_inset Formula $\boldsymbol{A_{0}}\leq\boldsymbol{A_{\mathcal{L}}}$
+\begin_inset Formula $\boldsymbol{A}_{0}\leq\boldsymbol{A}_{\mathcal{L}}$
 \end_inset
 
 ,
-\begin_inset Formula $\boldsymbol{B_{0}}\leq\boldsymbol{B_{\mathcal{L}}}$
+\begin_inset Formula $\boldsymbol{B}_{0}\leq\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
 , todo isomorfismo 
-\begin_inset Formula $\sigma:\boldsymbol{A_{0}}\rightarrow\boldsymbol{B_{0}}$
+\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
 \end_inset
 
  preserva 
@@ -2143,11 +2143,11 @@ Sea
 \end_inset
 
  y sean 
-\begin_inset Formula $\mathbf{A_{0}}\leq\mathbf{A_{\mathcal{L}}}$
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A_{\mathcal{L}}}$
 \end_inset
 
  y 
-\begin_inset Formula $\mathbf{B_{0}}\leq\mathbf{B_{\mathcal{L}}}$
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B_{\mathcal{L}}}$
 \end_inset
 
  tales que 
@@ -2930,11 +2930,11 @@ Para todas
 \end_inset
 
 , todas 
-\begin_inset Formula $\boldsymbol{A_{0}}\leq\boldsymbol{A_{\mathcal{L}}}$
+\begin_inset Formula $\boldsymbol{A}_{0}\leq\boldsymbol{A}_{\mathcal{L}}$
 \end_inset
 
 ,
-\begin_inset Formula $\boldsymbol{B_{0}}\leq\boldsymbol{B_{\mathcal{L}}}$
+\begin_inset Formula $\boldsymbol{B}_{0}\leq\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
 , todo homomorfismo 
@@ -2978,7 +2978,7 @@ Sea
 \end_inset
 
  y 
-\begin_inset Formula $\mathbf{B_{0}}\leq\mathbf{B_{\mathcal{L}}}$
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B_{\mathcal{L}}}$
 \end_inset
 
  tales que 
