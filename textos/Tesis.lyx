@@ -1017,7 +1017,7 @@ Defino
 \begin_inset Formula 
 \begin{eqnarray*}
  & \gamma & :A'\rightarrow B'\\
- & \gamma & (t^{\mathbf{A}}[a_{1},\dots,a_{n}])=t^{\mathbf{B}}[\enumeracion bn]
+ & \gamma & (t^{\mathbf{A}}[a_{1},\dots,a_{n}])=t^{\mathbf{B}}[\enumeracion[n][b]]
 \end{eqnarray*}
 
 \end_inset
@@ -1052,7 +1052,7 @@ Sea
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbf{A}}[\enumeracion an])=c^{\mathbf{B}}[\enumeracion bn]=c^{\subuniv bB}$
+\begin_inset Formula $\gamma(c^{\subuniv aA})=\gamma(c^{\mathbf{A}}[\enumeracion[n][a]])=c^{\mathbf{B}}[\enumeracion[n][b]]=c^{\subuniv bB}$
 \end_inset
 
 
@@ -1064,7 +1064,7 @@ Sea
 \end_inset
 
  y 
-\begin_inset Formula $\enumeracion[][']am\in A'$
+\begin_inset Formula $\enumeracion[m][a']\in A'$
 \end_inset
 
 
@@ -1080,7 +1080,7 @@ Como
 \end_inset
 
  hay un 
-\begin_inset Formula $t_{i}^{\mathbf{A}}[\enumeracion an]=a_{i}$
+\begin_inset Formula $t_{i}^{\mathbf{A}}[\enumeracion[n][a]]=a_{i}$
 \end_inset
 
 
@@ -1089,12 +1089,12 @@ Como
 \begin_layout Standard
 \begin_inset Formula 
 \begin{alignat*}{1}
- & \gamma(f^{\subuniv aA}(\enumeracion[][']am))\\
-= & \gamma(f^{\mathbf{A}}(t_{1}^{\mathbf{A}}[\enumeracion an],\dots,t_{m}^{\mathbf{A}}[\enumeracion an]))\\
-= & \gamma(f(\enumeracion tm)^{\mathbf{A}}[\enumeracion an])\\
-= & f(\enumeracion tm)^{\mathbf{B}}[\enumeracion bn]\\
-= & f^{\mathbf{B}}(t_{1}^{\mathbf{B}}[\enumeracion bn],\dots,t_{m}^{\mathbf{B}}[\enumeracion bn])\\
-= & f^{\mathbf{B}}(\gamma(t_{1}^{\mathbf{A}}[\enumeracion an]),\dots,\gamma(t_{m}^{\mathbf{A}}[\enumeracion an]))\\
+ & \gamma(f^{\subuniv aA}(\enumeracion[m][a']))\\
+= & \gamma(f^{\mathbf{A}}(t_{1}^{\mathbf{A}}[\enumeracion[n][a]],\dots,t_{m}^{\mathbf{A}}[\enumeracion[n][a]]))\\
+= & \gamma(f(\enumeracion[m][t])^{\mathbf{A}}[\enumeracion[n][a]])\\
+= & f(\enumeracion[m][t])^{\mathbf{B}}[\enumeracion[n][b]]\\
+= & f^{\mathbf{B}}(t_{1}^{\mathbf{B}}[\enumeracion[n][b]],\dots,t_{m}^{\mathbf{B}}[\enumeracion[n][b]])\\
+= & f^{\mathbf{B}}(\gamma(t_{1}^{\mathbf{A}}[\enumeracion[n][a]]),\dots,\gamma(t_{m}^{\mathbf{A}}[\enumeracion[n][a]]))\\
 = & f^{\mathbf{B}}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))\\
 = & f^{\subuniv bB}(\gamma(a'_{1}),\dots,\gamma(a\text{'}_{n}))
 \end{alignat*}
@@ -1110,7 +1110,7 @@ Sea
 \end_inset
 
  y 
-\begin_inset Formula $\enumeracion[][']am\in A'$
+\begin_inset Formula $\enumeracion[m][a']\in A'$
 \end_inset
 
 
@@ -1119,10 +1119,10 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-(\enumeracion[][']am) & \in & r^{\subuniv aA}\nonumber \\
-(t_{1}^{\mathbf{A}}[\enumeracion an],\dots,t_{m}^{\mathbf{A}}[\enumeracion an]) & \in & r^{\mathbf{A}}\nonumber \\
-\mathbf{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
-\mathbf{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
+(\enumeracion[m][a']) & \in & r^{\subuniv aA}\nonumber \\
+(t_{1}^{\mathbf{A}}[\enumeracion[n][a]],\dots,t_{m}^{\mathbf{A}}[\enumeracion[n][a]]) & \in & r^{\mathbf{A}}\nonumber \\
+\mathbf{A} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][a]]\\
+\mathbf{B} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][b]]\\
 (t_{1}^{\mathbf{B}}[\bar{b}],\dots,t_{m}^{\mathbf{B}}[\bar{b}]) & \in & r^{\mathbf{B}}\nonumber \\
 (\gamma(t_{1}^{\mathbf{A}}[\bar{a}]),\dots,\gamma(t_{m}^{\mathbf{A}}[\bar{a}])) & \in & r^{\mathbf{B}}\nonumber \\
 (\gamma(a'_{1}),\dots,\gamma(a'_{m})) & \in & r^{\subuniv bB}\nonumber 
@@ -1267,14 +1267,14 @@ Sea
 \end_inset
 
  y 
-\begin_inset Formula $\enumeracion{b'}m\in B'$
+\begin_inset Formula $\enumeracion[m][b']\in B'$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion{b'}m))=\gamma^{-1}(f(\enumeracion tm)^{\mathbf{B}}[\bar{b}])=f(\enumeracion tm)^{\mathbf{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
+\begin_inset Formula $\gamma^{-1}(f^{\subuniv bB}(\enumeracion[m][b']))=\gamma^{-1}(f(\enumeracion[m][t])^{\mathbf{B}}[\bar{b}])=f(\enumeracion[m][t])^{\mathbf{A}}[\bar{a}]=f^{\subuniv aA}(\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m}))$
 \end_inset
 
 
@@ -1286,7 +1286,7 @@ Sea
 \end_inset
 
  y 
-\begin_inset Formula $\enumeracion{b'}m\in B'$
+\begin_inset Formula $\enumeracion[m][b']\in B'$
 \end_inset
 
 
@@ -1295,10 +1295,10 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-(\enumeracion[][']bm) & \in & r^{\subuniv bB}\nonumber \\
-(t_{1}^{\mathbf{B}}[\enumeracion bn],\dots,t_{m}^{\mathbf{\mathbf{B}}}[\enumeracion bn]) & \in & r^{\mathbf{B}}\nonumber \\
-\mathbf{B} & \vDash & r(\enumeracion tm)[\enumeracion bn]\\
-\mathbf{A} & \vDash & r(\enumeracion tm)[\enumeracion an]\\
+(\enumeracion[m][b']) & \in & r^{\subuniv bB}\nonumber \\
+(t_{1}^{\mathbf{B}}[\enumeracion[n][b]],\dots,t_{m}^{\mathbf{\mathbf{B}}}[\enumeracion[n][b]]) & \in & r^{\mathbf{B}}\nonumber \\
+\mathbf{B} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][b]]\\
+\mathbf{A} & \vDash & r(\enumeracion[m][t])[\enumeracion[n][a]]\\
 (t_{1}^{\mathbf{A}}[\bar{a}],\dots,t_{m}^{\mathbf{A}}[\bar{a}]) & \in & r^{\mathbf{A}}\nonumber \\
 (\gamma^{-1}(t_{1}^{\mathbf{B}}[\bar{b}]),\dots,\gamma^{-1}(t_{m}^{\mathbf{B}}[\bar{b}])) & \in & r^{\mathbf{A}}\nonumber \\
 (\gamma^{-1}(b'_{1}),\dots,\gamma^{-1}(b'_{m})) & \in & r^{\subuniv aA}\nonumber 
@@ -1317,7 +1317,7 @@ Por lo tanto
 \end_inset
 
  es un isomorfismo y 
-\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbf{A}}[\enumeracion an])=x_{j}^{\mathbf{B}}[\enumeracion bn]=b_{j}$
+\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbf{A}}[\enumeracion[n][a]])=x_{j}^{\mathbf{B}}[\enumeracion[n][b]]=b_{j}$
 \end_inset
 
 .
@@ -1708,7 +1708,7 @@ Ahora veamos que existe
 
 \begin_layout Proof
 Sean 
-\begin_inset Formula $\enumeracion Tk\subseteq A^{n}$
+\begin_inset Formula $\enumeracion[k][T]\subseteq A^{n}$
 \end_inset
 
  tales que existe 
@@ -1732,7 +1732,7 @@ Sea
 \end_inset
 
 y como 
-\begin_inset Formula $\enumeracion Tk$
+\begin_inset Formula $\enumeracion[k][T]$
 \end_inset
 
  es la sucesión de todos los subconjuntos que se definen con una fórmula,
