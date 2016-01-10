@@ -5385,7 +5385,7 @@ For{
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
-, desde el mas grande al mas chico
+, desde la mayor a la menor cardinalidad
 \begin_inset ERT
 status open
 
@@ -5478,7 +5478,7 @@ For{
 \begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
 \end_inset
 
-
+, desde la menor a la mayor cardinalidad
 \begin_inset ERT
 status open
 
@@ -5554,7 +5554,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  
@@ -6043,7 +6043,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  
@@ -6518,7 +6518,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  
