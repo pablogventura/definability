@@ -8253,7 +8253,14 @@ Definición de CSP, Minion, constraints que le pasamos a minion
 \end_layout
 
 \begin_layout Standard
-Un CSP (constraint satisfaction problem) es definido como la terna 
+Como aparece en 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki:CSP"
+
+\end_inset
+
+, un CSP (constraint satisfaction problem) es definido como la terna 
 \begin_inset Formula $\left\langle X,D,C\right\rangle $
 \end_inset
 
