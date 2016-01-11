@@ -4453,11 +4453,7 @@ reference "lem:quito sombras"
 placement h
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -4465,6 +4461,13 @@ status collapsed
 \begin_layout Plain Layout
 Preprocesamiento
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:preprocesamiento"
 
 \end_inset
 
@@ -5614,7 +5617,7 @@ reference "thm:construccion de constelacion abierta"
 \end_inset
 
  sugiere un subconjunto de isomorfismos que bastan para revisar definibilidad
- abierta a traves del Corolario 
+ abierta a través del Corolario 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cor:preservar en la constelacion abierta es ser abierta definible"
@@ -5637,7 +5640,7 @@ reference "alg:constelacion abierta"
 \end_inset
 
 .
- Comenzamos recorriendo las esctructuras en 
+ Comenzamos recorriendo las estructuras en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5659,7 +5662,7 @@ reference "alg:constelacion abierta"
 \end_inset
 
 .
- Ademas recorremos las subestructuras de menor a mayor ya que es mas facil
+ Además recorremos las subestructuras de menor a mayor ya que es mas fácil
  detectar isomorfismos entre subestructuras mas chicas.
 \end_layout
 
@@ -5685,7 +5688,7 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 \begin_inset Float algorithm
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5960,7 +5963,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  es contraejemplo
@@ -6371,7 +6374,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  es contraejemplo
@@ -6752,7 +6755,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $\alpha$
 \end_inset
 
  es contraejemplo
@@ -6946,16 +6949,59 @@ as de
 
 \end_layout
 
-\begin_layout Subsection
-Deteccion de homomorfismos
+\begin_layout Section
+Definibilidad de primer orden
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+Luego de haber aplicado el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ para preprocesamiento, solo basta con revisar los automorfimos para 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Definicion de CSP, Minion, constraints que le pasamos a minion
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Constelación para primer orden
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion primer orden"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
 \end_layout
 
 \end_inset
@@ -6963,8 +7009,397 @@ Definicion de CSP, Minion, constraints que le pasamos a minion
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{K}_{0}=\emptyset$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{K}_{0}=\mathcal{K}_{0}\cup\left\{ \mathbf{A}\right\} $
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{K}=\mathcal{K}-\left\{ \mathbf{A}\right\} $
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-automorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es definible y 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es definible
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definibilidad existencial-positiva
+\end_layout
+
+\begin_layout Section
+Definibilidad abierta-positiva
+\end_layout
+
 \begin_layout Subsection
-Generacion de subestructuras
+Detección de homomorfismos
 \end_layout
 
 \begin_layout Standard
@@ -6972,7 +7407,120 @@ Generacion de subestructuras
 status open
 
 \begin_layout Plain Layout
-Las generamos desde un subconjunto, no esta muy pensado asi que se podria
+Definición de CSP, Minion, constraints que le pasamos a minion
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un CSP (constraint satisfaction problem) es definido como la terna 
+\begin_inset Formula $\left\langle X,D,C\right\rangle $
+\end_inset
+
+, donde 
+\begin_inset Formula 
+\[
+X=\{X_{1},\ldots,X_{n}\}\textnormal{ es un conjunto de variables}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+D=\{D_{1},\ldots,D_{n}\}\textnormal{ es un conjunto con los respectivos dominios de los valores}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C=\{C_{1},\ldots,C_{m}\}\textnormal{ es un conjunto de restricciones}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cada variable 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ se mueve en los valores del respectivo dominio no vacío 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+.
+ Cada restricción 
+\begin_inset Formula $C_{j}\in C$
+\end_inset
+
+ es un par 
+\begin_inset Formula $\left\langle t_{j},R_{j}\right\rangle $
+\end_inset
+
+, donde 
+\begin_inset Formula $t_{j}$
+\end_inset
+
+ es una 
+\begin_inset Formula $k$
+\end_inset
+
+-upla de variables y 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+ es una relación 
+\begin_inset Formula $k$
+\end_inset
+
+-aria en el correspondiente dominio de cada variable.
+ Una valuación sobre las variables es una función desde un subconjunto de
+ las variables a un particular conjunto de valores en los correspondientes
+ dominios de valores.
+ Una valuación 
+\begin_inset Formula $v$
+\end_inset
+
+ satisface la restricción 
+\begin_inset Formula $\langle t_{j},R_{j}\rangle$
+\end_inset
+
+ si los valores asignados a las variables 
+\begin_inset Formula $t_{j}$
+\end_inset
+
+ satisfacen la relación 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Una valuación es consistente si no viola ninguna de las restricciones.
+ Una valuación es completa si incluye todas las variables.
+ Una valuación es solución si es consistente y completa.
+ En ese caso diremos que la valuación resuelve el CSP.
+\end_layout
+
+\begin_layout Subsection
+Generación de subestructuras
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Las generamos desde un subconjunto, no esta muy pensado así que se podría
  hacer mejor.
 \end_layout
 
