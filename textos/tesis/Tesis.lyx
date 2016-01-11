@@ -6878,6 +6878,10 @@ Return
 
 \end_inset
 
+
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
  
 \begin_inset ERT
 status open
@@ -7338,6 +7342,10 @@ Return
 
 \end_inset
 
+
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
  
 \begin_inset ERT
 status open
@@ -7394,8 +7402,779 @@ end{algorithmic}
 Definibilidad existencial-positiva
 \end_layout
 
+\begin_layout Standard
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta positiva"
+
+\end_inset
+
+, luego de aplicar el Algoritmo
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ de preprocesamiento y el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ de definibilidad abierta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Constelación existencial-positiva
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion existencial positiva"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}_{0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay un 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{A}}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-endomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $h$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $h$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es existencial-positiva definible y 
+\begin_inset Formula $h$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es existencial positiva definible
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Definibilidad abierta-positiva
+\end_layout
+
+\begin_layout Standard
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta positiva"
+
+\end_inset
+
+, luego de aplicar el Algoritmo
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ de preprocesamiento y el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ de definibilidad abierta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Constelación abierta-positiva
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion abierta positiva"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}_{0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}_{0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay un 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $h$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $h$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-positiva definible y 
+\begin_inset Formula $h$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{K}_{0}$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es abierta positiva definible
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
