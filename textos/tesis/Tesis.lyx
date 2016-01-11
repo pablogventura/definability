@@ -4295,6 +4295,41 @@ reference "thm:preservacion existencial conj atomicas producto"
 .
 \end_layout
 
+\begin_layout Subsection
+Deteccion de homomorfismos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definicion de CSP, Minion, constraints que le pasamos a minion
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generacion de subestructuras
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Las generamos desde un subconjunto, no esta muy pensado asi que se podria
+ hacer mejor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
@@ -5085,7 +5120,7 @@ Dada
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- es un simbolo de relacion n-ario.
+ es un símbolo de relación n-ario.
  Si extendemos cada 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
@@ -5484,7 +5519,7 @@ Dadas
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- es un simbolo de relacion n-ario.
+ es un símbolo de relación n-ario.
  Si extendemos cada 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
@@ -5548,7 +5583,7 @@ Dada
 \end_inset
 
  es un símbolo de relación n-ario.
- Dada una extencion para cada 
+ Dada una extensión para cada 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -5560,7 +5595,7 @@ Dada
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructura, si para cada 
+-estructura, si cada 
 \begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{open}$
 \end_inset
 
