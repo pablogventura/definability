@@ -8832,5 +8832,16 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 Conclusiones y trabajo futuro
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "tesis"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
