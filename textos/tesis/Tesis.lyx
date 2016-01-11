@@ -5694,7 +5694,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelación
+Constelación abierta
 \end_layout
 
 \end_inset
@@ -7250,7 +7250,7 @@ Comment
 \begin_inset Formula $R$
 \end_inset
 
- no es definible y 
+ no es definible en primer orden y 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -7363,7 +7363,7 @@ Comment
 \begin_inset Formula $R$
 \end_inset
 
- es definible
+ es definible en primer orden
 \begin_inset ERT
 status open
 
@@ -7406,7 +7406,7 @@ Definibilidad existencial-positiva
 Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:definibilidad abierta positiva"
+reference "thm:definibilidad existencial positiva"
 
 \end_inset
 
@@ -7417,14 +7417,11 @@ reference "alg:preprocesamiento"
 
 \end_inset
 
- de preprocesamiento y el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion abierta"
-
+ de preprocesamiento, solo basta con revisar los homomorfismos entre 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
- de definibilidad abierta.
+.
 \end_layout
 
 \begin_layout Standard
@@ -7482,7 +7479,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}_{0}$
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
 
@@ -7507,20 +7504,16 @@ status open
 
 	
 \backslash
-If{
+For{
 \end_layout
 
 \end_inset
 
-hay un 
-\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{A}}$
+
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
 \end_inset
 
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
 
--endomorfismo
 \begin_inset ERT
 status open
 
@@ -7541,6 +7534,41 @@ status open
 \begin_layout Plain Layout
 
 		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay un 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
 \backslash
 If{
 \end_layout
@@ -7575,7 +7603,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 State{
 \end_layout
@@ -7640,6 +7668,22 @@ status open
 
 \begin_layout Plain Layout
 
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 		
 \backslash
 EndIf
@@ -7658,7 +7702,7 @@ status open
 
 	
 \backslash
-EndIf
+EndFor
 \end_layout
 
 \end_inset
@@ -7709,7 +7753,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}_{0}$
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
  
