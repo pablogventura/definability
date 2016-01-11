@@ -5,6 +5,8 @@
 \textclass amsbook
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
+\usepackage[fixlanguage]{babelbib}
+\selectbiblanguage{spanish}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -150,6 +152,17 @@ Introducción
 
 \begin_layout Chapter
 Preliminares
+\end_layout
+
+\begin_layout Standard
+Basandonos en 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Campercholi15"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -8836,7 +8849,7 @@ Conclusiones y trabajo futuro
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "tesis"
-options "plain"
+options "babplain"
 
 \end_inset
 
