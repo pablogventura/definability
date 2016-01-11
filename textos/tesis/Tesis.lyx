@@ -1103,7 +1103,7 @@ status open
 \begin_layout Plain Layout
 Modulo equivalencia sobre una estructura finita, la cantidad de fórmulas
  en 
-\begin_inset Formula $\enumeracion{}{}$
+\begin_inset Formula $\enumeracion$
 \end_inset
 
  es finita
@@ -1116,10 +1116,10 @@ Modulo equivalencia sobre una estructura finita, la cantidad de fórmulas
 
 \begin_layout Theorem
 Sea 
-\begin_inset Formula $\boldsymbol{A}$
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
- una estructura finita, y sean 
+ una clase finita de estructuras finitas, y sean 
 \begin_inset Formula $\enumeracion$
 \end_inset
 
@@ -1148,20 +1148,25 @@ Hay un conjunto finito de fórmulas
 \end_inset
 
  son equivalentes sobre 
-\begin_inset Formula $\boldsymbol{A}$
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-Veamos primero que las fórmulas son finitas modulo equivalencia.
+Sea 
+\begin_inset Formula $\mathcal{K}=\left\{ \enumeracion[m][\mathbf{A}]\right\} $
+\end_inset
+
+.
+ Veamos primero que las fórmulas son finitas modulo equivalencia.
  Sea 
 \begin_inset Formula $\deff$
 \end_inset
 
  defino 
-\begin_inset Formula $T_{\varphi\mathbf{A}}=\left\{ \bar{a}\in A^{n}|\sat{\mathbf{A}}{\varphi}{\bar{a}}\right\} $
+\begin_inset Formula $T_{\varphi\mathcal{K}}=\left\{ \bar{a}\in A_{1}^{n}|\sat{\mathbf{A}_{1}}{\varphi}{\bar{a}}\right\} \times\cdots\times\left\{ \bar{a}\in A_{m}^{n}|\sat{\mathbf{A}_{m}}{\varphi}{\bar{a}}\right\} $
 \end_inset
 
  y supongamos 
@@ -1173,7 +1178,7 @@ Veamos primero que las fórmulas son finitas modulo equivalencia.
 \end_inset
 
  en 
-\begin_inset Formula $\mathbf{A}$
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
 , entonces
@@ -1182,30 +1187,30 @@ Veamos primero que las fórmulas son finitas modulo equivalencia.
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\bar{a}\in T_{\varphi\mathbf{A}}\Leftrightarrow\bar{a}\in T_{\psi\mathbf{A}}\textnormal{ para cada \bar{a}\in A^{n} }
+\left(\enumeracion[m][\bar{a}]\right)\in T_{\varphi\mathcal{K}}\Leftrightarrow\left(\enumeracion[m][\bar{a}]\right)\in T_{\psi\mathcal{K}}\textnormal{ para cada }\left(\enumeracion[m][\bar{a}]\right)\in A_{1}^{n}\times\cdots\times A_{m}^{n}
 \]
 
 \end_inset
 
 lo que significa que 
-\begin_inset Formula $T_{\varphi\mathbf{A}}=T_{\psi\mathbf{A}}$
+\begin_inset Formula $T_{\varphi\mathcal{K}}=T_{\psi\mathcal{K}}$
 \end_inset
 
 .
  Entonces basta con contar los subconjuntos de 
-\begin_inset Formula $A^{n}$
+\begin_inset Formula $A_{1}^{n}\times\cdots\times A_{m}^{n}$
 \end_inset
 
 , como 
-\begin_inset Formula $\#A^{n}=(\#A)^{n}$
+\begin_inset Formula $\left|A_{1}^{n}\times\cdots\times A_{m}^{n}\right|=\left|A_{1}\right|^{n}.\cdots.\left|A_{m}\right|^{n}$
 \end_inset
 
- y 
-\begin_inset Formula $A$
+ y cada 
+\begin_inset Formula $A_{i}$
 \end_inset
 
  era finito, es claro que 
-\begin_inset Formula $A^{n}$
+\begin_inset Formula $A_{1}^{n}\times\cdots\times A_{m}^{n}$
 \end_inset
 
  es finito.
@@ -1223,14 +1228,18 @@ Ahora veamos que existe
 
 .
  Sean 
-\begin_inset Formula $\enumeracion[k][T]\subseteq A^{n}$
+\begin_inset Formula $\enumeracion[k][T]\subseteq A_{1}^{n}\times\cdots\times A_{m}^{n}$
 \end_inset
 
  tales que existe 
 \begin_inset Formula $\varphi_{i}(\bar{x})$
 \end_inset
 
- tal que 
+ tal que para cada 
+\begin_inset Formula $\mathbf{A\in\mathcal{K}}$
+\end_inset
+
+, 
 \begin_inset Formula $\sat{\mathbf{A}}{\varphi_{i}}{T_{i}}$
 \end_inset
 
@@ -1239,7 +1248,7 @@ Ahora veamos que existe
 \end_inset
 
 , tomo 
-\begin_inset Formula $T_{\psi\mathbf{A}}$
+\begin_inset Formula $T_{\psi\mathcal{K}}$
 \end_inset
 
 y como 
@@ -1252,15 +1261,19 @@ y como
 \end_inset
 
  tal que 
-\begin_inset Formula $T_{j}=T_{\psi\mathbf{A}}$
+\begin_inset Formula $T_{j}=T_{\psi\mathcal{K}}$
 \end_inset
 
 .
- Entonces, 
+ Entonces, para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, 
 \begin_inset Formula $\sat{\mathbf{A}}{\psi}{\bar{a}}\Leftrightarrow\sat{\mathbf{A}}{\varphi_{j}}{\bar{a}}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Theorem
@@ -5053,7 +5066,72 @@ Dada
 
 \end_layout
 
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:categoria abierta completa alcanza"
+
+\end_inset
+
+Dada 
+\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
+\end_inset
+
+, y dado un 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguaje de primer orden tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ es un simbolo de relacion n-ario.
+ Si extendemos cada 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ a una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura, entonces si para cada 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{open}$
+\end_inset
+
+ 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R$
+\end_inset
+
+ es definible por una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula abierta en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:construccion de constelacion abierta"
+
+\end_inset
+
 Dado 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
@@ -5383,6 +5461,208 @@ Si
 .
 \end_layout
 
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:preservar en la constelacion abierta es preservar en la categoria abierta"
+
+\end_inset
+
+Dadas 
+\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
+\end_inset
+
+, y dado un 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguaje de primer orden tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ es un simbolo de relacion n-ario.
+ Si extendemos cada 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ a una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura, si para cada 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{open}$
+\end_inset
+
+ 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces para cada 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{open}$
+\end_inset
+
+ 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Directa ya que composición de funciones que preservan, preserva.
+\end_layout
+
+\begin_layout Corollary
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+Dada 
+\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
+\end_inset
+
+ y dado un 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguaje de primer orden tal que 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ es un símbolo de relación n-ario.
+ Dada una extencion para cada 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ a una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura, si para cada 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{open}$
+\end_inset
+
+ 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, entonces 
+\begin_inset Formula $R$
+\end_inset
+
+ es definible por una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula abierta en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Directa de los lemas
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:preservar en la constelacion abierta es preservar en la categoria abierta"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:categoria abierta completa alcanza"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+El Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+ sugiere un subconjunto de isomorfismos que bastan para revisar definibilidad
+ abierta a traves del Corolario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+En el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ recorremos los isomorfismos en 
+\begin_inset Formula $\tilde{\mathcal{F}}^{open}$
+\end_inset
+
+.
+ Comenzamos recorriendo las esctructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, desde la de mayor cardinalidad a la de menor cardinalidad.
+ Esto permite detectar cuando hay 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\mathbf{A}\leq\mathbf{B}$
+\end_inset
+
+ y nos permite evitar calcular las subestructuras de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, ya que serán subestructuras de 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+.
+ Ademas recorremos las subestructuras de menor a mayor ya que es mas facil
+ detectar isomorfismos entre subestructuras mas chicas.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status collapsed
@@ -5405,7 +5685,7 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5413,6 +5693,13 @@ status open
 \begin_layout Plain Layout
 Constelación
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion abierta"
 
 \end_inset
 
@@ -5450,37 +5737,6 @@ State{
 
 
 \begin_inset Formula $\mathcal{K}_{0}=\emptyset$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\emptyset$
 \end_inset
 
 
@@ -5607,7 +5863,7 @@ For{
 \begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
 \end_inset
 
-, desde la menor a la mayor cardinalidad
+
 \begin_inset ERT
 status open
 
@@ -5729,53 +5985,6 @@ status open
 
 		
 \backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\mathcal{E}\cup\left\{ \alpha\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
 EndIf
 \end_layout
 
@@ -5817,7 +6026,7 @@ For{
 \begin_inset Formula $\mathbf{A}_{0}\in S_{\mathcal{L}}(\mathbf{A})$
 \end_inset
 
-
+, desde la menor a la mayor cardinalidad
 \begin_inset ERT
 status open
 
@@ -6056,37 +6265,6 @@ status open
 
 				
 \backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\mathcal{E}\cup\left\{ \gamma\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
 For{
 \end_layout
 
@@ -6197,53 +6375,6 @@ Comment
 \end_inset
 
  es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-						
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\mathcal{E}\cup\left\{ \alpha\right\} $
-\end_inset
-
-
 \begin_inset ERT
 status open
 
@@ -6431,53 +6562,6 @@ Comment
 \end_inset
 
  es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\mathcal{E}\cup\left\{ \gamma\right\} $
-\end_inset
-
-
 \begin_inset ERT
 status open
 
@@ -6693,53 +6777,6 @@ status open
 
 					
 \backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-						
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{E}=\mathcal{E}\cup\left\{ \alpha\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
 EndIf
 \end_layout
 
@@ -6838,10 +6875,6 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\left(\mathcal{K}_{0},\mathcal{E}\right)$
-\end_inset
-
  
 \begin_inset ERT
 status open
@@ -6906,19 +6939,6 @@ as de
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-Explicación general, pseudocódigo, prueba de que es correcto
 \end_layout
 
 \end_inset
