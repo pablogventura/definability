@@ -4295,41 +4295,6 @@ reference "thm:preservacion existencial conj atomicas producto"
 .
 \end_layout
 
-\begin_layout Subsection
-Deteccion de homomorfismos
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Definicion de CSP, Minion, constraints que le pasamos a minion
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Generacion de subestructuras
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Las generamos desde un subconjunto, no esta muy pensado asi que se podria
- hacer mejor.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter
 Algoritmo de la Constelación
 \end_layout
@@ -6974,6 +6939,41 @@ as de
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deteccion de homomorfismos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definicion de CSP, Minion, constraints que le pasamos a minion
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generacion de subestructuras
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Las generamos desde un subconjunto, no esta muy pensado asi que se podria
+ hacer mejor.
 \end_layout
 
 \end_inset
