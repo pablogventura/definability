@@ -10514,5 +10514,345 @@ as de
 
 \end_layout
 
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:construccion de constelacion abierta"
+
+\end_inset
+
+Dado 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ lenguaje de primer orden, 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ una clase finita de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras finitas donde no hay estructuras 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfas.
+\end_layout
+
+\begin_layout Theorem
+Sea 
+\begin_inset Formula $P$
+\end_inset
+
+ un conjunto de tuplas de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras donde para cada tipo de isomorfismo en 
+\begin_inset Formula $S\left(\mathcal{K}\right)$
+\end_inset
+
+ hay una única tupla 
+\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}\right)$
+\end_inset
+
+ donde 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}$
+\end_inset
+
+, con 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ representante del tipo de isomorfismo y 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+.
+ Construimos 
+\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}=\left(\mathcal{K},\tilde{\mathcal{F}}^{\textnormal{open}}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\tilde{\mathcal{F}}^{\textnormal{open}}=Aut\cup Iso$
+\end_inset
+
+, donde 
+\begin_inset Formula $Aut=\bigcup_{\left(\mathbf{S}_{0},\mathbf{S}\right)\in P}\left\{ \left(\alpha,\mathbf{S},\mathbf{S}\right):\alpha\in Aut\left(\mathbf{S}_{0}\right)\right\} $
+\end_inset
+
+ y 
+\begin_inset Formula $Iso$
+\end_inset
+
+ es un conjunto de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+-flechas tal que dadas 
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}$
+\end_inset
+
+ con 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{A}\not=\mathbf{B}$
+\end_inset
+
+ pero 
+\begin_inset Formula $\mathbf{A}\cong\mathbf{B}$
+\end_inset
+
+, hay un único 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ isomorfismo, tal que 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in Iso$
+\end_inset
+
+ y 
+\begin_inset Formula $\left(\gamma^{-1},\mathbf{B},\mathbf{A}\right)\in Iso$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Entonces 
+\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
+\end_inset
+
+ genera a 
+\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Es claro que 
+\begin_inset Formula $\tilde{\mathcal{F}}^{\textnormal{open}}\subseteq\mathcal{F}^{\textnormal{open}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{\textnormal{open}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}\leq\mathbf{A}}{\mathbf{B}_{0}\leq\mathbf{B}}$
+\end_inset
+
+ isomorfismo, con 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ es maximal respecto a embeddings, entonces 
+\begin_inset Formula $\mathbf{A}_{0}=\mathbf{A}=\mathbf{B}=\mathbf{B}_{0}$
+\end_inset
+
+ y por lo tanto 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\gamma,\mathbf{A},\mathbf{A}\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ no es maximal y supongamos que ni 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+, ni 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ son representantes en 
+\begin_inset Formula $P$
+\end_inset
+
+ de su tipo de isomorfismo.
+ Entonces tomo 
+\begin_inset Formula $\left(\mathbf{C}_{0},\mathbf{C}\right)\in P$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\left(\delta,\mathbf{C},\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta]{\mathbf{C}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ isomorfismo y 
+\begin_inset Formula $\left(\delta',\mathbf{C},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta']{\mathbf{C}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ isomorfismo.
+ Como 
+\begin_inset Formula $\delta'^{-1}\gamma\delta=\lambda\in Aut\left(\mathbf{C}_{0}\right)$
+\end_inset
+
+ y 
+\begin_inset Formula $\left(\lambda,\mathbf{C},\mathbf{C}\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta',\mathbf{C},\mathbf{B}\right)\circ\left(\lambda,\mathbf{C},\mathbf{C}\right)\circ\left(\delta^{-1},\mathbf{A},\mathbf{C}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ no es maximal y supongamos que 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ es representante de su tipo de isomorfismo en 
+\begin_inset Formula $P$
+\end_inset
+
+, pero 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ no, entonces tomo 
+\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}'\right)$
+\end_inset
+
+ en 
+\begin_inset Formula $P$
+\end_inset
+
+, 
+\begin_inset Formula $\left(\delta,\mathbf{A}',\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ isomorfismo y 
+\begin_inset Formula $\left(\delta',\mathbf{B},\mathbf{A}'\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta]{\mathbf{B}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ isomorfismo.
+ Como 
+\begin_inset Formula $\delta'\gamma\delta=\lambda\in Aut\left(\mathbf{A}_{0}\right)$
+\end_inset
+
+ y 
+\begin_inset Formula $\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta'^{-1},\mathbf{A}',\mathbf{B}\right)\circ\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\circ\left(\delta{}^{-1},\mathbf{A},\mathbf{A}'\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ no es maximal y supongamos que tanto 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ como 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ son representantes en 
+\begin_inset Formula $P$
+\end_inset
+
+ de su tipo de isomorfismo.
+ Entonces 
+\begin_inset Formula $\mathbf{A}_{0}=\mathbf{B}_{0}$
+\end_inset
+
+.
+ Ahora tomo 
+\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}'\right)=\left(\mathbf{B}_{0},\mathbf{A}'\right)\in P$
+\end_inset
+
+ y 
+\begin_inset Formula $\left(\delta,\mathbf{A}',\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ isomorfismo y 
+\begin_inset Formula $\left(\delta',\mathbf{B},\mathbf{A}'\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
+\end_inset
+
+ isomorfismo.
+ Como 
+\begin_inset Formula $\delta'\gamma\delta=\lambda\in Aut\left(\mathbf{A}_{0}\right)$
+\end_inset
+
+ y 
+\begin_inset Formula $\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta'^{-1},\mathbf{A}',\mathbf{B}\right)\circ\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\circ\left(\delta{}^{-1},\mathbf{A},\mathbf{A}'\right)$
+\end_inset
+
+.
+\end_layout
+
 \end_body
 \end_document
