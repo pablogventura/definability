@@ -4313,6 +4313,30 @@ reference "thm:preservacion existencial conj atomicas producto"
 Algoritmo de la Constelación
 \end_layout
 
+\begin_layout Standard
+Una clase 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de estructuras será 
+\emph on
+normal
+\emph default
+ si dadas 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+ se tiene que 
+\begin_inset Formula $A\cap B\neq\emptyset$
+\end_inset
+
+ si y solo si 
+\begin_inset Formula $\mathbf{A}=\mathbf{B}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Preprocesamiento
 \end_layout
@@ -4980,23 +5004,44 @@ Dada
 
 .
  Además, dadas 
-\begin_inset Formula $\alpha=\left(f,\mathbf{M},\mathbf{T}\right)$
+\begin_inset Formula $\alpha=\left(f,\mathbf{A},\mathbf{B}\right)$
 \end_inset
 
  y 
-\begin_inset Formula $\beta=\left(g,\mathbf{S},\mathbf{M}\right)$
+\begin_inset Formula $\beta=\left(g,\mathbf{C},\mathbf{D}\right)$
 \end_inset
 
-, 
-\begin_inset Formula $\mathcal{K}$
+, la 
+\emph on
+composición
+\emph default
+ de 
+\begin_inset Formula $\alpha$
 \end_inset
 
--flechas tales que 
-\begin_inset Formula $f\circ g$
+ y 
+\begin_inset Formula $\beta$
 \end_inset
 
- esté definida, definimos 
-\begin_inset Formula $\alpha\circ\beta=\left(f\circ g,\mathbf{S},\mathbf{T}\right)$
+ estará definida cuando 
+\begin_inset Formula $\mathbf{A}=\mathbf{D}$
+\end_inset
+
+ y 
+\begin_inset Formula $im(g)\subseteq\mathrm{dom}(f)$
+\end_inset
+
+.
+ En ese caso la composición de 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta$
+\end_inset
+
+ será 
+\begin_inset Formula $\alpha\circ\beta=\left(f\circ g,\mathbf{C},\mathbf{B}\right)$
 \end_inset
 
 .
@@ -5140,6 +5185,93 @@ Dada
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Theorem
+Sea 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ un conjunto normal y finito de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras finitas donde no hay estructuras isomorfas.
+ Sea 
+\begin_inset Formula $\mathcal{S}\subseteq S(\mathcal{K})$
+\end_inset
+
+ tal que contiene exactamente un representante por cada tipo de isomorfismo
+ en 
+\begin_inset Formula $S(\mathcal{K})$
+\end_inset
+
+.
+ Sea 
+\begin_inset Formula $\mathcal{F}\subseteq subiso(\mathcal{K})$
+\end_inset
+
+ tal que:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+para cada 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+ se tiene que 
+\begin_inset Formula $aut(\mathbf{S})\subseteq\mathcal{F}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+para cada 
+\begin_inset Formula $\mathbf{A}\in S(\mathcal{K})-\mathcal{S}$
+\end_inset
+
+ 
+\shape italic
+hay 
+\begin_inset Formula $\gamma,\gamma^{-1}\in\mathcal{F}$
+\end_inset
+
+ para algún isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en el representante del tipo de isomorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Theorem
+Entonces 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ genera 
+\begin_inset Formula $\mathrm{subiso}(\mathcal{K})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Theorem
@@ -6965,6 +7097,51 @@ as de
 \end_inset
 
 
+\end_layout
+
+\begin_layout Lemma
+Sea 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ una estructura finita, entonces todo endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es un automorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $A$
+\end_inset
+
+ es finito tenemos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es sobre y además 
+\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
+\end_inset
+
+ para algún 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+.º
 \end_layout
 
 \begin_layout Section
