@@ -147,6 +147,60 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\subiso}[1]{\operatorname{sub\, iso}\left(#1\right)}
+{\mathrm{sub\, iso}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\subhom}[1]{\operatorname{sub\, hom}\left(#1\right)}
+{\mathrm{sub\, hom}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\iso}[1]{\operatorname{iso}\left(#1\right)}
+{\mathrm{iso}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\aut}[1]{\operatorname{aut}\left(#1\right)}
+{\mathrm{aut}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\hom}[1]{\operatorname{hom}\left(#1\right)}
+{\mathrm{hom}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\subestr}[1]{\operatorname{\mathbb{S}}\left(#1\right)}
+{\mathrm{\mathbb{S}}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -4565,7 +4619,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
 For{
 \end_layout
@@ -4596,7 +4650,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+		
 \backslash
 If{
 \end_layout
@@ -4631,7 +4685,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+			
 \backslash
 If{
 \end_layout
@@ -4666,7 +4720,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+				
 \backslash
 State{
 \end_layout
@@ -4697,7 +4751,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+			
 \backslash
 Else
 \end_layout
@@ -4713,7 +4767,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+				
 \backslash
 State{
 \end_layout
@@ -4778,7 +4832,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+			
 \backslash
 EndIf
 \end_layout
@@ -4794,7 +4848,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+		
 \backslash
 EndIf
 \end_layout
@@ -4810,7 +4864,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
 EndFor
 \end_layout
@@ -4978,115 +5032,20 @@ Definibilidad abierta
 \end_layout
 
 \begin_layout Standard
-Dada 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- una familia de 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructuras, llamaremos 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--flecha a una terna 
-\begin_inset Formula $\left(f,\mathbf{A},\mathbf{B}\right)$
-\end_inset
-
- donde 
-\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+Dados 
+\begin_inset Formula $\mathcal{F}_{0}$
 \end_inset
 
  y 
-\begin_inset Formula $\funcion[f]{\mathcal{D}_{f}\subseteq A}{\mathcal{I}_{f}\subseteq B}$
-\end_inset
-
-.
- Además, dadas 
-\begin_inset Formula $\alpha=\left(f,\mathbf{A},\mathbf{B}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\beta=\left(g,\mathbf{C},\mathbf{D}\right)$
-\end_inset
-
-, la 
-\emph on
-composición
-\emph default
- de 
-\begin_inset Formula $\alpha$
-\end_inset
-
- y 
-\begin_inset Formula $\beta$
-\end_inset
-
- estará definida cuando 
-\begin_inset Formula $\mathbf{A}=\mathbf{D}$
-\end_inset
-
- y 
-\begin_inset Formula $im(g)\subseteq\mathrm{dom}(f)$
-\end_inset
-
-.
- En ese caso la composición de 
-\begin_inset Formula $\alpha$
-\end_inset
-
- y 
-\begin_inset Formula $\beta$
-\end_inset
-
- será 
-\begin_inset Formula $\alpha\circ\beta=\left(f\circ g,\mathbf{C},\mathbf{B}\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Una 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--constelación será una tupla 
-\begin_inset Formula $\left(\mathcal{K},\mathcal{F}\right)$
-\end_inset
-
- donde 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- será un conjunto de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--flechas.
- 
-\end_layout
-
-\begin_layout Standard
-Dadas 
-\begin_inset Formula $\mathcal{C}_{0}=\left(\mathcal{K},\mathcal{F}_{0}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\mathcal{C}=\left(\mathcal{K},\mathcal{F}\right)$
-\end_inset
-
- 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--constelaciones diremos que 
-\begin_inset Formula $\mathcal{C}_{0}$
+ dos conjuntos de funciones, diremos que 
+\begin_inset Formula $\mathcal{F}_{0}$
 \end_inset
 
  genera a 
-\begin_inset Formula $\mathcal{C}$
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
  si 
@@ -5109,18 +5068,47 @@ Dadas
 \end_layout
 
 \begin_layout Standard
-Dada 
+Dado un conjunto 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, definimos 
-\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}=\left(\mathcal{K},\mathcal{F}^{open}\right)$
-\end_inset
-
- con 
+ de estructuras definimos los siguentes conjuntos:
 \begin_inset Formula 
 \[
-\mathcal{F}^{open}=\left\{ \left(\gamma,\mathbf{S},\mathbf{T}\right):\gamma\textnormal{ es un isomorfismo entre }\mathbf{S}_{0}\leq\mathbf{S}\textnormal{ y }\mathbf{T}_{0}\leq\mathbf{T}\right\} 
+\iso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\subiso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\subhom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} 
 \]
 
 \end_inset
@@ -5135,37 +5123,25 @@ name "lem:categoria abierta completa alcanza"
 
 \end_inset
 
-Dada 
-\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
-\end_inset
-
-, y dado un 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
- lenguaje de primer orden tal que 
+ lenguajes de primer orden tales que 
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- es un símbolo de relación n-ario.
- Si extendemos cada 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructura en 
+ es un símbolo de relación n-ario y 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- a una 
+ un conjunto finito de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructura, entonces si para cada 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{open}$
-\end_inset
-
- 
-\begin_inset Formula $\gamma$
+-estructuras finitas.
+ Entonces si cada 
+\begin_inset Formula $\gamma\in\subiso{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
 
  preserva 
@@ -5187,7 +5163,24 @@ Dada
 .
 \end_layout
 
+\begin_layout Proof
+Directo del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:construccion de constelacion abierta"
+
+\end_inset
+
 Sea 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -5201,8 +5194,20 @@ Sea
 \begin_inset Formula $\mathcal{S}\subseteq S(\mathcal{K})$
 \end_inset
 
- tal que contiene exactamente un representante por cada tipo de isomorfismo
- en 
+ tal que 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{K}\subseteq\mathcal{S}$
+\end_inset
+
+ y
+\end_layout
+
+\end_inset
+
+ contiene exactamente un representante por cada tipo de isomorfismo en 
 \begin_inset Formula $S(\mathcal{K})$
 \end_inset
 
@@ -5221,7 +5226,7 @@ para cada
 \end_inset
 
  se tiene que 
-\begin_inset Formula $aut(\mathbf{S})\subseteq\mathcal{F}$
+\begin_inset Formula $\aut{\mathbf{S}}\subseteq\mathcal{F}$
 \end_inset
 
 ,
@@ -5264,142 +5269,7 @@ Entonces
 \end_inset
 
  genera 
-\begin_inset Formula $\mathrm{subiso}(\mathcal{K})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout --Separator--
-
-\end_layout
-
-\begin_layout Theorem
-\begin_inset CommandInset label
-LatexCommand label
-name "thm:construccion de constelacion abierta"
-
-\end_inset
-
-Dado 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
- lenguaje de primer orden, 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- una clase finita de 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructuras finitas donde no hay estructuras 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfas.
-\end_layout
-
-\begin_layout Theorem
-Sea 
-\begin_inset Formula $P$
-\end_inset
-
- un conjunto de tuplas de 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructuras donde para cada tipo de isomorfismo en 
-\begin_inset Formula $S\left(\mathcal{K}\right)$
-\end_inset
-
- hay una única tupla 
-\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}\right)$
-\end_inset
-
- donde 
-\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}$
-\end_inset
-
-, con 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- representante del tipo de isomorfismo y 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
-.
- Construimos 
-\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}=\left(\mathcal{K},\tilde{\mathcal{F}}^{\textnormal{open}}\right)$
-\end_inset
-
- con 
-\begin_inset Formula $\tilde{\mathcal{F}}^{\textnormal{open}}=Aut\cup Iso$
-\end_inset
-
-, donde 
-\begin_inset Formula $Aut=\bigcup_{\left(\mathbf{S}_{0},\mathbf{S}\right)\in P}\left\{ \left(\alpha,\mathbf{S},\mathbf{S}\right):\alpha\in Aut\left(\mathbf{S}_{0}\right)\right\} $
-\end_inset
-
- y 
-\begin_inset Formula $Iso$
-\end_inset
-
- es un conjunto de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--flechas tal que dadas 
-\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}$
-\end_inset
-
- y 
-\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}$
-\end_inset
-
- con 
-\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbf{A}\not=\mathbf{B}$
-\end_inset
-
- pero 
-\begin_inset Formula $\mathbf{A}\cong\mathbf{B}$
-\end_inset
-
-, hay un único 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
-\end_inset
-
- isomorfismo, tal que 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in Iso$
-\end_inset
-
- y 
-\begin_inset Formula $\left(\gamma^{-1},\mathbf{B},\mathbf{A}\right)\in Iso$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Theorem
-Entonces 
-\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
-\end_inset
-
- genera a 
-\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Es claro que 
-\begin_inset Formula $\tilde{\mathcal{F}}^{\textnormal{open}}\subseteq\mathcal{F}^{\textnormal{open}}$
+\begin_inset Formula $\subiso{\mathcal{K}}$
 \end_inset
 
 .
@@ -5407,7 +5277,7 @@ Es claro que
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{\textnormal{open}}$
+\begin_inset Formula $\gamma\in\subiso{\mathcal{K}}$
 \end_inset
 
 , entonces 
@@ -5423,128 +5293,19 @@ Sea
 
 \begin_layout Proof
 Si 
-\begin_inset Formula $\mathbf{A}_{0}$
+\begin_inset Formula $\mathbf{A}_{0},\mathbf{B}_{0}\in\mathcal{S}$
 \end_inset
 
- es maximal respecto a embeddings, entonces 
-\begin_inset Formula $\mathbf{A}_{0}=\mathbf{A}=\mathbf{B}=\mathbf{B}_{0}$
-\end_inset
-
- y por lo tanto 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\gamma,\mathbf{A},\mathbf{A}\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Si 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- no es maximal y supongamos que ni 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
-, ni 
-\begin_inset Formula $\mathbf{B}_{0}$
-\end_inset
-
- son representantes en 
-\begin_inset Formula $P$
-\end_inset
-
- de su tipo de isomorfismo.
- Entonces tomo 
-\begin_inset Formula $\left(\mathbf{C}_{0},\mathbf{C}\right)\in P$
-\end_inset
-
- tal que 
-\begin_inset Formula $\left(\delta,\mathbf{C},\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
- con 
-\begin_inset Formula $\funcion[\delta]{\mathbf{C}_{0}}{\mathbf{A}_{0}}$
-\end_inset
-
- isomorfismo y 
-\begin_inset Formula $\left(\delta',\mathbf{C},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
- con 
-\begin_inset Formula $\funcion[\delta']{\mathbf{C}_{0}}{\mathbf{B}_{0}}$
-\end_inset
-
- isomorfismo.
- Como 
-\begin_inset Formula $\delta'^{-1}\gamma\delta=\lambda\in Aut\left(\mathbf{C}_{0}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\left(\lambda,\mathbf{C},\mathbf{C}\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
-.
- Entonces 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta',\mathbf{C},\mathbf{B}\right)\circ\left(\lambda,\mathbf{C},\mathbf{C}\right)\circ\left(\delta^{-1},\mathbf{A},\mathbf{C}\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Si 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- no es maximal y supongamos que 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- es representante de su tipo de isomorfismo en 
-\begin_inset Formula $P$
-\end_inset
-
-, pero 
-\begin_inset Formula $\mathbf{B}_{0}$
-\end_inset
-
- no, entonces tomo 
-\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}'\right)$
-\end_inset
-
- en 
-\begin_inset Formula $P$
+, como no hay estructuras isomorfas en 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
 , 
-\begin_inset Formula $\left(\delta,\mathbf{A}',\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
+\begin_inset Formula $\mathbf{A}_{0}=\mathbf{B}_{0}$
 \end_inset
 
- con 
-\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
-\end_inset
-
- isomorfismo y 
-\begin_inset Formula $\left(\delta',\mathbf{B},\mathbf{A}'\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
- con 
-\begin_inset Formula $\funcion[\delta]{\mathbf{B}_{0}}{\mathbf{A}_{0}}$
-\end_inset
-
- isomorfismo.
- Como 
-\begin_inset Formula $\delta'\gamma\delta=\lambda\in Aut\left(\mathbf{A}_{0}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
-.
- Entonces 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta'^{-1},\mathbf{A}',\mathbf{B}\right)\circ\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\circ\left(\delta{}^{-1},\mathbf{A},\mathbf{A}'\right)$
+, por lo tanto 
+\begin_inset Formula $\gamma\in\aut{\mathbf{A}_{0}}\subseteq\mathcal{F}$
 \end_inset
 
 .
@@ -5552,59 +5313,82 @@ Si
 
 \begin_layout Proof
 Si 
+\begin_inset Formula $\mathbf{A}_{0}\in\mathcal{S}$
+\end_inset
+
+, pero 
+\begin_inset Formula $\mathbf{B}_{0}\notin\mathcal{S}$
+\end_inset
+
+, entonces 
 \begin_inset Formula $\mathbf{A}_{0}$
 \end_inset
 
- no es maximal y supongamos que tanto 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- como 
+ es el representante de 
 \begin_inset Formula $\mathbf{B}_{0}$
 \end_inset
 
- son representantes en 
-\begin_inset Formula $P$
-\end_inset
-
- de su tipo de isomorfismo.
- Entonces 
-\begin_inset Formula $\mathbf{A}_{0}=\mathbf{B}_{0}$
+ en 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
 .
- Ahora tomo 
-\begin_inset Formula $\left(\mathbf{A}_{0},\mathbf{A}'\right)=\left(\mathbf{B}_{0},\mathbf{A}'\right)\in P$
+ Entonces hay un isomorfismo 
+\begin_inset Formula $\funcion[\delta]{\mathbf{B}_{0}}{\mathbf{A}_{0}}$
 \end_inset
 
- y 
-\begin_inset Formula $\left(\delta,\mathbf{A}',\mathbf{A}\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
- con 
-\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
-\end_inset
-
- isomorfismo y 
-\begin_inset Formula $\left(\delta',\mathbf{B},\mathbf{A}'\right)\in\tilde{\mathcal{F}}^{\textnormal{open}}$
-\end_inset
-
- con 
-\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{A}_{0}}$
-\end_inset
-
- isomorfismo.
- Como 
-\begin_inset Formula $\delta'\gamma\delta=\lambda\in Aut\left(\mathbf{A}_{0}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\in Aut\subseteq\tilde{\mathcal{F}}^{\textnormal{open}}$
+ tal que 
+\begin_inset Formula $\delta,\delta^{-1}\in\mathcal{F}$
 \end_inset
 
 .
- Entonces 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)=\left(\delta'^{-1},\mathbf{A}',\mathbf{B}\right)\circ\left(\lambda,\mathbf{A}',\mathbf{A}'\right)\circ\left(\delta{}^{-1},\mathbf{A},\mathbf{A}'\right)$
+ Claramente 
+\begin_inset Formula $\delta\gamma=\lambda\in\aut{\mathbf{A}_{0}}\subseteq\mathcal{F}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $\gamma=\delta^{-1}\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0},\mathbf{B}_{0}\notin\mathcal{S}$
+\end_inset
+
+, hay 
+\begin_inset Formula $\mathbf{C}_{0}\in\mathcal{S}$
+\end_inset
+
+ que es representante de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+, entonces hay 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{C}_{0}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\funcion[\delta']{\mathbf{B}_{0}}{\mathbf{C}_{0}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\delta,\delta^{-1},\delta',\delta'^{-1}\in\mathcal{F}$
+\end_inset
+
+.
+ Claramente 
+\begin_inset Formula $\delta'\gamma\delta^{-1}=\lambda\in\aut{\mathbf{C}_{0}}\subseteq\mathcal{F}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $\gamma=\delta'^{-1}\lambda\delta$
 \end_inset
 
 .
@@ -5617,53 +5401,48 @@ name "lem:preservar en la constelacion abierta es preservar en la categoria abie
 
 \end_inset
 
-Dadas 
-\begin_inset Formula $\mathcal{C}_{\mathcal{K}}^{open}$
-\end_inset
-
-, 
-\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
-\end_inset
-
-, y dado un 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
- lenguaje de primer orden tal que 
+ lenguajes de primer orden tales que 
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- es un símbolo de relación n-ario.
- Si extendemos cada 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructura en 
+ es un símbolo de relación n-ario y 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- a una 
+ un conjunto finito de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructura, si para cada 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{open}$
+-estructuras finitas y sea 
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
- 
-\begin_inset Formula $\gamma$
+ construido sobre 
+\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
+\end_inset
+
+ como en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+.
+ Entonces si cada 
+\begin_inset Formula $\gamma\in\mathcal{F}$
 \end_inset
 
  preserva 
 \begin_inset Formula $R$
 \end_inset
 
-, entonces para cada 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\mathcal{F}^{open}$
-\end_inset
-
- 
-\begin_inset Formula $\gamma$
+, toda 
+\begin_inset Formula $\delta\in\subiso{\mathcal{K}}$
 \end_inset
 
  preserva 
@@ -5684,44 +5463,47 @@ name "cor:preservar en la constelacion abierta es ser abierta definible"
 
 \end_inset
 
-Dada 
-\begin_inset Formula $\tilde{\mathcal{C}}_{\mathcal{K}}^{open}$
-\end_inset
-
- y dado un 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
- lenguaje de primer orden tal que 
+ lenguajes de primer orden tales que 
 \begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
 \end_inset
 
- es un símbolo de relación n-ario.
- Dada una extensión para cada 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructura en 
+ es un símbolo de relación n-ario y 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- a una 
+ un conjunto finito de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructura, si cada 
-\begin_inset Formula $\left(\gamma,\mathbf{A},\mathbf{B}\right)\in\tilde{\mathcal{F}}^{open}$
+-estructuras finitas y sea 
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
- 
-\begin_inset Formula $\gamma$
+ construido sobre 
+\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
+\end_inset
+
+ como en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+.
+ Entonces si cada 
+\begin_inset Formula $\gamma\in\mathcal{F}$
 \end_inset
 
  preserva 
 \begin_inset Formula $R$
 \end_inset
 
-, entonces 
+, 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5781,35 +5563,30 @@ reference "alg:constelacion abierta"
 
 \end_inset
 
- recorremos los isomorfismos en 
-\begin_inset Formula $\tilde{\mathcal{F}}^{open}$
+ vamos reccoriendo 
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
-.
- Comenzamos recorriendo las estructuras en 
+, para esto recorremos las estructuras en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, desde la de mayor cardinalidad a la de menor cardinalidad.
- Esto permite detectar cuando hay 
-\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+ y buscamos isomorfismos con los representantes en 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
- tales que 
-\begin_inset Formula $\mathbf{A}\leq\mathbf{B}$
+ y los revisamos por preservacion.
+ Si no encontramos un representante lo agregamos a 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
- y nos permite evitar calcular las subestructuras de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-, ya que serán subestructuras de 
-\begin_inset Formula $\mathbf{B}$
+ y tambien revisamos por preservacion sus automorfismos, luego hacemos lo
+ mismo con sus subestructuras y luego coninuamos con la siguiente estructura
+ en 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
 .
- Además recorremos las subestructuras de menor a mayor ya que es mas fácil
- detectar isomorfismos entre subestructuras mas chicas.
 \end_layout
 
 \begin_layout Standard
@@ -5885,7 +5662,38 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}_{0}=\emptyset$
+\begin_inset Formula $\mathcal{S}=\emptyset$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{F}=\emptyset$
 \end_inset
 
 
@@ -5934,6 +5742,23 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+el algoritmo no garantiza 
+\begin_inset Formula $\mathcal{K}\subseteq\mathcal{S}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -5941,13 +5766,21 @@ status open
 
 	
 \backslash
-State{
+If{
 \end_layout
 
 \end_inset
 
+hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}}$
+\end_inset
 
-\begin_inset Formula $\mathcal{K}_{0}=\mathcal{K}_{0}\cup\left\{ \mathbf{A}\right\} $
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo, con 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
 
@@ -5970,7 +5803,42 @@ status open
 
 \begin_layout Plain Layout
 
-	
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
 \backslash
 State{
 \end_layout
@@ -5978,7 +5846,104 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}=\mathcal{K}-\left\{ \mathbf{A}\right\} $
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{A}\right\} $
 \end_inset
 
 
@@ -6001,7 +5966,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 For{
 \end_layout
@@ -6032,7 +5997,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 If{
 \end_layout
@@ -6067,7 +6032,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 State{
 \end_layout
@@ -6132,7 +6097,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 EndIf
 \end_layout
@@ -6148,7 +6113,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 EndFor
 \end_layout
@@ -6164,7 +6129,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 For{
 \end_layout
@@ -6172,7 +6137,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0}\in S_{\mathcal{L}}(\mathbf{A})$
+\begin_inset Formula $\mathbf{B}\in S_{\mathcal{L}}(\mathbf{A})-\left\{ \mathbf{A}\right\} $
 \end_inset
 
 , desde la menor a la mayor cardinalidad
@@ -6195,7 +6160,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 If{
 \end_layout
@@ -6203,7 +6168,7 @@ If{
 \end_inset
 
 hay un 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
 \end_inset
 
  
@@ -6211,7 +6176,7 @@ hay un
 \end_inset
 
 -isomorfismo, con 
-\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
 
@@ -6234,7 +6199,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 If{
 \end_layout
@@ -6269,7 +6234,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+					
 \backslash
 State{
 \end_layout
@@ -6334,6 +6299,22 @@ status open
 
 \begin_layout Plain Layout
 
+				
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 			
 \backslash
 Else
@@ -6358,38 +6339,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}_{0}=\mathcal{K}_{0}\cup\left\{ \mathbf{B}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{K}=\mathcal{K}-\left\{ \mathbf{B}\right\} $
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{S}\right\} $
 \end_inset
 
 
@@ -6420,7 +6370,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{S})$
 \end_inset
 
 
@@ -6593,372 +6543,7 @@ status open
 
 		
 \backslash
-ElsIf{
-\end_layout
-
-\end_inset
-
-hay un 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}}$
-\end_inset
-
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo, con 
-\begin_inset Formula $\mathbf{B}\in\mathcal{K}_{0}-\left\{ \mathbf{A}_{0}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{K}_{0}=\mathcal{K}_{0}\cup\left\{ \mathbf{A}_{0}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A}_{0})$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--automorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-						
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\alpha$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
 EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndIf
 \end_layout
 
 \end_inset
@@ -6974,7 +6559,7 @@ status open
 
 	
 \backslash
-EndFor
+EndIf
 \end_layout
 
 \end_inset
@@ -7025,7 +6610,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}_{0}$
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
  
