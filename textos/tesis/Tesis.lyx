@@ -3594,6 +3594,338 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
+name "thm:definibiliad de primer orden"
+
+\end_inset
+
+Sean 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden, sea 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario.
+ Para una clase finita 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras, los siguientes son equivalentes:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Hay una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Para todas 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\end_inset
+
+, todo 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+isomorfismo
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+1
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+2) Sea 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ existencial que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, y sea 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ un embedding.
+ Entonces 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{S}\leq\mathbf{B}}$
+\end_inset
+
+ es un isomorfismo.
+ Supongamos 
+\begin_inset Formula $\sat{\mathbf{A}}{\varphi}{\bar{a}}$
+\end_inset
+
+ entonces 
+\begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\gamma\left(\bar{a}\right)}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es de la forma 
+\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\psi$
+\end_inset
+
+ abierta, existe un 
+\begin_inset Formula $\bar{s}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat{\mathbf{S}}{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\psi$
+\end_inset
+
+ es abierta y 
+\begin_inset Formula $\mathbf{S}\leq\mathbf{B}$
+\end_inset
+
+, por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:abiertas valen en subestructuras y viceversa"
+
+\end_inset
+
+ 
+\begin_inset Formula $\sat{\mathbf{B}}{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
+\end_inset
+
+.
+ Entonces 
+\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\gamma\left(\bar{a}\right)}$
+\end_inset
+
+ y como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+2
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+1) Para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K},$
+\end_inset
+
+ cada 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, tomo 
+\begin_inset Formula $\bar{a'}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+.
+ Ahora tomo 
+\begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+, que es fórmula por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantidad de formulas es finita"
+
+\end_inset
+
+.
+ Ahora tomo 
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\left(\enumeracion[][b]\right)\in R^{\mathbf{B}}$
+\end_inset
+
+.
+ Entonces como 
+\begin_inset Formula $\varphi=\dots\vee\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots$
+\end_inset
+
+, y como 
+\begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\end_inset
+
+, 
+\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+.
+ Entonces para algún 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, y algún 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b}}$
+\end_inset
+
+.
+ Entonces hay un 
+\begin_inset Formula $\bar{z}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat{\mathbf{B}}{\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{z}}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}{\bar{b},\bar{z}}$
+\end_inset
+
+, por Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:diagrama sii isomorfismo"
+
+\end_inset
+
+ hay 
+\begin_inset Formula $\funcion[\gamma]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
+\end_inset
+
+ isomorfismo tal que 
+\begin_inset Formula $\left(\gamma\left(\bar{a}\right),\gamma\left(\bar{a'}\right)\right)=\left(\bar{b},\bar{z}\right)$
+\end_inset
+
+ y como 
+\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un embedding de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ y como 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+\end_inset
+
+, 
+\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Como 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ es disyunción de existenciales, por teorema puede ser convertida en una
+ fórmula existencial.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
 name "thm:definibiliad existencial"
 
 \end_inset
@@ -5472,14 +5804,7 @@ reference "thm:construccion de constelacion abierta"
 \end_layout
 
 \begin_layout Proof
-Directa de los lemas
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:preservar en la constelacion abierta es preservar en la categoria abierta"
-
-\end_inset
-
- y 
+Directa ya que composición de funciones que preservan, preserva y Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:categoria abierta completa alcanza"
@@ -5543,6 +5868,29 @@ reference "alg:constelacion abierta"
 \end_layout
 
 \begin_layout Standard
+Nótese en las lineas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lin:abierta-auto1"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lin:abierta-auto2"
+
+\end_inset
+
+ que no se necesita revisar si los automorfismos son 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-automorfismos ya que, como se recorren todos su inversa también es revisada
+ por preservacion.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -5562,6 +5910,7 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status open
@@ -5616,37 +5965,6 @@ State{
 
 
 \begin_inset Formula $\mathcal{S}=\emptyset$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{F}=\emptyset$
 \end_inset
 
 
@@ -5944,11 +6262,11 @@ If{
 \begin_inset Formula $\alpha$
 \end_inset
 
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+ no preserva 
+\begin_inset Formula $R$
 \end_inset
 
--automorfismo
+
 \begin_inset ERT
 status open
 
@@ -5956,6 +6274,13 @@ status open
 
 }
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lin:abierta-auto1"
 
 \end_inset
 
@@ -6340,11 +6665,11 @@ If{
 \begin_inset Formula $\alpha$
 \end_inset
 
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+ no preserva 
+\begin_inset Formula $R$
 \end_inset
 
--automorfismo
+
 \begin_inset ERT
 status open
 
@@ -6352,6 +6677,13 @@ status open
 
 }
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lin:abierta-auto2"
 
 \end_inset
 
@@ -6620,51 +6952,6 @@ as de
 
 \end_layout
 
-\begin_layout Lemma
-Sea 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- una estructura finita, entonces todo endomorfismo inyectivo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- es un automorfismo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Sea 
-\begin_inset Formula $\gamma$
-\end_inset
-
- un endomorfismo inyectivo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $A$
-\end_inset
-
- es finito tenemos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es sobre y además 
-\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
-\end_inset
-
- para algún 
-\begin_inset Formula $k\geq1$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Section
 Definibilidad de primer orden
 \end_layout
@@ -6686,6 +6973,7 @@ reference "alg:preprocesamiento"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status open
@@ -7138,6 +7426,7 @@ reference "alg:preprocesamiento"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status open
@@ -7776,6 +8065,99 @@ Si
 .
 \end_layout
 
+\begin_layout Proof
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Si al haber corrido durante la abierta estandar antes no encontre ningun
+ homomorfismo inyectivo, no significa que no vaya a haber en el otro sentido.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Las estructuras finitas tienen la propiedad de Cantor-Bernstein
+\end_layout
+
+\end_inset
+
+Dadas 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ estructuras finitas, si hay 
+\begin_inset Formula $f:A\rightarrow B$
+\end_inset
+
+ y 
+\begin_inset Formula $g:B\rightarrow A$
+\end_inset
+
+ homomorfismos inyectivos entonces hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ isormorfismo.
+\end_layout
+
+\begin_layout Proof
+Sean 
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
+\end_inset
+
+ estructuras finitas y 
+\begin_inset Formula $f:A\rightarrow B$
+\end_inset
+
+ y 
+\begin_inset Formula $g:B\rightarrow A$
+\end_inset
+
+ homomorfismos inyectivos.
+ Notar que 
+\begin_inset Formula $gf$
+\end_inset
+
+ es una permutación de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, y como 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es finito hay 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+ tal que 
+\begin_inset Formula $(gf)^{k}=Id$
+\end_inset
+
+.
+ Luego como 
+\begin_inset Formula $g^{-1}=f(gf)^{k-1}$
+\end_inset
+
+ vemos que 
+\begin_inset Formula $g^{-1}$
+\end_inset
+
+ es homomorfismo.
+\end_layout
+
 \begin_layout Standard
 Por el Teorema 
 \begin_inset CommandInset ref
@@ -7803,6 +8185,7 @@ reference "alg:constelacion abierta"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status open
@@ -7850,13 +8233,900 @@ status open
 
 
 \backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{S}=\emptyset$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
 For{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}_{0}$
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, desde la mayor a la menor cardinalidad
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo, con 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{A}\right\} $
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{B}\in S_{\mathcal{L}}(\mathbf{A})-\left\{ \mathbf{A}\right\} $
+\end_inset
+
+, desde la menor a la mayor cardinalidad
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay un 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo, con 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{B}\right\} $
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+						
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{S}$
 \end_inset
 
 
@@ -7887,7 +9157,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\mathbf{B}\in\mathcal{K}_{0}$
+\begin_inset Formula $\mathbf{B}\in\mathcal{S}$
 \end_inset
 
 
@@ -7926,6 +9196,9 @@ hay un
 \end_inset
 
 -homomorfismo
+ sobreyectivo
+\lang spanish
+
 \begin_inset ERT
 status open
 
@@ -8185,7 +9458,7 @@ end{algorithmic}
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Detección de homomorfismos
 \end_layout
 
@@ -8305,7 +9578,52 @@ Una valuación es consistente si no viola ninguna de las restricciones.
  En ese caso diremos que la valuación resuelve el CSP.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Lemma
+Sea 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ una estructura finita, entonces todo endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es un automorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $A$
+\end_inset
+
+ es finito tenemos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es sobre y además 
+\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
+\end_inset
+
+ para algún 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
 Generación de subestructuras
 \end_layout
 
