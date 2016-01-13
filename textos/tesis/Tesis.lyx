@@ -201,6 +201,24 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\dominio}[1]{\operatorname{Dom}\left(#1\right)}
+{\mathrm{Dom}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\imagen}[1]{\operatorname{Img}\left(#1\right)}
+{\mathrm{Img}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -1454,7 +1472,7 @@ reference "thm:diagrama sii isomorfismo"
 \end_layout
 
 \begin_layout Definition
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -1646,7 +1664,7 @@ name "thm:definibilidad abierta"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -2416,7 +2434,7 @@ name "thm:definibilidad abierta positiva"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -2775,7 +2793,7 @@ name "thm:preservacion existencial conj atomicas producto"
 
 \end_inset
 
-Dadas 
+Sean 
 \begin_inset Formula $\enumeracion[m][\mathbf{A}]$
 \end_inset
 
@@ -2827,7 +2845,7 @@ name "thm:definibilidad conjuncion de atomicas"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -3580,7 +3598,7 @@ name "thm:definibiliad existencial"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -3902,7 +3920,7 @@ name "thm:definibilidad existencial positiva"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
@@ -3974,7 +3992,7 @@ name "thm:definibilidad primitiva positiva"
 
 \end_inset
 
-Dados 
+Sean 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
