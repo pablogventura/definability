@@ -5200,29 +5200,17 @@ Sea
 
 -estructuras finitas donde no hay estructuras isomorfas.
  Sea 
-\begin_inset Formula $\mathcal{S}\subseteq\mathbb{S}(\mathcal{K})$
+\begin_inset Formula $\mathcal{S}\subseteq\subestr{\mathcal{K}}$
 \end_inset
 
- tal que 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Formula $\mathcal{K}\subseteq\mathcal{S}$
-\end_inset
-
- y
-\end_layout
-
-\end_inset
-
- contiene exactamente un representante por cada tipo de isomorfismo en 
+ tal que contiene exactamente un representante por cada tipo de isomorfismo
+ en 
 \begin_inset Formula $S(\mathcal{K})$
 \end_inset
 
 .
  Sea 
-\begin_inset Formula $\mathcal{F}\subseteq subiso(\mathcal{K})$
+\begin_inset Formula $\mathcal{F}\subseteq\subiso{\mathcal{K}}$
 \end_inset
 
  tal que:
@@ -5681,23 +5669,6 @@ status open
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-el algoritmo no garantiza 
-\begin_inset Formula $\mathcal{K}\subseteq\mathcal{S}$
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -7533,6 +7504,258 @@ end{algorithmic}
 
 \begin_layout Section
 Definibilidad abierta-positiva
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:construccion de constelacion abierta positiva"
+
+\end_inset
+
+Sea 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ un conjunto normal y finito de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras finitas donde no hay estructuras isomorfas.
+ Sea 
+\begin_inset Formula $\mathcal{S}\subseteq\subestr{\mathcal{K}}$
+\end_inset
+
+ tal que contiene exactamente un representante por cada tipo de isomorfismo
+ en 
+\begin_inset Formula $S(\mathcal{K})$
+\end_inset
+
+.
+ Sea 
+\begin_inset Formula $\mathcal{H}\subseteq\subhom{\mathcal{K}}$
+\end_inset
+
+ tal que:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{F}\subseteq\mathcal{H}$
+\end_inset
+
+ con 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ construido sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ como en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+para cada 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{S}$
+\end_inset
+
+ 
+\shape italic
+todo 
+\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ homomorfismo sobreyectivo esta en 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Theorem
+Entonces 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+ genera 
+\begin_inset Formula $\subhom{\mathcal{K}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $h\in\subhom{\mathcal{K}}$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\funcion[h]{\mathbf{A}_{0}\leq\mathbf{A}}{\mathbf{B}_{0}\leq\mathbf{B}}$
+\end_inset
+
+ homomorfismo, con 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Notar que 
+\begin_inset Formula $h\left(\mathbf{A}_{0}\right)<\mathbf{B_{0}}$
+\end_inset
+
+, por lo tanto 
+\begin_inset Formula $h\left(\mathbf{A}_{0}\right)\in\subestr{\mathcal{K}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0},h\left(\mathbf{A}_{0}\right)\in\mathcal{S}$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+ es homomorfismo sobreyectivo entre estructuras de 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+, por lo que 
+\begin_inset Formula $h\in\mathcal{H}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0}\in\mathcal{S}$
+\end_inset
+
+ pero 
+\begin_inset Formula $h\left(\mathbf{A}_{0}\right)\notin\mathcal{S}$
+\end_inset
+
+, hay 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ representante de 
+\begin_inset Formula $h\left(\mathbf{A}_{0}\right)$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y un isomorfismo 
+\begin_inset Formula $\funcion[\delta]{h\left(\mathbf{A}_{0}\right)}{\mathbf{S}}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\delta,\delta^{-1}\in\mathcal{F}\subseteq\mathcal{H}$
+\end_inset
+
+.
+ Luego 
+\begin_inset Formula $\delta^{-1}h=f$
+\end_inset
+
+ donde 
+\begin_inset Formula $f$
+\end_inset
+
+ es un homomorfismo claramente sobreyectivo de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+, por lo que 
+\begin_inset Formula $f\in\mathcal{H}$
+\end_inset
+
+.
+ Finalmente 
+\begin_inset Formula $h=\delta f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Si 
+\begin_inset Formula $\mathbf{A}_{0},h\left(\mathbf{A}_{0}\right)\notin\mathcal{S}$
+\end_inset
+
+, hay respectivos 
+\begin_inset Formula $\mathbf{S},\mathbf{S}'\in\mathcal{S}$
+\end_inset
+
+ representantes de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $h\left(\mathbf{A}_{0}\right)$
+\end_inset
+
+.
+ Luego hay 
+\begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{S}}$
+\end_inset
+
+ y 
+\begin_inset Formula $\funcion[\delta']{h\left(\mathbf{A}_{0}\right)}{\mathbf{S}'}$
+\end_inset
+
+ tales que 
+\begin_inset Formula $\delta,\delta^{-1},\delta',\delta'^{-1}\in\mathcal{F}\subseteq\mathcal{H}$
+\end_inset
+
+.
+ Luego 
+\begin_inset Formula $\delta'h\delta^{-1}=f$
+\end_inset
+
+ donde 
+\begin_inset Formula $f$
+\end_inset
+
+ es un homomorfismo claramente sobreyectivo de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{S}'$
+\end_inset
+
+, por lo que 
+\begin_inset Formula $f\in\mathcal{H}$
+\end_inset
+
+.
+ Finalmente 
+\begin_inset Formula $h=\delta'^{-1}f\delta$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
