@@ -219,6 +219,15 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\partes}[1]{\operatorname{\mathcal{P}}\left(#1\right)}
+{\mathrm{\mathcal{P}}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -228,7 +237,7 @@ Preliminares
 \end_layout
 
 \begin_layout Standard
-Basandonos en 
+Basándonos en 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Campercholi15"
@@ -3683,63 +3692,12 @@ isomorfismo
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
- un embedding.
- Entonces 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{S}\leq\mathbf{B}}$
-\end_inset
-
- es un isomorfismo.
+ un isomorfismo.
  Supongamos 
 \begin_inset Formula $\sat{\mathbf{A}}{\varphi}{\bar{a}}$
 \end_inset
 
  entonces 
-\begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\gamma\left(\bar{a}\right)}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $\varphi$
-\end_inset
-
- es de la forma 
-\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
-\end_inset
-
- con 
-\begin_inset Formula $\psi$
-\end_inset
-
- abierta, existe un 
-\begin_inset Formula $\bar{s}$
-\end_inset
-
- tal que 
-\begin_inset Formula $\sat{\mathbf{S}}{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $\psi$
-\end_inset
-
- es abierta y 
-\begin_inset Formula $\mathbf{S}\leq\mathbf{B}$
-\end_inset
-
-, por el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:abiertas valen en subestructuras y viceversa"
-
-\end_inset
-
- 
-\begin_inset Formula $\sat{\mathbf{B}}{\psi}{\gamma\left(\bar{a}\right),\bar{s}}$
-\end_inset
-
-.
- Entonces 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\gamma\left(\bar{a}\right)}$
 \end_inset
 
@@ -3783,6 +3741,10 @@ define a
 \begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
 \end_inset
 
+ y 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}=\mathbf{B}$
+\end_inset
+
 .
  Ahora tomo 
 \begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
@@ -3796,7 +3758,20 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Ahora tomo 
+ Ahora tomo
+\end_layout
+
+\begin_layout Proof
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Como debería ser esta fórmula ahora???????
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \[
 \varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
@@ -5431,7 +5406,7 @@ Dado un conjunto
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- de estructuras definimos los siguentes conjuntos:
+ de estructuras definimos los siguientes conjuntos:
 \begin_inset Formula 
 \[
 \iso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} 
@@ -5494,11 +5469,11 @@ Sean
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- un conjunto finito y de 
+ un conjunto normal de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructuras finitas.
+-estructuras.
  Entonces si cada 
 \begin_inset Formula $\gamma\in\subiso{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
@@ -5515,7 +5490,7 @@ Sean
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula abierta en 
+-fórmula abierta en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5544,11 +5519,11 @@ Sea
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- un conjunto normal y finito de 
+ un conjunto normal de 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--estructuras finitas donde no hay estructuras isomorfas.
+-estructuras donde no hay estructuras isomorfas.
  Sea 
 \begin_inset Formula $\mathcal{S}\subseteq\subestr{\mathcal{K}}$
 \end_inset
@@ -5796,7 +5771,7 @@ reference "thm:construccion de constelacion abierta"
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula abierta en 
+-fórmula abierta en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5853,13 +5828,13 @@ reference "alg:constelacion abierta"
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
- y los revisamos por preservacion.
+ y los revisamos por preservación.
  Si no encontramos un representante lo agregamos a 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
- y tambien revisamos por preservacion sus automorfismos, luego hacemos lo
- mismo con sus subestructuras y luego coninuamos con la siguiente estructura
+ y también revisamos por preservación sus automorfismos, luego hacemos lo
+ mismo con sus subestructuras y luego continuamos con la siguiente estructura
  en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -5868,7 +5843,7 @@ reference "alg:constelacion abierta"
 \end_layout
 
 \begin_layout Standard
-Nótese en las lineas 
+Notese en las lineas 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-auto1"
@@ -5887,7 +5862,7 @@ reference "lin:abierta-auto2"
 \end_inset
 
 -automorfismos ya que, como se recorren todos su inversa también es revisada
- por preservacion.
+ por preservación.
 \end_layout
 
 \begin_layout Standard
@@ -7824,18 +7799,18 @@ Sea
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- un conjunto normal y finito de 
+ un conjunto normal de 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--estructuras finitas donde no hay estructuras isomorfas.
+-estructuras donde no hay estructuras isomorfas.
  Sea 
 \begin_inset Formula $\mathcal{S}\subseteq\subestr{\mathcal{K}}$
 \end_inset
 
  tal que contiene exactamente un representante por cada tipo de isomorfismo
  en 
-\begin_inset Formula $S(\mathcal{K})$
+\begin_inset Formula $\subestr{\mathcal{K}}$
 \end_inset
 
 .
@@ -8070,7 +8045,7 @@ Si
 status open
 
 \begin_layout Plain Layout
-Si al haber corrido durante la abierta estandar antes no encontre ningun
+Si al haber corrido durante la abierta estándar antes no encontré ningún
  homomorfismo inyectivo, no significa que no vaya a haber en el otro sentido.
 \end_layout
 
@@ -8084,7 +8059,7 @@ Si al haber corrido durante la abierta estandar antes no encontre ningun
 status open
 
 \begin_layout Plain Layout
-Las estructuras finitas tienen la propiedad de Cantor-Bernstein
+Las estructuras finitas cumplen la propiedad de Cantor-Bernstein
 \end_layout
 
 \end_inset
@@ -8109,7 +8084,7 @@ Dadas
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
- isormorfismo.
+ isomorfismo.
 \end_layout
 
 \begin_layout Proof
@@ -9467,7 +9442,7 @@ Detección de homomorfismos
 status open
 
 \begin_layout Plain Layout
-Definición de CSP, Minion, constraints que le pasamos a minion
+Definición de CSP, Minion, constraints que le pasamos a Minion
 \end_layout
 
 \end_inset
@@ -9647,6 +9622,123 @@ Las generamos desde un subconjunto, no esta muy pensado así que se podría
 
 \begin_layout Section
 Definiciones e ideas básicas
+\end_layout
+
+\begin_layout Standard
+Llamaremos 
+\emph on
+álgebra de Lindenbaum
+\emph default
+ para un fragmento de primer orden dado sobre una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ a las clases de equivalencia en las sentencias de ese fragmento del lenguaje
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+.
+ Es decir el cociente bajo la relación de equivalencia definida en 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:equiv-formulas"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Las operaciones en un álgebra de Lindenbaum tienen una correspondencia natural
+ sobre las fórmulas.
+ La unión y la intersección se comportan respectivamente como la disyunción
+ y la conjunción, mientras que el complemento se comporta como la negación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Stone's_representation_theorem_for_Boolean_algebras
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Teorema de representación de Stone
+\end_layout
+
+\end_inset
+
+ Toda álgebra de Boole 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es isomorfa al álgebra definida por 
+\begin_inset Formula $\partes{At}$
+\end_inset
+
+ donde 
+\begin_inset Formula $At\subseteq A$
+\end_inset
+
+ es el conjunto de átomos en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Birkhoff's_representation_theorem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Teorema de representación de Birkhoff
+\end_layout
+
+\end_inset
+
+ Todo reticulado distributivo finito 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+ es isomorfo al reticulado de conjuntos descendientes del poset de elementos
+ join-irreducibles en 
+\begin_inset Formula $\mathbf{L}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
