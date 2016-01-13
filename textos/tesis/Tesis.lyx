@@ -4374,7 +4374,7 @@ Una clase
 
  de estructuras será 
 \emph on
-normal
+disjunta
 \emph default
  si dadas 
 \begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
@@ -4389,6 +4389,15 @@ normal
 \end_inset
 
 .
+ La clase 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ será 
+\emph on
+normal
+\emph default
+ si es disjunta y es un conjunto finito de estructuras finitas.
 \end_layout
 
 \begin_layout Section
@@ -5135,7 +5144,7 @@ Sean
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- un conjunto finito de 
+ un conjunto finito y de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
@@ -5191,7 +5200,7 @@ Sea
 
 -estructuras finitas donde no hay estructuras isomorfas.
  Sea 
-\begin_inset Formula $\mathcal{S}\subseteq S(\mathcal{K})$
+\begin_inset Formula $\mathcal{S}\subseteq\mathbb{S}(\mathcal{K})$
 \end_inset
 
  tal que 
@@ -5316,7 +5325,7 @@ Si
 \begin_inset Formula $\mathbf{A}_{0}\in\mathcal{S}$
 \end_inset
 
-, pero 
+ pero 
 \begin_inset Formula $\mathbf{B}_{0}\notin\mathcal{S}$
 \end_inset
 
@@ -5332,8 +5341,7 @@ Si
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
-.
- Entonces hay un isomorfismo 
+, y por lo tanto hay un isomorfismo 
 \begin_inset Formula $\funcion[\delta]{\mathbf{B}_{0}}{\mathbf{A}_{0}}$
 \end_inset
 
@@ -5370,7 +5378,8 @@ Si
 \begin_inset Formula $\mathbf{B}_{0}$
 \end_inset
 
-, entonces hay 
+.
+ Luego hay 
 \begin_inset Formula $\funcion[\delta]{\mathbf{A}_{0}}{\mathbf{C}_{0}}$
 \end_inset
 
@@ -5392,68 +5401,6 @@ Si
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Lemma
-\begin_inset CommandInset label
-LatexCommand label
-name "lem:preservar en la constelacion abierta es preservar en la categoria abierta"
-
-\end_inset
-
-Sean 
-\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
-\end_inset
-
- lenguajes de primer orden tales que 
-\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
-\end_inset
-
- es un símbolo de relación n-ario y 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- un conjunto finito de 
-\begin_inset Formula $\mathcal{L}'$
-\end_inset
-
--estructuras finitas y sea 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
- construido sobre 
-\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
-\end_inset
-
- como en el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:construccion de constelacion abierta"
-
-\end_inset
-
-.
- Entonces si cada 
-\begin_inset Formula $\gamma\in\mathcal{F}$
-\end_inset
-
- preserva 
-\begin_inset Formula $R$
-\end_inset
-
-, toda 
-\begin_inset Formula $\delta\in\subiso{\mathcal{K}}$
-\end_inset
-
- preserva 
-\begin_inset Formula $R$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Directa ya que composición de funciones que preservan, preserva.
 \end_layout
 
 \begin_layout Corollary
@@ -5563,7 +5510,7 @@ reference "alg:constelacion abierta"
 
 \end_inset
 
- vamos reccoriendo 
+ vamos recorriendo 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
@@ -5859,7 +5806,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  
@@ -6339,7 +6286,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{S}\right\} $
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{B}\right\} $
 \end_inset
 
 
@@ -6370,7 +6317,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{S})$
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
 \end_inset
 
 
@@ -6726,7 +6673,7 @@ Sea
 \begin_inset Formula $k\geq1$
 \end_inset
 
-.º
+.
 \end_layout
 
 \begin_layout Section
