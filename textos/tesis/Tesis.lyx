@@ -4722,7 +4722,11 @@ disjunta
 \emph on
 normal
 \emph default
- si es disjunta y es un conjunto finito de estructuras finitas.
+ si es disjunta, finita y cada una de las estructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ finita.
 \end_layout
 
 \begin_layout Section
@@ -5735,23 +5739,24 @@ Sean
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- un conjunto finito de 
+ un conjunto normal de 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructuras finitas y sea 
+-estructuras.
+ Supongamos 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- construido sobre 
-\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
-\end_inset
-
- como en el Teorema 
+ es como en el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:construccion de constelacion abierta"
 
+\end_inset
+
+ para la familia 
+\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
 \end_inset
 
 .
@@ -5763,7 +5768,7 @@ reference "thm:construccion de constelacion abierta"
 \begin_inset Formula $R$
 \end_inset
 
-, 
+, se tiene que 
 \begin_inset Formula $R$
 \end_inset
 
@@ -7830,10 +7835,6 @@ Sea
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- construido sobre 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
  como en el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -7841,7 +7842,7 @@ reference "thm:construccion de constelacion abierta"
 
 \end_inset
 
-.
+,
 \end_layout
 
 \begin_layout Itemize
@@ -7886,18 +7887,6 @@ Sea
 
  homomorfismo, con 
 \begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Notar que 
-\begin_inset Formula $h\left(\mathbf{A}_{0}\right)<\mathbf{B_{0}}$
-\end_inset
-
-, por lo tanto 
-\begin_inset Formula $h\left(\mathbf{A}_{0}\right)\in\subestr{\mathcal{K}}$
 \end_inset
 
 .
@@ -8118,7 +8107,7 @@ Sean
 \end_inset
 
  tal que 
-\begin_inset Formula $(gf)^{k}=Id$
+\begin_inset Formula $(gf)^{k}=\mathrm{Id}_{A}$
 \end_inset
 
 .
@@ -9170,10 +9159,7 @@ hay un
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--homomorfismo
- sobreyectivo
-\lang spanish
-
+-homomorfismo sobreyectivo
 \begin_inset ERT
 status open
 
