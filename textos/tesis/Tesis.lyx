@@ -10180,6 +10180,70 @@ Las generamos desde un subconjunto, no esta muy pensado así que se podría
 
 \end_layout
 
+\begin_layout Standard
+Dada una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, generamos sus subestructuras recorriendo 
+\begin_inset Formula $\partes A$
+\end_inset
+
+, desde la mayor a la menor cardinalidad filtrando aquellos 
+\begin_inset Formula $A_{0}\in\partes A$
+\end_inset
+
+ que no son cerrados bajo 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ademas cuando detectamos que una subestructura 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ ya tiene representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ durante nuestros algoritmos, disminuimos los subconjuntos a chequear, revisando
+ solo 
+\begin_inset Formula $\partes A-\partes{A_{0}}$
+\end_inset
+
+, ya que si 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ tiene representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+, entonces cada subestructura de 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ tiene representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dado que conocemos implementaciones de este problema mucho mas eficientes,
+ como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
+ en el futuro el algoritmo para generacion de subestructuras que hemos estado
+ utilizando durante este trabajo.
+\end_layout
+
 \begin_layout Chapter
 Álgebras de Lindenbaum
 \end_layout
