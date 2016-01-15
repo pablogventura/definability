@@ -9071,10 +9071,7 @@ Procedure{
 
 \end_inset
 
-
 agregarSubestructuras
-\lang spanish
-
 \begin_inset ERT
 status open
 
@@ -9438,7 +9435,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 If{
 \end_layout
@@ -9473,7 +9470,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 If{
 \end_layout
@@ -9508,7 +9505,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+					
 \backslash
 State{
 \end_layout
@@ -9573,7 +9570,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 EndIf
 \end_layout
@@ -9589,7 +9586,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 State{
 \end_layout
@@ -9627,7 +9624,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 Else
 \end_layout
@@ -9643,7 +9640,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 State{
 \end_layout
@@ -9674,7 +9671,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 For{
 \end_layout
@@ -9705,7 +9702,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+					
 \backslash
 If{
 \end_layout
@@ -9747,7 +9744,7 @@ status open
 
 \begin_layout Plain Layout
 
-					
+						
 \backslash
 State{
 \end_layout
@@ -9812,7 +9809,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+					
 \backslash
 EndIf
 \end_layout
@@ -9828,7 +9825,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+				
 \backslash
 EndFor
 \end_layout
@@ -9844,9 +9841,25 @@ status open
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndFor
 \end_layout
 
 \end_inset
