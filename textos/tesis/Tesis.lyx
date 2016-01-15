@@ -10832,6 +10832,87 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 \end_layout
 
 \begin_layout Chapter
+Documentación de Definability 
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+Definabilty es un paquete que desarollamos para SageMath, un software matematico
+ licenciado bajo la GPL.
+ Nuestro paquete implementa los algoritmos vistos en las secciones anteriores
+ y permite dada una clase de estructuras, dedicir definibilidad o generar
+ las algebras de lindenbaum de relaciones definibles.
+\end_layout
+
+\begin_layout Standard
+Nuestro paquete se basa en parte en las librerias desarolladas por Peter
+ Jipsen para utilizar Minion y Universal Algebra Calculator desde SageMath.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+http://math.chapman.edu/~jipsen/sagepkg/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El paquete se desarrolla en 
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/pablogventura/tesis"
+target "GitHub"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Instalación
+\end_layout
+
+\begin_layout Subsection
+Requerimientos
+\end_layout
+
+\begin_layout Itemize
+SageMath 6.7 o superior.
+\end_layout
+
+\begin_layout Itemize
+Minion 1.8 o superior.
+\end_layout
+
+\begin_layout Itemize
+LADR version de noviembre de 2009, (interfaz de linea de comandos de Prover9,
+ Mace4, y otros programas)
+\end_layout
+
+\begin_layout Subsection
+Instalacion del paquete en SageMath
+\end_layout
+
+\begin_layout Section
+Entrada de estructuras
+\end_layout
+
+\begin_layout Section
+Chequeo de definibilidad
+\end_layout
+
+\begin_layout Section
+Generación de álgebras de Lindenbaum
+\end_layout
+
+\begin_layout Chapter
 Conclusiones y trabajo futuro
 \end_layout
 
