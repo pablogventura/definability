@@ -256,6 +256,15 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\grafico}[1]{\operatorname{graph}\left(#1\right)}
+{\mathrm{graph}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introducción
 \end_layout
@@ -5923,7 +5932,7 @@ reference "alg:constelacion abierta"
 \end_layout
 
 \begin_layout Standard
-Notese en las lineas 
+Notar que en las lineas 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-auto1"
@@ -5946,7 +5955,7 @@ reference "lin:abierta-auto2"
 \end_layout
 
 \begin_layout Standard
-Ademas, una vez que una subestructura resulta ser 
+Además, una vez que una subestructura resulta ser 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -5959,8 +5968,8 @@ Ademas, una vez que una subestructura resulta ser
 \end_inset
 
  y que los isomorfismos internos preservan.
- Esto permite disminuir la cantidad de subalgebras a revisar, como se ve
- en la linea 
+ Esto permite disminuir la cantidad de subestructuras a revisar, como se
+ ve en la linea 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-saco-subestructuras"
@@ -10014,6 +10023,10 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 
 \end_layout
 
+\begin_layout Subsection
+CSP
+\end_layout
+
 \begin_layout Standard
 Como aparece en 
 \begin_inset CommandInset citation
@@ -10117,6 +10130,162 @@ Una valuación es consistente si no viola ninguna de las restricciones.
  En ese caso diremos que la valuación resuelve el CSP.
 \end_layout
 
+\begin_layout Standard
+La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
+ uno de estos problemas se pueden resolver muy eficientemente, y pensamos
+ continuar nuestro trabajo buscando maneras de aprovechar estas propiedades.
+\end_layout
+
+\begin_layout Subsection
+CSP para calcular homomorfismos
+\end_layout
+
+\begin_layout Standard
+Sean 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+,
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras, queremos encontrar homomorfismos de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+.
+ Bastaría con tomar 
+\begin_inset Formula 
+\[
+X=\left\{ X_{i}:i\in A\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D=B^{\left|A\right|}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=C^{R}\cup C^{f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $C^{R}$
+\end_inset
+
+ es tal que para cada 
+\begin_inset Formula $R\in\mathcal{L}$
+\end_inset
+
+ n-aria, para cada 
+\begin_inset Formula $\left(\enumeracion[][a]\right)\in R^{\mathbf{A}}$
+\end_inset
+
+, se da que 
+\begin_inset Formula $\left(\left(\enumeracion[a_{n}][X][a_{1}]\right),R^{\mathbf{B}}\right)\in C^{R}$
+\end_inset
+
+ y 
+\begin_inset Formula $C^{f}$
+\end_inset
+
+ es tal que para cada 
+\begin_inset Formula $f\in\mathcal{L}$
+\end_inset
+
+ n-aria, para cada 
+\begin_inset Formula $\left(\enumeracion[][a],a'\right)\in\grafico{f^{\mathbf{A}}}$
+\end_inset
+
+, se da que 
+\begin_inset Formula $\left(\left(\enumeracion[a_{n}][X][a_{1}],X_{a'}\right),\grafico{f^{\mathbf{B}}}\right)\in C^{f}$
+\end_inset
+
+.
+ Donde 
+\begin_inset Formula $\grafico{f^{\mathbf{A}}}$
+\end_inset
+
+ es el gráfico de la función definido como 
+\begin_inset Formula $\grafico{f^{\mathbf{A}}}=\left\{ \left(\enumeracion[][x],f^{\mathbf{A}}\left(\enumeracion[n]\right)\right):\left(\enumeracion[n][x]\right)\in A^{n}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Supongamos que 
+\begin_inset Formula $\funcion[V]XB$
+\end_inset
+
+ es una valuación solución de 
+\begin_inset Formula $\left(X,D,C\right)$
+\end_inset
+
+, entonces el homomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ determinado por 
+\begin_inset Formula $V$
+\end_inset
+
+ será 
+\begin_inset Formula $\gamma(a)=V(X_{a})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Si además quisiéramos que el homomorfismo fuera inyectivo, bastaría con
+ agregar una restricción 
+\begin_inset Formula $\left(\left(\enumeracion[m][X]\right),\textnormal{para todo par }\left(i,j\right)\textnormal{ con }i\neq j\textnormal{ y }i,j\in\left\{ 1,\dots,m\right\} \textnormal{ se da que }X_{i}\neq X_{j}\right)$
+\end_inset
+
+, donde 
+\begin_inset Formula $\enumeracion[m][X]$
+\end_inset
+
+ son todas las variables en 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ Para que fuera sobreyectivo bastaría agregar 
+\begin_inset Formula $\left(\left(\enumeracion[m][X]\right),\bigcup_{i=1}^{m}\left\{ X_{i}\right\} =B\right)$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Lemma
 Sea 
 \begin_inset Formula $\mathbf{A}$
@@ -10205,7 +10374,7 @@ Dada una
 \end_layout
 
 \begin_layout Standard
-Ademas cuando detectamos que una subestructura 
+Además cuando detectamos que una subestructura 
 \begin_inset Formula $\mathbf{A}_{0}$
 \end_inset
 
@@ -10240,7 +10409,7 @@ Ademas cuando detectamos que una subestructura
 \begin_layout Standard
 Dado que conocemos implementaciones de este problema mucho mas eficientes,
  como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
- en el futuro el algoritmo para generacion de subestructuras que hemos estado
+ en el futuro el algoritmo para generación de subestructuras que hemos estado
  utilizando durante este trabajo.
 \end_layout
 
@@ -10904,16 +11073,16 @@ Introducción
 \end_layout
 
 \begin_layout Standard
-Definabilty es un paquete que desarollamos para SageMath, un software matematico
- licenciado bajo la GPL.
+Definabilty es un paquete que desarrollamos para SageMath, un software matemátic
+o licenciado bajo la GPL.
  Nuestro paquete implementa los algoritmos vistos en las secciones anteriores
- y permite dada una clase de estructuras, dedicir definibilidad o generar
- las algebras de lindenbaum de relaciones definibles.
+ y permite dada una clase de estructuras, decidir definibilidad o generar
+ las álgebras de Lindenbaum de relaciones definibles.
 \end_layout
 
 \begin_layout Standard
-Nuestro paquete se basa en parte en las librerias desarolladas por Peter
- Jipsen para utilizar Minion y Universal Algebra Calculator desde SageMath.
+Nuestro paquete se basa en parte en las librerías desarrolladas por Peter
+ Jipsen para utilizar Minion y Universal Álgebra Calculator desde SageMath.
  
 \begin_inset Note Note
 status open
@@ -10956,12 +11125,12 @@ Minion 1.8 o superior.
 \end_layout
 
 \begin_layout Itemize
-LADR version de noviembre de 2009, (interfaz de linea de comandos de Prover9,
+LADR versión de noviembre de 2009, (interfaz de linea de comandos de Prover9,
  Mace4, y otros programas)
 \end_layout
 
 \begin_layout Subsection
-Instalacion del paquete en SageMath
+Instalación del paquete en SageMath
 \end_layout
 
 \begin_layout Section
