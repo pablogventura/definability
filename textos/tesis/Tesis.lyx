@@ -1615,10 +1615,57 @@ Si
 \end_layout
 
 \begin_layout Standard
-Sean
+Sean:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
+Fo(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E^{+}(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Op^{+}(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\}
 \]
 
 \end_inset
@@ -1640,7 +1687,7 @@ At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
+At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
 \]
 
 \end_inset
@@ -10132,11 +10179,11 @@ Definiciones e ideas básicas
 \end_layout
 
 \begin_layout Standard
-Llamaremos 
-\emph on
-álgebra de Lindenbaum
-\emph default
- para un fragmento de primer orden dado sobre una 
+Dada una aridad 
+\begin_inset Formula $n$
+\end_inset
+
+, una 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -10144,27 +10191,65 @@ Llamaremos
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- a las clases de equivalencia en las sentencias de ese fragmento del lenguaje
- 
-\begin_inset Formula $\mathcal{L}$
+ y un fragmento de primer orden 
+\begin_inset Formula $f\in\left\{ Fo\left(\mathcal{L}\right),E\left(\mathcal{L}\right),E^{+}\left(\mathcal{L}\right),Op\left(\mathcal{L}\right),Op^{+}\left(\mathcal{L}\right)\right\} $
 \end_inset
 
-.
- Es decir el cociente bajo la relación de equivalencia definida en 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "def:equiv-formulas"
+, llamaremos 
+\emph on
+álgebra de Lindenbaum
+\emph default
+ al álgebra de relaciones de aridad 
+\begin_inset Formula $n$
+\end_inset
 
+ definibles en 
+\begin_inset Formula $f$
+\end_inset
+
+ sobre 
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Las operaciones en un álgebra de Lindenbaum tienen una correspondencia natural
- sobre las fórmulas.
- La unión y la intersección se comportan respectivamente como la disyunción
- y la conjunción, mientras que el complemento se comporta como la negación.
+Notar que dado 
+\begin_inset Formula $\varSigma\left(\enumeracion[n]\right)$
+\end_inset
+
+ un conjunto de formulas, si es cerrado bajo equivalencia lógica para 
+\begin_inset Formula $\wedge$
+\end_inset
+
+,
+\begin_inset Formula $\vee$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $\lnot$
+\end_inset
+
+) entonces el conjunto de álgebras definibles por 
+\begin_inset Formula $\varSigma$
+\end_inset
+
+ es cerrado bajo 
+\begin_inset Formula $\cap$
+\end_inset
+
+,
+\begin_inset Formula $\cup$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $^{\mathsf{c}}$
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -10246,6 +10331,26 @@ Teorema de representación de Birkhoff
 \end_inset
 
 .
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Theorem
+Dada una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y un conjunto de homomorfismos 
+\begin_inset Formula $H$
+\end_inset
+
+ sobre ella
 \end_layout
 
 \begin_layout Section
