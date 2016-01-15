@@ -5,9 +5,19 @@
 \textclass amsbook
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
-\usepackage[fixlanguage]{babelbib}
-\selectbiblanguage{spanish}
 \usepackage{hyperref}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+
+\ifcsname input@path\endcsname 
+  \edef\@basepath{\expandafter\@firstofone\input@path} %remove curly braces
+  \def\rm@quotes#1"#2"#3\@nul{\ifx\relax#2\relax #1\else #2\fi} %
+  \edef\@basepath{\expandafter\rm@quotes\@basepath""\@nul} %remove quotes
+\else\edef\@basepath{./}\fi
+
+ \let\orig@addbibresource\addbibresource
+\renewrobustcmd*{\addbibresource}[2][type=file]{\orig@addbibresource[#1]{\@basepath#2}}
+
+\addbibresource{tesis.bib}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -34,7 +44,7 @@ theorems-ams-extended
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command biber
 \index_command default
 \paperfontsize default
 \spacing single
@@ -10826,10 +10836,35 @@ Conclusiones y trabajo futuro
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "tesis"
 options "babplain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography
+\end_layout
 
 \end_inset
 
