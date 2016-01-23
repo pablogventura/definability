@@ -4810,7 +4810,7 @@ normal
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- finita.
+ es finita.
 \end_layout
 
 \begin_layout Section
@@ -5630,7 +5630,7 @@ Sea
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Enumerate
 para cada 
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
@@ -5642,7 +5642,7 @@ para cada
 ,
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 para cada 
 \begin_inset Formula $\mathbf{A}\in S(\mathcal{K})-\mathcal{S}$
 \end_inset
@@ -5905,30 +5905,94 @@ reference "alg:constelacion abierta"
 
 \end_inset
 
- vamos recorriendo 
+ se construye 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ a la vez que se van revisando los isomorfismos en 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
-, para esto recorremos las estructuras en 
+.
+ Para esto recorremos las estructuras en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- y buscamos isomorfismos con los representantes en 
-\begin_inset Formula $\mathcal{S}$
+ de mayor a menor tamaño.
+ Al momento de procesar una 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
- y los revisamos por preservación.
- Si no encontramos un representante lo agregamos a 
-\begin_inset Formula $\mathcal{S}$
+ lo primero que se hace es buscar un 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- y también revisamos por preservación sus automorfismos, luego hacemos lo
- mismo con sus subestructuras y luego continuamos con la siguiente estructura
- en 
-\begin_inset Formula $\mathcal{K}$
+-isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ entre 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y un miembro 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
 .
+ Si un tal 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ existe, tanto 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como su inversa son revisados (miembros de 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ correspondientes al punto (2) del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+).
+ Si no hay un tal 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, la estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es agregada a 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y sus 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-automorfismos son revisados (miembros de 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ correspondientes al punto (1) del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+).
+ A continuación las subestructuras de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ son procesadas de la misma manera.
 \end_layout
 
 \begin_layout Standard
@@ -7093,7 +7157,7 @@ end{algorithmic}
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Está muy bueno que queda clarísimo siguiendo el código que, si uno no planea
@@ -8437,16 +8501,16 @@ status open
 
 	
 \backslash
-State{
+For{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $bihomos=\left\{ \gamma:\gamma\textnormal{ isomorfismo biyectivo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{B}\in\mathcal{S}\right\} $
+\begin_inset Formula $\mathbf{A}_{0}\in\text{\subestrl{\mathbf{A}}{\mathcal{L}}}$
 \end_inset
 
-
+, desde la mayor a la menor cardinalidad
 \begin_inset ERT
 status open
 
@@ -8466,15 +8530,15 @@ status open
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
-For{
+State{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $\gamma\in bihomos$
+\begin_inset Formula $iso=False$
 \end_inset
 
 
@@ -8498,6 +8562,138 @@ status open
 \begin_layout Plain Layout
 
 		
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+, con 
+\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $bihomo=False$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ homomorfismo biyectivo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $bihomo=True$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
 \backslash
 If{
 \end_layout
@@ -8536,7 +8732,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+					
 \backslash
 If{
 \end_layout
@@ -8571,7 +8767,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+						
 \backslash
 State{
 \end_layout
@@ -8623,6 +8819,500 @@ status open
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $iso=True$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+break
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+						
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $iso$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+break
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+ElsIf{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\lnot bihomo$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}_{0}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ homomorfismo biyectivo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+						
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ no es abierta-definible y 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+					
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+EndFor
 \end_layout
 
 \end_inset
@@ -8654,7 +9344,7 @@ status open
 
 		
 \backslash
-Else
+EndFor
 \end_layout
 
 \end_inset
@@ -8668,7 +9358,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+		
 \backslash
 If{
 \end_layout
@@ -8676,11 +9366,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\gamma$
-\end_inset
-
- no preserva 
-\begin_inset Formula $R$
+\begin_inset Formula $\lnot iso$
 \end_inset
 
 
@@ -8690,94 +9376,6 @@ status open
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "lin:abierta-auto1-1-1"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\alpha$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
 \end_layout
 
 \end_inset
@@ -8824,360 +9422,6 @@ status open
 
 			
 \backslash
-State{
-\end_layout
-
-\end_inset
-
-agregarSubestructuras(
-\begin_inset Formula $\mathbf{A},\mathcal{S}$
-\end_inset
-
-)
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $bihomos=\emptyset$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $bihomos=\left\{ \gamma:\gamma\textnormal{ isomorfismo biyectivo de }\mathbf{B}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{B}\in\mathcal{S}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-agregarSubestructuras(
-\begin_inset Formula $\mathbf{A},\mathcal{S}$
-\end_inset
-
-)
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- es abierta-definible
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithmic}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float algorithm
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Procedimiento
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithmic}[1]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Procedure{
-\end_layout
-
-\end_inset
-
-agregarSubestructuras
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-,
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 For{
 \end_layout
 
@@ -9207,7 +9451,7 @@ status open
 
 \begin_layout Plain Layout
 
-	
+				
 \backslash
 If{
 \end_layout
@@ -9236,7 +9480,7 @@ status open
 
 \begin_inset CommandInset label
 LatexCommand label
-name "lin:abierta-auto1-1"
+name "lin:abierta-auto2-1-1"
 
 \end_inset
 
@@ -9249,7 +9493,7 @@ status open
 
 \begin_layout Plain Layout
 
-		
+					
 \backslash
 State{
 \end_layout
@@ -9314,9 +9558,57 @@ status open
 
 \begin_layout Plain Layout
 
-	
+				
 \backslash
 EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
 \end_layout
 
 \end_inset
@@ -9348,44 +9640,13 @@ status open
 
 
 \backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $Sub=\left[\mathbf{A}_{0}:\mathbf{A}_{0}\in\subestrl{\mathbf{A}}{\mathcal{L}}-\left\{ \mathbf{A}\right\} ,\textnormal{ de la mayor a menor cardinalidad}\right]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 For{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0}\in Sub$
+\begin_inset Formula $\mathbf{A}\in\mathcal{S}$
 \end_inset
 
 
@@ -9416,38 +9677,11 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\mathbf{C}\in\mathcal{S}$
+\begin_inset Formula $\mathbf{B}\in\mathcal{S}$
 \end_inset
 
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $bihomos=\left\{ \gamma:\gamma\textnormal{ isomorfismo biyectivo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{C}\right\} $
+, con 
+\begin_inset Formula $\left|\mathbf{B}\right|<\left|\mathbf{A}\right|$
 \end_inset
 
 
@@ -9478,10 +9712,14 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\gamma\in bihomos$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
 
+ homomorfismo sobreyectivo
 \begin_inset ERT
 status open
 
@@ -9510,273 +9748,6 @@ If{
 
 
 \begin_inset Formula $\gamma$
-\end_inset
-
- es un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in Sub\textnormal{ tal que }C\nsubseteq B\right]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "lin:abierta-saco-subestructuras-1"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{B}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
 \end_inset
 
  no preserva 
@@ -9795,13 +9766,6 @@ status open
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "lin:abierta-auto2-1"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -9810,7 +9774,7 @@ status open
 
 \begin_layout Plain Layout
 
-						
+				
 \backslash
 State{
 \end_layout
@@ -9831,7 +9795,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  
@@ -9852,7 +9816,7 @@ Comment
 \end_inset
 
  no es abierta-definible y 
-\begin_inset Formula $\alpha$
+\begin_inset Formula $\gamma$
 \end_inset
 
  es contraejemplo
@@ -9862,38 +9826,6 @@ status open
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-EndFor
 \end_layout
 
 \end_inset
@@ -9958,22 +9890,6 @@ status open
 
 \backslash
 EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-EndProcedure
 \end_layout
 
 \end_inset
@@ -9994,10 +9910,6 @@ end{algorithmic}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -10407,6 +10319,16 @@ Además cuando detectamos que una subestructura
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+esto lo moveria a la seccion de trabajo futuro, y cambiaria el conocemos,
+ ya que no tenemos idea :).
+\end_layout
+
+\end_inset
+
 Dado que conocemos implementaciones de este problema mucho mas eficientes,
  como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
  en el futuro el algoritmo para generación de subestructuras que hemos estado
@@ -10422,77 +10344,93 @@ Definiciones e ideas básicas
 \end_layout
 
 \begin_layout Standard
-Dada una aridad 
-\begin_inset Formula $n$
+Sea 
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, una 
+ una 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--estructura 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- y un fragmento de primer orden 
-\begin_inset Formula $f\in\left\{ Fo\left(\mathcal{L}\right),E\left(\mathcal{L}\right),E^{+}\left(\mathcal{L}\right),Op\left(\mathcal{L}\right),Op^{+}\left(\mathcal{L}\right)\right\} $
-\end_inset
-
-, llamaremos 
-\emph on
-álgebra de Lindenbaum
-\emph default
- al álgebra de relaciones de aridad 
-\begin_inset Formula $n$
-\end_inset
-
- definibles en 
-\begin_inset Formula $f$
-\end_inset
-
- sobre 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
+-estructura, y sea
 \end_layout
 
 \begin_layout Standard
-Notar que dado 
-\begin_inset Formula $\varSigma\left(\enumeracion[n]\right)$
+\begin_inset Formula 
+\[
+\Sigma\in\left\{ \mathrm{Fo}\left(\mathcal{L}\right),\mathrm{E}\left(\mathcal{L}\right),\mathrm{E}^{+}\left(\mathcal{L}\right),\mathrm{Op}\left(\mathcal{L}\right),\mathrm{Op}^{+}\left(\mathcal{L}\right)\right\} .
+\]
+
 \end_inset
 
- un conjunto de formulas, si es cerrado bajo equivalencia lógica para 
-\begin_inset Formula $\wedge$
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+esta notacion esta explicada en algun lado?
+\end_layout
+
 \end_inset
 
-,
-\begin_inset Formula $\vee$
+Notar que la colección de relaciones 
+\begin_inset Formula $n$
 \end_inset
 
- (resp.
- 
-\begin_inset Formula $\lnot$
+-arias definibles en 
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
-) entonces el conjunto de álgebras definibles por 
-\begin_inset Formula $\varSigma$
+ por fórmulas en 
+\begin_inset Formula $\Sigma$
 \end_inset
 
- es cerrado bajo 
-\begin_inset Formula $\cap$
-\end_inset
-
-,
-\begin_inset Formula $\cup$
-\end_inset
-
- (resp.
- 
-\begin_inset Formula $^{\mathsf{c}}$
+ es cerrada bajo uniones e intersecciones (y también bajo complementación
+ cuando 
+\begin_inset Formula $\Sigma\in\left\{ \mathrm{Fo}\left(\mathcal{L}\right),\mathrm{Op}\left(\mathcal{L}\right)\right\} $
 \end_inset
 
 ).
+ Llamaremos 
+\emph on
+Álgebra de Lindenbaum
+\emph default
+ (de relaciones 
+\begin_inset Formula $n$
+\end_inset
+
+-arias definibles por 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+) al reticulado distributivo (o álgebra de Boole) resultante.
+ Utilizaremos la siguiente notación:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbf{Fo}_{n}(\mathbf{A})=$
+\end_inset
+
+ Álgebra de Boole de relaciones n-arias definibles en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbf{E}_{n}(\mathbf{A})=$
+\end_inset
+
+ Álgebra de Boole de relaciones n-arias definibles por existeciales en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, COMPLETAR
 \end_layout
 
 \begin_layout Standard
@@ -10580,20 +10518,38 @@ Teorema de representación de Birkhoff
 
 \end_layout
 
-\begin_layout Theorem
-Dada una 
-\begin_inset Formula $\mathcal{L}$
+\begin_layout Lemma
+Una relación 
+\begin_inset Formula $r\subseteq A^{n}$
 \end_inset
 
--estructura 
-\begin_inset Formula $\mathbf{A}$
+ es join-irreducible en 
+\begin_inset Formula $\mathbf{Op}^{+}(\mathbf{A})$
 \end_inset
 
- y un conjunto de homomorfismos 
-\begin_inset Formula $H$
+ sii hay 
+\begin_inset Formula $\bar{a}\in r$
 \end_inset
 
- sobre ella
+ tal que 
+\begin_inset Formula $r=\{h(\bar{a}):h\in\subhom{\mathbf{A}}\}$
+\end_inset
+
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+explicar la notacion 
+\begin_inset Formula $\subhom{\mathbf{A}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
