@@ -7307,6 +7307,173 @@ as de
 
 \end_layout
 
+\begin_layout Subsection
+Ejemplo de ejecucion
+\end_layout
+
+\begin_layout Standard
+Tomamos 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ luego del preprocesamiento como en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k preprocesado"
+
+\end_inset
+
+.
+ Supongamos que el octagono tiene tres subestructuras propias, dos circulos
+ y un triangulo, y que es procesado primero (o sea que tiene cardinalidad
+ mayor o igual a la del trapecio).
+ Sus subestructuras son revisadas y sus dos tipos de isomorfismos (circulo
+ y triangulo) son agregados a 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y revisados sus automorfismos, mientras que para el segundo circulo solo
+ se revisa el isomorfismo desde el representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+ En la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k abierto parcial"
+
+\end_inset
+
+ se puede ver un esquema luego del procesamiento del octagono donde las
+ estructuras en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ se muestran en verde y las flechas son los isomorfismos y automorfismos
+ revisados hasta ahora.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema luego del procesamiento del octagono
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/k abierto parcial.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:k abierto parcial"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego se revisa el trapecio y sus subestructuras, de las cuales la unica
+ que no tiene representante del tipo de isomorfismo en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ es el cuadrado por lo que se agrega a 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y se revisan sus automorfismos, mientras que para las demas solo se revisa
+ el isomorfismo desde el representante.
+ La Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k abierto total"
+
+\end_inset
+
+ esquematiza el procesamiento finalizado.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema del procesamiento finalizado
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/k abierto final.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:k abierto total"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notar que solo se revisan los automorfismos de estructuras en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ (coloreadas en verde) y que solo se revisan isomorfismos desde estructuras
+ en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ a estructuras fuera de 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Definibilidad de primer orden
 \end_layout
