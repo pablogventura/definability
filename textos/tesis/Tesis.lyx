@@ -5449,6 +5449,139 @@ reference "sec:Definibilidad-positiva y por conjuncion de atomicas"
  y vemos que basta con chequear sólo uno.
 \end_layout
 
+\begin_layout Subsection
+Ejemplo de ejecución
+\end_layout
+
+\begin_layout Standard
+Supongamos que 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ esta dado por la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k sin preprocesamiento"
+
+\end_inset
+
+, donde cada tipo de isomorfismo esta representado por una forma geométrica.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ antes del preprocesamiento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/k sin preprocesamiento.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:k sin preprocesamiento"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El algoritmo de preprocesamiento detectaria el 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo entre los dos octagonos y revisaria que sea tambien un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo, dando lugar a la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k preprocesado"
+
+\end_inset
+
+, donde la flecha es el isomorfismo a chequear.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ luego del preprocesamiento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/k preprocesado.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:k preprocesado"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Definibilidad abierta
 \end_layout
@@ -7157,7 +7290,7 @@ end{algorithmic}
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Está muy bueno que queda clarísimo siguiendo el código que, si uno no planea
