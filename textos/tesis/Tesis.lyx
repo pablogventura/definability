@@ -10247,7 +10247,7 @@ key "wiki:CSP"
 
 \end_inset
 
-, un CSP (constraint satisfaction problem) es definido como la terna 
+, un CSP (constraint satisfaction problem) es definido como una terna 
 \begin_inset Formula $\left\langle X,D,C\right\rangle $
 \end_inset
 
@@ -10343,6 +10343,15 @@ Una valuación es consistente si no viola ninguna de las restricciones.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+mover a trabajo futuro
+\end_layout
+
+\end_inset
+
 La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
  uno de estos problemas se pueden resolver muy eficientemente, y pensamos
  continuar nuestro trabajo buscando maneras de aprovechar estas propiedades.
@@ -10373,8 +10382,8 @@ Sean
 \begin_inset Formula $\mathbf{B}$
 \end_inset
 
-.
- Bastaría con tomar 
+ resolviendo una instancia de CSP.
+ Tomamos 
 \begin_inset Formula 
 \[
 X=\left\{ X_{i}:i\in A\right\} 
@@ -10388,7 +10397,7 @@ X=\left\{ X_{i}:i\in A\right\}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-D=B^{\left|A\right|}
+D_{i}=B
 \]
 
 \end_inset
@@ -10404,11 +10413,7 @@ C=C^{R}\cup C^{f}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Donde 
+donde 
 \begin_inset Formula $C^{R}$
 \end_inset
 
