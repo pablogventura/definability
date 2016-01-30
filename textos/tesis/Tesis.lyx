@@ -10892,9 +10892,6 @@ si hay
 
 \begin_layout Standard
 Definimos
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
 \subhom{\mathbf{A}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathbf{A}}\right\} 
