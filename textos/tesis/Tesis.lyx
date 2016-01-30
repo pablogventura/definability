@@ -10853,7 +10853,208 @@ Teorema de representación de Birkhoff
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Cambie 
+\begin_inset Quotes fld
+\end_inset
+
+si hay 
+\begin_inset Formula $\bar{a}\in r$
+\end_inset
+
+
+\begin_inset Quotes frd
+\end_inset
+
+ por 
+\begin_inset Quotes fld
+\end_inset
+
+si hay 
+\begin_inset Formula $\bar{a}\in A^{n}$
+\end_inset
+
+
+\begin_inset Quotes frd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definimos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\subhom{\mathbf{A}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathbf{A}}\right\} 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\subiso{\mathbf{A}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathbf{A}}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:ji sii uno generado abiertas"
+
+\end_inset
+
+Una relación 
+\begin_inset Formula $r\subseteq A^{n}$
+\end_inset
+
+ es join-irreducible en 
+\begin_inset Formula $\mathbf{Op}(\mathbf{A})$
+\end_inset
+
+ sii hay 
+\begin_inset Formula $\bar{a}\in A^{n}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $r=\{h(\bar{a}):h\in\subiso{\mathbf{A}}\}$
+\end_inset
+
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+explicar la notacion 
+\begin_inset Formula $\subhom{\mathbf{A}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Supongamos que 
+\begin_inset Formula $r\subseteq A^{n}$
+\end_inset
+
+ es join-irreducible en 
+\begin_inset Formula $\mathbf{Op}(\mathbf{A})$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $r$
+\end_inset
+
+ es cerrado bajo 
+\begin_inset Formula $\subiso{\mathbf{A}}$
+\end_inset
+
+ por pertenecer a 
+\begin_inset Formula $\mathbf{Op}(\mathbf{A})$
+\end_inset
+
+, es claro que 
+\begin_inset Formula 
+\[
+r=\bigcup_{\bar{x}\in r}\left\{ h\left(\bar{x}\right):h\in\subiso{\mathbf{A}}\right\} 
+\]
+
+\end_inset
+
+, pero como 
+\begin_inset Formula $r$
+\end_inset
+
+ es join-irreducible hay una 
+\begin_inset Formula $\bar{a}\in r$
+\end_inset
+
+ tal que 
+\begin_inset Formula $r=\left\{ h\left(\bar{a}\right):h\in\subiso{\mathbf{A}}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Supongamos que 
+\begin_inset Formula $r=\left\{ h\left(\bar{a}\right):h\in\subiso{\mathbf{A}}\right\} $
+\end_inset
+
+ para algun 
+\begin_inset Formula $\bar{a}\in A^{n}$
+\end_inset
+
+.
+ Sean 
+\begin_inset Formula $\enumeracion[m][r]\in\mathbf{Op}(\mathbf{A})$
+\end_inset
+
+ tales que 
+\begin_inset Formula 
+\[
+r=r_{1}\cup\dots\cup r_{m}
+\]
+
+\end_inset
+
+, es claro que hay un 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\bar{a}\in r_{j}$
+\end_inset
+
+.
+ Ademas como 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ es cerrado bajo 
+\begin_inset Formula $\subiso{\mathbf{A}}$
+\end_inset
+
+ por pertenecer a 
+\begin_inset Formula $\mathbf{Op}(\mathbf{A})$
+\end_inset
+
+, entonces 
+\begin_inset Formula $r=r_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:ji sii uno generado abiertas positivas"
+
+\end_inset
+
 Una relación 
 \begin_inset Formula $r\subseteq A^{n}$
 \end_inset
@@ -10863,7 +11064,7 @@ Una relación
 \end_inset
 
  sii hay 
-\begin_inset Formula $\bar{a}\in r$
+\begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
  tal que 
@@ -10881,6 +11082,17 @@ explicar la notacion
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Igual a la del Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:ji sii uno generado abiertas"
 
 \end_inset
 
