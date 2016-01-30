@@ -7232,10 +7232,6 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
  
 \begin_inset ERT
 status open
@@ -10731,11 +10727,45 @@ Notar que la colección de relaciones
 \begin_inset Formula $\mathbf{E}_{n}(\mathbf{A})=$
 \end_inset
 
- Álgebra de Boole de relaciones n-arias definibles por existeciales en 
+ Reticulado de relaciones n-arias definibles por existenciales en 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, COMPLETAR
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbf{E}_{n}^{+}(\mathbf{A})=$
+\end_inset
+
+ Reticulado de relaciones n-arias definibles por existenciales positivas
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbf{Op}_{n}(\mathbf{A})=$
+\end_inset
+
+ Álgebra de Boole de relaciones n-arias definibles por abiertas en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbf{Op}_{n}^{+}(\mathbf{A})=$
+\end_inset
+
+ Reticulado de relaciones n-arias definibles por abiertas positivas en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10753,7 +10783,7 @@ https://en.wikipedia.org/wiki/Stone's_representation_theorem_for_Boolean_algebra
 
 \begin_layout Theorem
 \begin_inset Argument 1
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Teorema de representación de Stone
