@@ -3733,17 +3733,7 @@ Para todas
 \begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
 \end_inset
 
-, todo 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-isomorfismo
-\end_layout
-
-\end_inset
-
- 
+, todo isomorfismo 
 \begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
@@ -3764,7 +3754,11 @@ isomorfismo
 \begin_inset Formula $\varphi$
 \end_inset
 
- existencial que define a 
+ una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula que define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3789,7 +3783,7 @@ isomorfismo
 \begin_inset Formula $\varphi$
 \end_inset
 
-define a 
+ define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3825,10 +3819,6 @@ define a
 \begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
 \end_inset
 
- y 
-\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}=\mathbf{B}$
-\end_inset
-
 .
  Ahora tomo 
 \begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
@@ -3842,24 +3832,21 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Ahora tomo
-\end_layout
-
-\begin_layout Proof
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Como debería ser esta fórmula ahora???????
-\end_layout
+ Ahora tomo 
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)\wedge\left(\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)\right)
+\]
 
 \end_inset
 
 
-\begin_inset Formula 
-\[
-\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
-\]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+esta formula se podria escribir un poco mejor capaz
+\end_layout
 
 \end_inset
 
@@ -3873,14 +3860,18 @@ Sea
 
 .
  Entonces como 
-\begin_inset Formula $\varphi=\dots\vee\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots$
+\begin_inset Formula $\varphi=\dots\vee\left(\left(\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots\right)\wedge\left(\forall\enumeracion[\left|\mathbf{B}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)\right)\vee\dots$
 \end_inset
 
 , y como 
 \begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
 \end_inset
 
-, 
+ y 
+\begin_inset Formula $\sat{\mathbf{B}}{\forall\enumeracion[\left|\mathbf{B}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}}{\bar{b},\bar{b'}}$
+\end_inset
+
+ entonces 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
@@ -3893,7 +3884,7 @@ Sea
 \end_inset
 
 .
- Entonces para algún 
+ Entonces hay algún 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
@@ -3902,7 +3893,7 @@ Sea
 \end_inset
 
  tales que 
-\begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b}}$
+\begin_inset Formula $\sat{\mathbf{B}}{\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\wedge\left(\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)}{\bar{b}}$
 \end_inset
 
 .
@@ -3938,7 +3929,7 @@ reference "thm:diagrama sii isomorfismo"
 \begin_inset Formula $\left(\gamma\left(\bar{a}\right),\gamma\left(\bar{a'}\right)\right)=\left(\bar{b},\bar{z}\right)$
 \end_inset
 
- y como 
+ con 
 \begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
 \end_inset
 
@@ -3946,28 +3937,50 @@ reference "thm:diagrama sii isomorfismo"
 \begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
 \end_inset
 
-, 
-\begin_inset Formula $\gamma$
+, lo que implica que 
+\begin_inset Formula $\left|\mathbf{A}\right|\leq\left|\mathbf{B}\right|$
 \end_inset
 
- es un embedding de 
-\begin_inset Formula $\mathbf{A}$
+.
+ Pero como 
+\begin_inset Formula $\sat{\mathbf{B}}{\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}}{\enumeracion[][b]}$
 \end_inset
 
- en 
-\begin_inset Formula $\mathbf{B}$
+ entonces 
+\begin_inset Formula $\left|\mathbf{B}\right|\leq\left|\mathbf{A}\right|$
 \end_inset
 
- y como 
+, luego 
+\begin_inset Formula $\left|\mathbf{B}\right|=\left|\mathbf{A}\right|,$
+\end_inset
+
+ por lo que es claro que 
+\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}=\mathbf{B}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ es un isomorfismo tal que 
+\begin_inset Formula $\left(\gamma\left(\bar{a}\right),\gamma\left(\bar{a'}\right)\right)=\left(\bar{b},\bar{z}\right)$
+\end_inset
+
+ y sabemos que los isomorfismos entre estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, preservan 
+\begin_inset Formula $R$
+\end_inset
+
+, como 
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
 \end_inset
 
 , 
-\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
-\end_inset
-
-, 
-\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}\in R^{\mathbf{B}}$
 \end_inset
 
 .
@@ -10891,7 +10904,7 @@ si hay
 \end_layout
 
 \begin_layout Standard
-Definimos
+Definimos:
 \begin_inset Formula 
 \[
 \subhom{\mathbf{A}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathbf{A}}\right\} 
