@@ -6319,146 +6319,22 @@ status open
 
 	
 \backslash
-If{
-\end_layout
-
-\end_inset
-
-hay un 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}}$
-\end_inset
-
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo, con 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
 State{
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
 \end_inset
 
 
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndIf
 \end_layout
 
 \end_inset
@@ -6473,254 +6349,6 @@ status open
 \begin_layout Plain Layout
 
 	
-\backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{A}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- no preserva 
-\begin_inset Formula $R$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "lin:abierta-auto1"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\alpha$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}}-\left\{ \mathbf{A}\right\} ,\textnormal{ de la mayor a menor cardinalidad}\right]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
 \backslash
 For{
 \end_layout
@@ -6751,7 +6379,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+		
 \backslash
 If{
 \end_layout
@@ -6790,7 +6418,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 If{
 \end_layout
@@ -6825,7 +6453,7 @@ status open
 
 \begin_layout Plain Layout
 
-					
+				
 \backslash
 State{
 \end_layout
@@ -6890,7 +6518,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 EndIf
 \end_layout
@@ -6906,7 +6534,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 State{
 \end_layout
@@ -6944,7 +6572,7 @@ status open
 
 \begin_layout Plain Layout
 
-			
+		
 \backslash
 Else
 \end_layout
@@ -6960,7 +6588,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 State{
 \end_layout
@@ -6991,7 +6619,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 For{
 \end_layout
@@ -7022,7 +6650,7 @@ status open
 
 \begin_layout Plain Layout
 
-					
+				
 \backslash
 If{
 \end_layout
@@ -7064,7 +6692,7 @@ status open
 
 \begin_layout Plain Layout
 
-						
+					
 \backslash
 State{
 \end_layout
@@ -7129,25 +6757,9 @@ status open
 
 \begin_layout Plain Layout
 
-					
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
 				
 \backslash
-EndFor
+EndIf
 \end_layout
 
 \end_inset
@@ -7163,7 +6775,7 @@ status open
 
 			
 \backslash
-EndIf
+EndFor
 \end_layout
 
 \end_inset
@@ -7179,7 +6791,7 @@ status open
 
 		
 \backslash
-EndFor
+EndIf
 \end_layout
 
 \end_inset
@@ -7195,7 +6807,7 @@ status open
 
 	
 \backslash
-EndIf
+EndFor
 \end_layout
 
 \end_inset
