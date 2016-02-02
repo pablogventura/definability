@@ -10934,18 +10934,7 @@ Una valuación es consistente si no viola ninguna de las restricciones.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
 
-\begin_layout Plain Layout
-mover a trabajo futuro
-\end_layout
-
-\end_inset
-
-La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
- uno de estos problemas se pueden resolver muy eficientemente, y pensamos
- continuar nuestro trabajo buscando maneras de aprovechar estas propiedades.
 \end_layout
 
 \begin_layout Subsection
@@ -11215,20 +11204,7 @@ Además cuando detectamos que una subestructura
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
 
-\begin_layout Plain Layout
-esto lo moveria a la seccion de trabajo futuro, y cambiaria el conocemos,
- ya que no tenemos idea :).
-\end_layout
-
-\end_inset
-
-Dado que conocemos implementaciones de este problema mucho mas eficientes,
- como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
- en el futuro el algoritmo para generación de subestructuras que hemos estado
- utilizando durante este trabajo.
 \end_layout
 
 \begin_layout Chapter
@@ -12242,6 +12218,38 @@ Generación de álgebras de Lindenbaum
 
 \begin_layout Chapter
 Conclusiones y trabajo futuro
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+mover a trabajo futuro
+\end_layout
+
+\end_inset
+
+La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
+ uno de estos problemas se pueden resolver muy eficientemente, y pensamos
+ continuar nuestro trabajo buscando maneras de aprovechar estas propiedades.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+esto lo moveria a la seccion de trabajo futuro, y cambiaria el conocemos,
+ ya que no tenemos idea :).
+\end_layout
+
+\end_inset
+
+Dado que conocemos implementaciones de este problema mucho mas eficientes,
+ como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
+ en el futuro el algoritmo para generación de subestructuras que hemos estado
+ utilizando durante este trabajo.
 \end_layout
 
 \begin_layout Standard
