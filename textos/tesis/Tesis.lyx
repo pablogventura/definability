@@ -7440,7 +7440,14 @@ Definibilidad de primer orden
 \end_layout
 
 \begin_layout Standard
-Luego de haber aplicado el Algoritmo 
+Por el teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+, luego de haber aplicado el Algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:preprocesamiento"
@@ -7504,37 +7511,6 @@ status open
 
 
 \backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{K}_{0}=\emptyset$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 For{
 \end_layout
 
@@ -7542,68 +7518,6 @@ For{
 
 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{K}_{0}=\mathcal{K}_{0}\cup\left\{ \mathbf{A}\right\} $
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathcal{K}=\mathcal{K}-\left\{ \mathbf{A}\right\} $
 \end_inset
 
 
@@ -7730,10 +7644,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es definible en primer orden y 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -7825,10 +7735,6 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\mathcal{K}_{0}$
-\end_inset
-
  
 \begin_inset ERT
 status open
@@ -7882,6 +7788,405 @@ end{algorithmic}
 \end_layout
 
 \begin_layout Section
+Definibilidad existencial
+\end_layout
+
+\begin_layout Standard
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad existencial"
+
+\end_inset
+
+, luego de aplicar el Algoritmo
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ de preprocesamiento, solo basta con revisar los embeddings entre 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Chequeo de definibilidad existencial
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion existencial"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma\in Emb_{\mathcal{L}}\left(\mathbf{A},\mathbf{B}\right)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-embedding
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es existencial definible
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Definibilidad existencial-positiva
 \end_layout
 
@@ -7900,7 +8205,8 @@ reference "alg:preprocesamiento"
 
 \end_inset
 
- de preprocesamiento, solo basta con revisar los homomorfismos entre 
+ de preprocesamiento, solo basta con revisar los homomorfismos cada par
+ 
 \begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
@@ -8019,20 +8325,16 @@ status open
 
 		
 \backslash
-If{
+For{
 \end_layout
 
 \end_inset
 
-hay un 
-\begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
+
+\begin_inset Formula $\alpha\in Hom_{\mathcal{L}}(\mathbf{A},\mathbf{B})$
 \end_inset
 
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
 
--homomorfismo
 \begin_inset ERT
 status open
 
@@ -8124,11 +8426,7 @@ Comment
 
 \end_inset
 
-
-\begin_inset Formula $R$
-\end_inset
-
- no es existencial-positiva definible y 
+ 
 \begin_inset Formula $h$
 \end_inset
 
@@ -8170,7 +8468,7 @@ status open
 
 		
 \backslash
-EndIf
+EndFor
 \end_layout
 
 \end_inset
@@ -8237,10 +8535,6 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- 
 \begin_inset ERT
 status open
 
@@ -8832,10 +9126,7 @@ State{
 \begin_inset Formula $\left(\textnormal{iso,ce}\right)=$
 \end_inset
 
-
  
-\lang spanish
-
 \begin_inset ERT
 status open
 
@@ -9726,10 +10017,7 @@ Comment
 \begin_inset Formula $R$
 \end_inset
 
- es definible
- por una abierta positiva
-\lang spanish
-
+ es definible por una abierta positiva
 \begin_inset ERT
 status open
 
