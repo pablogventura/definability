@@ -4786,7 +4786,7 @@ reference "thm:preservacion existencial conj atomicas producto"
 \end_layout
 
 \begin_layout Chapter
-Algoritmo de la Constelación
+Algoritmos de chequeo de definibilidad
 \end_layout
 
 \begin_layout Standard
@@ -6218,7 +6218,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelación abierta
+Chequeo de definibilidad abierta
 \end_layout
 
 \end_inset
@@ -6381,24 +6381,86 @@ status open
 
 		
 \backslash
+State{
+\end_layout
+
+\end_inset
+
+iso 
+\begin_inset Formula $=$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Call{
+\end_layout
+
+\end_inset
+
+tieneRepresentante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
 If{
 \end_layout
 
 \end_inset
 
-hay un 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
+iso 
+\begin_inset Formula $\neq$
 \end_inset
 
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo, con 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-
+ Null
 \begin_inset ERT
 status open
 
@@ -6425,11 +6487,7 @@ If{
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no es un 
+iso no es un 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -6473,11 +6531,7 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
+iso 
 \begin_inset ERT
 status open
 
@@ -6491,10 +6545,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -6730,10 +6780,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -6881,6 +6927,300 @@ status open
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Statex
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{
+\end_layout
+
+\end_inset
+
+tieneRepresentante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+, con 
+\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+hay 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\end_inset
+
+ isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es isomorfismo con el representante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+Null 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+No tiene representante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction
 \end_layout
 
 \end_inset
@@ -7125,7 +7465,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelación para primer orden
+Chequeo de definibilidad de primer orden
 \end_layout
 
 \end_inset
@@ -7578,7 +7918,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelación existencial-positiva
+Chequeo de definibilidad existencial-positiva
 \end_layout
 
 \end_inset
@@ -8312,7 +8652,6 @@ reference "alg:constelacion abierta"
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement h
 wide false
 sideways false
 status open
@@ -8321,7 +8660,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Constelación abierta-positiva
+Chequeo de definibilidad abierta-positiva
 \end_layout
 
 \end_inset
@@ -8422,16 +8761,47 @@ status open
 
 	
 \backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
 For{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0}\in\text{\subestrl{\mathbf{A}}{\mathcal{L}}}$
+\begin_inset Formula $\mathbf{B}\in Sub$
 \end_inset
 
-, desde la mayor a la menor cardinalidad
+
 \begin_inset ERT
 status open
 
@@ -8459,7 +8829,49 @@ State{
 \end_inset
 
 
-\begin_inset Formula $iso=False$
+\begin_inset Formula $\left(\textnormal{iso,ce}\right)=$
+\end_inset
+
+
+ 
+\lang spanish
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Call{
+\end_layout
+
+\end_inset
+
+tieneRepresentante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
 \end_inset
 
 
@@ -8484,17 +8896,13 @@ status open
 
 		
 \backslash
-For{
+If{
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-, con 
-\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\begin_inset Formula $\textnormal{ce}\neq\textnormal{null}$
 \end_inset
 
 
@@ -8525,7 +8933,76 @@ State{
 \end_inset
 
 
-\begin_inset Formula $bihomo=False$
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+ce 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+ ce es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\textnormal{iso}\neq\textnormal{null}$
 \end_inset
 
 
@@ -8550,121 +9027,12 @@ status open
 
 			
 \backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
-\end_inset
-
- con 
-\begin_inset Formula $\gamma$
-\end_inset
-
- homomorfismo biyectivo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $bihomo=True$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
 If{
 \end_layout
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- es un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo, con 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no es un 
+iso no es un 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -8688,7 +9056,7 @@ status open
 
 \begin_layout Plain Layout
 
-						
+				
 \backslash
 State{
 \end_layout
@@ -8708,11 +9076,7 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
+iso 
 \begin_inset ERT
 status open
 
@@ -8726,10 +9090,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -8753,7 +9113,7 @@ status open
 
 \begin_layout Plain Layout
 
-					
+			
 \backslash
 EndIf
 \end_layout
@@ -8769,7 +9129,7 @@ status open
 
 \begin_layout Plain Layout
 
-					
+			
 \backslash
 State{
 \end_layout
@@ -8777,7 +9137,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $iso=True$
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in Sub\textnormal{ tal que }C\nsubseteq B\right]$
 \end_inset
 
 
@@ -8792,29 +9152,9 @@ status open
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-break
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "lin:abierta-saco-subestructuras-1"
 
 \end_inset
 
@@ -8827,7 +9167,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+		
 \backslash
 Else
 \end_layout
@@ -8843,473 +9183,6 @@ status open
 
 \begin_layout Plain Layout
 
-					
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no preserva 
-\begin_inset Formula $R$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-						
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $iso$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-break
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-ElsIf{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\lnot bihomo$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}_{0}}$
-\end_inset
-
- con 
-\begin_inset Formula $\gamma$
-\end_inset
-
- homomorfismo biyectivo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- no preserva 
-\begin_inset Formula $R$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-						
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-					
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\lnot iso$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
 			
 \backslash
 State{
@@ -9318,7 +9191,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{A}\right\} $
+\begin_inset Formula $\mathcal{S}=\mathcal{S}\cup\left\{ \mathbf{B}\right\} $
 \end_inset
 
 
@@ -9349,7 +9222,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
+\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
 \end_inset
 
 
@@ -9452,10 +9325,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -9733,10 +9602,6 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $R$
-\end_inset
-
- no es abierta-definible y 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -9811,6 +9676,823 @@ status open
 
 \backslash
 EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es definible
+ por una abierta positiva
+\lang spanish
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Statex
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{
+\end_layout
+
+\end_inset
+
+tieneRepresentante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+, con 
+\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $bihomo=False$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ homomorfismo biyectivo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $bihomo=True$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo, con 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\left(\gamma,\textnormal{Null}\right)$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es isomorfismo con el representante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\left(\textnormal{Null},\gamma\right)$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\lnot bihomo$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}_{0}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ homomorfismo biyectivo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\left(\textnormal{Null},\gamma\right)$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\left(\textnormal{Null},\textnormal{Null}\right)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+No tiene representante
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction
 \end_layout
 
 \end_inset
