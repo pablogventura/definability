@@ -12252,6 +12252,30 @@ Dado que conocemos implementaciones de este problema mucho mas eficientes,
  utilizando durante este trabajo.
 \end_layout
 
+\begin_layout Itemize
+Que un conjunto de flechas alcance para revisar preservación implica que
+ genera el conjunto de flechas completo?
+\end_layout
+
+\begin_layout Itemize
+Para chequear si alguien es subestructura de otro, quizá conviene recorrer
+ mapeos que son embeddings sabiendo que la imagen va a ser una subestructura
+ isomorfa.
+\end_layout
+
+\begin_layout Itemize
+Que hace Minion cuando se le prohíben soluciones (negativetable).
+ Quizás primero experimentar con ejemplos.
+\end_layout
+
+\begin_layout Itemize
+Explorar la relación entre generadores de una subestructura y homomorfismos.
+\end_layout
+
+\begin_layout Itemize
+De menor a mayor o de menor a mayor las subestructuras?
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
