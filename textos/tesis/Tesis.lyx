@@ -5488,14 +5488,9 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Esquema de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5505,9 +5500,6 @@ Esquema de
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/k sin preprocesamiento.svg
 	scale 40
@@ -5530,33 +5522,10 @@ name "fig:k sin preprocesamiento"
 \end_layout
 
 \begin_layout Standard
-El algoritmo de preprocesamiento detectaria el 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo entre los dos octagonos y revisaria que sea tambien un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo, dando lugar a la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:k preprocesado"
-
-\end_inset
-
-, donde la flecha es el isomorfismo a chequear.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5593,6 +5562,25 @@ name "fig:k preprocesado"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+El algoritmo de preprocesamiento detecta el 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo entre los dos octagonos y revisa que sea tambien un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo, dando lugar a la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:k preprocesado"
+
+\end_inset
+
+, donde la flecha es el isomorfismo a chequear.
 \end_layout
 
 \begin_layout Section
@@ -6142,21 +6130,14 @@ reference "thm:construccion de constelacion abierta"
 \end_layout
 
 \begin_layout Standard
-Notar que en las lineas 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lin:abierta-auto1"
-
-\end_inset
-
- y 
+Notar que en la linea 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-auto2"
 
 \end_inset
 
- que no se necesita revisar si los automorfismos son 
+ no se necesita revisar si los automorfismos son 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -6209,7 +6190,7 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -7268,68 +7249,113 @@ as de
 
 \end_layout
 
-\begin_layout Subsection
-Ejemplo de ejecucion
-\end_layout
-
 \begin_layout Standard
-Tomamos 
+Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
+ cantidad de flechas podemos observar en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria abierta"
+
+\end_inset
+
+ 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- luego del preprocesamiento como en la Figura 
+ junto con todas las flechas que deberían ser revisadas segun el Teorema
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:k preprocesado"
+reference "thm:definibilidad abierta"
 
 \end_inset
 
 .
- Supongamos que el octagono tiene tres subestructuras propias, dos circulos
- y un triangulo, y que es procesado primero (o sea que tiene cardinalidad
- mayor o igual a la del trapecio).
- Sus subestructuras son revisadas y sus dos tipos de isomorfismos (circulo
- y triangulo) son agregados a 
-\begin_inset Formula $\mathcal{S}$
+ Mientras que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion abierta"
+
 \end_inset
 
- y revisados sus automorfismos, mientras que para el segundo circulo solo
- se revisa el isomorfismo desde el representante en 
-\begin_inset Formula $\mathcal{S}$
+, se puede ver las flechas que bastan para comprobar definibilidad abierta
+ segun el Corolario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+ a la manera del algoritmo anterior.
+\end_layout
+
+\begin_layout Standard
+Notar que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion abierta"
+
+\end_inset
+
+, la aplicacion del Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ (Preprocesamiento) genera que uno de los octagonos aparezca como 
+\emph on
+sombra
+\emph default
+ del otro y baste solo revisar el isomorfismo entre ellos por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
 \end_inset
 
 .
- En la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:k abierto parcial"
-
-\end_inset
-
- se puede ver un esquema luego del procesamiento del octagono donde las
- estructuras en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- se muestran en verde y las flechas son los isomorfismos y automorfismos
- revisados hasta ahora.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Esquema luego del procesamiento del octagono
+Flechas a revisar segun el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7339,7 +7365,7 @@ Esquema luego del procesamiento del octagono
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename img/k abierto parcial.svg
+	filename img/categoria abierta.svg
 	scale 40
 
 \end_inset
@@ -7347,7 +7373,7 @@ Esquema luego del procesamiento del octagono
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:k abierto parcial"
+name "fig:categoria abierta"
 
 \end_inset
 
@@ -7357,38 +7383,24 @@ name "fig:k abierto parcial"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Luego se revisa el trapecio y sus subestructuras, de las cuales la unica
- que no tiene representante del tipo de isomorfismo en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- es el cuadrado por lo que se agrega a 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- y se revisan sus automorfismos, mientras que para las demas solo se revisa
- el isomorfismo desde el representante.
- La Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:k abierto total"
-
-\end_inset
-
- esquematiza el procesamiento finalizado.
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Esquema del procesamiento finalizado
+Flechas que bastan segun el Corolario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7398,7 +7410,7 @@ Esquema del procesamiento finalizado
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename img/k abierto final.svg
+	filename img/constelacion abierta.svg
 	scale 40
 
 \end_inset
@@ -7406,7 +7418,7 @@ Esquema del procesamiento finalizado
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:k abierto total"
+name "fig:constelacion abierta"
 
 \end_inset
 
@@ -7418,21 +7430,9 @@ name "fig:k abierto total"
 
 \end_layout
 
-\begin_layout Standard
-Notar que solo se revisan los automorfismos de estructuras en 
-\begin_inset Formula $\mathcal{S}$
 \end_inset
 
- (coloreadas en verde) y que solo se revisan isomorfismos desde estructuras
- en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
 
- a estructuras fuera de 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Section
