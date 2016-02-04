@@ -9688,43 +9688,14 @@ reference "fig:constelacion abierta positiva"
 \end_inset
 
 , se puede ver las flechas que bastan para comprobar definibilidad abierta
- segun el Corolario 
+ segun el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "cor:preservar en la constelacion abierta es ser abierta definible"
+reference "thm:construccion de constelacion abierta positiva"
 
 \end_inset
 
  a la manera del algoritmo anterior.
-\end_layout
-
-\begin_layout Standard
-Notar que en la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:constelacion abierta positiva"
-
-\end_inset
-
-, la aplicacion del Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:preprocesamiento"
-
-\end_inset
-
- (Preprocesamiento) genera que uno de los octagonos aparezca como 
-\emph on
-sombra
-\emph default
- del otro y baste solo revisar el isomorfismo entre ellos por el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:quito sombras"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -9760,7 +9731,7 @@ status open
 Flechas a revisar segun el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:definibilidad abierta"
+reference "thm:definibilidad abierta positiva"
 
 \end_inset
 
@@ -9802,10 +9773,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas que bastan segun el Corolario 
+Flechas que bastan segun el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "cor:preservar en la constelacion abierta es ser abierta definible"
+reference "thm:construccion de constelacion abierta positiva"
 
 \end_inset
 
