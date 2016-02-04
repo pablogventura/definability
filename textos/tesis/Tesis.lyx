@@ -7387,7 +7387,7 @@ name "fig:categoria abierta"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -9646,6 +9646,192 @@ status open
 
 \backslash
 end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
+ cantidad de flechas podemos observar en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria abierta positiva"
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ junto con todas las flechas que deberían ser revisadas segun el Teorema
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta positiva"
+
+\end_inset
+
+.
+ Mientras que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion abierta positiva"
+
+\end_inset
+
+, se puede ver las flechas que bastan para comprobar definibilidad abierta
+ segun el Corolario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+ a la manera del algoritmo anterior.
+\end_layout
+
+\begin_layout Standard
+Notar que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion abierta positiva"
+
+\end_inset
+
+, la aplicacion del Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ (Preprocesamiento) genera que uno de los octagonos aparezca como 
+\emph on
+sombra
+\emph default
+ del otro y baste solo revisar el isomorfismo entre ellos por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas a revisar segun el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria abierta positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria abierta positiva"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas que bastan segun el Corolario 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:preservar en la constelacion abierta es ser abierta definible"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion abierta positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion abierta positiva"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
