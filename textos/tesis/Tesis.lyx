@@ -10167,6 +10167,163 @@ end{algorithmic}
 
 \end_layout
 
+\begin_layout Standard
+Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
+ cantidad de flechas podemos observar en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria primer orden"
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ junto con todas las flechas que deberían ser revisadas segun el Teorema
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+.
+ Mientras que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion primer orden"
+
+\end_inset
+
+, se puede ver las flechas que bastan para comprobar definibilidad abierta
+ aprovechando el preprocesamiento segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas a revisar segun el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria primer orden.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria primer orden"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas que bastan segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion de primer orden.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion primer orden"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Definibilidad existencial
 \end_layout
@@ -10554,6 +10711,163 @@ status open
 
 \backslash
 end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
+ cantidad de flechas podemos observar en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria existencial"
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ junto con todas las flechas que deberían ser revisadas segun el Teorema
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad existencial"
+
+\end_inset
+
+.
+ Mientras que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion existencial"
+
+\end_inset
+
+, se puede ver las flechas que bastan para comprobar definibilidad abierta
+ aprovechando el preprocesamiento segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas a revisar segun el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad existencial"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria existencial.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria existencial"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas que bastan segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion existencial.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion existencial"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10954,6 +11268,163 @@ status open
 
 \backslash
 end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
+ cantidad de flechas podemos observar en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoria existencial positiva"
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ junto con todas las flechas que deberían ser revisadas segun el Teorema
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad existencial positiva"
+
+\end_inset
+
+.
+ Mientras que en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:constelacion existencial positiva"
+
+\end_inset
+
+, se puede ver las flechas que bastan para comprobar definibilidad abierta
+ aprovechando el preprocesamiento segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas a revisar segun el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad existencial positiva"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria existencial positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria existencial positiva"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flechas que bastan segun el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:quito sombras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion existencial positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion existencial positiva"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
