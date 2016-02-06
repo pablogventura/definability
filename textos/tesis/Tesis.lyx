@@ -15446,7 +15446,7 @@ Utilizando el paquete Definability para SageMath
 \begin_layout Standard
 A manera de prueba de las herramientas utilizamos Definability para recorrer
  todas las relaciones binarias definibles en el reticulado 
-\begin_inset Formula $\mathbf{2x2}$
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
  , representado en la figura 
@@ -15472,7 +15472,7 @@ status open
 
 \begin_layout Plain Layout
 Reticulado 
-\begin_inset Formula $\mathbf{2x2}$
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
 
@@ -15503,7 +15503,7 @@ status open
 begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
  
 \backslash
-clip(-2.85,-0.71) rectangle (4.62,3.15); 
+clip(-3.14,-0.61) rectangle (3.01,2.56); 
 \backslash
 draw (-1,1)-- (0,2); 
 \backslash
@@ -15517,19 +15517,19 @@ begin{scriptsize}
 \backslash
 fill [color=black] (0,0) circle (1.5pt); 
 \backslash
-draw[color=black] (0,-0.2) node {0}; 
+draw[color=black] (0.01,-0.17) node {0}; 
 \backslash
 fill [color=black] (1,1) circle (1.5pt); 
 \backslash
-draw[color=black] (1.18,1.02) node {3}; 
+draw[color=black] (1.15,1.02) node {3}; 
 \backslash
 fill [color=black] (-1,1) circle (1.5pt); 
 \backslash
-draw[color=black] (-1.18,1.01) node {2}; 
+draw[color=black] (-1.15,1.01) node {2}; 
 \backslash
 fill [color=black] (0,2) circle (1.5pt); 
 \backslash
-draw[color=black] (0,2.17) node {1}; 
+draw[color=black] (0.01,2.14) node {1}; 
 \backslash
 end{scriptsize} 
 \backslash
@@ -15550,10 +15550,10 @@ end{tikzpicture}
 Al correr el algoritmo de generación de los elementos join-irreducibles
  del algebra de lindenbaum de relaciones binarias definibles por existenciales
  en 
-\begin_inset Formula $\mathbf{2x2}$
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
-, Definability nos devolvio las siguientes relaciones:
+, Definability nos devolvió las siguientes relaciones:
 \end_layout
 
 \begin_layout Itemize
@@ -15624,6 +15624,227 @@ Al correr el algoritmo de generación de los elementos join-irreducibles
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Aqui se puede notar las ventajas de utilizar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:representacion de birkhoff, reticulados"
+
+\end_inset
+
+, ya que el reticulado descripto por estos 10 elementos tiene cardinalidad
+ 
+\begin_inset Formula $2^{10}=1024$
+\end_inset
+
+, ya que son todas las uniones entre elementos join-irreducibles.
+\end_layout
+
+\begin_layout Standard
+En cuanto a los elementos join-irreducibles del reticulado de relaciones
+ binarias definibles por existenciales positivas nos devolvio:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\{ \left(0,0\right),\left(1,1\right),\left(2,2\right),\left(3,3\right)\right\} =\Delta$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\{ \left(0,0\right),\left(0,1\right),\left(0,2\right),\left(0,3\right),\left(1,1\right),\left(2,1\right),\left(2,2\right),\left(3,1\right),\left(3,3\right)\right\} =\left\{ \left(x,y\right):x\leq y\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\{ \left(0,0\right),\left(1,0\right),\left(1,1\right),\left(1,2\right),\left(1,3\right),\left(2,0\right),\left(2,2\right),\left(3,0\right),\left(3,3\right)\right\} =\left\{ \left(x,y\right):x\geq y\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo que mediante el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:representacion de birkhoff, reticulados"
+
+\end_inset
+
+, define un subreticulado del anterior, mucho mas pequeño, como se puede
+ ver en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:reticulado de relaciones existenciales positivas en 2x2"
+
+\end_inset
+
+, donde los nodos sin rellenar son los elementos join-irreducibles devueltos
+ por el paquete.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado de relaciones binarias definibles por existenciales positivas
+ en 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:reticulado de relaciones existenciales positivas en 2x2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+ 
+\backslash
+clip(7.99,-5.73) rectangle (16.7,-1.24); 
+\backslash
+draw (12,-2)-- (12,-3); 
+\backslash
+draw (12,-3)-- (11,-4); 
+\backslash
+draw (11,-4)-- (12,-5); 
+\backslash
+draw (12,-5)-- (13,-4); 
+\backslash
+draw (13,-4)-- (12,-3); 
+\backslash
+begin{scriptsize} 
+\backslash
+draw [color=black] (12,-5) circle (2.5pt); 
+\backslash
+draw[color=black] (12,-5.26) node {$
+\backslash
+emptyset$}; 
+\backslash
+draw [color=black] (11,-4) circle (2.5pt); 
+\backslash
+draw[color=black] (10.72,-4.03) node {$
+\backslash
+leq$}; 
+\backslash
+fill [color=black] (12,-3) circle (1.5pt); 
+\backslash
+draw[color=black] (12.64,-3.01) node {$
+\backslash
+leq
+\backslash
+cup
+\backslash
+geq$}; 
+\backslash
+draw [color=black] (13,-4) circle (2.5pt); 
+\backslash
+draw[color=black] (13.27,-4.03) node {$
+\backslash
+geq$}; 
+\backslash
+draw [color=black] (12,-2) circle (2.5pt); 
+\backslash
+draw[color=black] (12.05,-1.69) node {$A^2$}; 
+\backslash
+end{scriptsize} 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego probamos buscando los elementos join-irreducibles del reticulado de
+ relaciones binarias definibles por existenciales positivas en el reticulado
+ 
+\begin_inset Formula $\mathbf{3}\times\mathbf{3}$
+\end_inset
+
+ lo que nos dio nuevamente:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Delta$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\{ \left(x,y\right):x\leq y\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\{ \left(x,y\right):x\geq y\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo que nos llevo a conjeturar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
+
+\end_inset
+
+, que probamos a continuación.
 \end_layout
 
 \begin_layout Lemma
@@ -15853,6 +16074,12 @@ d & \textnormal{si }x\notin P.
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
+
+\end_inset
+
 Sea 
 \begin_inset Formula $\mathbf{L}$
 \end_inset
