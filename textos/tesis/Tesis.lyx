@@ -21,6 +21,28 @@
 \renewrobustcmd*{\addbibresource}[2][type=file]{\orig@addbibresource[#1]{\@basepath#2}}
 
 \addbibresource{tesis.bib}
+
+
+
+
+
+
+\usepackage{color}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+
+\usepackage{listings}
+
+
+% minimizar fragmentado de listados
+\lstnewenvironment{listing}[1][]
+{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\lstdefinestyle{consola}
+{basicstyle=\scriptsize\bf\ttfamily,
+backgroundcolor=\color{gray75},
+}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -16374,16 +16396,474 @@ LADR versión de noviembre de 2009, (interfaz de linea de comandos de Prover9,
  Mace4, y otros programas)
 \end_layout
 
+\begin_layout Itemize
+Git
+\end_layout
+
 \begin_layout Subsection
 Instalación del paquete en SageMath
 \end_layout
 
+\begin_layout Standard
+Suponiendo que tenemos instalado SageMath en la ruta absoluta SAGEDIR, nos
+ movemos al directorio donde se quiere descargar el paquete Definability,
+ seguimos los siguientes comandos para instalar el paquete en nuestra instalacio
+n de SageMath:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{listing}[style=consola, numbers=none]
+\end_layout
+
+\begin_layout Plain Layout
+
+$ git checkout https://github.com/pablogventura/tesis.git
+\end_layout
+
+\begin_layout Plain Layout
+
+$ cd tesis/package
+\end_layout
+
+\begin_layout Plain Layout
+
+$ ./make_spkg.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+$ mv definability-hash.spkg SAGEDIR
+\end_layout
+
+\begin_layout Plain Layout
+
+$ cd SAGEDIR
+\end_layout
+
+\begin_layout Plain Layout
+
+$ ./sage -i definability-hash.spkg
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{listing}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Entrada de estructuras
+Uso del paquete
+\end_layout
+
+\begin_layout Standard
+Una vez instalado el paquete basta con arrancar Sage con el comando:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{listing}[style=consola, numbers=none]
+\end_layout
+
+\begin_layout Plain Layout
+
+$ ./sage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{listing}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+y una vez en la consola de Sage, importamos el paquete con el comando:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=python]
+\end_layout
+
+\begin_layout Plain Layout
+
+sage: import definability 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Generación y entrada de estructuras
+\end_layout
+
+\begin_layout Standard
+Al momento de ingresar estructuras para su chequeo puede optarse por la
+ generacion automatica de estructuras a partir de una teoria de primer orden
+ utilizando Mace4 de fondo, o la entrada de una estructura en particular
+ manualmente.
+\end_layout
+
+\begin_layout Subsection
+Generación de estructuras de una teoría de primer orden
+\end_layout
+
+\begin_layout Standard
+Para definir un objeto del tipo FO_Theory que implementa a una teoría de
+ primer orden basta con un nombre, una descripcion, y una lista de axiomas.
+ Por ejemplo para definir la teoria de reticulados bastaria con la siguiente
+ linea:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Lat = definability.FO_Theory("Lat",
+\end_layout
+
+\begin_layout Plain Layout
+
+                             "Lattices",
+\end_layout
+
+\begin_layout Plain Layout
+
+                             ['(x v y) v z = x v (y v z)',
+\end_layout
+
+\begin_layout Plain Layout
+
+                              'x v y = y v x',
+\end_layout
+
+\begin_layout Plain Layout
+
+                              '(x^y)^z = x^(y^z)',
+\end_layout
+
+\begin_layout Plain Layout
+
+                              'x^y = y^x',
+\end_layout
+
+\begin_layout Plain Layout
+
+                              '(x v y)^x = x',
+\end_layout
+
+\begin_layout Plain Layout
+
+                              '(x^y) v x = x'])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora para recorrer los reticulados (filtrando isomorfismos) basta con llamar
+ al metodo find_models con la cardinalidad buscada, el cual devuelve un
+ generador.
+ Por ejemplo para recorrer los reticulados de 5 elementos basta con 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+list(Lat.find_models(5))
+\end_layout
+
+\end_inset
+
+que devolverá una lista con todos los reticulados de 5 elementos filtrando
+ isomorfismos.
+\end_layout
+
+\begin_layout Standard
+Nuestro paquete incluye una gran variedad de teorias de primer orden ya
+ cargadas en el modulo fotheories las cuales se pueden revisar mediante
+ listar el modulo fotheories de nuestro paquete con el siguiente comando:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+dir(definability.fotheories)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Entrada manual de una estructura
+\end_layout
+
+\begin_layout Standard
+Supongamos que queremos ingresar manualmente el reticulado 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+.
+ Lo primero es definir el tipo de primer orden al que pertenece.
+ Para crear un objeto de la clase FO_Type basta con pasar dos diccionarios,
+ el primero para las funciones y el segundo para las relaciones.
+ Los diccionarios contienen las aridades y se indexan por los simbolos correspon
+dientes.
+ Por ejemplo, para definir el tipo de los reticulados:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+tlat = definability.FO_Type({'v': 2, '^': 2},{})
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego se debe definir un universo para la estructura, como por ejemplo
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+universe = [0,1,2,3]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego se necesitan definir las funciones supremo e infimo.
+ Una funcion se puede definir mediante un diccionario con claves de tuplas
+ que apuntan al valor de la funcion, o en el caso de funciones binarias,
+ una matriz 
+\begin_inset Formula $A$
+\end_inset
+
+ donde el valor 
+\begin_inset Formula $A_{i,j}$
+\end_inset
+
+ se corresponde a la funcion evaluada en 
+\begin_inset Formula $\left(i,j\right)$
+\end_inset
+
+.
+ Siguiendo con el ejemplo definimos el infimo y el supremo utilizando cada
+ una de las maneras:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+meet = definability.FO_Operation({(0, 0): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (0, 1): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (0, 2): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (0, 3): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (1, 0): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (1, 1): 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (1, 2): 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (1, 3): 3,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (2, 0): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (2, 1): 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (2, 2): 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (2, 3): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (3, 0): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (3, 1): 3,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (3, 2): 0,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  (3, 3): 3})
+\end_layout
+
+\begin_layout Plain Layout
+
+join = definability.FO_Operation([[0,1,2,3],
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  [1,1,1,1],
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  [2,1,2,1],
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  [3,1,1,3]])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalmente, para definir el reticulado basta con hacer:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+definability.FO_Model(tlat, uni, {'^': meet, 'v': join},{})
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Chequeo de definibilidad
+\end_layout
+
+\begin_layout Standard
+Una vez definidas las estructuras, para chequear definibilidad se utiliza
+ un objeto Constellation,
 \end_layout
 
 \begin_layout Section
