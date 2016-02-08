@@ -6034,14 +6034,30 @@ reference "thm:construccion de constelacion abierta"
 \end_layout
 
 \begin_layout Proof
-Directa ya que composición de funciones que preservan, preserva y Lema 
+Directa ya que la composición de funciones que preservan 
+\begin_inset Formula $R$
+\end_inset
+
+, trivialmente tambien preserva 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Luego aplicando el Teorema
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+ y el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:categoria abierta completa alcanza"
 
 \end_inset
 
-.
+ queda probado.
 \end_layout
 
 \begin_layout Standard
@@ -16431,7 +16447,7 @@ begin{listing}[style=consola, numbers=none]
 
 \begin_layout Plain Layout
 
-$ git checkout https://github.com/pablogventura/tesis.git
+$ git clone https://github.com/pablogventura/tesis.git
 \end_layout
 
 \begin_layout Plain Layout
