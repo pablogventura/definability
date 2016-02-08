@@ -11869,6 +11869,13 @@ Además cuando detectamos que una subestructura
 
 \begin_layout Chapter
 Álgebras de Lindenbaum
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Álgebras-de-Lindenbaum"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -16666,7 +16673,12 @@ Supongamos que queremos ingresar manualmente el reticulado
  el primero para las funciones y el segundo para las relaciones.
  Los diccionarios contienen las aridades y se indexan por los simbolos correspon
 dientes.
- Por ejemplo, para definir el tipo de los reticulados:
+ Por ejemplo, para definir el tipo de los reticulados, junto con una relacion
+ unaria 
+\begin_inset Formula $P$
+\end_inset
+
+ para chequear:
 \end_layout
 
 \begin_layout Standard
@@ -16677,7 +16689,7 @@ status open
 
 \begin_layout Plain Layout
 
-tlat = definability.FO_Type({'v': 2, '^': 2},{})
+tlat = definability.FO_Type({'v': 2, '^': 2},{"P":1})
 \end_layout
 
 \end_inset
@@ -16706,10 +16718,18 @@ universe = [0,1,2,3]
 \end_layout
 
 \begin_layout Standard
-Luego se necesitan definir las funciones supremo e infimo.
- Una funcion se puede definir mediante un diccionario con claves de tuplas
- que apuntan al valor de la funcion, o en el caso de funciones binarias,
- una matriz 
+Luego se necesitan definir las funciones supremo e infimo, y una relacion
+ unaria 
+\begin_inset Formula $P$
+\end_inset
+
+ para su chequeo.
+\end_layout
+
+\begin_layout Standard
+Una funcion, implementada por la clase FO_Operation se puede definir mediante
+ un diccionario con claves de tuplas que apuntan al valor de la funcion,
+ o en el caso de funciones binarias, una matriz 
 \begin_inset Formula $A$
 \end_inset
 
@@ -16722,8 +16742,18 @@ Luego se necesitan definir las funciones supremo e infimo.
 \end_inset
 
 .
- Siguiendo con el ejemplo definimos el infimo y el supremo utilizando cada
- una de las maneras:
+ Para definir una relacion utilizando la clase FO_Relation basta con una
+ lista de las tuplas que pertenecen a la relacion y el universo sobre el
+ que la relacion esta definida.
+\end_layout
+
+\begin_layout Standard
+Como ejemplo, definimos el infimo y el supremo utilizando cada una de las
+ maneras para definir funciones, y definimos la relacion 
+\begin_inset Formula $P$
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -16832,6 +16862,11 @@ join = definability.FO_Operation([[0,1,2,3],
                                   [3,1,1,3]])
 \end_layout
 
+\begin_layout Plain Layout
+
+rP = definability.FO_Relation([(2,), (3,)], uni)
+\end_layout
+
 \end_inset
 
 
@@ -16849,7 +16884,17 @@ status open
 
 \begin_layout Plain Layout
 
-definability.FO_Model(tlat, uni, {'^': meet, 'v': join},{})
+l2x2 = definability.FO_Model(tlat, uni, {'^': meet,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                         'v': join},
+\end_layout
+
+\begin_layout Plain Layout
+
+                                        {'P': rP})
 \end_layout
 
 \end_inset
@@ -16863,11 +16908,381 @@ Chequeo de definibilidad
 
 \begin_layout Standard
 Una vez definidas las estructuras, para chequear definibilidad se utiliza
- un objeto Constellation,
+ un objeto de la clase Constellation, pasando una lista de las estructuras
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Esta clase implementa los algoritmos vistos en el Capitulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:algoritmos de chequeo"
+
+\end_inset
+
+.
+ Por ejemplo siguiendo con el ejemplo anterior:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+c = definability.Constellation([l2x2])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para chequear definibilidad estan los siguientes metodos:
+\end_layout
+
+\begin_layout Itemize
+is_existential_definable
+\end_layout
+
+\begin_layout Itemize
+is_existential_positive_definable
+\end_layout
+
+\begin_layout Itemize
+is_open_definable
+\end_layout
+
+\begin_layout Itemize
+is_positive_open_definable
+\end_layout
+
+\begin_layout Standard
+los cuales toman dos tipos
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ para decidir definibilidad de las relaciones del tipo 
+\begin_inset Formula $\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+, y devuelven una tupla con un booleano y un contrajemplo, si es que lo
+ hay.
+\end_layout
+
+\begin_layout Standard
+Por ejemplo para chequear definibilidad abierta de la relacion 
+\begin_inset Formula $P$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+c.is_open_definable(tlat,tlat + definability.FO_Type({},{"P":1}))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo cual en particular es falso, por lo que el paquete devuelve la tupla:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(False, Embedding([0] -> 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+                  FO_Type({'v': 2, '^': 2},{}),
+\end_layout
+
+\begin_layout Plain Layout
+
+                  antitype= ['P'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                  Injective, ))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde devuelve un contraejemplo, ya que el embedding del subreticulado formado
+ por el elemento 
+\begin_inset Formula $0$
+\end_inset
+
+ en el subreticulado formado por el elemento 
+\begin_inset Formula $2$
+\end_inset
+
+ (un isomorfismo entre subestructuras de 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+) no preserva 
+\begin_inset Formula $P$
+\end_inset
+
+, negando el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
 Generación de álgebras de Lindenbaum
+\end_layout
+
+\begin_layout Standard
+Para la generacion de las algebras de Lindenbaum desarrolladas en el capitulo
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Álgebras-de-Lindenbaum"
+
+\end_inset
+
+ el paquete dispone del modulo lindenbaum.
+\end_layout
+
+\begin_layout Standard
+Este modulo contiene las siguientes funciones:
+\end_layout
+
+\begin_layout Description
+ji_of_existencial_definable_algebra para generar los elementos join irreducibles
+ de 
+\begin_inset Formula $\mathbf{E}_{n}\left(\mathcal{K}\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+ji_of_existencial_positive_definable_algebra para generar los elementos
+ join irreducibles de 
+\begin_inset Formula $\mathbf{E}_{n}^{+}\left(\mathcal{K}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+atoms_of_open_definable_algebra para generar los elementos join irreducibles
+ de 
+\begin_inset Formula $\mathbf{Op}_{n}\left(\mathcal{K}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+ji_of_open_positive_definable_algebra para generar los elementos join irreducibl
+es de 
+\begin_inset Formula $\mathbf{Op}_{n}^{+}\left(\mathcal{K}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estas funciones toman un objeto del tipo Constellation que determina 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, un tipo para los morfismos en cuestion y una aridad.
+\end_layout
+
+\begin_layout Standard
+Por ejemplo para obtener los elementos join-irreducibles del reticulado
+ de relaciones ternarias definibles en 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+ bastaria con la siguiente linea:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+definability.lindenbaum.ji_of_existencial_positive_definable_algebra(c,definabilit
+y.examples.tiporet,3)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo cual devuelve una lista de 22 relaciones, que acortamos como ejemplo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[Relation([0, 0, 0],
+\end_layout
+
+\begin_layout Plain Layout
+
+          [1, 1, 1],
+\end_layout
+
+\begin_layout Plain Layout
+
+          [2, 2, 2],
+\end_layout
+
+\begin_layout Plain Layout
+
+          [3, 3, 3]),
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+
+Relation([0, 0, 0],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [0, 1, 1],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [0, 2, 2],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [0, 3, 3],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [1, 0, 0],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [1, 1, 1],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [1, 2, 2],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [1, 3, 3],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [2, 0, 0],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [2, 1, 1],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [2, 2, 2],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [2, 3, 3],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [3, 0, 0],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [3, 1, 1],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [3, 2, 2],
+\end_layout
+
+\begin_layout Plain Layout
+
+        [3, 3, 3])] 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
