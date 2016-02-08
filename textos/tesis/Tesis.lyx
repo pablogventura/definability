@@ -17290,35 +17290,17 @@ Conclusiones y trabajo futuro
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-mover a trabajo futuro
-\end_layout
-
-\end_inset
-
 La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
- uno de estos problemas se pueden resolver muy eficientemente, y pensamos
- continuar nuestro trabajo buscando maneras de aprovechar estas propiedades.
+ uno de estos problemas se pueden resolver muy eficientemente.
+ Esperamos explorar detalladamente estas situaciones para aprovecharlas
+ para la busqueda de homomorfismos cuando se den propiedades especificas
+ para las estructuras en cuestion.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-esto lo moveria a la seccion de trabajo futuro, y cambiaria el conocemos,
- ya que no tenemos idea :).
-\end_layout
-
-\end_inset
-
-Dado que conocemos implementaciones de este problema mucho mas eficientes,
- como por ejemplo la del Universal Algebra Calculator, pensamos mejorar
- en el futuro el algoritmo para generación de subestructuras que hemos estado
- utilizando durante este trabajo.
+Tambien esperamos explorar mejores implementaciones para la generacion de
+ subestructuras, investigando a fondo los algoritmos utilizados por el Universal
+ Algebra Calculator.
 \end_layout
 
 \begin_layout Itemize
