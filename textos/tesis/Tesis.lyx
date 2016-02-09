@@ -43,6 +43,8 @@
 {basicstyle=\scriptsize\bf\ttfamily,
 backgroundcolor=\color{gray75},
 }
+
+\usepackage{mathdots}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -11733,6 +11735,39 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 
 \end_layout
 
+\begin_layout Standard
+Para resolver CSP utilizamos Minion.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $A$
+\end_inset
+
+ es finito tenemos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es sobre y además 
+\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
+\end_inset
+
+ para algún 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 CSP
 \end_layout
@@ -11993,19 +12028,23 @@ Para que fuera sobreyectivo bastaría agregar la siguiente restriccion:
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-ESTE LEMA NO ME ACUERDO NADA PARA QUE SE USABA!!
-\end_layout
+En el caso particular de la búsqueda de automorfismos, el lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:endo inyectivo es automorfismo"
 
 \end_inset
 
-
+ nos permite simplificar la busqueda, encontrando endomorfismos inyectivos.
 \end_layout
 
 \begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:endo inyectivo es automorfismo"
+
+\end_inset
+
 Sea 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -12016,35 +12055,6 @@ Sea
 
  es un automorfismo de 
 \begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Sea 
-\begin_inset Formula $\gamma$
-\end_inset
-
- un endomorfismo inyectivo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $A$
-\end_inset
-
- es finito tenemos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es sobre y además 
-\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
-\end_inset
-
- para algún 
-\begin_inset Formula $k\geq1$
 \end_inset
 
 .
@@ -15983,6 +15993,152 @@ reference "thm:representacion de birkhoff, reticulados"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{E}_{2}\left(\mathbf{2}\times\mathbf{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+ 
+\backslash
+clip(-0.96,-4.53) rectangle (10.93,1.61); 
+\backslash
+draw (0.5,-2)-- (4.98,-4); 
+\backslash
+draw (1.5,-2)-- (4.98,-4); 
+\backslash
+draw (2.5,-2)-- (4.98,-4); 
+\backslash
+draw (3.5,-2)-- (4.98,-4); 
+\backslash
+draw (4.5,-2)-- (4.98,-4); 
+\backslash
+draw (5.5,-2)-- (4.98,-4); 
+\backslash
+draw (6.5,-2)-- (4.98,-4); 
+\backslash
+draw (7.5,-2)-- (4.98,-4); 
+\backslash
+draw (8.5,-2)-- (4.98,-4); 
+\backslash
+draw (9.5,-2)-- (4.98,-4); 
+\backslash
+draw (1.76,-0.53) node[anchor=north west] {$
+\backslash
+iddots$}; 
+\backslash
+draw (8.09,-0.58) node[anchor=north west] {$
+\backslash
+ddots$}; 
+\backslash
+draw (4.9,-0.32) node[anchor=north west] {$
+\backslash
+vdots$}; 
+\backslash
+draw (5,1)-- (4.4,0.6); 
+\backslash
+draw (4.5,0.6)-- (5,1); 
+\backslash
+draw (4.6,0.6)-- (5,1); 
+\backslash
+draw (4.7,0.6)-- (5,1); 
+\backslash
+draw (4.8,0.6)-- (5,1); 
+\backslash
+draw (4.9,0.6)-- (5,1); 
+\backslash
+draw (5,0.6)-- (5,1); 
+\backslash
+draw (5.1,0.6)-- (5,1); 
+\backslash
+draw (5.2,0.6)-- (5,1); 
+\backslash
+draw (5.3,0.6)-- (5,1); 
+\backslash
+draw (5.4,0.6)-- (5,1); 
+\backslash
+draw (5.5,0.6)-- (5,1); 
+\backslash
+draw (5.6,0.6)-- (5,1); 
+\backslash
+begin{scriptsize} 
+\backslash
+fill [color=black] (0.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (1.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (2.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (3.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (4.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (5.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (6.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (7.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (8.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (9.5,-2) circle (1.5pt); 
+\backslash
+fill [color=black] (4.98,-4) circle (1.5pt); 
+\backslash
+draw[color=black] (5.04,-4.3) node {$
+\backslash
+emptyset$}; 
+\backslash
+fill [color=black] (5,1) circle (1.5pt); 
+\backslash
+draw[color=black] (5.02,1.14) node {$L
+\backslash
+times L$}; 
+\backslash
+end{scriptsize} 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 En cuanto a los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{2}^{+}\left(\mathbf{2}\times\mathbf{2}\right)$
 \end_inset
@@ -16177,11 +16333,145 @@ end{tikzpicture}
 \end_layout
 
 \begin_layout Standard
-Luego probamos buscando los elementos join-irreducibles de 
+Luego probamos en el reticulado 
+\begin_inset Formula $\mathbf{3}\times\mathbf{3}$
+\end_inset
+
+ representado en la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig: ret 3x3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{3}\times\mathbf{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig: ret 3x3"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+ 
+\backslash
+clip(-4.7,-2.49) rectangle (5.16,2.6); 
+\backslash
+draw (-2,0)-- (-1,1); 
+\backslash
+draw (-1,1)-- (0,2); 
+\backslash
+draw (0,2)-- (1,1); 
+\backslash
+draw (1,1)-- (2,0); 
+\backslash
+draw (2,0)-- (1,-1); 
+\backslash
+draw (1,-1)-- (0,-2); 
+\backslash
+draw (0,-2)-- (-1,-1); 
+\backslash
+draw (-1,-1)-- (-2,0); 
+\backslash
+draw (-1,1)-- (0,0); 
+\backslash
+draw (0,0)-- (1,-1); 
+\backslash
+draw (1,1)-- (0,0); 
+\backslash
+draw (0,0)-- (-1,-1); 
+\backslash
+begin{scriptsize} 
+\backslash
+fill [color=black] (0,0) circle (1.5pt); 
+\backslash
+draw[color=black] (0.01,0.28) node {5}; 
+\backslash
+fill [color=black] (1,1) circle (1.5pt); 
+\backslash
+draw[color=black] (1.17,1.2) node {8}; 
+\backslash
+fill [color=black] (-1,1) circle (1.5pt); 
+\backslash
+draw[color=black] (-1.2,1.22) node {7}; 
+\backslash
+fill [color=black] (0,2) circle (1.5pt); 
+\backslash
+draw[color=black] (0.01,2.26) node {1}; 
+\backslash
+fill [color=black] (0,-2) circle (1.5pt); 
+\backslash
+draw[color=black] (0,-2.27) node {0}; 
+\backslash
+fill [color=black] (-1,-1) circle (1.5pt); 
+\backslash
+draw[color=black] (-1.18,-1.18) node {2}; 
+\backslash
+fill [color=black] (1,-1) circle (1.5pt); 
+\backslash
+draw[color=black] (1.21,-1.2) node {3}; 
+\backslash
+fill [color=black] (2,0) circle (1.5pt); 
+\backslash
+draw[color=black] (2.28,0.03) node {6}; 
+\backslash
+fill [color=black] (-2,0) circle (1.5pt); 
+\backslash
+draw[color=black] (-2.27,0.03) node {4}; 
+\backslash
+end{scriptsize} 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al interpretar los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{2}^{+}\left(\mathbf{3}\times\mathbf{3}\right)$
 \end_inset
 
-, cuya interpretación nos dio nuevamente:
+ calculados por el paquete, nos dio nuevamente:
 \end_layout
 
 \begin_layout Itemize
@@ -16213,7 +16503,15 @@ Luego probamos buscando los elementos join-irreducibles de
 \end_layout
 
 \begin_layout Standard
-Lo que nos llevo a conjeturar el Teorema 
+Lo que representa un reticulado isomorfo al presentado en 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:reticulado de relaciones existenciales positivas en 2x2"
+
+\end_inset
+
+.
+ Esto nos llevo a conjeturar el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
