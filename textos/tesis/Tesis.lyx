@@ -8724,7 +8724,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -8738,6 +8738,34 @@ status open
 
 \end_inset
 
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+ 
+hay un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-iso de 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+\lang spanish
 
 \begin_inset ERT
 status open
@@ -9915,23 +9943,7 @@ status open
 
 		
 \backslash
-Else
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{
+ElsIf{
 \end_layout
 
 \end_inset
@@ -9964,7 +9976,7 @@ status open
 
 \begin_layout Plain Layout
 
-				
+			
 \backslash
 State{
 \end_layout
@@ -10012,22 +10024,6 @@ status open
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
 \end_layout
 
 \end_inset
