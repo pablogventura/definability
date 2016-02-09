@@ -6596,7 +6596,7 @@ State{
 
 \end_inset
 
-iso 
+(iso, ce) 
 \begin_inset Formula $=$
 \end_inset
 
@@ -6625,7 +6625,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -6639,6 +6639,34 @@ status open
 
 \end_inset
 
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+ 
+hay un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-iso de 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+\lang spanish
 
 \begin_inset ERT
 status open
@@ -6666,11 +6694,11 @@ If{
 
 \end_inset
 
-iso 
-\begin_inset Formula $\neq$
+
+\begin_inset Formula $\textnormal{ce}\neq\textnormal{Null}$
 \end_inset
 
- Null
+
 \begin_inset ERT
 status open
 
@@ -6691,37 +6719,6 @@ status open
 \begin_layout Plain Layout
 
 			
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-iso no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
 \backslash
 State{
 \end_layout
@@ -6741,7 +6738,7 @@ Return
 
 \end_inset
 
-iso 
+ce 
 \begin_inset ERT
 status open
 
@@ -6754,11 +6751,7 @@ Comment
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
+ ce es contraejemplo
 \begin_inset ERT
 status open
 
@@ -6778,9 +6771,36 @@ status open
 
 \begin_layout Plain Layout
 
-			
+		
 \backslash
 EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+iso
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -7262,7 +7282,11 @@ hay
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
 \end_inset
 
- isomorfismo
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo
 \begin_inset ERT
 status open
 
@@ -7284,6 +7308,41 @@ status open
 
 		
 \backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
 State{
 \end_layout
 
@@ -7302,11 +7361,84 @@ Return
 
 \end_inset
 
+(True, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
 
 \begin_inset Formula $\gamma$
 \end_inset
 
- 
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+(True, Null) 
 \begin_inset ERT
 status open
 
@@ -7330,6 +7462,22 @@ status open
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
 \end_layout
 
 \end_inset
@@ -7395,7 +7543,7 @@ Return
 
 \end_inset
 
-Null 
+(False, Null) 
 \begin_inset ERT
 status open
 
@@ -8718,7 +8866,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\textnormal{iso}\neq\textnormal{null}$
+\begin_inset Formula $\textnormal{iso}$
 \end_inset
 
 
@@ -8728,110 +8876,6 @@ status open
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-iso no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-				
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-iso 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\gamma$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-EndIf
 \end_layout
 
 \end_inset
@@ -9225,7 +9269,11 @@ For{
 \begin_inset Formula $\gamma$
 \end_inset
 
- homomorfismo sobreyectivo
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismo sobreyectivo
 \begin_inset ERT
 status open
 
@@ -9570,11 +9618,27 @@ State{
 
 \end_inset
 
-
-\begin_inset Formula $bihomo=False$
+bihomos 
+\begin_inset Formula $=$
 \end_inset
 
+[
+\begin_inset Formula $\gamma$
+\end_inset
 
+: 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismo biyectivo
 \begin_inset ERT
 status open
 
@@ -9602,42 +9666,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
-\end_inset
-
- con 
-\begin_inset Formula $\gamma$
-\end_inset
-
- homomorfismo biyectivo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $bihomo=True$
+\begin_inset Formula $\gamma\in\textnormal{bihomos}$
 \end_inset
 
 
@@ -9701,6 +9730,41 @@ status open
 
 			
 \backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
 State{
 \end_layout
 
@@ -9719,11 +9783,84 @@ Return
 
 \end_inset
 
-
-\begin_inset Formula $\left(\gamma,\textnormal{Null}\right)$
+(True, 
+\begin_inset Formula $\gamma$
 \end_inset
 
- 
+) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+Else
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+(True, Null) 
 \begin_inset ERT
 status open
 
@@ -9747,6 +9884,22 @@ status open
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf
 \end_layout
 
 \end_inset
@@ -9832,7 +9985,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{Null},\gamma\right)$
+\begin_inset Formula $\left(\textnormal{False},\gamma\right)$
 \end_inset
 
  
@@ -9927,8 +10080,8 @@ If{
 
 \end_inset
 
-
-\begin_inset Formula $\lnot bihomo$
+bihomos 
+\begin_inset Formula $=\left[\right]$
 \end_inset
 
 
@@ -9966,7 +10119,11 @@ For{
 \begin_inset Formula $\gamma$
 \end_inset
 
- homomorfismo biyectivo
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismo biyectivo
 \begin_inset ERT
 status open
 
@@ -10042,7 +10199,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{Null},\gamma\right)$
+\begin_inset Formula $\left(\textnormal{False},\gamma\right)$
 \end_inset
 
  
@@ -10151,7 +10308,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{Null},\textnormal{Null}\right)$
+\begin_inset Formula $\left(\textnormal{False},\textnormal{Null}\right)$
 \end_inset
 
 
