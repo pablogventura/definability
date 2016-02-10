@@ -292,7 +292,7 @@ theorems-ams-extended
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Introducción
 \end_layout
 
@@ -314,7 +314,7 @@ key "Campercholi15"
 .
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Teoremas de definibilidad
 \end_layout
 
@@ -343,7 +343,7 @@ key "Campercholi15"
  Los algoritmos desarrollados pueden encontrarse en las secciones siguientes.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad por fórmulas abiertas
 \begin_inset CommandInset label
 LatexCommand label
@@ -2109,7 +2109,7 @@ reference "thm:formula para el diagrama"
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad por fórmulas abiertas positivas y conjunción de atómicas
 \begin_inset CommandInset label
 LatexCommand label
@@ -4850,7 +4850,7 @@ reference "thm:preservacion existencial conj atomicas producto"
 .
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Algoritmos de chequeo de definibilidad
 \begin_inset CommandInset label
 LatexCommand label
@@ -4868,7 +4868,7 @@ En este capitulo describimos algoritmos para el chequeo de definibilidad
  
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definiciones e ideas preliminares
 \end_layout
 
@@ -5058,7 +5058,7 @@ reference "thm:definibilidad abierta positiva"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Preprocesamiento
 \end_layout
 
@@ -5834,7 +5834,7 @@ reference "fig:k preprocesado"
 , donde la flecha es el isomorfismo a chequear.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad abierta
 \end_layout
 
@@ -7814,7 +7814,7 @@ name "fig:constelacion abierta"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad abierta-positiva
 \end_layout
 
@@ -10546,7 +10546,7 @@ name "fig:constelacion abierta positiva"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad de primer orden
 \end_layout
 
@@ -10905,7 +10905,7 @@ end{algorithmic}
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad existencial
 \end_layout
 
@@ -11311,7 +11311,7 @@ end{algorithmic}
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definibilidad existencial-positiva
 \end_layout
 
@@ -11718,7 +11718,7 @@ end{algorithmic}
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Detección de homomorfismos
 \end_layout
 
@@ -11768,7 +11768,7 @@ Sea
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 CSP
 \end_layout
 
@@ -11879,7 +11879,7 @@ Una valuación es consistente si no viola ninguna de las restricciones.
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 CSP para calcular homomorfismos
 \end_layout
 
@@ -12060,7 +12060,7 @@ Sea
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Generación de subestructuras
 \end_layout
 
@@ -12139,7 +12139,7 @@ Además cuando detectamos que una subestructura
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Álgebras de Lindenbaum
 \begin_inset CommandInset label
 LatexCommand label
@@ -12150,7 +12150,7 @@ name "chap:Álgebras-de-Lindenbaum"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Definiciones e ideas básicas
 \end_layout
 
@@ -12663,7 +12663,7 @@ reference "lem:ji sii uno generado abiertas"
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Algoritmos
 \end_layout
 
@@ -15786,11 +15786,11 @@ reference "alg:construccion algebra saturacion"
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Ejemplos y aplicación
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Utilizando el paquete Definability para SageMath
 \end_layout
 
@@ -16521,7 +16521,7 @@ reference "thm:Caracterizacion de las relaciones binarias definibles por existen
 , que probamos a continuación.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Caracterización de las relaciones binarias definibles por existenciales
  positivas en reticulados distributivos
 \end_layout
@@ -16988,11 +16988,11 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 .
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Documentación de Definability 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Introducción
 \end_layout
 
@@ -17029,11 +17029,11 @@ target "GitHub"
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Instalación
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Requerimientos
 \end_layout
 
@@ -17054,7 +17054,7 @@ LADR versión de noviembre de 2009, (interfaz de linea de comandos de Prover9,
 Git
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Instalación del paquete en SageMath
 \end_layout
 
@@ -17118,7 +17118,7 @@ end{listing}
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Uso del paquete
 \end_layout
 
@@ -17186,7 +17186,7 @@ end{lstlisting}
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Generación y entrada de estructuras
 \end_layout
 
@@ -17197,7 +17197,7 @@ Al momento de ingresar estructuras para su chequeo puede optarse por la
  manualmente.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Generación de estructuras de una teoría de primer orden
 \end_layout
 
@@ -17309,7 +17309,7 @@ dir(definability.fotheories)
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Entrada manual de una estructura
 \end_layout
 
@@ -17553,7 +17553,7 @@ l2x2 = definability.FO_Model(tlat, uni, {'^': meet,
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Chequeo de definibilidad
 \end_layout
 
@@ -17716,7 +17716,7 @@ reference "thm:definibilidad abierta"
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Generación de álgebras de Lindenbaum
 \end_layout
 
@@ -17936,7 +17936,7 @@ Relation([0, 0, 0],
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Section
 Conclusiones y trabajo futuro
 \end_layout
 
