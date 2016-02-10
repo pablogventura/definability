@@ -2,7 +2,7 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass amsbook
+\textclass amsart
 \begin_preamble
 \usepackage{pgf,tikz}
 \usetikzlibrary{arrows}
@@ -6654,8 +6654,7 @@ Comment
 
 \end_inset
 
- 
-hay un 
+ hay un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -6667,8 +6666,6 @@ hay un
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-
-\lang spanish
 
 \begin_inset ERT
 status open
@@ -8753,8 +8750,7 @@ Comment
 
 \end_inset
 
- 
-hay un 
+ hay un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -8766,8 +8762,6 @@ hay un
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-
-\lang spanish
 
 \begin_inset ERT
 status open
