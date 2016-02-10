@@ -377,8 +377,552 @@ key "Campercholi15"
 .
 \end_layout
 
+\begin_layout Section
+El problema
+\end_layout
+
+\begin_layout Standard
+Sean 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ un lenguaje de primer orden y 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ una clase de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras.
+ Dado un símbolo de relación 
+\begin_inset Formula $n$
+\end_inset
+
+-ario 
+\begin_inset Formula $R\in\mathcal{L}$
+\end_inset
+
+ diremos que la fórmula 
+\begin_inset Formula $\varphi\left(x_{1},\dots,x_{n}\right)$
+\end_inset
+
+ 
+\emph on
+define
+\emph default
+ a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ si
+\begin_inset Formula 
+\[
+\mathcal{K}\vDash\forall\overline{x}\ R\left(\overline{x}\right)\leftrightarrow\varphi\left(\overline{x}\right)\text{.}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+Dados:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ un lenguaje de primer orden finito,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ un conjunto finito de estructuras finitas de 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R\in\mathcal{L}$
+\end_inset
+
+ un símbolo de relación, y
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ un conjunto recursivo de fórmulas de 
+\begin_inset Formula $\mathcal{L}-\{R\}$
+\end_inset
+
+, 
+\end_layout
+
+\end_deeper
+\begin_layout Problem
+decidir si hay una fórmula de 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ En particular, nos focalizaremos en el problema cuando 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ es una clase finita de estructuras finitas.
+\end_layout
+
+\begin_layout Section
+La solución teórica
+\end_layout
+
+\begin_layout Standard
+La tipología del problema sugiere que su complejidad computacional en el
+ caso general será muy elevada.
+ Una solución por `fuerza bruta' requiere la construcción de todas las relacione
+s 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+-definibles en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ para poder dar una respuesta negativa.
+ Nuestro enfoque es evitar este costo explotando propiedades de preservación
+ que pueda tener el conjunto 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+En el trabajo 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Campercholi15"
+
+\end_inset
+
+ se presentan condiciones semánticas equivalentes a la existencia de una
+ 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-formula 
+\begin_inset Formula $\varphi\left(\bar{x}\right)$
+\end_inset
+
+ que define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, donde 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ pertenece a un fragmento de primer orden especifico, como las formulas
+ abiertas, las abiertas positivas, las existenciales, etc.
+\end_layout
+
+\begin_layout Standard
+Por ejemplo, en el caso de la definibilidad por una formula abierta (i.e.
+ formulas sin cuantificadores) el trabajo establece que (c.f.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+) dado 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ un lenguaje de primer orden, 
+\begin_inset Formula $R\in\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario y 
+\begin_inset Formula $\mathcal{\mathbf{A}}$
+\end_inset
+
+ una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura, los siguientes son equivalentes:
+\end_layout
+
+\begin_layout Enumerate
+Hay una fórmula abierta que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Todo isomorfismo 
+\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\end_inset
+
+ donde 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ son subestructuras en 
+\begin_inset Formula $\mathcal{L}-\left\{ R\right\} $
+\end_inset
+
+ de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, preserva 
+\begin_inset Formula $R$
+\end_inset
+
+ (i.e.
+ si 
+\begin_inset Formula $\left(\enumeracion[][a]\right)\in R$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\left(\sigma\left(a_{1}\right),\dots,\sigma\left(a_{n}\right)\right)\in R$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Al utilizar este resultado teórico, decidir definibilidad se convierte en
+ un problema de busqueda y chequeo de flechas entre estructuras, siendo
+ mucho mas manejable computacionalmente.
+\end_layout
+
+\begin_layout Subsection
+Ejemplo
+\end_layout
+
+\begin_layout Standard
+Supongamos que se quiere decidir la definibilidad por formulas abiertas
+ de la relacion unaria 
+\begin_inset Formula $P$
+\end_inset
+
+, dada en el siguiente reticulado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+ con una relación unaria 
+\begin_inset Formula $P$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+ 
+\backslash
+clip(-3.14,-0.61) rectangle (3.01,2.56); 
+\backslash
+draw (-1,1)-- (0,2); 
+\backslash
+draw (0,2)-- (1,1); 
+\backslash
+draw (1,1)-- (0,0); 
+\backslash
+draw (0,0)-- (-1,1); 
+\backslash
+draw [rotate around={0:(0,1)}] (0,1) ellipse (1.36cm and 0.39cm); 
+\backslash
+draw (-1.86,1.29) node[anchor=north west] {$P$}; 
+\backslash
+begin{scriptsize} 
+\backslash
+fill [color=black] (0,0) circle (1.5pt); 
+\backslash
+draw[color=black] (0.01,-0.17) node {0}; 
+\backslash
+fill [color=black] (1,1) circle (1.5pt); 
+\backslash
+draw[color=black] (1.15,1.02) node {3}; 
+\backslash
+fill [color=black] (-1,1) circle (1.5pt); 
+\backslash
+draw[color=black] (-1.15,1.01) node {2}; 
+\backslash
+fill [color=black] (0,2) circle (1.5pt); 
+\backslash
+draw[color=black] (0.01,2.14) node {1}; 
+\backslash
+end{scriptsize} 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A la luz del resultado visto anteriormente es fácil notar que entre el subreticu
+lado formado por el elemento 
+\begin_inset Formula $1$
+\end_inset
+
+ y el formado por el elemento 
+\begin_inset Formula $2$
+\end_inset
+
+ hay un isomorfismo 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ que no preserva 
+\begin_inset Formula $R$
+\end_inset
+
+, ya que 
+\begin_inset Formula $1\in R$
+\end_inset
+
+ pero 
+\begin_inset Formula $\sigma\left(1\right)=2\notin R$
+\end_inset
+
+.
+ Esto nos permite asegurar que no existe una formula abierta que defina
+ la relación unaria 
+\begin_inset Formula $P$
+\end_inset
+
+ en el tipo de los reticulados.
+\end_layout
+
+\begin_layout Section
+Objetivos
+\end_layout
+
+\begin_layout Standard
+A pesar de la ayuda que representan estas condiciones semanticas a la hora
+ de decidir definibilidad, es claro que con estructuras mas complejas la
+ cantidad de morfismos a chequear por preservacion puede volverse enorme.
+ Nuestro objetivo es el desarrollo e implementación de algoritmos eficientes
+ para decidir definibilidad de relaciones en clases finitas de estructuras
+ finitas.
+\end_layout
+
+\begin_layout Standard
+En la busqueda de eficiencia a la hora de encontrar morfismos modelizamos
+ el problema como un 
+\emph on
+Constraint Satisfaction Problem
+\emph default
+ 
+\emph on
+(CSP)
+\emph default
+ (ver, e.g., 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Capítulo 6"
+key "russell2010artificial"
+
+\end_inset
+
+).
+ Este es un problema computacional que ha sido ampliamente estudiado y para
+ el que hay buenas implementaciones de resolvedores (e.g.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "minion"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Para nuestros algoritmos, probamos algunos resultados sobre un subconjunto
+ de morfismos generador por composicion de todo el conjunto de morfismos.
+ A partir de estos resultados diseñamos algoritmos que realizan los chequeos
+ de preservacion solo sobre el conjunto generador.
+\end_layout
+
+\begin_layout Standard
+Como segundo objetivo pretendimos desarrollar algoritmos eficientes a la
+ hora de obtener el algebra de relaciones definibles para una clase de estructur
+as.
+ Aquí nos basamos en los teoremas de representacion de Stone y Birkhoff,
+ para buscar tan solo los elementos join-irreducibles en estas álgebras.
+\end_layout
+
+\begin_layout Section
+Estructura del trabajo
+\end_layout
+
+\begin_layout Standard
+El trabajo se encuentra organizado de la siguiente forma:
+\end_layout
+
+\begin_layout Standard
+En el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Teoremas-de-definibilidad"
+
+\end_inset
+
+ se prueban algunos lemas fundamentales para luego probar los Teoremas de
+ definibilidad de relaciones con formulas de primer orden, abiertas, abiertas
+ positivas, existenciales, existenciales positivas, conjunción de atómicas
+ y formulas primitivas positivas.
+\end_layout
+
+\begin_layout Standard
+En el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:algoritmos de chequeo"
+
+\end_inset
+
+, presentamos los algoritmos para chequeo de definibilidad en formulas de
+ primer orden, abiertas, abiertas positivas, existenciales y existenciales
+ positivas.
+ Antes de cada algoritmo presentamos los resultados teoricos sobre el subconjunt
+o de morfismos que genera por composicion a todo el conjunto de morfismos
+ a chequear.
+ Luego de los algoritmos mostramos como modelizar la busqueda de homomorfismos
+ mediante un CSP, y finalizamos el capitulo con la generacion de subestructuras.
+\end_layout
+
+\begin_layout Standard
+En el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Álgebras-de-Lindenbaum"
+
+\end_inset
+
+, presentamos los algoritmos para generar el algebra de relaciones definibles
+ de una estructura.
+ Luego mostramos algunos ejemplos mediante el uso de nuestro paquete 
+\emph on
+Definability
+\emph default
+ sobre reticulados.
+ Finalizamos el capitulo con un teorema que caracteriza las relaciones binarias
+ en los reticulados distributivos, inspirado en los ejemplos probados sobre
+ el paquete.
+\end_layout
+
+\begin_layout Standard
+En el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Documentación-de-Definability"
+
+\end_inset
+
+, presentamos nuestro paquete 
+\emph on
+Definability
+\emph default
+ para el software matematico SageMath, documentando su instalación y su
+ uso.
+\end_layout
+
+\begin_layout Standard
+En el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Conclusiones-y-trabajo"
+
+\end_inset
+
+, se presentan nuestras conclusiones y las posibles continuaciones a este
+ trabajo.
+\end_layout
+
 \begin_layout Chapter
 Teoremas de definibilidad
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Teoremas-de-definibilidad"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4984,7 +5528,7 @@ name "chap:algoritmos de chequeo"
 \end_layout
 
 \begin_layout Standard
-En este capitulo describimos algoritmos para el chequeo de definibilidad
+En este capítulo describimos algoritmos para el chequeo de definibilidad
  de relaciones en conjuntos finitos de estructuras finitas por fragmentos
  de primer orden.
  
@@ -12794,7 +13338,7 @@ Con la intencion de simplificar la exposicion, supondremos que
 
 .
  La generalizacion es facilmente deducible ya que los algoritmos son casi
- iguales a los presentados en el Capitulo 
+ iguales a los presentados en el Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:algoritmos de chequeo"
@@ -15885,7 +16429,7 @@ Para los demas tipos de definibilidad, el procedimiento seria analogo.
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- basados en los algoritmos del capitulo 
+ basados en los algoritmos del capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:algoritmos de chequeo"
@@ -17105,7 +17649,14 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 \end_layout
 
 \begin_layout Chapter
-Documentación de Definability 
+Documentación de Definability
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Documentación-de-Definability"
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Section
@@ -17681,7 +18232,7 @@ Una vez definidas las estructuras, para chequear definibilidad se utiliza
 \end_inset
 
 .
- Esta clase implementa los algoritmos vistos en el Capitulo 
+ Esta clase implementa los algoritmos vistos en el Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:algoritmos de chequeo"
@@ -17837,7 +18388,7 @@ Generación de álgebras de Lindenbaum
 \end_layout
 
 \begin_layout Standard
-Para la generacion de las algebras de Lindenbaum desarrolladas en el capitulo
+Para la generacion de las algebras de Lindenbaum desarrolladas en el capítulo
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -18054,6 +18605,13 @@ Relation([0, 0, 0],
 
 \begin_layout Chapter
 Conclusiones y trabajo futuro
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusiones-y-trabajo"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
