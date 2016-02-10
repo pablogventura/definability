@@ -292,6 +292,69 @@ theorems-ams-extended
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\atomicas}[1]{\operatorname{At}\left(#1\right)}
+{\mathrm{At}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\negatomicas}[1]{\operatorname{\pm At}\left(#1\right)}
+{\pm\mathrm{At}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\primerorden}[1]{\operatorname{Fo}\left(#1\right)}
+{\mathrm{Fo}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\abiertas}[1]{\operatorname{Op}\left(#1\right)}
+{\mathrm{Op}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\abiertaspositivas}[1]{\operatorname{Op^{+}}\left(#1\right)}
+{\mathrm{Op}^{+}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\existenciales}[1]{\operatorname{E}\left(#1\right)}
+{\mathrm{E}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\existencialespositivas}[1]{\operatorname{E^{+}}\left(#1\right)}
+{\mathrm{E}^{+}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introducción
 \end_layout
@@ -345,6 +408,420 @@ key "Campercholi15"
 
 \begin_layout Subsection
 Preliminares
+\end_layout
+
+\begin_layout Standard
+Sean:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\primerorden{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\abiertas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\abiertaspositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\existenciales{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\existencialespositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\negatomicas{\mathcal{L}}=\atomicas{\mathcal{L}}\cup\{\neg\alpha:\alpha\in\atomicas{\mathcal{L}}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\atomicas{\mathcal{L}}=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una formula es abierta si no tiene ocurrencias de 
+\begin_inset Formula $\forall$
+\end_inset
+
+, 
+\begin_inset Formula $\exists$
+\end_inset
+
+.
+ Es positiva si no tiene ocurrencias de 
+\begin_inset Formula $\neg$
+\end_inset
+
+, 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+, 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+.
+ Una formula es existencial si es de la forma 
+\begin_inset Formula $\exists\bar{x}\,\varphi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ una formula abierta, mientras que es existencial positiva si 
+\begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ es abierta positiva.
+ Una formula es conjuncion de atomicas si es de la forma 
+\begin_inset Formula $\varphi_{1}\left(\bar{x}\right)\wedge\dots\wedge\varphi_{n}\left(\bar{x}\right)$
+\end_inset
+
+, donde cada 
+\begin_inset Formula $\varphi_{i}\in\atomicas{\mathcal{L}}$
+\end_inset
+
+.
+ Una formula es primitiva positiva si es de la forma 
+\begin_inset Formula $\exists\bar{x}\,\varphi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ conjuncion de atomicas.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Definition
+Sean 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ lenguajes de primer orden y 
+\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario y 
+\begin_inset Formula $\Sigma\left(\mathcal{L}\right)\subseteq\primerorden{\mathcal{L}}.$
+\end_inset
+
+ Diremos que 
+\begin_inset Formula $R$
+\end_inset
+
+ es 
+\emph on
+definible
+\emph default
+ en 
+\begin_inset Formula $\Sigma\left(\mathcal{L}\right)$
+\end_inset
+
+ sobre una familia 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructuras cuando exista una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula 
+\begin_inset Formula $\deff[][\enumeracion]\in\Sigma\left(\mathcal{L}\right)$
+\end_inset
+
+ tal que para todo 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y todas 
+\begin_inset Formula $\enumeracion[][a]\in A$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(\enumeracion[][a]\right)\in R^{\mathbf{A}}\iff\varphi\left(\enumeracion[][a]\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dado un conjunto de fórmulas 
+\begin_inset Formula $\Delta$
+\end_inset
+
+, escribiremos 
+\begin_inset Formula $\Delta\left(\bar{x}\right)$
+\end_inset
+
+ para anunciar que cada una de las fórmulas en 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ tiene sus variables libres contenidas en la tupla 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, y que consideramos cada 
+\begin_inset Formula $\delta\in\Delta(\bar{x})$
+\end_inset
+
+ declarada 
+\begin_inset Formula $\delta=\delta\left(\bar{x}\right)$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es una estructura y 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ es una tupla de elementos de 
+\begin_inset Formula $A$
+\end_inset
+
+, escribiremos 
+\begin_inset Formula $\mathbf{A}\vDash\Delta\left[\bar{a}\right]$
+\end_inset
+
+ cuando 
+\begin_inset Formula $\mathbf{A}\vDash\delta\left[\bar{a}\right]$
+\end_inset
+
+ para cada 
+\begin_inset Formula $\delta\in\Delta(\bar{x})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Si 
+\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
+\end_inset
+
+ son lenguajes de primer orden, para una 
+\begin_inset Formula $\mathcal{L}'$
+\end_inset
+
+-estructura 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+, usaremos 
+\begin_inset Formula $\boldsymbol{A}_{\mathcal{L}}$
+\end_inset
+
+ para indicar el reducto de 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ al lenguaje 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+.
+ Si 
+\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}$
+\end_inset
+
+ son 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructuras, usaremos 
+\begin_inset Formula $\boldsymbol{A}\leq\boldsymbol{B}$
+\end_inset
+
+ para expresar que 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ es subestructura de 
+\begin_inset Formula $\boldsymbol{B}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Dados 
+\begin_inset Formula $A,B$
+\end_inset
+
+ conjuntos, 
+\begin_inset Formula $R^{A}\subseteq A^{n}$
+\end_inset
+
+, 
+\begin_inset Formula $R^{B}\subseteq B^{n}$
+\end_inset
+
+, diremos que una función 
+\begin_inset Formula $\funcion AB$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+ si para toda tupla 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in A_{0}$
+\end_inset
+
+ tenemos que si 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in R^{A}$
+\end_inset
+
+ implica que 
+\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{B}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dada una estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\bar{a}=\enumeracion[][a]\in A$
+\end_inset
+
+ utilizaremos 
+\begin_inset Formula $\subuniv aA$
+\end_inset
+
+ para denotar la subestructura generada por 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:equiv-formulas"
+
+\end_inset
+
+Dos fórmulas 
+\begin_inset Formula $\alpha\left(\bar{x}\right)$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta\left(\bar{x}\right)$
+\end_inset
+
+ se dicen 
+\emph on
+equivalentes
+\emph default
+ sobre una familia de estructuras 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ si para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ de A vale que 
+\begin_inset Formula 
+\[
+\mathbf{A}\vDash\alpha\left[\bar{a}\right]\Longleftrightarrow\mathbf{A}\vDash\beta\left[\bar{a}\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Theorem
@@ -962,6 +1439,39 @@ Finalmente, por definición de
 
 \end_layout
 
+\begin_layout Definition
+Sea 
+\series bold
+
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+
+\series default
+ una estructura y sean 
+\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
+\end_inset
+
+.
+ Definimos el diagrama abierto para 
+\begin_inset Formula $\enumeracion[n][a]$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ como: 
+\begin_inset Formula 
+\[
+\Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\in\abiertas{\mathcal{L}}\mbox{ y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
@@ -1391,29 +1901,7 @@ Para toda fórmula atómica
 \end_layout
 
 \begin_layout Enumerate
-Para toda fórmula abierta positiva
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Una fórmulas es positiva si no tiene ocurrencias de 
-\begin_inset Formula $\neg$
-\end_inset
-
-, 
-\begin_inset Formula $\rightarrow$
-\end_inset
-
-, 
-\begin_inset Formula $\leftrightarrow$
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
- 
+Para toda fórmula abierta positiva 
 \begin_inset Formula $\varphi=\varphi\left(\bar{x}\right)$
 \end_inset
 
@@ -1530,6 +2018,39 @@ Sea
 \end_inset
 
 2) Directo ya que toda atómica es abierta positiva.
+\end_layout
+
+\begin_layout Definition
+Sea 
+\series bold
+
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+
+\series default
+ una estructura y sean 
+\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
+\end_inset
+
+.
+ Definimos el diagrama atómico positivo de 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ como 
+\begin_inset Formula 
+\[
+\Delta_{\mathbf{A},\bar{a}}^{+}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\in\atomicas{\mathcal{L}}\mbox{ y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Theorem
@@ -1987,135 +2508,7 @@ A continuación presentamos el teorema de caracterización para definibilidad
  Antes necesitaremos algunos lemas.
 \end_layout
 
-\begin_layout Notation
-Dado un conjunto de fórmulas 
-\begin_inset Formula $\Delta$
-\end_inset
-
-, escribiremos 
-\begin_inset Formula $\Delta\left(\bar{x}\right)$
-\end_inset
-
- para anunciar que cada una de las fórmulas en 
-\begin_inset Formula $\Delta$
-\end_inset
-
- tiene sus variables libres contenidas en la tupla 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
-, y que consideramos cada 
-\begin_inset Formula $\delta\in\Delta(\bar{x})$
-\end_inset
-
- declarada 
-\begin_inset Formula $\delta=\delta\left(\bar{x}\right)$
-\end_inset
-
-.
- Si 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- es una estructura y 
-\begin_inset Formula $\bar{a}$
-\end_inset
-
- es una tupla de elementos de 
-\begin_inset Formula $A$
-\end_inset
-
-, escribiremos 
-\begin_inset Formula $\mathbf{A}\vDash\Delta\left[\bar{a}\right]$
-\end_inset
-
- cuando 
-\begin_inset Formula $\mathbf{A}\vDash\delta\left[\bar{a}\right]$
-\end_inset
-
- para cada 
-\begin_inset Formula $\delta\in\Delta(\bar{x})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Definition
-Sea 
-\series bold
-
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-
-\series default
- una estructura y sean 
-\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
-\end_inset
-
-.
- Definimos el diagrama abierto para 
-\begin_inset Formula $\enumeracion[n][a]$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- como: 
-\begin_inset Formula 
-\[
-\Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\mbox{ es abierta y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}
-\]
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout --Separator--
-
-\end_layout
-
-\begin_layout Definition
-\begin_inset CommandInset label
-LatexCommand label
-name "def:equiv-formulas"
-
-\end_inset
-
-Dos fórmulas 
-\begin_inset Formula $\alpha\left(\bar{x}\right)$
-\end_inset
-
- y 
-\begin_inset Formula $\beta\left(\bar{x}\right)$
-\end_inset
-
- se dicen 
-\emph on
-equivalentes
-\emph default
- sobre una familia de estructuras 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- si para cada 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
- y cada 
-\begin_inset Formula $\bar{a}$
-\end_inset
-
- de A vale que 
-\begin_inset Formula 
-\[
-\mathbf{A}\vDash\alpha\left[\bar{a}\right]\Longleftrightarrow\mathbf{A}\vDash\beta\left[\bar{a}\right].
-\]
-
-\end_inset
-
 
 \end_layout
 
@@ -2226,239 +2619,6 @@ reference "thm:diagrama sii isomorfismo"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Definition
-Sean 
-\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
-\end_inset
-
- lenguajes de primer orden y 
-\begin_inset Formula $R\in\mathcal{L}'-\mathcal{L}$
-\end_inset
-
- un símbolo de relación n-ario.
- Diremos que 
-\begin_inset Formula $R$
-\end_inset
-
- es 
-\emph on
-definible
-\emph default
- en una familia 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- de 
-\begin_inset Formula $\mathcal{L}'$
-\end_inset
-
--estructuras cuando exista una 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--fórmula 
-\begin_inset Formula $\deff[][\enumeracion]$
-\end_inset
-
- tal que para todo 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
- y todas 
-\begin_inset Formula $\enumeracion[][a]\in A$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\left(\enumeracion[][a]\right)\in R^{\mathbf{A}}\iff\varphi\left(\enumeracion[][a]\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-Definiciones, lemas semánticos dos lenguajes
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Si 
-\begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
-\end_inset
-
- son lenguajes de primer orden, para una 
-\begin_inset Formula $\mathcal{L}'$
-\end_inset
-
--estructura 
-\begin_inset Formula $\boldsymbol{A}$
-\end_inset
-
-, usaremos 
-\begin_inset Formula $\boldsymbol{A}_{\mathcal{L}}$
-\end_inset
-
- para indicar el reducto de 
-\begin_inset Formula $\boldsymbol{A}$
-\end_inset
-
- al lenguaje 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
-.
- Si 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}$
-\end_inset
-
- son 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--estructuras, usaremos 
-\begin_inset Formula $\boldsymbol{A}\leq\boldsymbol{B}$
-\end_inset
-
- para expresar que 
-\begin_inset Formula $\boldsymbol{A}$
-\end_inset
-
- es subestructura de 
-\begin_inset Formula $\boldsymbol{B}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-Sean:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Fo(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-E(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-E^{+}(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Op(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Op^{+}(\mathcal{L})=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\pm At(\mathcal{L})=At(\mathcal{L})\cup\{\neg\alpha:\alpha\in At(\mathcal{L})\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-At(\mathcal{L})=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-Dados 
-\begin_inset Formula $A,B$
-\end_inset
-
- conjuntos, 
-\begin_inset Formula $R^{A}\subseteq A^{n}$
-\end_inset
-
-, 
-\begin_inset Formula $R^{B}\subseteq B^{n}$
-\end_inset
-
-, diremos que una función 
-\begin_inset Formula $\funcion AB$
-\end_inset
-
- preserva 
-\begin_inset Formula $R$
-\end_inset
-
- si para toda tupla 
-\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in A_{0}$
-\end_inset
-
- tenemos que si 
-\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in R^{A}$
-\end_inset
-
- implica que 
-\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{A}$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Theorem
@@ -2760,39 +2920,6 @@ Definibilidad por fórmulas abiertas positivas
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Definibilidad-positiva"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-Sea 
-\series bold
-
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-
-\series default
- una estructura y sean 
-\begin_inset Formula $a_{1},\ldots,a_{n}\in A$
-\end_inset
-
-.
- Definimos el diagrama atómico positivo de 
-\begin_inset Formula $\bar{a}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- como 
-\begin_inset Formula 
-\[
-\Delta_{\mathbf{A},\bar{a}}^{+}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\mbox{ es atómica y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
-\]
 
 \end_inset
 
