@@ -650,6 +650,7 @@ Supongamos que se quiere decidir la definibilidad por formulas abiertas
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -677,6 +678,13 @@ Reticulado
 \begin_layout Plain Layout
 \begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -720,6 +728,13 @@ draw[color=black] (0.01,2.14) node {1};
 end{scriptsize} 
 \backslash
 end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
 \end_layout
 
 \end_inset
@@ -774,10 +789,11 @@ Objetivos
 \begin_layout Standard
 A pesar de la ayuda que representan estas condiciones semanticas a la hora
  de decidir definibilidad, es claro que con estructuras mas complejas la
- cantidad de morfismos a chequear por preservacion puede volverse enorme.
+ cantidad de morfismos a chequear por preservacion puede volverse enorme,
+ hasta ser imposible de manejar manualmente.
  Nuestro objetivo es el desarrollo e implementación de algoritmos eficientes
- para decidir definibilidad de relaciones en clases finitas de estructuras
- finitas.
+ para decidir automaticamente definibilidad de relaciones en clases finitas
+ de estructuras finitas.
 \end_layout
 
 \begin_layout Standard
