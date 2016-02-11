@@ -663,26 +663,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Reticulado 
-\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
-\end_inset
-
- con una relación unaria 
-\begin_inset Formula $P$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -742,6 +722,26 @@ end{tikzpicture}
 
 \backslash
 end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+ con una relación unaria 
+\begin_inset Formula $P$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -823,7 +823,7 @@ key "russell2010artificial"
 
 ).
  Este es un problema computacional que ha sido ampliamente estudiado y para
- el que hay buenas implementaciones de resolvedores (e.g.
+ el que hay buenas implementaciones de solucionadores de CSP's (e.g.
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -835,8 +835,9 @@ key "minion"
 \end_layout
 
 \begin_layout Standard
-Para nuestros algoritmos, probamos algunos resultados sobre un subconjunto
- de morfismos generador por composición de todo el conjunto de morfismos.
+Para nuestros algoritmos, probamos algunos resultados teoricos sobre un
+ subconjunto de morfismos generador por composición de todo el conjunto
+ de morfismos.
  A partir de estos resultados diseñamos algoritmos que realizan los chequeos
  de preservación solo sobre el conjunto generador.
 \end_layout
@@ -905,8 +906,8 @@ Definability
 \emph default
  sobre reticulados.
  Finalizamos el capítulo con un teorema que caracteriza las relaciones binarias
- en los reticulados distributivos, inspirado en los ejemplos probados sobre
- el paquete.
+ definibles por existenciales positivas en los reticulados distributivos,
+ inspirado en los ejemplos probados sobre el paquete.
 \end_layout
 
 \begin_layout Standard
@@ -18610,12 +18611,134 @@ name "chap:Conclusiones-y-trabajo"
 
 \end_layout
 
+\begin_layout Section
+Conclusiones
+\end_layout
+
 \begin_layout Standard
-La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
- uno de estos problemas se pueden resolver muy eficientemente.
- Esperamos explorar detalladamente estas situaciones para aprovecharlas
- para la búsqueda de homomorfismos cuando se den propiedades especificas
- para las estructuras en cuestión.
+En este trabajo se hicieron los siguientes aportes:
+\end_layout
+
+\begin_layout Itemize
+Se desarrollaron algoritmos para decidir definibilidad de relaciones en
+ primer orden, en formulas abiertas, abiertas positivas, existenciales y
+ existenciales positivas.
+\end_layout
+
+\begin_layout Itemize
+Se desarrollaron los respectivos algoritmos para obtener el álgebra de relacione
+s definibles en cada fragmento de primer orden mencionado anteriormente.
+\end_layout
+
+\begin_layout Itemize
+Se implemento una herramienta que implementa dichos algoritmos.
+\end_layout
+
+\begin_layout Itemize
+Al probar la herramienta, se conjeturo y luego se probó una caracterización
+ de las relaciones binarias definibles por existenciales positivas en reticulado
+s distributivos (Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Dado lo inicial de la investigación, las conclusiones tienen que ver con
+ la dirección futura de la investigación y las preguntas interesantes que
+ han surgido durante este trabajo, que se encuentran en la siguiente sección.
+ 
+\end_layout
+
+\begin_layout Standard
+Por otra parte, resulta muy alentador que el primer ejemplo visto seriamente
+ haya permitido conjeturar el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
+
+\end_inset
+
+.
+ Esperamos que sea una herramienta muy útil como asistente de investigación
+ para el grupo de Semántica Algebraica.
+\end_layout
+
+\begin_layout Section
+Trabajo futuro
+\end_layout
+
+\begin_layout Standard
+La experiencia durante el desarrollo nos ha hecho notar que la una gran
+ parte de de los cálculos vienen por el calculo de morfismos.
+ En relación a la incidencia que puedan tener propiedades de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ en la complejidad de decidir definibilidad es interesante destacar el extenso
+ trabajo existente acerca de la complejidad computacional del CSP (ver,
+ e.g., 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "creignou2008complexity"
+
+\end_inset
+
+).
+ Es de esperar que si el problema de calcular morfismos para la clase 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ (y estructuras derivadas) está bien condicionado, esto tendrá un efecto
+ positivo sobre el costo computacional de nuestro problema.
+ Un artículo que merece mención especial es 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "MacCSP"
+
+\end_inset
+
+, en donde se demuestra que el cálculo de morfismos se puede resolver en
+ tiempo polinomial si se cuenta con la existencia de términos con ciertas
+ propiedades ecuacionales (
+\emph on
+cube terms
+\emph default
+).
+ Una situación particular donde se cuenta con cube terms es bajo la presencia
+ de un 
+\emph on
+Near-Unanimy term
+\emph default
+, como por ejemplo en el caso de estructuras que tienen un reducto de reticulado.
+ Debido a esto resulta interesante el desarrollo de algoritmos que decidan
+ definibilidad para este tipo de estructuras.
+ Recientemente se ha demostrado que la presencia de cube terms es decidible
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "cube_terms"
+
+\end_inset
+
+, aunque, dada la naturaleza teórica de este resultado, no está claro si
+ el algoritmo descubierto tiene la eficiencia suficiente para que resulte
+ relevante a nuestros propósitos.
+\end_layout
+
+\begin_layout Standard
+Queda pendiente explorar y aprovechar en la implementación, la interacción
+ entre los diferentes tipos de definibilidad.
+ Queda muy claro que hay una jerarquía entre ellas que podría ser aprovechada,
+ al calcular diferentes tipos de definibilidad sobre la misma clase 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -18623,6 +18746,15 @@ También esperamos explorar mejores implementaciones para la generación de
  subestructuras, investigando a fondo los algoritmos utilizados por el Universal
  Álgebra Calculator.
 \end_layout
+
+\begin_layout Standard
+En cuanto a nuestra implementación, pensamos que se podría mejorar portando
+ algunas de las partes mas criticas a C.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
 
 \begin_layout Itemize
 Que un conjunto de flechas alcance para revisar preservación implica que
@@ -18646,6 +18778,11 @@ Explorar la relación entre generadores de una subestructura y homomorfismos.
 
 \begin_layout Itemize
 De menor a mayor o de menor a mayor las subestructuras?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
