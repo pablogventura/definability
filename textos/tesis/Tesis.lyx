@@ -12420,33 +12420,11 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 \end_layout
 
 \begin_layout Standard
-Para resolver CSP utilizamos Minion.
-\end_layout
+Para resolver CSP utilizamos el solucionador Minion 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "minion"
 
-\begin_layout Proof
-Sea 
-\begin_inset Formula $\gamma$
-\end_inset
-
- un endomorfismo inyectivo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $A$
-\end_inset
-
- es finito tenemos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es sobre y además 
-\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
-\end_inset
-
- para algún 
-\begin_inset Formula $k\geq1$
 \end_inset
 
 .
@@ -12457,14 +12435,15 @@ CSP
 \end_layout
 
 \begin_layout Standard
-Como aparece en 
+Un CSP (constraint satisfaction problem) (ver, e.g., 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "wiki:CSP"
+LatexCommand citep
+after "Capítulo 6"
+key "russell2010artificial"
 
 \end_inset
 
-, un CSP (constraint satisfaction problem) es definido como una terna 
+) es definido como una terna 
 \begin_inset Formula $\left\langle X,D,C\right\rangle $
 \end_inset
 
@@ -12739,6 +12718,35 @@ Sea
 
  es un automorfismo de 
 \begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Sea 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ un endomorfismo inyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+ Como 
+\begin_inset Formula $A$
+\end_inset
+
+ es finito tenemos que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es sobre y además 
+\begin_inset Formula $\gamma^{-1}=\gamma^{k}$
+\end_inset
+
+ para algún 
+\begin_inset Formula $k\geq1$
 \end_inset
 
 .
