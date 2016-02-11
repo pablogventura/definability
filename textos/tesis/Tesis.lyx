@@ -831,7 +831,7 @@ key "minion"
 \end_layout
 
 \begin_layout Standard
-Para nuestros algoritmos, probamos algunos resultados teoricos sobre un
+Para nuestros algoritmos, probamos algunos resultados teóricos sobre un
  subconjunto de morfismos generador por composición de todo el conjunto
  de morfismos.
  A partir de estos resultados diseñamos algoritmos que realizan los chequeos
@@ -1321,7 +1321,7 @@ Durante las siguientes pruebas, muchas veces hablaremos de conjuntos de
 \end_layout
 
 \begin_layout Standard
-Ademas, dado que muchas veces habra dos lenguajes de primer orden involucrados,
+Además, dado que muchas veces habrá dos lenguajes de primer orden involucrados,
  necesitamos definir el 
 \emph on
 reducto
@@ -2451,7 +2451,7 @@ Finalmente,
 
 \begin_layout Standard
 En el lema que sigue se establece que los homomorfismos preservan formulas
- atomicas, y tambien formulas abiertas positivas.
+ atómicas, y también formulas abiertas positivas.
 \end_layout
 
 \begin_layout Lemma
@@ -2671,7 +2671,7 @@ Sea
 \end_layout
 
 \begin_layout Standard
-De manera analoga al Lema 
+De manera análoga al Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -2679,7 +2679,7 @@ reference "thm:diagrama sii isomorfismo"
 \end_inset
 
 , se estable que si dos grupos de elementos en dos estructuras satisfacen
- las mismas propiedades atomicas positivas, hay un homomorfismo entre las
+ las mismas propiedades atómicas positivas, hay un homomorfismo entre las
  subestructuras generadas entre ellos.
 \end_layout
 
@@ -2812,7 +2812,7 @@ Definibilidad de primer orden
 
 \begin_layout Standard
 Este es el tipo de definibilidad mas débil.
- Los morfismos en cuestion son los isomorfismos entre estructuras de 
+ Los morfismos en cuestión son los isomorfismos entre estructuras de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -3611,7 +3611,7 @@ La definibilidad abierta positiva, es mas fuerte que la definibilidad abierta
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama atomico
+En el siguiente lema, construimos una formula equivalente al diagrama atómico
  positivo para un conjunto de elementos en una estructura, que utilizaremos
  en el teorema de definibilidad abierta positiva.
 \end_layout
@@ -4610,13 +4610,13 @@ Definibilidad por fórmulas existenciales positivas
 \end_layout
 
 \begin_layout Standard
-La definibildad existencial positiva es mas fuerte que la definibilidad
- existencial, incomparable con la definibilidad abierta y mas debil que
+La definibilidad existencial positiva es mas fuerte que la definibilidad
+ existencial, incomparable con la definibilidad abierta y mas débil que
  la definibilidad abierta positiva.
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama atomico
+En el siguiente lema, construimos una formula equivalente al diagrama atómico
  positivo para un conjunto de elementos tal que sea capaz de generar la
  estructura completa análogamente al Lema 
 \begin_inset CommandInset ref
@@ -5025,7 +5025,7 @@ se tiene que
 
 \begin_layout Standard
 El siguiente lema establece que el producto entre estructuras preserva las
- formulas atomicas.
+ formulas atómicas.
 \end_layout
 
 \begin_layout Lemma
@@ -5082,7 +5082,7 @@ Rutina.
 
 \begin_layout Standard
 En el siguiente teorema se establece la dependencia de la definibilidad
- por conjuncion de atomicas con la preservacion en homomorfismos desde subestruc
+ por conjunción de atómicas con la preservación en homomorfismos desde subestruc
 turas de los productos de las estructuras de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -5505,7 +5505,7 @@ reference "thm:preservacion existencial conj atomicas producto"
 
 \begin_layout Standard
 El siguiente teorema establece la dependencia de la definibilidad primitiva
- positiva con la preservacion en homomorfismos de los productos de las estructur
+ positiva con la preservación en homomorfismos de los productos de las estructur
 as de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -6861,18 +6861,12 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- antes del preprocesamiento
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
 	filename img/k sin preprocesamiento.svg
 	scale 40
@@ -6889,16 +6883,45 @@ name "fig:k sin preprocesamiento"
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ antes del preprocesamiento
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/k preprocesado.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:k preprocesado"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -6915,17 +6938,14 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/k preprocesado.svg
-	scale 40
-
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:k preprocesado"
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -7385,145 +7405,6 @@ reference "cor:preservar en la constelacion abierta es ser abierta definible"
 \end_layout
 
 \begin_layout Standard
-En el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion abierta"
-
-\end_inset
-
- se construye 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- a la vez que se van revisando los isomorfismos en 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
-.
- Para esto recorremos las estructuras en 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- de mayor a menor tamaño.
- Al momento de procesar una 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
- lo primero que se hace es buscar un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo 
-\begin_inset Formula $\gamma$
-\end_inset
-
- entre 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- y un miembro 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-.
- Si un tal 
-\begin_inset Formula $\gamma$
-\end_inset
-
- existe, tanto 
-\begin_inset Formula $\gamma$
-\end_inset
-
- como su inversa son revisados (miembros de 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
- correspondientes al punto (2) del Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:construccion de constelacion abierta"
-
-\end_inset
-
-).
- Si no hay un tal 
-\begin_inset Formula $\gamma$
-\end_inset
-
-, la estructura 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- es agregada a 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- y sus 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--automorfismos son revisados (miembros de 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
- correspondientes al punto (1) del Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:construccion de constelacion abierta"
-
-\end_inset
-
-).
- A continuación las subestructuras de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- son procesadas de la misma manera.
-\end_layout
-
-\begin_layout Standard
-Notar que en la linea 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lin:abierta-auto2"
-
-\end_inset
-
- no se necesita revisar si los automorfismos son 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--automorfismos ya que, como se recorren todos su inversa también es revisada
- por preservación.
-\end_layout
-
-\begin_layout Standard
-Además, una vez que una subestructura resulta ser 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfa a un representante en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-, sabemos que todas sus subestructuras ya tienen representante en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- y que los isomorfismos internos preservan.
- Esto permite disminuir la cantidad de subestructuras a revisar, como se
- ve en la linea 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lin:abierta-saco-subestructuras"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -7539,14 +7420,11 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float algorithm
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -8726,9 +8604,6 @@ end{algorithmic}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -8745,6 +8620,145 @@ as de
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+En el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ se construye 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ a la vez que se van revisando los isomorfismos en 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+.
+ Para esto recorremos las estructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ de mayor a menor tamaño.
+ Al momento de procesar una 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ lo primero que se hace es buscar un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ entre 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y un miembro 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+ Si un tal 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ existe, tanto 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ como su inversa son revisados (miembros de 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ correspondientes al punto (2) del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+).
+ Si no hay un tal 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, la estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ es agregada a 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y sus 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-automorfismos son revisados (miembros de 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ correspondientes al punto (1) del Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+).
+ A continuación las subestructuras de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ son procesadas de la misma manera.
+\end_layout
+
+\begin_layout Standard
+Notar que en la linea 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lin:abierta-auto2"
+
+\end_inset
+
+ no se necesita revisar si los automorfismos son 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-automorfismos ya que, como se recorren todos su inversa también es revisada
+ por preservación.
+\end_layout
+
+\begin_layout Standard
+Además, una vez que una subestructura resulta ser 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-isomorfa a un representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+, sabemos que todas sus subestructuras ya tienen representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ y que los isomorfismos internos preservan.
+ Esto permite disminuir la cantidad de subestructuras a revisar, como se
+ ve en la linea 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lin:abierta-saco-subestructuras"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -11662,6 +11676,13 @@ name "fig:constelacion abierta positiva"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Definibilidad de primer orden
 \end_layout
@@ -12463,7 +12484,7 @@ reference "alg:constelacion existencial positiva"
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -13094,7 +13115,7 @@ Si además quisiéramos que el homomorfismo fuera inyectivo, bastaría con
  agregar una restricción: 
 \begin_inset Formula 
 \[
-\left(\left(\enumeracion[m][X]\right),\textnormal{para todo par }\left(i,j\right)\textnormal{ con }i\neq j\textnormal{ y }i,j\in\left\{ 1,\dots,m\right\} \textnormal{ se da que }X_{i}\neq X_{j}\right)
+\left(\left(\enumeracion[m][X]\right),\textnormal{para todo }\left(i,j\right)\textnormal{ con }i\neq j\textnormal{ y }i,j\in\left\{ 1,\dots,m\right\} \textnormal{ se da }X_{i}\neq X_{j}\right)
 \]
 
 \end_inset
@@ -13930,7 +13951,7 @@ reference "thm:construccion de constelacion abierta positiva"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -14813,10 +14834,10 @@ end{algorithmic}
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement h
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -18104,9 +18125,13 @@ Introducción
 \begin_layout Standard
 Definability es un paquete que desarrollamos para SageMath, un software
  matemático licenciado bajo la GPL.
- Nuestro paquete implementa los algoritmos vistos en las secciones anteriores
- y permite dada una clase de estructuras, decidir definibilidad o generar
+ Nuestro paquete implementa los algoritmos vistos en las secciones anteriores,
+ permitiendo, dada una clase de estructuras, decidir definibilidad o generar
  las álgebras de Lindenbaum de relaciones definibles.
+\end_layout
+
+\begin_layout Section
+Arquitectura del paquete
 \end_layout
 
 \begin_layout Standard
@@ -18134,29 +18159,186 @@ target "GitHub"
 .
 \end_layout
 
-\begin_layout Section
-Instalación
+\begin_layout Subsection
+Programas externos necesarios
+\end_layout
+
+\begin_layout Standard
+Definability, así como SageMath han sido desarrollados en Python 2.7, por
+ lo que necesitan del interprete instalado.
+ Dado que Definability es un paquete desarrollado para SageMath, necesita
+ de una instalación de este.
+ Además, utiliza interfaces con otros programas.
+ Particularmente utiliza Minion, y LADR (interfaz de linea de comandos de
+ Prover9, Mace4, y otros programas).
+ Definability ha sido probado en versiones particulares de estos programas
+ y no se sabe si funcionara en otras.
+ Las versiones utilizadas son las siguientes:
+\end_layout
+
+\begin_layout Itemize
+Python 2.7.9,
+\end_layout
+
+\begin_layout Itemize
+SageMath 6.7,
+\end_layout
+
+\begin_layout Itemize
+Minion 1.8,
+\end_layout
+
+\begin_layout Itemize
+LADR versión de noviembre de 2009.
+\end_layout
+
+\begin_layout Standard
+En la siguiente sección explicaremos nuestra motivación detrás de desarrollar
+ un paquete para SageMath y en las siguientes dos secciones explicaremos
+ brevemente qué hacen los programas Minion y LADR.
+\end_layout
+
+\begin_layout Subsubsection
+SageMath
+\end_layout
+
+\begin_layout Standard
+SageMath es un software matemático libre licenciado bajo la GPL, con el
+ objetivo de ser una alternativa libre a Magma, Maple, Mathematica y Matlab.
+ 
+\end_layout
+
+\begin_layout Standard
+SageMath es un software en pleno desarrollo que incluye herramientas para
+ trabajar con reticulados y muchas otras estructuras algebraicas por lo
+ que nos pareció interesante utilizarlo como base para nuestra herramienta.
+\end_layout
+
+\begin_layout Subsubsection
+Minion
+\end_layout
+
+\begin_layout Standard
+Minion es un solucionador de CSP, rápido y escalable respecto del incremento
+ del tamaño del problema.
+ Es un solucionador de propósito general con un lenguaje de entrada muy
+ expresivo.
+ Minion es software libre, licenciado bajo la GPL 2.
+\end_layout
+
+\begin_layout Standard
+En nuestro caso utilizamos la interfaz con Minion a la hora de resolver
+ nuestros CSP para buscar morfismos.
+\end_layout
+
+\begin_layout Subsubsection
+LADR
+\end_layout
+
+\begin_layout Standard
+LADR es la interfaz de linea de comandos para Prober9 y Mace4.
+ Prover9 es un probador automático de teoremas para primer orden y lógica
+ ecuacional y Mace4 es un software capaz de encontrar modelos finitos y
+ contraejemplos.
+\end_layout
+
+\begin_layout Standard
+En nuestra herramienta solo se utiliza la interfaz con Mace4.
+ Esto es para generar automáticamente modelos de teorías de primer orden.
 \end_layout
 
 \begin_layout Subsection
-Requerimientos
+Módulos y organización del código fuente
 \end_layout
 
-\begin_layout Itemize
-SageMath 6.7 o superior.
+\begin_layout Standard
+Cada archivo .py en la carpeta src implementa los siguientes módulos:
 \end_layout
 
-\begin_layout Itemize
-Minion 1.8 o superior.
+\begin_layout Description
+config Maneja las rutas para acceder a Minion y a LADR.
 \end_layout
 
-\begin_layout Itemize
-LADR versión de noviembre de 2009, (interfaz de linea de comandos de Prover9,
- Mace4, y otros programas)
+\begin_layout Description
+minion Implementa la interfaz con Minion.
 \end_layout
 
-\begin_layout Itemize
-Git
+\begin_layout Description
+mace4 Implementa la interfaz con LADR, para utilizar Mace4.
+\end_layout
+
+\begin_layout Description
+fotype Implementa los tipos de primer orden
+\end_layout
+
+\begin_layout Description
+model Implementa la clase FO_Model que representa las estructuras de primer
+ orden.
+\end_layout
+
+\begin_layout Description
+fotheory Implementa las teorías de primer orden.
+\end_layout
+
+\begin_layout Description
+functions Implementa la clase general de las funciones, de las que heredan
+ los morfismos y las funciones y relaciones de primer orden.
+\end_layout
+
+\begin_layout Description
+fofunctions Implementa las funciones y relaciones de primer orden.
+\end_layout
+
+\begin_layout Description
+morphisms Implementa los morfismos.
+\end_layout
+
+\begin_layout Description
+constellation Implementa la clase Constellation que representa a la clase
+ de estructuras 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, y contiene las implementaciones de los algoritmos vistos en el Capitulo
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:algoritmos de chequeo"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+lindenbaum Implementa los algoritmos de generación de álgebras de Lindenbaum
+ presentados en el Capitulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Álgebras-de-Lindenbaum"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+examples Incluye algunos ejemplos de estructuras, y de tipos de primer orden
+ utilizados fundamentalmente para testing.
+\end_layout
+
+\begin_layout Description
+fotheories Incluye varias teorías de primer orden, para generar estructuras
+ automáticamente mediante Mace4.
+\end_layout
+
+\begin_layout Description
+sage_to Implementa entre conversión de estructuras algebraicas de Sage a
+ nuestra clase FO_Model.
+\end_layout
+
+\begin_layout Section
+Instalación
 \end_layout
 
 \begin_layout Subsection
@@ -18171,15 +18353,10 @@ n de SageMath:
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset listings
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
+inline false
 status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{listing}[style=consola, numbers=none]
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -18208,14 +18385,7 @@ $ cd SAGEDIR
 
 \begin_layout Plain Layout
 
-$ ./sage -i definability-hash.spkg
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{listing}
+$ ./sage -i definability-hash.spkg 
 \end_layout
 
 \end_inset
@@ -18232,26 +18402,14 @@ Una vez instalado el paquete basta con arrancar Sage con el comando:
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset listings
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
+inline false
 status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-begin{listing}[style=consola, numbers=none]
-\end_layout
-
-\begin_layout Plain Layout
-
-$ ./sage
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{listing}
+$ ./sage 
 \end_layout
 
 \end_inset
@@ -18264,26 +18422,14 @@ y una vez en la consola de Sage, importamos el paquete con el comando:
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset listings
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
+inline false
 status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-begin{lstlisting}[language=python]
-\end_layout
-
-\begin_layout Plain Layout
-
-sage: import definability 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{lstlisting}
+import definability 
 \end_layout
 
 \end_inset
@@ -18315,7 +18461,7 @@ Para definir un objeto del tipo FO_Theory que implementa a una teoría de
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18373,7 +18519,7 @@ Ahora para recorrer los reticulados (filtrando isomorfismos) basta con llamar
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18399,7 +18545,7 @@ Nuestro paquete incluye una gran variedad de teorías de primer orden ya
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18438,7 +18584,7 @@ dientes.
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18458,7 +18604,7 @@ Luego se debe definir un universo para la estructura, como por ejemplo
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18513,7 +18659,7 @@ Como ejemplo, definimos el ínfimo y el supremo utilizando cada una de las
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18633,7 +18779,7 @@ Finalmente, para definir el reticulado basta con hacer:
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18682,7 +18828,7 @@ reference "chap:algoritmos de chequeo"
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18743,7 +18889,7 @@ Por ejemplo para chequear definibilidad abierta de la relación
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18763,7 +18909,7 @@ Lo cual en particular es falso, por lo que el paquete devuelve la tupla:
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18894,7 +19040,7 @@ Por ejemplo para obtener los elementos join-irreducibles del reticulado
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -18916,7 +19062,7 @@ Lo cual devuelve una lista de 22 relaciones join-irreducibles, que acortamos
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=Python,showstringspaces=false"
+lstparams "language=Python,basicstyle={\ttfamily},breaklines=true,showstringspaces=false"
 inline false
 status open
 
