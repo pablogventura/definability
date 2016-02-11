@@ -581,15 +581,117 @@ end{titlepage}
 
 \end_layout
 
+\begin_layout Chapter*
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "80text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
+\lang english
+Abstract
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang english
+Relations' definability in a structure's class for some first order fragment,
+ has a semantic notion associated based on preservation properties of different
+ kinds of morphisms.
+ This work proposes algorithms to decide definability in an automatic way,
+ and algorithms to generate the algebra of definable relations for a class
+ of structures.
+ Besides of doing the presentation of the algorithms, the 
+\emph on
+Definibility
+\emph default
+ package will be presented alongside its documentation with some examples,
+ used to implement the algorithms.
+ Lastly, a theorem's proof about the characterization of binary definable
+ relations by positive existencial formulas in distributive lattices.
+ The theorem was inspired with the usage of the package.
+\end_layout
+
+\end_inset
 
 
-\backslash
-begin{titlepage}
+\begin_inset VSpace 2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "80text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
+Resumen
+\end_layout
+
+\begin_layout Plain Layout
+La definibilidad de una relación en una clase de estructuras para algún
+ fragmento de primer orden tiene una noción semántica asociada fundamentada
+ en propiedades de preservación de diferentes tipos de morfismos.
+ Este trabajo propone algoritmos para decidir definibilidad automáticamente
+ como así también algoritmos para generar el álgebra de relaciones definibles
+ para una clase de estructuras.
+ Además de presentar los algoritmos, se presenta 
+\emph on
+Definability
+\emph default
+, un paquete que implementa los algoritmos y se documenta su uso con algunos
+ ejemplos.
+ Luego se prueba un teorema sobre la caracterización de las relaciones binarias
+ definibles por existenciales positivas en reticulados distributivos, que
+ fue inspirado con la utilización de nuestro paquete.
 \end_layout
 
 \end_inset
@@ -597,16 +699,40 @@ begin{titlepage}
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
+\end_inset
 
 
-\backslash
-end{titlepage}
 \end_layout
+
+\begin_layout Chapter*
+Agradecimientos
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align right
+A Inés, por apoyarme siempre y soportar tantos fines de semana de estudio,
+\begin_inset Newline newline
+\end_inset
+
+a mi familia, por incentivarme a ser curioso,
+\begin_inset Newline newline
+\end_inset
+
+a mis amigos, por tantos cafés en los recreos,
+\begin_inset Newline newline
+\end_inset
+
+a Camper, por el entusiasmo y la confianza,
+\begin_inset Newline newline
+\end_inset
+
+y a todo FaMAF, por la emoción de cada clase.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
 
 \end_inset
 
@@ -13122,7 +13248,7 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 \end_layout
 
 \begin_layout Standard
-Para la deteccion de homomorfismos modelizamos el problema como un CSP,
+Para la detección de homomorfismos modelizamos el problema como un CSP,
  y utilizamos Minion (
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -17160,8 +17286,8 @@ Ejemplos y aplicación
 \end_layout
 
 \begin_layout Standard
-En esta seccion mostramos como la utlizacion del paquete permitio conjeturar
- una caracterizacion de las relaciones binarias definibles por existenciales
+En esta sección mostramos como la utilización del paquete permitió conjeturar
+ una caracterización de las relaciones binarias definibles por existenciales
  positivas en reticulados distributivos.
 \end_layout
 
