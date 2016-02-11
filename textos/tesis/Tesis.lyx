@@ -500,8 +500,15 @@ La solución teórica
 \begin_layout Standard
 La tipología del problema sugiere que su complejidad computacional en el
  caso general será muy elevada.
- Una solución por `fuerza bruta' requiere la construcción de todas las relacione
-s 
+ Una solución por 
+\begin_inset Quotes fld
+\end_inset
+
+fuerza bruta
+\begin_inset Quotes frd
+\end_inset
+
+ requiere la construcción de todas las relaciones 
 \begin_inset Formula $\Sigma$
 \end_inset
 
@@ -531,7 +538,7 @@ key "Campercholi15"
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula 
+-fórmula 
 \begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
@@ -547,13 +554,13 @@ key "Campercholi15"
 \begin_inset Formula $\varphi$
 \end_inset
 
- pertenece a un fragmento de primer orden especifico, como las formulas
+ pertenece a un fragmento de primer orden especifico, como las fórmulas
  abiertas, las abiertas positivas, las existenciales, etc.
 \end_layout
 
 \begin_layout Standard
-Por ejemplo, en el caso de la definibilidad por una formula abierta (i.e.
- formulas sin cuantificadores) el trabajo establece que (c.f.
+Por ejemplo, en el caso de la definibilidad por una fórmula abierta (i.e.
+ fórmulas sin cuantificadores) el trabajo establece que (cf.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -631,7 +638,7 @@ Todo isomorfismo
 
 \begin_layout Standard
 Al utilizar este resultado teórico, decidir definibilidad se convierte en
- un problema de busqueda y chequeo de flechas entre estructuras, siendo
+ un problema de búsqueda y chequeo de flechas entre estructuras, siendo
  mucho mas manejable computacionalmente.
 \end_layout
 
@@ -640,8 +647,8 @@ Ejemplo
 \end_layout
 
 \begin_layout Standard
-Supongamos que se quiere decidir la definibilidad por formulas abiertas
- de la relacion unaria 
+Supongamos que se quiere decidir la definibilidad por fórmulas abiertas
+ de la relación unaria 
 \begin_inset Formula $P$
 \end_inset
 
@@ -774,7 +781,7 @@ lado formado por el elemento
 \end_inset
 
 .
- Esto nos permite asegurar que no existe una formula abierta que defina
+ Esto nos permite asegurar que no existe una fórmula abierta que defina
  la relación unaria 
 \begin_inset Formula $P$
 \end_inset
@@ -787,17 +794,17 @@ Objetivos
 \end_layout
 
 \begin_layout Standard
-A pesar de la ayuda que representan estas condiciones semanticas a la hora
+A pesar de la ayuda que representan estas condiciones semánticas a la hora
  de decidir definibilidad, es claro que con estructuras mas complejas la
- cantidad de morfismos a chequear por preservacion puede volverse enorme,
+ cantidad de morfismos a chequear por preservación puede volverse enorme,
  hasta ser imposible de manejar manualmente.
  Nuestro objetivo es el desarrollo e implementación de algoritmos eficientes
- para decidir automaticamente definibilidad de relaciones en clases finitas
+ para decidir automáticamente definibilidad de relaciones en clases finitas
  de estructuras finitas.
 \end_layout
 
 \begin_layout Standard
-En la busqueda de eficiencia a la hora de encontrar morfismos modelizamos
+En la búsqueda de eficiencia a la hora de encontrar morfismos modelizamos
  el problema como un 
 \emph on
 Constraint Satisfaction Problem
@@ -829,16 +836,16 @@ key "minion"
 
 \begin_layout Standard
 Para nuestros algoritmos, probamos algunos resultados sobre un subconjunto
- de morfismos generador por composicion de todo el conjunto de morfismos.
+ de morfismos generador por composición de todo el conjunto de morfismos.
  A partir de estos resultados diseñamos algoritmos que realizan los chequeos
- de preservacion solo sobre el conjunto generador.
+ de preservación solo sobre el conjunto generador.
 \end_layout
 
 \begin_layout Standard
 Como segundo objetivo pretendimos desarrollar algoritmos eficientes a la
- hora de obtener el algebra de relaciones definibles para una clase de estructur
+ hora de obtener el álgebra de relaciones definibles para una clase de estructur
 as.
- Aquí nos basamos en los teoremas de representacion de Stone y Birkhoff,
+ Aquí nos basamos en los teoremas de representación de Stone y Birkhoff,
  para buscar tan solo los elementos join-irreducibles en estas álgebras.
 \end_layout
 
@@ -859,9 +866,9 @@ reference "chap:Teoremas-de-definibilidad"
 \end_inset
 
  se prueban algunos lemas fundamentales para luego probar los Teoremas de
- definibilidad de relaciones con formulas de primer orden, abiertas, abiertas
+ definibilidad de relaciones con fórmulas de primer orden, abiertas, abiertas
  positivas, existenciales, existenciales positivas, conjunción de atómicas
- y formulas primitivas positivas.
+ y fórmulas primitivas positivas.
 \end_layout
 
 \begin_layout Standard
@@ -872,14 +879,14 @@ reference "chap:algoritmos de chequeo"
 
 \end_inset
 
-, presentamos los algoritmos para chequeo de definibilidad en formulas de
+, presentamos los algoritmos para chequeo de definibilidad en fórmulas de
  primer orden, abiertas, abiertas positivas, existenciales y existenciales
  positivas.
- Antes de cada algoritmo presentamos los resultados teoricos sobre el subconjunt
-o de morfismos que genera por composicion a todo el conjunto de morfismos
+ Antes de cada algoritmo presentamos los resultados teóricos sobre el subconjunt
+o de morfismos que genera por composición a todo el conjunto de morfismos
  a chequear.
- Luego de los algoritmos mostramos como modelizar la busqueda de homomorfismos
- mediante un CSP, y finalizamos el capitulo con la generacion de subestructuras.
+ Luego de los algoritmos mostramos como modelizar la búsqueda de homomorfismos
+ mediante un CSP, y finalizamos el capítulo con la generación de subestructuras.
 \end_layout
 
 \begin_layout Standard
@@ -890,14 +897,14 @@ reference "chap:Álgebras-de-Lindenbaum"
 
 \end_inset
 
-, presentamos los algoritmos para generar el algebra de relaciones definibles
+, presentamos los algoritmos para generar el álgebra de relaciones definibles
  de una estructura.
  Luego mostramos algunos ejemplos mediante el uso de nuestro paquete 
 \emph on
 Definability
 \emph default
  sobre reticulados.
- Finalizamos el capitulo con un teorema que caracteriza las relaciones binarias
+ Finalizamos el capítulo con un teorema que caracteriza las relaciones binarias
  en los reticulados distributivos, inspirado en los ejemplos probados sobre
  el paquete.
 \end_layout
@@ -914,7 +921,7 @@ reference "chap:Documentación-de-Definability"
 \emph on
 Definability
 \emph default
- para el software matematico SageMath, documentando su instalación y su
+ para el software matemático SageMath, documentando su instalación y su
  uso.
 \end_layout
 
@@ -1052,7 +1059,7 @@ Sean:
 \end_layout
 
 \begin_layout Standard
-Una formula es abierta si no tiene ocurrencias de 
+Una fórmula es abierta si no tiene ocurrencias de 
 \begin_inset Formula $\forall$
 \end_inset
 
@@ -1074,7 +1081,7 @@ Una formula es abierta si no tiene ocurrencias de
 \end_inset
 
 .
- Una formula es existencial si es de la forma 
+ Una fórmula es existencial si es de la forma 
 \begin_inset Formula $\exists\bar{x}\,\varphi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
@@ -1082,12 +1089,12 @@ Una formula es abierta si no tiene ocurrencias de
 \begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
- una formula abierta, mientras que es existencial positiva si 
+ una fórmula abierta, mientras que es existencial positiva si 
 \begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
  es abierta positiva.
- Una formula es conjuncion de atomicas si es de la forma 
+ Una fórmula es conjunción de atómicas si es de la forma 
 \begin_inset Formula $\varphi_{1}\left(\bar{x}\right)\wedge\dots\wedge\varphi_{n}\left(\bar{x}\right)$
 \end_inset
 
@@ -1096,7 +1103,7 @@ Una formula es abierta si no tiene ocurrencias de
 \end_inset
 
 .
- Una formula es primitiva positiva si es de la forma 
+ Una fórmula es primitiva positiva si es de la forma 
 \begin_inset Formula $\exists\bar{x}\,\varphi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
@@ -1104,7 +1111,7 @@ Una formula es abierta si no tiene ocurrencias de
 \begin_inset Formula $\varphi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
- conjuncion de atomicas.
+ conjunción de atómicas.
 \end_layout
 
 \begin_layout --Separator--
@@ -2814,7 +2821,7 @@ Para todas
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--formula que define a 
+-fórmula que define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2901,7 +2908,7 @@ reference "thm:cantidad de formulas es finita"
 status open
 
 \begin_layout Plain Layout
-esta formula se podria escribir un poco mejor capaz
+esta fórmula se podría escribir un poco mejor capaz
 \end_layout
 
 \end_inset
@@ -3898,7 +3905,7 @@ reference "thm:formula para diagrama abierto positivo"
 \end_layout
 
 \begin_layout Section
-Definibilidad por formulas existenciales
+Definibilidad por fórmulas existenciales
 \end_layout
 
 \begin_layout Theorem
@@ -4388,7 +4395,7 @@ Notar que como
 \end_layout
 
 \begin_layout Section
-Definibilidad por formulas existenciales positivas
+Definibilidad por fórmulas existenciales positivas
 \end_layout
 
 \begin_layout Theorem
@@ -4635,7 +4642,7 @@ reference "thm:definibiliad existencial"
 
 \end_inset
 
-, pero utilizando las formulas dadas por el Teorema 
+, pero utilizando las fórmulas dadas por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para diagrama existencial positivo"
@@ -5577,7 +5584,7 @@ disjunta.
 \end_inset
 
  es siempre disjunta.
- Notar que no hay perdida de generalidad ya que bastaria con renombrar elementos
+ Notar que no hay perdida de generalidad ya que bastaría con renombrar elementos
  para convertir una clase no disjunta en una disjunta equivalente.
  Una clase 
 \begin_inset Formula $\mathcal{K}$
@@ -5617,7 +5624,7 @@ normal
 \end_layout
 
 \begin_layout Standard
-A la hora de reducir la complejidad de nuestros algoritmos en la busqueda
+A la hora de reducir la complejidad de nuestros algoritmos en la búsqueda
  de homomorfismos utilizaremos conjuntos reducidos de flechas, que 
 \emph on
 generan
@@ -5749,7 +5756,7 @@ Una vez que tenemos una clase normal
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- en la que chequear definibilidad tratamos de reducir su redundancia basandonos
+ en la que chequear definibilidad tratamos de reducir su redundancia basándonos
  en el siguiente resultado:
 \end_layout
 
@@ -5902,15 +5909,15 @@ reference "alg:preprocesamiento"
 
 \end_inset
 
- aprovecha este resultado aprovechando ademas para chequear por 
+ aprovecha este resultado aprovechando además para chequear por 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--isomorfismos y al descubir uno de estos comprobar si es un 
+-isomorfismos y al descubrir uno de estos comprobar si es un 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
--isomorfismo, lo que permite encontrar contrajemplos de definibilidad desde
+-isomorfismo, lo que permite encontrar contraejemplos de definibilidad desde
  esta etapa.
 \end_layout
 
@@ -6502,7 +6509,7 @@ El algoritmo de preprocesamiento detecta el
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--isomorfismo entre los dos octagonos y revisa que sea tambien un 
+-isomorfismo entre los dos octágonos y revisa que sea también un 
 \begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
 \end_inset
 
@@ -6528,7 +6535,7 @@ reference "thm:definibilidad abierta"
 
 \end_inset
 
-, habria que chequear todo isomorfismo entre subestructuras de estructuras
+, habría que chequear todo isomorfismo entre subestructuras de estructuras
  de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -6609,7 +6616,7 @@ En el siguiente teorema describimos un conjunto suficiente de flechas para
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
--estructuras sin estructuras isomorfas estamos pensando en la aplicacion
+-estructuras sin estructuras isomorfas estamos pensando en la aplicación
  previa del Algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6903,7 +6910,7 @@ Directa ya que la composición de funciones que preservan
 \begin_inset Formula $R$
 \end_inset
 
-, trivialmente tambien preserva 
+, trivialmente también preserva 
 \begin_inset Formula $R$
 \end_inset
 
@@ -8320,7 +8327,7 @@ reference "fig:categoria abierta"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- junto con todas las flechas que deberían ser revisadas segun el Teorema
+ junto con todas las flechas que deberían ser revisadas según el Teorema
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -8337,7 +8344,7 @@ reference "fig:constelacion abierta"
 \end_inset
 
 , se puede ver las flechas que bastan para comprobar definibilidad abierta
- segun el Corolario 
+ según el Corolario 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cor:preservar en la constelacion abierta es ser abierta definible"
@@ -8355,14 +8362,14 @@ reference "fig:constelacion abierta"
 
 \end_inset
 
-, la aplicacion del Algoritmo 
+, la aplicación del Algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:preprocesamiento"
 
 \end_inset
 
- (Preprocesamiento) genera que uno de los octagonos aparezca como 
+ (Preprocesamiento) genera que uno de los octágonos aparezca como 
 \emph on
 sombra
 \emph default
@@ -8406,7 +8413,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas a revisar segun el Teorema 
+Flechas a revisar según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta"
@@ -8451,7 +8458,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas que bastan segun el Corolario 
+Flechas que bastan según el Corolario 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cor:preservar en la constelacion abierta es ser abierta definible"
@@ -8908,7 +8915,7 @@ Directa ya que la composición de funciones que preservan
 \begin_inset Formula $R$
 \end_inset
 
-, trivialmente tambien preserva 
+, trivialmente también preserva 
 \begin_inset Formula $R$
 \end_inset
 
@@ -8948,8 +8955,8 @@ reference "cor:preservar en la constelacion abierta positiva es ser abierta posi
 
 .
  A su vez, a la hora de buscar homomorfismos entre estructuras aprovechamos
- el siguiente resultado, que nos permite organizar la busqueda de homorfismos
- biyectivos entre dos subestructuras en un unico sentido.
+ el siguiente resultado, que nos permite organizar la búsqueda de homomorfismos
+ biyectivos entre dos subestructuras en un único sentido.
 \end_layout
 
 \begin_layout Theorem
@@ -9073,8 +9080,8 @@ reference "alg:constelacion abierta positiva"
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-, ahora se buscan homomorfismos biyectivos primero, chequeandolos por preservaci
-on.
+, ahora se buscan homomorfismos biyectivos primero, chequeándolos por preservaci
+ón.
  Esto da lugar a tres casos:
 \end_layout
 
@@ -9139,7 +9146,7 @@ reference "thm:cantor-bernstein"
 
 \end_inset
 
-, deberia haber un 
+, debería haber un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -9153,7 +9160,7 @@ reference "thm:cantor-bernstein"
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, para revisar su preservacion.
+, para revisar su preservación.
 \end_layout
 
 \begin_layout Standard
@@ -9163,7 +9170,7 @@ Esto nos permite estar seguros de que todos los homomorfismos biyectivos
 \end_inset
 
  han sido chequeados.
- Finalmente lo unico que falta es chequear los homomorfismos sobreyectivos
+ Finalmente lo único que falta es chequear los homomorfismos sobreyectivos
  pero no inyectivos entre estructuras de 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
@@ -11078,7 +11085,7 @@ reference "fig:categoria abierta positiva"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- junto con todas las flechas que deberían ser revisadas segun el Teorema
+ junto con todas las flechas que deberían ser revisadas según el Teorema
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11095,7 +11102,7 @@ reference "fig:constelacion abierta positiva"
 \end_inset
 
 , se puede ver las flechas que bastan para comprobar definibilidad abierta
- segun el Teorema 
+ según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:construccion de constelacion abierta positiva"
@@ -11135,7 +11142,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas a revisar segun el Teorema 
+Flechas a revisar según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta positiva"
@@ -11180,7 +11187,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas que bastan segun el Teorema 
+Flechas que bastan según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:construccion de constelacion abierta positiva"
@@ -12692,7 +12699,7 @@ donde
 \end_layout
 
 \begin_layout Standard
-Para que fuera sobreyectivo bastaría agregar la siguiente restriccion: 
+Para que fuera sobreyectivo bastaría agregar la siguiente restricción: 
 \begin_inset Formula 
 \[
 \left(\left(\enumeracion[m][X]\right),\bigcup_{i=1}^{m}\left\{ X_{i}\right\} =B\right)
@@ -12711,7 +12718,7 @@ reference "lem:endo inyectivo es automorfismo"
 
 \end_inset
 
- nos permite simplificar la busqueda, encontrando endomorfismos inyectivos.
+ nos permite simplificar la búsqueda, encontrando endomorfismos inyectivos.
 \end_layout
 
 \begin_layout Lemma
@@ -12852,10 +12859,10 @@ Sea
 
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-esta notacion esta explicada en algun lado?
+esta notación esta explicada en algún lado?
 \end_layout
 
 \end_inset
@@ -12975,20 +12982,7 @@ Definimos:
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-https://en.wikipedia.org/wiki/Stone's_representation_theorem_for_Boolean_algebras
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dado que estas algebras podrian ser muy grandes ulizamos los siguientes
+Dado que estas álgebras podrían ser muy grandes utilizamos los siguientes
  resultados para representarlas mediante un subconjunto de sus elementos.
 \end_layout
 
@@ -13029,19 +13023,6 @@ name "thm:representacion de stone, algebras de boole"
 \end_layout
 
 \begin_layout --Separator--
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-https://en.wikipedia.org/wiki/Birkhoff's_representation_theorem
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -13122,11 +13103,11 @@ name "lem:atomo sii ji"
 
 \end_inset
 
-Dada un algebra de Boole finita 
+Dada un álgebra de Boole finita 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, un elemento es un atomo sii es join-irreducible.
+, un elemento es un átomo sii es join-irreducible.
 \end_layout
 
 \begin_layout --Separator--
@@ -13135,7 +13116,7 @@ Dada un algebra de Boole finita
 
 \begin_layout Standard
 Los resultados anteriores nos permiten centrarnos únicamente en los elementos
- join-irreducibles de estas algebras.
+ join-irreducibles de estas álgebras.
  Mientras que los Lemas 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -13150,7 +13131,7 @@ reference "lem:ji sii uno generado abiertas positivas"
 
 \end_inset
 
-, presentados a continuacion, suguieren una manera clara de calcularlos.
+, presentados a continuación, sugieren una manera clara de calcularlos.
 \end_layout
 
 \begin_layout Lemma
@@ -13181,7 +13162,7 @@ Una relación
 status open
 
 \begin_layout Plain Layout
-explicar la notacion 
+explicar la notación 
 \begin_inset Formula $\subhom{\mathbf{A}}$
 \end_inset
 
@@ -13243,7 +13224,7 @@ Supongamos que
 \begin_inset Formula $r=\left\{ h\left(\bar{a}\right):h\in\subiso{\mathbf{A}}\right\} $
 \end_inset
 
- para algun 
+ para algún 
 \begin_inset Formula $\bar{a}\in A^{n}$
 \end_inset
 
@@ -13269,7 +13250,7 @@ r=r_{1}\cup\dots\cup r_{m}
 \end_inset
 
 .
- Ademas como 
+ Además como 
 \begin_inset Formula $r_{j}$
 \end_inset
 
@@ -13316,7 +13297,7 @@ Una relación
 status open
 
 \begin_layout Plain Layout
-explicar la notacion 
+explicar la notación 
 \begin_inset Formula $\subhom{\mathbf{A}}$
 \end_inset
 
@@ -13344,16 +13325,16 @@ Algoritmos
 \end_layout
 
 \begin_layout Standard
-Con la intencion de simplificar la exposicion, supondremos que 
+Con la intención de simplificar la exposición, supondremos que 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- tiene una unica estructura 
+ tiene una única estructura 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
 .
- La generalizacion es facilmente deducible ya que los algoritmos son casi
+ La generalización es fácilmente deducible ya que los algoritmos son casi
  iguales a los presentados en el Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -13365,24 +13346,24 @@ reference "chap:algoritmos de chequeo"
 \end_layout
 
 \begin_layout Standard
-Como un algebra de Lindenbaum de relaciones definibles puede llegar a ser
- un objeto muy grande y dificil de manipular, nos basta generar los elementos
- join-irreducibles del algebra segun los Teoremas 
+Como un álgebra de Lindenbaum de relaciones definibles puede llegar a ser
+ un objeto muy grande y difícil de manipular, nos basta generar los elementos
+ join-irreducibles del álgebra según los Teoremas 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:representacion de stone, algebras de boole"
 
 \end_inset
 
- para aquellas algebras de lindenbaum que son algebras de Boole y los atomos
- (que tambien son los elementos join-irreducibles segun el Lema 
+ para aquellas álgebras de Lindenbaum que son álgebras de Boole y los átomos
+ (que también son los elementos join-irreducibles según el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:atomo sii ji"
 
 \end_inset
 
-) segun el Teorema 
+) según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:representacion de birkhoff, reticulados"
@@ -13393,7 +13374,7 @@ reference "thm:representacion de birkhoff, reticulados"
 \end_layout
 
 \begin_layout Standard
-Para generar los elementos join-irreducibles del algebra de Lindenbaum de
+Para generar los elementos join-irreducibles del álgebra de Lindenbaum de
  relaciones de ancho 
 \begin_inset Formula $n$
 \end_inset
@@ -13406,7 +13387,7 @@ Para generar los elementos join-irreducibles del algebra de Lindenbaum de
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- de flechas que se chequean por preservacion en los algoritmos del Capítulo
+ de flechas que se chequean por preservación en los algoritmos del Capítulo
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -13441,7 +13422,7 @@ reference "lem:ji sii uno generado abiertas"
 \end_inset
 
 , todos los elementos join-irreducibles son de esta forma.
- De la misma manera podemos construir el algebra de Lindenbaum de relaciones
+ De la misma manera podemos construir el álgebra de Lindenbaum de relaciones
  de ancho 
 \begin_inset Formula $n$
 \end_inset
@@ -13450,7 +13431,7 @@ reference "lem:ji sii uno generado abiertas"
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, basandonos en el Teorema 
+, basándonos en el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:construccion de constelacion abierta positiva"
@@ -13514,7 +13495,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Construccion de 
+Construcción de 
 \family roman
 \series medium
 \shape up
@@ -14400,7 +14381,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Construccion de 
+Construcción de 
 \begin_inset Formula $\mathbf{Op}_{n}^{+}(\mathbf{A})$
 \end_inset
 
@@ -15830,8 +15811,8 @@ reference "alg:construccion algebra saturacion"
 
 \end_inset
 
-, lo cual ya nos da los elementos join-irreducibles o los atomos, segun
- el tipo de definibilidad en cuestion.
+, lo cual ya nos da los elementos join-irreducibles o los átomos, según
+ el tipo de definibilidad en cuestión.
 \end_layout
 
 \begin_layout Standard
@@ -15845,7 +15826,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Saturacion por un conjunto de flechas
+Saturación por un conjunto de flechas
 \end_layout
 
 \end_inset
@@ -16440,7 +16421,7 @@ end{algorithmic}
 \end_layout
 
 \begin_layout Standard
-Para los demas tipos de definibilidad, el procedimiento seria analogo.
+Para los demás tipos de definibilidad, el procedimiento seria análogo.
  Generar 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
@@ -16452,7 +16433,7 @@ reference "chap:algoritmos de chequeo"
 
 \end_inset
 
- y saturar segun el Algoritmo 
+ y saturar según el Algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:construccion algebra saturacion"
@@ -16653,7 +16634,7 @@ Al correr el algoritmo de generación de los elementos join-irreducibles
 \end_layout
 
 \begin_layout Standard
-Aqui se puede notar las ventajas de utilizar el Teorema 
+Aquí se puede notar las ventajas de utilizar el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:representacion de birkhoff, reticulados"
@@ -17744,7 +17725,7 @@ Instalación del paquete en SageMath
 \begin_layout Standard
 Suponiendo que tenemos instalado SageMath en la ruta absoluta SAGEDIR, nos
  movemos al directorio donde se quiere descargar el paquete Definability,
- seguimos los siguientes comandos para instalar el paquete en nuestra instalacio
+ seguimos los siguientes comandos para instalar el paquete en nuestra instalació
 n de SageMath:
 \end_layout
 
@@ -17874,10 +17855,9 @@ Generación y entrada de estructuras
 \end_layout
 
 \begin_layout Standard
-Al momento de ingresar estructuras para su chequeo puede optarse por la
- generacion automatica de estructuras a partir de una teoria de primer orden
- mediante la interfaz a Mace4, o la entrada de una estructura en particular
- manualmente.
+Al momento de ingresar estructuras para su chequeo puede optar por la generación
+ automática de estructuras a partir de una teoría de primer orden mediante
+ la interfaz a Mace4, o la entrada de una estructura en particular manualmente.
 \end_layout
 
 \begin_layout Subsection
@@ -17886,9 +17866,9 @@ Generación de estructuras de una teoría de primer orden
 
 \begin_layout Standard
 Para definir un objeto del tipo FO_Theory que implementa a una teoría de
- primer orden basta con un nombre, una descripcion, y una lista de axiomas
+ primer orden basta con un nombre, una descripción, y una lista de axiomas
  en la sintaxis propia de Mace4.
- Por ejemplo para definir la teoria de reticulados bastaria con la siguiente
+ Por ejemplo para definir la teoría de reticulados bastaría con la siguiente
  linea:
 \end_layout
 
@@ -17945,7 +17925,7 @@ Lat = definability.FO_Theory("Lat",
 
 \begin_layout Standard
 Ahora para recorrer los reticulados (filtrando isomorfismos) basta con llamar
- al metodo find_models con la cardinalidad buscada, el cual devuelve un
+ al método find_models con la cardinalidad buscada, el cual devuelve un
  generador.
  Por ejemplo para recorrer los reticulados de 5 elementos basta con 
 \end_layout
@@ -17968,7 +17948,7 @@ que devolverá una lista con todos los reticulados de 5 elementos filtrando
 \end_layout
 
 \begin_layout Standard
-Nuestro paquete incluye una gran variedad de teorias de primer orden ya
+Nuestro paquete incluye una gran variedad de teorías de primer orden ya
  cargadas en el modulo fotheories.
  Por ejemplo: Lat para reticulados, Graph para grafos, Grp para grupos,
  etc.
@@ -18005,9 +17985,9 @@ Supongamos que queremos ingresar manualmente el reticulado
  Lo primero es definir el tipo de primer orden al que pertenece.
  Para crear un objeto de la clase FO_Type basta con pasar dos diccionarios,
  el primero para las funciones y el segundo para las relaciones.
- Los diccionarios contienen las aridades y se indexan por los simbolos correspon
+ Los diccionarios contienen las aridades y se indexan por los símbolos correspon
 dientes.
- Por ejemplo, para definir el tipo de los reticulados, junto con una relacion
+ Por ejemplo, para definir el tipo de los reticulados, junto con una relación
  unaria 
 \begin_inset Formula $P$
 \end_inset
@@ -18052,7 +18032,7 @@ universe = [0,1,2,3]
 \end_layout
 
 \begin_layout Standard
-Luego se necesitan definir las funciones supremo e infimo, y una relacion
+Luego se necesitan definir las funciones supremo e ínfimo, y una relación
  unaria 
 \begin_inset Formula $P$
 \end_inset
@@ -18061,8 +18041,8 @@ Luego se necesitan definir las funciones supremo e infimo, y una relacion
 \end_layout
 
 \begin_layout Standard
-Una funcion, implementada por la clase FO_Operation se puede definir mediante
- un diccionario con claves de tuplas que apuntan al valor de la funcion,
+Una función, implementada por la clase FO_Operation se puede definir mediante
+ un diccionario con claves de tuplas que apuntan al valor de la función,
  o en el caso de funciones binarias, una matriz 
 \begin_inset Formula $A$
 \end_inset
@@ -18071,19 +18051,19 @@ Una funcion, implementada por la clase FO_Operation se puede definir mediante
 \begin_inset Formula $A_{i,j}$
 \end_inset
 
- se corresponde a la funcion evaluada en 
+ se corresponde a la función evaluada en 
 \begin_inset Formula $\left(i,j\right)$
 \end_inset
 
 .
- Para definir una relacion utilizando la clase FO_Relation basta con una
- lista de las tuplas que pertenecen a la relacion y el universo sobre el
- que la relacion esta definida.
+ Para definir una relación utilizando la clase FO_Relation basta con una
+ lista de las tuplas que pertenecen a la relación y el universo sobre el
+ que la relación esta definida.
 \end_layout
 
 \begin_layout Standard
-Como ejemplo, definimos el infimo y el supremo utilizando cada una de las
- maneras para definir funciones, y definimos la relacion 
+Como ejemplo, definimos el ínfimo y el supremo utilizando cada una de las
+ maneras para definir funciones, y definimos la relación 
 \begin_inset Formula $P$
 \end_inset
 
@@ -18276,7 +18256,7 @@ c = definability.Constellation([l2x2])
 \end_layout
 
 \begin_layout Standard
-Para chequear definibilidad estan los siguientes metodos:
+Para chequear definibilidad están los siguientes métodos:
 \end_layout
 
 \begin_layout Itemize
@@ -18308,12 +18288,12 @@ los cuales toman dos tipos
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
-, y devuelven una tupla con un booleano y un contrajemplo, si es que lo
+, y devuelven una tupla con un booleano y un contraejemplo, si es que lo
  hay.
 \end_layout
 
 \begin_layout Standard
-Por ejemplo para chequear definibilidad abierta de la relacion 
+Por ejemplo para chequear definibilidad abierta de la relación 
 \begin_inset Formula $P$
 \end_inset
 
@@ -18404,7 +18384,7 @@ Generación de álgebras de Lindenbaum
 \end_layout
 
 \begin_layout Standard
-Para la generacion de las algebras de Lindenbaum desarrolladas en el capítulo
+Para la generación de las álgebras de Lindenbaum desarrolladas en el capítulo
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -18420,7 +18400,7 @@ Este modulo contiene las siguientes funciones:
 \end_layout
 
 \begin_layout Description
-ji_of_existencial_definable_algebra para generar los elementos join irreducibles
+ji_of_existencial_definable_algebra para generar los elementos join-irreducibles
  de 
 \begin_inset Formula $\mathbf{E}_{n}\left(\mathcal{K}\right)$
 \end_inset
@@ -18430,7 +18410,7 @@ ji_of_existencial_definable_algebra para generar los elementos join irreducibles
 
 \begin_layout Description
 ji_of_existencial_positive_definable_algebra para generar los elementos
- join irreducibles de 
+ join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
 
@@ -18446,7 +18426,7 @@ atoms_of_open_definable_algebra para generar los átomos de
 \end_layout
 
 \begin_layout Description
-ji_of_open_positive_definable_algebra para generar los elementos join irreducibl
+ji_of_open_positive_definable_algebra para generar los elementos join-irreducibl
 es de 
 \begin_inset Formula $\mathbf{Op}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
@@ -18459,7 +18439,7 @@ Estas funciones toman un objeto del tipo Constellation que determina
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, un tipo para los morfismos en cuestion y una aridad.
+, un tipo para los morfismos en cuestión y una aridad.
 \end_layout
 
 \begin_layout Standard
@@ -18468,7 +18448,7 @@ Por ejemplo para obtener los elementos join-irreducibles del reticulado
 \begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
- bastaria con la siguiente linea:
+ bastaría con la siguiente linea:
 \end_layout
 
 \begin_layout Standard
@@ -18634,14 +18614,14 @@ name "chap:Conclusiones-y-trabajo"
 La ventaja de utilizar CSP es que hay múltiples circunstancias en las que
  uno de estos problemas se pueden resolver muy eficientemente.
  Esperamos explorar detalladamente estas situaciones para aprovecharlas
- para la busqueda de homomorfismos cuando se den propiedades especificas
- para las estructuras en cuestion.
+ para la búsqueda de homomorfismos cuando se den propiedades especificas
+ para las estructuras en cuestión.
 \end_layout
 
 \begin_layout Standard
-Tambien esperamos explorar mejores implementaciones para la generacion de
+También esperamos explorar mejores implementaciones para la generación de
  subestructuras, investigando a fondo los algoritmos utilizados por el Universal
- Algebra Calculator.
+ Álgebra Calculator.
 \end_layout
 
 \begin_layout Itemize
