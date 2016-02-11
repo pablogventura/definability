@@ -486,11 +486,7 @@ decidir si hay una fórmula de
 \end_inset
 
 .
- En particular, nos focalizaremos en el problema cuando 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- es una clase finita de estructuras finitas.
+ 
 \end_layout
 
 \begin_layout Section
@@ -956,9 +952,72 @@ En esta sección presentamos resultados que caracterizan la definibilidad,
  Estas caracterizaciones reducen la pregunta de si una relación es definible
  a la pregunta de si dicha relación es preservada por una colección de morfismos
  que depende del fragmento de primer orden considerado.
- Por ejemplo, .....
- (cf.
- referencia cruzada)...
+ Por ejemplo, (cf.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+) dados 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ un lenguaje de primer orden, 
+\begin_inset Formula $R\in\mathcal{L}$
+\end_inset
+
+ un símbolo de relación n-ario y 
+\begin_inset Formula $\mathcal{\mathbf{A}}$
+\end_inset
+
+ una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-estructura, entonces hay una fórmula abierta que define 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, sii todo isomorfismo 
+\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\end_inset
+
+ donde 
+\begin_inset Formula $\mathbf{A}_{0}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}_{0}$
+\end_inset
+
+ son subestructuras en 
+\begin_inset Formula $\mathcal{L}-\left\{ R\right\} $
+\end_inset
+
+ de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, preserva 
+\begin_inset Formula $R$
+\end_inset
+
+ (i.e.
+ si 
+\begin_inset Formula $\left(\enumeracion[][a]\right)\in R$
+\end_inset
+
+, entonces 
+\begin_inset Formula $\left(\sigma\left(a_{1}\right),\dots,\sigma\left(a_{n}\right)\right)\in R$
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -979,87 +1038,66 @@ Preliminares
 \end_layout
 
 \begin_layout Standard
-Sean:
+Lo primero es definir los fragmentos de primer orden que nos interesan.
+ Definimos:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\primerorden{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\}
+\primerorden{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\abiertas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\}
+\abiertas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\abiertaspositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\}
+\abiertaspositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\existenciales{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\}
+\existenciales{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\existencialespositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\}
+\existencialespositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\negatomicas{\mathcal{L}}=\atomicas{\mathcal{L}}\cup\{\neg\alpha:\alpha\in\atomicas{\mathcal{L}}\}
+\negatomicas{\mathcal{L}}=\atomicas{\mathcal{L}}\cup\{\neg\alpha:\alpha\in\atomicas{\mathcal{L}}\},
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\atomicas{\mathcal{L}}=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}
+\atomicas{\mathcal{L}}=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}.
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Una fórmula es abierta si no tiene ocurrencias de 
 \begin_inset Formula $\forall$
 \end_inset
@@ -1117,6 +1155,11 @@ Una fórmula es abierta si no tiene ocurrencias de
 
 \begin_layout --Separator--
 
+\end_layout
+
+\begin_layout Standard
+Ahora definiremos el concepto de que una formula defina a una relación para
+ una clase de estructuras.
 \end_layout
 
 \begin_layout Definition
@@ -1179,8 +1222,53 @@ definible
 
 \end_layout
 
+\begin_layout --Separator--
+
+\end_layout
+
 \begin_layout Standard
-Dado un conjunto de fórmulas 
+Luego definimos la preservación de una relación por parte de una función.
+\end_layout
+
+\begin_layout Definition
+Dados 
+\begin_inset Formula $A,B$
+\end_inset
+
+ conjuntos, 
+\begin_inset Formula $R^{A}\subseteq A^{n}$
+\end_inset
+
+, 
+\begin_inset Formula $R^{B}\subseteq B^{n}$
+\end_inset
+
+, diremos que una función 
+\begin_inset Formula $\funcion AB$
+\end_inset
+
+ preserva 
+\begin_inset Formula $R$
+\end_inset
+
+ si para toda tupla 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in A_{0}$
+\end_inset
+
+ tenemos que si 
+\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in R^{A}$
+\end_inset
+
+ implica que 
+\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{B}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Durante las siguientes pruebas, muchas veces hablaremos de conjuntos de
+ formulas, por lo que dado un conjunto de fórmulas 
 \begin_inset Formula $\Delta$
 \end_inset
 
@@ -1233,19 +1321,25 @@ Dado un conjunto de fórmulas
 \end_layout
 
 \begin_layout Standard
-Si 
+Ademas, dado que muchas veces habra dos lenguajes de primer orden involucrados,
+ necesitamos definir el 
+\emph on
+reducto
+\emph default
+.
+ Dados 
 \begin_inset Formula $\mathcal{L}\subseteq\mathcal{L}'$
 \end_inset
 
- son lenguajes de primer orden, para una 
+ lenguajes de primer orden y 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ una 
 \begin_inset Formula $\mathcal{L}'$
 \end_inset
 
--estructura 
-\begin_inset Formula $\boldsymbol{A}$
-\end_inset
-
-, usaremos 
+-estructura, usaremos 
 \begin_inset Formula $\boldsymbol{A}_{\mathcal{L}}$
 \end_inset
 
@@ -1279,47 +1373,7 @@ Si
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-Dados 
-\begin_inset Formula $A,B$
-\end_inset
-
- conjuntos, 
-\begin_inset Formula $R^{A}\subseteq A^{n}$
-\end_inset
-
-, 
-\begin_inset Formula $R^{B}\subseteq B^{n}$
-\end_inset
-
-, diremos que una función 
-\begin_inset Formula $\funcion AB$
-\end_inset
-
- preserva 
-\begin_inset Formula $R$
-\end_inset
-
- si para toda tupla 
-\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in A_{0}$
-\end_inset
-
- tenemos que si 
-\begin_inset Formula $\left(a_{1},\ldots,a_{n}\right)\in R^{A}$
-\end_inset
-
- implica que 
-\begin_inset Formula $(\sigma(a_{1}),\ldots,\sigma(a_{n}))\in R^{B}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Dada una estructura 
+ Dada una estructura 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -1386,6 +1440,15 @@ equivalentes
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+La equivalencia de formulas es un concepto fundamental para nuestro desarrollo
+ ya que permite probar el siguiente teorema.
+ Este teorema permite convertir conjuntos infinitos de formulas, en conjuntos
+ finitos de representantes de cada clase de equivalencia entre ellas.
+ Esto será fundamental a la hora de construir formulas que definan relaciones
+ durante nuestro trabajo.
 \end_layout
 
 \begin_layout --Separator--
@@ -1469,10 +1532,14 @@ Sea
 \end_inset
 
  defino 
-\begin_inset Formula $T_{\varphi\mathcal{K}}=\left\{ \bar{a}\in A_{1}^{n}|\sat{\mathbf{A}_{1}}{\varphi}{\bar{a}}\right\} \times\cdots\times\left\{ \bar{a}\in A_{m}^{n}|\sat{\mathbf{A}_{m}}{\varphi}{\bar{a}}\right\} $
+\begin_inset Formula 
+\[
+T_{\varphi\mathcal{K}}=\left\{ \bar{a}\in A_{1}^{n}|\sat{\mathbf{A}_{1}}{\varphi}{\bar{a}}\right\} \times\cdots\times\left\{ \bar{a}\in A_{m}^{n}|\sat{\mathbf{A}_{m}}{\varphi}{\bar{a}}\right\} .
+\]
+
 \end_inset
 
- y supongamos 
+Ahora supongamos 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -1490,7 +1557,15 @@ Sea
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\left(\enumeracion[m][\bar{a}]\right)\in T_{\varphi\mathcal{K}}\Leftrightarrow\left(\enumeracion[m][\bar{a}]\right)\in T_{\psi\mathcal{K}}\textnormal{ para cada }\left(\enumeracion[m][\bar{a}]\right)\in A_{1}^{n}\times\cdots\times A_{m}^{n}
+\left(\enumeracion[m][\bar{a}]\right)\in T_{\varphi\mathcal{K}}\Leftrightarrow\left(\enumeracion[m][\bar{a}]\right)\in T_{\psi\mathcal{K}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\textnormal{ para cada }\left(\enumeracion[m][\bar{a}]\right)\in A_{1}^{n}\times\cdots\times A_{m}^{n}
 \]
 
 \end_inset
@@ -1504,7 +1579,8 @@ lo que significa que
 \begin_inset Formula $A_{1}^{n}\times\cdots\times A_{m}^{n}$
 \end_inset
 
-, como 
+.
+ Como 
 \begin_inset Formula $\left|A_{1}^{n}\times\cdots\times A_{m}^{n}\right|=\left|A_{1}\right|^{n}.\cdots.\left|A_{m}\right|^{n}$
 \end_inset
 
@@ -1579,7 +1655,12 @@ y como
 .
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+El siguiente lema establece que los embeddings preservan las formulas abiertas.
+ 
+\end_layout
+
+\begin_layout Lemma
 \begin_inset Argument 1
 status open
 
@@ -1599,7 +1680,7 @@ name "thm:embeddings preservan abiertas"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 Sean 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -1679,10 +1760,6 @@ Sea
 \begin_inset Formula $\varphi(\bar{x})=\neg\varphi_{1}(\bar{x})$
 \end_inset
 
- con 
-\begin_inset Formula $\varphi_{1}\in F_{k}^{\tau}$
-\end_inset
-
 : 
 \begin_inset Formula 
 \[
@@ -1699,17 +1776,21 @@ Sea
 \begin_inset Formula $\varphi(\bar{x})=(\varphi_{1}\eta\varphi_{2})(\bar{x})$
 \end_inset
 
- con 
-\begin_inset Formula $\varphi_{1},\varphi_{2}\in F_{k}^{\tau}$
-\end_inset
-
 :
 \end_layout
 
 \begin_layout Proof
 \begin_inset Formula 
 \[
-\mathbf{A}\vDash(\varphi_{1}\eta\varphi_{2})[\bar{a}]\textnormal{ sii }\mathbf{A}\vDash\varphi_{1}[\bar{a}]"\eta"\mathbf{A}\vDash\varphi_{2}[\bar{a}]\mathbf{\textnormal{ sii }A}\vDash\varphi_{1}[\gamma(\bar{a})]"\eta"\mathbf{B}\vDash\varphi_{2}[\gamma(\bar{a})]\textnormal{ sii }\mathbf{B}\vDash(\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
+\mathbf{A}\vDash(\varphi_{1}\eta\varphi_{2})[\bar{a}]\textnormal{ sii }\mathbf{A}\vDash\varphi_{1}[\bar{a}]"\eta"\mathbf{A}\vDash\varphi_{2}[\bar{a}]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{\textnormal{ sii }A}\vDash\varphi_{1}[\gamma(\bar{a})]"\eta"\mathbf{B}\vDash\varphi_{2}[\gamma(\bar{a})]\textnormal{ sii }\mathbf{B}\vDash(\varphi_{1}\eta\varphi_{2})[\gamma(\bar{a})]
 \]
 
 \end_inset
@@ -1742,7 +1823,11 @@ Supongamos que para toda fórmula abierta
 
 \end_inset
 
- 
+ Es rutina ver que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es homomorfismo.
 \end_layout
 
 \begin_deeper
@@ -1762,80 +1847,6 @@ Veamos que
 \mathbf{B} & \vDash & (x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
 \mathbf{A} & \vDash & (x_{1}\equiv x_{2})[a,a']\\
 a & = & a'
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Veamos que 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es un homomorfismo:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-Sea 
-\begin_inset Formula $c\in\mathcal{C}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & (c\equiv x_{1})[c^{\mathbf{A}}]\\
-\mathbf{B} & \vDash & (c\equiv x_{1})[\gamma(c^{\mathbf{A}})]\\
-c^{\mathbf{B}} & = & \gamma(c^{\mathbf{A}})
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $r\in\mathcal{R}_{n}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-(a_{1},\dots,a_{n}) & \in & r^{\mathbf{A}}\\
-\mathbf{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
-\mathbf{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
-(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbf{B}}
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sea 
-\begin_inset Formula $f\in\mathcal{F}_{n}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{A} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[a_{1},\dots,a_{n},f^{\mathbf{A}}(a_{1},\dots,a_{n})]\\
-\mathbf{B} & \vDash & (f(x_{1},\dots,x_{n})\equiv x_{n+1})[\gamma(a_{1}),\dots,\gamma(a_{n}),\gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))]\\
-f^{\mathbf{B}}(\gamma(a_{1}),\dots,\gamma(a_{n})) & = & \gamma(f^{\mathbf{A}}(a_{1},\dots,a_{n}))
 \end{eqnarray*}
 
 \end_inset
@@ -1877,7 +1888,11 @@ Sea
 
 \end_deeper
 \end_deeper
-\begin_layout Theorem
+\begin_layout Standard
+El siguiente lema establece que las subestructuras preservan formulas abiertas.
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:abiertas valen en subestructuras y viceversa"
@@ -1887,7 +1902,7 @@ name "thm:abiertas valen en subestructuras y viceversa"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 Si 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -2007,6 +2022,11 @@ Finalmente, por definición de
 
 \end_layout
 
+\begin_layout Standard
+Ahora definimos el diagrama abierto, que luego sera utilizado en la construcción
+ de formulas abiertas que definan relaciones.
+\end_layout
+
 \begin_layout Definition
 Sea 
 \series bold
@@ -2040,7 +2060,14 @@ Sea
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+El siguiente lema establece una relación muy interesante entre elementos
+ de dos estructuras al mostrar que si dos grupos de elementos tienen las
+ mismas propiedades abiertas (i.e.
+ el diagrama abierto) significa que generan subestructuras isomorfas.
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:diagrama sii isomorfismo"
@@ -2050,7 +2077,7 @@ name "thm:diagrama sii isomorfismo"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 Sea 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -2126,11 +2153,19 @@ Si
 
 \begin_layout Proof
 Tomo 
-\begin_inset Formula $\subuniv aA=\{t^{\mathbf{A}}[a_{1},\dots,a_{n}]:t\in T^{\tau},a_{1},\dots,a_{n}\in\bar{a}\}$
+\begin_inset Formula 
+\[
+\subuniv aA=\{t^{\mathbf{A}}[a_{1},\dots,a_{n}]:t\in T^{\tau},a_{1},\dots,a_{n}\in\bar{a}\}
+\]
+
 \end_inset
 
  y 
-\begin_inset Formula $\subuniv bA=\{t^{\mathbf{A}}[b_{1},\dots,b_{n}]:t\in T^{\tau},b_{1},\dots,b_{n}\in\bar{b}\}$
+\begin_inset Formula 
+\[
+\subuniv bA=\{t^{\mathbf{A}}[b_{1},\dots,b_{n}]:t\in T^{\tau},b_{1},\dots,b_{n}\in\bar{b}\}.
+\]
+
 \end_inset
 
 
@@ -2252,10 +2287,14 @@ Por lo tanto
 \end_inset
 
  es un isomorfismo y 
-\begin_inset Formula $\gamma(a_{j})=\gamma(x_{j}^{\mathbf{A}}[\enumeracion[n][a]])=x_{j}^{\mathbf{B}}[\enumeracion[n][b]]=b_{j}$
+\begin_inset Formula 
+\[
+\gamma(a_{j})=\gamma(x_{j}^{\mathbf{A}}[\enumeracion[n][a]])=x_{j}^{\mathbf{B}}[\enumeracion[n][b]]=b_{j}.
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Proof
@@ -2410,7 +2449,12 @@ Finalmente,
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+En el lema que sigue se establece que los homomorfismos preservan formulas
+ atomicas, y tambien formulas abiertas positivas.
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -2540,7 +2584,7 @@ Sea
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $f\in\mathcal{F}_{n}$
+\begin_inset Formula $f\in\mathcal{F}$
 \end_inset
 
 
@@ -2558,7 +2602,7 @@ f^{\mathbf{B}}\left(h\left(\bar{a}\right)\right) & = & h\left(f^{\mathbf{A}}\lef
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $r\in\mathcal{R}_{n}$
+\begin_inset Formula $r\in\mathcal{R}$
 \end_inset
 
 
@@ -2586,6 +2630,11 @@ Sea
 \end_inset
 
 2) Directo ya que toda atómica es abierta positiva.
+\end_layout
+
+\begin_layout Standard
+Ahora definimos el diagrama atómico positivo.
+ Este se utilizara para la construcción de formulas positivas.
 \end_layout
 
 \begin_layout Definition
@@ -2619,6 +2668,19 @@ Sea
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+De manera analoga al Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:diagrama sii isomorfismo"
+
+\end_inset
+
+, se estable que si dos grupos de elementos en dos estructuras satisfacen
+ las mismas propiedades atomicas positivas, hay un homomorfismo entre las
+ subestructuras generadas entre ellos.
 \end_layout
 
 \begin_layout Theorem
@@ -2746,6 +2808,15 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 \begin_layout Section
 Definibilidad de primer orden
+\end_layout
+
+\begin_layout Standard
+Este es el tipo de definibilidad mas débil.
+ Los morfismos en cuestion son los isomorfismos entre estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
@@ -2924,10 +2995,14 @@ Sea
 
 .
  Entonces como 
-\begin_inset Formula $\varphi=\dots\vee\left(\left(\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots\right)\wedge\left(\forall\enumeracion[\left|\mathbf{B}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)\right)\vee\dots$
+\begin_inset Formula 
+\[
+\varphi=\dots\vee\left(\left(\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots\right)\wedge\left(\forall\enumeracion[\left|\mathbf{B}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)\right)\vee\dots,
+\]
+
 \end_inset
 
-, y como 
+y como 
 \begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
 \end_inset
 
@@ -2957,11 +3032,14 @@ Sea
 \end_inset
 
  tales que 
-\begin_inset Formula $\sat{\mathbf{B}}{\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\wedge\left(\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)}{\bar{b}}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\wedge\left(\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)}{\bar{b}}.
+\]
+
 \end_inset
 
-.
- Entonces hay un 
+Entonces hay un 
 \begin_inset Formula $\bar{z}$
 \end_inset
 
@@ -2970,11 +3048,14 @@ Sea
 \end_inset
 
  tal que 
-\begin_inset Formula $\sat{\mathbf{B}}{\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{z}}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{z}}.
+\]
+
 \end_inset
 
-.
- Como 
+Como 
 \begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}{\bar{b},\bar{z}}$
 \end_inset
 
@@ -3007,7 +3088,11 @@ reference "thm:diagrama sii isomorfismo"
 
 .
  Pero como 
-\begin_inset Formula $\sat{\mathbf{B}}{\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}}{\enumeracion[][b]}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}}{\enumeracion[][b]}
+\]
+
 \end_inset
 
  entonces 
@@ -3050,15 +3135,6 @@ reference "thm:diagrama sii isomorfismo"
 .
 \end_layout
 
-\begin_layout Proof
-Como 
-\begin_inset Formula $\varphi$
-\end_inset
-
- es disyunción de existenciales, por teorema puede ser convertida en una
- fórmula existencial.
-\end_layout
-
 \begin_layout Section
 Definibilidad por fórmulas abiertas
 \begin_inset CommandInset label
@@ -3071,16 +3147,21 @@ name "sec:Definibilidad-abierta"
 \end_layout
 
 \begin_layout Standard
-A continuación presentamos el teorema de caracterización para definibilidad
- por fórmulas abiertas.
- Antes necesitaremos algunos lemas.
+Ahora estableceremos la noción semántica para la definibilidad abierta que
+ es mas fuerte que la definibilidad de primer orden.
+\end_layout
+
+\begin_layout Standard
+En el siguiente lema, construimos una formula equivalente al diagrama abierto
+ para un conjunto de elementos en una estructura, que utilizaremos en el
+ teorema de definibilidad abierta.
 \end_layout
 
 \begin_layout --Separator--
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:formula para el diagrama"
@@ -3090,7 +3171,7 @@ name "thm:formula para el diagrama"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 Sean 
 \begin_inset Formula $\mathbf{A,B}$
 \end_inset
@@ -3141,7 +3222,11 @@ Hay un isomorfismo
 \end_deeper
 \begin_layout Proof
 Tomo 
-\begin_inset Formula $\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)$
+\begin_inset Formula 
+\[
+\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)
+\]
+
 \end_inset
 
  que es una fórmula, por el Teorema 
@@ -3163,23 +3248,15 @@ Es claro que
 \end_layout
 
 \begin_layout Proof
-Entonces por Teorema 
+Luego por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
-, hay un isomorfismo 
-\begin_inset Formula $\gamma$
-\end_inset
-
- de 
-\begin_inset Formula $\subuniv aA$
-\end_inset
-
- en 
-\begin_inset Formula $\subuniv bB$
+, hay isomorfismo 
+\begin_inset Formula $\funcion[\gamma]{\subuniv aA}{\subuniv bB}$
 \end_inset
 
  tal que 
@@ -3187,6 +3264,29 @@ reference "thm:diagrama sii isomorfismo"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Como establece el siguiente teorema, la definibilidad abierta depende de
+ la preservación en los isomorfismos entre subestructuras de las estructuras
+ de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Notar que esta condición incluye a los isomorfismos entre estructuras de
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
@@ -3367,10 +3467,14 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 1) Sea 
-\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)$
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right),
+\]
+
 \end_inset
 
-, la cual es fórmula por el Teorema 
+la cual es fórmula por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -3415,11 +3519,14 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 , 
-\begin_inset Formula $\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}.
+\]
+
 \end_inset
 
-.
- Por Teorema 
+Por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para el diagrama"
@@ -3469,10 +3576,14 @@ reference "thm:formula para el diagrama"
 
 .
  Entonces 
-\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)=\cdots\vee\cdots\vee\left(\bigwedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}}\alpha\left(\bar{x}\right)\right)$
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)=\cdots\vee\cdots\vee\left(\bigwedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}}\alpha\left(\bar{x}\right)\right),
+\]
+
 \end_inset
 
-, evidentemente 
+evidentemente 
 \begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{B}\bar{b}}}{\bar{b}}$
 \end_inset
 
@@ -3494,7 +3605,18 @@ name "sec:Definibilidad-positiva"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+La definibilidad abierta positiva, es mas fuerte que la definibilidad abierta
+ y a su vez que la definibilidad de primer orden.
+\end_layout
+
+\begin_layout Standard
+En el siguiente lema, construimos una formula equivalente al diagrama atomico
+ positivo para un conjunto de elementos en una estructura, que utilizaremos
+ en el teorema de definibilidad abierta positiva.
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:formula para diagrama abierto positivo"
@@ -3504,7 +3626,7 @@ name "thm:formula para diagrama abierto positivo"
 
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Lemma
 Sean 
 \begin_inset Formula $\mathbf{A,B}$
 \end_inset
@@ -3601,6 +3723,29 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+El siguiente teorema establece que la definibilidad abierta positiva depende
+ de la preservación en los homomorfismos entre subestructuras de las estructuras
+ de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Notar que esta condición incluye a los isomorfismos entre subestructuras
+ de estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
@@ -3802,7 +3947,11 @@ Veamos 2
 
 \begin_layout Proof
 Sea 
-\begin_inset Formula $\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)$
+\begin_inset Formula 
+\[
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)
+\]
+
 \end_inset
 
 , la cual es fórmula por el Teorema 
@@ -3909,7 +4058,19 @@ reference "thm:formula para diagrama abierto positivo"
 Definibilidad por fórmulas existenciales
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+La definibilidad existencial es mas fuerte que definibilidad de primer orden,
+ pero mas débil que las definibilidades abiertas.
+\end_layout
+
+\begin_layout Standard
+En el siguiente lema, construimos una formula equivalente al diagrama abierto
+ para un conjunto de elementos tal que sea capaz de generar la estructura
+ completa.
+ 
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:formula para diagrama existencial"
@@ -3998,7 +4159,11 @@ Supongamos
 \end_inset
 
  tales que 
-\begin_inset Formula $\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}
+\]
+
 \end_inset
 
  por Teorema 
@@ -4008,7 +4173,7 @@ reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
- hay un isomorfismo 
+ hay isomorfismo 
 \begin_inset Formula $\funcion[\gamma]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
 \end_inset
 
@@ -4107,6 +4272,39 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+En el siguiente teorema se establece que la definibilidad existencial depende
+ de la preservación en los embeddings entre las estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Notar que esta condición incluye a los isomorfismos de estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+, pero no a todos los isomorfismos entre subestructuras de estructuras de
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
@@ -4293,7 +4491,11 @@ define a
 
 .
  Ahora tomo 
-\begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
+\begin_inset Formula 
+\[
+\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)
+\]
+
 \end_inset
 
 , que es fórmula por Teorema 
@@ -4322,14 +4524,22 @@ Sea
 
 .
  Entonces como 
-\begin_inset Formula $\varphi=\dots\vee\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots$
+\begin_inset Formula 
+\[
+\varphi=\dots\vee\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)\vee\dots,
+\]
+
 \end_inset
 
-, y como 
-\begin_inset Formula $\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+y como 
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\exists\bar{y}\,\delta_{\mathbf{B},(\bar{b},\bar{b'})}\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}},
+\]
+
 \end_inset
 
-, 
+entonces 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
@@ -4399,7 +4609,27 @@ Notar que como
 Definibilidad por fórmulas existenciales positivas
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Standard
+La definibildad existencial positiva es mas fuerte que la definibilidad
+ existencial, incomparable con la definibilidad abierta y mas debil que
+ la definibilidad abierta positiva.
+\end_layout
+
+\begin_layout Standard
+En el siguiente lema, construimos una formula equivalente al diagrama atomico
+ positivo para un conjunto de elementos tal que sea capaz de generar la
+ estructura completa análogamente al Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:formula para diagrama existencial"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:formula para diagrama existencial positivo"
@@ -4488,7 +4718,11 @@ Supongamos
 \end_inset
 
  tales que 
-\begin_inset Formula $\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}
+\]
+
 \end_inset
 
  por Teorema 
@@ -4498,8 +4732,12 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
- hay un homomorfismo 
-\begin_inset Formula $\funcion[h]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
+ hay homomorfismo 
+\begin_inset Formula 
+\[
+\funcion[h]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}
+\]
+
 \end_inset
 
  tal que 
@@ -4569,6 +4807,53 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 , por lo que claramente 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+El siguiente teorema establece que la definibilidad existencial positiva
+ depende de la preservación en los homomorfismos entre las estructuras de
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Notar que esta condición incluye a los embeddings entre estructuras de
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad existencial"
+
+\end_inset
+
+, pero no a todos los homomorfismos entre subestructuras de estructuras
+ de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta positiva"
+
+\end_inset
+
+, mientras que es disjunto con los isomorfismos entre subestructuras de
+ estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, chequeados para el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibilidad abierta"
+
 \end_inset
 
 .
@@ -4657,6 +4942,30 @@ reference "thm:formula para diagrama existencial positivo"
 Definibilidad por conjunción de atómicas y primitivas positivas
 \end_layout
 
+\begin_layout Standard
+En este tipo de definibilidad se establece una relación con el producto
+ de estructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Lo primero es definir nuevamente el concepto de preservación pero esta vez
+ a través del producto de estructuras.
+ Podemos pensar la siguiente definición matricialmente, donde las filas
+ pertenecen a 
+\begin_inset Formula $D$
+\end_inset
+
+ mientras que cada i-esima columna pertenece a 
+\begin_inset Formula $R^{A_{i}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Definition
 Sean 
 \begin_inset Formula $\enumeracion[m][A],B$
@@ -4714,6 +5023,11 @@ se tiene que
 .
 \end_layout
 
+\begin_layout Standard
+El siguiente lema establece que el producto entre estructuras preserva las
+ formulas atomicas.
+\end_layout
+
 \begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
@@ -4766,6 +5080,20 @@ Para todo
 Rutina.
 \end_layout
 
+\begin_layout Standard
+En el siguiente teorema se establece la dependencia de la definibilidad
+ por conjuncion de atomicas con la preservacion en homomorfismos desde subestruc
+turas de los productos de las estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ en las estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
@@ -4804,10 +5132,14 @@ Para cada
 \end_inset
 
 , para cada 
-\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\begin_inset Formula 
+\[
+\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}},
+\]
+
 \end_inset
 
-, todo homomorfismo 
+todo homomorfismo 
 \begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
@@ -4938,7 +5270,7 @@ Como
 \begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
 \end_inset
 
-, el Teorema 
+, entonces el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -4949,7 +5281,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\enumeracion[][\bar{s}]}$
 \end_inset
 
-, y aplicando el Teorema 
+, y aplicando luego el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -4957,11 +5289,14 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  obtenemos que 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\varphi}{h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)}.
+\]
+
 \end_inset
 
-.
- Finalmente, como 
+Luego, como 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -4978,7 +5313,11 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
 , concluimos que 
-\begin_inset Formula $\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}$
+\begin_inset Formula 
+\[
+\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}
+\]
+
 \end_inset
 
 .
@@ -4999,11 +5338,19 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
  n-aria.
  Sean 
-\begin_inset Formula $\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\begin_inset Formula 
+\[
+\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}
+\]
+
 \end_inset
 
  tales que 
-\begin_inset Formula $\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)$
+\begin_inset Formula 
+\[
+\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)
+\]
+
 \end_inset
 
  para cada 
@@ -5011,7 +5358,11 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  con 
-\begin_inset Formula $\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} $
+\begin_inset Formula 
+\[
+\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} 
+\]
+
 \end_inset
 
  para cada 
@@ -5038,7 +5389,11 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
 .
  Como 
-\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]}
+\]
+
 \end_inset
 
 , por Teorema 
@@ -5123,7 +5478,11 @@ Ahora supongamos
 
 .
  Entonces como 
-\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
+\begin_inset Formula 
+\[
+\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]
+\]
+
 \end_inset
 
  por Teorema 
@@ -5139,6 +5498,20 @@ reference "thm:preservacion existencial conj atomicas producto"
 
 , por lo tanto 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\enumeracion[][b]}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+El siguiente teorema establece la dependencia de la definibilidad primitiva
+ positiva con la preservacion en homomorfismos de los productos de las estructur
+as de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ en las estructuras de 
+\begin_inset Formula $\mathcal{K}$
 \end_inset
 
 .
@@ -5324,11 +5697,14 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  obtenemos que 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\varphi}{h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)}.
+\]
+
 \end_inset
 
-.
- Finalmente, como 
+Luego, como 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -5345,7 +5721,11 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
 , concluimos que 
-\begin_inset Formula $\left(h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)\right)\in R^{\mathbf{B}}$
+\begin_inset Formula 
+\[
+\left(h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)\right)\in R^{\mathbf{B}}
+\]
+
 \end_inset
 
 .
@@ -5366,11 +5746,19 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
  n-aria.
  Sean 
-\begin_inset Formula $\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+\begin_inset Formula 
+\[
+\enumeracion[][\bar{x}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}
+\]
+
 \end_inset
 
  tales que 
-\begin_inset Formula $\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)$
+\begin_inset Formula 
+\[
+\bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)
+\]
+
 \end_inset
 
  para cada 
@@ -5378,7 +5766,11 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  con 
-\begin_inset Formula $\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} $
+\begin_inset Formula 
+\[
+\bigcup R^{\mathbf{A}_{j}}=\left\{ \left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\text{ con }i\in\left\{ 1,\left|R^{\mathbf{A}_{j}}\right|\right\} \right\} 
+\]
+
 \end_inset
 
  para cada 
@@ -5387,24 +5779,30 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 
  .
  Sean 
-\begin_inset Formula $\enumeracion[k][\bar{x'}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
-\end_inset
-
-, tales que 
-\begin_inset Formula $\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}=\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
-\end_inset
-
-.
- Sea 
 \begin_inset Formula 
 \[
-\varphi=\exists\bar{y}\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}\alpha\left(\bar{x},\bar{y}\right)
+\enumeracion[k][\bar{x'}]\in\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},
 \]
 
 \end_inset
 
-.
- Supongamos 
+tales que 
+\begin_inset Formula 
+\[
+\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}=\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}.
+\]
+
+\end_inset
+
+Sea 
+\begin_inset Formula 
+\[
+\varphi=\exists\bar{y}\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}\alpha\left(\bar{x},\bar{y}\right).
+\]
+
+\end_inset
+
+Supongamos 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\enumeracion[][b]}$
 \end_inset
 
@@ -5418,10 +5816,14 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  tal que 
-\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}{\enumeracion[][b],\enumeracion[k][b']}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}{\enumeracion[][b],\enumeracion[k][b']},
+\]
+
 \end_inset
 
-, por Teorema 
+por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -5433,11 +5835,19 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \end_inset
 
  homomorfismo de 
-\begin_inset Formula $\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}$
+\begin_inset Formula 
+\[
+\left\langle \enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right\rangle ^{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}}
+\]
+
 \end_inset
 
  en 
-\begin_inset Formula $\left\langle \enumeracion[][b],\enumeracion[k][b']\right\rangle ^{\mathbf{B}}$
+\begin_inset Formula 
+\[
+\left\langle \enumeracion[][b],\enumeracion[k][b']\right\rangle ^{\mathbf{B}}
+\]
+
 \end_inset
 
  tal que 
@@ -5452,8 +5862,12 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \begin_inset Formula $h$
 \end_inset
 
- es un homomorfismo de 
-\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}$
+ es homomorfismo de 
+\begin_inset Formula 
+\[
+\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}
+\]
+
 \end_inset
 
  en 
@@ -5473,7 +5887,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \begin_inset Formula $\left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\in R^{\mathbf{A}_{j}}$
 \end_inset
 
-, 
+ se da que 
 \begin_inset Formula $\left(h\left(\bar{x}_{1}\right),\dots,h\left(\bar{x}_{n}\right)\right)\in R^{\mathbf{B}}$
 \end_inset
 
@@ -5512,14 +5926,17 @@ Ahora supongamos
  tal que 
 \begin_inset Formula 
 \[
-\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right)
+\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right).
 \]
 
 \end_inset
 
-.
- Entonces como 
-\begin_inset Formula $\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]$
+Entonces como 
+\begin_inset Formula 
+\[
+\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]
+\]
+
 \end_inset
 
  por Teorema 
@@ -5919,7 +6336,22 @@ reference "alg:preprocesamiento"
 \end_inset
 
 -isomorfismo, lo que permite encontrar contraejemplos de definibilidad desde
- esta etapa.
+ esta etapa ya que el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+ establece que los isomorfismos entre estructuras de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ deben preservar para que 
+\begin_inset Formula $R$
+\end_inset
+
+ sea definible en primer orden.
 \end_layout
 
 \begin_layout Standard
@@ -13706,7 +14138,7 @@ Call{
 
 \end_inset
 
-tieneRepresentante
+buscaIso
 \begin_inset ERT
 status open
 
@@ -13718,7 +14150,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -14101,7 +14533,7 @@ Function{
 
 \end_inset
 
-tieneRepresentante
+buscaIso
 \begin_inset ERT
 status open
 
@@ -14579,7 +15011,7 @@ Call{
 
 \end_inset
 
-tieneRepresentante
+buscaIso_Bihomos
 \begin_inset ERT
 status open
 
@@ -14591,7 +15023,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -15185,7 +15617,7 @@ Function{
 
 \end_inset
 
-tieneRepresentante
+buscaIso_Bihomos
 \begin_inset ERT
 status open
 
