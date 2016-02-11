@@ -121,6 +121,234 @@ theorems-ams-extended
 \begin_body
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/escudo unc.svg
+	scale 40
+
+\end_inset
+
+
+\shape smallcaps
+\size largest
+
+\begin_inset VSpace 2cm
+\end_inset
+
+
+\size larger
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size largest
+Facultad de Matemática, Astronomía, Física y Computación
+\begin_inset VSpace 1.5cm
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size larger
+Trabajo especial de la Licenciatura en Ciencias de la Computación
+\size largest
+
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\shape default
+\size default
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.5mm"
+
+\end_inset
+
+
+\shape smallcaps
+\size largest
+
+\begin_inset VSpace 0.4cm
+\end_inset
+
+
+\series bold
+\shape default
+\size huge
+Algoritmos para decidir definibilidad de relaciones en fragmentos de primer
+ orden
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.5mm"
+
+\end_inset
+
+
+\shape smallcaps
+\size largest
+
+\begin_inset VSpace 1.5cm
+\end_inset
+
+
+\shape default
+\size default
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\size large
+\emph on
+Autor:
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Pablo 
+\shape smallcaps
+Ventura
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "40text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align right
+
+\size large
+\emph on
+Director:
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Dr.
+ Miguel 
+\shape smallcaps
+Campercholi
+\end_layout
+
+\end_inset
+
+
+\shape smallcaps
+\size largest
+
+\begin_inset VSpace 4cm
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\shape default
+\size large
+Febrero de 2016
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\enumeracion}[3][n][x][1]{#2_{#3},\dots,#2_{#1}}
 \end_inset
@@ -350,6 +578,38 @@ theorems-ams-extended
 \begin_inset FormulaMacro
 \newcommand{\existencialespositivas}[1]{\operatorname{E^{+}}\left(#1\right)}
 {\mathrm{E}^{+}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
 \end_inset
 
 
