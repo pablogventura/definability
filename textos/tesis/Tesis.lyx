@@ -18545,7 +18545,7 @@ target "http://math.chapman.edu/~jipsen/sagepkg/"
 El paquete se desarrolla en 
 \begin_inset CommandInset href
 LatexCommand href
-name "https://github.com/pablogventura/tesis"
+name "https://github.com/pablogventura/definability"
 target "GitHub"
 
 \end_inset
@@ -18754,7 +18754,7 @@ status open
 
 \begin_layout Plain Layout
 
-$ git clone https://github.com/pablogventura/tesis.git
+$ git clone https://github.com/pablogventura/definability.git
 \end_layout
 
 \begin_layout Plain Layout
