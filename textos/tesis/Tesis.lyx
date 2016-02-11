@@ -137,7 +137,6 @@ begin{titlepage}
 \end_layout
 
 \begin_layout Standard
-
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -227,7 +226,6 @@ Algoritmos para decidir definibilidad de relaciones en fragmentos de primer
 
 \begin_layout Plain Layout
 \align center
-
 \begin_inset CommandInset line
 LatexCommand rule
 offset "0.5ex"
@@ -1069,18 +1067,10 @@ Constraint Satisfaction Problem
 \emph on
 (CSP)
 \emph default
- (ver, e.g., 
-\begin_inset CommandInset citation
-LatexCommand citep
-after "Capítulo 6"
-key "russell2010artificial"
-
-\end_inset
-
-).
+.
  Este es un problema computacional que ha sido ampliamente estudiado y para
  el que hay buenas implementaciones de solucionadores de CSP's (e.g.
- 
+ Minion 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "minion"
@@ -1290,7 +1280,7 @@ key "Campercholi15"
 
 , constituyen el punto de partida para nuestro estudio del chequeo computacional
  de la definibilidad.
- Los algoritmos desarrollados pueden encontrarse en las secciones siguientes.
+ Los algoritmos desarrollados pueden encontrarse en los capítulos siguientes.
 \end_layout
 
 \begin_layout Section
@@ -2249,7 +2239,7 @@ Sea
 \end_inset
 
  es un embedding.
- Entonces por el Teorema 
+ Entonces por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:embeddings preservan abiertas"
@@ -2476,14 +2466,14 @@ Sean
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{eqnarray}
-a'_{1} & \not= & a'_{2}\nonumber \\
-t_{1}^{\mathbf{A}}\left[\bar{a}\right] & \not= & t_{2}^{\mathbf{A}}\left[\bar{a}\right]\nonumber \\
+\begin{eqnarray*}
+a'_{1} & \not= & a'_{2}\\
+t_{1}^{\mathbf{A}}\left[\bar{a}\right] & \not= & t_{2}^{\mathbf{A}}\left[\bar{a}\right]\\
 \mathbf{A} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{a}\right]\\
 \mathbf{B} & \vDash & \neg(t_{1}\equiv t_{2})\left[\bar{b}\right]\\
-t_{1}^{\mathbf{B}}\left[\bar{b}\right] & \not= & t_{2}^{\mathbf{B}}\left[\bar{b}\right]\nonumber \\
-\gamma\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right]\right) & \not= & \gamma\left(t_{2}^{\mathbf{A}}\left[\bar{a}\right]\right)\nonumber 
-\end{eqnarray}
+t_{1}^{\mathbf{B}}\left[\bar{b}\right] & \not= & t_{2}^{\mathbf{B}}\left[\bar{b}\right]\\
+\gamma\left(t_{1}^{\mathbf{A}}\left[\bar{a}\right]\right) & \not= & \gamma\left(t_{2}^{\mathbf{A}}\left[\bar{a}\right]\right)
+\end{eqnarray*}
 
 \end_inset
 
@@ -2603,7 +2593,7 @@ Entonces, es claro que
 \end_layout
 
 \begin_layout Proof
-Por el Teorema 
+Por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:embeddings preservan abiertas"
@@ -2633,7 +2623,7 @@ reference "thm:embeddings preservan abiertas"
 \end_layout
 
 \begin_layout Proof
-Por el Teorema 
+Por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -3048,7 +3038,7 @@ El cual es se ve fácilmente que es un homomorfismo que cumple
 \begin_inset Formula $\mathbf{A}\vDash\Delta_{\mathbf{A},\bar{a}}^{+}\left[\bar{a}\right]$
 \end_inset
 
-, por el Teorema 
+, por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -3108,11 +3098,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una 
-\begin_inset Formula $\mathcal{L}$
+Hay una fórmula en 
+\begin_inset Formula $\primerorden{\mathcal{L}}$
 \end_inset
 
--fórmula que define 
+ que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3319,7 +3309,7 @@ Como
 \begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}{\bar{b},\bar{z}}$
 \end_inset
 
-, por Teorema 
+, por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -3407,8 +3397,7 @@ name "sec:Definibilidad-abierta"
 \end_layout
 
 \begin_layout Standard
-Ahora estableceremos la noción semántica para la definibilidad abierta que
- es mas fuerte que la definibilidad de primer orden.
+Ahora estableceremos la noción semántica para la definibilidad abierta.
 \end_layout
 
 \begin_layout Standard
@@ -3508,7 +3497,7 @@ Es claro que
 \end_layout
 
 \begin_layout Proof
-Luego por Teorema 
+Luego por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -3663,7 +3652,7 @@ Para todas
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat{\mathbf{A}}{\varphi}{\bar{a}}$
 \end_inset
 
-, por Teorema 
+, por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -3691,7 +3680,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 .
- Nuevamente por Teorema 
+ Nuevamente por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -3786,7 +3775,7 @@ reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
-Por Teorema 
+Por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para el diagrama"
@@ -3866,8 +3855,7 @@ name "sec:Definibilidad-positiva"
 \end_layout
 
 \begin_layout Standard
-La definibilidad abierta positiva, es mas fuerte que la definibilidad abierta
- y a su vez que la definibilidad de primer orden.
+Ahora estableceremos la noción semántica para la definibilidad abierta positiva.
 \end_layout
 
 \begin_layout Standard
@@ -3959,7 +3947,7 @@ Es claro que
 \end_layout
 
 \begin_layout Proof
-Entonces por Teorema 
+Entonces por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -4036,11 +4024,11 @@ Sean
 \end_layout
 
 \begin_layout Enumerate
-Hay una 
-\begin_inset Formula $\mathcal{L}$
+Hay una fórmula en 
+\begin_inset Formula $\abiertaspositivas{\mathcal{L}}$
 \end_inset
 
--fórmula abierta positiva que define 
+ que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4128,7 +4116,7 @@ Sea
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\Rightarrow\bar{a}\in R^{\mathbf{A}}\Leftrightarrow\sat{\mathbf{A}}{\varphi}{\bar{a}}$
 \end_inset
 
-, por Teorema 
+, por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -4155,7 +4143,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\varphi$
 \end_inset
 
- es abierta positiva por Teorema 
+ es abierta positiva por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -4167,7 +4155,7 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
 .
- Nuevamente por Teorema 
+ Nuevamente por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -4250,7 +4238,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Por Teorema 
+ Por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para diagrama abierto positivo"
@@ -4319,8 +4307,7 @@ Definibilidad por fórmulas existenciales
 \end_layout
 
 \begin_layout Standard
-La definibilidad existencial es mas fuerte que definibilidad de primer orden,
- pero mas débil que las definibilidades abiertas.
+Ahora estableceremos la noción semántica para la definibilidad existencial.
 \end_layout
 
 \begin_layout Standard
@@ -4426,7 +4413,7 @@ Supongamos
 
 \end_inset
 
- por Teorema 
+ por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -4516,7 +4503,7 @@ en
 \begin_inset Formula $\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
 \end_inset
 
- es una fórmula abierta, por Teorema 
+ es una fórmula abierta, por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -4596,11 +4583,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una 
-\begin_inset Formula $\mathcal{L}$
+Hay una fórmula en 
+\begin_inset Formula $\existenciales{\mathcal{L}}$
 \end_inset
 
--fórmula existencial que define 
+ que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4693,7 +4680,7 @@ Para todas
 \begin_inset Formula $\mathbf{S}\leq\mathbf{B}$
 \end_inset
 
-, por el Teorema 
+, por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -4825,7 +4812,7 @@ Sea
 \end_inset
 
 .
- Entonces por el Teorema 
+ Entonces por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para diagrama existencial"
@@ -4870,9 +4857,8 @@ Definibilidad por fórmulas existenciales positivas
 \end_layout
 
 \begin_layout Standard
-La definibilidad existencial positiva es mas fuerte que la definibilidad
- existencial, incomparable con la definibilidad abierta y mas débil que
- la definibilidad abierta positiva.
+Ahora estableceremos la noción semántica para la definibilidad existencial
+ positiva.
 \end_layout
 
 \begin_layout Standard
@@ -4985,7 +4971,7 @@ Supongamos
 
 \end_inset
 
- por Teorema 
+ por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -5049,7 +5035,7 @@ Supongamos que hay un homomorfismo
 \begin_inset Formula $\sat{\mathbf{A}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{\bar{a},\bar{a'}}$
 \end_inset
 
- y por Teorema 
+ y por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -5057,11 +5043,14 @@ reference "thm:homomorfismos preservan atomicas y abiertas positivas"
 \end_inset
 
  
-\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{h\left(\bar{a}\right),h\left(\bar{a'}\right)}$
+\begin_inset Formula 
+\[
+\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{h\left(\bar{a}\right),h\left(\bar{a'}\right)}.
+\]
+
 \end_inset
 
-.
- Entonces 
+Entonces 
 \begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}^{+}}{\bar{b},\bar{b'}}$
 \end_inset
 
@@ -5148,11 +5137,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una 
-\begin_inset Formula $\mathcal{L}$
+Hay una fórmula en 
+\begin_inset Formula $\existencialespositivas{\mathcal{L}}$
 \end_inset
 
--fórmula existencial positiva que define 
+ que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5188,7 +5177,7 @@ reference "thm:definibiliad existencial"
 
 \end_inset
 
-, pero utilizando las fórmulas dadas por el Teorema 
+, pero utilizando las fórmulas dadas por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:formula para diagrama existencial positivo"
@@ -5530,7 +5519,7 @@ Como
 \begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
 \end_inset
 
-, entonces el Teorema 
+, entonces el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:abiertas valen en subestructuras y viceversa"
@@ -5541,7 +5530,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\enumeracion[][\bar{s}]}$
 \end_inset
 
-, y aplicando luego el Teorema 
+, y aplicando luego el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -5656,7 +5645,7 @@ Luego, como
 
 \end_inset
 
-, por Teorema 
+, por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -5745,7 +5734,7 @@ Ahora supongamos
 
 \end_inset
 
- por Teorema 
+ por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
@@ -5949,7 +5938,7 @@ Como
 \begin_inset Formula $\psi$
 \end_inset
 
- es abierta positiva, aplicando el Teorema 
+ es abierta positiva, aplicando el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:homomorfismos preservan atomicas y abiertas positivas"
@@ -6083,7 +6072,7 @@ Supongamos
 
 \end_inset
 
-por Teorema 
+por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -6199,7 +6188,7 @@ Entonces como
 
 \end_inset
 
- por Teorema 
+ por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
@@ -7684,7 +7673,7 @@ Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -8166,7 +8155,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
 \end_inset
 
 
@@ -9098,23 +9087,28 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Float figure
 placement h
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria abierta.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria abierta"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -9135,23 +9129,6 @@ reference "thm:definibilidad abierta"
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/categoria abierta.svg
-	scale 40
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:categoria abierta"
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -9160,6 +9137,23 @@ placement h
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion abierta.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion abierta"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -9180,20 +9174,15 @@ reference "cor:preservar en la constelacion abierta es ser abierta definible"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/constelacion abierta.svg
-	scale 40
+\begin_inset Caption Standard
 
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:constelacion abierta"
-
-\end_inset
-
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -10402,7 +10391,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
 \end_inset
 
 
@@ -11827,23 +11816,28 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Float figure
 placement h
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/categoria abierta positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:categoria abierta positiva"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -11864,23 +11858,6 @@ reference "thm:definibilidad abierta positiva"
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/categoria abierta positiva.svg
-	scale 40
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:categoria abierta positiva"
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -11889,6 +11866,23 @@ placement h
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/constelacion abierta positiva.svg
+	scale 40
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:constelacion abierta positiva"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -11909,20 +11903,15 @@ reference "thm:construccion de constelacion abierta positiva"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/constelacion abierta positiva.svg
-	scale 40
+\begin_inset Caption Standard
 
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:constelacion abierta positiva"
-
-\end_inset
-
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -12063,7 +12052,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{A})$
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{A})$
 \end_inset
 
 
@@ -12453,7 +12442,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\gamma\in Emb_{\mathcal{L}}\left(\mathbf{A},\mathbf{B}\right)$
+\begin_inset Formula $\gamma\in\textrm{Emb_{\mathcal{L}}}\left(\mathbf{A},\mathbf{B}\right)$
 \end_inset
 
 
@@ -12860,7 +12849,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Hom_{\mathcal{L}}(\mathbf{A},\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Hom_{\mathcal{L}}}(\mathbf{A},\mathbf{B})$
 \end_inset
 
 
@@ -13133,14 +13122,15 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 \end_layout
 
 \begin_layout Standard
-Para resolver CSP utilizamos el solucionador Minion 
+Para la deteccion de homomorfismos modelizamos el problema como un CSP,
+ y utilizamos Minion (
 \begin_inset CommandInset citation
 LatexCommand cite
 key "minion"
 
 \end_inset
 
-.
+) como solucionador.
 \end_layout
 
 \begin_layout Subsection
@@ -14211,7 +14201,7 @@ reference "thm:construccion de constelacion abierta positiva"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -14620,7 +14610,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
 \end_inset
 
 
@@ -15097,7 +15087,7 @@ end{algorithmic}
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -15524,7 +15514,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in Aut_{\mathcal{L}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
 \end_inset
 
 
@@ -17169,6 +17159,12 @@ reference "alg:construccion algebra saturacion"
 Ejemplos y aplicación
 \end_layout
 
+\begin_layout Standard
+En esta seccion mostramos como la utlizacion del paquete permitio conjeturar
+ una caracterizacion de las relaciones binarias definibles por existenciales
+ positivas en reticulados distributivos.
+\end_layout
+
 \begin_layout Subsection
 Utilizando el paquete Definability para SageMath
 \end_layout
@@ -17198,29 +17194,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Reticulado 
-\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig: reticulado 2x2"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
+\align center
 
 \lang english
 \begin_inset ERT
@@ -17265,6 +17239,29 @@ end{scriptsize}
 \backslash
 end{tikzpicture}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig: reticulado 2x2"
 
 \end_inset
 
@@ -17363,8 +17360,15 @@ reference "thm:representacion de birkhoff, reticulados"
 
 \end_inset
 
-, ya que el reticulado descripto por estos 10 elementos tiene cardinalidad
- 
+, ya que el reticulado descripto por estos 10 elementos (representado en
+ la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ret 1024"
+
+\end_inset
+
+) tiene cardinalidad 
 \begin_inset Formula $2^{10}=1024$
 \end_inset
 
@@ -17378,26 +17382,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Reticulado 
-\begin_inset Formula $\mathbf{E}_{2}\left(\mathbf{2}\times\mathbf{2}\right)$
-\end_inset
-
-
-\end_layout
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ret 1024"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -17512,6 +17504,22 @@ end{tikzpicture}
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{E}_{2}\left(\mathbf{2}\times\mathbf{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -17616,30 +17624,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Reticulado de relaciones binarias definibles por existenciales positivas
- en 
-\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:reticulado de relaciones existenciales positivas en 2x2"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -17706,6 +17690,30 @@ end{tikzpicture}
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado de relaciones binarias definibles por existenciales positivas
+ en 
+\begin_inset Formula $\mathbf{2}\times\mathbf{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:reticulado de relaciones existenciales positivas en 2x2"
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -17731,29 +17739,6 @@ reference "fig: ret 3x3"
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Reticulado 
-\begin_inset Formula $\mathbf{3}\times\mathbf{3}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig: ret 3x3"
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -17834,6 +17819,29 @@ end{scriptsize}
 \backslash
 end{tikzpicture}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reticulado 
+\begin_inset Formula $\mathbf{3}\times\mathbf{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig: ret 3x3"
 
 \end_inset
 
