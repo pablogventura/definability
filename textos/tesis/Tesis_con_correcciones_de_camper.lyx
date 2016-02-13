@@ -3102,7 +3102,7 @@ Hay un isomorfismo
 
 \end_deeper
 \begin_layout Proof
-Tomo 
+Tomamos 
 \begin_inset Formula 
 \[
 \varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)
@@ -3556,7 +3556,7 @@ Hay un homomorfismo
 
 \end_deeper
 \begin_layout Proof
-Tomo 
+Tomamos 
 \begin_inset Formula $\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
 \end_inset
 
@@ -4360,7 +4360,7 @@ define a
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
 \end_inset
 
-, tomo 
+, tomamos 
 \begin_inset Formula $\bar{a'}$
 \end_inset
 
@@ -4369,7 +4369,7 @@ define a
 \end_inset
 
 .
- Ahora tomo 
+ Ahora tomamos 
 \begin_inset Formula 
 \[
 \delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right),
@@ -4385,7 +4385,7 @@ reference "thm:cantidad de formulas es finita"
 \end_inset
 
 .
- Ahora tomo 
+ Ahora tomamos 
 \begin_inset Formula 
 \[
 \varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
@@ -5922,7 +5922,7 @@ normal
 
 \begin_layout Standard
 A la hora de reducir la complejidad de nuestros algoritmos en la búsqueda
- de homomorfismos utilizaremos conjuntos reducidos de flechas, que 
+ de homomorfismos utilizaremos conjuntos reducidos de morfismos, que 
 \emph on
 generan
 \emph default
@@ -5971,7 +5971,7 @@ Dado un conjunto
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- de estructuras, para referirnos a las flechas nombradas en los Teoremas
+ de estructuras, para referirnos a los morfismos nombrados en los Teoremas
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6934,8 +6934,8 @@ reference "thm:definibilidad abierta"
 \end_layout
 
 \begin_layout Proof
-En el siguiente teorema describimos un conjunto suficiente de flechas para
- generar 
+En el siguiente teorema describimos un conjunto suficiente de morfismos
+ para generar 
 \begin_inset Formula $\subiso{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
 
@@ -8642,7 +8642,7 @@ reference "lin:abierta-saco-subestructuras"
 
 \begin_layout Standard
 Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
- cantidad de flechas podemos observar en la Figura 
+ cantidad de morfismos podemos observar en la Figura 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:categoria abierta"
@@ -8653,7 +8653,7 @@ reference "fig:categoria abierta"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- junto con todas las flechas que deberían ser revisadas según el Teorema
+ junto con todas los morfismos que deberían ser revisados según el Teorema
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -8669,7 +8669,7 @@ reference "fig:constelacion abierta"
 
 \end_inset
 
-, se puede ver las flechas que bastan para comprobar definibilidad abierta
+, se puede ver los morfismos que bastan para comprobar definibilidad abierta
  según el Corolario 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -8744,7 +8744,7 @@ name "fig:categoria abierta"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas a revisar según el Teorema 
+Morfismos a revisar según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta"
@@ -8789,7 +8789,7 @@ name "fig:constelacion abierta"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas que bastan según el Corolario 
+Morfismos que bastan según el Corolario 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cor:preservar en la constelacion abierta es ser abierta definible"
@@ -8905,8 +8905,8 @@ reference "thm:definibilidad abierta positiva"
 \end_layout
 
 \begin_layout Proof
-En el siguiente teorema describimos un conjunto suficiente de flechas para
- generar 
+En el siguiente teorema describimos un conjunto suficiente de morfismos
+ para generar 
 \begin_inset Formula $\subhom{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
 
@@ -11400,7 +11400,7 @@ end{algorithmic}
 
 \begin_layout Standard
 Para esquematizar la ganancia obtenida en cuanto al chequeo de una menor
- cantidad de flechas podemos observar en la Figura 
+ cantidad de morfismos podemos observar en la Figura 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:categoria abierta positiva"
@@ -11411,7 +11411,7 @@ reference "fig:categoria abierta positiva"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- junto con todas las flechas que deberían ser revisadas según el Teorema
+ junto con todas los morfismos que deberían ser revisados según el Teorema
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11427,7 +11427,7 @@ reference "fig:constelacion abierta positiva"
 
 \end_inset
 
-, se puede ver las flechas que bastan para comprobar definibilidad abierta
+, se puede ver los morfismos que bastan para comprobar definibilidad abierta
  según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11473,7 +11473,7 @@ name "fig:categoria abierta positiva"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas a revisar según el Teorema 
+Morfismos a revisar según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta positiva"
@@ -11518,7 +11518,7 @@ name "fig:constelacion abierta positiva"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flechas que bastan según el Teorema 
+Morfismos que bastan según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:construccion de constelacion abierta positiva"
@@ -13729,7 +13729,7 @@ Para generar los elementos join-irreducibles del álgebra de Lindenbaum de
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- de flechas que se chequean por preservación en los algoritmos del Capítulo
+ de morfismos que se chequean por preservación en los algoritmos del Capítulo
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -16168,7 +16168,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Saturación por un conjunto de flechas
+Saturación por un conjunto de morfismos
 \end_layout
 
 \end_inset
@@ -17926,7 +17926,7 @@ reference "lem:relacion existencial definible incluye al mayor o igual o es la d
 \begin_inset Formula $a\ngeq b$
 \end_inset
 
-, tomo 
+, tomamos 
 \begin_inset Formula $\left(c,d\right)\in R$
 \end_inset
 
@@ -17942,7 +17942,7 @@ reference "thm:filtro primo"
 
 \end_inset
 
- y tomo dos filtros primos 
+ y tomamos dos filtros primos 
 \begin_inset Formula $P$
 \end_inset
 
@@ -19241,8 +19241,8 @@ En cuanto a nuestra implementación, pensamos que se podría mejorar portando
 status open
 
 \begin_layout Itemize
-Que un conjunto de flechas alcance para revisar preservación implica que
- genera el conjunto de flechas completo?
+Que un conjunto de morfismos alcance para revisar preservación implica que
+ genera el conjunto de morfismos completo?
 \end_layout
 
 \begin_layout Itemize
