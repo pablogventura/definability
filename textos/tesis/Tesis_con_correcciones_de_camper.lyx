@@ -2172,12 +2172,12 @@ Veamos que
 \begin_deeper
 \begin_layout Standard
 \begin_inset Formula 
-\begin{eqnarray*}
-\gamma(a) & = & \gamma(a')\\
-\mathbf{B} & \vDash & (x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
-\mathbf{A} & \vDash & (x_{1}\equiv x_{2})[a,a']\\
-a & = & a'.
-\end{eqnarray*}
+\begin{align*}
+\gamma(a) & =\gamma(a')\\
+\mathbf{B} & \vDash(x_{1}\equiv x_{2})[\gamma(a),\gamma(a')]\\
+\mathbf{A} & \vDash(x_{1}\equiv x_{2})[a,a']\\
+a & =a'.
+\end{align*}
 
 \end_inset
 
@@ -2204,12 +2204,12 @@ Sea
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{eqnarray*}
-(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in & r^{\mathbf{B}}\\
-\mathbf{B} & \vDash & r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
-\mathbf{A} & \vDash & r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
-(a_{1},\dots,a_{n}) & \in & r^{\mathbf{A}}.
-\end{eqnarray*}
+\begin{align*}
+(\gamma(a_{1}),\dots,\gamma(a_{n})) & \in r^{\mathbf{B}}\\
+\mathbf{B} & \vDash r(x_{1},\dots,x_{n})[\gamma(a_{1}),\dots,\gamma(a_{n})]\\
+\mathbf{A} & \vDash r(x_{1},\dots,x_{n})[a_{1},\dots,a_{n}]\\
+(a_{1},\dots,a_{n}) & \in r^{\mathbf{A}}.
+\end{align*}
 
 \end_inset
 
@@ -2980,7 +2980,7 @@ reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
- tenemos que 
+tenemos que 
 \begin_inset Formula $\left|\mathbf{B}\right|\leq\left|\mathbf{A}\right|$
 \end_inset
 
@@ -3829,12 +3829,12 @@ Veamos 2
 Sea 
 \begin_inset Formula 
 \[
-\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right)
+\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)\right)\right),
 \]
 
 \end_inset
 
-, la cual es fórmula por el Teorema 
+la cual es fórmula por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -4372,12 +4372,12 @@ define a
  Ahora tomo 
 \begin_inset Formula 
 \[
-\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)
+\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right),
 \]
 
 \end_inset
 
-, que es fórmula por Teorema 
+que es fórmula por Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
@@ -4603,7 +4603,7 @@ Supongamos
 
 \end_inset
 
- por Lema 
+por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -4618,7 +4618,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
- tal que 
+tal que 
 \begin_inset Formula $h\left(\bar{a},\bar{a'}\right)=\left(\bar{b},\bar{b'}\right)$
 \end_inset
 
@@ -4889,7 +4889,7 @@ preserva
 
 \end_inset
 
- tales que 
+tales que 
 \begin_inset Formula 
 \[
 \left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}\text{para cada i\in[1,m] }
@@ -5091,7 +5091,7 @@ Hay una conjunción finita de
 
 \end_inset
 
- tales que 
+tales que 
 \begin_inset Formula 
 \[
 \left(s_{1i},\ldots,s_{ni}\right)\in R^{A_{i}}\text{ para cada }i\in\{1,\dots,m\}.
@@ -5128,7 +5128,7 @@ Veamos que
 
 \end_inset
 
- Luego, por el Lema 
+Luego, por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
@@ -5196,12 +5196,12 @@ Luego, como
 , concluimos que 
 \begin_inset Formula 
 \[
-\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}
+\left(h\left(\bar{s}_{1}\right),\dots,h\left(\bar{s}_{n}\right)\right)\in R^{\mathbf{B}}.
 \]
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Proof
@@ -5226,7 +5226,7 @@ Luego, como
 
 \end_inset
 
- tales que 
+tales que 
 \begin_inset Formula 
 \[
 \bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)
@@ -5234,7 +5234,7 @@ Luego, como
 
 \end_inset
 
- para cada 
+para cada 
 \begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
 \end_inset
 
@@ -5246,7 +5246,7 @@ Luego, como
 
 \end_inset
 
- para cada 
+para cada 
 \begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
 \end_inset
 
@@ -5254,13 +5254,12 @@ Luego, como
  Sea 
 \begin_inset Formula 
 \[
-\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}\alpha\left(\bar{x}\right)
+\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}\alpha\left(\bar{x}\right).
 \]
 
 \end_inset
 
-.
- Supongamos 
+Supongamos 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\enumeracion[][b]}$
 \end_inset
 
@@ -5272,12 +5271,12 @@ Luego, como
  Como 
 \begin_inset Formula 
 \[
-\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]}
+\sat{\mathbf{B}}{\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}{\enumeracion[][b]},
 \]
 
 \end_inset
 
-, por Lema 
+por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama atomico positivo sii homomorfismo"
@@ -5352,13 +5351,12 @@ Ahora supongamos
  tal que 
 \begin_inset Formula 
 \[
-\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right)
+\left(x_{1k}^{j},\dots,x_{nk}^{j}\right)=\left(\enumeracion[][b]\right).
 \]
 
 \end_inset
 
-.
- Entonces como 
+Entonces como 
 \begin_inset Formula 
 \[
 \mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\mathbf{B}^{\left|R^{\mathbf{B}}\right|}\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|}\vDash\varphi\left[\enumeracion[][\bar{x}]\right]
@@ -5366,7 +5364,7 @@ Ahora supongamos
 
 \end_inset
 
- por Lema 
+por Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:preservacion existencial conj atomicas producto"
@@ -5502,7 +5500,7 @@ Hay una
 
 \end_inset
 
- tales que 
+tales que 
 \begin_inset Formula 
 \[
 \left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}\text{ para cada }i\in\{1,\dots,m\}.
@@ -5604,12 +5602,12 @@ Luego, como
 , concluimos que 
 \begin_inset Formula 
 \[
-\left(h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)\right)\in R^{\mathbf{B}}
+\left(h\left(\bar{a}_{1}\right),\dots,h\left(\bar{a}_{n}\right)\right)\in R^{\mathbf{B}}.
 \]
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Proof
@@ -5634,7 +5632,7 @@ Luego, como
 
 \end_inset
 
- tales que 
+tales que 
 \begin_inset Formula 
 \[
 \bar{x}_{i}=\left(x_{i1}^{1},\dots,x_{i\left|R^{\mathbf{A}_{1}}\right|}^{1},\dots,x_{i1}^{m},\dots,x_{i\left|R^{\mathbf{A}_{m}}\right|}^{m}\right)
@@ -5642,7 +5640,7 @@ Luego, como
 
 \end_inset
 
- para cada 
+para cada 
 \begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
 \end_inset
 
@@ -5654,7 +5652,7 @@ Luego, como
 
 \end_inset
 
- para cada 
+para cada 
 \begin_inset Formula $i\in\left\{ 1,\dots,m\right\} $
 \end_inset
 
@@ -5723,7 +5721,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
- en 
+en 
 \begin_inset Formula 
 \[
 \left\langle \enumeracion[][b],\enumeracion[k][b']\right\rangle ^{\mathbf{B}}
@@ -5731,7 +5729,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
- tal que 
+tal que 
 \begin_inset Formula $h\left(\bar{x}_{i}\right)=b_{i}$
 \end_inset
 
@@ -5751,7 +5749,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 
 \end_inset
 
- en 
+en 
 \begin_inset Formula $\mathbf{B}$
 \end_inset
 
@@ -13543,12 +13541,12 @@ Supongamos que
 , es claro que 
 \begin_inset Formula 
 \[
-r=\bigcup_{\bar{x}\in r}\left\{ h\left(\bar{x}\right):h\in\subiso{\mathbf{A}}\right\} 
+r=\bigcup_{\bar{x}\in r}\left\{ h\left(\bar{x}\right):h\in\subiso{\mathbf{A}}\right\} ,
 \]
 
 \end_inset
 
-, pero como 
+pero como 
 \begin_inset Formula $r$
 \end_inset
 
@@ -13580,12 +13578,12 @@ Supongamos que
  tales que 
 \begin_inset Formula 
 \[
-r=r_{1}\cup\dots\cup r_{m}
+r=r_{1}\cup\dots\cup r_{m},
 \]
 
 \end_inset
 
-, es claro que hay un 
+es claro que hay un 
 \begin_inset Formula $r_{j}$
 \end_inset
 
