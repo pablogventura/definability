@@ -2219,7 +2219,7 @@ Sea
 \end_deeper
 \end_deeper
 \begin_layout Standard
-El siguiente lema establece que las subestructuras preservan formulas abiertas.
+El siguiente lema determina que las subestructuras preservan formulas abiertas.
 \end_layout
 
 \begin_layout Lemma
@@ -2464,7 +2464,7 @@ reference "thm:embeddings preservan abiertas"
 \end_layout
 
 \begin_layout Standard
-En el lema siguiente se establece que los homomorfismos preservan formulas
+En el lema siguiente se determina que los homomorfismos preservan formulas
  atómicas, y también formulas abiertas positivas.
 \end_layout
 
@@ -2800,7 +2800,7 @@ reference "thm:diagrama sii isomorfismo"
 \end_layout
 
 \begin_layout Standard
-Como establece el siguiente teorema, la definibilidad abierta depende de
+Como determina el siguiente teorema, la definibilidad abierta depende de
  la preservación en los isomorfismos entre subestructuras de las estructuras
  de 
 \begin_inset Formula $\mathcal{K}$
@@ -4148,8 +4148,9 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_layout
 
 \begin_layout Standard
-En el siguiente teorema se establece que la definibilidad existencial depende
- de la preservación en los embeddings entre las estructuras de 
+En el teorema enunciado a continuación, se determina que la definibilidad
+ existencial depende de la preservación en los embeddings entre las estructuras
+ de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -4818,7 +4819,7 @@ Definibilidad por conjunción de atómicas y primitivas positivas
 \end_layout
 
 \begin_layout Standard
-En este tipo de definibilidad se establece una relación con el producto
+En este tipo de definibilidad se determina una relación con el producto
  de estructuras en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -4899,7 +4900,7 @@ se tiene que
 \end_layout
 
 \begin_layout Standard
-El siguiente lema establece que el producto entre estructuras preserva las
+El siguiente lema determina que el producto entre estructuras preserva las
  formulas atómicas.
 \end_layout
 
@@ -6216,7 +6217,7 @@ reference "thm:definibiliad de primer orden"
 
 \end_inset
 
- establece que los isomorfismos entre estructuras de 
+ determina que los isomorfismos entre estructuras de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -6928,8 +6929,8 @@ reference "thm:definibilidad abierta"
 \end_layout
 
 \begin_layout Proof
-En el siguiente teorema describimos un conjunto suficiente de morfismos
- para generar 
+En el teorema enunciado a continuación, describimos un conjunto suficiente
+ de morfismos para generar 
 \begin_inset Formula $\subiso{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
 
