@@ -11,6 +11,18 @@
 \usepackage{hyperref}
 \usepackage[style=authoryear,backend=biber]{biblatex}
 
+\newrobustcmd*{\parentexttrack}[1]{%
+  \begingroup
+  \blx@blxinit
+  \blx@setsfcodes
+  \blx@bibopenparen#1\blx@bibcloseparen
+  \endgroup}
+
+\AtEveryCite{%
+  \let\parentext=\parentexttrack%
+  \let\bibopenparen=\bibopenbracket%
+  \let\bibcloseparen=\bibclosebracket}
+
 \ifcsname input@path\endcsname 
   \edef\@basepath{\expandafter\@firstofone\input@path} %remove curly braces
   \def\rm@quotes#1"#2"#3\@nul{\ifx\relax#2\relax #1\else #2\fi} %
@@ -22,7 +34,7 @@
 
 \addbibresource{tesis.bib}
 
-
+\renewcommand{\cite}{\parencite}
 
 
 
