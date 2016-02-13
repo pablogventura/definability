@@ -1276,7 +1276,7 @@ reference "chap:algoritmos de chequeo"
 , se encuentran los algoritmos para chequeo de definibilidad y los resultados
  teóricos que fundamentan sobre el subconjunto de morfismos que genera por
  composición a todo el conjunto de morfismos a chequear.
- Luego de los algoritmos mostramos como modelizar la búsqueda de homomorfismos
+ Luego de los algoritmos mostramos cómo modelizar la búsqueda de homomorfismos
  mediante un CSP, y finalizamos el capítulo con la generación de subestructuras.
 \end_layout
 
@@ -2674,7 +2674,7 @@ Definibilidad de primer orden
 \end_layout
 
 \begin_layout Standard
-Este es el tipo de definibilidad mas débil.
+Éste es el tipo de definibilidad más débil.
  Los morfismos en cuestión son los isomorfismos entre estructuras de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -3033,7 +3033,7 @@ Ahora estableceremos la noción semántica para la definibilidad abierta.
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama abierto
+En el siguiente lema, construimos una fórmula equivalente al diagrama abierto
  para una secuencia de elementos en una estructura, que utilizaremos en
  el teorema de definibilidad abierta.
 \end_layout
@@ -3491,7 +3491,7 @@ Ahora estableceremos la noción semántica para la definibilidad abierta positiv
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama atómico
+En el siguiente lema, construimos una fórmula equivalente al diagrama atómico
  positivo para un conjunto de elementos en una estructura, que utilizaremos
  en el teorema de definibilidad abierta positiva.
 \end_layout
@@ -3943,7 +3943,7 @@ Ahora estableceremos la noción semántica para la definibilidad existencial.
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama abierto
+En el siguiente lema, construimos una fórmula equivalente al diagrama abierto
  para un conjunto de elementos tal que sea capaz de generar la estructura
  completa.
  
@@ -4332,7 +4332,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\varphi$
 \end_inset
 
-define a 
+ define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4494,7 +4494,7 @@ Ahora estableceremos la noción semántica para la definibilidad existencial
 \end_layout
 
 \begin_layout Standard
-En el siguiente lema, construimos una formula equivalente al diagrama atómico
+En el siguiente lema, construimos una fórmula equivalente al diagrama atómico
  positivo para un conjunto de elementos tal que sea capaz de generar la
  estructura completa análogamente al Lema 
 \begin_inset CommandInset ref
@@ -6708,7 +6708,7 @@ reference "sec:Definibilidad-positiva"
 \begin_inset Formula $R$
 \end_inset
 
- y vemos que basta con chequear sólo uno gracias al Lema 
+ y vemos que basta con chequear solo uno gracias al Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:quito sombras"
@@ -6723,14 +6723,14 @@ Para ejemplificar el funcionamiento del algoritmo, supongamos que
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- esta dado por la Figura 
+ está dado por la Figura 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:k sin preprocesamiento"
 
 \end_inset
 
-, donde cada tipo de isomorfismo esta representado por una forma geométrica.
+, donde cada tipo de isomorfismo está representado por una forma geométrica.
 \end_layout
 
 \begin_layout Standard
@@ -7288,7 +7288,7 @@ reference "cor:preservar en la constelacion abierta es ser abierta definible"
 status collapsed
 
 \begin_layout Plain Layout
-Me parece que el algoritmo quedaría mas fácil de leer si uno pone primero
+Me parece que el algoritmo quedaría más fácil de leer si uno pone primero
  los casos de la no preservación de 
 \begin_inset Formula $\gamma$
 \end_inset
@@ -8488,7 +8488,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Está muy bueno que queda clarísimo siguiendo el código que, si uno no planea
- reutilizar la información, no hace falta guardar los mapeos, sólo las estructur
+ reutilizar la información, no hace falta guardar los mapeos, solo las estructur
 as de 
 \begin_inset Formula $\mathcal{K}_{0}$
 \end_inset
@@ -9000,7 +9000,7 @@ todo
 \begin_inset Formula $\funcion[h]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
- homomorfismo sobreyectivo esta en 
+ homomorfismo sobreyectivo está en 
 \begin_inset Formula $\mathcal{H}$
 \end_inset
 
@@ -13094,7 +13094,7 @@ Generación de subestructuras
 status open
 
 \begin_layout Plain Layout
-Las generamos desde un subconjunto, no esta muy pensado así que se podría
+Las generamos desde un subconjunto, no está muy pensado así que se podría
  hacer mejor.
 \end_layout
 
@@ -13204,7 +13204,7 @@ Sea
 status open
 
 \begin_layout Plain Layout
-esta notación esta explicada en algún lado?
+esta notación está explicada en algún lado?
 \end_layout
 
 \end_inset
@@ -16790,7 +16790,7 @@ Ejemplos y aplicación
 \end_layout
 
 \begin_layout Standard
-En esta sección mostramos como la utilización del paquete permitió conjeturar
+En esta sección mostramos cómo la utilización del paquete permitió conjeturar
  una caracterización de las relaciones binarias definibles por existenciales
  positivas en reticulados distributivos.
 \end_layout
@@ -17235,7 +17235,7 @@ reference "thm:representacion de birkhoff, reticulados"
 \begin_inset Formula $\mathbf{E}_{2}\left(\mathbf{2}\times\mathbf{2}\right)$
 \end_inset
 
- anterior, mucho mas pequeño, como se puede ver en la Figura 
+ anterior, mucho más pequeño, como se puede ver en la Figura 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:reticulado de relaciones existenciales positivas en 2x2"
@@ -17930,7 +17930,7 @@ reference "lem:relacion existencial definible incluye al mayor o igual o es la d
 \begin_inset Formula $\left(c,d\right)\in R$
 \end_inset
 
-, si son comparables ya esta están en 
+, si son comparables ya están en 
 \begin_inset Formula $R$
 \end_inset
 
@@ -18065,7 +18065,7 @@ Programas externos necesarios
 Definability, así como SageMath han sido desarrollados en Python 2.7, por
  lo que necesitan del interprete instalado.
  Dado que Definability es un paquete desarrollado para SageMath, necesita
- de una instalación de este.
+ de una instalación de éste.
  Además, utiliza interfaces con otros programas.
  Particularmente utiliza Minion, y LADR (interfaz de linea de comandos de
  Prover9, Mace4, y otros programas).
@@ -18197,7 +18197,7 @@ constellation Implementa la clase Constellation que representa a la clase
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, y contiene las implementaciones de los algoritmos vistos en el Capitulo
+, y contiene las implementaciones de los algoritmos vistos en el Capítulo
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -18210,7 +18210,7 @@ reference "chap:algoritmos de chequeo"
 
 \begin_layout Description
 lindenbaum Implementa los algoritmos de generación de álgebras de Lindenbaum
- presentados en el Capitulo 
+ presentados en el Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Álgebras-de-Lindenbaum"
@@ -18543,7 +18543,7 @@ Una función, implementada por la clase FO_Operation se puede definir mediante
 .
  Para definir una relación utilizando la clase FO_Relation basta con una
  lista de las tuplas que pertenecen a la relación y el universo sobre el
- que la relación esta definida.
+ que la relación está definida.
 \end_layout
 
 \begin_layout Standard
@@ -19233,7 +19233,7 @@ También esperamos explorar mejores implementaciones para la generación de
 
 \begin_layout Standard
 En cuanto a nuestra implementación, pensamos que se podría mejorar portando
- algunas de las partes mas criticas a C.
+ algunas de las partes más críticas a C.
 \end_layout
 
 \begin_layout Standard
