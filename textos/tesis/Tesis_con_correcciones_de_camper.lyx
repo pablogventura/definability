@@ -3126,7 +3126,8 @@ name "sec:Definibilidad-positiva"
 \end_layout
 
 \begin_layout Standard
-Ahora estableceremos la noción semántica para la definibilidad abierta positiva.
+En esta sección, determinaremos la noción semántica para la definibilidad
+ abierta positiva.
 \end_layout
 
 \begin_layout Standard
@@ -3933,7 +3934,8 @@ Definibilidad por fórmulas existenciales
 \end_layout
 
 \begin_layout Standard
-Ahora estableceremos la noción semántica para la definibilidad existencial.
+A continuación, estableceremos la noción semántica para la definibilidad
+ existencial.
 \end_layout
 
 \begin_layout Standard
@@ -4484,7 +4486,7 @@ Definibilidad por fórmulas existenciales positivas
 \end_layout
 
 \begin_layout Standard
-Ahora estableceremos la noción semántica para la definibilidad existencial
+Aquí determinaremos la noción semántica para la definibilidad existencial
  positiva.
 \end_layout
 
