@@ -1208,8 +1208,31 @@ En vista de lo expuesto anteriormente nuestro enfoque consiste en cambiar
  la familia de morfismos.
  Por esta razón nuestra investigación se centró en estudiar el problema
  de cómo reducir el número de morfismos a construir.
- Los resultados obtenidos en esta dirección (REFERENCIAS CRUZADAS) se basan
- en encontrar una subconjunto 
+ Los resultados obtenidos en esta dirección, como los Teoremas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta positiva"
+
+\end_inset
+
+, 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(REFERENCIAS CRUZADAS)
+\end_layout
+
+\end_inset
+
+se basan en encontrar una subconjunto 
 \emph on
 generador
 \emph default
@@ -1223,7 +1246,25 @@ Otra característica importante de las algoritmos desarrollados, en este
 \emph on
 Constraint Satisfaction Problem
 \emph default
- (CSP) (CITA).
+ (CSP) (ver, e.g., 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Capítulo 6"
+key "russell2010artificial"
+
+\end_inset
+
+)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(CITA)
+\end_layout
+
+\end_inset
+
+.
  Esto nos permite usufructuar la eficiencia alcanzada por los resolvedores
  de CSP, y hace muy promisoria la especialización del Problema 
 \begin_inset CommandInset ref
@@ -12750,14 +12791,14 @@ Definición de CSP, Minion, constraints que le pasamos a Minion
 
 \begin_layout Standard
 Para la detección de homomorfismos modelizamos el problema como un CSP,
- y utilizamos Minion (
+ y utilizamos Minion 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "minion"
 
 \end_inset
 
-) como solucionador.
+ como solucionador.
 \end_layout
 
 \begin_layout Subsection
@@ -19154,8 +19195,8 @@ Trabajo futuro
 \end_layout
 
 \begin_layout Standard
-La experiencia durante el desarrollo nos ha hecho notar que la una gran
- parte de de los cálculos vienen por el calculo de morfismos.
+La experiencia durante el desarrollo nos ha hecho notar que la gran parte
+ de los cálculos provienen del calculo de morfismos.
  En relación a la incidencia que puedan tener propiedades de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
