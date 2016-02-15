@@ -1476,7 +1476,21 @@ Preliminares
 Si bien la intención ha sido la de escribir un trabajo autocontenido, suponemos
  que el lector está familiarizado con los conceptos básicos de la lógica
  de primer orden y su teoria de modelos elemental.
- Textos clásicos de referencia en estos temas son por ejemplo (CITAS).
+ Textos clásicos de referencia en estos temas son por ejemplo 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hodges199304"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "matematicallogic"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
