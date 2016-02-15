@@ -1831,6 +1831,23 @@ Dados
 \end_inset
 
 .
+ Dada una clase de estructuras 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, usaremos 
+\begin_inset Formula $\mathcal{K}_{\mathcal{L}}$
+\end_inset
+
+ para indicar la clase formada por cada 
+\begin_inset Formula $\mathbf{A}_{\mathcal{L}}$
+\end_inset
+
+, con 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+.
  Si 
 \begin_inset Formula $\mathbf{A},\mathbf{B}$
 \end_inset
