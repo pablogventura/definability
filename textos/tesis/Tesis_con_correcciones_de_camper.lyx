@@ -5920,7 +5920,10 @@ name "chap:algoritmos de chequeo"
 En este capítulo describimos algoritmos para el chequeo de definibilidad
  de relaciones en conjuntos finitos de estructuras finitas por fragmentos
  de primer orden.
- 
+ En particular, desarrollamos en detalle algoritmos para la definibilidad
+ abierta y abierta positiva.
+ Luego de estos, exponemos los casos de definibilidad restantes pero con
+ menor detalle.
 \end_layout
 
 \begin_layout Section
