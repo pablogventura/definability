@@ -13858,22 +13858,22 @@ reference "thm:representacion de stone, algebras de boole"
 
 \end_inset
 
- para aquellas álgebras de Lindenbaum que son álgebras de Boole y los átomos
- (que también son los elementos join-irreducibles según el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:atomo sii ji"
-
-\end_inset
-
-) según el Teorema 
+ y 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:representacion de birkhoff, reticulados"
 
 \end_inset
 
-, para aquellas que son reticulados.
+ ya que por el Lema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:atomo sii ji"
+
+\end_inset
+
+, los atomos de un algebra de Boole son exactamente los elementos join-irreducib
+les.
 \end_layout
 
 \begin_layout Standard
