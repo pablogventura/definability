@@ -758,7 +758,7 @@ En nuestra experiencia, los buenos algoritmos son descubiertos al hacer
  En este caso nos proponemos el desarrollo de algoritmos para resolver un
  problema básico de la teoría de modelos finitos: decidir definibilidad
  de relaciones en el lenguaje de primer orden.
- La motivación inicial es la explotación de resultados teóricos del artículo
+ La motivación inicial fue la explotación de resultados teóricos del artículo
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -949,7 +949,7 @@ key "Campercholi15"
 \end_layout
 
 \begin_layout Standard
-Por ejemplo, en el caso de la definibilidad por una fórmula abierta (i.e.
+Por ejemplo, en el caso de la definibilidad por una fórmula abierta (i.e.,
  fórmulas sin cuantificadores) el trabajo establece que (cf.
  
 \begin_inset CommandInset ref
@@ -1222,17 +1222,7 @@ reference "thm:construccion de constelacion abierta positiva"
 
 \end_inset
 
-, 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-(REFERENCIAS CRUZADAS)
-\end_layout
-
-\end_inset
-
-se basan en encontrar una subconjunto 
+, se basan en encontrar una subconjunto 
 \emph on
 generador
 \emph default
@@ -1254,17 +1244,7 @@ key "russell2010artificial"
 
 \end_inset
 
-)
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-(CITA)
-\end_layout
-
-\end_inset
-
-.
+).
  Esto nos permite usufructuar la eficiencia alcanzada por los resolvedores
  de CSP, y hace muy promisoria la especialización del Problema 
 \begin_inset CommandInset ref
@@ -1381,7 +1361,7 @@ name "chap:Teoremas-de-definibilidad"
 \end_layout
 
 \begin_layout Standard
-En esta sección presentamos resultados que caracterizan la definibilidad,
+En este capítulo presentamos resultados que caracterizan la definibilidad,
  en diferentes fragmentos de primer orden, de relaciones sobre familias
  de estructuras.
  Estas caracterizaciones reducen la pregunta de si una relación es definible
@@ -1465,7 +1445,7 @@ key "Campercholi15"
 
 , constituyen el punto de partida para nuestro estudio del chequeo computacional
  de la definibilidad.
- Los algoritmos desarrollados pueden encontrarse en los capítulos siguientes.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1473,20 +1453,23 @@ Preliminares
 \end_layout
 
 \begin_layout Standard
-Si bien la intención ha sido la de escribir un trabajo autocontenido, suponemos
+Presentamos continuación los resultados básicos de teoría de modelos que
+ serán necesarios para demostrar los teoremas de definibilidad en las sección
+ siguientes.
+ Si bien la intención ha sido la de escribir un trabajo autocontenido, suponemos
  que el lector está familiarizado con los conceptos básicos de la lógica
  de primer orden y su teoria de modelos elemental.
  Textos clásicos de referencia en estos temas son por ejemplo 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Hodges199304"
+key "matematicallogic"
 
 \end_inset
 
  y 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "matematicallogic"
+key "Hodges199304"
 
 \end_inset
 
@@ -1638,7 +1621,24 @@ Introducimos ahora la notación que utilizaremos para los fragmentos de primer
 \end_layout
 
 \begin_layout Standard
-A continuación definimos dos nociones centrales del presente trabajo.
+A continuación introducimos dos nociones centrales del presente trabajo:
+ 
+\begin_inset Quotes fld
+\end_inset
+
+definibilidad
+\begin_inset Quotes frd
+\end_inset
+
+ y 
+\begin_inset Quotes fld
+\end_inset
+
+preservación
+\begin_inset Quotes frd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -2035,17 +2035,35 @@ Notar que
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Poner definicion de embedding antes del lema
-\end_layout
-
+Recordamos que una función 
+\begin_inset Formula $\gamma:A\rightarrow B$
 \end_inset
 
-El siguiente lema establece que los embeddings preservan las formulas abiertas.
- 
+ es un 
+\emph on
+embedding
+\emph default
+ de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+ si 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ es un isomorfismo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{Im}(\gamma)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Lemma
@@ -2073,12 +2091,12 @@ Sean
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\mathbf{B}$
 \end_inset
 
  estructuras y 
-\begin_inset Formula $\fee[\gamma]AB$
+\begin_inset Formula $\gamma:A\rightarrow B$
 \end_inset
 
  una función.
@@ -2114,7 +2132,7 @@ Para toda fórmula abierta
 \begin_inset Formula $A$
 \end_inset
 
- vale que:
+ vale que
 \begin_inset Formula 
 \[
 \sat{\mathbf{A}}{\varphi}{\bar{a}}\Leftrightarrow\sat{\mathbf{B}}{\varphi}{\gamma(\bar{a})}.
@@ -2291,7 +2309,7 @@ Sea
 \end_deeper
 \end_deeper
 \begin_layout Standard
-El siguiente lema determina que las subestructuras preservan formulas abiertas.
+El siguiente lema muestra que las subestructuras preservan fórmulas abiertas.
 \end_layout
 
 \begin_layout Lemma
@@ -2362,7 +2380,7 @@ reference "thm:embeddings preservan abiertas"
 
 \begin_layout Standard
 Definimos a continuación el diagrama abierto, que será utilizado en la construcc
-ión de formulas abiertas que definen relaciones.
+ión de fórmulas abiertas que definen relaciones.
 \end_layout
 
 \begin_layout Definition
@@ -2753,13 +2771,9 @@ name "sec:Definibilidad-abierta"
 \end_layout
 
 \begin_layout Standard
-Ahora estableceremos la noción semántica para la definibilidad abierta.
-\end_layout
-
-\begin_layout Standard
-En el siguiente lema, construimos una fórmula equivalente al diagrama abierto
- para una secuencia de elementos en una estructura, que utilizaremos en
- el teorema de definibilidad abierta.
+Presentamos a continuación el primero de los teoremas de definibilidad,
+ en este caso por fórmulas abiertas.
+ Antes necesitaremos el siguiente resultado.
 \end_layout
 
 \begin_layout --Separator--
@@ -2778,14 +2792,15 @@ name "thm:formula para el diagrama"
 
 \begin_layout Lemma
 Sean 
-\begin_inset Formula $\mathbf{A,B}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}$
 \end_inset
 
- estructuras finitas y 
+ estructuras finita y 
 \begin_inset Formula $\enumeracion[][a]\in A$
 \end_inset
 
-, entonces existe una fórmula abierta 
+.
+ Existe una fórmula abierta 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -2801,7 +2816,7 @@ Sean
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -2821,67 +2836,65 @@ Hay un isomorfismo
 \begin_inset Formula $\gamma(\bar{a})=\bar{b}$
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
 \begin_layout Proof
-Tomamos 
-\begin_inset Formula 
-\[
-\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)
-\]
-
-\end_inset
-
- que es una fórmula, por el Teorema 
+Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Proof
-Es claro que 
-\begin_inset Formula $\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}\Leftrightarrow\sat{\mathbf{B}}{\Delta_{\mathbf{A}\bar{a}}}{\bar{b}}$
+ hay una fórmula 
+\begin_inset Formula $\varphi(\bar{x})$
 \end_inset
 
+ equivalente sobre 
+\begin_inset Formula $\{\mathbf{A},\mathbf{B}\}$
+\end_inset
 
-\end_layout
+ al diagrama abierto 
+\begin_inset Formula $\Delta_{\mathbf{A},\bar{a}}(\bar{x})$
+\end_inset
 
-\begin_layout Proof
-Luego por Lema 
+.
+ Luego por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
 
 \end_inset
 
-, hay isomorfismo 
-\begin_inset Formula $\funcion[\gamma]{\subuniv aA}{\subuniv bB}$
-\end_inset
-
- tal que 
-\begin_inset Formula $\gamma(\bar{a})=\bar{b}$
-\end_inset
-
-
+ es inmediata la equivalencia del enunciado.
 \end_layout
 
 \begin_layout Standard
-Como determina el siguiente teorema, la definibilidad abierta depende de
- la preservación en los isomorfismos entre subestructuras de las estructuras
- de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-.
+Estamos listos para demostrar el primer resultado de definibilidad.
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 1"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibilidad abierta"
@@ -2909,11 +2922,7 @@ Sean
 \end_layout
 
 \begin_layout Enumerate
-Hay una fórmula en Op(
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
-) que define 
+Hay una fórmula abierta que define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2937,7 +2946,7 @@ Para todas
 \begin_inset Formula $\boldsymbol{B}_{0}\leq\boldsymbol{B}_{\mathcal{L}}$
 \end_inset
 
-, todo isomorfismo 
+, se tiene que todo isomorfismo 
 \begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
 \end_inset
 
@@ -2946,6 +2955,17 @@ Para todas
 \end_inset
 
 .
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cambiar tipografia de boldsymbol a bold, chequear el resto del trabajo por
+ el mismo error.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -2965,28 +2985,29 @@ Para todas
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, sean 
+.
+ Sean 
 \begin_inset Formula $\mathbf{A,B}\in\mathcal{K}$
 \end_inset
 
- y sean 
+, sean 
 \begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A_{\mathcal{L}}}$
 \end_inset
 
- y 
+, 
 \begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B_{\mathcal{L}}}$
 \end_inset
 
- tales que 
+ y 
 \begin_inset Formula $\funcion[\sigma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
 \end_inset
 
- sea un isomorfismo.
- Sea 
-\begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}\cap A_{0}$
+ un isomorfismo.
+ Fijamos 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}_{0}}$
 \end_inset
 
- veamos que 
+ ; veremos que 
 \begin_inset Formula $\sigma\left(\bar{a}\right)\in R^{\mathbf{B}_{0}}$
 \end_inset
 
@@ -3003,10 +3024,11 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 , 
-\begin_inset Formula $\sat{A_{0}}{\varphi}{\bar{a}}$
+\begin_inset Formula $\sat{\mathbf{A}_{0}}{\varphi}{\bar{a}}$
 \end_inset
 
- y como 
+.
+ Además como 
 \begin_inset Formula $\mathbf{A}_{0}$
 \end_inset
 
@@ -3030,11 +3052,11 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
- 
+, 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\sigma\left(\bar{a}\right)}$
 \end_inset
 
- y como por hipótesis 
+, y ya que por hipótesis 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3046,7 +3068,7 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, 
+, tenemos que 
 \begin_inset Formula $\sigma\left(\bar{a}\right)\in R^{\mathbf{B}}$
 \end_inset
 
@@ -3058,51 +3080,69 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-1) Sea 
-\begin_inset Formula 
-\[
-\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right),
-\]
-
-\end_inset
-
-la cual es fórmula por el Teorema 
+1) Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
+, para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+ hay una fórmula 
+\begin_inset Formula $\delta_{\mathbf{A},\bar{a}}(\bar{x})$
+\end_inset
+
+ equivalente sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ al diagrama abierto 
+\begin_inset Formula $\Delta_{\mathbf{A},\bar{a}}(\bar{x}).$
+\end_inset
+
+ Definimos 
+\begin_inset Formula 
+\[
+\varphi(\bar{x})=\bigvee_{\mathbf{A}\in\mathcal{K}}\bigvee_{\bar{a}\in R^{\mathbf{A}}}\delta_{\mathbf{A},\bar{a}}(\bar{x}),
+\]
+
+\end_inset
+
+Probamos ahora que 
+\begin_inset Formula $\varphi(\bar{x})$
+\end_inset
+
+ define a 
+\begin_inset Formula $R$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
 .
- Veamos que para cada 
+ Fijamos 
 \begin_inset Formula $\mathbf{B}\in\mathcal{K}$
 \end_inset
 
-, 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
-\end_inset
-
- sii 
-\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
+ y 
+\begin_inset Formula $\bar{b}\in B^{n}$
 \end_inset
 
 .
- Sea 
-\begin_inset Formula $\mathbf{B}\in\mathcal{K}$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula $\Rightarrow$
-\end_inset
-
-) Supongamos 
+ Supongamos primero que 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
-, entonces en particular para algún 
+.
+ Entonces hay 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
@@ -3110,10 +3150,10 @@ reference "thm:cantidad de formulas es finita"
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
 \end_inset
 
-, 
+ tales que 
 \begin_inset Formula 
 \[
-\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)}{\bar{b}}.
+\sat{\mathbf{B}}{\delta_{\mathbf{A},\bar{a}}}{\bar{b}}.
 \]
 
 \end_inset
@@ -3134,7 +3174,7 @@ reference "thm:formula para el diagrama"
 \end_inset
 
 .
- Entonces por hipótesis 
+ Ya que por hipótesis 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -3142,44 +3182,25 @@ reference "thm:formula para el diagrama"
 \begin_inset Formula $R$
 \end_inset
 
-.
- Finalmente como 
+ y 
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
 \end_inset
 
-, luego 
-\begin_inset Formula $\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
+, se sigue que 
+\begin_inset Formula $\bar{b}=\gamma\left(\bar{a}\right)\in R^{\mathbf{B}}$
 \end_inset
 
- o sea que 
+.
+ Para probar la implicación restante, supongamos que 
 \begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula $\Leftarrow$
+ Como 
+\begin_inset Formula $\sat{\mathbf{B}}{\delta_{\mathbf{B},\bar{b}}}{\bar{b}}$
 \end_inset
 
-) Supongamos 
-\begin_inset Formula $\bar{b}\in R^{\mathbf{B}}$
-\end_inset
-
-.
- Entonces 
-\begin_inset Formula 
-\[
-\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}}\alpha\left(\bar{x}\right)\right)\right)=\cdots\vee\cdots\vee\left(\bigwedge_{\alpha\in\Delta_{\mathbf{B}\bar{b}}}\alpha\left(\bar{x}\right)\right),
-\]
-
-\end_inset
-
-evidentemente 
-\begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{B}\bar{b}}}{\bar{b}}$
-\end_inset
-
-, luego 
+ es evidente que 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
@@ -3198,14 +3219,10 @@ name "sec:Definibilidad-positiva"
 \end_layout
 
 \begin_layout Standard
-En esta sección, determinaremos la noción semántica para la definibilidad
+En esta sección, probamos la caracterización semántica para la definibilidad
  abierta positiva.
-\end_layout
-
-\begin_layout Standard
-En el siguiente lema, construimos una fórmula equivalente al diagrama atómico
- positivo para un conjunto de elementos en una estructura, que utilizaremos
- en el teorema de definibilidad abierta positiva.
+ Al igual que en el caso abierto necesitaremos construir fórmulas equivalentes
+ a diagramas.
 \end_layout
 
 \begin_layout Lemma
@@ -3224,10 +3241,10 @@ Sean
 \end_inset
 
  estructuras finitas y 
-\begin_inset Formula $\enumeracion[][a]an\in A$
+\begin_inset Formula $\enumeracion[][a]\in A$
 \end_inset
 
-, entonces existe una fórmula abierta 
+, entonces existe una fórmula abierta positiva 
 \begin_inset Formula $\deff$
 \end_inset
 
@@ -3243,7 +3260,7 @@ Sean
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3263,77 +3280,15 @@ Hay un homomorfismo
 \begin_inset Formula $h(\bar{a})=\bar{b}$
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
 \begin_layout Proof
-Tomamos 
-\begin_inset Formula $\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}\bar{a}}^{+}}\alpha\left(\bar{x}\right)$
-\end_inset
-
- que es una fórmula, por el Teorema 
+Muy similar a la del Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:cantidad de formulas es finita"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Es claro que 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}\Leftrightarrow\sat{\mathbf{B}}{\Delta_{\mathbf{A}\bar{a}}^{+}}{\bar{b}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Entonces por Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:diagrama atomico positivo sii homomorfismo"
-
-\end_inset
-
-, hay un homomorfismo 
-\begin_inset Formula $h$
-\end_inset
-
- de 
-\begin_inset Formula $\subuniv aA$
-\end_inset
-
- en 
-\begin_inset Formula $\subuniv bB$
-\end_inset
-
- tal que 
-\begin_inset Formula $h(\bar{a})=\bar{b}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-El siguiente teorema establece que la definibilidad abierta positiva depende
- de la preservación en los homomorfismos entre subestructuras de las estructuras
- de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-.
- Notar que esta condición incluye a los isomorfismos entre subestructuras
- de estructuras de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-, chequeados para el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:definibilidad abierta"
+reference "thm:formula para el diagrama"
 
 \end_inset
 
@@ -3368,11 +3323,7 @@ Sean
 \end_layout
 
 \begin_layout Enumerate
-Hay una fórmula en 
-\begin_inset Formula $\abiertaspositivas{\mathcal{L}}$
-\end_inset
-
- que define 
+Hay una fórmula abierta positiva que define a 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5906,7 +5857,7 @@ reference "thm:preservacion existencial conj atomicas producto"
 \end_layout
 
 \begin_layout Chapter
-Algoritmos de chequeo de definibilidad
+Algoritmos para decidir definibilidad
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:algoritmos de chequeo"
@@ -5917,13 +5868,11 @@ name "chap:algoritmos de chequeo"
 \end_layout
 
 \begin_layout Standard
-En este capítulo describimos algoritmos para el chequeo de definibilidad
- de relaciones en conjuntos finitos de estructuras finitas por fragmentos
- de primer orden.
- En particular, desarrollamos en detalle algoritmos para la definibilidad
- abierta y abierta positiva.
- Luego de estos, exponemos los casos de definibilidad restantes pero con
- menor detalle.
+En este capítulo exponemos los algoritmos para el chequeo de definibilidad
+ de relaciones.
+ La exposición se centra en los algoritmos para definibilidad abierta y
+ abierta positiva, ya que consideramos que estos capturan las principales
+ ideas desarrolladas.
 \end_layout
 
 \begin_layout Section
@@ -5931,31 +5880,12 @@ Definiciones e ideas preliminares
 \end_layout
 
 \begin_layout Standard
-Para evitar las complicaciones resultantes de que tanto una estructura 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
+Una hipótesis técnica que resultó crucial para la concepción y exposición
+ de los algoritmos es la siguiente.
+\end_layout
 
- y una subestructura propia 
-\begin_inset Formula $\mathbf{A}_{0}$
-\end_inset
-
- pertenezcan al conjunto 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-, definiremos el concepto de clase 
-\emph on
-disjunta.
-
-\emph default
- En general asumiremos que nuestra clase 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- es siempre disjunta.
- Notar que no hay perdida de generalidad ya que bastaría con renombrar elementos
- para convertir una clase no disjunta en una disjunta equivalente.
- Una clase 
+\begin_layout Definition
+Una clase 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5976,6 +5906,12 @@ disjunta
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Notar que está hipótesis no afecta el grado de generalidad de los resultados
+ y algoritmos ya que bastaría con renombrar los elementos repetidos para
+ obtener una clase disjunta equivalente.
  La clase 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -5989,6 +5925,7 @@ normal
 \end_inset
 
  es finita.
+ Supondremos en lo que sigue que las clases son siempre normales.
  
 \end_layout
 
@@ -5998,7 +5935,7 @@ A la hora de reducir la complejidad de nuestros algoritmos en la búsqueda
 \emph on
 generan
 \emph default
- el resto.
+ al resto.
  Dados 
 \begin_inset Formula $\mathcal{F}_{0}$
 \end_inset
@@ -6031,7 +5968,7 @@ genera
 \begin_inset Formula $\enumeracion[][f]\in\mathcal{F}_{0}$
 \end_inset
 
-(quizás repetidas) tales que 
+ (posiblemente repetidas) tales que 
 \begin_inset Formula $f=f_{1}\circ\cdots\circ f_{n}$
 \end_inset
 
@@ -6075,7 +6012,7 @@ reference "thm:definibilidad abierta positiva"
  definimos los siguientes conjuntos:
 \begin_inset Formula 
 \[
-\iso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} 
+\iso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} ,
 \]
 
 \end_inset
@@ -6086,7 +6023,7 @@ reference "thm:definibilidad abierta positiva"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\subiso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} 
+\subiso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} ,
 \]
 
 \end_inset
@@ -6097,7 +6034,7 @@ reference "thm:definibilidad abierta positiva"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\hom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} 
+\hom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} ,
 \]
 
 \end_inset
@@ -6108,7 +6045,7 @@ reference "thm:definibilidad abierta positiva"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\subhom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} 
+\subhom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} .
 \]
 
 \end_inset
@@ -6126,7 +6063,7 @@ Una vez que tenemos una clase normal
 \end_inset
 
  en la que chequear definibilidad tratamos de reducir su redundancia basándonos
- en el siguiente resultado:
+ en el siguiente resultado.
 \end_layout
 
 \begin_layout Lemma
@@ -6271,38 +6208,7 @@ reference "lem:quito sombras"
 \end_inset
 
 -isomorfas.
- El Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:preprocesamiento"
-
-\end_inset
-
- aprovecha este resultado aprovechando además para chequear por 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismos y al descubrir uno de estos comprobar si es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--isomorfismo, lo que permite encontrar contraejemplos de definibilidad desde
- esta etapa ya que el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:definibiliad de primer orden"
-
-\end_inset
-
- determina que los isomorfismos entre estructuras de 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- deben preservar para que 
-\begin_inset Formula $R$
-\end_inset
-
- sea definible en primer orden.
+ El algoritmo siguiente aprovecha este resultado.
 \end_layout
 
 \begin_layout Standard
@@ -6753,7 +6659,7 @@ Notar que los isomorfismos revisados por este algoritmo deben ser necesariamente
 \end_layout
 
 \begin_layout Standard
-Observar además que, para poder aplicar los teoremas de definibilidad de
+Observar además que para poder aplicar los teoremas de definibilidad de
  las secciones 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6780,7 +6686,8 @@ reference "sec:Definibilidad-positiva"
 \begin_inset Formula $R$
 \end_inset
 
- y vemos que basta con chequear solo uno gracias al Lema 
+.
+ Vemos que basta con chequear solo uno gracias al Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:quito sombras"
@@ -7005,8 +6912,8 @@ reference "thm:definibilidad abierta"
 .
 \end_layout
 
-\begin_layout Proof
-En el teorema enunciado a continuación, describimos un conjunto suficiente
+\begin_layout Standard
+En el teorema enunciado a continuación describimos un conjunto suficiente
  de morfismos para generar 
 \begin_inset Formula $\subiso{\mathcal{K}_{\mathcal{L}}}$
 \end_inset
@@ -7025,13 +6932,6 @@ En el teorema enunciado a continuación, describimos un conjunto suficiente
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:preprocesamiento"
-
-\end_inset
-
-, basado en el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:quito sombras"
 
 \end_inset
 
@@ -7060,7 +6960,7 @@ Sea
 
  tal que contiene exactamente un representante por cada tipo de isomorfismo
  en 
-\begin_inset Formula $S(\mathcal{K})$
+\begin_inset Formula $\mathbb{S}(\mathcal{K})$
 \end_inset
 
 .
@@ -7086,32 +6986,24 @@ para cada
 
 \begin_layout Enumerate
 para cada 
-\begin_inset Formula $\mathbf{A}\in S(\mathcal{K})-\mathcal{S}$
+\begin_inset Formula $\mathbf{A}\in\mathbb{S}(\mathcal{K})-\mathcal{S}$
 \end_inset
 
  
 \shape italic
 hay 
+\begin_inset Formula $\mathbf{A}'\in\mathcal{S}$
+\end_inset
+
+ y 
 \begin_inset Formula $\gamma,\gamma^{-1}\in\mathcal{F}$
 \end_inset
 
- para algún isomorfismo 
-\begin_inset Formula $\gamma$
+ tal que 
+\begin_inset Formula $\gamma:A\rightarrow A'$
 \end_inset
 
- de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en el representante del tipo de isomorfismo de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-.
+ es un isomorfismo.
 \end_layout
 
 \end_deeper
@@ -7132,19 +7024,26 @@ Sea
 \begin_inset Formula $\gamma\in\subiso{\mathcal{K}}$
 \end_inset
 
-, entonces 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}\leq\mathbf{A}}{\mathbf{B}_{0}\leq\mathbf{B}}$
+; es decir hay 
+\begin_inset Formula $\mathbf{A}_{0},\mathbf{B}_{0}\in\mathbb{S}(\mathcal{K})$
 \end_inset
 
- isomorfismo, con 
-\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
+ y 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{B}_{0}}$
+\end_inset
+
+ es un isomorfismo.
+ Queremos ver que 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ se puede obtener componiendo miembros de 
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Si 
+ Consideramos tres casos.
+ Si 
 \begin_inset Formula $\mathbf{A}_{0},\mathbf{B}_{0}\in\mathcal{S}$
 \end_inset
 
@@ -7161,10 +7060,7 @@ Si
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Si 
+ Por otro lado, si 
 \begin_inset Formula $\mathbf{A}_{0}\in\mathcal{S}$
 \end_inset
 
@@ -7202,14 +7098,12 @@ Si
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Si 
+ Por último supongamos 
 \begin_inset Formula $\mathbf{A}_{0},\mathbf{B}_{0}\notin\mathcal{S}$
 \end_inset
 
-, hay 
+.
+ Entonces hay 
 \begin_inset Formula $\mathbf{C}_{0}\in\mathcal{S}$
 \end_inset
 
@@ -7356,21 +7250,6 @@ reference "cor:preservar en la constelacion abierta es ser abierta definible"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Me parece que el algoritmo quedaría más fácil de leer si uno pone primero
- los casos de la no preservación de 
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
 \begin_inset Float algorithm
 placement H
 wide false
@@ -8555,22 +8434,6 @@ end{algorithmic}
 \end_inset
 
 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Está muy bueno que queda clarísimo siguiendo el código que, si uno no planea
- reutilizar la información, no hace falta guardar los mapeos, solo las estructur
-as de 
-\begin_inset Formula $\mathcal{K}_{0}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -8611,7 +8474,11 @@ reference "alg:constelacion abierta"
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- y un miembro.
+ y un miembro de 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
  Si un tal 
 \begin_inset Formula $\gamma$
 \end_inset
@@ -8731,7 +8598,7 @@ Además, una vez que una subestructura resulta ser
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
- y que los isomorfismos internos preservan.
+.
  Esto permite disminuir la cantidad de subestructuras a revisar, como se
  ve en la linea 
 \begin_inset CommandInset ref
@@ -8934,14 +8801,14 @@ Definibilidad abierta-positiva
 \end_layout
 
 \begin_layout Standard
-A partir del Teorema 
+Según el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta positiva"
 
 \end_inset
 
-, habría que chequear todo homomorfismo entre subestructuras de estructuras
+ habría que chequear todo homomorfismo entre subestructuras de estructuras
  de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
@@ -9027,13 +8894,6 @@ En el siguiente teorema describimos un conjunto suficiente de morfismos
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:preprocesamiento"
-
-\end_inset
-
-, basado en el Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:quito sombras"
 
 \end_inset
 
@@ -9301,7 +9161,7 @@ Sean
 
 -estructuras.
  Supongamos 
-\begin_inset Formula $\mathcal{F}$
+\begin_inset Formula $\mathcal{H}$
 \end_inset
 
  es como en el Teorema 
@@ -9317,7 +9177,7 @@ reference "thm:construccion de constelacion abierta positiva"
 
 .
  Entonces si cada 
-\begin_inset Formula $\gamma\in\mathcal{F}$
+\begin_inset Formula $h\in\mathcal{H}$
 \end_inset
 
  preserva 
@@ -9487,7 +9347,7 @@ reference "alg:constelacion abierta positiva"
 \end_inset
 
  a la vez que se van revisando los homomorfismos en 
-\begin_inset Formula $\mathcal{F}$
+\begin_inset Formula $\mathcal{H}$
 \end_inset
 
 .
@@ -9500,8 +9360,8 @@ reference "alg:constelacion abierta positiva"
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
-, mientras que para definibilidad abierta lo primero que se hacia era buscar
- un 
+, mientras que en el Algoritmo CITA lo primero que se hace es buscar un
+ 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -9509,8 +9369,11 @@ reference "alg:constelacion abierta positiva"
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-, ahora se buscan homomorfismos biyectivos primero, chequeándolos por preservaci
-ón.
+, ahora se buscan 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-homomorfismos biyectivos primero, chequeándolos por preservación.
  Esto da lugar a tres casos:
 \end_layout
 
@@ -9601,20 +9464,20 @@ La funcion tieneRepresentante, es la que a partir de
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
-, chequea cada homomorfismo biyectivo entre 
+, recorre todos los homomorfismos biyectivos entre 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- y cada 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+ miembros 
+\begin_inset Formula $\mathcal{S}$
 \end_inset
 
- buscando un isomorfismo.
- Si lo encuentra procede igual que su version analoga para definibilidad
- abierta (devolviendo True en la primer coordenada y el mismo isomorfismo
- en la segunda si es que no preserva).
- Si no lo encuentra chequea preservacion para todos los homomorfismos biyectivos
- desde 
+.
+ En el caso de que uno de éstos es un isomorfismo, procede igual que su
+ versión análoga para definibilidad abierta (devolviendo True en la primer
+ coordenada y el mismo isomorfismo en la segunda si es que no preserva).
+ Si ninguno es un isomorfismo, chequea preservacion para todos los homomorfismos
+ biyectivos desde 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -9625,6 +9488,7 @@ La funcion tieneRepresentante, es la que a partir de
 , y luego devuelve False en la primer coordenada y el posible contraejemplo
  (i.e.
  homomorfismo biyectivo que no preserva) en la segunda.
+ TERCER CASO.
 \end_layout
 
 \begin_layout Standard
@@ -9656,7 +9520,7 @@ Esto nos permite estar seguros de que todos los homomorfismos biyectivos
 \end_layout
 
 \begin_layout Standard
-La subrutina tieneRepresentante mantiene la filosofia del Algoritmo 
+La subrutina tieneRepresentante mantiene la estructura del Algoritmo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:constelacion abierta"
