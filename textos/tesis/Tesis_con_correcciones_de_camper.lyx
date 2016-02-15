@@ -8608,11 +8608,7 @@ reference "alg:constelacion abierta"
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- y un miembro 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-.
+ y un miembro.
  Si un tal 
 \begin_inset Formula $\gamma$
 \end_inset
@@ -8666,6 +8662,41 @@ reference "thm:construccion de constelacion abierta"
 \end_inset
 
  son procesadas de la misma manera.
+\end_layout
+
+\begin_layout Standard
+La subrutina tieneRepresentante es la encargada de encontrar y revisar la
+ preservacion de los isomorfismos entre cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y su representante en 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+ Esta funcion toma la estructura 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y el conjunto de representantes 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+ Busca un isomorfismo entre 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y algun 
+\begin_inset Formula $\mathbf{S}\in\mathcal{K}$
+\end_inset
+
+, y revisa su preservacion.
+ En el caso de que no encuentre un isomorfismo devuelve (False, Null), mientras
+ que si encuentra uno devuelve True en la primer coordenada y en la segunda
+ devuelve el mismo isomorfimo solo en el caso de que este no preserve, a
+ la manera de un contraejemplo.
 \end_layout
 
 \begin_layout Standard
@@ -9559,6 +9590,41 @@ reference "thm:cantor-bernstein"
 \end_layout
 
 \begin_layout Standard
+La funcion tieneRepresentante, es la que a partir de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+, chequea cada homomorfismo biyectivo entre 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+ buscando un isomorfismo.
+ Si lo encuentra procede igual que su version analoga para definibilidad
+ abierta (devolviendo True en la primer coordenada y el mismo isomorfismo
+ en la segunda si es que no preserva).
+ Si no lo encuentra chequea preservacion para todos los homomorfismos biyectivos
+ desde 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en cada 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+, y luego devuelve False en la primer coordenada y el posible contraejemplo
+ (i.e.
+ homomorfismo biyectivo que no preserva) en la segunda.
+\end_layout
+
+\begin_layout Standard
 Esto nos permite estar seguros de que todos los homomorfismos biyectivos
  entre estructuras de 
 \begin_inset Formula $\mathcal{S}$
@@ -9584,6 +9650,29 @@ Esto nos permite estar seguros de que todos los homomorfismos biyectivos
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+La subrutina tieneRepresentante mantiene la filosofia del Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+, solo que esta vez recorre todos los homomorfimos biyectivos de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en cada 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+.
+ Si encuentra un homomorfismo biyectivo que es un isomorfismo se comporta
+ exactamente igual que en la version abierta, mientras que si no llega a
+ encontrar ninguno los chequea por preservacion y si alguno es contraejemplo
+ lo devuelve en la segunda coordenada.
 \end_layout
 
 \begin_layout Standard
