@@ -8160,7 +8160,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -8195,7 +8195,7 @@ For{
 \end_inset
 
 , con 
-\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\begin_inset Formula $\left|\mathbf{B}\right|=\left|\mathbf{S}\right|$
 \end_inset
 
 
@@ -8226,7 +8226,7 @@ If{
 \end_inset
 
 hay 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{S}}$
 \end_inset
 
  
@@ -10661,7 +10661,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -10696,7 +10696,7 @@ For{
 \end_inset
 
 , con 
-\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\begin_inset Formula $\left|\mathbf{B}\right|=\left|\mathbf{S}\right|$
 \end_inset
 
 
@@ -10735,7 +10735,7 @@ bihomos
 \end_inset
 
 : 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{S}}$
 \end_inset
 
  con 
@@ -11188,7 +11188,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}_{0}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
 \end_inset
 
  con 
@@ -14515,7 +14515,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -14550,7 +14550,7 @@ For{
 \end_inset
 
 , con 
-\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\begin_inset Formula $\left|\mathbf{B}\right|=\left|\mathbf{S}\right|$
 \end_inset
 
 
@@ -14581,7 +14581,7 @@ If{
 \end_inset
 
 hay 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{S}}$
 \end_inset
 
  isomorfismo
@@ -15599,7 +15599,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\mathbf{A}_{0},\mathcal{S}$
+\begin_inset Formula $\mathbf{B},\mathcal{S}$
 \end_inset
 
 
@@ -15665,7 +15665,7 @@ For{
 \end_inset
 
 , con 
-\begin_inset Formula $\left|\mathbf{A}_{0}\right|=\left|\mathbf{S}\right|$
+\begin_inset Formula $\left|\mathbf{B}\right|=\left|\mathbf{S}\right|$
 \end_inset
 
 
@@ -15727,7 +15727,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}_{0}}{\mathbf{S}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{S}}$
 \end_inset
 
  con 
@@ -16003,7 +16003,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{A}_{0}}$
+\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
 \end_inset
 
  con 
