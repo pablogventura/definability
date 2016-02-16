@@ -626,13 +626,13 @@ Abstract
 \begin_layout Plain Layout
 
 \lang english
-The definibility of a relation for a class of structures, for some first
+The definability of a relation for a class of structures, for some first
  order fragment, holds a semantic notion associated with its bases in preservati
 on properties of differents kinds of morphisms.
- In this work, we propose algorithms to decide definibility in an automatic
+ In this work, we propose algorithms to decide definability in an automatic
  way; also, algorithms to generate the algebra of definable relations for
  a class of structures are provided.
- Beside presenting the algorithms, we'll introduce the package Definibility,
+ Beside presenting the algorithms, we'll introduce the package Definability,
  used to implement the algorithms.
  Documentations of its use will be provided with some examples.
  Lastly, a theorem about the characterization of binary definable relations
@@ -1444,7 +1444,7 @@ Presentamos continuación los resultados básicos de teoría de modelos que
  siguientes.
  Si bien la intención ha sido la de escribir un trabajo autocontenido, suponemos
  que el lector está familiarizado con los conceptos básicos de la lógica
- de primer orden y su teoria de modelos elemental.
+ de primer orden y su teoría de modelos elemental.
  Textos clásicos de referencia en estos temas son por ejemplo 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3209,6 +3209,19 @@ reference "thm:formula para el diagrama"
 .
 \end_layout
 
+\begin_layout Proof
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cambiar enunciados de los teoremas de def para se tiene que...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Theorem
 \begin_inset Argument 1
 status open
@@ -3280,7 +3293,7 @@ Para todas
 \begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
-, todo homomorfismo 
+, se tiene que todo homomorfismo 
 \begin_inset Formula $h:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
@@ -3321,15 +3334,8 @@ Definibilidad por fórmulas existenciales
 \end_layout
 
 \begin_layout Standard
-A continuación, estableceremos la noción semántica para la definibilidad
- existencial.
-\end_layout
-
-\begin_layout Standard
-En el siguiente lema, construimos una fórmula equivalente al diagrama abierto
- para un conjunto de elementos tal que sea capaz de generar la estructura
- completa.
- 
+El siguiente resultado construye sobre la idea de los lemas (CITA) incorporando
+ cuantificadores existenciales.
 \end_layout
 
 \begin_layout Lemma
@@ -3393,150 +3399,55 @@ Sean
 \begin_inset Formula $\left\langle \enumeracion[n][a],\enumeracion[m][a']\right\rangle ^{\mathbf{A}}=\mathbf{A}$
 \end_inset
 
- y sea 
-\begin_inset Formula 
-\[
-\varphi=\exists\enumeracion[m][y]\left(\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)\right)
-\]
-
-\end_inset
-
-que es fórmula por el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:cantidad de formulas es finita"
-
-\end_inset
-
 .
-\end_layout
-
-\begin_layout Proof
-Supongamos 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
-\end_inset
-
-, luego existen 
-\begin_inset Formula $\enumeracion[m][b']\in B$
-\end_inset
-
- tales que 
-\begin_inset Formula 
-\[
-\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}
-\]
-
-\end_inset
-
- por Lema 
+ Por el Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:diagrama sii isomorfismo"
+reference "thm:formula para el diagrama"
 
 \end_inset
 
- hay isomorfismo 
+ hay una fórmula 
+\begin_inset Formula $\alpha\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ tal que 
+\begin_inset Formula $\sat{\mathbf{B}}{\alpha}{\bar{b},\bar{b'}}$
+\end_inset
+
+ si y solo si hay un isomorfismo 
 \begin_inset Formula $\funcion[\gamma]{\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}}{\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}}$
 \end_inset
 
  tal que 
-\begin_inset Formula $\gamma\left(\bar{a},\bar{a'}\right)=\left(\bar{b},\bar{b'}\right)$
-\end_inset
-
-, y como 
-\begin_inset Formula $\left\langle \bar{a},\bar{a'}\right\rangle ^{\mathbf{A}}=\mathbf{A}$
+\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
 \end_inset
 
  y 
-\begin_inset Formula $\left\langle \bar{b},\bar{b'}\right\rangle ^{\mathbf{B}}\leq\mathbf{B}$
-\end_inset
-
-, 
-\begin_inset Formula $\gamma$
-\end_inset
-
- es un embedding de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{B}$
-\end_inset
-
- tal que 
-\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
+\begin_inset Formula $\gamma\left(\bar{a'}\right)=\bar{b'}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Supongamos que hay un embedding 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
-\end_inset
-
- tal que 
-\begin_inset Formula $\gamma\left(\bar{a}\right)=\bar{b}$
-\end_inset
-
-, por lo tanto 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{S}\leq\mathbf{B}}$
-\end_inset
-
- es un isomorfismo.
- Como 
-\begin_inset Formula $\sat{\mathbf{A}}{\varphi}{\bar{a}}$
-\end_inset
-
-, por ser 
-\begin_inset Formula $\gamma$
-\end_inset
-
- un isomorfismo 
-\begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\gamma\left(\bar{a}\right)}$
-\end_inset
-
- y entonces 
-\begin_inset Formula $\sat{\mathbf{S}}{\varphi}{\bar{b}}$
-\end_inset
-
-.
- Por lo tanto existe 
-\begin_inset Formula $\bar{b'}$
-\end_inset
-
-en 
-\begin_inset Formula $S\subseteq B$
-\end_inset
-
- tal que 
-\begin_inset Formula $\sat{\mathbf{S}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
-\end_inset
-
-.
- Como 
-\begin_inset Formula $\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)$
-\end_inset
-
- es una fórmula abierta, por Lema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:abiertas valen en subestructuras y viceversa"
+ Ahora definimos 
+\begin_inset Formula 
+\[
+\varphi\left(\bar{x}\right)=\exists\enumeracion[m][y]\alpha\left(\bar{x},\bar{y}\right);
+\]
 
 \end_inset
 
-, 
-\begin_inset Formula $\sat{\mathbf{B}}{\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right)}{\bar{b},\bar{b'}}$
+por lo que es claro que 
+\begin_inset Formula $\varphi$
 \end_inset
 
-, luego 
-\begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\bar{b}}$
-\end_inset
-
-
+ es la fórmula buscada.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 En el teorema enunciado a continuación, se determina que la definibilidad
  existencial depende de la preservación en los embeddings entre las estructuras
  de 
@@ -3568,6 +3479,11 @@ reference "thm:definibilidad abierta"
 \end_inset
 
 .
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Theorem
@@ -5746,10 +5662,39 @@ disjunta
 \end_layout
 
 \begin_layout Standard
-Notar que está hipótesis no afecta el grado de generalidad de los resultados
- y algoritmos ya que bastaría con renombrar los elementos repetidos para
+Notar que esta hipótesis no afecta el grado de generalidad de los resultados
+ y algoritmos, ya que bastaría con renombrar los elementos repetidos para
  obtener una clase disjunta equivalente.
- La clase 
+ La razón principal para trabajar con clases disjuntas reside en que, dado
+ un morfismo 
+\begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
+\end_inset
+
+ con 
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\subestr{\mathcal{K}}$
+\end_inset
+
+, basta con conocer 
+\begin_inset Formula $\dominio{\gamma}$
+\end_inset
+
+ e 
+\begin_inset Formula $\imagen{\gamma}$
+\end_inset
+
+ para reconocer inequívocamente a 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathbf{B}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La clase 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -5793,11 +5738,7 @@ genera
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- si 
-\begin_inset Formula $\mathcal{F}_{0}\subseteq\mathcal{F}$
-\end_inset
-
- y para toda 
+ si para toda 
 \begin_inset Formula $f\in\mathcal{F}$
 \end_inset
 
@@ -7867,7 +7808,10 @@ Function{
 
 \end_inset
 
-tieneRepresentante
+
+chequearIso
+\lang spanish
+s
 \begin_inset ERT
 status open
 
@@ -8374,9 +8318,9 @@ reference "thm:construccion de constelacion abierta"
 \begin_layout Standard
 La subrutina 
 \family typewriter
-tieneRepresentante
+chequearIsos
 \family default
- es la encargada de encontrar y revisar la preservacion de los isomorfismos
+ es la encargada de encontrar y revisar la preservación de los isomorfismos
  entre cada 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
@@ -8386,7 +8330,7 @@ tieneRepresentante
 \end_inset
 
 .
- Esta funcion toma la estructura 
+ Esta función toma la estructura 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -8399,11 +8343,11 @@ tieneRepresentante
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- y algun 
+ y algún 
 \begin_inset Formula $\mathbf{S}\in\mathcal{K}$
 \end_inset
 
-, y revisa su preservacion.
+, y revisa su preservación.
  En el caso de que no encuentre un isomorfismo devuelve 
 \family typewriter
 (False, Null)
@@ -8412,7 +8356,7 @@ tieneRepresentante
 \family typewriter
 True
 \family default
- en la primer coordenada y en la segunda devuelve el mismo isomorfimo solo
+ en la primer coordenada y en la segunda devuelve el mismo isomorfismo solo
  en el caso de que este no preserve, a la manera de un contraejemplo.
 \end_layout
 
@@ -9188,150 +9132,35 @@ reference "alg:constelacion abierta positiva"
 \end_inset
 
 .
- Para esto recorremos las estructuras en 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- de mayor a menor tamaño.
- Al momento de procesar una 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
-, mientras que en el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion abierta"
-
-\end_inset
-
- lo primero que se hace es buscar un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo para cada 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-, ahora se buscan 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--homomorfismos biyectivos primero, chequeándolos por preservación.
- Esto da lugar a tres casos:
-\end_layout
-
-\begin_layout Enumerate
-Uno de estos homomorfismos biyectivos es un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo.
-\end_layout
-
-\begin_layout Enumerate
-Hay homomorfismos biyectivos de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{S}$
-\end_inset
-
- pero ninguno es un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo.
-\end_layout
-
-\begin_layout Enumerate
-No hay homomorfismos biyectivos de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{S}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-En el primer caso se procede como en el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion abierta"
-
-\end_inset
-
-.
- En el segundo caso podemos estar seguros de que no hay homomorfismos biyectivos
- de 
-\begin_inset Formula $\mathbf{S}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-, ya que por el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:cantor-bernstein"
-
-\end_inset
-
-, debería haber un 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--isomorfismo entre ellos.
- Mientras que en el tercer caso deberemos buscar homomorfismos biyectivos
- de 
-\begin_inset Formula $\mathbf{S}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
-, para revisar su preservación.
-\end_layout
-
-\begin_layout Standard
-Esto nos permite estar seguros de que todos los homomorfismos biyectivos
- entre estructuras de 
+ Estos homomorfismos son chequeados en dos etapas, primero los biyectivos
+ y luego los sobreyectivos no inyectivos.
+ La primera etapa es muy similar al Algoritmo (CITA), solo que en este caso
+ en lugar de chequear isomorfismos se chequean homomorfismos biyectivos.
+ Al concluir con esta tarea, 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
- han sido chequeados.
- Finalmente lo único que falta es chequear los homomorfismos sobreyectivos
- pero no inyectivos entre estructuras de 
+ ya ha sido construido y todos los homomorfismos biyectivos entre miembros
+ de 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+ han sido revisados.
+ Así es que en la segunda etapa solo resta revisar los homomorfismos sobreyectiv
+os y no inyectivos entre miembros de 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
 .
- Para lo cual basta con buscar homomorfismos sobreyectivos de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en 
-\begin_inset Formula $\mathbf{B}$
-\end_inset
-
- tales que 
-\begin_inset Formula $\left|A\right|>\left|B\right|$
-\end_inset
-
-.
+ 
 \end_layout
 
 \begin_layout Standard
-La funcion 
+La función 
 \family typewriter
-tieneRepresentante
+chequearBihomos
 \family default
-, es la que a partir de 
+ toma como entradas 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -9339,62 +9168,109 @@ tieneRepresentante
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
-, recorre todos los homomorfismos biyectivos entre 
+, y devuelve un par 
+\begin_inset Formula $(hayIso,\, Contraejemplo)$
+\end_inset
+
+.
+ La variable 
+\begin_inset Formula $hayIso$
+\end_inset
+
+ será 
+\family typewriter
+True
+\family default
+ cuando haya un 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-isomorfismo de 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- y miembros 
+ en un miembro de 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
 .
- En el caso de que uno de éstos sea un isomorfismo, procede igual que su
- versión análoga para definibilidad abierta (devolviendo 
-\family typewriter
-True
-\family default
- en la primer coordenada y el mismo isomorfismo en la segunda si es que
- no preserva).
- Si ninguno es un isomorfismo, chequea preservacion para todos los homomorfismos
- biyectivos desde 
-\begin_inset Formula $\mathbf{A}$
+ Hay cuatro resultados posibles.
+\end_layout
+
+\begin_layout Itemize
+(True,Null) cuando hay un 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- en cada 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+-isomorfismo que preserva.
+\end_layout
+
+\begin_layout Itemize
+(True,
+\begin_inset Formula $\gamma$
 \end_inset
 
-, y luego devuelve 
-\family typewriter
-False
-\family default
- en la primer coordenada y el posible contraejemplo (i.e.
- homomorfismo biyectivo que no preserva) en la segunda.
- Ademas si para algun 
-\begin_inset Formula $\mathbf{S}\in\mathcal{K}$
+) cuando hay un 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- no hay ningun homomorfismo biyectivo de 
-\begin_inset Formula $\mathbf{A}$
+-isomorfismo 
+\begin_inset Formula $\gamma$
 \end_inset
 
- en 
-\begin_inset Formula $\mathbf{S}$
+ que no preserva.
+\end_layout
+
+\begin_layout Itemize
+(False,Null) cuando no hay 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
-, chequea la preservacion en los homomorfismos biyectivos de 
-\begin_inset Formula $\mathbf{S}$
+-isomorfismos y todo homomorfismo biyectivo preserva.
+\end_layout
+
+\begin_layout Itemize
+(False,
+\begin_inset Formula $h$
 \end_inset
 
- en 
-\begin_inset Formula $\mathbf{A}$
+) cuando no hay 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- y si encuentra un contraejemplo lo devuelve en la segunda coordenada.
+-isomorfismos pero hay un homomorfismo biyectivo 
+\begin_inset Formula $h$
+\end_inset
+
+ que no preserva.
 \end_layout
 
 \begin_layout Standard
+Notar que si hay homomorfismos biyectivos de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
 
+ en un 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+, y ninguno de éstos es un isomorfismo, el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantor-bernstein"
+
+\end_inset
+
+ garantiza que no puede haber homomorfismos biyectivos de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -10446,7 +10322,7 @@ Function{
 
 \end_inset
 
-tieneRepresentante
+chequearBihomos
 \begin_inset ERT
 status open
 
@@ -11294,14 +11170,7 @@ reference "fig:constelacion abierta positiva"
 \end_inset
 
 , se puede ver los morfismos que bastan para comprobar definibilidad abierta
- según el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:construccion de constelacion abierta positiva"
-
-\end_inset
-
- a la manera del algoritmo anterior.
+ positiva.
 \end_layout
 
 \begin_layout Standard
@@ -11423,365 +11292,6 @@ reference "thm:construccion de constelacion abierta positiva"
 
 \begin_layout Standard
 \begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Definibilidad de primer orden
-\end_layout
-
-\begin_layout Standard
-Por el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:definibiliad de primer orden"
-
-\end_inset
-
-, luego de haber aplicado el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:preprocesamiento"
-
-\end_inset
-
- para preprocesamiento, solo basta con revisar los automorfimos para 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
-, como hacemos en el Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion primer orden"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float algorithm
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Chequeo de definibilidad de primer orden
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "alg:constelacion primer orden"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithmic}[1]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-For{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{A})$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-If{
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- no es un 
-\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
-\end_inset
-
--automorfismo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-			
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $\alpha$
-\end_inset
-
- es contraejemplo
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-		
-\backslash
-EndIf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-	
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-EndFor
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Return 
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- es definible en primer orden
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithmic}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -12566,6 +12076,365 @@ Comment
 \end_inset
 
  es existencial positiva definible
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definibilidad de primer orden
+\end_layout
+
+\begin_layout Standard
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:definibiliad de primer orden"
+
+\end_inset
+
+, luego de haber aplicado el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:preprocesamiento"
+
+\end_inset
+
+ para preprocesamiento, solo basta con revisar los automorfimos para 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+, como hacemos en el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion primer orden"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Chequeo de definibilidad de primer orden
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:constelacion primer orden"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{A})$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ no es un 
+\begin_inset Formula $\mathcal{L}\cup\left\{ R\right\} $
+\end_inset
+
+-automorfismo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\alpha$
+\end_inset
+
+ es contraejemplo
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Comment 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ es definible en primer orden
 \begin_inset ERT
 status open
 
@@ -13560,7 +13429,7 @@ reference "lem:atomo sii ji"
 
 \end_inset
 
-, los atomos de un algebra de Boole son exactamente los elementos join-irreducib
+, los átomos de un álgebra de Boole son exactamente los elementos join-irreducib
 les.
 \end_layout
 
