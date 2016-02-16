@@ -932,7 +932,7 @@ Hay una fórmula abierta que define
 
 \begin_layout Enumerate
 Todo isomorfismo 
-\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\begin_inset Formula $\sigma:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
  donde 
@@ -1341,7 +1341,7 @@ reference "thm:definibilidad abierta"
 \end_inset
 
 , sii todo isomorfismo 
-\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\begin_inset Formula $\sigma:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
  donde 
@@ -2816,19 +2816,19 @@ Hay una fórmula abierta que define a
 
 \begin_layout Enumerate
 Para todas 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todas 
-\begin_inset Formula $\boldsymbol{A}_{0}\leq\boldsymbol{A}_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
 \end_inset
 
 ,
-\begin_inset Formula $\boldsymbol{B}_{0}\leq\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
 , se tiene que todo isomorfismo 
-\begin_inset Formula $\sigma:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\begin_inset Formula $\sigma:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
  preserva 
@@ -3236,19 +3236,19 @@ Hay una fórmula abierta positiva que define a
 
 \begin_layout Enumerate
 Para todas 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todas 
-\begin_inset Formula $\boldsymbol{A}_{0}\leq\boldsymbol{A}_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{A}_{0}\leq\mathbf{A}_{\mathcal{L}}$
 \end_inset
 
 ,
-\begin_inset Formula $\boldsymbol{B}_{0}\leq\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{B}_{0}\leq\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
 , todo homomorfismo 
-\begin_inset Formula $h:\boldsymbol{A}_{0}\rightarrow\boldsymbol{B}_{0}$
+\begin_inset Formula $h:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
  preserva 
@@ -3602,11 +3602,11 @@ Hay una
 
 \begin_layout Enumerate
 Para todas 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todo embedding 
-\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $\gamma:\mathbf{A}_{\mathcal{L}}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  preserva 
@@ -4175,11 +4175,11 @@ Hay una
 
 \begin_layout Enumerate
 Para todas 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todo homomorfismo 
-\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $\gamma:\mathbf{A}_{\mathcal{L}}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  preserva 
@@ -4417,19 +4417,19 @@ Para cada
 \end_inset
 
 , para todas 
-\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , para cada 
 \begin_inset Formula 
 \[
-\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}},
+\mathbf{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}},
 \]
 
 \end_inset
 
 todo homomorfismo 
-\begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $h:\mathbf{S}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  preserva 
@@ -4479,15 +4479,15 @@ Hay una conjunción finita de
 \end_inset
 
 , 
-\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , 
-\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
 \end_inset
 
 , y 
-\begin_inset Formula $h:\mathbf{S}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $h:\mathbf{S}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  un homomorfismo.
@@ -4556,7 +4556,7 @@ Como
 \end_inset
 
  es abierta y 
-\begin_inset Formula $\boldsymbol{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
+\begin_inset Formula $\mathbf{S}\leq\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}$
 \end_inset
 
 , entonces el Lema 
@@ -4857,11 +4857,11 @@ Para cada
 \end_inset
 
 , para todas 
-\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todo homomorfismo 
-\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  preserva 
@@ -4911,11 +4911,11 @@ Hay una
 \end_inset
 
 , 
-\begin_inset Formula $\enumeracion[m][\mathbf{A}],\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\enumeracion[m][\mathbf{A}],\mathbf{B}\in\mathcal{K}$
 \end_inset
 
  y 
-\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $h:\left(\mathbf{A}_{1}\times\cdots\times\mathbf{A}_{m}\right)_{\mathcal{L}}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  un homomorfismo.
@@ -5328,11 +5328,11 @@ Hay una
 
 \begin_layout Enumerate
 Para todas 
-\begin_inset Formula $\boldsymbol{A},\boldsymbol{B}\in\mathcal{K}$
+\begin_inset Formula $\mathbf{A},\mathbf{B}\in\mathcal{K}$
 \end_inset
 
 , todo isomorfismo 
-\begin_inset Formula $\gamma:\boldsymbol{A}_{\mathcal{L}}\rightarrow\boldsymbol{B}_{\mathcal{L}}$
+\begin_inset Formula $\gamma:\mathbf{A}_{\mathcal{L}}\rightarrow\mathbf{B}_{\mathcal{L}}$
 \end_inset
 
  preserva 
