@@ -3723,14 +3723,14 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 1) Para cada 
-\begin_inset Formula $\mathbf{A}\in\mathcal{K},$
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
- cada 
+ y cada 
 \begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
 \end_inset
 
-, tomamos 
+ tomamos 
 \begin_inset Formula $\bar{a'}$
 \end_inset
 
@@ -3739,22 +3739,25 @@ reference "thm:abiertas valen en subestructuras y viceversa"
 \end_inset
 
 .
- Ahora tomamos 
-\begin_inset Formula 
-\[
-\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right),
-\]
-
-\end_inset
-
-que es fórmula por Teorema 
+ Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
 
 \end_inset
 
-.
+, hay una fórmula 
+\begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}(\bar{x})$
+\end_inset
+
+ equivalente sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ al diagrama abierto 
+\begin_inset Formula $\Delta_{\mathbf{A},(\bar{a},\bar{a'})}(\bar{x}).$
+\end_inset
+
  Ahora tomamos 
 \begin_inset Formula 
 \[
@@ -4659,15 +4662,30 @@ para cada
 \end_inset
 
  .
- Sea 
+ Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantidad de formulas es finita"
+
+\end_inset
+
+, hay una fórmula 
+\begin_inset Formula $\varphi(\bar{x})$
+\end_inset
+
+ equivalente sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ al diagrama abierto 
 \begin_inset Formula 
 \[
-\varphi=\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}}\alpha\left(\bar{x}\right).
+\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}]\right)}^{+}(\bar{x}).
 \]
 
 \end_inset
 
-Supongamos 
+ Supongamos 
 \begin_inset Formula $\sat{\mathbf{B}}{\varphi}{\enumeracion[][b]}$
 \end_inset
 
@@ -5100,10 +5118,33 @@ tales que
 
 \end_inset
 
+Por el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:cantidad de formulas es finita"
+
+\end_inset
+
+, hay una fórmula 
+\begin_inset Formula $\psi(\bar{x})$
+\end_inset
+
+ equivalente sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ al diagrama abierto 
+\begin_inset Formula 
+\[
+\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}(\bar{x}).
+\]
+
+\end_inset
+
 Sea 
 \begin_inset Formula 
 \[
-\varphi=\exists\bar{y}\bigwedge_{\alpha\in\Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}}\alpha\left(\bar{x},\bar{y}\right).
+\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right).
 \]
 
 \end_inset
@@ -5418,19 +5459,31 @@ Para todas
 \end_inset
 
 .
- Ahora sea 
-\begin_inset Formula 
-\[
-\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)=\bigwedge_{\alpha\in\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}}\alpha\left(\bar{x},\bar{y}\right),
-\]
-
-\end_inset
-
-que es fórmula por el Teorema 
+ Por el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:cantidad de formulas es finita"
 
+\end_inset
+
+, para cada 
+\begin_inset Formula $\mathbf{A}\in\mathcal{K}$
+\end_inset
+
+ y cada 
+\begin_inset Formula $\bar{a}\in R^{\mathbf{A}}$
+\end_inset
+
+ hay una fórmula 
+\begin_inset Formula $\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)$
+\end_inset
+
+ equivalente sobre 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ al diagrama abierto 
+\begin_inset Formula $\Delta_{\left(\bar{a},\bar{a'}\right),\mathbf{A}}$
 \end_inset
 
 .
