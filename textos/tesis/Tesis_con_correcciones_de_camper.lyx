@@ -531,65 +531,6 @@ end{titlepage}
 \end_layout
 
 \begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\atomicas}[1]{\operatorname{At}\left(#1\right)}
-{\mathrm{At}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\negatomicas}[1]{\operatorname{\pm At}\left(#1\right)}
-{\pm\mathrm{At}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\primerorden}[1]{\operatorname{Fo}\left(#1\right)}
-{\mathrm{Fo}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\abiertas}[1]{\operatorname{Op}\left(#1\right)}
-{\mathrm{Op}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\abiertaspositivas}[1]{\operatorname{Op^{+}}\left(#1\right)}
-{\mathrm{Op}^{+}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\existenciales}[1]{\operatorname{E}\left(#1\right)}
-{\mathrm{E}\left(#1\right)}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\existencialespositivas}[1]{\operatorname{E^{+}}\left(#1\right)}
-{\mathrm{E}^{+}\left(#1\right)}
-\end_inset
-
 
 \end_layout
 
@@ -1537,10 +1478,14 @@ conjunción de atómicas
 \end_inset
 
 , donde cada 
-\begin_inset Formula $\varphi_{i}\in\atomicas{\mathcal{L}}$
+\begin_inset Formula $\varphi_{i}$
 \end_inset
 
-.
+ es una 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+-fórmula atómica.
  Una fórmula es 
 \emph on
 primitiva positiva
@@ -1554,70 +1499,6 @@ primitiva positiva
 \end_inset
 
  conjunción de atómicas.
-\end_layout
-
-\begin_layout Standard
-Introducimos ahora la notación que utilizaremos para los fragmentos de primer
- orden que serán estudiados en este trabajo.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\primerorden{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\abiertas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\abiertaspositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\existenciales{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\existencialespositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\negatomicas{\mathcal{L}}=\atomicas{\mathcal{L}}\cup\{\neg\alpha:\alpha\in\atomicas{\mathcal{L}}\},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\atomicas{\mathcal{L}}=\{\textnormal{\ensuremath{\mathcal{L}}-fórmulas atómicas}\}.
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2412,7 +2293,7 @@ diagrama abierto
  como: 
 \begin_inset Formula 
 \[
-\Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha(\bar{x})\mid\alpha\in\abiertas{\mathcal{L}}\mbox{ y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
+\Delta_{\mathbf{A},\bar{a}}\left(x_{1},\ldots,x_{n}\right):=\{\alpha(\bar{x})\mid\alpha\textnormal{ una }\mathcal{L}\textnormal{-fórmula abierta}\mbox{ y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
 \]
 
 \end_inset
@@ -2675,7 +2556,7 @@ Sea
  como 
 \begin_inset Formula 
 \[
-\Delta_{\mathbf{A},\bar{a}}^{+}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\in\atomicas{\mathcal{L}}\mbox{ y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
+\Delta_{\mathbf{A},\bar{a}}^{+}\left(x_{1},\ldots,x_{n}\right):=\{\alpha\mid\alpha\textnormal{ }\mathcal{L}\textnormal{-fórmula atómica y }\mathbf{A}\vDash\alpha\left[\bar{a}\right]\}.
 \]
 
 \end_inset
@@ -3665,11 +3546,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una fórmula en 
-\begin_inset Formula $\primerorden{\mathcal{L}}$
+Hay una 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- que define 
+-fórmula que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4273,11 +4154,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una fórmula en 
-\begin_inset Formula $\existenciales{\mathcal{L}}$
+Hay una 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- que define 
+-fórmula existencial que define 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4846,11 +4727,11 @@ Sean
 
 \begin_deeper
 \begin_layout Enumerate
-Hay una fórmula en 
-\begin_inset Formula $\existencialespositivas{\mathcal{L}}$
+Hay una 
+\begin_inset Formula $\mathcal{L}$
 \end_inset
 
- que define 
+-fórmula existencial positiva que define 
 \begin_inset Formula $R$
 \end_inset
 
