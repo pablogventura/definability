@@ -19253,7 +19253,14 @@ Queda pendiente explorar y aprovechar en la implementación, la interacción
 \begin_layout Standard
 También esperamos explorar mejores implementaciones para la generación de
  subestructuras, investigando a fondo los algoritmos utilizados por el Universal
- Álgebra Calculator.
+ Álgebra Calculator 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UACalc"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
