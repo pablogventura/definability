@@ -8763,7 +8763,7 @@ Sea
 \begin_inset Formula $\mathbf{A}_{0},h\left(\mathbf{A}_{0}\right)\in\mathcal{S}$
 \end_inset
 
-, 
+, entonces 
 \begin_inset Formula $h$
 \end_inset
 
@@ -8771,7 +8771,7 @@ Sea
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
-, entonces 
+, por lo que 
 \begin_inset Formula $h\in\mathcal{H}$
 \end_inset
 
