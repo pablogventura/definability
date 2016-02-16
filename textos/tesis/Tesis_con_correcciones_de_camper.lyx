@@ -531,6 +531,51 @@ end{titlepage}
 \end_layout
 
 \begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\primerorden}[1]{\operatorname{Fo}\left(#1\right)}
+{\mathrm{Fo}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\abiertas}[1]{\operatorname{Op}\left(#1\right)}
+{\mathrm{Op}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\abiertaspositivas}[1]{\operatorname{Op^{+}}\left(#1\right)}
+{\mathrm{Op}^{+}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\existenciales}[1]{\operatorname{E}\left(#1\right)}
+{\mathrm{E}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\existencialespositivas}[1]{\operatorname{E^{+}}\left(#1\right)}
+{\mathrm{E}^{+}\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
@@ -2835,17 +2880,6 @@ Para todas
 \end_inset
 
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cambiar tipografia de boldsymbol a bold, chequear el resto del trabajo por
- el mismo error.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
@@ -5491,16 +5525,6 @@ reference "thm:cantidad de formulas es finita"
 \[
 \varphi(\bar{x})=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)\wedge\left(\forall\enumeracion[\left|\mathbf{A}\right|+1][x]\bigvee_{i\neq j}x_{i}=x_{j}\right)\right).
 \]
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-esta fórmula se podría escribir un poco mejor capaz
-\end_layout
 
 \end_inset
 
@@ -9173,8 +9197,14 @@ reference "alg:constelacion abierta positiva"
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
-, mientras que en el Algoritmo CITA lo primero que se hace es buscar un
- 
+, mientras que en el Algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ lo primero que se hace es buscar un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -9364,16 +9394,6 @@ False
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Si al haber corrido durante la abierta estándar antes no encontré ningún
- homomorfismo inyectivo, no significa que no vaya a haber en el otro sentido.
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -12585,19 +12605,6 @@ Detección de homomorfismos
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Definición de CSP, Minion, constraints que le pasamos a Minion
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Para la detección de homomorfismos modelizamos el problema como un CSP,
  y utilizamos Minion 
 \begin_inset CommandInset citation
@@ -12936,20 +12943,6 @@ Generación de subestructuras
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Las generamos desde un subconjunto, no está muy pensado así que se podría
- hacer mejor.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Dada una 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
@@ -13026,6 +13019,54 @@ Definiciones e ideas básicas
 \end_layout
 
 \begin_layout Standard
+Primero introducimos la notación que utilizaremos para referirnos a cada
+ fragmento de primer orden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\primerorden{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula}}\},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\abiertas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta}}\},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\abiertaspositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula abierta positiva}}\},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\existenciales{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial}}\},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\existencialespositivas{\mathcal{L}}=\{\varphi:\varphi\textnormal{ es una \textnormal{\ensuremath{\mathcal{L}}-fórmula existencial positiva}}\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Sea 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -13040,18 +13081,8 @@ Sea
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Sigma\in\left\{ \mathrm{Fo}\left(\mathcal{L}\right),\mathrm{E}\left(\mathcal{L}\right),\mathrm{E}^{+}\left(\mathcal{L}\right),\mathrm{Op}\left(\mathcal{L}\right),\mathrm{Op}^{+}\left(\mathcal{L}\right)\right\} .
+\Sigma\in\left\{ \primerorden{\mathcal{L}},\existenciales{\mathcal{L}},\existencialespositivas{\mathcal{L}},\abiertas{\mathcal{L}},\abiertaspositivas{\mathcal{L}}\right\} .
 \]
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-esta notación está explicada en algún lado?
-\end_layout
 
 \end_inset
 
@@ -13069,7 +13100,7 @@ Notar que la colección de relaciones
 
  es cerrada bajo uniones e intersecciones (y también bajo complementación
  cuando 
-\begin_inset Formula $\Sigma\in\left\{ \mathrm{Fo}\left(\mathcal{L}\right),\mathrm{Op}\left(\mathcal{L}\right)\right\} $
+\begin_inset Formula $\Sigma\in\left\{ \primerorden{\mathcal{L}},\abiertas{\mathcal{L}}\right\} $
 \end_inset
 
 ).
@@ -13346,20 +13377,6 @@ Una relación
 \end_inset
 
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-explicar la notación 
-\begin_inset Formula $\subhom{\mathbf{A}}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
@@ -13481,20 +13498,6 @@ Una relación
 \end_inset
 
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-explicar la notación 
-\begin_inset Formula $\subhom{\mathbf{A}}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
@@ -13677,7 +13680,7 @@ reference "thm:construccion de constelacion abierta positiva"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
