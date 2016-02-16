@@ -2361,12 +2361,11 @@ Hay un isomorfismo
 \end_deeper
 \begin_layout Proof
 \noindent
-Veamos que 1
+1
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2.
- Supongamos que 
+2) Supongamos que 
 \begin_inset Formula $\sat{\mathbf{B}}{\Delta_{\mathbf{A},\bar{a}}}{\bar{b}}$
 \end_inset
 
@@ -2420,11 +2419,11 @@ reference "thm:embeddings preservan abiertas"
 
 \begin_layout Proof
 \noindent
-La implicación 2
+2
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-1 es consecuencia directa del Lema 
+1) Consecuencia directa del Lema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:embeddings preservan abiertas"
@@ -5060,7 +5059,7 @@ Luego, como
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
-2)Supongamos 
+2) Supongamos 
 \begin_inset Formula $\mathcal{K}=\left\{ \enumeracion[m][\mathbf{A}]\right\} $
 \end_inset
 
@@ -8349,8 +8348,12 @@ reference "thm:construccion de constelacion abierta"
 \end_layout
 
 \begin_layout Standard
-La subrutina tieneRepresentante es la encargada de encontrar y revisar la
- preservacion de los isomorfismos entre cada 
+La subrutina 
+\family typewriter
+tieneRepresentante
+\family default
+ es la encargada de encontrar y revisar la preservacion de los isomorfismos
+ entre cada 
 \begin_inset Formula $\mathbf{A}\in\mathcal{K}$
 \end_inset
 
@@ -8377,10 +8380,16 @@ La subrutina tieneRepresentante es la encargada de encontrar y revisar la
 \end_inset
 
 , y revisa su preservacion.
- En el caso de que no encuentre un isomorfismo devuelve (False, Null), mientras
- que si encuentra uno devuelve True en la primer coordenada y en la segunda
- devuelve el mismo isomorfimo solo en el caso de que este no preserve, a
- la manera de un contraejemplo.
+ En el caso de que no encuentre un isomorfismo devuelve 
+\family typewriter
+(False, Null)
+\family default
+, mientras que si encuentra uno devuelve 
+\family typewriter
+True
+\family default
+ en la primer coordenada y en la segunda devuelve el mismo isomorfimo solo
+ en el caso de que este no preserve, a la manera de un contraejemplo.
 \end_layout
 
 \begin_layout Standard
@@ -9260,42 +9269,6 @@ reference "thm:cantor-bernstein"
 \end_layout
 
 \begin_layout Standard
-La funcion tieneRepresentante, es la que a partir de 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- y 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-, recorre todos los homomorfismos biyectivos entre 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- miembros 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
-.
- En el caso de que uno de éstos es un isomorfismo, procede igual que su
- versión análoga para definibilidad abierta (devolviendo True en la primer
- coordenada y el mismo isomorfismo en la segunda si es que no preserva).
- Si ninguno es un isomorfismo, chequea preservacion para todos los homomorfismos
- biyectivos desde 
-\begin_inset Formula $\mathbf{A}$
-\end_inset
-
- en cada 
-\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
-\end_inset
-
-, y luego devuelve False en la primer coordenada y el posible contraejemplo
- (i.e.
- homomorfismo biyectivo que no preserva) en la segunda.
- TERCER CASO.
-\end_layout
-
-\begin_layout Standard
 Esto nos permite estar seguros de que todos los homomorfismos biyectivos
  entre estructuras de 
 \begin_inset Formula $\mathcal{S}$
@@ -9324,14 +9297,36 @@ Esto nos permite estar seguros de que todos los homomorfismos biyectivos
 \end_layout
 
 \begin_layout Standard
-La subrutina tieneRepresentante mantiene la estructura del Algoritmo 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:constelacion abierta"
-
+La funcion 
+\family typewriter
+tieneRepresentante
+\family default
+, es la que a partir de 
+\begin_inset Formula $\mathbf{A}$
 \end_inset
 
-, solo que esta vez recorre todos los homomorfimos biyectivos de 
+ y 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+, recorre todos los homomorfismos biyectivos entre 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y miembros 
+\begin_inset Formula $\mathcal{S}$
+\end_inset
+
+.
+ En el caso de que uno de éstos sea un isomorfismo, procede igual que su
+ versión análoga para definibilidad abierta (devolviendo 
+\family typewriter
+True
+\family default
+ en la primer coordenada y el mismo isomorfismo en la segunda si es que
+ no preserva).
+ Si ninguno es un isomorfismo, chequea preservacion para todos los homomorfismos
+ biyectivos desde 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -9339,11 +9334,33 @@ reference "alg:constelacion abierta"
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-.
- Si encuentra un homomorfismo biyectivo que es un isomorfismo se comporta
- exactamente igual que en la version abierta, mientras que si no llega a
- encontrar ninguno los chequea por preservacion y si alguno es contraejemplo
- lo devuelve en la segunda coordenada.
+, y luego devuelve 
+\family typewriter
+False
+\family default
+ en la primer coordenada y el posible contraejemplo (i.e.
+ homomorfismo biyectivo que no preserva) en la segunda.
+ Ademas si para algun 
+\begin_inset Formula $\mathbf{S}\in\mathcal{K}$
+\end_inset
+
+ no hay ningun homomorfismo biyectivo de 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+, chequea la preservacion en los homomorfismos biyectivos de 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ en 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ y si encuentra un contraejemplo lo devuelve en la segunda coordenada.
 \end_layout
 
 \begin_layout Standard
@@ -17979,50 +17996,100 @@ Módulos y organización del código fuente
 \end_layout
 
 \begin_layout Standard
-Cada archivo .py en la carpeta src implementa los siguientes módulos:
+Cada archivo 
+\family typewriter
+.py
+\family default
+ en la carpeta src implementa los siguientes módulos:
 \end_layout
 
 \begin_layout Description
-config Maneja las rutas para acceder a Minion y a LADR.
+
+\family typewriter
+config
+\family default
+ Maneja las rutas para acceder a Minion y a LADR.
 \end_layout
 
 \begin_layout Description
-minion Implementa la interfaz con Minion.
+
+\family typewriter
+minion
+\family default
+ Implementa la interfaz con Minion.
 \end_layout
 
 \begin_layout Description
-mace4 Implementa la interfaz con LADR, para utilizar Mace4.
+
+\family typewriter
+mace4
+\family default
+ Implementa la interfaz con LADR, para utilizar Mace4.
 \end_layout
 
 \begin_layout Description
-fotype Implementa los tipos de primer orden
+
+\family typewriter
+fotype
+\family default
+ Implementa los tipos de primer orden
 \end_layout
 
 \begin_layout Description
-model Implementa la clase FO_Model que representa las estructuras de primer
- orden.
+
+\family typewriter
+model
+\family default
+ Implementa la clase 
+\family typewriter
+FO_Model
+\family default
+ que representa las estructuras de primer orden.
 \end_layout
 
 \begin_layout Description
-fotheory Implementa las teorías de primer orden.
+
+\family typewriter
+fotheory
+\family default
+ Implementa las teorías de primer orden.
 \end_layout
 
 \begin_layout Description
-functions Implementa la clase general de las funciones, de las que heredan
- los morfismos y las funciones y relaciones de primer orden.
+
+\family typewriter
+functions
+\family default
+ Implementa la clase general de las funciones, de las que heredan los morfismos
+ y las funciones y relaciones de primer orden.
 \end_layout
 
 \begin_layout Description
-fofunctions Implementa las funciones y relaciones de primer orden.
+
+\family typewriter
+fofunctions
+\family default
+ Implementa las funciones y relaciones de primer orden.
 \end_layout
 
 \begin_layout Description
-morphisms Implementa los morfismos.
+
+\family typewriter
+morphisms
+\family default
+ Implementa los morfismos.
 \end_layout
 
 \begin_layout Description
-constellation Implementa la clase Constellation que representa a la clase
- de estructuras 
+
+\family typewriter
+constellation
+\family default
+ Implementa la clase 
+\family typewriter
+Constellation
+\family default
+ que representa a la clase de estructuras 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -18038,8 +18105,12 @@ reference "chap:algoritmos de chequeo"
 \end_layout
 
 \begin_layout Description
-lindenbaum Implementa los algoritmos de generación de álgebras de Lindenbaum
- presentados en el Capítulo 
+
+\family typewriter
+lindenbaum
+\family default
+ Implementa los algoritmos de generación de álgebras de Lindenbaum presentados
+ en el Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Álgebras-de-Lindenbaum"
@@ -18050,18 +18121,34 @@ reference "chap:Álgebras-de-Lindenbaum"
 \end_layout
 
 \begin_layout Description
-examples Incluye algunos ejemplos de estructuras, y de tipos de primer orden
- utilizados fundamentalmente para testing.
+
+\family typewriter
+examples
+\family default
+ Incluye algunos ejemplos de estructuras, y de tipos de primer orden utilizados
+ fundamentalmente para testing.
 \end_layout
 
 \begin_layout Description
-fotheories Incluye varias teorías de primer orden, para generar estructuras
- automáticamente mediante Mace4.
+
+\family typewriter
+fotheories
+\family default
+ Incluye varias teorías de primer orden, para generar estructuras automáticament
+e mediante Mace4.
 \end_layout
 
 \begin_layout Description
-sage_to Implementa entre conversión de estructuras algebraicas de Sage a
- nuestra clase FO_Model.
+
+\family typewriter
+sage_to
+\family default
+ Implementa entre conversión de estructuras algebraicas de Sage a nuestra
+ clase 
+\family typewriter
+FO_Model
+\family default
+.
 \end_layout
 
 \begin_layout Section
@@ -18179,9 +18266,12 @@ Generación de estructuras de una teoría de primer orden
 \end_layout
 
 \begin_layout Standard
-Para definir un objeto del tipo FO_Theory que implementa a una teoría de
- primer orden basta con un nombre, una descripción, y una lista de axiomas
- en la sintaxis propia de Mace4.
+Para definir un objeto del tipo 
+\family typewriter
+FO_Theory
+\family default
+ que implementa a una teoría de primer orden basta con un nombre, una descripció
+n, y una lista de axiomas en la sintaxis propia de Mace4.
  Por ejemplo para definir la teoría de reticulados bastaría con la siguiente
  linea:
 \end_layout
@@ -18239,8 +18329,11 @@ Lat = definability.FO_Theory("Lat",
 
 \begin_layout Standard
 Ahora para recorrer los reticulados (filtrando isomorfismos) basta con llamar
- al método find_models con la cardinalidad buscada, el cual devuelve un
- generador.
+ al método 
+\family typewriter
+find_models
+\family default
+ con la cardinalidad buscada, el cual devuelve un generador.
  Por ejemplo para recorrer los reticulados de 5 elementos basta con 
 \end_layout
 
@@ -18263,9 +18356,24 @@ que devolverá una lista con todos los reticulados de 5 elementos filtrando
 
 \begin_layout Standard
 Nuestro paquete incluye una gran variedad de teorías de primer orden ya
- cargadas en el modulo fotheories.
- Por ejemplo: Lat para reticulados, Graph para grafos, Grp para grupos,
- etc.
+ cargadas en el modulo 
+\family typewriter
+fotheories
+\family default
+.
+ Por ejemplo: 
+\family typewriter
+Lat
+\family default
+ para reticulados, 
+\family typewriter
+Graph
+\family default
+ para grafos, 
+\family typewriter
+Grp
+\family default
+ para grupos, etc.
  La lista completa se puede revisar mediante listar el modulo fotheories
  de nuestro paquete con el siguiente comando:
 \end_layout
@@ -18297,8 +18405,12 @@ Supongamos que queremos ingresar manualmente el reticulado
 
 .
  Lo primero es definir el tipo de primer orden al que pertenece.
- Para crear un objeto de la clase FO_Type basta con pasar dos diccionarios,
- el primero para las funciones y el segundo para las relaciones.
+ Para crear un objeto de la clase 
+\family typewriter
+FO_Type
+\family default
+ basta con pasar dos diccionarios, el primero para las funciones y el segundo
+ para las relaciones.
  Los diccionarios contienen las aridades y se indexan por los símbolos correspon
 dientes.
  Por ejemplo, para definir el tipo de los reticulados, junto con una relación
@@ -18355,9 +18467,13 @@ Luego se necesitan definir las funciones supremo e ínfimo, y una relación
 \end_layout
 
 \begin_layout Standard
-Una función, implementada por la clase FO_Operation se puede definir mediante
- un diccionario con claves de tuplas que apuntan al valor de la función,
- o en el caso de funciones binarias, una matriz 
+Una función, implementada por la clase 
+\family typewriter
+FO_Operation
+\family default
+ se puede definir mediante un diccionario con claves de tuplas que apuntan
+ al valor de la función, o en el caso de funciones binarias, una matriz
+ 
 \begin_inset Formula $A$
 \end_inset
 
@@ -18370,9 +18486,12 @@ Una función, implementada por la clase FO_Operation se puede definir mediante
 \end_inset
 
 .
- Para definir una relación utilizando la clase FO_Relation basta con una
- lista de las tuplas que pertenecen a la relación y el universo sobre el
- que la relación está definida.
+ Para definir una relación utilizando la clase 
+\family typewriter
+FO_Relation
+\family default
+ basta con una lista de las tuplas que pertenecen a la relación y el universo
+ sobre el que la relación está definida.
 \end_layout
 
 \begin_layout Standard
@@ -18536,8 +18655,11 @@ Chequeo de definibilidad
 
 \begin_layout Standard
 Una vez definidas las estructuras, para chequear definibilidad se utiliza
- un objeto de la clase Constellation, pasando una lista de las estructuras
- en 
+ un objeto de la clase 
+\family typewriter
+Constellation
+\family default
+, pasando una lista de las estructuras en 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -18574,18 +18696,26 @@ Para chequear definibilidad están los siguientes métodos:
 \end_layout
 
 \begin_layout Itemize
+
+\family typewriter
 is_existential_definable
 \end_layout
 
 \begin_layout Itemize
+
+\family typewriter
 is_existential_positive_definable
 \end_layout
 
 \begin_layout Itemize
+
+\family typewriter
 is_open_definable
 \end_layout
 
 \begin_layout Itemize
+
+\family typewriter
 is_positive_open_definable
 \end_layout
 
@@ -18706,7 +18836,11 @@ reference "chap:Álgebras-de-Lindenbaum"
 
 \end_inset
 
- el paquete dispone del modulo lindenbaum.
+ el paquete dispone del modulo 
+\family typewriter
+lindenbaum
+\family default
+.
 \end_layout
 
 \begin_layout Standard
@@ -18714,8 +18848,11 @@ Este modulo contiene las siguientes funciones:
 \end_layout
 
 \begin_layout Description
-ji_of_existencial_definable_algebra para generar los elementos join-irreducibles
- de 
+
+\family typewriter
+ji_of_existencial_definable_algebra
+\family default
+ para generar los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{n}\left(\mathcal{K}\right)$
 \end_inset
 
@@ -18723,8 +18860,11 @@ ji_of_existencial_definable_algebra para generar los elementos join-irreducibles
 \end_layout
 
 \begin_layout Description
-ji_of_existencial_positive_definable_algebra para generar los elementos
- join-irreducibles de 
+
+\family typewriter
+ji_of_existencial_positive_definable_algebra
+\family default
+ para generar los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
 
@@ -18732,7 +18872,11 @@ ji_of_existencial_positive_definable_algebra para generar los elementos
 \end_layout
 
 \begin_layout Description
-atoms_of_open_definable_algebra para generar los átomos de 
+
+\family typewriter
+atoms_of_open_definable_algebra
+\family default
+ para generar los átomos de 
 \begin_inset Formula $\mathbf{Op}_{n}\left(\mathcal{K}\right)$
 \end_inset
 
@@ -18740,8 +18884,11 @@ atoms_of_open_definable_algebra para generar los átomos de
 \end_layout
 
 \begin_layout Description
-ji_of_open_positive_definable_algebra para generar los elementos join-irreducibl
-es de 
+
+\family typewriter
+ji_of_open_positive_definable_algebra
+\family default
+ para generar los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{Op}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
 
@@ -18749,7 +18896,11 @@ es de
 \end_layout
 
 \begin_layout Standard
-Estas funciones toman un objeto del tipo Constellation que determina 
+Estas funciones toman un objeto del tipo 
+\family typewriter
+Constellation
+\family default
+ que determina 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
