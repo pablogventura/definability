@@ -3296,6 +3296,25 @@ reference "thm:formula para el diagrama"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 1"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibilidad abierta positiva"
@@ -4207,6 +4226,25 @@ reference "thm:definibilidad abierta"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 22"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibiliad existencial"
@@ -4761,6 +4799,25 @@ reference "thm:definibilidad abierta"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 22"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibilidad existencial positiva"
@@ -4996,6 +5053,25 @@ turas de los productos de las estructuras de
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 11"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibilidad conjuncion de atomicas"
@@ -5417,6 +5493,25 @@ as de
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cf.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Thm. 22"
+key "Campercholi15"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:definibilidad primitiva positiva"
