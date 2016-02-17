@@ -5386,6 +5386,8 @@ En este capítulo exponemos los algoritmos para el chequeo de definibilidad
  La exposición se centra en los algoritmos para definibilidad abierta y
  abierta positiva, ya que consideramos que estos capturan las principales
  ideas desarrolladas.
+ Luego se desarrollan, pero con menos detalle, algoritmos para definibilidad
+ existencial, existencial positiva y de primer orden.
 \end_layout
 
 \begin_layout Section
@@ -18895,8 +18897,13 @@ key "cube_terms"
 \end_layout
 
 \begin_layout Standard
-Queda pendiente explorar y aprovechar en la implementación, la interacción
- entre los diferentes tipos de definibilidad.
+Esperamos desarrollar los algoritmos para decidir definibilidad por conjunción
+ de atómicas y por primitivas positivas, que nos quedaron pendientes.
+\end_layout
+
+\begin_layout Standard
+También, queda pendiente explorar y aprovechar en la implementación, la
+ interacción entre los diferentes tipos de definibilidad.
  Queda muy claro que hay una jerarquía entre ellas que podría ser aprovechada,
  al calcular diferentes tipos de definibilidad sobre la misma clase 
 \begin_inset Formula $\mathcal{K}$
@@ -18926,6 +18933,11 @@ En cuanto a nuestra implementación, pensamos que se podría mejorar portando
 \begin_layout Standard
 \begin_inset Note Note
 status open
+
+\begin_layout Itemize
+Falto el producto de estructuras, para definibilidad por conjuncion de atomicas
+ y primitiva positiva
+\end_layout
 
 \begin_layout Itemize
 Que un conjunto de morfismos alcance para revisar preservación implica que
