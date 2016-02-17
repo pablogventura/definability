@@ -6983,7 +6983,7 @@ Call{
 
 \end_inset
 
-tieneRepresentante
+chequearIsos
 \begin_inset ERT
 status open
 
@@ -9232,7 +9232,7 @@ Call{
 
 \end_inset
 
-tieneRepresentante
+chequearBihomos
 \begin_inset ERT
 status open
 
@@ -13306,6 +13306,70 @@ reference "thm:construccion de constelacion abierta positiva"
 \end_inset
 
 .
+ Notar que los algoritmos son modificaciones de los algoritmos para chequeo
+ vistos en el Capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:algoritmos de chequeo"
+
+\end_inset
+
+, solo que ahora devuelven 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+.
+ Las subrutinas 
+\family typewriter
+buscarIsos
+\family default
+ y 
+\family typewriter
+buscarBihomos
+\family default
+ son análogas a las funciones 
+\family typewriter
+chequearIsos
+\family default
+ y 
+\family typewriter
+chequearBihomos
+\family default
+ de los Algortimos 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion abierta"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:constelacion existencial positiva"
+
+\end_inset
+
+.
+ La función 
+\family typewriter
+buscarIsos
+\family default
+ devuelve el isomorfismo que hubiera chequeado la función chequearIsos y
+ si no hay isomorfimo devuelve 
+\family typewriter
+Null
+\family default
+.
+ La función 
+\family typewriter
+buscarBihomos
+\family default
+ devuelve el isomorfismo y los homomorfismos biyectivos que hubiera chequeado
+ por preservacion la función 
+\family typewriter
+chequearBihomos
+\family default
+.
 \end_layout
 
 \begin_layout Standard
@@ -14126,7 +14190,7 @@ Call{
 
 \end_inset
 
-buscaIso
+buscarIsos
 \begin_inset ERT
 status open
 
@@ -14521,7 +14585,7 @@ Function{
 
 \end_inset
 
-buscaIso
+buscarIsos
 \begin_inset ERT
 status open
 
@@ -14999,7 +15063,7 @@ Call{
 
 \end_inset
 
-buscaIso_Bihomos
+buscarBihomos
 \begin_inset ERT
 status open
 
@@ -15605,7 +15669,7 @@ Function{
 
 \end_inset
 
-buscaIso_Bihomos
+buscarBihomos
 \begin_inset ERT
 status open
 
