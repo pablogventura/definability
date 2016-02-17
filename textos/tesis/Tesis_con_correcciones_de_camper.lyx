@@ -7064,7 +7064,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $ce\neq\textnormal{Null}$
+\begin_inset Formula $ce\neq\textnormal{\texttt{Null}}$
 \end_inset
 
 
@@ -7743,7 +7743,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{True},\gamma)$
+\begin_inset Formula $(\textnormal{\texttt{True}},\gamma)$
 \end_inset
 
  
@@ -7820,7 +7820,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{True},\textnormal{Null})$
+\begin_inset Formula $(\textnormal{\texttt{True}},\textnormal{\texttt{Null}})$
 \end_inset
 
  
@@ -7932,7 +7932,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{False},\textnormal{Null})$
+\begin_inset Formula $(\textnormal{\texttt{False}},\textnormal{\texttt{Null}})$
 \end_inset
 
  
@@ -8987,7 +8987,15 @@ True
 \end_layout
 
 \begin_layout Itemize
-(True,Null) cuando hay un 
+(
+\family typewriter
+True
+\family default
+,
+\family typewriter
+Null
+\family default
+) cuando hay un 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -8995,7 +9003,11 @@ True
 \end_layout
 
 \begin_layout Itemize
-(True,
+(
+\family typewriter
+True
+\family default
+,
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -9011,7 +9023,15 @@ True
 \end_layout
 
 \begin_layout Itemize
-(False,Null) cuando no hay 
+(
+\family typewriter
+False
+\family default
+,
+\family typewriter
+Null
+\family default
+) cuando no hay 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -9019,7 +9039,11 @@ True
 \end_layout
 
 \begin_layout Itemize
-(False,
+(
+\family typewriter
+False
+\family default
+,
 \begin_inset Formula $h$
 \end_inset
 
@@ -9336,7 +9360,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $ce\neq\textnormal{Null}$
+\begin_inset Formula $ce\neq\textnormal{\texttt{Null}}$
 \end_inset
 
 
@@ -10346,7 +10370,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{True},h)$
+\begin_inset Formula $(\textnormal{\texttt{True}},h)$
 \end_inset
 
  
@@ -10423,7 +10447,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{True},\textnormal{Null})$
+\begin_inset Formula $(\textnormal{\texttt{True}},\textnormal{\texttt{Null}})$
 \end_inset
 
  
@@ -10542,7 +10566,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{False},h\right)$
+\begin_inset Formula $\left(\textnormal{\texttt{False}},h\right)$
 \end_inset
 
  
@@ -10740,7 +10764,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{False},h\right)$
+\begin_inset Formula $\left(\textnormal{\texttt{False}},h\right)$
 \end_inset
 
  
@@ -10849,7 +10873,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{False},\textnormal{Null}\right)$
+\begin_inset Formula $\left(\textnormal{\texttt{False}},\textnormal{\texttt{Null}}\right)$
 \end_inset
 
 
@@ -14278,7 +14302,11 @@ If{
 \begin_inset Formula $iso\neq$
 \end_inset
 
- Null
+ 
+\family typewriter
+Null
+\family default
+
 \begin_inset ERT
 status open
 
@@ -14814,7 +14842,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\textnormal{Null}$
+\begin_inset Formula $\textnormal{\texttt{Null}}$
 \end_inset
 
  
@@ -15166,7 +15194,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $iso\neq\textnormal{Null}$
+\begin_inset Formula $iso\neq\textnormal{\texttt{Null}}$
 \end_inset
 
 
@@ -15779,7 +15807,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $bihomo=False$
+\begin_inset Formula $bihomo=\texttt{False}$
 \end_inset
 
 
@@ -15845,7 +15873,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $bihomo=True$
+\begin_inset Formula $bihomo=\texttt{True}$
 \end_inset
 
 
@@ -16197,7 +16225,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{Null},\mathcal{F}_{0}\right)$
+\begin_inset Formula $\left(\textnormal{\texttt{Null}},\mathcal{F}_{0}\right)$
 \end_inset
 
 
