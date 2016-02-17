@@ -19052,16 +19052,8 @@ key "UACalc"
 \end_layout
 
 \begin_layout Standard
-Esperamos también continuar el estudio teórico de la definibilidad existencial
- positiva en reticulados positivos, buscando generalizar hacia mayores aridades
- resultados como el expuesto en el Teorema 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
-
-\end_inset
-
-.
+Esperamos también continuar el estudio de la definibilidad existencial positiva
+ en reticulados distributivos, investigando los casos de mayor aridad.
 \end_layout
 
 \begin_layout Standard
