@@ -7840,7 +7840,10 @@ Comment
 \begin_inset Formula $\gamma$
 \end_inset
 
- es isomorfismo con el representante
+ es iso con el representante
+ y preserva
+\lang spanish
+
 \begin_inset ERT
 status open
 
@@ -10225,7 +10228,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\gamma\in bihomos$
+\begin_inset Formula $h\in bihomos$
 \end_inset
 
 
@@ -10256,7 +10259,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
  es un 
@@ -10295,7 +10298,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
  no es un 
@@ -10343,7 +10346,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $(\textnormal{True},\gamma)$
+\begin_inset Formula $(\textnormal{True},h)$
 \end_inset
 
  
@@ -10359,11 +10362,11 @@ Comment
 
 \end_inset
 
-
-\begin_inset Formula $\gamma$
+hay iso 
+\begin_inset Formula $h$
 \end_inset
 
- es contraejemplo
+ y es contraejemplo
 \begin_inset ERT
 status open
 
@@ -10437,10 +10440,17 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
- es isomorfismo con el representante
+ es iso con 
+\begin_inset Formula $\mathbf{S}\in\mathcal{S}$
+\end_inset
+
+
+ y preserva
+\lang spanish
+
 \begin_inset ERT
 status open
 
@@ -10484,7 +10494,7 @@ ElsIf{
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
  no preserva 
@@ -10532,7 +10542,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{False},\gamma\right)$
+\begin_inset Formula $\left(\textnormal{False},h\right)$
 \end_inset
 
  
@@ -10549,10 +10559,10 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
- es contraejemplo
+ es un bihomo contraejemplo
 \begin_inset ERT
 status open
 
@@ -10643,11 +10653,11 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{S}}{\mathbf{B}}$
+\begin_inset Formula $\funcion[h]{\mathbf{S}}{\mathbf{B}}$
 \end_inset
 
  con 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
  
@@ -10682,7 +10692,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
  no preserva 
@@ -10730,7 +10740,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{False},\gamma\right)$
+\begin_inset Formula $\left(\textnormal{False},h\right)$
 \end_inset
 
  
@@ -10747,10 +10757,10 @@ Comment
 \end_inset
 
 
-\begin_inset Formula $\gamma$
+\begin_inset Formula $h$
 \end_inset
 
- es contraejemplo
+ es un bihomo contraejemplo
 \begin_inset ERT
 status open
 
@@ -13389,8 +13399,8 @@ Null
 \family typewriter
 buscarBihomos
 \family default
- devuelve el isomorfismo y los homomorfismos biyectivos que hubiera chequeado
- por preservacion la función 
+ devuelve el isomorfismo y una lista de homomorfismos biyectivos que hubiera
+ chequeado por preservacion la función 
 \family typewriter
 chequearBihomos
 \family default
@@ -13634,11 +13644,7 @@ Comment
 
 \end_inset
 
-
-\begin_inset Formula $R$
-\end_inset
-
- es abierta-definible
+ devuelve el álgebra
 \begin_inset ERT
 status open
 
@@ -14543,23 +14549,6 @@ Return
 \end_inset
 
  
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- es abierta-definible
 \begin_inset ERT
 status open
 
@@ -15631,23 +15620,6 @@ Return
 \end_inset
 
 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Comment 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $R$
-\end_inset
-
- es definible por una abierta positiva
 \begin_inset ERT
 status open
 
