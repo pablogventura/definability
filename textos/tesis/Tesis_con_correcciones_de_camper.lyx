@@ -57,6 +57,11 @@ backgroundcolor=\color{gray75},
 }
 
 \usepackage{mathdots}
+
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -113,7 +118,7 @@ theorems-ams-extended
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2cm
+\leftmargin 4cm
 \rightmargin 2cm
 \secnumdepth 3
 \tocdepth 3
@@ -632,8 +637,11 @@ The definability of a relation for a class of structures, for some first
  In this work, we propose algorithms to decide definability in an automatic
  way; also, algorithms to generate the algebra of definable relations for
  a class of structures are provided.
- Beside presenting the algorithms, we'll introduce the package Definability,
- used to implement the algorithms.
+ Beside presenting the algorithms, we'll introduce the package 
+\emph on
+Definability
+\emph default
+, used to implement the algorithms.
  Documentations of its use will be provided with some examples.
  Lastly, a theorem about the characterization of binary definable relations
  by positive existentials on distributive lattices will be proved.
@@ -945,7 +953,7 @@ key "Campercholi15"
 \begin_layout Standard
 Por ejemplo, en el caso de la definibilidad por una fórmula abierta (i.e.,
  fórmulas sin cuantificadores) el trabajo establece que (cf.
- 
+ Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta"
@@ -1362,7 +1370,7 @@ En este capítulo presentamos resultados que caracterizan la definibilidad,
  a la pregunta de si dicha relación es preservada por una colección de morfismos
  que depende del fragmento de primer orden considerado.
  Por ejemplo, (cf.
- 
+ Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:definibilidad abierta"
@@ -1448,8 +1456,8 @@ Preliminares
 
 \begin_layout Standard
 Presentamos continuación los resultados básicos de teoría de modelos que
- serán necesarios para demostrar los teoremas de definibilidad en las sección
- siguientes.
+ serán necesarios para demostrar los teoremas de definibilidad en la sección
+ siguiente.
  Si bien la intención ha sido la de escribir un trabajo autocontenido, suponemos
  que el lector está familiarizado con los conceptos básicos de la lógica
  de primer orden y su teoría de modelos elemental.
@@ -1877,7 +1885,7 @@ equivalentes
 \end_layout
 
 \begin_layout Standard
-El siguiente teorema será utilizado para demostrar todos las caracterizaciones
+El siguiente teorema será utilizado para demostrar todas las caracterizaciones
  de definibilidad; es la herramienta que nos permitirá transformar un diagrama
  infinitario en una fórmula.
 \end_layout
@@ -1962,10 +1970,10 @@ Notar que
 .
  Luego el número de clases de equivalencia es finito ya que está acotado
  por 
-\begin_inset Formula $\left|\mathcal{P}(A_{1}^{n}\times\cdots\times A_{m}^{n})\right|$
+\begin_inset Formula $\left|\mathcal{P}(A_{1}^{n}\times\cdots\times A_{m}^{n})\right|.$
 \end_inset
 
- .
+
 \end_layout
 
 \begin_layout Standard
@@ -3317,7 +3325,7 @@ Definibilidad por fórmulas existenciales
 \end_layout
 
 \begin_layout Standard
-El siguiente resultado construye sobre la idea de los Lemas 
+El siguiente resultado se construye sobre la idea de los Lemas 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:diagrama sii isomorfismo"
@@ -3781,7 +3789,7 @@ reference "thm:formula para diagrama abierto positivo"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Lemma
@@ -4048,7 +4056,7 @@ preserva
 tales que 
 \begin_inset Formula 
 \[
-\left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}\text{para cada i\in[1,m] }
+\left(a_{1i},\ldots,a_{ni}\right)\in R^{A_{i}}\text{ para cada }i\in\left[1,m\right]
 \]
 
 \end_inset
@@ -5435,8 +5443,12 @@ disjunta
 Notar que esta hipótesis no afecta el grado de generalidad de los resultados
  y algoritmos, ya que bastaría con renombrar los elementos repetidos para
  obtener una clase disjunta equivalente.
- La razón principal para trabajar con clases disjuntas reside en que, dado
- un morfismo 
+ La razón principal para trabajar con clases disjuntas reside en que, si
+ 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ es una clase disjunta, dado un morfismo 
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
@@ -5444,7 +5456,7 @@ Notar que esta hipótesis no afecta el grado de generalidad de los resultados
 \begin_inset Formula $\mathbf{A},\mathbf{B}\in\subestr{\mathcal{K}}$
 \end_inset
 
-, basta con conocer 
+ basta con conocer 
 \begin_inset Formula $\dominio{\gamma}$
 \end_inset
 
@@ -5532,21 +5544,7 @@ Dado un conjunto
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "thm:definibiliad de primer orden"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
 reference "thm:definibilidad abierta"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:definibilidad existencial positiva"
 
 \end_inset
 
@@ -5558,31 +5556,12 @@ reference "thm:definibilidad abierta positiva"
 \end_inset
 
  definimos los siguientes conjuntos:
-\begin_inset Formula 
-\[
-\iso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} ,
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
 \subiso{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ isomorfismo de }\mathbf{A}_{0}\textnormal{ en }\mathbf{B}_{0}\textnormal{ con }\mathbf{A}_{0},\mathbf{B}_{0}\in\subestr{\mathcal{K}}\right\} ,
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\hom{\mathcal{K}}=\left\{ \gamma:\gamma\textnormal{ homomorfismo de }\mathbf{A}\textnormal{ en }\mathbf{B}\textnormal{ con }\mathbf{A},\mathbf{B}\in\mathcal{K}\right\} ,
 \]
 
 \end_inset
@@ -6207,18 +6186,10 @@ Notar que los isomorfismos revisados por este algoritmo deben ser necesariamente
 \end_layout
 
 \begin_layout Standard
-Observar además que para poder aplicar los teoremas de definibilidad de
- las secciones 
+Observar además que para poder aplicar los Teoremas del Capítulo 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Definibilidad-abierta"
-
-\end_inset
-
- y 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Definibilidad-positiva"
+reference "chap:Teoremas-de-definibilidad"
 
 \end_inset
 
@@ -6508,7 +6479,7 @@ Sea
 
  tal que contiene exactamente un representante por cada tipo de isomorfismo
  en 
-\begin_inset Formula $\mathbb{S}(\mathcal{K})$
+\begin_inset Formula $\subestr{\mathcal{K}}$
 \end_inset
 
 .
@@ -7848,7 +7819,7 @@ Comment
 \begin_inset Formula $\gamma$
 \end_inset
 
- es iso con el representante y preserva
+ es iso que preserva
 \begin_inset ERT
 status open
 
@@ -8148,7 +8119,7 @@ True
 \end_layout
 
 \begin_layout Standard
-Notar que en la linea 
+Notar que en la línea 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-auto2"
@@ -8178,7 +8149,7 @@ Además, una vez que una subestructura resulta ser
 
 .
  Esto permite disminuir la cantidad de subestructuras a revisar, como se
- ve en la linea 
+ ve en la línea 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lin:abierta-saco-subestructuras"
@@ -8452,7 +8423,7 @@ reference "thm:definibilidad abierta positiva"
 .
 \end_layout
 
-\begin_layout Proof
+\begin_layout Standard
 En el siguiente teorema describimos un conjunto suficiente de morfismos
  para generar 
 \begin_inset Formula $\subhom{\mathcal{K}_{\mathcal{L}}}$
@@ -13268,7 +13239,7 @@ Para generar los elementos join-irreducibles del álgebra de Lindenbaum de
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
- basta con obtener el conjunto 
+, basta con obtener el conjunto 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
@@ -13280,7 +13251,12 @@ reference "chap:algoritmos de chequeo"
 
 \end_inset
 
- que genera 
+.
+ Como 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ genera 
 \begin_inset Formula $\subiso{\mathbf{A}}$
 \end_inset
 
@@ -13291,8 +13267,8 @@ reference "thm:construccion de constelacion abierta"
 
 \end_inset
 
-, y luego calcular 
-\begin_inset Formula $\{h(\bar{a}):h\in\subiso{\mathbf{A}}\}$
+, basta calcular 
+\begin_inset Formula $\{h(\bar{a}):h\in\mathcal{F}\}$
 \end_inset
 
  para cada 
@@ -13348,8 +13324,12 @@ reference "alg:construccion algebra abierta positiva"
 
 \end_inset
 
-, generan el conjunto 
+, generan los conjuntos 
 \begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ y 
+\begin_inset Formula $\mathcal{H}$
 \end_inset
 
  definidos por los Teoremas 
@@ -13375,11 +13355,7 @@ reference "chap:algoritmos de chequeo"
 
 \end_inset
 
-, solo que ahora devuelven 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
-.
+, solo que ahora devuelven el conjunto de morfismos que antes chequeaban.
  Las subrutinas 
 \family typewriter
 buscarIsos
@@ -13425,8 +13401,8 @@ Null
 \family typewriter
 buscarBihomos
 \family default
- devuelve el isomorfismo y una lista de homomorfismos biyectivos que hubiera
- chequeado por preservación la función 
+ devuelve el isomorfismo y una lista de homomorfismos biyectivos que son
+ los que hubiera chequeado por preservación la función 
 \family typewriter
 chequearBihomos
 \family default
@@ -13444,7 +13420,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Saturación por un conjunto de morfismos
+Saturación por un conjunto de morfismos 
+\begin_inset Formula $\mathcal{E}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -14046,20 +14026,14 @@ status open
 
 \begin_layout Plain Layout
 Construcción de 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
+\begin_inset Formula $\mathcal{F}$
+\end_inset
 
-\begin_inset Formula $\mathbf{Op}_{n}(\mathbf{A})$
+ como en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta"
+
 \end_inset
 
 
@@ -14923,7 +14897,14 @@ status open
 
 \begin_layout Plain Layout
 Construcción de 
-\begin_inset Formula $\mathbf{Op}_{n}^{+}(\mathbf{A})$
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+ como en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:construccion de constelacion abierta positiva"
+
 \end_inset
 
 
@@ -15002,7 +14983,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\emptyset$
+\begin_inset Formula $\mathcal{H}=\emptyset$
 \end_inset
 
 
@@ -15095,7 +15076,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\left(iso,\mathcal{F}_{0}\right)=$
+\begin_inset Formula $\left(iso,\mathcal{H}_{0}\right)=$
 \end_inset
 
  
@@ -15165,7 +15146,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\mathcal{F}_{0}$
+\begin_inset Formula $\mathcal{H}=\mathcal{H}\cup\mathcal{H}_{0}$
 \end_inset
 
 
@@ -15227,7 +15208,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ iso\right\} $
+\begin_inset Formula $\mathcal{H}=\mathcal{H}\cup\left\{ iso\right\} $
 \end_inset
 
 
@@ -15374,7 +15355,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ \alpha\right\} $
+\begin_inset Formula $\mathcal{H}=\mathcal{H}\cup\left\{ \alpha\right\} $
 \end_inset
 
 
@@ -15554,7 +15535,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ \gamma\right\} $
+\begin_inset Formula $\mathcal{H}=\mathcal{H}\cup\left\{ \gamma\right\} $
 \end_inset
 
 
@@ -15646,7 +15627,7 @@ Return
 \end_inset
 
  
-\begin_inset Formula $\mathcal{F}$
+\begin_inset Formula $\mathcal{H}$
 \end_inset
 
 
@@ -15743,7 +15724,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}_{0}=\emptyset$
+\begin_inset Formula $\mathcal{H}_{0}=\emptyset$
 \end_inset
 
 
@@ -16022,7 +16003,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}_{0}=\mathcal{F}_{0}\cup\left\{ \gamma\right\} $
+\begin_inset Formula $\mathcal{H}_{0}=\mathcal{H}_{0}\cup\left\{ \gamma\right\} $
 \end_inset
 
 
@@ -16151,7 +16132,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}_{0}=\mathcal{F}_{0}\cup\left\{ \gamma\right\} $
+\begin_inset Formula $\mathcal{H}_{0}=\mathcal{H}_{0}\cup\left\{ \gamma\right\} $
 \end_inset
 
 
@@ -16227,7 +16208,7 @@ Return
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{\texttt{Null}},\mathcal{F}_{0}\right)$
+\begin_inset Formula $\left(\textnormal{\texttt{Null}},\mathcal{H}_{0}\right)$
 \end_inset
 
 
@@ -16311,12 +16292,12 @@ end{algorithmic}
 \end_layout
 
 \begin_layout Standard
-Una vez calculado 
-\begin_inset Formula $\mathcal{F}$
+Una vez calculado el conjunto de morfismos 
+\begin_inset Formula $\mathcal{E}$
 \end_inset
 
  basta con calcular 
-\begin_inset Formula $\{h(\bar{a}):h\in\mathcal{F}\}$
+\begin_inset Formula $\{h(\bar{a}):h\in\mathcal{E}\}$
 \end_inset
 
  para cada 
@@ -16324,7 +16305,7 @@ Una vez calculado
 \end_inset
 
 , ya que 
-\begin_inset Formula $\mathcal{F}$
+\begin_inset Formula $\mathcal{E}$
 \end_inset
 
  genera al conjunto correspondiente al tipo de definibilidad.
@@ -16341,8 +16322,8 @@ reference "alg:construccion algebra saturacion"
 
 \begin_layout Standard
 Para los demás tipos de definibilidad, el procedimiento seria análogo.
- Generar 
-\begin_inset Formula $\mathcal{F}$
+ Generar el conjunto de morfismos 
+\begin_inset Formula $\mathcal{E}$
 \end_inset
 
  basados en los algoritmos del capítulo 
@@ -16373,12 +16354,20 @@ En esta sección mostramos cómo la utilización del paquete permitió conjetura
 \end_layout
 
 \begin_layout Subsection
-Utilizando el paquete Definability para SageMath
+Utilizando el paquete 
+\emph on
+Definability
+\emph default
+ para SageMath
 \end_layout
 
 \begin_layout Standard
-A manera de prueba de las herramientas utilizamos Definability para recorrer
- todas las relaciones binarias definibles en el reticulado 
+A manera de prueba de las herramientas utilizamos 
+\emph on
+Definability
+\emph default
+ para recorrer todas las relaciones binarias definibles en el reticulado
+ 
 \begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
@@ -16486,7 +16475,11 @@ Al correr el algoritmo de generación de los elementos join-irreducibles
 \begin_inset Formula $\mathbf{E}_{2}\left(\mathbf{2}\times\mathbf{2}\right)$
 \end_inset
 
-, Definability nos devolvió las siguientes relaciones:
+, 
+\emph on
+Definability
+\emph default
+ nos devolvió las siguientes relaciones:
 \end_layout
 
 \begin_layout Itemize
@@ -16590,13 +16583,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:ret 1024"
-
-\end_inset
-
-
 \begin_inset ERT
 status open
 
@@ -16725,6 +16711,13 @@ Reticulado
 \end_inset
 
 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ret 1024"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -16831,6 +16824,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset ERT
 status open
 
@@ -16948,6 +16942,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset ERT
 status open
 
@@ -17583,7 +17578,11 @@ c\wedge d & \textnormal{si }x\notin P\textnormal{ y }x\notin Q
 \end_layout
 
 \begin_layout Chapter
-Documentación de Definability
+Documentación de 
+\emph on
+Definability
+\emph default
+
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:Documentación-de-Definability"
@@ -17617,8 +17616,12 @@ Introducción
 \end_layout
 
 \begin_layout Standard
-Definability es un paquete que desarrollamos para SageMath, un software
- matemático licenciado bajo la GPL.
+
+\emph on
+Definability
+\emph default
+ es un paquete que desarrollamos para SageMath, un software matemático licenciad
+o bajo la GPL.
  Nuestro paquete implementa los algoritmos vistos en las secciones anteriores,
  permitiendo, dada una clase de estructuras, decidir definibilidad o generar
  las álgebras de Lindenbaum de relaciones definibles.
@@ -17658,15 +17661,27 @@ Programas externos necesarios
 \end_layout
 
 \begin_layout Standard
-Definability, así como SageMath han sido desarrollados en Python 2.7, por
- lo que necesitan del interprete instalado.
- Dado que Definability es un paquete desarrollado para SageMath, necesita
- de una instalación de éste.
+
+\emph on
+Definability
+\emph default
+, así como SageMath han sido desarrollados en Python 2.7, por lo que necesitan
+ del interprete instalado.
+ Dado que 
+\emph on
+Definability
+\emph default
+ es un paquete desarrollado para SageMath, necesita de una instalación de
+ éste.
  Además, utiliza interfaces con otros programas.
- Particularmente utiliza Minion, y LADR (interfaz de linea de comandos de
+ Particularmente utiliza Minion, y LADR (interfaz de línea de comandos de
  Prover9, Mace4, y otros programas).
- Definability ha sido probado en versiones particulares de estos programas
- y no se sabe si funcionara en otras.
+ 
+\emph on
+Definability
+\emph default
+ ha sido probado en versiones particulares de estos programas y no se sabe
+ si funcionara en otras.
  Las versiones utilizadas son las siguientes:
 \end_layout
 
@@ -17710,7 +17725,7 @@ key "sage"
 \end_layout
 
 \begin_layout Standard
-SageMath es un software en pleno desarrollo que incluye herramientas para
+Se trata de un software en pleno desarrollo que incluye herramientas para
  trabajar con reticulados y muchas otras estructuras algebraicas por lo
  que nos pareció interesante utilizarlo como base para nuestra herramienta.
 \end_layout
@@ -17744,7 +17759,7 @@ LADR
 \end_layout
 
 \begin_layout Standard
-LADR es la interfaz de linea de comandos para Prober9 y Mace4 
+LADR es la interfaz de línea de comandos para Prober9 y Mace4
 \begin_inset CommandInset citation
 LatexCommand cite
 key "prover9-mace4"
@@ -17754,7 +17769,7 @@ key "prover9-mace4"
 .
  Prover9 es un probador automático de teoremas para primer orden y lógica
  ecuacional y Mace4 es un software capaz de encontrar modelos finitos y
- contraejemplos.
+ contraejemplos, licenciados bajo la GPL 2.
 \end_layout
 
 \begin_layout Standard
@@ -17932,9 +17947,12 @@ Instalación del paquete en SageMath
 
 \begin_layout Standard
 Suponiendo que tenemos instalado SageMath en la ruta absoluta SAGEDIR, nos
- movemos al directorio donde se quiere descargar el paquete Definability,
- seguimos los siguientes comandos para instalar el paquete en nuestra instalació
-n de SageMath:
+ movemos al directorio donde se quiere descargar el paquete 
+\emph on
+Definability
+\emph default
+, seguimos los siguientes comandos para instalar el paquete en nuestra instalaci
+ón de SageMath:
 \end_layout
 
 \begin_layout Standard
@@ -18033,7 +18051,7 @@ Al momento de ingresar estructuras para su chequeo puede optar por la generació
 \end_layout
 
 \begin_layout Subsection
-Generación de estructuras de una teoría de primer orden
+Generación de estructuras a partir de una teoría de primer orden
 \end_layout
 
 \begin_layout Standard
@@ -18044,7 +18062,7 @@ FO_Theory
  que implementa a una teoría de primer orden basta con un nombre, una descripció
 n, y una lista de axiomas en la sintaxis propia de Mace4.
  Por ejemplo para definir la teoría de reticulados bastaría con la siguiente
- linea:
+ línea:
 \end_layout
 
 \begin_layout Standard
@@ -18684,7 +18702,7 @@ Por ejemplo para obtener los elementos join-irreducibles del reticulado
 \begin_inset Formula $\mathbf{2}\times\mathbf{2}$
 \end_inset
 
- bastaría con la siguiente linea:
+ bastaría con la siguiente línea:
 \end_layout
 
 \begin_layout Standard
@@ -18870,7 +18888,7 @@ Se desarrolló una herramienta que implementa dichos algoritmos.
 \end_layout
 
 \begin_layout Itemize
-Al probar la herramienta, se conjeturo y luego se probó una caracterización
+Al probar la herramienta, se conjeturó y luego se probó una caracterización
  de las relaciones binarias definibles por existenciales positivas en reticulado
 s distributivos (Teorema 
 \begin_inset CommandInset ref
