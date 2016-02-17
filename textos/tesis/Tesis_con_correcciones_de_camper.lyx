@@ -2245,10 +2245,6 @@ name "thm:abiertas valen en subestructuras y viceversa"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Lemma
 Si 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -2360,10 +2356,6 @@ name "thm:diagrama sii isomorfismo"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Lemma
 Sea 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
@@ -2712,10 +2704,6 @@ name "thm:formula para el diagrama"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Lemma
 Sean 
 \begin_inset Formula $\mathbf{A},\mathbf{B}$
 \end_inset
@@ -2846,6 +2834,7 @@ Sean
 -estructuras, los siguientes son equivalentes:
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 Hay una fórmula abierta que define a 
 \begin_inset Formula $R$
@@ -2882,6 +2871,7 @@ Para todas
 .
 \end_layout
 
+\end_deeper
 \begin_layout Proof
 1
 \begin_inset Formula $\Rightarrow$
@@ -3146,10 +3136,6 @@ name "thm:formula para diagrama abierto positivo"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Lemma
 Sean 
 \begin_inset Formula $\mathbf{A,B}$
 \end_inset
@@ -3209,19 +3195,6 @@ reference "thm:formula para el diagrama"
 .
 \end_layout
 
-\begin_layout Proof
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cambiar enunciados de los teoremas de def para se tiene que...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Theorem
 \begin_inset Argument 1
 status open
@@ -3268,6 +3241,7 @@ Sean
 -estructuras, los siguientes son equivalentes:
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 Hay una fórmula abierta positiva que define a 
 \begin_inset Formula $R$
@@ -3304,6 +3278,7 @@ Para todas
 .
 \end_layout
 
+\end_deeper
 \begin_layout Proof
 Análoga a la prueba del Teorema 
 \begin_inset CommandInset ref
