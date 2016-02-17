@@ -17697,8 +17697,15 @@ SageMath
 \end_layout
 
 \begin_layout Standard
-SageMath es un software matemático libre licenciado bajo la GPL, con el
- objetivo de ser una alternativa libre a Magma, Maple, Mathematica y Matlab.
+SageMath 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sage"
+
+\end_inset
+
+ es un software matemático libre licenciado bajo la GPL, con el objetivo
+ de ser una alternativa libre a Magma, Maple, Mathematica y Matlab.
  
 \end_layout
 
@@ -17713,8 +17720,15 @@ Minion
 \end_layout
 
 \begin_layout Standard
-Minion es un solucionador de CSP, rápido y escalable respecto del incremento
- del tamaño del problema.
+Minion 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "minion"
+
+\end_inset
+
+ es un solucionador de CSP, rápido y escalable respecto del incremento del
+ tamaño del problema.
  Es un solucionador de propósito general con un lenguaje de entrada muy
  expresivo.
  Minion es software libre, licenciado bajo la GPL 2.
@@ -17730,7 +17744,14 @@ LADR
 \end_layout
 
 \begin_layout Standard
-LADR es la interfaz de linea de comandos para Prober9 y Mace4.
+LADR es la interfaz de linea de comandos para Prober9 y Mace4 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "prover9-mace4"
+
+\end_inset
+
+.
  Prover9 es un probador automático de teoremas para primer orden y lógica
  ecuacional y Mace4 es un software capaz de encontrar modelos finitos y
  contraejemplos.
