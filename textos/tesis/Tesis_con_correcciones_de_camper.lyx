@@ -18907,6 +18907,12 @@ En este trabajo se hicieron los siguientes aportes:
 \end_layout
 
 \begin_layout Itemize
+Se probaron resultados para la construcción de un conjunto generador del
+ conjunto de morfismos a revisar para definibilidad abierta y definibilidad
+ abierta positiva.
+\end_layout
+
+\begin_layout Itemize
 Se desarrollaron algoritmos para decidir definibilidad de relaciones en
  primer orden, en fórmulas abiertas, abiertas positivas, existenciales y
  existenciales positivas.
@@ -19040,6 +19046,19 @@ También esperamos explorar mejores implementaciones para la generación de
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UACalc"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Esperamos también seguir con el estudio teórico de la definibilidad existencial
+ positiva en reticulados positivos, buscando generalizar más lo expuesto
+ en el Teorema 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
 
 \end_inset
 
