@@ -17985,7 +17985,7 @@ $ git clone https://github.com/pablogventura/definability.git
 
 \begin_layout Plain Layout
 
-$ cd tesis/package
+$ cd definability/package
 \end_layout
 
 \begin_layout Plain Layout
@@ -19018,8 +19018,8 @@ También, queda pendiente explorar y aprovechar en la implementación, la
 
 \begin_layout Standard
 También esperamos explorar mejores implementaciones para la generación de
- subestructuras, investigando a fondo los algoritmos utilizados por el Universal
- Álgebra Calculator 
+ subestructuras, por ejemplo estudiando los algoritmos utilizados por el
+ Universal Álgebra Calculator 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UACalc"
@@ -19027,11 +19027,6 @@ key "UACalc"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-En cuanto a nuestra implementación, pensamos que se podría mejorar portando
- algunas de las partes más críticas a C.
 \end_layout
 
 \begin_layout Standard
