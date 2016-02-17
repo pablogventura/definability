@@ -62,6 +62,12 @@ backgroundcolor=\color{gray75},
 \let\oddsidemargin\evensidemargin
 \let\evensidemargin\tmp
 \reversemarginpar
+
+\algnewcommand\algorithmicinput{\textbf{Entrada:}}
+\algnewcommand\Input{\item[\algorithmicinput]}
+
+\algnewcommand\algorithmicoutput{\textbf{Salida:}}
+\algnewcommand\Output{\item[\algorithmicoutput]}
 \end_preamble
 \use_default_options false
 \begin_modules
