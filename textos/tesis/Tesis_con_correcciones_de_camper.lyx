@@ -5386,7 +5386,7 @@ En este capítulo exponemos los algoritmos para el chequeo de definibilidad
  La exposición se centra en los algoritmos para definibilidad abierta y
  abierta positiva, ya que consideramos que estos capturan las principales
  ideas desarrolladas.
- Luego se desarrollan, pero con menos detalle, algoritmos para definibilidad
+ Luego se exponen, pero con menos detalle, algoritmos para definibilidad
  existencial, existencial positiva y de primer orden.
 \end_layout
 
@@ -12649,6 +12649,13 @@ name "chap:Álgebras-de-Lindenbaum"
 
 \end_layout
 
+\begin_layout Standard
+En este capítulo desarrollamos algoritmos para generar el algebra de relaciones
+ definibles para una estructura dada.
+ Esto nos permite calcular todas las relaciones definibles sobre una estructura,
+ para una cierta aridad y en un cierto fragmento de primer orden.
+\end_layout
+
 \begin_layout Section
 Definiciones e ideas básicas
 \end_layout
@@ -17562,6 +17569,25 @@ name "chap:Documentación-de-Definability"
 \end_inset
 
  
+\end_layout
+
+\begin_layout Standard
+En este capítulo, exponemos la herramienta que desarrollamos que implementa
+ los algoritmos de los Capítulos 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:algoritmos de chequeo"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Álgebras-de-Lindenbaum"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
