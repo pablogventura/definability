@@ -2154,7 +2154,7 @@ Sea
 \end_inset
 
 1) Supongamos que para toda fórmula abierta 
-\begin_inset Formula $\varphi=\varphi(\bar{x})$
+\begin_inset Formula $\varphi(\bar{x})$
 \end_inset
 
  y cada 
@@ -3542,7 +3542,7 @@ Para todas
 \end_inset
 
 2) Sea 
-\begin_inset Formula $\varphi$
+\begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
  existencial que define a 
@@ -3680,7 +3680,7 @@ reference "thm:cantidad de formulas es finita"
  Ahora tomamos 
 \begin_inset Formula 
 \[
-\varphi=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
+\varphi\left(\bar{x}\right)=\bigvee_{\mathbf{A}\in\mathcal{K}}\left(\bigvee_{\bar{a}\in R^{\mathbf{A}}}\left(\exists\bar{y}\,\delta_{\mathbf{A},(\bar{a},\bar{a'})}\left(\bar{x},\bar{y}\right)\right)\right)
 \]
 
 \end_inset
@@ -4094,7 +4094,7 @@ Sean
 \end_inset
 
  estructuras y 
-\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\begin_inset Formula $\varphi\left(\bar{x}\right)=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
  con 
@@ -4661,7 +4661,7 @@ Hay una
 \end_inset
 
 1) Sea 
-\begin_inset Formula $\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
+\begin_inset Formula $\varphi\left(\bar{x}\right)=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right)$
 \end_inset
 
  primitiva positiva que define a 
@@ -4893,7 +4893,7 @@ reference "thm:cantidad de formulas es finita"
 Sea 
 \begin_inset Formula 
 \[
-\varphi=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right).
+\varphi\left(\bar{x}\right)=\exists\bar{y}\,\psi\left(\bar{x},\bar{y}\right).
 \]
 
 \end_inset
@@ -5124,7 +5124,7 @@ Para todas
 \end_inset
 
 2) Sea 
-\begin_inset Formula $\varphi$
+\begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
  una 
@@ -5674,7 +5674,7 @@ Sean
 \end_inset
 
 -fórmula 
-\begin_inset Formula $\varphi$
+\begin_inset Formula $\varphi\left(\bar{x}\right)$
 \end_inset
 
  son equivalentes:
@@ -7593,10 +7593,7 @@ Function{
 
 \end_inset
 
-
-chequearIso
-\lang spanish
-s
+chequearIsos
 \begin_inset ERT
 status open
 
