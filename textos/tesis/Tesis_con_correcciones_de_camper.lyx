@@ -609,7 +609,7 @@ has_inner_box 1
 inner_pos "t"
 use_parbox 0
 use_makebox 0
-width "80text%"
+width "90text%"
 special "none"
 height "1in"
 height_special "totalheight"
@@ -627,8 +627,8 @@ Abstract
 
 \lang english
 The definability of a relation for a class of structures, for some first
- order fragment, holds a semantic notion associated with its bases in preservati
-on properties of differents kinds of morphisms.
+ order fragment, holds a semantic characterization associated with its bases
+ in preservation properties of differents kinds of morphisms.
  In this work, we propose algorithms to decide definability in an automatic
  way; also, algorithms to generate the algebra of definable relations for
  a class of structures are provided.
@@ -658,7 +658,7 @@ has_inner_box 1
 inner_pos "t"
 use_parbox 0
 use_makebox 0
-width "80text%"
+width "90text%"
 special "none"
 height "1in"
 height_special "totalheight"
@@ -673,8 +673,16 @@ Resumen
 
 \begin_layout Plain Layout
 La definibilidad de una relación en una clase de estructuras para algún
- fragmento de primer orden tiene una noción semántica asociada fundamentada
- en propiedades de preservación de diferentes tipos de morfismos.
+ fragmento de primer orden tiene una caracterización semántica asociada
+ fundamentada en propiedades de preservación de diferentes tipos de morfismos
+ como se expone en 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Campercholi15"
+
+\end_inset
+
+.
  Este trabajo propone algoritmos para decidir definibilidad automáticamente
  como así también algoritmos para generar el álgebra de relaciones definibles
  para una clase de estructuras.
@@ -706,7 +714,7 @@ Agradecimientos
 \begin_layout Standard
 \noindent
 \align left
-A Inés, por ayudarme tanto y soportar los fines de semana de estudio,
+A Inés, por acompañarme siempre y soportar los fines de semana de estudio,
 \begin_inset Newline newline
 \end_inset
 
@@ -7840,10 +7848,7 @@ Comment
 \begin_inset Formula $\gamma$
 \end_inset
 
- es iso con el representante
- y preserva
-\lang spanish
-
+ es iso con el representante y preserva
 \begin_inset ERT
 status open
 
@@ -10471,10 +10476,7 @@ Comment
 \begin_inset Formula $\mathbf{S}\in\mathcal{S}$
 \end_inset
 
-
  y preserva
-\lang spanish
-
 \begin_inset ERT
 status open
 
