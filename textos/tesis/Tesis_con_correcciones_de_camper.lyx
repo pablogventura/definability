@@ -853,7 +853,7 @@ Dados:
 \begin_inset Formula $\Sigma$
 \end_inset
 
- uno de los siguientes subconjutos de 
+ uno de los siguientes subconjuntos de 
 \begin_inset Formula $\mathcal{L}\setminus\{R\}$
 \end_inset
 
@@ -862,16 +862,23 @@ Dados:
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-asdf
+abiertas,
 \end_layout
 
-\end_inset
+\begin_layout Itemize
+abiertas positivas,
+\end_layout
 
+\begin_layout Itemize
+existenciales,
+\end_layout
 
+\begin_layout Itemize
+existenciales positivas,
+\end_layout
+
+\begin_layout Itemize
+fórmulas sin restricciones
 \end_layout
 
 \end_deeper
