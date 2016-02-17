@@ -854,7 +854,7 @@ Dados:
 \end_inset
 
  uno de los siguientes subconjuntos de 
-\begin_inset Formula $\mathcal{L}\setminus\{R\}$
+\begin_inset Formula $\mathcal{L}-\{R\}$
 \end_inset
 
 -fórmulas:
@@ -1007,7 +1007,7 @@ Todo isomorfismo
 \begin_inset Formula $\sigma:\mathbf{A}_{0}\rightarrow\mathbf{B}_{0}$
 \end_inset
 
- donde 
+ con 
 \begin_inset Formula $\mathbf{A}_{0}$
 \end_inset
 
@@ -1015,11 +1015,11 @@ Todo isomorfismo
 \begin_inset Formula $\mathbf{B}_{0}$
 \end_inset
 
- son subestructuras en 
+ 
 \begin_inset Formula $\mathcal{L}-\left\{ R\right\} $
 \end_inset
 
- de 
+-subestructuras de 
 \begin_inset Formula $\mathbf{A}$
 \end_inset
 
@@ -4505,7 +4505,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \end_inset
 
 .
- Como por hipótesis 
+ Por hipótesis 
 \begin_inset Formula $h$
 \end_inset
 
@@ -4513,7 +4513,7 @@ reference "thm:diagrama atomico positivo sii homomorfismo"
 \begin_inset Formula $R$
 \end_inset
 
-, entonces como 
+, luego como 
 \begin_inset Formula $\left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\in R^{\mathbf{A}_{j}}$
 \end_inset
 
@@ -4983,7 +4983,7 @@ en
 \end_inset
 
 .
- Como por hipótesis 
+ Por hipótesis 
 \begin_inset Formula $h$
 \end_inset
 
@@ -4991,7 +4991,7 @@ en
 \begin_inset Formula $R$
 \end_inset
 
-, entonces como 
+, luego como 
 \begin_inset Formula $\left(x_{1i}^{j},\dots,x_{ni}^{j}\right)\in R^{\mathbf{A}_{j}}$
 \end_inset
 
@@ -5151,11 +5151,11 @@ Para todas
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, y sea 
+, y sea un isomorfismo 
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
- un isomorfismo.
+.
  Si 
 \begin_inset Formula $\sat{\mathbf{A}}{\varphi}{\bar{a}}$
 \end_inset
@@ -13445,10 +13445,10 @@ chequearBihomos
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement H
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -14050,10 +14050,10 @@ end{algorithmic}
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement H
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -14921,10 +14921,9 @@ end{algorithmic}
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -17258,10 +17257,10 @@ Sea
 \end_inset
 
  un reticulado distributivo y 
-\begin_inset Formula $R$
+\begin_inset Formula $R\neq\emptyset$
 \end_inset
 
- una relación binaria no vacía sobre 
+ una relación binaria sobre 
 \begin_inset Formula $L$
 \end_inset
 
@@ -17668,7 +17667,7 @@ Arquitectura del paquete
 \begin_layout Standard
 Nuestro paquete se basa en parte en las librerías desarrolladas por Peter
  Jipsen para utilizar Minion, Universal Álgebra Calculator, Mace4 y Prover9
- desde SageMath que se pueden obtener en 
+ desde SageMath disponibles en 
 \begin_inset CommandInset href
 LatexCommand href
 target "http://math.chapman.edu/~jipsen/sagepkg/"
@@ -18675,11 +18674,11 @@ Este modulo contiene las siguientes funciones:
 \family typewriter
 ji_of_existencial_definable_algebra
 \family default
- para generar los elementos join-irreducibles de 
+ genera los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{n}\left(\mathcal{K}\right)$
 \end_inset
 
- 
+ .
 \end_layout
 
 \begin_layout Description
@@ -18687,11 +18686,11 @@ ji_of_existencial_definable_algebra
 \family typewriter
 ji_of_existencial_positive_definable_algebra
 \family default
- para generar los elementos join-irreducibles de 
+ genera los elementos join-irreducibles de 
 \begin_inset Formula $\mathbf{E}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Description
@@ -18699,11 +18698,11 @@ ji_of_existencial_positive_definable_algebra
 \family typewriter
 atoms_of_open_definable_algebra
 \family default
- para generar los átomos de 
+ genera los átomos de 
 \begin_inset Formula $\mathbf{Op}_{n}\left(\mathcal{K}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Description
@@ -18711,11 +18710,11 @@ atoms_of_open_definable_algebra
 \family typewriter
 ji_of_open_positive_definable_algebra
 \family default
- para generar los elementos join-irreducibles de 
+ genera los elementos de 
 \begin_inset Formula $\mathbf{Op}_{n}^{+}\left(\mathcal{K}\right)$
 \end_inset
 
-
+ que son join-irreducibles.
 \end_layout
 
 \begin_layout Standard
@@ -19053,9 +19052,9 @@ key "UACalc"
 \end_layout
 
 \begin_layout Standard
-Esperamos también seguir con el estudio teórico de la definibilidad existencial
- positiva en reticulados positivos, buscando generalizar más lo expuesto
- en el Teorema 
+Esperamos también continuar el estudio teórico de la definibilidad existencial
+ positiva en reticulados positivos, buscando generalizar hacia mayores aridades
+ resultados como el expuesto en el Teorema 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Caracterizacion de las relaciones binarias definibles por existenciales positivas en reticulados distributivos"
