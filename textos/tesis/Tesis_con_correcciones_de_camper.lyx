@@ -2479,8 +2479,8 @@ reference "thm:embeddings preservan abiertas"
 \end_layout
 
 \begin_layout Standard
-En el lema siguiente se determina que los homomorfismos preservan formulas
- atómicas, y también formulas abiertas positivas.
+En el lema siguiente se determina que los homomorfismos preservan fórmulas
+ atómicas, y también fórmulas abiertas positivas.
 \end_layout
 
 \begin_layout Lemma
@@ -4062,7 +4062,7 @@ se tiene que
 
 \begin_layout Standard
 El siguiente lema determina que el producto entre estructuras preserva las
- formulas atómicas.
+ fórmulas atómicas.
 \end_layout
 
 \begin_layout Lemma
@@ -4865,7 +4865,7 @@ reference "thm:cantidad de formulas es finita"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- al diagrama atomico positivo 
+ al diagrama atómico positivo 
 \begin_inset Formula 
 \[
 \Delta_{\mathbf{A}_{1}^{\left|R^{\mathbf{A}_{1}}\right|}\times\cdots\times\mathbf{A}_{m}^{\left|R^{\mathbf{A}_{m}}\right|},\left(\enumeracion[][\bar{x}],\enumeracion[k][\bar{x'}]\right)}^{+}(\bar{x},\bar{y}).
@@ -12702,7 +12702,7 @@ name "chap:Álgebras-de-Lindenbaum"
 \end_layout
 
 \begin_layout Standard
-En este capítulo desarrollamos algoritmos para generar el algebra de relaciones
+En este capítulo desarrollamos algoritmos para generar el álgebra de relaciones
  definibles para una estructura dada.
  Esto nos permite calcular todas las relaciones definibles sobre una estructura,
  para una cierta aridad y en un cierto fragmento de primer orden.
@@ -13396,7 +13396,7 @@ chequearIsos
 \family typewriter
 chequearBihomos
 \family default
- de los Algortimos 
+ de los Algoritmos 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:constelacion abierta"
@@ -13416,7 +13416,7 @@ reference "alg:constelacion existencial positiva"
 buscarIsos
 \family default
  devuelve el isomorfismo que hubiera chequeado la función chequearIsos y
- si no hay isomorfimo devuelve 
+ si no hay isomorfismo devuelve 
 \family typewriter
 Null
 \family default
@@ -13426,7 +13426,7 @@ Null
 buscarBihomos
 \family default
  devuelve el isomorfismo y una lista de homomorfismos biyectivos que hubiera
- chequeado por preservacion la función 
+ chequeado por preservación la función 
 \family typewriter
 chequearBihomos
 \family default
@@ -18856,7 +18856,7 @@ En este trabajo se hicieron los siguientes aportes:
 
 \begin_layout Itemize
 Se desarrollaron algoritmos para decidir definibilidad de relaciones en
- primer orden, en formulas abiertas, abiertas positivas, existenciales y
+ primer orden, en fórmulas abiertas, abiertas positivas, existenciales y
  existenciales positivas.
 \end_layout
 
@@ -18909,7 +18909,7 @@ Trabajo futuro
 
 \begin_layout Standard
 La experiencia durante el desarrollo nos ha hecho notar que la gran parte
- de los cálculos provienen del calculo de morfismos.
+ de los cálculos provienen del cálculo de morfismos.
  En relación a la incidencia que puedan tener propiedades de 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
