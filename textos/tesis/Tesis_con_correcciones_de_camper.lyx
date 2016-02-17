@@ -6968,8 +6968,8 @@ State{
 
 \end_inset
 
-(iso, ce) 
-\begin_inset Formula $=$
+
+\begin_inset Formula $(iso,\, ce)=$
 \end_inset
 
  
@@ -7064,7 +7064,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\textnormal{ce}\neq\textnormal{Null}$
+\begin_inset Formula $ce\neq\textnormal{Null}$
 \end_inset
 
 
@@ -7107,7 +7107,11 @@ Return
 
 \end_inset
 
-ce 
+
+\begin_inset Formula $ce$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -7120,7 +7124,11 @@ Comment
 
 \end_inset
 
- ce es contraejemplo
+ 
+\begin_inset Formula $ce$
+\end_inset
+
+ es contraejemplo
 \begin_inset ERT
 status open
 
@@ -7163,7 +7171,11 @@ If{
 
 \end_inset
 
-iso
+
+\begin_inset Formula $iso$
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -7730,11 +7742,11 @@ Return
 
 \end_inset
 
-(True, 
-\begin_inset Formula $\gamma$
+
+\begin_inset Formula $(\textnormal{True},\gamma)$
 \end_inset
 
-) 
+ 
 \begin_inset ERT
 status open
 
@@ -7807,7 +7819,11 @@ Return
 
 \end_inset
 
-(True, Null) 
+
+\begin_inset Formula $(\textnormal{True},\textnormal{Null})$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -7912,7 +7928,11 @@ Return
 
 \end_inset
 
-(False, Null) 
+
+\begin_inset Formula $(\textnormal{False},\textnormal{Null})$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -9218,7 +9238,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{iso,ce}\right)=$
+\begin_inset Formula $\left(iso,ce\right)=$
 \end_inset
 
  
@@ -9313,7 +9333,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\textnormal{ce}\neq\textnormal{null}$
+\begin_inset Formula $ce\neq\textnormal{Null}$
 \end_inset
 
 
@@ -9356,7 +9376,11 @@ Return
 
 \end_inset
 
-ce 
+
+\begin_inset Formula $ce$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -9369,7 +9393,11 @@ Comment
 
 \end_inset
 
- ce es contraejemplo
+ 
+\begin_inset Formula $ce$
+\end_inset
+
+ es contraejemplo
 \begin_inset ERT
 status open
 
@@ -9413,7 +9441,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\textnormal{iso}$
+\begin_inset Formula $iso$
 \end_inset
 
 
@@ -10165,27 +10193,11 @@ State{
 
 \end_inset
 
-bihomos 
-\begin_inset Formula $=$
+
+\begin_inset Formula $bihomos=[\gamma:\textnormal{ con }\gamma\textnormal{ }\mathcal{L}\textnormal{-homomorfismo biyectivo de }\mathcal{\mathbf{B}}\textnormal{ en }\mathbf{S}]$
 \end_inset
 
-[
-\begin_inset Formula $\gamma$
-\end_inset
 
-: 
-\begin_inset Formula $\funcion[\gamma]{\mathbf{B}}{\mathbf{S}}$
-\end_inset
-
- con 
-\begin_inset Formula $\gamma$
-\end_inset
-
- 
-\begin_inset Formula $\mathcal{L}$
-\end_inset
-
--homomorfismo biyectivo
 \begin_inset ERT
 status open
 
@@ -10213,7 +10225,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\gamma\in\textnormal{bihomos}$
+\begin_inset Formula $\gamma\in bihomos$
 \end_inset
 
 
@@ -10330,11 +10342,11 @@ Return
 
 \end_inset
 
-(True, 
-\begin_inset Formula $\gamma$
+
+\begin_inset Formula $(\textnormal{True},\gamma)$
 \end_inset
 
-) 
+ 
 \begin_inset ERT
 status open
 
@@ -10407,7 +10419,11 @@ Return
 
 \end_inset
 
-(True, Null) 
+
+\begin_inset Formula $(\textnormal{True},\textnormal{Null})$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -10595,8 +10611,8 @@ If{
 
 \end_inset
 
-bihomos 
-\begin_inset Formula $=\left[\right]$
+
+\begin_inset Formula $bihomos=\left[\right]$
 \end_inset
 
 
@@ -14182,8 +14198,8 @@ State{
 
 \end_inset
 
-iso 
-\begin_inset Formula $=$
+
+\begin_inset Formula $iso=$
 \end_inset
 
  
@@ -14252,8 +14268,8 @@ If{
 
 \end_inset
 
-iso 
-\begin_inset Formula $\neq$
+
+\begin_inset Formula $iso\neq$
 \end_inset
 
  Null
@@ -14284,7 +14300,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ \textnormal{iso}\right\} $
+\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ iso\right\} $
 \end_inset
 
 
@@ -14808,7 +14824,11 @@ Return
 
 \end_inset
 
-Null 
+
+\begin_inset Formula $\textnormal{Null}$
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -15056,7 +15076,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\left(\textnormal{iso,}\mathcal{F}_{0}\right)=$
+\begin_inset Formula $\left(iso,\mathcal{F}_{0}\right)=$
 \end_inset
 
  
@@ -15157,7 +15177,7 @@ If{
 \end_inset
 
 
-\begin_inset Formula $\textnormal{iso}\neq\textnormal{null}$
+\begin_inset Formula $iso\neq\textnormal{Null}$
 \end_inset
 
 
@@ -15188,7 +15208,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ \textnormal{iso}\right\} $
+\begin_inset Formula $\mathcal{F}=\mathcal{F}\cup\left\{ iso\right\} $
 \end_inset
 
 
