@@ -6920,7 +6920,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestr{\mathbf{A}_{\mathcal{L}}},\textnormal{ de la mayor a menor cardinalidad}\right]$
 \end_inset
 
 
@@ -7301,7 +7301,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut}(\mathbf{B}_{\mathcal{L}})$
 \end_inset
 
 
@@ -9213,7 +9213,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestr{\mathbf{A}_{\mathcal{L}}},\textnormal{ de la mayor a menor cardinalidad}\right]$
 \end_inset
 
 
@@ -11271,7 +11271,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\gamma\in\textrm{Emb_{\mathcal{L}}}\left(\mathbf{A},\mathbf{B}\right)$
+\begin_inset Formula $\gamma\in\left[\gamma:\textnormal{ con }\funcion[\gamma]{\mathbf{A}_{\mathcal{L}}}{\mathbf{B}_{\mathcal{L}}}\textnormal{ }\mathcal{L}\textnormal{-embedding}\right]$
 \end_inset
 
 
@@ -11678,7 +11678,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Hom_{\mathcal{L}}}(\mathbf{A},\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Hom}(\mathbf{A}_{\mathcal{L}},\mathbf{B}_{\mathcal{L}})$
 \end_inset
 
 
@@ -12053,7 +12053,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{A})$
+\begin_inset Formula $\alpha\in\textrm{Aut}(\mathbf{A}_{\mathcal{L}})$
 \end_inset
 
 
@@ -14177,7 +14177,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestr{\mathbf{A}_{\mathcal{L}}},\textnormal{ de la mayor a menor cardinalidad}\right]$
 \end_inset
 
 
@@ -14460,7 +14460,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut}(\mathbf{B}_{\mathcal{L}})$
 \end_inset
 
 
@@ -15048,7 +15048,7 @@ State{
 \end_inset
 
 
-\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestrl{\mathbf{A}}{\mathcal{L}},\textnormal{ de la mayor a menor cardinalidad}\right]$
+\begin_inset Formula $Sub=\left[\mathbf{C}:\mathbf{C}\in\subestr{\mathbf{A}_{\mathcal{L}}},\textnormal{ de la mayor a menor cardinalidad}\right]$
 \end_inset
 
 
@@ -15358,7 +15358,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut}(\mathbf{B}_{\mathcal{L}})$
 \end_inset
 
 
