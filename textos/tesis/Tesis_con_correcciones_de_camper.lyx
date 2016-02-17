@@ -507,8 +507,8 @@ end{titlepage}
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\imagen}[1]{\operatorname{Img}\left(#1\right)}
-{\mathrm{Img}\left(#1\right)}
+\newcommand{\imagen}[1]{\operatorname{Im}\left(#1\right)}
+{\mathrm{Im}\left(#1\right)}
 \end_inset
 
 
@@ -637,21 +637,24 @@ Abstract
 \begin_layout Plain Layout
 
 \lang english
-The definability of a relation for a class of structures, for some first
- order fragment, holds a semantic characterization associated with its bases
- in preservation properties of differents kinds of morphisms.
- In this work, we propose algorithms to decide definability in an automatic
- way; also, algorithms to generate the algebra of definable relations for
- a class of structures are provided.
- Beside presenting the algorithms, we'll introduce the package 
-\emph on
-Definability
-\emph default
-, used to implement the algorithms.
- Documentations of its use will be provided with some examples.
- Lastly, a theorem about the characterization of binary definable relations
- by positive existentials on distributive lattices will be proved.
- The theorem was inspired with the use of the package.
+In this work we develop algorithms to decide definability of relations over
+ finite families of finite first order structures.
+ We present algorithms for the following kinds of formulas: open, positive
+ open, existential, positive existential and without restrictions.
+ The starting point to these algorithms is a series of theoretical results
+ characterizing definability in terms of preservation of morphisms.
+ We also present procedures to generate the algebras of definable relations
+ for each of the above listed formats.
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang english
+Additionally, we introduce a package for SageMath, Definability, where the
+ algorithms are implemented.
+ The testing of this package inspired a theorem characterizing the binary
+ relations definable by positive existential formulas over distributive
+ lattices.
 \end_layout
 
 \end_inset
@@ -686,29 +689,26 @@ Resumen
 \end_layout
 
 \begin_layout Plain Layout
-La definibilidad de una relación en una clase de estructuras para algún
- fragmento de primer orden tiene una caracterización semántica asociada
- fundamentada en propiedades de preservación de diferentes tipos de morfismos
- como se expone en 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Campercholi15"
+En este trabajo desarrollamos algoritmos para decidir definibilidad de relacione
+s sobre familias finitas de estructuras finitas de primer orden.
+ Presentamos algoritmos para los siguientes tipos de fórmulas: abiertas,
+ abiertas positivas, existenciales, existenciales positivas y fórmulas sin
+ restricciones.
+ El punto de partida para estos algoritmos es una serie de resultados teóricos
+ que caracterizan la definibilidad en términos de la preservación de morfismos.
+ Presentamos además procedimientos para generar las álgebras de relaciones
+ definibles en los formatos arriba enumerados.
+\end_layout
 
-\end_inset
-
-.
- Este trabajo propone algoritmos para decidir definibilidad automáticamente
- como así también algoritmos para generar el álgebra de relaciones definibles
- para una clase de estructuras.
- Además de presentar los algoritmos, se presenta 
+\begin_layout Plain Layout
+Adicionalmente, introducimos el paquete 
 \emph on
 Definability
 \emph default
-, un paquete que implementa los algoritmos y se documenta su uso con algunos
- ejemplos.
- Luego se prueba un teorema sobre la caracterización de las relaciones binarias
- definibles por existenciales positivas en reticulados distributivos, que
- fue inspirado con la utilización de nuestro paquete.
+ desarrollado para SageMath, en el cual se implementan los algoritmos desarrolla
+dos.
+ Las pruebas de este paquete inspiraron un teorema que caracteriza las relacione
+s binarias definibles por existenciales positivas en reticulados distributivos.
 \end_layout
 
 \end_inset
@@ -758,23 +758,6 @@ LatexCommand tableofcontents
 
 \begin_layout Chapter
 Introducción
-\end_layout
-
-\begin_layout Standard
-En nuestra experiencia, los buenos algoritmos son descubiertos al hacer
- un análisis formal y/o matemático del problema a resolver.
- En este caso nos proponemos el desarrollo de algoritmos para resolver un
- problema básico de la teoría de modelos finitos: decidir definibilidad
- de relaciones en el lenguaje de primer orden.
- La motivación inicial fue la explotación de resultados teóricos del artículo
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Campercholi15"
-
-\end_inset
-
- que caracterizan la definibilidad en términos semánticos.
 \end_layout
 
 \begin_layout Section
@@ -870,13 +853,28 @@ Dados:
 \begin_inset Formula $\Sigma$
 \end_inset
 
- un conjunto recursivo de fórmulas de 
-\begin_inset Formula $\mathcal{L}-\{R\}$
+ uno de los siguientes subconjutos de 
+\begin_inset Formula $\mathcal{L}\setminus\{R\}$
 \end_inset
 
-, 
+-fórmulas:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+asdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Problem
 decidir si hay una fórmula de 
@@ -5447,14 +5445,45 @@ disjunta
 
 \begin_layout Standard
 Notar que esta hipótesis no afecta el grado de generalidad de los resultados
- y algoritmos, ya que bastaría con renombrar los elementos repetidos para
- obtener una clase disjunta equivalente.
- La razón principal para trabajar con clases disjuntas reside en que, si
- 
+ y algoritmos, ya que basta con renombrar los elementos repetidos para obtener
+ una clase disjunta equivalente.
+ La clase 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- es una clase disjunta, dado un morfismo 
+ será 
+\emph on
+normal
+\emph default
+ si es disjunta, finita y cada una de las estructuras en 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ es finita.
+ Supondremos en lo que sigue que las clases son siempre normales.
+ 
+\end_layout
+
+\begin_layout Standard
+Dada una clase de estructuras 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ escribiremos 
+\begin_inset Formula $\subestr{\mathcal{K}}$
+\end_inset
+
+ para denotar la clase formada por las subestructuras de miembros de 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+La razón principal para trabajar con clases disjuntas reside en que dado
+ un morfismo 
 \begin_inset Formula $\funcion[\gamma]{\mathbf{A}}{\mathbf{B}}$
 \end_inset
 
@@ -5462,7 +5491,7 @@ Notar que esta hipótesis no afecta el grado de generalidad de los resultados
 \begin_inset Formula $\mathbf{A},\mathbf{B}\in\subestr{\mathcal{K}}$
 \end_inset
 
- basta con conocer 
+, basta con conocer 
 \begin_inset Formula $\dominio{\gamma}$
 \end_inset
 
@@ -5479,24 +5508,6 @@ Notar que esta hipótesis no afecta el grado de generalidad de los resultados
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-La clase 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- será 
-\emph on
-normal
-\emph default
- si es disjunta, finita y cada una de las estructuras en 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
- es finita.
- Supondremos en lo que sigue que las clases son siempre normales.
- 
 \end_layout
 
 \begin_layout Standard
@@ -9566,7 +9577,7 @@ For{
 \end_inset
 
 
-\begin_inset Formula $\alpha\in\textrm{Aut_{\mathcal{L}}}(\mathbf{B})$
+\begin_inset Formula $\alpha\in\textrm{Aut}(\mathbf{B}_{\mathcal{L}})$
 \end_inset
 
 
@@ -18924,7 +18935,7 @@ reference "thm:Caracterizacion de las relaciones binarias definibles por existen
 
 .
  Esperamos que sea una herramienta muy útil como asistente de investigación
- para el grupo de Semántica Algebraica.
+ para problemas de definibilidad.
 \end_layout
 
 \begin_layout Section
