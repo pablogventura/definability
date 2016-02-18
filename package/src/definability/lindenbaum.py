@@ -9,13 +9,13 @@ from datetime import datetime
 from collections import defaultdict
 
 
-def atoms_of_existencial_definable_algebra(constellation, subtype, arity):
+def ji_of_existencial_definable_algebra(constellation, subtype, arity):
     """
     Devuelve los atomos del algebra de relaciones de cierta aridad con el subtipo,
     en la constelacion que DEBE TENER UN SOLO PLANETA
     >>> import constellation, examples
     >>> c = constellation.Constellation(examples.retrombo)
-    >>> atoms_of_existencial_definable_algebra(c,examples.tiporet,2)
+    >>> ji_of_existencial_definable_algebra(c,examples.tiporet,2)
     [Relation(
       [0, 0],
     ), Relation(
