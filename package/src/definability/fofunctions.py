@@ -41,7 +41,7 @@ class FO_Relation(FO_OpRel):
     """
 
     def __init__(self, d, d_universe):
-        if isinstance(d,list):
+        if d and isinstance(d,list) and isinstance(d[0],tuple):
             d = {k:True for k in d}
         assert d_universe
         super(FO_Relation, self).__init__(d)
