@@ -51,14 +51,16 @@ class Function(object):
     [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
     """
 
-    def __init__(self, d):
+    def __init__(self, d, arity=None):
         # assert issubclass(type(l),list)
         if isinstance(d, list):
             d = self.__list_to_dict(d)
         self.dict = d
+        self.empty = False
         assert all(isinstance(t, tuple) for t in self.dict.keys())
         if not self.dict:
-            assert False, "no manejo relaciones vacias"
+            self.empty = True
+            self.arityval = arity
         else:
             self.arityval = len(self.dict.keys()[0])
         self.relation = False  # maneja si la funcion es booleana
