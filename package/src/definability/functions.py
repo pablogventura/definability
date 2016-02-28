@@ -57,6 +57,10 @@ class Function(object):
             d = self.__list_to_dict(d)
         self.dict = d
         assert all(isinstance(t, tuple) for t in self.dict.keys())
+        if not self.dict:
+            assert False, "no manejo relaciones vacias"
+        else:
+            self.arityval = len(self.dict.keys()[0])
         self.relation = False  # maneja si la funcion es booleana
 
     def copy(self):
@@ -86,7 +90,7 @@ class Function(object):
         """
         Devuelve la aridad de la funcion, revisando la 'primer' tupla del diccionario.
         """
-        return len(self.dict.keys()[0])
+        return self.arityval
 
     def map_in_place(self, f):
         """
