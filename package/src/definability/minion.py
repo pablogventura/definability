@@ -154,6 +154,7 @@ class MorphMinionSol(MinionSol):
                                              self.source,
                                              self.target,
                                              self.subtype,
+                                             antitype=[],
                                              inj=self.inj,
                                              surj=self.surj)  # funcion que tipa los morfismos
         super(MorphMinionSol, self).__init__(input_data, allsols, fun=self.fun)

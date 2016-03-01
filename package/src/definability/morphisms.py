@@ -147,6 +147,8 @@ class Homomorphism(Function):
                 if self.source.relations[rel](*t):
                     result = result and self.target.relations[
                         rel](*self.vector_call(t))
+            if not result:
+                self.antitype.append(rel)
             return result
 
     def inverse_preserves_rel(self, rel):
@@ -164,6 +166,7 @@ class Homomorphism(Function):
             for row in self.target.relations[rel].table():
                 if all(x in self.image() for x in row):
                     if not row in frelSource:
+                        self.antitype.append(rel)
                         return False
             return True
 
@@ -201,7 +204,6 @@ class Homomorphism(Function):
 
         for rel in checktype.relations:
             if not self.preserves_relation(rel) or (check_inverse and not self.inverse_preserves_rel(rel)):
-                self.antitype.append(rel)
                 return False
 
         self.subtype = supertype  # se auto promueve a un homo del supertipo

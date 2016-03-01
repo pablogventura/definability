@@ -180,6 +180,7 @@ class TipedMultiDiGraph(object):
         for arrow in arrows:
             ce = self.add_check_arrow(arrow, subtype, supertype)
             if ce:
+
                 return ce
 
     def add_check_arrow(self, arrow, subtype, supertype):
@@ -266,7 +267,8 @@ class TipedMultiDiGraph(object):
 class Constellation(TipedMultiDiGraph):
 
     """
-
+    Constelation
+    
     >>> from examples import *
     >>> from constellation import *
     >>> from minion import MinionSol
@@ -317,7 +319,6 @@ class Constellation(TipedMultiDiGraph):
             iso = protosatellite.is_isomorphic_to_any(
                 self.iter_planets(len(protosatellite), [planet]), subtype)
             if iso:
-                print iso
                 if not iso.preserves_type(supertype):
                     return iso
                 explanet = iso.target
