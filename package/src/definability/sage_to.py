@@ -4,6 +4,7 @@
 import examples
 import model
 import fofunctions
+from itertools import product 
 
 
 def sage_lattice_to_model(lat):
@@ -23,6 +24,9 @@ def sage_poset_to_model(pos):
     """
     Convierte de un poset de sage a un modelo.
     """
-    le = [list(r) for r in pos.lequal_matrix().rows()]
+    le = []
+    for t in product(range(pos.cardinality()),repeat=2):
+        if pos.le(*t):
+            le.append(t)
     le = fofunctions.FO_Relation(le, range(pos.cardinality()))
     return model.FO_Model(examples.tipoposet, range(pos.cardinality()), {}, {"<=":le})
