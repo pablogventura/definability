@@ -11,8 +11,13 @@ def sage_lattice_to_model(lat):
     """
     Convierte de un reticulado de sage a un modelo.
     """
-    meet = [list(r) for r in lat.meet_matrix().rows()]
-    join = [list(r) for r in lat.join_matrix().rows()]
+    
+    meet = [[[] for i in range(lat.cardinality())] for i in range(lat.cardinality())]
+    join = [[[] for i in range(lat.cardinality())] for i in range(lat.cardinality())]
+    
+    for t in product(range(lat.cardinality()),repeat=2):
+        meet[t[0]][t[1]] = lat.meet(*t)
+        join[t[0]][t[1]] = lat.join(*t)
 
     meet = fofunctions.FO_Operation(meet)
     join = fofunctions.FO_Operation(join)
