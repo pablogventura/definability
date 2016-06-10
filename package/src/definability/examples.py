@@ -16,6 +16,7 @@ tipoposet = FO_Type({}, {"<=": 2})
 tiporet = FO_Type({"^": 2, "v": 2}, {})
 tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 1, "Min": 1}, {})
 tipotest = FO_Type({}, {"P": 1, "<=": 2})
+tipodistinto = FO_Type({}, {"!=": 2})
 
 posetrombo = FO_Model(tipoposet, range(4), {},
                       {'<=': FO_Relation({(0, 0): 1,
@@ -118,6 +119,22 @@ retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
                                         (3, 1): 1,
                                         (3, 2): 0,
                                         (3, 3): 1}, range(4)),
+                    '!=': FO_Relation({(0, 0): 0,
+                                        (0, 1): 1,
+                                        (0, 2): 1,
+                                        (0, 3): 1,
+                                        (1, 0): 1,
+                                        (1, 1): 0,
+                                        (1, 2): 1,
+                                        (1, 3): 1,
+                                        (2, 0): 1,
+                                        (2, 1): 1,
+                                        (2, 2): 0,
+                                        (2, 3): 1,
+                                        (3, 0): 1,
+                                        (3, 1): 1,
+                                        (3, 2): 1,
+                                        (3, 3): 0}, range(4)),                                        
                      # Relacion de prueba
                      "P": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 1}, range(4))
                      })
