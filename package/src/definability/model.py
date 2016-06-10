@@ -47,6 +47,12 @@ class FO_Model(object):
         """
         return minion.embeddings(self, target, subtype, without=without)
 
+    def automorphisms(self, subtype, without=[]):
+        """
+        Genera todos los automorfismos de este modelo, en el subtype.
+        """
+        return self.isomorphisms_to(self, subtype, without=without)
+
     def isomorphisms_to(self, target, subtype, without=[]):
         """
         Genera todos los isomorfismos de este modelo a target, en el subtype.
