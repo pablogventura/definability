@@ -35,11 +35,11 @@ class FO_Model(object):
         result += indent(repr(self.relations))
         return result + ")"
 
-    def homomorphisms_to(self, target, subtype, without=[]):
+    def homomorphisms_to(self, target, subtype, inj=None, surj=None, without=[]):
         """
         Genera todos los homomorfismos de este modelo a target, en el subtype.
         """
-        return minion.homomorphisms(self, target, subtype, without=without)
+        return minion.homomorphisms(self, target, subtype,inj=inj, surj=surj, without=without)
 
     def embeddings_to(self, target, subtype, without=[]):
         """
