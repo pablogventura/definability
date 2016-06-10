@@ -54,6 +54,15 @@ class Homomorphism(Function):
             else:
                 d[(self.dict[k],)] = k[0]
         return type(self)(d, self.target, self.source, self.subtype, self.antitype, self.inj, self.surj)
+    
+    def is_isomorphism(self):
+        esto es un error de sintaxis porque voy por aca
+        for rel in self.subtype.relations:
+            if not self.inverse_preserves_rel(rel):
+                return False
+
+        return True
+        
 
     def composition(self, g):
         """

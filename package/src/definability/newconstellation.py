@@ -92,17 +92,19 @@ def is_open_positive_definable(k, subtype, supertype):
 
     >>> from examples import *
     >>> k = {retrombo}
-    >>> is_open_positive_definable(k,tiporet,tiporet+tipoposet)
+    >>> is_open_definable(k,tiporet,tiporet+tipodistinto)
     (True, None)
-    >>> is_open_positive_definable(k,tiporet,tiporet+tipotest)
-    (False, Isomorphism(
+    >>> is_open_positive_definable(k,tiporet,tiporet+tipodistinto)
+    (False, Homomorphism(
+      [0] -> 0,
+      [1] -> 0,
       [2] -> 0,
+      [3] -> 0,
     ,
       FO_Type({'v': 2, '^': 2},{})
     ,
-      antitype= ['P']
+      antitype= ['!=']
     ,
-      Injective,
       Surjective,
     ))
     """
@@ -114,7 +116,7 @@ def is_open_positive_definable(k, subtype, supertype):
     for a in sorted(k, key=len, reverse=True):
         for (i,b) in a.substructures(subtype): # hay que chequear que las devuelva de mayor a menor
             # i es una funcion de inclusion, no se si hace falta
-            iso, ce = check_isos(b,s,subtype,supertype) # TODO BIHOMOS
+            iso, ce = check_bihomos(b,s,subtype,supertype)
             if ce:
                 # ce es un homomorfismo biyectivo o isomorfismo contraejemplo
                 return (False, ce)
@@ -134,6 +136,27 @@ def is_open_positive_definable(k, subtype, supertype):
                 # homo es un homomorfismo sobreyectivo no inyectivo contraejemplo
                 return (False,homo)
     return (True,None)
+
+def check_bihomos(a,s,subtype,supertype):
+    for b in ifilter(lambda x:len(a)==len(x),s):
+        bihomos = a.homomorphisms_to(b,subtype,inj=True,surj=True)
+        for h in bihomos:
+            if h es iso en el subtype: # ES EQUIVALENTE A QUE SEA EMBEDDING
+                if h.preserves_type(supertype): # preserva como ISOMORFISMO
+                    return (True,None)
+                else:
+                    #h es isomorfismo contraejemplo
+                    return (True,h)
+            elif not h.preserves_type(supertype): # no preserva como HOMOMORFISMO
+                # h es homomorfismo contraejemplo
+                return (False, h)
+        if not bihomos: # no habia bihomos reviso en la otra direccion por cantor-bernstein
+            assert len(bihomos) == 0 # por las dudas
+            for h in b.homomorphisms_to(a,subtype,inj=True,surj=True):
+                if not h.preserves_type(supertype):
+                    # h es un homomorfismo contraejemplo
+                    return (False,h)
+    return (False,None)
 
 if __name__ == "__main__":
     import doctest
