@@ -37,8 +37,12 @@ def is_open_definable(k, subtype, supertype):
 
     >>> from examples import *
     >>> k = {retrombo}
+    >>> retrombo.fo_type
+    FO_Type({'Max': 0, 'v': 2, 'Min': 0, '^': 2},{})
     >>> is_open_definable(k,tiporet,tiporet+tipoposet)
     (True, None)
+    >>> retrombo.fo_type
+    FO_Type({'Max': 0, 'v': 2, 'Min': 0, '^': 2},{})
     >>> is_open_definable(k,tiporet,tiporet+tipotest)
     (False, Isomorphism(
       [2] -> 0,
@@ -149,6 +153,34 @@ def check_bihomos(a,s,subtype,supertype):
                     # h es un homomorfismo contraejemplo
                     return (False,h)
     return (False,None)
+
+
+def is_existential_definable(k, subtype, supertype):
+    """
+    Devuelve una tupla diciendo si es definible y un contrajemplo
+    para la definibilidad existencial de supertype, en k con el subtype
+
+    >>> from examples import *
+    >>> k = {retrombo}
+    >>> is_existential_definable(k,tiporet,tiporetacotado)
+    (True, None)
+    >>> (b,e) = is_open_definable(k,tiporet,tiporetacotado)
+    >>> b
+    False
+    >>> isinstance(e,Embedding)
+    True
+    """
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    if ce:
+        #encontre un contraejemplo durante el preprosesamiento
+        return (False,ce)
+    s=set()
+    for a,b in product(k,repeat=2):
+        for emb in a.embeddings_to(b,subtype):
+            if not emb.preserves_type(supertype):
+                # emb es un automorfismo contrajemplo
+                return (False, emb)
+    return (True,None)
 
 if __name__ == "__main__":
     import doctest
