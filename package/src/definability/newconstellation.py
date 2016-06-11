@@ -168,8 +168,62 @@ def is_existential_definable(k, subtype, supertype):
     for a,b in product(k,repeat=2):
         for emb in a.embeddings_to(b,subtype):
             if not emb.preserves_type(supertype):
-                # emb es un automorfismo contrajemplo
+                # emb es un embedding contrajemplo
                 return (False, emb)
+    return (True,None)
+
+def is_existential_positive_definable(k, subtype, supertype):
+    """
+    Devuelve una tupla diciendo si es definible y un contrajemplo
+    para la definibilidad existencial positiva de supertype, en k con el subtype
+
+    >>> from examples import *
+    >>> k = {retrombo}
+    >>> is_existential_definable(k,tiporet,tiporetacotado)
+    (True, None)
+    >>> (b,h) = is_existential_positive_definable(k,tiporet,tiporetacotado) # parece que max, min no son def por extienciales positivas
+    >>> b
+    False
+    >>> isinstance(h, Homomorphism)
+    True
+    """
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    if ce:
+        #encontre un contraejemplo durante el preprosesamiento
+        return (False,ce)
+    s=set()
+    for a,b in product(k,repeat=2):
+        for hom in a.homomorphisms_to(b,subtype):
+            if not hom.preserves_type(supertype):
+                # hom es un homomorfismo contrajemplo
+                return (False, hom)
+    return (True,None)
+
+def is_definable(k, subtype, supertype):
+    """
+    Devuelve una tupla diciendo si es definible y un contrajemplo
+    para la definibilidad de primer orden de supertype, en k con el subtype
+
+    >>> from examples import *
+    >>> k = {retrombo}
+    >>> is_definable(k,tiporet,tiporetacotado)
+    (True, None)
+    >>> (b,a) = is_definable(k,tiporet,tiporet+tipotest2)
+    >>> b
+    False
+    >>> isinstance(a,Isomorphism)
+    True
+    """
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    if ce:
+        #encontre un contraejemplo durante el preprosesamiento
+        return (False,ce)
+    s=set()
+    for a in k:
+        for aut in a.automorphisms(subtype):
+            if not aut.preserves_type(supertype):
+                # aut es un automorfismo contrajemplo
+                return (False, aut)
     return (True,None)
 
 if __name__ == "__main__":
