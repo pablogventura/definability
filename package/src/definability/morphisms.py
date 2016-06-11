@@ -119,7 +119,18 @@ class Homomorphism(Function):
             result += indent("Surjective,")
         result += ")"
         return result
-
+    def __preserves_relations(self, rel_a, rel_b):
+        """
+        Revisa la preservacion entre dos relaciones.
+        Lo esperable seria que las dos relaciones tuvieran el mismo simbolo
+        en las estructuras A y B
+        """
+        result = True
+        for t in rel_a.domain():
+            if rel_a(*t):
+                result = result and rel_b(*self.vector_call(t))
+        return result
+        
     def preserves_relation(self, rel):
         """
         Revisa si el homomorfismo preserva la relacion.
@@ -154,33 +165,59 @@ class Homomorphism(Function):
         elif rel in self.antitype:
             return False
         else:
-            result = True
-            for t in self.source.relations[rel].domain():
-                if self.source.relations[rel](*t):
-                    result = result and self.target.relations[
-                        rel](*self.vector_call(t))
+            result = self.__preserves_relations(self.source.relations[rel], self.target.relations[rel])
             if not result:
                 self.antitype.append(rel)
             return result
 
-    def inverse_preserves_rel(self, rel):
+    def preserves_operation(self, op):
+        # TODO ES CORRECTA LA IDEA?
         """
-        Prueba que ("<=_b" interseccion Im(f)^aridad(<=_b)) este contenido en f("<=_a")
+        Revisa preservacion de una operacion a traves de revisar la preservacion ida y vuelta
+        de la relacion dada por el grafico
+        """
+        if op in self.subtype.operations:
+            return True
+        elif op in self.antitype:
+            return False
+        else:
+            rel_source = self.source.operations[op].graph_fo_relation(self.source.universe)
+            rel_target =  self.target.operations[op].graph_fo_relation(self.target.universe)
+            result = self.__preserves_relations(rel_source,rel_target) and self.__inverse_preserves_relations(rel_source,rel_target) 
+            if not result:
+                self.antitype.append(op)
+            return result
+
+
+    def __inverse_preserves_relations(self, rel_a, rel_b):
+        """
+        Prueba que ("rel_b" interseccion Im(f)^aridad(rel_b)) este contenido en f("rel_a")
         Funcion de Camper
         """
-        if rel in self.subtype.relations:
+        #frelSource = [map(lambda x: self(x), row) for row in rel_a.table()]
+        frelSource = []
+        for row in rel_a.table():
+            if set(row) <= set(x[0] for x in self.domain()):
+                frelSource.append(map(lambda x: self(x), row))
+        for row in rel_b.table():
+            if all(x in self.image() for x in row):
+                if not row in frelSource:
+                    return False
+        return True
+
+    def inverse_preserves_rel(self, rel):
+        """
+        Prueba la inversa preserve la relacion
+        """
+        if isinstance(self, Embedding) and rel in self.subtype.relations:
             return True
         elif rel in self.antitype:
             return False
         else:
-            frelSource = [map(lambda x: self(x), row)
-                          for row in self.source.relations[rel].table()]
-            for row in self.target.relations[rel].table():
-                if all(x in self.image() for x in row):
-                    if not row in frelSource:
-                        self.antitype.append(rel)
-                        return False
-            return True
+            result = self.__inverse_preserves_relations(self.source.relations[rel],self.target.relations[rel])
+            if not result:
+                self.antitype.append(rel)
+            return result
 
     def preserves_type(self, supertype, check_inverse=False):
         """
@@ -209,16 +246,16 @@ class Homomorphism(Function):
         >>> h.preserves_type(tiporet+tipotest)
         False
         """
-
         checktype = supertype - self.subtype
-        # no tiene que haber diferencia en las operaciones con el supertipo
-        assert not checktype.operations
 
         for rel in checktype.relations:
             if not self.preserves_relation(rel) or (check_inverse and not self.inverse_preserves_rel(rel)):
                 return False
+        for op in checktype.operations:
+            if not self.preserves_operation(op):
+                return False
 
-        self.subtype = supertype  # se auto promueve a un homo del supertipo
+        self.subtype = supertype.copy()  # se auto promueve a un homo del supertipo
         return True
 
 
