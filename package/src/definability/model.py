@@ -126,9 +126,9 @@ class FO_Model(object):
 
         >>> from examples import *
         >>> list(retrombo.subuniverses(tiporet))
-        [[0], [1], [2], [3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [0, 1, 2, 3], [0, 1, 2], [0, 1, 3]]
+        [[0, 1, 2, 3], [0, 1, 2], [0, 1, 3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [0], [1], [2], [3]]
         >>> list(posetrombo.subuniverses(tipoposet)) # debe dar el conjunto de partes sin el vacio, porque no tiene ops
-        [[0], [1], [2], [3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3], [0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3], [0, 1, 2, 3]]
+        [[0, 1, 2, 3], [0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3], [0], [1], [2], [3]]
         >>> list(retcadena2.subuniverses(tiporetacotado)) # debe dar todo entero, por las constantes
         [[0, 1]]
         """
