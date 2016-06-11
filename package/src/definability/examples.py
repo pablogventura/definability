@@ -14,7 +14,7 @@ from fofunctions import FO_Relation, FO_Operation
 
 tipoposet = FO_Type({}, {"<=": 2})
 tiporet = FO_Type({"^": 2, "v": 2}, {})
-tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 1, "Min": 1}, {})
+tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
 tipotest = FO_Type({}, {"P": 1, "<=": 2})
 tipodistinto = FO_Type({}, {"!=": 2})
 
@@ -65,6 +65,9 @@ posetdiamante = FO_Model(tipoposet, range(5), {}, {"<=": FO_Relation({(0, 0): 1,
 posetcadena2 = FO_Model(tipoposet, range(
     2), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, range(2))})
 
+retcadena2 = fotheories.Lat.find_models(2)[0]
+retcadena2.operations["Min"] = FO_Operation({(): 0})
+retcadena2.operations["Max"] = FO_Operation({(): 1})
 retdiamante = fotheories.Lat.find_models(5)[0]
 rettestlinden = fotheories.DLat.find_models(7)[0]
 retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
