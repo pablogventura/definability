@@ -22,6 +22,19 @@ def indent(text):
     text = "  " + text.strip("\n")
     return text.replace('\n', '\n  ') + "\n"
 
+def comment(text):
+    r"""
+    comenta un parrafo
+
+    >>> print comment("hola\n  hola\nhola")
+    # hola
+    #   hola
+    # hola
+    <BLANKLINE>
+    """
+    text = "# " + text.strip("\n")
+    return text.replace('\n', '\n# ') + "\n"
+
 
 def powerset(iterable):
     """
