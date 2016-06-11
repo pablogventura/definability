@@ -37,23 +37,13 @@ def is_open_definable(k, subtype, supertype):
 
     >>> from examples import *
     >>> k = {retrombo}
-    >>> retrombo.fo_type
-    FO_Type({'Max': 0, 'v': 2, 'Min': 0, '^': 2},{})
     >>> is_open_definable(k,tiporet,tiporet+tipoposet)
     (True, None)
-    >>> retrombo.fo_type
-    FO_Type({'Max': 0, 'v': 2, 'Min': 0, '^': 2},{})
-    >>> is_open_definable(k,tiporet,tiporet+tipotest)
-    (False, Isomorphism(
-      [2] -> 0,
-    ,
-      FO_Type({'v': 2, '^': 2},{})
-    ,
-      antitype= ['P']
-    ,
-      Injective,
-      Surjective,
-    ))
+    >>> (b,i) = is_open_definable(k,tiporet,tiporet+tipotest)
+    >>> b
+    False
+    >>> isinstance(i,Isomorphism)
+    True
     """
     k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
     if ce:
