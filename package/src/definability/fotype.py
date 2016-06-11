@@ -53,7 +53,7 @@ class FO_Type(object):
         """
         Resta de tipos, devuelve un nuevo tipo con las rel/op que pertenecen a self, pero no a other.
         """
-        assert other.is_subtype_of(self)
+        assert other.is_subtype_of(self), (self,other)
         result = self.copy()
         for op in other.operations:
             del result.operations[op]
@@ -67,7 +67,7 @@ class FO_Type(object):
         """
         result = self.copy()
         for rel in other.relations:
-            assert rel not in result.relations
+            assert rel not in result.relations, (rel, self, other)
             result.relations[rel] = other.relations[rel]
         for op in other.operations:
             assert op not in result.operations
