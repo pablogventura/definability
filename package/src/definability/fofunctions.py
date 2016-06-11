@@ -25,6 +25,10 @@ class FO_Operation(FO_OpRel):
         super(FO_Operation, self).__init__(d)
         self.relation = False
 
+    def graph_fo_relation(self,universe):
+        return FO_Relation([tuple(row) for row in self.table()],universe)
+
+
 
 class FO_Relation(FO_OpRel):
 
