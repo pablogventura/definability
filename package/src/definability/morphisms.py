@@ -55,8 +55,11 @@ class Homomorphism(Function):
                 d[(self.dict[k],)] = k[0]
         return type(self)(d, self.target, self.source, self.subtype, self.antitype, self.inj, self.surj)
     
-    def is_isomorphism(self):
-        esto es un error de sintaxis porque voy por aca
+    def is_embedding(self):
+        """
+        Devuelve si el homomorfismo es un embedding.
+        Revisa la vuelta de las relaciones.
+        """
         for rel in self.subtype.relations:
             if not self.inverse_preserves_rel(rel):
                 return False
