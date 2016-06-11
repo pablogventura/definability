@@ -12,6 +12,7 @@ import config
 import files
 from itertools import product
 from collections import defaultdict
+import misc
 
 
 class MinionSol(object):
@@ -200,7 +201,10 @@ class MorphMinionSol(MinionSol):
         B = self.target
 
         result = "MINION 3\n\n"
-        result += "# Busca homomorfismos de a en b\n"
+        result += "# Busca homomorfismos de \n"
+        result += misc.comment(str(A))
+        result += "# en\n"
+        result += misc.comment(str(B))
         if self.inj:
             result += "# que sean inyectivos\n"
         if self.surj:
