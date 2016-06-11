@@ -39,13 +39,13 @@ def comment(text):
 def powerset(iterable):
     """
     Devuelve un generador que itera sobre partes del iterable,
-    va de menor a mayor.
+    va de mayor a menor.
 
     >>> list(powerset([1,2,3]))
-    [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
+    [[1, 2, 3], [1, 2], [1, 3], [2, 3], [1], [2], [3], []]
     """
     s = list(iterable)
-    return imap(list, chain.from_iterable(combinations(s, r) for r in range(len(s) + 1)))
+    return imap(list, chain.from_iterable(combinations(s, r) for r in xrange(len(s) + 1,-1,-1)))
 
 
 if __name__ == "__main__":
