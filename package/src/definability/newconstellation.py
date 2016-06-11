@@ -94,19 +94,11 @@ def is_open_positive_definable(k, subtype, supertype):
     >>> k = {retrombo}
     >>> is_open_definable(k,tiporet,tiporet+tipodistinto)
     (True, None)
-    >>> is_open_positive_definable(k,tiporet,tiporet+tipodistinto)
-    (False, Homomorphism(
-      [0] -> 0,
-      [1] -> 0,
-      [2] -> 0,
-      [3] -> 0,
-    ,
-      FO_Type({'v': 2, '^': 2},{})
-    ,
-      antitype= ['!=']
-    ,
-      Surjective,
-    ))
+    >>> (b,h) = is_open_positive_definable(k,tiporet,tiporet+tipodistinto)
+    >>> b
+    False
+    >>> isinstance(h,Homomorphism)
+    True
     """
     k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
     if ce:
@@ -141,7 +133,7 @@ def check_bihomos(a,s,subtype,supertype):
     for b in ifilter(lambda x:len(a)==len(x),s):
         bihomos = a.homomorphisms_to(b,subtype,inj=True,surj=True)
         for h in bihomos:
-            if h es iso en el subtype: # ES EQUIVALENTE A QUE SEA EMBEDDING
+            if h.is_embedding(): # ES EQUIVALENTE A QUE SEA EMBEDDING
                 if h.preserves_type(supertype): # preserva como ISOMORFISMO
                     return (True,None)
                 else:
