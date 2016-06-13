@@ -56,7 +56,7 @@ def k_sub_homs(k, subtype):
     for a in sorted(k, key=len, reverse=True):
         for (i,b) in a.substructures(subtype): # hay que chequear que las devuelva de mayor a menor
             # i es una funcion de inclusion, no se si hace falta
-            for bihom in check_bihomos(b,s,subtype,supertype):
+            for bihom in check_bihomos(b,s,subtype):
                 yield bihom
                 if bihom.is_embedding: # es un isomorfismo
                     pass
