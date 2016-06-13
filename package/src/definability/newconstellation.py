@@ -3,7 +3,7 @@
 import networkx
 from examples import *
 from collections import defaultdict
-from itertools import product, chain, combinations, ifilter
+from itertools import product, chain, combinations, permutations, ifilter
 from morphisms import Isomorphism, Embedding, Homomorphism
 from minion import ParallelMorphMinionSol
 from model import FO_Model
@@ -45,9 +45,9 @@ def is_open_definable(k, subtype, supertype):
     >>> isinstance(i,Isomorphism)
     True
     """
-    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprocesamiento
     if ce:
-        #encontre un contraejemplo durante el preprosesamiento
+        #encontre un contraejemplo durante el preprocesamiento
         return (False,ce)
     s=set()
     for a in sorted(k, key=len, reverse=True):
@@ -94,9 +94,9 @@ def is_open_positive_definable(k, subtype, supertype):
     >>> isinstance(h,Homomorphism)
     True
     """
-    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprocesamiento
     if ce:
-        #encontre un contraejemplo durante el preprosesamiento
+        #encontre un contraejemplo durante el preprocesamiento
         return (False,ce)
     s=set()
     for a in sorted(k, key=len, reverse=True):
@@ -115,7 +115,7 @@ def is_open_positive_definable(k, subtype, supertype):
                     if not aut.preserves_type(supertype):
                         # aut es un automorfismo contrajemplo
                         return (False, aut)
-    for a,b in ifilter(lambda (a,b): len(a)>len(b), combinations(s,2)):
+    for a,b in ifilter(lambda (a,b): len(a)>len(b), permutations(s,2)):
         # como len(a)>len(b) los homos sobre no son inyectivos
         for homo in a.homomorphisms_to(b, subtype, surj=True):
             if not homo.preserves_type(supertype):
@@ -160,9 +160,9 @@ def is_existential_definable(k, subtype, supertype):
     >>> isinstance(e,Embedding)
     True
     """
-    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprocesamiento
     if ce:
-        #encontre un contraejemplo durante el preprosesamiento
+        #encontre un contraejemplo durante el preprocesamiento
         return (False,ce)
     s=set()
     for a,b in product(k,repeat=2):
@@ -187,9 +187,9 @@ def is_existential_positive_definable(k, subtype, supertype):
     >>> isinstance(h, Homomorphism)
     True
     """
-    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprocesamiento
     if ce:
-        #encontre un contraejemplo durante el preprosesamiento
+        #encontre un contraejemplo durante el preprocesamiento
         return (False,ce)
     s=set()
     for a,b in product(k,repeat=2):
@@ -214,9 +214,9 @@ def is_definable(k, subtype, supertype):
     >>> isinstance(a,Isomorphism)
     True
     """
-    k,ce=preprocessing(k,subtype,supertype) # hago el preprosesamiento
+    k,ce=preprocessing(k,subtype,supertype) # hago el preprocesamiento
     if ce:
-        #encontre un contraejemplo durante el preprosesamiento
+        #encontre un contraejemplo durante el preprocesamiento
         return (False,ce)
     s=set()
     for a in k:
