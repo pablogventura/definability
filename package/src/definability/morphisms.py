@@ -183,7 +183,7 @@ class Homomorphism(Function):
         else:
             rel_source = self.source.operations[op].graph_fo_relation(self.source.universe)
             rel_target =  self.target.operations[op].graph_fo_relation(self.target.universe)
-            result = self.__preserves_relations(rel_source,rel_target) and self.__inverse_preserves_relations(rel_source,rel_target) 
+            result = self.__preserves_relations(rel_source,rel_target)
             if not result:
                 self.antitype.append(op)
             return result
