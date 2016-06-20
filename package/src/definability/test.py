@@ -39,4 +39,4 @@ if __name__ == '__main__':
     print("=" * 80)
     print("Coverage:")
     cv.stop()
-    cv.report()
+    cv.report(show_missing=True)
