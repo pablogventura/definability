@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
+"""
+>>> len(DLat.find_models(5))
+3
+"""
 from fotheory import FO_Theory
 
 #########################
@@ -672,3 +679,7 @@ SK = FO_Theory(
     "SK", "Hilbert logic, -> reduct of intuitionistic logic", [Ss, Kk, MP])
 
 CL = FO_Theory("CL", "Classical logic", [Ss, Kk, DN, CP, MP])
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
