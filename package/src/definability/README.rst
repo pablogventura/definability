@@ -11,7 +11,7 @@ Instalación
    - Pip
    - Python 3.4 o posterior
    - Virtualenv
-   - `Minion 1.8 <http://constraintmodelling.org/minion/download/>` en ~/minion-1.8/bin/minion
+   - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_. en ~/minion-1.8/bin/minion
    - LADR-200LADR-2009-11A/bin
 
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
