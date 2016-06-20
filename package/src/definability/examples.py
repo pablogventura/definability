@@ -71,6 +71,7 @@ retcadena2.operations["Min"] = FO_Operation({(): 0})
 retcadena2.operations["Max"] = FO_Operation({(): 1})
 retdiamante = fotheories.Lat.find_models(5)[0]
 rettestlinden = fotheories.DLat.find_models(7)[0]
+rettestlinden2 = fotheories.DLat.find_models(5)[0]
 retrombo = FO_Model(tiporetacotado, list(range(4)), {'^': FO_Operation({(0, 0): 0,
                                                                   (0, 1): 0,
                                                                   (0, 2): 0,
