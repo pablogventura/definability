@@ -8,16 +8,15 @@ from datetime import datetime
 from collections import defaultdict
 
 def saturation(k, arity, morphisms):
-    assert len(k) == 1
-    k = list(k)[0]
+    s = list(k)[0]
     morphisms = list(morphisms)
-    singletons = list(map(tuple, list(product(k.universe, repeat=arity))))
+    singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
     result = []
 
     while singletons:
         a = singletons.pop()
-        result.append(closure(a, morphisms))
-        for t in result[-1]:
+        result.append(closurem(a,s,k, morphisms))
+        for t in result[-1][s]:
             if t in singletons:
                 singletons.remove(t)
     
@@ -46,16 +45,39 @@ def closure(t, arrows):
                 checked.append(t)
     return result
 
+def closurem(t,m,k, arrows):
+    """
+    Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
+    """
+    result = {a:[] for a in k}
+    result[m]=[t]
+    
+    checked = defaultdict(list)
 
+    while result != checked:
+        for source in result.keys():
+            for t in result[source]:
+                if t not in checked[source]:
+                    for i in (a for a in arrows if a.source.supermodel==source):
+                        
+                        try:
+                            it = i.vector_call(t)
+                        except ValueError:
+                            # no estaba en el dominio
+                            continue
+                        if it not in result[i.target.supermodel]:
+                            result[i.target.supermodel].append(it)
+                    checked[source].append(t)
+    return result
 
 if __name__ == "__main__":
     import examples
     import newconstellation2
-    k={examples.retrombo}
+    k={examples.retrombo, examples.rettestlinden2}
     for r in saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)):
-        print(r)
-    print("-"*80)
-    for r in saturation(k,2,newconstellation2.k_sub_isos(k,examples.tiporet)):
-        print(r)
+        print (r)
+    #print("-"*80)
+    #for r in saturation(k,2,newconstellation2.k_sub_isos(k,examples.tiporet)):
+    #    print(r)
     import doctest
     doctest.testmod()
