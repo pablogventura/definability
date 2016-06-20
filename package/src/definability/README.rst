@@ -11,8 +11,8 @@ Instalación
    - Pip
    - Python 3.4 o posterior
    - Virtualenv
-   - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_. en ~/minion-1.8/bin/minion
-   - LADR-200LADR-2009-11A/bin
+   - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_ en ~/minion-1.8/bin/minion
+   - `LADR 2009 11A <https://www.cs.unm.edu/~mccune/mace4/download/>`_ en ~/LADR-2009-11A/bin
 
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
 
@@ -32,15 +32,15 @@ Instalación
 
    Para crear y activar nuestro virtualenv::
 
-    mkvirtualenv --system-site-packages --python=/usr/bin/python3.4 pln-2015
+    mkvirtualenv --system-site-packages --python=/usr/bin/python3.4 py3def
 
 3. Bajar el código::
 
-    git clone https://github.com/PLN-FaMAF/PLN-2015.git
+    git clone https://github.com/pablogventura/definability.git
 
 4. Instalarlo::
 
-    cd pln-2015
+    cd definability/package/src/definability
     pip install -r requirements.txt
 
 
@@ -49,11 +49,11 @@ Ejecución
 
 1. Activar el entorno virtual con::
 
-    workon pln-2015
+    workon py3def
 
-2. Correr el script que uno quiera. Por ejemplo::
+2. Al correr python ya se corre Python 3
 
-    python languagemodeling/scripts/train.py -h
+3. Para correr ipython en Python 3 correr ipython3
 
 
 Testing
