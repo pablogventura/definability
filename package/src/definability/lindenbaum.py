@@ -54,6 +54,8 @@ if __name__ == "__main__":
     k={examples.retrombo}
     for r in saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)):
         print(r)
-
+    print("-"*80)
+    for r in saturation(k,2,newconstellation2.k_sub_isos(k,examples.tiporet)):
+        print(r)
     import doctest
     doctest.testmod()
