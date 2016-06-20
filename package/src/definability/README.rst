@@ -1,4 +1,4 @@
-PLN 2015: Procesamiento de Lenguaje Natural 2015
+Definability
 ================================================
 
 
@@ -10,8 +10,9 @@ Instalación
    - Git
    - Pip
    - Python 3.4 o posterior
-   - TkInter
    - Virtualenv
+   - `Minion 1.8 <http://constraintmodelling.org/minion/download/>` en ~/minion-1.8/bin/minion
+   - LADR-200LADR-2009-11A/bin
 
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
 
