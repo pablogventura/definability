@@ -22,6 +22,7 @@ def indent(text):
     text = "  " + text.strip("\n")
     return text.replace('\n', '\n  ') + "\n"
 
+
 def comment(text):
     r"""
     comenta un parrafo
@@ -45,7 +46,7 @@ def powerset(iterable):
     [[1, 2, 3], [1, 2], [1, 3], [2, 3], [1], [2], [3], []]
     """
     s = list(iterable)
-    return imap(list, chain.from_iterable(combinations(s, r) for r in xrange(len(s) + 1,-1,-1)))
+    return imap(list, chain.from_iterable(combinations(s, r) for r in xrange(len(s) + 1, -1, -1)))
 
 
 if __name__ == "__main__":

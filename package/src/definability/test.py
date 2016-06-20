@@ -9,8 +9,21 @@ cv.start()
 import unittest
 import doctest
 
-import config, examples, files, fofunctions, fotheories, fotheory, fotype, functions, mace4, minion, misc, model, morphisms, morphsgenerators, newconstellation2
-
+import config
+import examples
+import files
+import fofunctions
+import fotheories
+import fotheory
+import fotype
+import functions
+import mace4
+import minion
+import misc
+import model
+import morphisms
+import morphsgenerators
+import newconstellation2
 
 
 def load_tests(loader, tests, ignore):

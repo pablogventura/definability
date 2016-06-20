@@ -35,17 +35,20 @@ class TipedMultiDiGraph(object):
     def __init__(self, astros=[]):
         self.graph = networkx.MultiDiGraph()
         self.planets = defaultdict(list)  # diccionario con key de len(planet)
-        self.shadows = defaultdict(list) # diccionario con key de cuerpo celeste
-        self.astros = defaultdict(list)  # diccionario con key de len(astro), algunos van a ser planetas y otros sombras
+        # diccionario con key de cuerpo celeste
+        self.shadows = defaultdict(list)
+        # diccionario con key de len(astro), algunos van a ser planetas y otros
+        # sombras
+        self.astros = defaultdict(list)
         # diccionario con key de len(satellite)
         self.satellites = defaultdict(list)
         self.history = {}
         try:
             for astro in iter(astros):
-                assert isinstance(astro,FO_Model)
+                assert isinstance(astro, FO_Model)
                 self.astros[len(astro)].append(astro)
         except TypeError:
-            assert isinstance(astros,FO_Model)
+            assert isinstance(astros, FO_Model)
             self.astros[len(astros)].append(astros)
 
     def add_planet(self, planet):
@@ -268,7 +271,7 @@ class Constellation(TipedMultiDiGraph):
 
     """
     Constelation
-    
+
     >>> from examples import *
     >>> from constellation import *
     >>> from minion import MinionSol
@@ -365,17 +368,20 @@ class Constellation(TipedMultiDiGraph):
         self.preproceso(subtype)
 
         # con este codigo viejo, creo los main satellites
-        for len_planets in sorted(self.planets.iterkeys(), reverse=True):  # desde el planeta mas grande
+        # desde el planeta mas grande
+        for len_planets in sorted(self.planets.iterkeys(), reverse=True):
             for planet in self.planets[len_planets]:
                 inc, protosatellite = planet.substructure(
                     planet.universe, subtype)  # satellite principal
-                # en realidad no tiene sentido checkear, porque como son todos satelites principales, seguro no son isomorfos.
-                self.__open_check_protosatellite(protosatellite, inc, planet, subtype, supertype)
+                # en realidad no tiene sentido checkear, porque como son todos
+                # satelites principales, seguro no son isomorfos.
+                self.__open_check_protosatellite(
+                    protosatellite, inc, planet, subtype, supertype)
         # termina el codigo viejo
-        
+
         # ahora reviso los isomorfismos de cada planeta con sus sombras.
         for planet in self.iter_planets():
-            for shadow in self.shadows[planet]: #tiene sombras
+            for shadow in self.shadows[planet]:  # tiene sombras
                 for arrow in self.arrows(planet, shadow, morphtype=Isomorphism, subtype=subtype):
                     ce = self.add_check_arrow(arrow, subtype, supertype)
                     if ce:
@@ -416,7 +422,7 @@ class Constellation(TipedMultiDiGraph):
 
         # homomorfismos entre planetas
 
-        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.main_satellites(subtype), self.main_satellites(subtype), allsols=True, without={(a,b):self.arrows(a, b) for a, b in product(self.main_satellites(subtype), repeat=2)}):
+        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.main_satellites(subtype), self.main_satellites(subtype), allsols=True, without={(a, b): self.arrows(a, b) for a, b in product(self.main_satellites(subtype), repeat=2)}):
             ce = self.add_check_arrow(homo, subtype, supertype)
             if ce:
                 return (False, ce)
@@ -434,7 +440,7 @@ class Constellation(TipedMultiDiGraph):
             # no llego ni a ser definible por una formula existencial positiva
             return (b, ce)
 
-        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.iter_satellites(subtype), self.iter_satellites(subtype), allsols=True, without={(a,b):self.arrows(a, b) for a, b in product(self.iter_satellites(subtype), repeat=2)}):
+        for homo in ParallelMorphMinionSol(Homomorphism, subtype, self.iter_satellites(subtype), self.iter_satellites(subtype), allsols=True, without={(a, b): self.arrows(a, b) for a, b in product(self.iter_satellites(subtype), repeat=2)}):
             ce = self.add_check_arrow(homo, subtype, supertype)
             if ce:
                 return (False, ce)

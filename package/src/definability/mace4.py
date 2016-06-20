@@ -19,7 +19,7 @@ def getops(li, st, d_universe=None):
             result[oprel] = FO_Operation(result[oprel])
         elif st == "relation":
             assert d_universe
-            result[oprel] = FO_Relation(result[oprel],d_universe)
+            result[oprel] = FO_Relation(result[oprel], d_universe)
         else:
             raise KeyError
     return result
@@ -106,12 +106,12 @@ class Mace4Sol(object):
                     buf = buf[:-1]  # saco la coma!
                 m = eval(buf)
                 operations = getops(m[2], 'function')
-                relations = getops(m[2], 'relation',range(m[0]))
+                relations = getops(m[2], 'relation', range(m[0]))
                 fo_type = FO_Type({name: operations[name].arity() for name in operations.iterkeys()},
                                   {name: relations[name].arity()
                                    for name in relations.iterkeys()}
                                   )
-                return FO_Model(fo_type, range(m[0]),operations, relations)
+                return FO_Model(fo_type, range(m[0]), operations, relations)
             else:
                 # no hay un modelo completo
                 line = self.__stdout.readline()  # necesita otra linea

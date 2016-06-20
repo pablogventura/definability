@@ -25,9 +25,8 @@ class FO_Operation(FO_OpRel):
         super(FO_Operation, self).__init__(d)
         self.relation = False
 
-    def graph_fo_relation(self,universe):
-        return FO_Relation([tuple(row) for row in self.table()],universe)
-
+    def graph_fo_relation(self, universe):
+        return FO_Relation([tuple(row) for row in self.table()], universe)
 
 
 class FO_Relation(FO_OpRel):
@@ -45,8 +44,8 @@ class FO_Relation(FO_OpRel):
     """
 
     def __init__(self, d, d_universe):
-        if d and isinstance(d,list) and isinstance(d[0],tuple):
-            d = {k:True for k in d}
+        if d and isinstance(d, list) and isinstance(d[0], tuple):
+            d = {k: True for k in d}
         assert d_universe
         super(FO_Relation, self).__init__(d)
         self.d_universe = d_universe
@@ -56,7 +55,7 @@ class FO_Relation(FO_OpRel):
         """
         Revisa si la relacion es el grafico de una funcion para un universo dado.
         Si lo es, devuelve la funcion, y sino devuelve False.
-        
+
         >>> rel = FO_Relation({(0,0,1):1,(0,0,2):1,(1,1,2):1},range(4))
         >>> rel.is_a_function_graph(range(4))
         False

@@ -9,6 +9,8 @@ from fotheory import FO_Theory
 
 #########################
 # Properties of operations
+
+
 def assoc(s):
     return '(x' + s + 'y)' + s + 'z = x' + s + '(y' + s + 'z)'
 
@@ -34,6 +36,8 @@ def rdistr(s, t):
 
 #########################
 # Properties of relations
+
+
 def refl(r):
     return "x" + r + "x"
 

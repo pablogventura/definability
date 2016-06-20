@@ -54,7 +54,7 @@ class Homomorphism(Function):
             else:
                 d[(self.dict[k],)] = k[0]
         return type(self)(d, self.target, self.source, self.subtype, self.antitype, self.inj, self.surj)
-    
+
     def is_embedding(self):
         """
         Devuelve si el homomorfismo es un embedding.
@@ -65,7 +65,6 @@ class Homomorphism(Function):
                 return False
 
         return True
-        
 
     def composition(self, g):
         """
@@ -119,6 +118,7 @@ class Homomorphism(Function):
             result += indent("Surjective,")
         result += ")"
         return result
+
     def __preserves_relations(self, rel_a, rel_b):
         """
         Revisa la preservacion entre dos relaciones.
@@ -130,7 +130,7 @@ class Homomorphism(Function):
             if rel_a(*t):
                 result = result and rel_b(*self.vector_call(t))
         return result
-        
+
     def preserves_relation(self, rel):
         """
         Revisa si el homomorfismo preserva la relacion.
@@ -165,7 +165,8 @@ class Homomorphism(Function):
         elif rel in self.antitype:
             return False
         else:
-            result = self.__preserves_relations(self.source.relations[rel], self.target.relations[rel])
+            result = self.__preserves_relations(
+                self.source.relations[rel], self.target.relations[rel])
             if not result:
                 self.antitype.append(rel)
             return result
@@ -181,13 +182,14 @@ class Homomorphism(Function):
         elif op in self.antitype:
             return False
         else:
-            rel_source = self.source.operations[op].graph_fo_relation(self.source.universe)
-            rel_target =  self.target.operations[op].graph_fo_relation(self.target.universe)
-            result = self.__preserves_relations(rel_source,rel_target)
+            rel_source = self.source.operations[
+                op].graph_fo_relation(self.source.universe)
+            rel_target = self.target.operations[
+                op].graph_fo_relation(self.target.universe)
+            result = self.__preserves_relations(rel_source, rel_target)
             if not result:
                 self.antitype.append(op)
             return result
-
 
     def __inverse_preserves_relations(self, rel_a, rel_b):
         """
@@ -214,7 +216,8 @@ class Homomorphism(Function):
         elif rel in self.antitype:
             return False
         else:
-            result = self.__inverse_preserves_relations(self.source.relations[rel],self.target.relations[rel])
+            result = self.__inverse_preserves_relations(
+                self.source.relations[rel], self.target.relations[rel])
             if not result:
                 self.antitype.append(rel)
             return result
@@ -255,7 +258,8 @@ class Homomorphism(Function):
             if not self.preserves_operation(op):
                 return False
 
-        self.subtype = supertype.copy()  # se auto promueve a un homo del supertipo
+        # se auto promueve a un homo del supertipo
+        self.subtype = supertype.copy()
         return True
 
 

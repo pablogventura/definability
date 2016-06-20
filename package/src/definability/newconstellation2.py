@@ -9,7 +9,8 @@ from minion import ParallelMorphMinionSol
 from model import FO_Model
 from morphsgenerators import *
 
-def preprocessing(k,subtype,supertype):
+
+def preprocessing(k, subtype, supertype):
     """
     >>> from examples import *
     >>> rettest10.join_to_le()
@@ -21,10 +22,11 @@ def preprocessing(k,subtype,supertype):
     >>> (len(k),ce)
     (1, None)
     """
-    for iso in k_isos_no_auts(k,subtype):
+    for iso in k_isos_no_auts(k, subtype):
         if not iso.preserves_type(supertype):
-            return (k,iso)
-    return (k,None)
+            return (k, iso)
+    return (k, None)
+
 
 def is_open_definable(k, subtype, supertype):
     """
@@ -44,7 +46,7 @@ def is_open_definable(k, subtype, supertype):
     for subiso in k_sub_isos(k, subtype):
         if not subiso.preserves_type(supertype):
             return (False, subiso)
-    return (True,None)
+    return (True, None)
 
 
 def is_open_positive_definable(k, subtype, supertype):
@@ -65,7 +67,8 @@ def is_open_positive_definable(k, subtype, supertype):
     for subhom in k_sub_homs(k, subtype):
         if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
             return (False, subhom)
-    return (True,None)
+    return (True, None)
+
 
 def is_existential_definable(k, subtype, supertype):
     """
@@ -85,7 +88,8 @@ def is_existential_definable(k, subtype, supertype):
     for emb in k_embs(k, subtype):
         if not emb.preserves_type(supertype):
             return (False, emb)
-    return (True,None)
+    return (True, None)
+
 
 def is_existential_positive_definable(k, subtype, supertype):
     """
@@ -105,7 +109,8 @@ def is_existential_positive_definable(k, subtype, supertype):
     for hom in k_homs(k, subtype):
         if not hom.preserves_type(supertype):
             return (False, hom)
-    return (True,None)
+    return (True, None)
+
 
 def is_definable(k, subtype, supertype):
     """
@@ -125,7 +130,7 @@ def is_definable(k, subtype, supertype):
     for iso in k_isos(k, subtype):
         if not iso.preserves_type(supertype):
             return (False, iso)
-    return (True,None)
+    return (True, None)
 
 if __name__ == "__main__":
     import doctest

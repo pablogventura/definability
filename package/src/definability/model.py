@@ -39,7 +39,7 @@ class FO_Model(object):
         """
         Genera todos los homomorfismos de este modelo a target, en el subtype.
         """
-        return minion.homomorphisms(self, target, subtype,inj=inj, surj=surj, without=without)
+        return minion.homomorphisms(self, target, subtype, inj=inj, surj=surj, without=without)
 
     def embeddings_to(self, target, subtype, without=[]):
         """

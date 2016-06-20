@@ -17,6 +17,7 @@ import misc
 
 class MinionSol(object):
     count = 0
+
     def __init__(self, input_data, allsols=True, fun=lambda x: x):
         """
         Toma el input para minion, si espera todas las soluciones y una funcion para aplicar
@@ -117,7 +118,7 @@ class MinionSol(object):
         self.minionapp.stdin.close()
         self.minionapp.stderr.close()
         self.minionapp.kill()
-        
+
         del self.minionapp
         files.remove(self.input_filename)
 
@@ -373,8 +374,8 @@ class ParallelMorphMinionSol(object):
         self.surj = surj
         self.allsols = allsols
         self.solution = None
-        self.without = defaultdict(list,without)
-        self.queue = list(product(self.sources,self.targets))
+        self.without = defaultdict(list, without)
+        self.queue = list(product(self.sources, self.targets))
 
         self.poll = poll()
         self.minions = {}
@@ -385,7 +386,7 @@ class ParallelMorphMinionSol(object):
 
     def next_to_running(self):
         if self.queue:
-            source,target = self.queue.pop()
+            source, target = self.queue.pop()
             new_minion = MorphMinionSol(self.morph_type,
                                         self.subtype,
                                         source,
@@ -393,7 +394,7 @@ class ParallelMorphMinionSol(object):
                                         inj=self.inj,
                                         surj=self.inj,
                                         allsols=self.allsols,
-                                        without=self.without[(source,target)])
+                                        without=self.without[(source, target)])
             fd = new_minion.minionapp.stdout.fileno()
             self.minions[fd] = new_minion
             self.iterators[fd] = iter(new_minion)
