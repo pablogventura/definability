@@ -56,15 +56,22 @@ def k_sub_homs(k, subtype):
     for a in sorted(k, key=len, reverse=True):
         for (i,b) in a.substructures(subtype): # hay que chequear que las devuelva de mayor a menor
             # i es una funcion de inclusion, no se si hace falta
+            bihoms=False # TODO LA LOGICA DE ESTO PODRIA MEJORARSE
             for bihom in check_bihomos(b,s,subtype):
-                yield bihom
-                if bihom.is_embedding: # es un isomorfismo
-                    pass
+                bihoms=True
+                if bihom.is_embedding(): # es un isomorfismo
+                    yield bihom
                     #TODO filtrar subestructuras de esta subestrucutra
                 else:
+                    yield bihom
                     s.add(b)
                     for aut in b.automorphisms(subtype):
                         yield aut
+            if not bihoms:
+                s.add(b)
+                for aut in b.automorphisms(subtype):
+                    yield aut
+
     for a,b in ifilter(lambda (a,b): len(a)>len(b), permutations(s,2)):
         # como len(a)>len(b) los homos sobre no son inyectivos
         for homo in a.homomorphisms_to(b, subtype, surj=True):
@@ -72,7 +79,7 @@ def k_sub_homs(k, subtype):
 
 def check_bihomos(a,s,subtype):
     for b in ifilter(lambda x:len(a)==len(x),s):
-        bihomos = a.homomorphisms_to(b,subtype,inj=True,surj=True)
+        bihomos = a.homomorphisms_to(b,subtype,inj=True,surj=True) # TODO HOMOS TO ANY
         for h in bihomos:
             if h.is_embedding(): # ES EQUIVALENTE A QUE SEA EMBEDDING
                 yield h # TODO lo retorna como ISOMORFISMO!!

@@ -22,7 +22,8 @@ def preprocessing(k,subtype,supertype):
     (1, None)
     """
     for iso in k_isos_no_auts(k,subtype):
-        return (k,iso)
+        if not iso.preserves_type(supertype):
+            return (k,iso)
     return (k,None)
 
 def is_open_definable(k, subtype, supertype):
@@ -62,7 +63,7 @@ def is_open_positive_definable(k, subtype, supertype):
     True
     """
     for subhom in k_sub_homs(k, subtype):
-        if not subhom.preserves_type(supertype):
+        if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
             return (False, subhom)
     return (True,None)
 
