@@ -8,6 +8,7 @@ from datetime import datetime
 from collections import defaultdict
 
 def saturation(k, arity, morphisms):
+    # TODO FALTA CORREGIR MUCHO
     s = list(k)[0]
     morphisms = list(morphisms)
     singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
@@ -46,6 +47,8 @@ def closure(t, arrows):
     return result
 
 def closurem(t,m,k, arrows):
+    # TODO ANDA MEDIO MAL
+    # TOMA t una tupla, m la estructura a la que pertenece t, k la familia de estrucutras y arrows las flechas
     """
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
