@@ -17,6 +17,9 @@ def saturation(k, arity, morphisms):
     while singletons:
         a = singletons.pop()
         result.append(closure(a, morphisms))
+        for t in result[-1]:
+            if t in singletons:
+                singletons.remove(t)
     
     return result
 
