@@ -15,14 +15,14 @@ def check_history(func):
     """
 
     def f(self, subtype, supertype):
-        param = (func.func_name, subtype, supertype)
+        param = (func.__name__, subtype, supertype)
         if param in self.history:
             return self.history[param]
         else:
             result = func(self, subtype, supertype)
             self.history[param] = result
             return result
-    f.func_doc = func.func_doc
+    f.__doc__ = func.__doc__
     return f
 
 
@@ -168,11 +168,11 @@ class TipedMultiDiGraph(object):
         except KeyError:
             result = []
         if result:
-            result = [e['arrow'] for e in result.values()]
+            result = [e['arrow'] for e in list(result.values())]
         if morphtype:
-            result = filter(lambda x: isinstance(x, morphtype), result)
+            result = [x for x in result if isinstance(x, morphtype)]
         if subtype:
-            result = filter(lambda x: subtype.is_subtype_of(x.subtype), result)
+            result = [x for x in result if subtype.is_subtype_of(x.subtype)]
         return result
 
     def add_check_arrows(self, arrows, subtype, supertype):
@@ -209,7 +209,7 @@ class TipedMultiDiGraph(object):
                 if satellite.fo_type.is_subtype_of(subtype) and satellite not in without:
                     yield satellite
         else:
-            for lensat in sorted(self.satellites.keys(), reverse=True):
+            for lensat in sorted(list(self.satellites.keys()), reverse=True):
                 for satellite in self.satellites[lensat]:
                     if satellite.fo_type.is_subtype_of(subtype) and satellite not in without:
                         yield satellite
@@ -228,7 +228,7 @@ class TipedMultiDiGraph(object):
                 if planet not in without:
                     yield planet
         else:
-            for lenplanet in sorted(self.planets.keys(), reverse=True):
+            for lenplanet in sorted(list(self.planets.keys()), reverse=True):
                 for planet in self.planets[lenplanet]:
                     if planet not in without:
                         yield planet
@@ -239,13 +239,12 @@ class TipedMultiDiGraph(object):
         """
         result = sorted(self.graph.predecessors(planet), reverse=True, key=len)
 
-        result = filter(
-            lambda s: bool(self.arrows(s, planet, Embedding, subtype)), result)
+        result = [s for s in result if bool(self.arrows(s, planet, Embedding, subtype))]
 
         if not cardinality:
             return result
         else:
-            return filter(lambda x: len(x) == cardinality, result)
+            return [x for x in result if len(x) == cardinality]
 
     def main_satellite_of(self, planet, subtype):
         """
@@ -369,7 +368,7 @@ class Constellation(TipedMultiDiGraph):
 
         # con este codigo viejo, creo los main satellites
         # desde el planeta mas grande
-        for len_planets in sorted(self.planets.iterkeys(), reverse=True):
+        for len_planets in sorted(iter(self.planets.keys()), reverse=True):
             for planet in self.planets[len_planets]:
                 inc, protosatellite = planet.substructure(
                     planet.universe, subtype)  # satellite principal
@@ -400,7 +399,7 @@ class Constellation(TipedMultiDiGraph):
             return (b, ce)  # no llego ni a ser definible existencial
 
         # desde el planeta mas grande
-        for len_planets in sorted(self.planets.iterkeys(), reverse=True):
+        for len_planets in sorted(iter(self.planets.keys()), reverse=True):
             for planet in self.planets[len_planets]:
                 for (inc, protosatellite) in planet.substructures(subtype, without=[planet.universe]):
                     ce = self.__open_check_protosatellite(

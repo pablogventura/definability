@@ -57,12 +57,12 @@ class Function(object):
             d = self.__list_to_dict(d)
         self.dict = d
         self.empty = False
-        assert all(isinstance(t, tuple) for t in self.dict.keys())
+        assert all(isinstance(t, tuple) for t in list(self.dict.keys()))
         if not self.dict:
             self.empty = True
             self.arityval = arity
         else:
-            self.arityval = len(self.dict.keys()[0])
+            self.arityval = len(list(self.dict.keys())[0])
         self.relation = False  # maneja si la funcion es booleana
 
     def copy(self):
@@ -80,7 +80,7 @@ class Function(object):
         if self.relation:
             return product(self.d_universe, repeat=self.arity())
         else:
-            return self.dict.iterkeys()
+            return iter(self.dict.keys())
 
     def image(self):
         """
@@ -114,7 +114,7 @@ class Function(object):
         return result
 
     def vector_call(self, vector):
-        return type(vector)(map(self, vector))
+        return type(vector)(list(map(self, vector)))
 
     def __call__(self, *args):
         if not len(args) == self.arity():
@@ -125,7 +125,7 @@ class Function(object):
         except KeyError:
             if self.relation and all(x in self.d_universe for x in args):
                 return False
-            print self.relation
+            print(self.relation)
             raise ValueError("Value '%s' not in domain" %
                              str(args) + repr(self))
 
@@ -156,18 +156,18 @@ class Function(object):
         Hash de las funciones para manejar funciones en conjuntos.
         No es muy rapida.
         """
-        return hash(str(sorted(self.dict.iteritems())))
+        return hash(str(sorted(self.dict.items())))
 
     def table(self):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
         """
-        result = sorted(self.dict.iteritems())
+        result = sorted(self.dict.items())
         if self.relation:
-            result = filter(lambda (k, v): v, result)
-            result = map(lambda (k, v): list(k), result)
+            result = [k_v for k_v in result if k_v[1]]
+            result = [list(k_v1[0]) for k_v1 in result]
         else:
-            result = map(lambda (k, v): list(k) + [v], result)
+            result = [list(k_v2[0]) + [k_v2[1]] for k_v2 in result]
         return result
 
     def __list_to_dict(self, l):
@@ -176,7 +176,7 @@ class Function(object):
         l = np.array(l, dtype=np.dtype(object))
         arity = l.ndim
         result = {}
-        for t in product(range(len(l)), repeat=arity):
+        for t in product(list(range(len(l))), repeat=arity):
             if l.item(*t) is not None:
                 result[t] = l.item(*t)
         return result
@@ -184,12 +184,12 @@ class Function(object):
     def __repr__(self):
         if self.relation:
             result = "Relation(\n"
-            table = map(lambda x: "%s," % x, self.table())
+            table = ["%s," % x for x in self.table()]
         else:
             if self.arity():
                 result = "Function(\n"
-                table = map(lambda x: "%s -> %s," %
-                            (x[:-1], x[-1]), self.table())
+                table = ["%s -> %s," %
+                            (x[:-1], x[-1]) for x in self.table()]
             else:
                 result = "Constant(\n"
                 table = str(self.table()[0][0])

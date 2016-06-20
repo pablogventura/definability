@@ -62,10 +62,10 @@ class FO_Relation(FO_OpRel):
         """
         table = self.table()
         # filtra los que estan en el universo
-        function = filter(lambda t: all(v in universe for v in t), table)
+        function = [t for t in table if all(v in universe for v in t)]
         function = {tuple(t[:(self.arity() - 1)]): t[-1]
                     for t in function}  # le quita el ultimo a cada tupla
-        sdomain = set(map(tuple, function.keys()))
+        sdomain = set(map(tuple, list(function.keys())))
         # habia tuplas repetidas, no respeta la condicion de funcion
         if len(function) != len(sdomain):
             return False

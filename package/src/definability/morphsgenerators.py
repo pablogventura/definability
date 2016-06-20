@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-import networkx
 from examples import *
 from collections import defaultdict
-from itertools import product, chain, combinations, permutations, ifilter
+from itertools import product, chain, combinations, permutations
 from morphisms import Isomorphism, Embedding, Homomorphism
 from minion import ParallelMorphMinionSol
 from model import FO_Model
@@ -45,7 +44,7 @@ def k_sub_isos(k, subtype):
 
 
 def check_isos(a, s, subtype):
-    for b in ifilter(lambda x: len(a) == len(x), s):
+    for b in filter(lambda x: len(a) == len(x), s):
         iso = a.is_isomorphic(b, subtype)
         if iso:
             return iso
@@ -78,14 +77,14 @@ def k_sub_homs(k, subtype):
                 for aut in b.automorphisms(subtype):
                     yield aut
 
-    for a, b in ifilter(lambda (a, b): len(a) > len(b), permutations(s, 2)):
+    for a, b in filter(lambda a_b: len(a_b[0]) > len(a_b[1]), permutations(s, 2)):
         # como len(a)>len(b) los homos sobre no son inyectivos
         for homo in a.homomorphisms_to(b, subtype, surj=True):
             yield homo
 
 
 def check_bihomos(a, s, subtype):
-    for b in ifilter(lambda x: len(a) == len(x), s):
+    for b in filter(lambda x: len(a) == len(x), s):
         bihomos = a.homomorphisms_to(
             b, subtype, inj=True, surj=True)  # TODO HOMOS TO ANY
         for h in bihomos:

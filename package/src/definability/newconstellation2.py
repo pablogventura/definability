@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-import networkx
 from examples import *
 from collections import defaultdict
-from itertools import product, chain, combinations, permutations, ifilter
+from itertools import product, chain, combinations, permutations
 from morphisms import Isomorphism, Embedding, Homomorphism
 from minion import ParallelMorphMinionSol
 from model import FO_Model

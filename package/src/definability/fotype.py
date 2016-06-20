@@ -17,10 +17,12 @@ class FO_Type(object):
     FO_Type({'+': 2},{})
     >>> st.is_subtype_of(t)
     True
-    >>> FO_Type({'+': 2},{'<': 2}) + FO_Type({'-': 2},{'<=': 2})
-    FO_Type({'+': 2, '-': 2},{'<=': 2, '<': 2})
-    >>> FO_Type({'+': 2, '-': 2},{'<=': 2, '<': 2}) - FO_Type({'-': 2},{'<=': 2})
-    FO_Type({'+': 2},{'<': 2})
+    >>> suma = FO_Type({'+': 2},{'<': 2}) + FO_Type({'-': 2},{'<=': 2})
+    >>> set(suma.operations.keys()) == {"+","-"},set(suma.relations.keys()) == {"<","<="}
+    (True, True)
+    >>> resta = FO_Type({'+': 2, '-': 2},{'<=': 2, '<': 2}) - FO_Type({'-': 2},{'<=': 2})
+    >>> set(resta.operations.keys()) == {"+"},set(resta.relations.keys()) == {"<"}
+    (True, True)
     """
 
     def __init__(self, operations, relations):
@@ -31,7 +33,12 @@ class FO_Type(object):
         return FO_Type(self.operations.copy(), self.relations.copy())
 
     def __repr__(self):
-        return "FO_Type(%s,%s)" % (repr(self.operations), repr(self.relations))
+        result  = "FO_Type({"
+        result += ", ".join([("'%s': %s" % x) for x in sorted(self.operations.items())])
+        result += "},{"
+        result += ", ".join([("'%s': %s" % x) for x in sorted(self.relations.items())])
+        result += "})"
+        return result
 
     def __eq__(self, other):
         return self.operations == other.operations and self.relations == other.relations

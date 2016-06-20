@@ -12,7 +12,7 @@ class Homomorphism(Function):
 
     >>> import examples
     >>> h = Homomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
-    >>> print h
+    >>> print(h)
     Homeomorphism(
       [0] -> 1,
       [1] -> 1,
@@ -105,8 +105,8 @@ class Homomorphism(Function):
 
     def __repr__(self):
         result = "%s(\n" % self.stype
-        result += indent("\n".join(map(lambda x: "%s -> %s," %
-                                       (x[:-1], x[-1]), self.table()))) + ",\n"
+        result += indent("\n".join(["%s -> %s," %
+                                       (x[:-1], x[-1]) for x in self.table()])) + ",\n"
         #result += indent(repr(self.source) + ",")
         #result += indent(repr(self.target) + ",")
         result += indent(repr(self.subtype)) + ",\n"
@@ -147,7 +147,7 @@ class Homomorphism(Function):
           [2] -> 0,
           [3] -> 0,
         ,
-          FO_Type({'v': 2, '^': 2},{})
+          FO_Type({'^': 2, 'v': 2},{})
         ,
         )
 
@@ -200,7 +200,7 @@ class Homomorphism(Function):
         frelSource = []
         for row in rel_a.table():
             if set(row) <= set(x[0] for x in self.domain()):
-                frelSource.append(map(lambda x: self(x), row))
+                frelSource.append([self(x) for x in row])
         for row in rel_b.table():
             if all(x in self.image() for x in row):
                 if not row in frelSource:
@@ -237,7 +237,7 @@ class Homomorphism(Function):
           [2] -> 0,
           [3] -> 0,
         ,
-          FO_Type({'v': 2, '^': 2},{})
+          FO_Type({'^': 2, 'v': 2},{})
         ,
         )
 
@@ -270,7 +270,7 @@ class Embedding(Homomorphism):
 
     >>> import examples
     >>> h = Embedding({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
-    >>> print h
+    >>> print(h)
     Autoembedding(
       [0] -> 1,
       [1] -> 1,
@@ -307,7 +307,7 @@ class Isomorphism(Embedding):
 
     >>> import examples
     >>> h = Isomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
-    >>> print h
+    >>> print(h)
     Automorphism(
       [0] -> 1,
       [1] -> 1,

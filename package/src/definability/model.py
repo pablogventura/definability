@@ -96,10 +96,10 @@ class FO_Model(object):
         >>> from examples import *
         >>> retrombo.subuniverse([1],tiporet)
         ([1], [[1]])
-        >>> retrombo.subuniverse([2,3],tiporet)
-        ([0, 1, 2, 3], [[2, 3], [1, 2, 3], [0, 1, 2, 3]])
-        >>> retrombo.subuniverse([2,3],tiporet.subtype(["^"],[]))
-        ([0, 2, 3], [[2, 3], [0, 2, 3]])
+        >>> retrombo.subuniverse([2,3],tiporet)[0]
+        [0, 1, 2, 3]
+        >>> retrombo.subuniverse([2,3],tiporet.subtype(["^"],[]))[0]
+        [0, 2, 3]
         """
         result = subset
         result.sort()
@@ -174,7 +174,7 @@ class FO_Model(object):
         >>> len(list(retrombo.substructures(tiporet.subtype([],[])))) # debe dar (2**cardinalidad)-1
         15
         """
-        without = map(set, without)
+        without = list(map(set, without))
         for sub in self.subuniverses(subtype):
             if set(sub) not in without:
                 # parece razonable que el modelo de una subestructura conserve todas las relaciones y operaciones
@@ -274,6 +274,9 @@ class FO_Model(object):
                 else:
                     result += ["-(%s%s %s %s%s)" % (c, x + s, rel, c, y + s)]
         return result
+        
+    def __hash__(self):
+        return hash(str([self.fo_type,list(self.universe)] + list(sorted(self.operations.items())) + list(sorted(self.relations.items()))))
 
 if __name__ == "__main__":
     import doctest

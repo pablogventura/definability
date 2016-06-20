@@ -84,16 +84,16 @@ class Mace4Sol(object):
         for st in self.goal_list:
             result += st + '.\n'
         result += 'end_of_list.\n'
-        return result
+        return bytes(result, 'UTF-8')
 
     def __parse_solution(self):
         buf = ""
-        line = self.__stdout.readline()  # quita el [ del principio
+        line = self.__stdout.readline().decode('utf-8')  # quita el [ del principio
         while line:
             # No hubo EOF
             if line == "[\n" or line == "]\n":
                 # son las lineas del principio o del final
-                line = self.__stdout.readline()
+                line = self.__stdout.readline().decode('utf-8')
                 continue
             else:
                 buf += line
@@ -106,15 +106,15 @@ class Mace4Sol(object):
                     buf = buf[:-1]  # saco la coma!
                 m = eval(buf)
                 operations = getops(m[2], 'function')
-                relations = getops(m[2], 'relation', range(m[0]))
-                fo_type = FO_Type({name: operations[name].arity() for name in operations.iterkeys()},
+                relations = getops(m[2], 'relation', list(range(m[0])))
+                fo_type = FO_Type({name: operations[name].arity() for name in operations.keys()},
                                   {name: relations[name].arity()
-                                   for name in relations.iterkeys()}
+                                   for name in relations.keys()}
                                   )
-                return FO_Model(fo_type, range(m[0]), operations, relations)
+                return FO_Model(fo_type, list(range(m[0])), operations, relations)
             else:
                 # no hay un modelo completo
-                line = self.__stdout.readline()  # necesita otra linea
+                line = self.__stdout.readline().decode('utf-8')  # necesita otra linea
                 continue
 
         assert not line
@@ -150,7 +150,7 @@ class Mace4Sol(object):
                     return solution
             raise IndexError("There aren't so many solutions.")
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         Devuelve True si hay soluciones, o bloquea hasta confirmar que no
         hay y devuelve False.
@@ -177,6 +177,8 @@ class Mace4Sol(object):
     def __terminate(self):
         self.EOF = True
         for app in self.apps:
+            app.stdout.close()
+            app.stderr.close()
             app.kill()
             app.wait()
             del app

@@ -1,4 +1,4 @@
-from itertools import product, imap
+from itertools import product
 
 from morphisms import Homomorphism, Isomorphism
 from misc import powerset
@@ -48,8 +48,8 @@ def ji_of_existencial_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singletons = map(
-        tuple, list(product(mainsatellite.universe, repeat=arity)))
+    singletons = list(map(
+        tuple, list(product(mainsatellite.universe, repeat=arity))))
 
     result = []
 
@@ -124,7 +124,7 @@ def ji_of_existencial_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_existential_positive_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singletons = imap(
+    singletons = map(
         tuple, product(mainsatellite.universe, repeat=arity))
 
     endos = constellation.arrows(
@@ -178,8 +178,8 @@ def atoms_of_open_definable_algebra(constellation, subtype, arity):
 
     mainsatellite, = constellation.main_satellites(subtype)
 
-    singletons = map(
-        tuple, list(product(mainsatellite.universe, repeat=arity)))
+    singletons = list(map(
+        tuple, list(product(mainsatellite.universe, repeat=arity))))
 
     result = []
 
@@ -248,7 +248,7 @@ def ji_of_open_positive_definable_algebra(constellation, subtype, arity):
     constellation.is_positive_open_definable(subtype, subtype)
 
     mainsatellite, = constellation.main_satellites(subtype)
-    singletons = imap(
+    singletons = map(
         tuple, product(mainsatellite.universe, repeat=arity))
 
     result = []
@@ -340,7 +340,7 @@ def sets_to_poset(lst):
     """
     from sage.combinat.posets.posets import Poset
     # lista de tuplas de tuplas.
-    sets = map(lambda l: tuple(map(tuple, l)), lst)
+    sets = [tuple(map(tuple, l)) for l in lst]
     return Poset((sets, lambda x, y: set(x) <= set(y)))
 
 

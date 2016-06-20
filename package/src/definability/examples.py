@@ -19,7 +19,7 @@ tipotest = FO_Type({}, {"P": 1, "<=": 2})
 tipotest2 = FO_Type({}, {"R": 1, "<=": 2})
 tipodistinto = FO_Type({}, {"!=": 2})
 
-posetrombo = FO_Model(tipoposet, range(4), {},
+posetrombo = FO_Model(tipoposet, list(range(4)), {},
                       {'<=': FO_Relation({(0, 0): 1,
                                           (0, 1): 1,
                                           (0, 2): 1,
@@ -35,9 +35,9 @@ posetrombo = FO_Model(tipoposet, range(4), {},
                                           (3, 0): 0,
                                           (3, 1): 1,
                                           (3, 2): 0,
-                                          (3, 3): 1}, range(4)), })
+                                          (3, 3): 1}, list(range(4))), })
 
-posetdiamante = FO_Model(tipoposet, range(5), {}, {"<=": FO_Relation({(0, 0): 1,
+posetdiamante = FO_Model(tipoposet, list(range(5)), {}, {"<=": FO_Relation({(0, 0): 1,
                                                                       (0, 1): 1,
                                                                       (0, 2): 1,
                                                                       (0, 3): 1,
@@ -61,17 +61,17 @@ posetdiamante = FO_Model(tipoposet, range(5), {}, {"<=": FO_Relation({(0, 0): 1,
                                                                       (4, 1): 1,
                                                                       (4, 2): 0,
                                                                       (4, 3): 0,
-                                                                      (4, 4): 1}, range(5))})
+                                                                      (4, 4): 1}, list(range(5)))})
 
-posetcadena2 = FO_Model(tipoposet, range(
-    2), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, range(2))})
+posetcadena2 = FO_Model(tipoposet, list(range(
+    2)), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, list(range(2)))})
 
 retcadena2 = fotheories.Lat.find_models(2)[0]
 retcadena2.operations["Min"] = FO_Operation({(): 0})
 retcadena2.operations["Max"] = FO_Operation({(): 1})
 retdiamante = fotheories.Lat.find_models(5)[0]
 rettestlinden = fotheories.DLat.find_models(7)[0]
-retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
+retrombo = FO_Model(tiporetacotado, list(range(4)), {'^': FO_Operation({(0, 0): 0,
                                                                   (0, 1): 0,
                                                                   (0, 2): 0,
                                                                   (0, 3): 0,
@@ -122,7 +122,7 @@ retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
                                         (3, 0): 0,
                                         (3, 1): 1,
                                         (3, 2): 0,
-                                        (3, 3): 1}, range(4)),
+                                        (3, 3): 1}, list(range(4))),
                      '!=': FO_Relation({(0, 0): 0,
                                         (0, 1): 1,
                                         (0, 2): 1,
@@ -138,10 +138,10 @@ retrombo = FO_Model(tiporetacotado, range(4), {'^': FO_Operation({(0, 0): 0,
                                         (3, 0): 1,
                                         (3, 1): 1,
                                         (3, 2): 1,
-                                        (3, 3): 0}, range(4)),
+                                        (3, 3): 0}, list(range(4))),
                      # Relacion de prueba
-                     "P": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 1}, range(4)),
-                     "R": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 0}, range(4))
+                     "P": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 1}, list(range(4))),
+                     "R": FO_Relation({(0,): 0, (1,): 0, (2,): 1, (3,): 0}, list(range(4)))
                      })
 
 retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1,
@@ -201,7 +201,7 @@ retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1
                       })
 
 
-rettest10 = FO_Model(tiporet, range(10), {'^': FO_Operation([
+rettest10 = FO_Model(tiporet, list(range(10)), {'^': FO_Operation([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
     [0, 1, 2, 3, 4, 5,
      6, 7, 8, 9],

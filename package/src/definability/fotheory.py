@@ -63,9 +63,9 @@ class FO_Theory():
         for ax in cls.axioms:
             p = prover9(self.axioms, [ax], seconds, self.options)
             if type(p) == list:
-                print ax, "proved"
+                print(ax, "proved")
             else:
-                print ax, p
+                print(ax, p)
                 return False, 'No conclusions'
             proofs.append(p)
         return True, proofs
@@ -90,9 +90,9 @@ class FO_Theory():
             p = prover9(
                 self.axioms + [s[i]], [s[i + 1]], seconds, self.options)
             if type(p) == list:
-                print i, "->", i + 1, ":", s[i + 1], "proved"
+                print(i, "->", i + 1, ":", s[i + 1], "proved")
             else:
-                print i, "->", i + 1, ":", p
+                print(i, "->", i + 1, ":", p)
                 return False, 'No conclusions'
             proofs.append(p)
         return True, proofs
@@ -128,14 +128,14 @@ class FO_Theory():
 
     def check_results(self, seconds=60, indices=None):
         if indices is None:
-            indices = range(len(self.results))
+            indices = list(range(len(self.results)))
         proofs = []
         for i in indices:
             p = prover9(self.axioms, [self.results[i]], seconds, self.options)
             if type(p) == list:
-                print i + 1, ":", self.results[i], "proved"
+                print(i + 1, ":", self.results[i], "proved")
             else:
-                print i + 1, ":", self.results[i], p
+                print(i + 1, ":", self.results[i], p)
             proofs.append(p)
         return proofs
 
@@ -143,12 +143,12 @@ class FO_Theory():
         ax = self.axioms
         ml = []
         if indices is None:
-            indices = range(len(ax))
+            indices = list(range(len(ax)))
         for i in indices:
             m = prover9(
                 ax[:i] + ax[i + 1:], [ax[i]], seconds, 0, options=self.options)
             if type(m) == str:
-                print ax[i], "is redundant"
+                print(ax[i], "is redundant")
                 return False
             else:
                 ml.append(m)

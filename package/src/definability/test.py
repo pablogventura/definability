@@ -35,8 +35,8 @@ def load_tests(loader, tests, ignore):
 
 
 if __name__ == '__main__':
-    unittest.main(exit=False)
-    print "=" * 80
-    print "Coverage:"
+    unittest.main(exit=False,failfast=True)
+    print("=" * 80)
+    print("Coverage:")
     cv.stop()
     cv.report()

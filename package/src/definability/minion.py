@@ -47,11 +47,11 @@ class MinionSol(object):
         Bloquea hasta conseguir una solucion, o el EOF
         La parsea y devuelve una lista
         """
-        str_sol = self.minionapp.stdout.readline()
+        str_sol = self.minionapp.stdout.readline().decode('utf-8')
         if str_sol:
             str_sol = str_sol[:-1]  # borro el \n
             try:
-                result = map(int, str_sol.strip().split(" "))
+                result = list(map(int, str_sol.strip().split(" ")))
                 # ACA IRIAN LAS TRADUCCIONES DE NOMBRES EN EL FUTURO
                 for i, v in enumerate(result):
                     if v == -1:
@@ -59,14 +59,14 @@ class MinionSol(object):
             except ValueError:
                 str_sol += "\n"
                 # leo toda la respuesta de minion para saber que paso
-                str_sol += self.minionapp.stdout.read()
+                str_sol += self.minionapp.stdout.read().decode('utf-8')
                 raise ValueError("Minion Error:\n%s" % str_sol)
             if not self.allsols:
                 self.EOF = True
                 self.__terminate()
             return result
         else:
-            str_err = self.minionapp.stderr.read()
+            str_err = self.minionapp.stderr.read().decode('utf-8')
             if str_err:
                 raise ValueError("Minion Error:\n%s" % str_err)
             self.EOF = True
@@ -93,7 +93,7 @@ class MinionSol(object):
                     return solution
             raise IndexError("There aren't so many solutions.")
 
-    def __nonzero__(self):
+    def __bool__(self):
         if self.solutions or self.EOF:
             return bool(self.solutions)
         else:
@@ -349,8 +349,8 @@ class MorphMinionSol(MinionSol):
         """
         Genera la entrada de minion para un morfismo.
         """
-        result = [-1] * (max([x[0] for x in morph.dict.keys()]) + 1)
-        for i in morph.dict.keys():
+        result = [-1] * (max([x[0] for x in list(morph.dict.keys())]) + 1)
+        for i in list(morph.dict.keys()):
             result[i[0]] = morph.dict[i]
         return result
 
@@ -414,11 +414,11 @@ class ParallelMorphMinionSol(object):
         if self.solution is None:
             while self.queue or self.minions:
                 for (fd, event) in self.poll.poll():
-                    result = self.read(fd)
+                    result = self.read(fd).decode('utf-8')
                     if result:
                         self.solution = result
                         if not self.allsols:
-                            for f in self.minions.keys():
+                            for f in list(self.minions.keys()):
                                 self.minions[f].__del__()
                         return self.solution
                     else:
@@ -433,7 +433,7 @@ class ParallelMorphMinionSol(object):
         while self.queue or self.minions:
             for (fd, event) in self.poll.poll():
                 try:
-                    result = self.iterators[fd].next()
+                    result = next(self.iterators[fd])
                     assert not self.minions[fd].EOF
                     self.poll.register(fd, POLLIN)
                     yield result
