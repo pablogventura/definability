@@ -12,7 +12,6 @@ def saturation(k, arity, morphisms):
     k = list(k)[0]
     morphisms = list(morphisms)
     singletons = list(map(tuple, list(product(k.universe, repeat=arity))))
-    print(singletons)
     result = []
 
     while singletons:
