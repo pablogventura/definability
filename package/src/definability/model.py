@@ -26,6 +26,7 @@ class FO_Model(object):
             fo_type.relations.keys()), "Estan mal definidas las relaciones"
         self.operations = operations
         self.relations = relations
+        self.supermodel = self
 
     def __repr__(self):
         result = "FO_Model(\n"
@@ -148,7 +149,7 @@ class FO_Model(object):
         """
         Devuelve la restriccion del modelo al subuniverso que se supone que es cerrado en en subtype
         """
-        return FO_Model(subtype, subuniverse, {op: self.operations[op].restrict(subuniverse) for op in self.operations}, {rel: self.relations[rel].restrict(subuniverse) for rel in self.relations})
+        return FO_Submodel(subtype, subuniverse, {op: self.operations[op].restrict(subuniverse) for op in self.operations}, {rel: self.relations[rel].restrict(subuniverse) for rel in self.relations},self)
 
     def substructure(self, subuniverse, subtype):
         """
@@ -277,6 +278,23 @@ class FO_Model(object):
         
     def __hash__(self):
         return hash(str([self.fo_type,list(self.universe)] + list(sorted(self.operations.items())) + list(sorted(self.relations.items()))))
+
+class FO_Submodel(FO_Model):
+
+    """
+    Submodelos de algun tipo de primer orden.
+    """
+    def __init__(self, fo_type, universe, operations, relations, supermodel):
+        super(FO_Submodel, self).__init__(fo_type, universe, operations, relations)
+        self.supermodel = supermodel
+    def __repr__(self):
+        result = "FO_Submodel(\n"
+        result += indent(repr(self.fo_type) + ",\n")
+        result += indent(repr(self.universe) + ",\n")
+        result += indent(repr(self.operations) + ",\n")
+        result += indent(repr(self.relations) + ",\n")
+        result += indent("supermodel= " + repr(self.supermodel) + "\n")
+        return result + ")"
 
 if __name__ == "__main__":
     import doctest
