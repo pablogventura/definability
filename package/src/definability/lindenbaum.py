@@ -8,7 +8,14 @@ from datetime import datetime
 from collections import defaultdict
 
 def saturation(k, arity, morphisms):
-    # TODO FALTA CORREGIR MUCHO
+    # TODO FALTA CORREGIR MUCHO, no pasa los tests, a veces se cuelga
+    """
+    Satura a k por un conjunto de flechas
+    >>> import examples
+    >>> import newconstellation2
+    >>> k={examples.retrombo, examples.rettestlinden2}
+    >>> #saturation(k,2,newconstellation2.k_embs(k,examples.tiporet))
+    """
     s = list(k)[0]
     morphisms = list(morphisms)
     singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
@@ -74,13 +81,5 @@ def closurem(t,m,k, arrows):
     return result
 
 if __name__ == "__main__":
-    import examples
-    import newconstellation2
-    k={examples.retrombo, examples.rettestlinden2}
-    for r in saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)):
-        print (r)
-    #print("-"*80)
-    #for r in saturation(k,2,newconstellation2.k_sub_isos(k,examples.tiporet)):
-    #    print(r)
     import doctest
     doctest.testmod()

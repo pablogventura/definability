@@ -24,11 +24,12 @@ import model
 import morphisms
 import morphsgenerators
 import newconstellation2
+import lindenbaum
 
 
 def load_tests(loader, tests, ignore):
     modules = [config, examples, files, fofunctions, fotheories, fotheory, fotype, functions, mace4, minion, misc, model, morphisms,
-               morphsgenerators, newconstellation2]
+               morphsgenerators, newconstellation2, lindenbaum]
     for module in modules:
         tests.addTests(doctest.DocTestSuite(module))
     return tests
