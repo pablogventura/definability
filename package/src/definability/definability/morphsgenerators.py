@@ -14,11 +14,10 @@ def k_isos_no_auts(k, subtype):
     No incluye los automorfismos.
     """
     for (a, b) in combinations(k, 2):  # nunca con si mismo
-        if {a, b} <= k:  # si ya lo encontre isomorfo, no lo busco de nuevo
+        if a in k and b in k:  # si ya lo encontre isomorfo, no lo busco de nuevo
             iso = a.is_isomorphic(b, subtype)
             if iso:
                 yield iso
-                k.remove(b)
 
 
 def k_sub_isos(k, subtype):
