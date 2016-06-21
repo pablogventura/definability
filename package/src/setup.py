@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-from definability import config
+from definability.interfaces import config
 
 print "*" * 80
 print ""
