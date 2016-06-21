@@ -3,7 +3,7 @@
 
 import coverage
 import glob
-cv = coverage.Coverage(include=glob.glob("*.py"))
+cv = coverage.Coverage(include=glob.glob("*.py")+glob.glob("first_order/*.py"))
 cv.start()
 
 import unittest
@@ -26,24 +26,24 @@ import morphsgenerators
 import newconstellation2
 import lindenbaum
 
+modules = [config,
+           examples,
+           files,
+           first_order.fofunctions,
+           first_order.fotheories,
+           first_order.fotheory,
+           first_order.fotype,
+           first_order.model,
+           functions,
+           mace4,
+           minion,
+           misc,
+           morphisms,
+           morphsgenerators,
+           newconstellation2,
+           lindenbaum]
 
 def load_tests(loader, tests, ignore):
-    modules = [config,
-               examples,
-               files,
-               first_order.fofunctions,
-               first_order.fotheories,
-               first_order.fotheory,
-               first_order.fotype,
-               first_order.model,
-               functions,
-               mace4,
-               minion,
-               misc,
-               morphisms,
-               morphsgenerators,
-               newconstellation2,
-               lindenbaum]
     for module in modules:
         tests.addTests(doctest.DocTestSuite(module))
     return tests
