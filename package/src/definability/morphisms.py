@@ -297,6 +297,9 @@ class Embedding(Homomorphism):
         return Isomorphism(self.dict, self.source, self.target.restrict(list(self.image()), self.subtype), self.subtype, self.antitype)
 
     def preserves_type(self, supertype, check_inverse=True):
+        """
+        Revisa la preservacion del tipo, pero tiene el chequeo de inversa predeterminado
+        """
         return super(Embedding, self).preserves_type(supertype, check_inverse)
 
 
