@@ -8,6 +8,7 @@ cv = coverage.Coverage(include=glob.glob("*.py")+
                        glob.glob("definability/*.py")+
                        glob.glob("misc/*.py")+
                        glob.glob("examples/*.py")+
+                       glob.glob("functions/*.py")+
                        glob.glob("interfaces/*.py"))
 cv.start()
 
@@ -24,10 +25,10 @@ import first_order.fotheory
 import first_order.fotype
 import first_order.model
 import examples.examples
-import functions
 import misc.misc
-import morphisms
-import morphsgenerators
+import functions.functions
+import functions.morphisms
+import definability.morphsgenerators
 import definability.newconstellation2
 import definability.lindenbaum
 
@@ -41,10 +42,10 @@ modules = [interfaces.config,
            first_order.fotype,
            first_order.model,
            examples.examples,
-           functions,
            misc.misc,
-           morphisms,
-           morphsgenerators,
+           functions.functions,
+           functions.morphisms,
+           definability.morphsgenerators,
            definability.newconstellation2,
            definability.lindenbaum]
 

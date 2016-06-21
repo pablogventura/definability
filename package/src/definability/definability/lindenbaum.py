@@ -1,6 +1,6 @@
 from itertools import product
 
-from morphisms import Homomorphism, Isomorphism
+from functions.morphisms import Homomorphism, Isomorphism
 from misc.misc import powerset
 from first_order.fofunctions import FO_Relation
 from datetime import datetime

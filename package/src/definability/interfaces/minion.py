@@ -7,7 +7,7 @@
 import subprocess as sp
 from select import poll, POLLIN
 
-from morphisms import Homomorphism, Embedding, Isomorphism
+from functions.morphisms import Homomorphism, Embedding, Isomorphism
 from interfaces import config
 from interfaces import files
 from itertools import product

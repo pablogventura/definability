@@ -3,10 +3,10 @@
 from examples.examples import *
 from collections import defaultdict
 from itertools import product, chain, combinations, permutations
-from morphisms import Isomorphism, Embedding, Homomorphism
+from functions.morphisms import Isomorphism, Embedding, Homomorphism
 from interfaces.minion import ParallelMorphMinionSol
 from first_order.model import FO_Model
-from morphsgenerators import *
+from definability.morphsgenerators import *
 
 
 def preprocessing(k, subtype, supertype):
