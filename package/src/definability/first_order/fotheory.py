@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from mace4 import Mace4Sol
+from interfaces.mace4 import Mace4Sol
 
 
 class FO_Theory():

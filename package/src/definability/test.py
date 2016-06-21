@@ -3,40 +3,42 @@
 
 import coverage
 import glob
-cv = coverage.Coverage(include=glob.glob("*.py")+glob.glob("first_order/*.py"))
+cv = coverage.Coverage(include=glob.glob("*.py")+
+                       glob.glob("first_order/*.py")+
+                       glob.glob("interfaces/*.py"))
 cv.start()
 
 import unittest
 import doctest
 
-import config
-import examples
-import files
+import interfaces.config
+import interfaces.minion
+import interfaces.mace4
+import interfaces.files
 import first_order.fofunctions
 import first_order.fotheories
 import first_order.fotheory
 import first_order.fotype
 import first_order.model
+import examples
 import functions
-import mace4
-import minion
 import misc
 import morphisms
 import morphsgenerators
 import newconstellation2
 import lindenbaum
 
-modules = [config,
-           examples,
-           files,
+modules = [interfaces.config,
+           interfaces.files,
+           interfaces.mace4,
+           interfaces.minion,
            first_order.fofunctions,
            first_order.fotheories,
            first_order.fotheory,
            first_order.fotype,
            first_order.model,
+           examples,
            functions,
-           mace4,
-           minion,
            misc,
            morphisms,
            morphsgenerators,
