@@ -8,130 +8,163 @@ from interfaces.minion import ParallelMorphMinionSol
 from first_order.model import FO_Model
 from definability.morphsgenerators import *
 
-
-def preprocessing(k, subtype, supertype):
-    """
-    Preprocesamiento para eliminar isomorfismos en k
+class Model_Family(object):
+    def __init__(self, k):
+        self.__k = defaultdict(list)
+        for model in k:
+            self.add(model)
     
-    >>> from examples.examples import *
-    >>> rettest10.join_to_le()
-    >>> rettest102.join_to_le()
-    >>> k= {rettest10, rettest102}
-    >>> len(k)
-    2
-    >>> k,ce = preprocessing(k,tiporet, tiporet + tipoposet)
-    >>> (len(k),ce)
-    (1, None)
-    """
-    for iso in k_isos_no_auts(k, subtype):
-        if not iso.preserves_type(supertype):
-            return (k, iso)
-    return (k, None)
+    def add(self, model):
+        self.__k[len(model)].append(model)
+    
+    def remove(self, model):
+        self.__k[len(model)].remove(model)
+    
+    def __iter__(self):
+        for cardinality in sorted(self.__k.keys(), reverse=True):
+            for model in self.__k[cardinality]:
+                yield model
+    
+    def __contains__(self, model):
+        return model in self.__k[len(model)]
+
+    def __len__(self):
+        return sum(len(i) for i in self.__k.values())
+
+    def preprocessing(self, subtype, supertype):
+        """
+        Preprocesamiento para eliminar isomorfismos en k
+        
+        >>> from examples.examples import *
+        >>> rettest10.join_to_le()
+        >>> rettest102.join_to_le()
+        >>> k= Model_Family([rettest10, rettest102])
+        >>> len(k)
+        2
+        >>> ce = k.preprocessing(tiporet, tiporet + tipoposet)
+        >>> (len(k),ce)
+        (1, None)
+        """
+        for iso in k_isos_no_auts(self, subtype):
+            if not iso.preserves_type(supertype):
+                return iso
+            else:
+                self.remove(iso.target)
+        return None
+
+    def is_open_definable(self, subtype, supertype):
+        """
+        Devuelve una tupla diciendo si es definible y un contrajemplo
+        para la definibilidad abierta de supertype, en k con el subtype
+
+        >>> from examples.examples import *
+        >>> k = Model_Family([retrombo])
+        >>> k.is_open_definable(tiporet,tiporet+tipoposet)
+        (True, None)
+        >>> (b,i) = k.is_open_definable(tiporet,tiporet+tipotest)
+        >>> b
+        False
+        >>> isinstance(i,Isomorphism)
+        True
+        """
+        for subiso in k_sub_isos(self, subtype):
+            if not subiso.preserves_type(supertype):
+                return (False, subiso)
+        return (True, None)
 
 
-def is_open_definable(k, subtype, supertype):
-    """
-    Devuelve una tupla diciendo si es definible y un contrajemplo
-    para la definibilidad abierta de supertype, en k con el subtype
+    def is_open_positive_definable(self, subtype, supertype):
+        """
+        Devuelve una tupla diciendo si es definible y un contrajemplo
+        para la definibilidad abierta positiva de supertype, en k con el subtype
 
-    >>> from examples.examples import *
-    >>> k = {retrombo}
-    >>> is_open_definable(k,tiporet,tiporet+tipoposet)
-    (True, None)
-    >>> (b,i) = is_open_definable(k,tiporet,tiporet+tipotest)
-    >>> b
-    False
-    >>> isinstance(i,Isomorphism)
-    True
-    """
-    for subiso in k_sub_isos(k, subtype):
-        if not subiso.preserves_type(supertype):
-            return (False, subiso)
-    return (True, None)
-
-
-def is_open_positive_definable(k, subtype, supertype):
-    """
-    Devuelve una tupla diciendo si es definible y un contrajemplo
-    para la definibilidad abierta positiva de supertype, en k con el subtype
-
-    >>> from examples.examples import *
-    >>> k = {retrombo}
-    >>> is_open_definable(k,tiporet,tiporet+tipodistinto)
-    (True, None)
-    >>> (b,h) = is_open_positive_definable(k,tiporet,tiporet+tipodistinto)
-    >>> b
-    False
-    >>> isinstance(h,Homomorphism)
-    True
-    """
-    for subhom in k_sub_homs(k, subtype):
-        if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
-            return (False, subhom)
-    return (True, None)
+        >>> from examples.examples import *
+        >>> k = Model_Family([retrombo])
+        >>> k.is_open_definable(tiporet,tiporet+tipodistinto)
+        (True, None)
+        >>> (b,h) = k.is_open_positive_definable(tiporet,tiporet+tipodistinto)
+        >>> b
+        False
+        >>> isinstance(h,Homomorphism)
+        True
+        """
+        for subhom in k_sub_homs(self, subtype):
+            if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
+                return (False, subhom)
+        return (True, None)
 
 
-def is_existential_definable(k, subtype, supertype):
-    """
-    Devuelve una tupla diciendo si es definible y un contrajemplo
-    para la definibilidad existencial de supertype, en k con el subtype
+    def is_existential_definable(self, subtype, supertype):
+        """
+        Devuelve una tupla diciendo si es definible y un contrajemplo
+        para la definibilidad existencial de supertype, en k con el subtype
 
-    >>> from examples.examples import *
-    >>> k = {retrombo}
-    >>> is_existential_definable(k,tiporet,tiporetacotado)
-    (True, None)
-    >>> (b,e) = is_open_definable(k,tiporet,tiporetacotado)
-    >>> b
-    False
-    >>> isinstance(e,Embedding)
-    True
-    """
-    for emb in k_embs(k, subtype):
-        if not emb.preserves_type(supertype):
-            return (False, emb)
-    return (True, None)
-
-
-def is_existential_positive_definable(k, subtype, supertype):
-    """
-    Devuelve una tupla diciendo si es definible y un contrajemplo
-    para la definibilidad existencial positiva de supertype, en k con el subtype
-
-    >>> from examples.examples import *
-    >>> k = {retrombo}
-    >>> is_existential_definable(k,tiporet,tiporetacotado)
-    (True, None)
-    >>> (b,h) = is_existential_positive_definable(k,tiporet,tiporetacotado) # parece que max, min no son def por extienciales positivas
-    >>> b
-    False
-    >>> isinstance(h, Homomorphism)
-    True
-    """
-    for hom in k_homs(k, subtype):
-        if not hom.preserves_type(supertype):
-            return (False, hom)
-    return (True, None)
+        >>> from examples.examples import *
+        >>> k = Model_Family([retrombo])
+        >>> k.is_existential_definable(tiporet,tiporetacotado)
+        (True, None)
+        >>> (b,e) = k.is_open_definable(tiporet,tiporetacotado)
+        >>> b
+        False
+        >>> isinstance(e,Embedding)
+        True
+        """
+        for emb in k_embs(self, subtype):
+            if not emb.preserves_type(supertype):
+                return (False, emb)
+        return (True, None)
 
 
-def is_definable(k, subtype, supertype):
-    """
-    Devuelve una tupla diciendo si es definible y un contrajemplo
-    para la definibilidad de primer orden de supertype, en k con el subtype
+    def is_existential_positive_definable(self, subtype, supertype):
+        """
+        Devuelve una tupla diciendo si es definible y un contrajemplo
+        para la definibilidad existencial positiva de supertype, en k con el subtype
 
-    >>> from examples.examples import *
-    >>> k = {retrombo}
-    >>> is_definable(k,tiporet,tiporetacotado)
-    (True, None)
-    >>> (b,a) = is_definable(k,tiporet,tiporet+tipotest2)
-    >>> b
-    False
-    >>> isinstance(a,Isomorphism)
-    True
-    """
-    for iso in k_isos(k, subtype):
-        if not iso.preserves_type(supertype):
-            return (False, iso)
-    return (True, None)
+        >>> from examples.examples import *
+        >>> k = Model_Family([retrombo])
+        >>> k.is_existential_definable(tiporet,tiporetacotado)
+        (True, None)
+        >>> (b,h) = k.is_existential_positive_definable(tiporet,tiporetacotado) # parece que max, min no son def por extienciales positivas
+        >>> b
+        False
+        >>> isinstance(h, Homomorphism)
+        True
+        """
+        for hom in k_homs(self, subtype):
+            if not hom.preserves_type(supertype):
+                return (False, hom)
+        return (True, None)
+
+
+    def is_definable(self, subtype, supertype):
+        """
+        Devuelve una tupla diciendo si es definible y un contrajemplo
+        para la definibilidad de primer orden de supertype, en k con el subtype
+
+        >>> from examples.examples import *
+        >>> k = Model_Family([retrombo])
+        >>> k.is_definable(tiporet,tiporetacotado)
+        (True, None)
+        >>> (b,a) = k.is_definable(tiporet,tiporet+tipotest2)
+        >>> b
+        False
+        >>> isinstance(a,Isomorphism)
+        True
+        """
+        for iso in k_isos(self, subtype):
+            if not iso.preserves_type(supertype):
+                return (False, iso)
+        return (True, None)
+
+class Model_Family_woiso(Model_Family):
+
+    def __init__(self, family, subtype, supertype):
+        super(Model_Family_woiso, self).__init__(family.__k.copy())
+        self.__proprocessing(self,subtype,supertype)
+    def add(self, model):
+        raise ValueError
+        
+
 
 if __name__ == "__main__":
     import doctest
