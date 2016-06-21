@@ -30,6 +30,9 @@ class FO_Type(object):
         self.relations = relations
 
     def copy(self):
+        """
+        Devuelve una copia del tipo
+        """
         return FO_Type(self.operations.copy(), self.relations.copy())
 
     def __repr__(self):
@@ -47,9 +50,15 @@ class FO_Type(object):
         return not self.__eq__(other)
 
     def subtype(self, operations, relations):
+        """
+        Devuelve un tipo dado por la restriccion a las opereraciones y relaciones dadas
+        """
         return FO_Type({op: self.operations[op] for op in operations}, {rel: self.relations[rel] for rel in relations})
 
     def is_subtype_of(self, supertype):
+        """
+        Devuelve si el tipo es un subtipo del supertipo
+        """
         result = all(op in supertype.operations and self.operations[
                      op] == supertype.operations[op] for op in self.operations)
         result = result and all(rel in supertype.relations and self.relations[
