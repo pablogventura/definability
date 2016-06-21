@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-from examples import *
+from examples.examples import *
 from collections import defaultdict
 from itertools import product, chain, combinations, permutations
 from morphisms import Isomorphism, Embedding, Homomorphism
@@ -13,7 +13,7 @@ def preprocessing(k, subtype, supertype):
     """
     Preprocesamiento para eliminar isomorfismos en k
     
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> rettest10.join_to_le()
     >>> rettest102.join_to_le()
     >>> k= {rettest10, rettest102}
@@ -34,7 +34,7 @@ def is_open_definable(k, subtype, supertype):
     Devuelve una tupla diciendo si es definible y un contrajemplo
     para la definibilidad abierta de supertype, en k con el subtype
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> k = {retrombo}
     >>> is_open_definable(k,tiporet,tiporet+tipoposet)
     (True, None)
@@ -55,7 +55,7 @@ def is_open_positive_definable(k, subtype, supertype):
     Devuelve una tupla diciendo si es definible y un contrajemplo
     para la definibilidad abierta positiva de supertype, en k con el subtype
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> k = {retrombo}
     >>> is_open_definable(k,tiporet,tiporet+tipodistinto)
     (True, None)
@@ -76,7 +76,7 @@ def is_existential_definable(k, subtype, supertype):
     Devuelve una tupla diciendo si es definible y un contrajemplo
     para la definibilidad existencial de supertype, en k con el subtype
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> k = {retrombo}
     >>> is_existential_definable(k,tiporet,tiporetacotado)
     (True, None)
@@ -97,7 +97,7 @@ def is_existential_positive_definable(k, subtype, supertype):
     Devuelve una tupla diciendo si es definible y un contrajemplo
     para la definibilidad existencial positiva de supertype, en k con el subtype
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> k = {retrombo}
     >>> is_existential_definable(k,tiporet,tiporetacotado)
     (True, None)
@@ -118,7 +118,7 @@ def is_definable(k, subtype, supertype):
     Devuelve una tupla diciendo si es definible y un contrajemplo
     para la definibilidad de primer orden de supertype, en k con el subtype
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> k = {retrombo}
     >>> is_definable(k,tiporet,tiporetacotado)
     (True, None)

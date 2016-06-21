@@ -465,7 +465,7 @@ def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True, wi
     """
     call Minion to calculate all homomorphisms from A to B
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> len(homomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
     12
     """
@@ -482,7 +482,7 @@ def embeddings(source, target, subtype, surj=None, allsols=True, without=[]):
     """
     call Minion to calculate all embeddings of A into B
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> len(embeddings(posetcadena2,posetdiamante,posetcadena2.fo_type))
     7
     """
@@ -496,7 +496,7 @@ def isomorphisms(source, target, subtype, allsols=True, without=[]):
     """
     call Minion to calculate all homomorphisms from A to B
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> len(isomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
     0
     >>> len(isomorphisms(posetcadena2,posetcadena2,posetcadena2.fo_type))
@@ -518,7 +518,7 @@ def is_homomorphic_image(source, target, subtype, without=[]):
     return homomorphism if B is a homomorphic image of A (uses Minion)
     else returns False
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> bool(is_homomorphic_image(posetcadena2,posetdiamante,posetcadena2.fo_type))
     True
     >>> bool(is_homomorphic_image(posetdiamante,posetcadena2,posetcadena2.fo_type))
@@ -536,7 +536,7 @@ def is_substructure(source, target, subtype, without=[]):
     return embedding if B is a substructure of A (uses Minion)
     else returns False
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> bool(is_substructure(posetcadena2,posetdiamante,posetcadena2.fo_type))
     True
     >>> bool(is_substructure(posetdiamante,posetcadena2,posetcadena2.fo_type))
@@ -554,7 +554,7 @@ def is_isomorphic(source, target, subtype, without=[]):
     return isomorphism if A is isomorphic to B (uses Minion)
     else returns False
 
-    >>> from examples import *
+    >>> from examples.examples import *
     >>> bool(is_isomorphic(posetcadena2,posetdiamante,posetcadena2.fo_type))
     False
     >>> bool(is_isomorphic(posetdiamante,posetdiamante,posetdiamante.fo_type))

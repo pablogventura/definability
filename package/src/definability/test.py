@@ -7,6 +7,7 @@ cv = coverage.Coverage(include=glob.glob("*.py")+
                        glob.glob("first_order/*.py")+
                        glob.glob("definability/*.py")+
                        glob.glob("misc/*.py")+
+                       glob.glob("examples/*.py")+
                        glob.glob("interfaces/*.py"))
 cv.start()
 
@@ -22,7 +23,7 @@ import first_order.fotheories
 import first_order.fotheory
 import first_order.fotype
 import first_order.model
-import examples
+import examples.examples
 import functions
 import misc.misc
 import morphisms
@@ -39,7 +40,7 @@ modules = [interfaces.config,
            first_order.fotheory,
            first_order.fotype,
            first_order.model,
-           examples,
+           examples.examples,
            functions,
            misc.misc,
            morphisms,
