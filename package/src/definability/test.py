@@ -5,6 +5,7 @@ import coverage
 import glob
 cv = coverage.Coverage(include=glob.glob("*.py")+
                        glob.glob("first_order/*.py")+
+                       glob.glob("definability/*.py")+
                        glob.glob("interfaces/*.py"))
 cv.start()
 
@@ -25,8 +26,8 @@ import functions
 import misc
 import morphisms
 import morphsgenerators
-import newconstellation2
-import lindenbaum
+import definability.newconstellation2
+import definability.lindenbaum
 
 modules = [interfaces.config,
            interfaces.files,
@@ -42,8 +43,8 @@ modules = [interfaces.config,
            misc,
            morphisms,
            morphsgenerators,
-           newconstellation2,
-           lindenbaum]
+           definability.newconstellation2,
+           definability.lindenbaum]
 
 def load_tests(loader, tests, ignore):
     for module in modules:

@@ -12,7 +12,7 @@ def saturation(k, arity, morphisms):
     """
     Satura a k por un conjunto de flechas
     >>> import examples
-    >>> import newconstellation2
+    >>> from definability import newconstellation2
     >>> k={examples.retrombo, examples.rettestlinden2}
     >>> #saturation(k,2,newconstellation2.k_embs(k,examples.tiporet))
     """
