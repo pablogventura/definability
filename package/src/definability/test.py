@@ -6,6 +6,7 @@ import glob
 cv = coverage.Coverage(include=glob.glob("*.py")+
                        glob.glob("first_order/*.py")+
                        glob.glob("definability/*.py")+
+                       glob.glob("misc/*.py")+
                        glob.glob("interfaces/*.py"))
 cv.start()
 
@@ -23,7 +24,7 @@ import first_order.fotype
 import first_order.model
 import examples
 import functions
-import misc
+import misc.misc
 import morphisms
 import morphsgenerators
 import definability.newconstellation2
@@ -40,7 +41,7 @@ modules = [interfaces.config,
            first_order.model,
            examples,
            functions,
-           misc,
+           misc.misc,
            morphisms,
            morphsgenerators,
            definability.newconstellation2,

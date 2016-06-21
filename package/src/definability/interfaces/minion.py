@@ -12,7 +12,7 @@ from interfaces import config
 from interfaces import files
 from itertools import product
 from collections import defaultdict
-import misc
+from misc import misc
 
 
 class MinionSol(object):

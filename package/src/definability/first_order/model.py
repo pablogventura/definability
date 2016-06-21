@@ -3,7 +3,7 @@
 
 from itertools import product
 
-from misc import indent, powerset
+from misc.misc import indent, powerset
 from morphisms import Embedding
 from first_order.fofunctions import FO_Relation
 from interfaces import minion

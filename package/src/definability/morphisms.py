@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 
 from functions import Function
-from misc import indent
+from misc.misc import indent
 
 
 class Homomorphism(Function):
