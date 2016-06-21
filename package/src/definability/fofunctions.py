@@ -26,6 +26,9 @@ class FO_Operation(FO_OpRel):
         self.relation = False
 
     def graph_fo_relation(self, universe):
+        """
+        Genera la relacion dada por el grafico de la funcion en el universo
+        """
         return FO_Relation([tuple(row) for row in self.table()], universe)
 
 
@@ -51,29 +54,6 @@ class FO_Relation(FO_OpRel):
         self.d_universe = d_universe
         self.relation = True
 
-    def is_a_function_graph(self, universe):
-        """
-        Revisa si la relacion es el grafico de una funcion para un universo dado.
-        Si lo es, devuelve la funcion, y sino devuelve False.
-
-        >>> rel = FO_Relation({(0,0,1):1,(0,0,2):1,(1,1,2):1},range(4))
-        >>> rel.is_a_function_graph(range(4))
-        False
-        """
-        table = self.table()
-        # filtra los que estan en el universo
-        function = [t for t in table if all(v in universe for v in t)]
-        function = {tuple(t[:(self.arity() - 1)]): t[-1]
-                    for t in function}  # le quita el ultimo a cada tupla
-        sdomain = set(map(tuple, list(function.keys())))
-        # habia tuplas repetidas, no respeta la condicion de funcion
-        if len(function) != len(sdomain):
-            return False
-        # no tiene dominio suficiente
-        elif len(sdomain) != len(universe)**(self.arity() - 1):
-            return False
-        else:
-            return FO_Operation(function)
 
 if __name__ == "__main__":
     import doctest
