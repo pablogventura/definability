@@ -74,6 +74,9 @@ class Mace4Sol(object):
         self.__stderr = mace4app.stderr
 
     def generate_input(self):
+        """
+        Genera la entrada para Mace4 a partir de las opciones
+        """
         result = ""
         for st in self.options:
             result += st + ".\n"
@@ -87,6 +90,9 @@ class Mace4Sol(object):
         return bytes(result, 'UTF-8')
 
     def __parse_solution(self):
+        """
+        Parsea una solucion devuelta por Mace4
+        """
         buf = ""
         line = self.__stdout.readline().decode('utf-8')  # quita el [ del principio
         while line:
@@ -175,6 +181,9 @@ class Mace4Sol(object):
         return len(self.solutions)
 
     def __terminate(self):
+        """
+        Cierra Mace4
+        """
         self.EOF = True
         for app in self.apps:
             app.stdout.close()
