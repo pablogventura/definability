@@ -114,6 +114,9 @@ class Function(object):
         return result
 
     def vector_call(self, vector):
+        """
+        Aplica la funcion a un vector
+        """
         return type(vector)(list(map(self, vector)))
 
     def __call__(self, *args):
@@ -170,6 +173,9 @@ class Function(object):
         return result
 
     def __list_to_dict(self, l):
+        """
+        Convierte una matriz del modo anterior de generar funcionciones en un diccionario
+        """
         from itertools import product
         import numpy as np
         l = np.array(l, dtype=np.dtype(object))
