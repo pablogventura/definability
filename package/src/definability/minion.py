@@ -469,6 +469,12 @@ def homomorphisms(source, target, subtype, inj=None, surj=None, allsols=True, wi
     >>> len(homomorphisms(posetcadena2,posetdiamante,posetcadena2.fo_type))
     12
     """
+    if inj and len(source) > len(target):
+        # evidentemente no hay homos inyectivos
+        return []
+    if surj and len(source) < len(target):
+        # evidentemente no hay homos sobreyectivos
+        return []
     return MorphMinionSol(Homomorphism, subtype, source, target, inj, surj, allsols, without)
 
 
@@ -480,6 +486,9 @@ def embeddings(source, target, subtype, surj=None, allsols=True, without=[]):
     >>> len(embeddings(posetcadena2,posetdiamante,posetcadena2.fo_type))
     7
     """
+    if len(source) > len(target):
+        # evidentemente no hay embedding
+        return []
     return MorphMinionSol(Embedding, subtype, source, target, True, surj, allsols, without)
 
 
@@ -498,6 +507,9 @@ def isomorphisms(source, target, subtype, allsols=True, without=[]):
     >>> len(isomorphisms(posetdiamante,posetdiamante,posetdiamante.fo_type))
     6
     """
+    if len(source) != len(target):
+        # evidentemente no son isomorfos
+        return []
     return MorphMinionSol(Isomorphism, subtype, source, target, True, True, allsols, without)
 
 
