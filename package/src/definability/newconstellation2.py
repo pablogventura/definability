@@ -11,6 +11,8 @@ from morphsgenerators import *
 
 def preprocessing(k, subtype, supertype):
     """
+    Preprocesamiento para eliminar isomorfismos en k
+    
     >>> from examples import *
     >>> rettest10.join_to_le()
     >>> rettest102.join_to_le()
