@@ -131,6 +131,9 @@ class MinionSol(object):
 
 
 class MorphMinionSol(MinionSol):
+    """
+    Soluciones de Minion que son morfismos
+    """
 
     def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True, without=[]):
         self.morph_type = morph_type
@@ -335,6 +338,9 @@ class MorphMinionSol(MinionSol):
         return result
 
     def morphisms_to_minion_table(self, morphs):
+        """
+        Convierte una lista de morfismos en una tabla que entiende minion
+        """
         table = [self.morphism_to_minion_format(morph) for morph in morphs]
         table_name = "without"
         height = len(table)
@@ -385,6 +391,9 @@ class ParallelMorphMinionSol(object):
             self.next_to_running()
 
     def next_to_running(self):
+        """
+        Pone a la siguiente instancia de Minion a andar
+        """
         if self.queue:
             source, target = self.queue.pop()
             new_minion = MorphMinionSol(self.morph_type,
@@ -401,6 +410,9 @@ class ParallelMorphMinionSol(object):
             self.poll.register(fd, POLLIN)
 
     def read(self, fd):
+        """
+        Lee un file descriptor y lo vuelve a poner en el poll
+        """
         if self.minions[fd]:
             result = self.minions[fd][0]
         else:
@@ -411,6 +423,9 @@ class ParallelMorphMinionSol(object):
         return result
 
     def solve(self):
+        """
+        Devuelve si hay una solucion, en cuyo caso la devuelve.
+        """
         if self.solution is None:
             while self.queue or self.minions:
                 for (fd, event) in self.poll.poll():
@@ -477,6 +492,9 @@ def isomorphisms(source, target, subtype, allsols=True, without=[]):
     0
     >>> len(isomorphisms(posetcadena2,posetcadena2,posetcadena2.fo_type))
     1
+    >>> i=isomorphisms(posetcadena2,posetcadena2,posetcadena2.fo_type)[0]
+    >>> len(isomorphisms(posetcadena2,posetcadena2,posetcadena2.fo_type,without=[i]))
+    0
     >>> len(isomorphisms(posetdiamante,posetdiamante,posetdiamante.fo_type))
     6
     """
