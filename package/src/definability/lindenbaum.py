@@ -2,7 +2,7 @@ from itertools import product
 
 from morphisms import Homomorphism, Isomorphism
 from misc import powerset
-from fofunctions import FO_Relation
+from first_order.fofunctions import FO_Relation
 from datetime import datetime
 
 from collections import defaultdict

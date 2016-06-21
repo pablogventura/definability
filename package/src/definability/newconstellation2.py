@@ -5,7 +5,7 @@ from collections import defaultdict
 from itertools import product, chain, combinations, permutations
 from morphisms import Isomorphism, Embedding, Homomorphism
 from minion import ParallelMorphMinionSol
-from model import FO_Model
+from first_order.model import FO_Model
 from morphsgenerators import *
 
 

@@ -12,15 +12,15 @@ import doctest
 import config
 import examples
 import files
-import fofunctions
-import fotheories
-import fotheory
-import fotype
+import first_order.fofunctions
+import first_order.fotheories
+import first_order.fotheory
+import first_order.fotype
+import first_order.model
 import functions
 import mace4
 import minion
 import misc
-import model
 import morphisms
 import morphsgenerators
 import newconstellation2
@@ -28,8 +28,22 @@ import lindenbaum
 
 
 def load_tests(loader, tests, ignore):
-    modules = [config, examples, files, fofunctions, fotheories, fotheory, fotype, functions, mace4, minion, misc, model, morphisms,
-               morphsgenerators, newconstellation2, lindenbaum]
+    modules = [config,
+               examples,
+               files,
+               first_order.fofunctions,
+               first_order.fotheories,
+               first_order.fotheory,
+               first_order.fotype,
+               first_order.model,
+               functions,
+               mace4,
+               minion,
+               misc,
+               morphisms,
+               morphsgenerators,
+               newconstellation2,
+               lindenbaum]
     for module in modules:
         tests.addTests(doctest.DocTestSuite(module))
     return tests

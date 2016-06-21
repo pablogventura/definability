@@ -5,7 +5,7 @@
 >>> len(DLat.find_models(5))
 3
 """
-from fotheory import FO_Theory
+from first_order.fotheory import FO_Theory
 
 #########################
 # Properties of operations

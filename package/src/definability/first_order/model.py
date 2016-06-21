@@ -5,7 +5,7 @@ from itertools import product
 
 from misc import indent, powerset
 from morphisms import Embedding
-from fofunctions import FO_Relation
+from first_order.fofunctions import FO_Relation
 import minion
 
 

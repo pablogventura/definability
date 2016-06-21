@@ -5,11 +5,11 @@
 Modulo con ejemplos rapidos, para hacer pruebas
 """
 
-import fotheories
+from first_order import fotheories
 
-from model import FO_Model
-from fotype import FO_Type
-from fofunctions import FO_Relation, FO_Operation
+from first_order.model import FO_Model
+from first_order.fotype import FO_Type
+from first_order.fofunctions import FO_Relation, FO_Operation
 
 
 tipoposet = FO_Type({}, {"<=": 2})

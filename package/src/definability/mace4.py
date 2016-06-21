@@ -1,9 +1,9 @@
 import subprocess as sp
 import re
 import config
-from model import FO_Model  # para los contraejemplos
-from fofunctions import FO_Operation, FO_Relation
-from fotype import FO_Type
+from first_order.model import FO_Model  # para los contraejemplos
+from first_order.fofunctions import FO_Operation, FO_Relation
+from first_order.fotype import FO_Type
 
 
 def getops(li, st, d_universe=None):
