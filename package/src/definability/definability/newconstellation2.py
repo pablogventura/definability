@@ -7,6 +7,7 @@ from functions.morphisms import Isomorphism, Embedding, Homomorphism
 from interfaces.minion import ParallelMorphMinionSol
 from first_order.model import FO_Model
 from definability.morphsgenerators import *
+from definability.exceptions import Counterexample
 
 class Model_Family(object):
     def __init__(self, k):
@@ -30,27 +31,9 @@ class Model_Family(object):
 
     def __len__(self):
         return sum(len(i) for i in self.__k.values())
-
-    def preprocessing(self, subtype, supertype):
-        """
-        Preprocesamiento para eliminar isomorfismos en k
-        
-        >>> from examples.examples import *
-        >>> rettest10.join_to_le()
-        >>> rettest102.join_to_le()
-        >>> k= Model_Family([rettest10, rettest102])
-        >>> len(k)
-        2
-        >>> ce = k.preprocessing(tiporet, tiporet + tipoposet)
-        >>> (len(k),ce)
-        (1, None)
-        """
-        for iso in k_isos_no_auts(self, subtype):
-            if not iso.preserves_type(supertype):
-                return iso
-            else:
-                self.remove(iso.target)
-        return None
+    
+    def without_isos(self, subtype, supertype):
+        return Model_Family_woiso(self.__k, subtype, supertype)
 
     def is_open_definable(self, subtype, supertype):
         """
@@ -67,7 +50,7 @@ class Model_Family(object):
         >>> isinstance(i,Isomorphism)
         True
         """
-        for subiso in k_sub_isos(self, subtype):
+        for subiso in k_sub_isos(self.without_isos(subtype, supertype), subtype):
             if not subiso.preserves_type(supertype):
                 return (False, subiso)
         return (True, None)
@@ -88,7 +71,7 @@ class Model_Family(object):
         >>> isinstance(h,Homomorphism)
         True
         """
-        for subhom in k_sub_homs(self, subtype):
+        for subhom in k_sub_homs(self.without_isos(subtype, supertype), subtype):
             if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
                 return (False, subhom)
         return (True, None)
@@ -109,7 +92,7 @@ class Model_Family(object):
         >>> isinstance(e,Embedding)
         True
         """
-        for emb in k_embs(self, subtype):
+        for emb in k_embs(self.without_isos(subtype, supertype), subtype):
             if not emb.preserves_type(supertype):
                 return (False, emb)
         return (True, None)
@@ -130,7 +113,7 @@ class Model_Family(object):
         >>> isinstance(h, Homomorphism)
         True
         """
-        for hom in k_homs(self, subtype):
+        for hom in k_homs(self.without_isos(subtype, supertype), subtype):
             if not hom.preserves_type(supertype):
                 return (False, hom)
         return (True, None)
@@ -151,18 +134,41 @@ class Model_Family(object):
         >>> isinstance(a,Isomorphism)
         True
         """
-        for iso in k_isos(self, subtype):
+
+        for iso in k_isos(self.without_isos(subtype, supertype), subtype):
             if not iso.preserves_type(supertype):
                 return (False, iso)
         return (True, None)
 
 class Model_Family_woiso(Model_Family):
 
-    def __init__(self, family, subtype, supertype):
-        super(Model_Family_woiso, self).__init__(family.__k.copy())
-        self.__proprocessing(self,subtype,supertype)
+    def __init__(self, d, subtype, supertype):
+        super(Model_Family_woiso, self).__init__([])
+        self._Model_Family__k = d.copy()
+        self.__preprocessing(subtype,supertype)
+        
     def add(self, model):
-        raise ValueError
+        raise NotImplementedError
+        
+    def __preprocessing(self, subtype, supertype):
+        """
+        Preprocesamiento para eliminar isomorfismos en k
+        
+        >>> from examples.examples import *
+        >>> rettest10.join_to_le()
+        >>> rettest102.join_to_le()
+        >>> k= Model_Family([rettest10, rettest102])
+        >>> len(k)
+        2
+        >>> len(k.without_isos(tiporet, tiporet + tipoposet))
+        1
+        """
+        for iso in k_isos_no_auts(self, subtype):
+            if not iso.preserves_type(supertype):
+                raise Counterexample(iso)
+            else:
+                self.remove(iso.target)
+
         
 
 
