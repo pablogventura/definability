@@ -23,10 +23,8 @@ def k_isos_no_auts(k, subtype):
 def k_sub_isos(k, subtype):
     """
     Genera los isomorfismos entre subestructuras de k
+    Necesita que k sea modulo isos del supertype
     """
-    for iso in k_isos_no_auts(k, subtype):
-        yield iso
-
     s = set()
     for a in sorted(k, key=len, reverse=True):
         # hay que chequear que las devuelva de mayor a menor
@@ -52,9 +50,8 @@ def check_isos(a, s, subtype):
 def k_sub_homs(k, subtype):
     """
     Genera los homomorfismos entre subestructuras de k
+    Necesita que k sea modulo isos del supertype
     """
-    for iso in k_isos_no_auts(k, subtype):
-        yield iso
     s = set()
     for a in sorted(k, key=len, reverse=True):
         # hay que chequear que las devuelva de mayor a menor
@@ -103,10 +100,8 @@ def check_bihomos(a, s, subtype):
 def k_embs(k, subtype):
     """
     Genera los embeddings entre estructuras de k
+    Necesita que k sea modulo isos del supertype
     """
-    for iso in k_isos_no_auts(k, subtype):
-        yield iso
-    s = set()
     for a, b in product(k, repeat=2):
         for emb in a.embeddings_to(b, subtype):
             yield emb
@@ -115,10 +110,8 @@ def k_embs(k, subtype):
 def k_homs(k, subtype):
     """
     Genera los homomorfismos entre estructuras de k
+    Necesita que k sea modulo isos del supertype
     """
-    for iso in k_isos_no_auts(k, subtype):
-        yield iso
-    s = set()
     for a, b in product(k, repeat=2):
         for hom in a.homomorphisms_to(b, subtype):
             yield hom
@@ -127,11 +120,9 @@ def k_homs(k, subtype):
 def k_isos(k, subtype):
     """
     Genera los isomorfismos entre estructuras de k
+    Necesita que k sea modulo isos del supertype
     Incluye los automorfismos.
     """
-    for iso in k_isos_no_auts(k, subtype):
-        yield iso
-    s = set()
     for a in k:
         for aut in a.automorphisms(subtype):
             yield aut
