@@ -55,6 +55,10 @@ Ejecución
 
 3. Para correr ipython en Python 3 correr ipython3
 
+Nombres de versiones
+--------------------
+
+Segun `Semantic Versioning <http://semver.org/>`_.
 
 Testing
 -------
