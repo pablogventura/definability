@@ -1,8 +1,8 @@
 from itertools import product
 
-from functions.morphisms import Homomorphism, Isomorphism
-from misc.misc import powerset
-from first_order.fofunctions import FO_Relation
+from ..functions.morphisms import Homomorphism, Isomorphism
+from ..misc.misc import powerset
+from ..first_order.fofunctions import FO_Relation
 from datetime import datetime
 
 from collections import defaultdict

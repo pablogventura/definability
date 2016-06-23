@@ -3,10 +3,10 @@
 
 from itertools import product
 
-from misc.misc import indent, powerset
-from functions.morphisms import Embedding
-from first_order.fofunctions import FO_Relation
-from interfaces import minion
+from ..misc.misc import indent, powerset
+from ..functions.morphisms import Embedding
+from ..first_order.fofunctions import FO_Relation
+from ..interfaces import minion
 
 
 class FO_Model(object):

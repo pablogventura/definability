@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-from examples.examples import *
+from ..examples.examples import *
 from collections import defaultdict
 from itertools import product, chain, combinations, permutations
-from functions.morphisms import Isomorphism, Embedding, Homomorphism
-from interfaces.minion import ParallelMorphMinionSol
-from first_order.model import FO_Model
-from definability.morphsgenerators import *
-from definability.exceptions import Counterexample
+from ..functions.morphisms import Isomorphism, Embedding, Homomorphism
+from ..interfaces.minion import ParallelMorphMinionSol
+from ..first_order.model import FO_Model
+from ..definability.morphsgenerators import *
+from ..definability.exceptions import Counterexample
 
 class Model_Family(object):
     def __init__(self, k):

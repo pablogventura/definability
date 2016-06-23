@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-from examples import *
+from ..examples import *
 from collections import defaultdict
 from itertools import product, chain, combinations, permutations
-from functions.morphisms import Isomorphism, Embedding, Homomorphism
-from interfaces.minion import ParallelMorphMinionSol
-from first_order.model import FO_Model
+from ..functions.morphisms import Isomorphism, Embedding, Homomorphism
+from ..interfaces.minion import ParallelMorphMinionSol
+from ..first_order.model import FO_Model
 
 
 def k_isos_no_auts(k, subtype):

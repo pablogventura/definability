@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from functions.functions import Function
-from misc.misc import indent
+from ..functions.functions import Function
+from ..misc.misc import indent
 
 
 class Homomorphism(Function):

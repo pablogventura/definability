@@ -7,12 +7,12 @@
 import subprocess as sp
 from select import poll, POLLIN
 
-from functions.morphisms import Homomorphism, Embedding, Isomorphism
-from interfaces import config
-from interfaces import files
+from ..functions.morphisms import Homomorphism, Embedding, Isomorphism
+from ..interfaces import config
+from ..interfaces import files
 from itertools import product
 from collections import defaultdict
-from misc import misc
+from ..misc import misc
 
 
 class MinionSol(object):

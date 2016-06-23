@@ -3,7 +3,7 @@
 
 import numpy as np
 from itertools import product
-from misc.misc import indent
+from ..misc.misc import indent
 import copy
 
 
