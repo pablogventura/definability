@@ -1,5 +1,5 @@
 {
-  "mainFile": "", 
+  "mainFile": "setup.py", 
   "use-tabs": false, 
   "venv": "/home/pablo/.virtualenvs/py3def/bin/python", 
   "relatedProjects": [], 
@@ -9,7 +9,7 @@
   "pythonPath": "python", 
   "preExecScript": "", 
   "additional_builtins": [], 
-  "programParams": "", 
+  "programParams": "nosetests", 
   "indentation": 4, 
   "PYTHONPATH": "", 
   "supported-extensions": [
