@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
+from itertools import chain
 
 class FO_Type(object):
 
@@ -91,7 +92,7 @@ class FO_Type(object):
         return result
 
     def __hash__(self):
-        return hash((tuple(self.operations.items()), tuple(self.relations.items())))
+        return hash(frozenset(chain(self.operations.items(),self.relations.items())))
 
 if __name__ == "__main__":
     import doctest
