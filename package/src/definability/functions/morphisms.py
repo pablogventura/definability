@@ -271,7 +271,7 @@ class Homomorphism(Function):
         for x in self.source.universe:
             for y in self.source.universe:
                 if self.dict[(x,)] == self.dict[(y,)]:
-                    k.append((x,y))
+                    k.append((x, y))
         return Congruence(k, self.source)
 
 
