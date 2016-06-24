@@ -201,7 +201,7 @@ class Function(object):
             if self.arity():
                 result = "Function(\n"
                 table = ["%s -> %s," %
-                            (x[:-1], x[-1]) for x in self.table()]
+                         (x[:-1], x[-1]) for x in self.table()]
             else:
                 result = "Constant(\n"
                 table = str(self.table()[0][0])

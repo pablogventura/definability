@@ -35,7 +35,7 @@ class FO_Theory():
     def __repr__(self):
         """
         Display a first-order class in a way that can be parsed by Python
-        
+
         >>> from definability.first_order import fotheories
         >>> print(fotheories.DLat)
         FO_Theory("Distributive lattices", syntax="Prover9", axioms=[ 
@@ -71,7 +71,6 @@ class FO_Theory():
             arg = arg.axioms  # assume its another FO_Theory
         newaxioms = self.axioms + [a for a in arg if a not in self.axioms]
         return FO_Theory(abbr, name, newaxioms, results, options)
-
 
     def find_models(self, cardinality, seconds=60):
         """

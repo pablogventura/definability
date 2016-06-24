@@ -94,7 +94,8 @@ class Mace4Sol(object):
         Parsea una solucion devuelta por Mace4
         """
         buf = ""
-        line = self.__stdout.readline().decode('utf-8')  # quita el [ del principio
+        line = self.__stdout.readline().decode(
+            'utf-8')  # quita el [ del principio
         while line:
             # No hubo EOF
             if line == "[\n" or line == "]\n":

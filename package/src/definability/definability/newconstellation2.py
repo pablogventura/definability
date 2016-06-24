@@ -9,29 +9,31 @@ from ..first_order.model import FO_Model
 from ..definability.morphsgenerators import *
 from ..definability.exceptions import Counterexample
 
+
 class Model_Family(object):
+
     def __init__(self, k):
         self.__k = defaultdict(list)
         for model in k:
             self.add(model)
-    
+
     def add(self, model):
         self.__k[len(model)].append(model)
-    
+
     def remove(self, model):
         self.__k[len(model)].remove(model)
-    
+
     def __iter__(self):
         for cardinality in sorted(self.__k.keys(), reverse=True):
             for model in self.__k[cardinality]:
                 yield model
-    
+
     def __contains__(self, model):
         return model in self.__k[len(model)]
 
     def __len__(self):
         return sum(len(i) for i in self.__k.values())
-    
+
     def without_isos(self, subtype, supertype):
         return Model_Family_woiso(self.__k, subtype, supertype)
 
@@ -55,7 +57,6 @@ class Model_Family(object):
                 return (False, subiso)
         return (True, None)
 
-
     def is_open_positive_definable(self, subtype, supertype):
         """
         Devuelve una tupla diciendo si es definible y un contrajemplo
@@ -75,7 +76,6 @@ class Model_Family(object):
             if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
                 return (False, subhom)
         return (True, None)
-
 
     def is_existential_definable(self, subtype, supertype):
         """
@@ -97,7 +97,6 @@ class Model_Family(object):
                 return (False, emb)
         return (True, None)
 
-
     def is_existential_positive_definable(self, subtype, supertype):
         """
         Devuelve una tupla diciendo si es definible y un contrajemplo
@@ -117,7 +116,6 @@ class Model_Family(object):
             if not hom.preserves_type(supertype):
                 return (False, hom)
         return (True, None)
-
 
     def is_definable(self, subtype, supertype):
         """
@@ -140,20 +138,21 @@ class Model_Family(object):
                 return (False, iso)
         return (True, None)
 
+
 class Model_Family_woiso(Model_Family):
 
     def __init__(self, d, subtype, supertype):
         super(Model_Family_woiso, self).__init__([])
         self._Model_Family__k = d.copy()
-        self.__preprocessing(subtype,supertype)
-        
+        self.__preprocessing(subtype, supertype)
+
     def add(self, model):
         raise NotImplementedError
-        
+
     def __preprocessing(self, subtype, supertype):
         """
         Preprocesamiento para eliminar isomorfismos en k
-        
+
         >>> from definability.examples.examples import *
         >>> rettest10.join_to_le()
         >>> rettest102.join_to_le()
@@ -168,8 +167,6 @@ class Model_Family_woiso(Model_Family):
                 raise Counterexample(iso)
             else:
                 self.remove(iso.target)
-
-        
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ from datetime import datetime
 
 from collections import defaultdict
 
+
 def saturation(k, arity, morphisms):
     # TODO FALTA CORREGIR MUCHO, no pasa los tests, a veces se cuelga
     """
@@ -23,11 +24,11 @@ def saturation(k, arity, morphisms):
 
     while singletons:
         a = singletons.pop()
-        result.append(closurem(a,s,k, morphisms))
+        result.append(closurem(a, s, k, morphisms))
         for t in result[-1][s]:
             if t in singletons:
                 singletons.remove(t)
-    
+
     return result
 
 
@@ -36,7 +37,7 @@ def closure(t, arrows):
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
     result = [t]
-    
+
     checked = []
 
     while len(result) != len(checked):
@@ -53,23 +54,25 @@ def closure(t, arrows):
                 checked.append(t)
     return result
 
-def closurem(t,m,k, arrows):
+
+def closurem(t, m, k, arrows):
     # TODO ANDA MEDIO MAL
-    # TOMA t una tupla, m la estructura a la que pertenece t, k la familia de estrucutras y arrows las flechas
+    # TOMA t una tupla, m la estructura a la que pertenece t, k la familia de
+    # estrucutras y arrows las flechas
     """
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
     """
-    result = {a:[] for a in k}
-    result[m]=[t]
-    
+    result = {a: [] for a in k}
+    result[m] = [t]
+
     checked = defaultdict(list)
 
     while result != checked:
         for source in result.keys():
             for t in result[source]:
                 if t not in checked[source]:
-                    for i in (a for a in arrows if a.source.supermodel==source):
-                        
+                    for i in (a for a in arrows if a.source.supermodel == source):
+
                         try:
                             it = i.vector_call(t)
                         except ValueError:

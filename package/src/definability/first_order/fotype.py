@@ -3,6 +3,7 @@
 
 from itertools import chain
 
+
 class FO_Type(object):
 
     """
@@ -37,10 +38,12 @@ class FO_Type(object):
         return FO_Type(self.operations.copy(), self.relations.copy())
 
     def __repr__(self):
-        result  = "FO_Type({"
-        result += ", ".join([("'%s': %s" % x) for x in sorted(self.operations.items())])
+        result = "FO_Type({"
+        result += ", ".join([("'%s': %s" % x)
+                             for x in sorted(self.operations.items())])
         result += "},{"
-        result += ", ".join([("'%s': %s" % x) for x in sorted(self.relations.items())])
+        result += ", ".join([("'%s': %s" % x)
+                             for x in sorted(self.relations.items())])
         result += "})"
         return result
 
@@ -94,7 +97,7 @@ class FO_Type(object):
     def __hash__(self):
         """
         Hash de los tipos
-        
+
         >>> t1 = FO_Type({"+":2},{"<":2})
         >>> t2 = FO_Type({"-":2,"+":2},{"<":2})
         >>> hash(t1)==hash(t2)
@@ -102,7 +105,7 @@ class FO_Type(object):
         >>> hash(t1)==hash(t2.subtype(["+"],["<"]))
         True
         """
-        return hash(frozenset(chain(self.operations.items(),self.relations.items())))
+        return hash(frozenset(chain(self.operations.items(), self.relations.items())))
 
 if __name__ == "__main__":
     import doctest
