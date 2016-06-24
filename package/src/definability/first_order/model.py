@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from itertools import product
+from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding
@@ -277,7 +277,7 @@ class FO_Model(object):
         return result
         
     def __hash__(self):
-        return hash(str([self.fo_type,list(self.universe)] + list(sorted(self.operations.items())) + list(sorted(self.relations.items()))))
+        return hash(frozenset(chain([self.fo_type],self.universe,self.operations.items(),self.relations.items())))
 
 class FO_Submodel(FO_Model):
 
