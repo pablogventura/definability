@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+#from distutils.core import setup
+from setuptools import setup
 
 from definability.interfaces import config
 
@@ -21,4 +22,5 @@ setup(name='definability',
       author_email='pablogventura@gmail.com',
       url='',
       packages=['definability'],
+      setup_requires=['nose>=1.0']
       )
