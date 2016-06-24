@@ -73,4 +73,4 @@ Chequear Estilo de Código
 
 Correr flake8 sobre el paquete o módulo que se desea chequear. Por ejemplo::
 
-    flake8 languagemodeling
+    flake8
