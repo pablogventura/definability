@@ -157,6 +157,13 @@ class Function(object):
         """
         Hash de las funciones para manejar funciones en conjuntos.
         No es muy rapida.
+        >>> f=Function({(0,0):0, (0,1):1, (0,2):2, (1,0):1, (1,1):2, (1,2):0, (2,0):2, (2,1):0, (2,2):1,})
+        >>> g=Function({(2,0):2, (0,1):1, (0,2):2, (1,0):1, (0,0):0, (1,1):2, (1,2):0, (2,1):0, (2,2):1,})
+        >>> h=Function({(2,0):1, (0,1):1, (0,2):2, (1,0):1, (0,0):0, (1,1):2, (1,2):0, (2,1):0, (2,2):1,})
+        >>> hash(f)==hash(g)
+        True
+        >>> hash(f)==hash(h)
+        False
         """
         return hash(frozenset(self.dict.items()))
 

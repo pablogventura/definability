@@ -277,6 +277,17 @@ class FO_Model(object):
         return result
         
     def __hash__(self):
+        """
+        Hash para los modelos de primer orden
+        
+        >>> from definability.examples.examples import *
+        >>> hash(retrombo)==hash(retrombo2)
+        False
+        >>> from definability.first_order.fotheories import DiGraph
+        >>> s=[hash(g) for g in DiGraph.find_models(3)]
+        >>> (len(s),len(set(s))) # nunca se repitio un hash
+        (103, 103)
+        """
         return hash(frozenset(chain([self.fo_type],self.universe,self.operations.items(),self.relations.items())))
 
 class FO_Submodel(FO_Model):

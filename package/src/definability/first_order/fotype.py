@@ -92,6 +92,16 @@ class FO_Type(object):
         return result
 
     def __hash__(self):
+        """
+        Hash de los tipos
+        
+        >>> t1 = FO_Type({"+":2},{"<":2})
+        >>> t2 = FO_Type({"-":2,"+":2},{"<":2})
+        >>> hash(t1)==hash(t2)
+        False
+        >>> hash(t1)==hash(t2.subtype(["+"],["<"]))
+        True
+        """
         return hash(frozenset(chain(self.operations.items(),self.relations.items())))
 
 if __name__ == "__main__":
