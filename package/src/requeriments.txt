@@ -2,4 +2,4 @@ coverage
 numpy
 ipython
 nose
-
+flake8
