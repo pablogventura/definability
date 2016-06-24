@@ -5,4 +5,4 @@ prueba*
 *#
 *.bib.bak
 .coverage
-
+*egg*
