@@ -40,7 +40,7 @@ class Model_Family(object):
         Devuelve una tupla diciendo si es definible y un contrajemplo
         para la definibilidad abierta de supertype, en k con el subtype
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> k = Model_Family([retrombo])
         >>> k.is_open_definable(tiporet,tiporet+tipoposet)
         (True, None)
@@ -61,7 +61,7 @@ class Model_Family(object):
         Devuelve una tupla diciendo si es definible y un contrajemplo
         para la definibilidad abierta positiva de supertype, en k con el subtype
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> k = Model_Family([retrombo])
         >>> k.is_open_definable(tiporet,tiporet+tipodistinto)
         (True, None)
@@ -82,7 +82,7 @@ class Model_Family(object):
         Devuelve una tupla diciendo si es definible y un contrajemplo
         para la definibilidad existencial de supertype, en k con el subtype
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> k = Model_Family([retrombo])
         >>> k.is_existential_definable(tiporet,tiporetacotado)
         (True, None)
@@ -103,7 +103,7 @@ class Model_Family(object):
         Devuelve una tupla diciendo si es definible y un contrajemplo
         para la definibilidad existencial positiva de supertype, en k con el subtype
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> k = Model_Family([retrombo])
         >>> k.is_existential_definable(tiporet,tiporetacotado)
         (True, None)
@@ -124,7 +124,7 @@ class Model_Family(object):
         Devuelve una tupla diciendo si es definible y un contrajemplo
         para la definibilidad de primer orden de supertype, en k con el subtype
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> k = Model_Family([retrombo])
         >>> k.is_definable(tiporet,tiporetacotado)
         (True, None)
@@ -154,7 +154,7 @@ class Model_Family_woiso(Model_Family):
         """
         Preprocesamiento para eliminar isomorfismos en k
         
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> rettest10.join_to_le()
         >>> rettest102.join_to_le()
         >>> k= Model_Family([rettest10, rettest102])

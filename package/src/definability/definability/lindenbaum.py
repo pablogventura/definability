@@ -11,8 +11,8 @@ def saturation(k, arity, morphisms):
     # TODO FALTA CORREGIR MUCHO, no pasa los tests, a veces se cuelga
     """
     Satura a k por un conjunto de flechas
-    >>> from examples import examples
-    >>> from definability import newconstellation2
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
     >>> k={examples.retrombo, examples.rettestlinden2}
     >>> #saturation(k,2,newconstellation2.k_embs(k,examples.tiporet))
     """

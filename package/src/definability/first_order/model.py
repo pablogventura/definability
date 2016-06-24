@@ -94,7 +94,7 @@ class FO_Model(object):
         y devuelve una lista con otros conjuntos que tambien hubieran
         generado el mismo subuniverso
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> retrombo.subuniverse([1],tiporet)
         ([1], [[1]])
         >>> retrombo.subuniverse([2,3],tiporet)[0]
@@ -125,7 +125,7 @@ class FO_Model(object):
         Generador que va devolviendo los subuniversos.
         Intencionalmente no filtra por isomorfismos.
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> list(retrombo.subuniverses(tiporet))
         [[0, 1, 2, 3], [0, 1, 2], [0, 1, 3], [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [0], [1], [2], [3]]
         >>> list(posetrombo.subuniverses(tipoposet)) # debe dar el conjunto de partes sin el vacio, porque no tiene ops
@@ -167,7 +167,7 @@ class FO_Model(object):
         Devuelve una subestructura y un embedding.
         No devuelve las subestructuras cuyos universos estan en without.
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> len(list(retrombo.substructures(tiporet)))
         12
         >>> len(list(retrombo.substructures(tiporet.subtype(["v"],[])))) # debe dar uno mas por el triangulo de arriba
@@ -213,7 +213,7 @@ class FO_Model(object):
         Genera una relacion <= a partir de v
         Solo si no tiene ninguna relacion "<="
 
-        >>> from examples.examples import retrombo
+        >>> from definability.examples.examples import retrombo
         >>> del retrombo.relations["<="]
         >>> retrombo.join_to_le()
         >>> retrombo.relations["<="]

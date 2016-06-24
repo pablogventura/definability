@@ -36,8 +36,8 @@ class FO_Theory():
         """
         Display a first-order class in a way that can be parsed by Python
         
-        >>> import first_order.fotheories
-        >>> print(first_order.fotheories.DLat)
+        >>> from definability.first_order import fotheories
+        >>> print(fotheories.DLat)
         FO_Theory("Distributive lattices", syntax="Prover9", axioms=[ 
         "(x v y) v z = x v (y v z)",
         "x v y = y v x",

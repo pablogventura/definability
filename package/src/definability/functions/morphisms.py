@@ -10,7 +10,7 @@ class Homomorphism(Function):
     """
     Homomorfismos
 
-    >>> from examples import examples
+    >>> from definability.examples import examples
     >>> h = Homomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print(h)
     Homeomorphism(
@@ -139,7 +139,7 @@ class Homomorphism(Function):
         Diremos que 𝛾  preserva a R si para todo (a₁,...,aₙ) ∈ R∩Dⁿ
         se tiene que (𝛾(a₁),...,𝛾(aₙ)) ∈ R.
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> retrombo.is_homomorphic_image(retrombo, tiporet)
         Homeomorphism(
           [0] -> 0,
@@ -229,7 +229,7 @@ class Homomorphism(Function):
         Revisa preservacion de las relaciones que tiene supertype, que no tiene el morfismo en su tipo.
         Si preserva el tipo, se cambia de tipo a ese.
 
-        >>> from examples.examples import *
+        >>> from definability.examples.examples import *
         >>> retrombo.is_homomorphic_image(retrombo, tiporet)
         Homeomorphism(
           [0] -> 0,
@@ -268,7 +268,7 @@ class Embedding(Homomorphism):
     """
     Embeddings
 
-    >>> from examples import examples
+    >>> from definability.examples import examples
     >>> h = Embedding({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print(h)
     Autoembedding(
@@ -308,7 +308,7 @@ class Isomorphism(Embedding):
     """
     Isomorfismos
 
-    >>> from examples import examples
+    >>> from definability.examples import examples
     >>> h = Isomorphism({(0,):1,(1,):1},examples.posetcadena2,examples.posetcadena2,examples.posetcadena2.fo_type)
     >>> print(h)
     Automorphism(
