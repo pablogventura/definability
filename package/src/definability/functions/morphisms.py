@@ -3,6 +3,7 @@
 
 from ..functions.functions import Function
 from ..misc.misc import indent
+from ..functions.congruence import Congruence
 
 
 class Homomorphism(Function):
@@ -261,6 +262,17 @@ class Homomorphism(Function):
         # se auto promueve a un homo del supertipo
         self.subtype = supertype.copy()
         return True
+
+    def kernel(self):
+        """
+        Devuelve el nucleo del homomorfismo
+        """
+        k = []
+        for x in self.source.universe:
+            for y in self.source.universe:
+                if self.dict[(x,)] == self.dict[(y,)]:
+                    k.append((x,y))
+        return Congruence(k, self.source)
 
 
 class Embedding(Homomorphism):
