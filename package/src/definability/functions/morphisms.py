@@ -107,7 +107,7 @@ class Homomorphism(Function):
     def __repr__(self):
         result = "%s(\n" % self.stype
         result += indent("\n".join(["%s -> %s," %
-                                       (x[:-1], x[-1]) for x in self.table()])) + ",\n"
+                                    (x[:-1], x[-1]) for x in self.table()])) + ",\n"
         #result += indent(repr(self.source) + ",")
         #result += indent(repr(self.target) + ",")
         result += indent(repr(self.subtype)) + ",\n"

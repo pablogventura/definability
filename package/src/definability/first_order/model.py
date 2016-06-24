@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from itertools import product
+from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding
@@ -149,7 +149,7 @@ class FO_Model(object):
         """
         Devuelve la restriccion del modelo al subuniverso que se supone que es cerrado en en subtype
         """
-        return FO_Submodel(subtype, subuniverse, {op: self.operations[op].restrict(subuniverse) for op in self.operations}, {rel: self.relations[rel].restrict(subuniverse) for rel in self.relations},self)
+        return FO_Submodel(subtype, subuniverse, {op: self.operations[op].restrict(subuniverse) for op in self.operations}, {rel: self.relations[rel].restrict(subuniverse) for rel in self.relations}, self)
 
     def substructure(self, subuniverse, subtype):
         """
@@ -275,18 +275,33 @@ class FO_Model(object):
                 else:
                     result += ["-(%s%s %s %s%s)" % (c, x + s, rel, c, y + s)]
         return result
-        
+
     def __hash__(self):
-        return hash(str([self.fo_type,list(self.universe)] + list(sorted(self.operations.items())) + list(sorted(self.relations.items()))))
+        """
+        Hash para los modelos de primer orden
+
+        >>> from definability.examples.examples import *
+        >>> hash(retrombo)==hash(retrombo2)
+        False
+        >>> from definability.first_order.fotheories import DiGraph
+        >>> s=[hash(g) for g in DiGraph.find_models(3)]
+        >>> (len(s),len(set(s))) # nunca se repitio un hash
+        (103, 103)
+        """
+        return hash(frozenset(chain([self.fo_type], self.universe, self.operations.items(), self.relations.items())))
+
 
 class FO_Submodel(FO_Model):
 
     """
     Submodelos de algun tipo de primer orden.
     """
+
     def __init__(self, fo_type, universe, operations, relations, supermodel):
-        super(FO_Submodel, self).__init__(fo_type, universe, operations, relations)
+        super(FO_Submodel, self).__init__(
+            fo_type, universe, operations, relations)
         self.supermodel = supermodel
+
     def __repr__(self):
         result = "FO_Submodel(\n"
         result += indent(repr(self.fo_type) + ",\n")

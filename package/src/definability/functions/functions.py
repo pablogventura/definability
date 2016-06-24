@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import numpy as np
 from itertools import product
 from ..misc.misc import indent
 import copy
@@ -157,8 +156,15 @@ class Function(object):
         """
         Hash de las funciones para manejar funciones en conjuntos.
         No es muy rapida.
+        >>> f=Function({(0,0):0, (0,1):1, (0,2):2, (1,0):1, (1,1):2, (1,2):0, (2,0):2, (2,1):0, (2,2):1,})
+        >>> g=Function({(2,0):2, (0,1):1, (0,2):2, (1,0):1, (0,0):0, (1,1):2, (1,2):0, (2,1):0, (2,2):1,})
+        >>> h=Function({(2,0):1, (0,1):1, (0,2):2, (1,0):1, (0,0):0, (1,1):2, (1,2):0, (2,1):0, (2,2):1,})
+        >>> hash(f)==hash(g)
+        True
+        >>> hash(f)==hash(h)
+        False
         """
-        return hash(str(sorted(self.dict.items())))
+        return hash(frozenset(self.dict.items()))
 
     def table(self):
         """
@@ -194,7 +200,7 @@ class Function(object):
             if self.arity():
                 result = "Function(\n"
                 table = ["%s -> %s," %
-                            (x[:-1], x[-1]) for x in self.table()]
+                         (x[:-1], x[-1]) for x in self.table()]
             else:
                 result = "Constant(\n"
                 table = str(self.table()[0][0])

@@ -8,7 +8,7 @@ import pickle
 def object_to_file(obj, path):
     """
     Guarda un objeto en un archivo
-    
+
     >>> object_to_file([1,3],"testfile")
     >>> l = file_to_object("testfile")
     >>> l
@@ -23,7 +23,7 @@ def object_to_file(obj, path):
 def file_to_object(path):
     """
     Lee un objeto en un archivo
-    
+
     >>> object_to_file([1,3],"testfile")
     >>> l = file_to_object("testfile")
     >>> l
@@ -39,7 +39,7 @@ def file_to_object(path):
 def create_pipe(path):
     """
     Crea un named pipe
-    
+
     """
     try:
         os.mkfifo(path)
