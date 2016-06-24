@@ -1,3 +1,5 @@
 coverage
 numpy
 ipython
+nose
+

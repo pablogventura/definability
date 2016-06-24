@@ -21,6 +21,4 @@ setup(name='definability',
       author_email='pablogventura@gmail.com',
       url='',
       packages=['definability'],
-      test_suite='nose.collector',
-      tests_require=['nose'],
 )
