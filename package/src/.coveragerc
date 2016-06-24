@@ -7,6 +7,8 @@ omit =
     /usr/*
     # omit this single file
     *numpy*
+    *nose*
+    *python3*
 
 [report]
 # Regexes for lines to exclude from consideration
