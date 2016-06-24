@@ -3,3 +3,5 @@ numpy
 ipython
 nose
 flake8
+autopep8
+
