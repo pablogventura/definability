@@ -2,10 +2,6 @@
 # -*- coding: utf8 -*-
 from ..examples.examples import *
 from collections import defaultdict
-from itertools import product, chain, combinations, permutations
-from ..functions.morphisms import Isomorphism, Embedding, Homomorphism
-from ..interfaces.minion import ParallelMorphMinionSol
-from ..first_order.model import FO_Model
 from ..definability.morphsgenerators import *
 from ..definability.exceptions import Counterexample
 
@@ -43,6 +39,7 @@ class Model_Family(object):
         para la definibilidad abierta de supertype, en k con el subtype
 
         >>> from definability.examples.examples import *
+        >>> from definability.functions.morphisms import Isomorphism
         >>> k = Model_Family([retrombo])
         >>> k.is_open_definable(tiporet,tiporet+tipoposet)
         (True, None)
@@ -63,6 +60,7 @@ class Model_Family(object):
         para la definibilidad abierta positiva de supertype, en k con el subtype
 
         >>> from definability.examples.examples import *
+        >>> from definability.functions.morphisms import Homomorphism
         >>> k = Model_Family([retrombo])
         >>> k.is_open_definable(tiporet,tiporet+tipodistinto)
         (True, None)
@@ -83,6 +81,7 @@ class Model_Family(object):
         para la definibilidad existencial de supertype, en k con el subtype
 
         >>> from definability.examples.examples import *
+        >>> from definability.functions.morphisms import Embedding
         >>> k = Model_Family([retrombo])
         >>> k.is_existential_definable(tiporet,tiporetacotado)
         (True, None)
@@ -103,6 +102,7 @@ class Model_Family(object):
         para la definibilidad existencial positiva de supertype, en k con el subtype
 
         >>> from definability.examples.examples import *
+        >>> from definability.functions.morphisms import Homomorphism
         >>> k = Model_Family([retrombo])
         >>> k.is_existential_definable(tiporet,tiporetacotado)
         (True, None)
@@ -123,6 +123,7 @@ class Model_Family(object):
         para la definibilidad de primer orden de supertype, en k con el subtype
 
         >>> from definability.examples.examples import *
+        >>> from definability.functions.morphisms import Isomorphism
         >>> k = Model_Family([retrombo])
         >>> k.is_definable(tiporet,tiporetacotado)
         (True, None)

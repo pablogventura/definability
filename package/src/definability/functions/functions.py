@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import numpy as np
 from itertools import product
 from ..misc.misc import indent
 import copy
