@@ -8,6 +8,15 @@ class Eq_Rel(FO_Relation):
 
     """
     Relacion binaria que cumple los axiomas de equivalencia
+
+    >>> from definability.examples import examples
+    >>> rel = Eq_Rel([(0, 0),(1, 1),(2, 2),(3, 3),(4, 4),(2, 3),(3, 2)], examples.retdiamante)
+    >>> rel(2, 3)
+    True
+    >>> rel(4, 3)
+    False
+    >>> rel.table()
+    [[0, 0], [1, 1], [2, 2], [2, 3], [3, 2], [3, 3], [4, 4]]
     """
 
     def __init__(self, d, model):
@@ -41,7 +50,16 @@ class Eq_Rel(FO_Relation):
 class Congruence(Eq_Rel):
 
     """
-    Congruencia 
+    Congruencia
+
+    >>> from definability import fotheories
+    >>> rel = Congruence([(1, 1),(2, 2),(3, 3),(0, 0),(1, 3),(3, 1),(0, 2),(2, 0)], fotheories.Lat.find_models(4)[0])
+    >>> rel(1, 3)
+    True
+    >>> rel(0, 3)
+    False
+    >>> rel.table()
+    [[0, 0], [1, 1], [2, 2], [1, 3], [3, 1], [3, 3], [0, 2], [2, 0]]
     """
 
     def __init__(self, d, model):
@@ -74,11 +92,14 @@ class Congruence(Eq_Rel):
         return result
 
     def __preserva_operacion(self, op):
-        for t in self.model.operations[op].domain():
-            for s in self.model.operations[op].domain():
-                if self.relacionados(t, s):
-                    if not (self.model.operations[op](t[0], t[1]), self.model.operations[op](s[0], s[1])) in self.d:
-                        return False
+        if self.model.operations[op].arity() == 0:
+            pass
+        else:
+            for t in self.model.operations[op].domain():
+                for s in self.model.operations[op].domain():
+                    if self.relacionados(t, s):
+                        if not (self.model.operations[op].dict[t], self.model.operations[op].dict[s]) in self.d:
+                            return False
         return True
 
     def preserva_operaciones(self):
