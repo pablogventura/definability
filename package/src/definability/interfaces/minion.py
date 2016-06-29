@@ -429,7 +429,7 @@ class ParallelMorphMinionSol(object):
         if self.solution is None:
             while self.queue or self.minions:
                 for (fd, event) in self.poll.poll():
-                    result = self.read(fd).decode('utf-8')
+                    result = self.read(fd)
                     if result:
                         self.solution = result
                         if not self.allsols:
