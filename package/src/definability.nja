@@ -1,7 +1,7 @@
 {
   "mainFile": "setup.py", 
   "use-tabs": false, 
-  "venv": "/home/pablo/.virtualenvs/py3def/bin/python", 
+  "venv": "/home/gonzalociagarn/Facu/Tesis/sage/py3def/bin/python", 
   "relatedProjects": [], 
   "name": "definability", 
   "license": "GNU General Public License v3", 
