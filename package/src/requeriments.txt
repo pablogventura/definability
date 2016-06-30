@@ -4,4 +4,5 @@ ipython
 nose
 flake8
 autopep8
+traitlets
 
