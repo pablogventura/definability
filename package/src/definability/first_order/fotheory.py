@@ -18,7 +18,7 @@ class FO_Theory():
             axioms  -- list of strings in the given syntax
             results -- list of strings in the given syntax
             options -- list of strings defining the syntax
-            syntax  -- a string indicating which program can parse the 
+            syntax  -- a string indicating which program can parse the
                        axioms, results and options
         """
         self.abbr = abbr
@@ -38,7 +38,7 @@ class FO_Theory():
 
         >>> from definability.first_order import fotheories
         >>> print(fotheories.DLat)
-        FO_Theory("Distributive lattices", syntax="Prover9", axioms=[ 
+        FO_Theory("Distributive lattices", syntax="Prover9", axioms=[
         "(x v y) v z = x v (y v z)",
         "x v y = y v x",
         "(x^y)^z = x^(y^z)",
@@ -46,7 +46,7 @@ class FO_Theory():
         "(x v y)^x = x",
         "(x^y) v x = x",
         "x^(y v z) = (x^y) v (x^z)"],
-        results=[ 
+        results=[
         "x v (y^z) = (x v y)^(x v z)",
         "((x v y)^(x v z))^(y v z) = ((x^y)v(x^z))v(y^z)"])
         """
@@ -74,7 +74,7 @@ class FO_Theory():
 
     def find_models(self, cardinality, seconds=60):
         """
-        Find models of given (finite) cardinality for the axioms 
+        Find models of given (finite) cardinality for the axioms
         of the FO_Theory self.
         """
         return Mace4Sol(self.axioms, mace_seconds=seconds, domain_cardinality=cardinality, options=self.options)

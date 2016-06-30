@@ -39,13 +39,13 @@ def rsi(algebras):
                 sub.append(s[1])
     algebras = limpiar_isos(sub)
     for a in algebras:
-        ker = {(x, y) for x in a.universe for y in a.universe}
-        mincon = {(x, x) for x in a.universe}
         F = []
         for b in algebras:
             if not a == b:
                 for f in a.homomorphisms_to(b, a.fo_type, surj=True):
                     F.append(f)
+        ker = {(x, y) for x in a.universe for y in a.universe}
+        mincon = {(x, x) for x in a.universe}
         for f in F:
             ker = ker & {tuple(t) for t in f.kernel().table()}
             if ker == mincon:
