@@ -1,4 +1,0 @@
-#!/bin/sh
-
-tar -cvf univ_algebra-20131003.spkg univ_algebra-20131003
-tar -cvf minion-20110325.spkg minion-20110325
