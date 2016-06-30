@@ -114,12 +114,13 @@ class MinionSol(object):
         """
         Mata a Minion
         """
-        self.minionapp.stdout.close()
-        self.minionapp.stdin.close()
-        self.minionapp.stderr.close()
-        self.minionapp.kill()
+        if hasattr(self, 'minionapp'):
+            self.minionapp.stdout.close()
+            self.minionapp.stdin.close()
+            self.minionapp.stderr.close()
+            self.minionapp.kill()
 
-        del self.minionapp
+            del self.minionapp
         files.remove(self.input_filename)
 
     def __del__(self):
