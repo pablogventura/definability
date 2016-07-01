@@ -7,6 +7,7 @@ from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding
 from ..first_order.fofunctions import FO_Relation
 from ..interfaces import minion
+from ..interfaces import latticedraw
 
 
 class FO_Model(object):
@@ -252,6 +253,9 @@ class FO_Model(object):
         """
         from sage.combinat.posets.posets import Poset
         return Poset((self.universe, self.relations["<="].table()))
+
+    def draw_lattice(self):
+        latticedraw.LatDraw(self)
 
     def diagram(self, c, s=0):
         """

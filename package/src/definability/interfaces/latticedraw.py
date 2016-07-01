@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-# Minion interface code Peter Jipsen 2011-03-26 alpha version
-# requires sage.chapman.edu/sage/minion_20110326.spkg
 
 import subprocess as sp
 from select import poll, POLLIN
