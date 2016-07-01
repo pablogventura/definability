@@ -15,20 +15,24 @@ def saturation(k, arity, morphisms):
     >>> from definability.examples import examples
     >>> from definability.definability import newconstellation2
     >>> k={examples.retrombo, examples.rettestlinden2}
-    >>> #saturation(k,2,newconstellation2.k_embs(k,examples.tiporet))
+    >>> len(saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)))
+    10
     """
-    s = list(k)[0]
+    #s = max(k,key=len)
     morphisms = list(morphisms)
-    singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
     result = []
+    for s in k:
+        singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
 
-    while singletons:
-        a = singletons.pop()
-        result.append(closurem(a, s, k, morphisms))
-        for t in result[-1][s]:
-            if t in singletons:
-                singletons.remove(t)
+        while singletons:
+            a = singletons.pop()
+            result.append(closurem(a, s, k, morphisms))
+            for t in result[-1][s]:
+                if t in singletons:
+                    singletons.remove(t)
 
+        #for l in result:
+            #result[l]=list(set(result[l]))
     return result
 
 
@@ -67,7 +71,8 @@ def closurem(t, m, k, arrows):
 
     checked = defaultdict(list)
 
-    while result != checked:
+    while sum(len(x) for x in result.values()) != sum(len(x) for x in checked.values()):
+
         for source in result.keys():
             for t in result[source]:
                 if t not in checked[source]:
@@ -80,7 +85,9 @@ def closurem(t, m, k, arrows):
                             continue
                         if it not in result[i.target.supermodel]:
                             result[i.target.supermodel].append(it)
+                            result[i.target.supermodel].sort()
                     checked[source].append(t)
+                    checked[source].sort()
     return result
 
 if __name__ == "__main__":
