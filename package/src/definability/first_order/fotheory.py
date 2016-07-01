@@ -51,11 +51,11 @@ class FO_Theory():
         "((x v y)^(x v z))^(y v z) = ((x^y)v(x^z))v(y^z)"])
         """
         st = 'FO_Theory(\"' + self.name + '\", syntax=\"' + self.syntax +\
-             '\"' + ', axioms=[ \n\"' + '\",\n\"'.join(self.axioms) + '\"]'
+             '\"' + ', axioms=[\n\"' + '\",\n\"'.join(self.axioms) + '\"]'
         if self.options != []:
-            st += ',\noptions=[ \n\"' + '\",\n\"'.join(self.options) + '\"]'
+            st += ',\noptions=[\n\"' + '\",\n\"'.join(self.options) + '\"]'
         if self.results != []:
-            st += ',\nresults=[ \n\"' + '\",\n\"'.join(self.results) + '\"]'
+            st += ',\nresults=[\n\"' + '\",\n\"'.join(self.results) + '\"]'
         return st + ')'
 
     def subclass(self, abbr, name, arg, results=[], options=[]):

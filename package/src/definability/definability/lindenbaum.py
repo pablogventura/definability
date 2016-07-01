@@ -16,7 +16,7 @@ def saturation(k, arity, morphisms):
     >>> from definability.definability import newconstellation2
     >>> k={examples.retrombo, examples.rettestlinden2}
     >>> len(saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)))
-    10
+    27
     """
     #s = max(k,key=len)
     morphisms = list(morphisms)
