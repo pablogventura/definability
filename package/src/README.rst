@@ -13,6 +13,7 @@ Instalación
    - Virtualenv
    - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_ en ~/minion-1.8/bin/minion
    - `LADR 2009 11A <https://www.cs.unm.edu/~mccune/mace4/download/>`_ en ~/LADR-2009-11A/bin
+   - `LatDraw 2.0 <http://www.latdraw.org/>`_ en ~/LatDraw2.0/dist/lib (descargar el source en tar y compilar con ant)
 
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
 
