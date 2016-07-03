@@ -21,18 +21,22 @@ def saturation(k, arity, morphisms):
     #s = max(k,key=len)
     morphisms = list(morphisms)
     result = []
-    for s in k:
-        singletons = list(map(tuple, list(product(s.universe, repeat=arity))))
+    singletons =[]
+    #singletons = list(map(tuple, list(product(s.universe, repeat=arity)))) # necesito recordar de quien es
+    for m in k:
+        for s in product(m.universe, repeat=arity):
+            singletons.append((m, tuple(s)))
 
-        while singletons:
-            a = singletons.pop()
-            result.append(closurem(a, s, k, morphisms))
-            for t in result[-1][s]:
-                if t in singletons:
-                    singletons.remove(t)
+    while singletons:
+        m,a = singletons.pop()
+        result.append(closurem(a, m, k, morphisms))
+        for ma in result[-1]:
+            for t in result[-1][ma]:
+                if (ma,t) in singletons:
+                    singletons.remove((ma,t))
 
-        #for l in result:
-            #result[l]=list(set(result[l]))
+    #for l in result:
+        #result[l]=list(set(result[l]))
     return result
 
 
