@@ -9,13 +9,15 @@ from datetime import datetime
 from collections import defaultdict
 
 
-def saturation(k, arity, morphisms):
+def lindenbaum_algebra(k, arity, morphisms):
     """
     Satura a k por un conjunto de flechas
+    Devuelve los join irreducibles del algebra de lindenbaum
+    de aridad dada para la familia K, con las flechas en morphisms.
     >>> from definability.examples import examples
     >>> from definability.definability import newconstellation2
     >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
-    >>> len(saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)))
+    >>> len(lindenbaum_algebra(k,2,newconstellation2.k_embs(k,examples.tiporet)))
     17
     """
     # influye muchisimo el orden en que se recorre k!
