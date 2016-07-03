@@ -1,6 +1,7 @@
 from itertools import product
 
 from ..functions.morphisms import Homomorphism, Isomorphism
+from ..definability.newconstellation2 import Model_Family
 from ..misc.misc import powerset
 from ..first_order.fofunctions import FO_Relation
 from datetime import datetime
@@ -9,34 +10,34 @@ from collections import defaultdict
 
 
 def saturation(k, arity, morphisms):
-    # TODO FALTA CORREGIR MUCHO, no pasa los tests, a veces se cuelga
     """
     Satura a k por un conjunto de flechas
     >>> from definability.examples import examples
     >>> from definability.definability import newconstellation2
-    >>> k={examples.retrombo, examples.rettestlinden2}
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
     >>> len(saturation(k,2,newconstellation2.k_embs(k,examples.tiporet)))
-    27
+    17
     """
-    #s = max(k,key=len)
+    # influye muchisimo el orden en que se recorre k!
+    assert isinstance(k,Model_Family)
+
     morphisms = list(morphisms)
     result = []
+
     singletons =[]
-    #singletons = list(map(tuple, list(product(s.universe, repeat=arity)))) # necesito recordar de quien es
     for m in k:
         for s in product(m.universe, repeat=arity):
             singletons.append((m, tuple(s)))
 
     while singletons:
         m,a = singletons.pop()
-        result.append(closurem(a, m, k, morphisms))
-        for ma in result[-1]:
-            for t in result[-1][ma]:
+        new = closurem(a, m, k, morphisms)
+        result.append(new)
+        for ma in new:
+            for t in new[ma]:
                 if (ma,t) in singletons:
                     singletons.remove((ma,t))
 
-    #for l in result:
-        #result[l]=list(set(result[l]))
     return result
 
 
@@ -64,11 +65,10 @@ def closure(t, arrows):
 
 
 def closurem(t, m, k, arrows):
-    # TODO ANDA MEDIO MAL
-    # TOMA t una tupla, m la estructura a la que pertenece t, k la familia de
-    # estrucutras y arrows las flechas
     """
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
+    TOMA t una tupla, m la estructura a la que pertenece t, k la familia de estructuras
+    y arrows las flechas
     """
     result = {a: [] for a in k}
     result[m] = [t]
