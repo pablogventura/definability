@@ -14,7 +14,6 @@ class FO_OpRel(Function):
     def __init__(self, d):
         super(FO_OpRel, self).__init__(d)
 
-
 class FO_Operation(FO_OpRel):
 
     r"""
@@ -54,6 +53,8 @@ class FO_Relation(FO_OpRel):
         self.d_universe = d_universe
         self.relation = True
 
+def FO_Constant(value):
+    return FO_Operation({(): value})
 
 if __name__ == "__main__":
     import doctest

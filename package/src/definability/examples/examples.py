@@ -9,7 +9,7 @@ from ..first_order import fotheories
 
 from ..first_order.model import FO_Model
 from ..first_order.fotype import FO_Type
-from ..first_order.fofunctions import FO_Relation, FO_Operation
+from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Constant
 
 
 tipoposet = FO_Type({}, {"<=": 2})
@@ -67,8 +67,8 @@ posetcadena2 = FO_Model(tipoposet, list(range(
     2)), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, list(range(2)))})
 
 retcadena2 = fotheories.Lat.find_models(2)[0]
-retcadena2.operations["Min"] = FO_Operation({(): 0})
-retcadena2.operations["Max"] = FO_Operation({(): 1})
+retcadena2.operations["Min"] = FO_Constant(0)
+retcadena2.operations["Max"] = FO_Constant(1)
 retdiamante = fotheories.Lat.find_models(5)[0]
 rettestlinden = fotheories.DLat.find_models(7)[0]
 rettestlinden2 = fotheories.DLat.find_models(5)[0]
@@ -105,8 +105,8 @@ retrombo = FO_Model(tiporetacotado, list(range(4)), {'^': FO_Operation({(0, 0): 
                                                                         (3, 2): 1,
                                                                         (3, 3): 3}
                                                                        ),
-                                                     "Max": FO_Operation({(): 1}),
-                                                     "Min": FO_Operation({(): 0}),
+                                                     "Max": FO_Constant(1),
+                                                     "Min": FO_Constant(0),
                                                      },
                     {'<=': FO_Relation({(0, 0): 1,
                                         (0, 1): 1,
@@ -178,8 +178,8 @@ retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1
                                                                        (4, 3): 2,
                                                                        (4, 4): 4}
                                                                       ),
-                                                    "Max": FO_Operation({(): 2}),
-                                                    "Min": FO_Operation({(): 1}),
+                                                    "Max": FO_Constant(2),
+                                                    "Min": FO_Constant(1),
                                                     },
                      {'<=': FO_Relation({(1, 1): 1,
                                          (1, 2): 1,

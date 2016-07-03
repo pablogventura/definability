@@ -1,4 +1,4 @@
-from definability.first_order.fofunctions import FO_Operation, FO_Relation
+from definability.first_order.fofunctions import FO_Operation, FO_Relation, FO_Constant
 from definability.first_order.fotype import FO_Type
 from definability.first_order.model import FO_Model
 from definability.first_order import fotheories
