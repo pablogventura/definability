@@ -6,7 +6,7 @@ def limpiar_isos(algebras):
     Dado un cojunto de álgebras, devuelve el conjunto que deja un representante
     por álgebras isomórficas
 
-    >>> from definability.fotheories import Lat
+    >>> from definability.first_order.fotheories import Lat
     >>> B = limpiar_isos(Lat.find_models(5))
     >>> len(B)
     5
@@ -38,7 +38,7 @@ def conj_rsi(algebras):
     Dada un conjunto de álgebras, devuelve el conjunto de álgebras relativamente
     subdirectamente irreducibles para la cuasivariedad generada.
 
-    >>> from definability.fotheories import Lat
+    >>> from definability.first_order.fotheories import Lat
     >>> B = conj_rsi(Lat.find_models(5))
     >>> len(B)
     3
