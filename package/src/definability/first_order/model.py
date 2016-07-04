@@ -16,7 +16,7 @@ class FO_Model(object):
     Modelos de algun tipo de primer orden.
     """
 
-    def __init__(self, fo_type, universe, operations, relations):
+    def __init__(self, fo_type, universe, operations, relations, name=""):
         self.fo_type = fo_type
         assert not isinstance(universe, int)
         self.universe = universe
@@ -28,14 +28,18 @@ class FO_Model(object):
         self.operations = operations
         self.relations = relations
         self.supermodel = self
+        self.name = name
 
     def __repr__(self):
-        result = "FO_Model(\n"
-        result += indent(repr(self.fo_type) + ",\n")
-        result += indent(repr(self.universe) + ",\n")
-        result += indent(repr(self.operations) + ",\n")
-        result += indent(repr(self.relations))
-        return result + ")"
+        if self.name:
+            return "FO_Model(%s)\n" % self.name
+        else:
+            result = "FO_Model(\n"
+            result += indent(repr(self.fo_type) + ",\n")
+            result += indent(repr(self.universe) + ",\n")
+            result += indent(repr(self.operations) + ",\n")
+            result += indent(repr(self.relations))
+            return result + ")"
 
     def homomorphisms_to(self, target, subtype, inj=None, surj=None, without=[]):
         """
@@ -293,6 +297,12 @@ class FO_Model(object):
         (103, 103)
         """
         return hash(frozenset(chain([self.fo_type], self.universe, self.operations.items(), self.relations.items())))
+    def __mul__(self, other):
+        """
+        Calcula el producto entre modelos
+        """
+        return FO_Product([self, other])
+
 
 
 class FO_Submodel(FO_Model):
@@ -314,6 +324,20 @@ class FO_Submodel(FO_Model):
         result += indent(repr(self.relations) + ",\n")
         result += indent("supermodel= " + repr(self.supermodel) + "\n")
         return result + ")"
+
+
+class FO_Product(FO_Model):
+
+    def __init__(self, factors):
+        """
+        Toma una lista de factores
+        """
+        # TODO falta un armar las operaciones y relaciones
+        super(FO_Product, self).__init__(factors[0].fo_type,
+                                         list(product(*[f.universe for f in factors])),
+                                         factors[0].operations,
+                                         factors[0].relations)
+
 
 if __name__ == "__main__":
     import doctest
