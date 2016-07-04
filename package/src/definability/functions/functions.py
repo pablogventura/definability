@@ -4,13 +4,14 @@
 from itertools import product
 from ..misc.misc import indent
 import copy
-
+import inspect
 
 class Function(object):
 
     r"""
     Define el arreglo n dimensional que se usan para tener operaciones y relaciones n-arias.
     Necesariamente toma numeros desde 0
+    Tambien puede tomar una funcion directamente
 
     >>> sum_mod3=Function({(0,0):0, (0,1):1, (0,2):2, (1,0):1, (1,1):2, (1,2):0, (2,0):2, (2,1):0, (2,2):1,})
     >>> sum_mod3mas3=Function({(0,0):3, (0,1):4, (0,2):5, (1,0):4, (1,1):5, (1,2):3, (2,0):5, (2,1):3, (2,2):4,})
@@ -29,8 +30,43 @@ class Function(object):
       [2, 2] -> 1,
     )
 
-    >>> list(sum_mod3.domain())
-    [(0, 1), (1, 2), (0, 0), (2, 0), (1, 0), (2, 2), (0, 2), (2, 1), (1, 1)]
+    >>> sorted(list(sum_mod3.domain()))
+    [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+
+    >>> sum_mod3.arity()
+    2
+
+    >>> sum_mod3 == sum_mod3mas3
+    False
+    >>> sum_mod3.map_in_place(lambda x: x+3)
+    >>> sum_mod3 == sum_mod3mas3
+    True
+    >>> sum_mod3(1,2)
+    3
+
+    >>> sum_mod3(2,2)
+    4
+
+    >>> sum_mod3.table()
+    [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
+    >>> sum_mod3=Function(lambda x,y:(x+y)%3,d_universe=[0,1,2])
+    >>> sum_mod3.table()
+    [[0, 0, 0], [0, 1, 1], [0, 2, 2], [1, 0, 1], [1, 1, 2], [1, 2, 0], [2, 0, 2], [2, 1, 0], [2, 2, 1]]
+    >>> sum_mod3
+    Function(
+      [0, 0] -> 0,
+      [0, 1] -> 1,
+      [0, 2] -> 2,
+      [1, 0] -> 1,
+      [1, 1] -> 2,
+      [1, 2] -> 0,
+      [2, 0] -> 2,
+      [2, 1] -> 0,
+      [2, 2] -> 1,
+    )
+
+    >>> sorted(list(sum_mod3.domain()))
+    [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
 
     >>> sum_mod3.arity()
     2
@@ -50,14 +86,25 @@ class Function(object):
     [[0, 0, 3], [0, 1, 4], [0, 2, 5], [1, 0, 4], [1, 1, 5], [1, 2, 3], [2, 0, 5], [2, 1, 3], [2, 2, 4]]
     """
 
-    def __init__(self, d, arity=None):
+    def __init__(self, d, arity=None, d_universe=None):
         # assert issubclass(type(l),list)
-        if isinstance(d, list):
-            d = self.__list_to_dict(d)
-        self.dict = d
+        self.func = None
+        self.dict = None
+        self.d_universe = d_universe
+        if callable(d):
+            assert d_universe
+            self.func = d
+        elif isinstance(d, list):
+            self.dict = self.__list_to_dict(d)
+        else:
+            self.dict = d
         self.empty = False
-        assert all(isinstance(t, tuple) for t in list(self.dict.keys()))
-        if not self.dict:
+        if self.dict:
+            assert all(isinstance(t, tuple) for t in list(self.dict.keys()))
+        if self.func:
+            # la aridad es la aridad de func
+            self.arityval = len(inspect.getargspec(self.func).args)
+        elif not self.dict:
             self.empty = True
             self.arityval = arity
         else:
@@ -69,14 +116,17 @@ class Function(object):
         Devuelve una copia de si mismo
         """
         result = copy.copy(self)
-        result.dict = self.dict.copy()
+        if self.func:
+            result.d_universe= list(result.d_universe)
+        else:
+            result.dict = self.dict.copy()
         return result
 
     def domain(self):
         """
         Un generador del dominio
         """
-        if self.relation:
+        if self.relation or self.func:
             return product(self.d_universe, repeat=self.arity())
         else:
             return iter(self.dict.keys())
@@ -85,7 +135,10 @@ class Function(object):
         """
         Un generador de la imagen
         """
-        return iter(set(self.dict.values()))
+        if self.func:
+            return iter(set(self.func(*t) for t in self.domain()))
+        else:
+            return iter(set(self.dict.values()))
 
     def arity(self):
         """
@@ -97,9 +150,15 @@ class Function(object):
         """
         Funciona como un map, pero respeta la estructura de la matriz.
         """
-        self.dict = self.dict.copy()
-        for key in self.dict:
-            self.dict[key] = f(self.dict[key])
+        if self.func:
+            mine = self.func
+            def composition(*args):
+                return f(mine(*args))
+            self.func = composition
+        else:
+            self.dict = self.dict.copy()
+            for key in self.dict:
+                self.dict[key] = f(self.dict[key])
 
     def restrict(self, subuniverse):
         """
@@ -107,9 +166,13 @@ class Function(object):
         """
 
         result = self.copy()
-        for t in self.dict:
-            if any(e not in subuniverse for e in t):
-                del result.dict[t]
+        if result.func:
+            for t in subuniverse:
+                self.d_universe.remove(t)
+        else:
+            for t in self.dict:
+                if any(e not in subuniverse for e in t):
+                    del result.dict[t]
         return result
 
     def vector_call(self, vector):
@@ -123,7 +186,13 @@ class Function(object):
             raise ValueError(
                 "Arity is %s, not %s. Do you need use vector_call?" % (self.arity(), len(args)))
         try:
-            result = self.dict[args]
+            if self.func:
+                if all(x in self.d_universe for x in args):
+                    result = self.func(*args)
+                else:
+                    raise KeyError
+            else:
+                result = self.dict[args]
         except KeyError:
             if self.relation and all(x in self.d_universe for x in args):
                 return False
@@ -145,9 +214,12 @@ class Function(object):
         """
         Dos funciones son iguales si tienen el mismo dominio y el mismo comportamiento.
         """
-        # basta con revisar el arreglo, ya que contiene el dominio y el
-        # comportamiento
-        return self.dict == other.dict
+        if self.func:
+            return frozenset(map(tuple,self.table())) == frozenset(map(tuple,other.table()))
+        else:
+            # basta con revisar el arreglo, ya que contiene el dominio y el
+            # comportamiento
+            return self.dict == other.dict
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -164,13 +236,19 @@ class Function(object):
         >>> hash(f)==hash(h)
         False
         """
-        return hash(frozenset(self.dict.items()))
+        if self.func:
+            return hash(frozenset(self.d_universe,self.func))
+        else:
+            return hash(frozenset(self.dict.items()))
 
     def table(self):
         """
         Devuelve una lista de listas con la tabla que representa a la relacion/operacion
         """
-        result = sorted(self.dict.items())
+        if self.func:
+            result = sorted((t,self.func(*t)) for t in self.domain())
+        else:
+            result = sorted(self.dict.items())
         if self.relation:
             result = [k_v for k_v in result if k_v[1]]
             result = [list(k_v1[0]) for k_v1 in result]
