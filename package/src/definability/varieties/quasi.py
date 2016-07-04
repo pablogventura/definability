@@ -25,7 +25,7 @@ def limpiar_isos(algebras):
             #algebras.remove(a)
     return algebras
 
-def rsi(algebras):
+def conj_rsi(algebras):
     """
     Dada un conjunto de álgebras, devuelve el conjunto de álgebras relativamente
     subdirectamente irreducibles para la cuasivariedad generada.
@@ -38,17 +38,36 @@ def rsi(algebras):
             if not len(s[1]) == 1:
                 sub.append(s[1])
     algebras = limpiar_isos(sub)
+    alg = algebras.copy()
     for a in algebras:
-        F = []
-        for b in algebras:
-            if not a == b:
-                for f in a.homomorphisms_to(b, a.fo_type, surj=True):
-                    F.append(f)
+        if a in alg:
+            F = set()
+            ker = {(x, y) for x in a.universe for y in a.universe}
+            mincon = {(x, x) for x in a.universe}
+            for b in alg:
+                if not a == b:
+                    for f in a.homomorphisms_to(b, a.fo_type, surj=True):
+                        F.add(f)
+            for f in F:
+                ker = ker & {tuple(t) for t in f.kernel().table()}
+                if ker == mincon:
+                    alg.remove(a)
+                    break
+    return alg
+
+def pertenece_rsi(a, algebras):
+    algebras = conj_rsi(algebras)
+    if a in algebras:
+        return True
+    else:
+        F = set()
         ker = {(x, y) for x in a.universe for y in a.universe}
         mincon = {(x, x) for x in a.universe}
+        for b in algebras:
+            for f in a.homomorphisms_to(b, a.fo_type, surj=True):
+                F.add(f)
         for f in F:
             ker = ker & {tuple(t) for t in f.kernel().table()}
             if ker == mincon:
-                algebras.remove(a)
-                break
-    return algebras
+                return True
+    return False
