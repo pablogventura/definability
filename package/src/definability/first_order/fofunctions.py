@@ -5,23 +5,14 @@ from ..functions.functions import Function
 from itertools import product
 
 
-class FO_OpRel(Function):
-
-    """
-    Clase general de las operaciones y relaciones de primer orden
-    """
-
-    def __init__(self, d):
-        super(FO_OpRel, self).__init__(d)
-
-class FO_Operation(FO_OpRel):
+class FO_Operation(Function):
 
     r"""
     Operacion de primer orden
     """
 
-    def __init__(self, d):
-        super(FO_Operation, self).__init__(d)
+    def __init__(self, d, d_universe=None):
+        super(FO_Operation, self).__init__(d, d_universe=d_universe)
         self.relation = False
 
     def graph_fo_relation(self, universe):
@@ -31,7 +22,7 @@ class FO_Operation(FO_OpRel):
         return FO_Relation([tuple(row) for row in self.table()], universe)
 
 
-class FO_Relation(FO_OpRel):
+class FO_Relation(Function):
 
     r"""
     Relacion de primer orden
