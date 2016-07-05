@@ -40,11 +40,14 @@ class FO_Relation(Function):
         if d and isinstance(d, list) and isinstance(d[0], tuple):
             d = {k: True for k in d}
         assert d_universe
-        super(FO_Relation, self).__init__(d)
+        super(FO_Relation, self).__init__(d, d_universe=d_universe)
         self.d_universe = d_universe
         self.relation = True
 
 def FO_Constant(value):
+    """
+    Facilita la definicion de una operacion 0-aria para constantes
+    """
     return FO_Operation({(): value})
 
 if __name__ == "__main__":

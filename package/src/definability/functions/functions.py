@@ -92,7 +92,7 @@ class Function(object):
         self.dict = None
         self.d_universe = d_universe
         if callable(d):
-            assert d_universe
+            assert d_universe, d_universe
             self.func = d
         elif isinstance(d, list):
             self.dict = self.__list_to_dict(d)

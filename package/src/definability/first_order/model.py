@@ -5,7 +5,7 @@ from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding
-from ..first_order.fofunctions import FO_Relation
+from ..first_order.fofunctions import FO_Relation, FO_Operation
 from ..interfaces import minion
 from ..interfaces import latticedraw
 
@@ -333,10 +333,30 @@ class FO_Product(FO_Model):
         Toma una lista de factores
         """
         # TODO falta un armar las operaciones y relaciones
+        d_universe = list(product(*[f.universe for f in factors]))
+        operations = {}
+        for op in factors[0].operations:
+            def product_op(*args):
+                result = []
+                print(list(zip(*([f.operations[op] for f in factors] + [a for a in args]))))
+                for t in zip(*([f.operations[op] for f in factors] + [a for a in args])):
+                    result.append(t[0](*t[1:]))
+                return result
+            operations[op] = FO_Operation(product_op,d_universe=d_universe)
+        relations = {}
+        for rel in factors[0].relations:
+            def product_rel(*args):
+                result = []
+                for t in zip(*([f.relations[rel] for f in factors] + [a for a in args])):
+                    result.append(t[0](*t[1:]))
+                return all(result)
+            print (d_universe)
+            relations[rel] = FO_Relation(product_rel,d_universe=d_universe)
+
         super(FO_Product, self).__init__(factors[0].fo_type,
-                                         list(product(*[f.universe for f in factors])),
-                                         factors[0].operations,
-                                         factors[0].relations)
+                                         d_universe,
+                                         operations,
+                                         relations)
 
 
 if __name__ == "__main__":
