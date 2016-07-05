@@ -48,6 +48,17 @@ def powerset(iterable):
     s = list(iterable)
     return map(list, chain.from_iterable(combinations(s, r) for r in range(len(s) + 1, -1, -1)))
 
+def compose(f,g):
+    """
+    Compone funciones de Python
+
+    >>> compose(lambda x: x+1, lambda x,y: x+y)(5,6)
+    12
+    """
+    def composition(*args):
+        return f(g(*args))
+    return composition
+
 
 if __name__ == "__main__":
     import doctest
