@@ -338,17 +338,16 @@ class FO_Product(FO_Model):
         for op in factors[0].operations:
             def product_op(*args):
                 result = []
-                print(list(zip(*([f.operations[op] for f in factors] + [a for a in args]))))
-                for t in zip(*([f.operations[op] for f in factors] + [a for a in args])):
-                    result.append(t[0](*t[1:]))
+                for i,t in enumerate(zip(*args)):
+                    result.append(factors[i].operations[op](*t[1:]))
                 return result
             operations[op] = FO_Operation(product_op,d_universe=d_universe)
         relations = {}
         for rel in factors[0].relations:
             def product_rel(*args):
                 result = []
-                for t in zip(*([f.relations[rel] for f in factors] + [a for a in args])):
-                    result.append(t[0](*t[1:]))
+                for i,t in enumerate(zip(*args)):
+                    result.append(factors[i].relations[rel](*t[1:]))
                 return all(result)
             print (d_universe)
             relations[rel] = FO_Relation(product_rel,d_universe=d_universe)
