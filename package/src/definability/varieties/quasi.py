@@ -6,7 +6,7 @@ def limpiar_isos(algebras):
     Dado un cojunto de álgebras, devuelve el conjunto que deja un representante
     por álgebras isomórficas
 
-    >>> from definability.first_order.fotheories import Lat
+    >>> from definability.fotheories import Lat
     >>> B = limpiar_isos(Lat.find_models(5))
     >>> len(B)
     5
@@ -38,7 +38,7 @@ def conj_rsi(algebras):
     Dada un conjunto de álgebras, devuelve el conjunto de álgebras relativamente
     subdirectamente irreducibles para la cuasivariedad generada.
 
-    >>> from definability.first_order.fotheories import Lat
+    >>> from definability.fotheories import Lat
     >>> B = conj_rsi(Lat.find_models(5))
     >>> len(B)
     3
@@ -55,7 +55,6 @@ def conj_rsi(algebras):
     alg = algebras.copy()
     for a in algebras:
         if a in alg:
-            F = set()
             ker = {(x, y) for x in a.universe for y in a.universe}
             mincon = {(x, x) for x in a.universe}
             t = False
@@ -85,9 +84,7 @@ def pertenece_rsi(a, algebras):
         mincon = {(x, x) for x in a.universe}
         for b in algebras:
             for f in a.homomorphisms_to(b, a.fo_type, surj=True):
-                F.add(f)
-        for f in F:
-            ker = ker & {tuple(t) for t in f.kernel().table()}
-            if ker == mincon:
-                return True
+                ker = ker & {tuple(t) for t in f.kernel().table()}
+                if ker == mincon:
+                    return True
     return False
