@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 
 from itertools import product
-from ..misc.misc import indent
+from ..misc.misc import indent, compose
 import copy
 import inspect
 
@@ -151,10 +151,7 @@ class Function(object):
         Funciona como un map, pero respeta la estructura de la matriz.
         """
         if self.func:
-            mine = self.func
-            def composition(*args):
-                return f(mine(*args))
-            self.func = composition
+            self.func = compose(f,self.func)
         else:
             self.dict = self.dict.copy()
             for key in self.dict:
