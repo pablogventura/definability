@@ -302,6 +302,12 @@ class FO_Model(object):
         Calcula el producto entre modelos
         """
         return FO_Product([self, other])
+    
+    def __pow__(self, exponent):
+        """
+        Calcula la potencia de un modelo
+        """
+        return FO_Product([self] * exponent)
 
 
 
