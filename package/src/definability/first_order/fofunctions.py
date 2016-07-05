@@ -11,8 +11,8 @@ class FO_Operation(Function):
     Operacion de primer orden
     """
 
-    def __init__(self, d, d_universe=None):
-        super(FO_Operation, self).__init__(d, d_universe=d_universe)
+    def __init__(self, d, d_universe=None, arity=None):
+        super(FO_Operation, self).__init__(d, d_universe=d_universe, arity=arity)
         self.relation = False
 
     def graph_fo_relation(self, universe):
@@ -36,11 +36,11 @@ class FO_Relation(Function):
     [[0], [2], [4]]
     """
 
-    def __init__(self, d, d_universe):
+    def __init__(self, d, d_universe=None, arity=None):
         if d and isinstance(d, list) and isinstance(d[0], tuple):
             d = {k: True for k in d}
         assert d_universe
-        super(FO_Relation, self).__init__(d, d_universe=d_universe)
+        super(FO_Relation, self).__init__(d, d_universe=d_universe, arity=arity)
         self.d_universe = d_universe
         self.relation = True
 
@@ -49,6 +49,36 @@ def FO_Constant(value):
     Facilita la definicion de una operacion 0-aria para constantes
     """
     return FO_Operation({(): value})
+
+def FO_Operation_Product(operations, d_universes):
+    """
+    Toma una lista de operaciones y de universos
+    y devuelve la operacion en el producto de universos
+    coordenada a coordenada
+    """
+    d_universe = list(product(*d_universes))
+    arity = operations[0].arity()
+    def product_op(*args):
+        result = []
+        for i,t in enumerate(zip(*args)):
+            result.append(operations[i](*t))
+        return tuple(result)
+    return FO_Operation(product_op, d_universe, arity)
+
+def FO_Relation_Product(relations, d_universes):
+    """
+    Toma una lista de relaciones y de universos
+    y devuelve la relacion en el producto de universos
+    coordenada a coordenada
+    """
+    d_universe = list(product(*d_universes))
+    arity = relations[0].arity()
+    def product_rel(*args):
+        result = []
+        for i,t in enumerate(zip(*args)):
+            result.append(relations[i](*t))
+        return all(result)
+    return FO_Relation(product_rel, d_universe, arity)
 
 if __name__ == "__main__":
     import doctest

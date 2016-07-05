@@ -48,11 +48,14 @@ class LatDraw(object):
         l = self.lattice
         l.join_to_le()
         result = ""
-        espacio = " "
+        espacio = '" "'
         result+="\n"
         result+="(\n"
         for e in l.universe:
-            result+="  (%s (%s))\n" % (e, espacio.join(str(r[1]) for r in l.relations["<="].table() if r[0]==e))
+            if [r[1] for r in l.relations["<="].table() if r[0]==e]:
+                result+='  ("%s" ("%s"))\n' % (e, espacio.join(str(r[1]) for r in l.relations["<="].table() if r[0]==e))
+            else:
+                result+='  ("%s" ())\n'
         result+=")\n"
         return result
 

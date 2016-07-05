@@ -98,17 +98,17 @@ class Function(object):
             self.dict = self.__list_to_dict(d)
         else:
             self.dict = d
-        self.empty = False
         if self.dict:
             assert all(isinstance(t, tuple) for t in list(self.dict.keys()))
-        if self.func:
-            # la aridad es la aridad de func
-            self.arityval = len(inspect.getargspec(self.func).args)
-        elif not self.dict:
-            self.empty = True
+        
+        if arity:
             self.arityval = arity
         else:
-            self.arityval = len(list(self.dict.keys())[0])
+            if self.func:
+                # la aridad es la aridad de func
+                self.arityval = len(inspect.getargspec(self.func).args)
+            else:
+                self.arityval = len(list(self.dict.keys())[0])
         self.relation = False  # maneja si la funcion es booleana
 
     def copy(self):
