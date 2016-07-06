@@ -32,7 +32,7 @@ class FO_Model(object):
 
     def __repr__(self):
         if self.name:
-            return "FO_Model(%s)\n" % self.name
+            return "FO_Model(name= %s)\n" % self.name
         else:
             result = "FO_Model(\n"
             result += indent(repr(self.fo_type) + ",\n")
