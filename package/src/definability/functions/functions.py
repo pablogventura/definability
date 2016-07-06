@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from itertools import product
+from itertools import product, chain
 from ..misc.misc import indent, compose
 import copy
 import inspect
@@ -100,7 +100,6 @@ class Function(object):
             self.dict = d
         if self.dict:
             assert all(isinstance(t, tuple) for t in list(self.dict.keys()))
-        
         if arity:
             self.arityval = arity
         else:
@@ -110,6 +109,8 @@ class Function(object):
             else:
                 self.arityval = len(list(self.dict.keys())[0])
         self.relation = False  # maneja si la funcion es booleana
+        if not self.d_universe:
+            self.d_universe = list(set(chain(*list(self.domain()))))
 
     def copy(self):
         """
