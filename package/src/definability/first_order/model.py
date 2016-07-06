@@ -243,21 +243,6 @@ class FO_Model(object):
                     result[t] = 0
             self.relations["<="] = FO_Relation(result, self.universe)
 
-    def to_sage_lattice(self):
-        """
-        Devuelve un reticulado de Sage.
-        """
-        from sage.combinat.posets.lattices import LatticePoset
-        self.join_to_le()
-        return LatticePoset((self.universe, self.relations["<="].table()))
-
-    def to_sage_poset(self):
-        """
-        Devuelve un poset de Sage.
-        """
-        from sage.combinat.posets.posets import Poset
-        return Poset((self.universe, self.relations["<="].table()))
-
     def draw_lattice(self):
         latticedraw.LatDraw(self)
 
