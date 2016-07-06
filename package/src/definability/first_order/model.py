@@ -302,6 +302,9 @@ class FO_Model(object):
         >>> r=retcadena2**2
         >>> bool(r.is_isomorphic(retrombo,tiporet))
         True
+        >>> r=posetcadena2**2
+        >>> bool(r.is_isomorphic(posetrombo,tipoposet))
+        True
         """
         return FO_Product([self] * exponent)
 
