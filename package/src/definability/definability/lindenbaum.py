@@ -1,13 +1,33 @@
-from itertools import product
+from itertools import product, chain
 
 from ..functions.morphisms import Homomorphism, Isomorphism
 from ..definability.newconstellation2 import Model_Family
 from ..misc.misc import powerset
 from ..first_order.fofunctions import FO_Relation
+from ..definability import morphsgenerators
 from datetime import datetime
 
 from collections import defaultdict
 
+def open_definable_lindenbaum(k, arity, subtype):
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_isos(k, subtype))
+    return lindenbaum_algebra(k, arity, morphisms)
+
+def open_positive_lindenbaum(k, arity, subtype):
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype))
+    return lindenbaum_algebra(k, arity, morphisms)
+
+def existential_lindenbaum(k, arity, subtype):
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_embs(k, subtype))
+    return lindenbaum_algebra(k, arity, morphisms)
+
+def existential_positive_lindenbaum(k, arity, subtype):
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype))
+    return lindenbaum_algebra(k, arity, morphisms)
+
+def definable_lindenbaum(k, arity, subtype):
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_isos(k, subtype))
+    return lindenbaum_algebra(k, arity, morphisms)
 
 def lindenbaum_algebra(k, arity, morphisms):
     """
@@ -17,7 +37,7 @@ def lindenbaum_algebra(k, arity, morphisms):
     >>> from definability.examples import examples
     >>> from definability.definability import newconstellation2
     >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
-    >>> len(lindenbaum_algebra(k,2,newconstellation2.k_embs(k,examples.tiporet)))
+    >>> len(lindenbaum_algebra(k,2,morphsgenerators.k_embs(k,examples.tiporet)))
     17
     """
     # influye muchisimo el orden en que se recorre k!
