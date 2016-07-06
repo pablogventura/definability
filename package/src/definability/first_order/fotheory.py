@@ -70,7 +70,7 @@ class FO_Theory():
         if type(arg) != list:
             arg = arg.axioms  # assume its another FO_Theory
         newaxioms = self.axioms + [a for a in arg if a not in self.axioms]
-        return FO_Theory(abbr, name, newaxioms, results, options)
+        return FO_Theory(abbr, name, newaxioms, results, self.options + options)
 
     def find_models(self, cardinality, seconds=60):
         """

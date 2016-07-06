@@ -39,37 +39,41 @@ def rdistr(s, t):
 
 
 def refl(r):
-    return "x" + r + "x"
+    return "x " + r + " x"
 
 
 def irrefl(r):
-    return "-(x" + r + "x)"
+    return "-(x " + r + " x)"
 
 
 def symm(r):
-    return "x" + r + "y -> y" + r + "x"
+    return "x " + r + " y -> y " + r + " x"
 
 
 def asymm(r):
-    return "x" + r + "y -> -(y" + r + "x)"
+    return "x " + r + " y -> -(y " + r + " x)"
 
 
 def antisymm(r):
-    return "x" + r + "y & y" + r + "x -> x = y"
+    return "x " + r + " y & y " + r + " x -> x = y"
 
 
 def trans(r):
-    return "x" + r + "y & y" + r + "z -> x" + r + "z"
+    return "x " + r + " y & y " + r + " z -> x " + r + " z"
 
 
 def linear(r):
-    return "x" + r + "y || y" + r + "x"
+    return "(x " + r + " y) || (y " + r + " x)"
 #########################
 # Graphs
 
-DiGraph = FO_Theory("DiGraph", "Directed Graphs", ["exists x exists y e(x,y)"])
+DiGraph = FO_Theory("DiGraph", "Directed Graphs", ["exists x exists y x e y"], options=["op(400, infix, e)"])
 
-Graph = DiGraph.subclass("Graph", "Undirected Graphs", ["e(x,y) -> e(y,x)"])
+Graph = DiGraph.subclass("Graph", "Undirected Graphs", [symm("e")])
+
+AsymmGraph = DiGraph.subclass("AsymmGraph", "Asymmetric Graphs", [asymm("e")])
+
+LinearGraph = DiGraph.subclass("LGraph", "Linear Graphs", [linear("e")])
 
 #########################
 # (Semi) groups and rings
