@@ -32,8 +32,7 @@ class LatDraw(object):
         self.app = sp.Popen(["java","-jar",config.lat_draw_path + "LatDraw.jar", self.input_filename],
                                   stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         files.write(self.input_filename, self.generate_lat_file())
-        self.EOF = False
-        self.solutions = []
+        # TODO revisar la stderr para reconocer los errores en LatDraw
 
     def generate_lat_file(self):
 
