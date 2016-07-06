@@ -309,7 +309,7 @@ class FO_Model(object):
         for rel in self.relations:
             relations[rel] = self.relations[rel].rename(translation)
         
-        return FO_Model(self.fo_type, universe, operations, relations)
+        return (FO_Model(self.fo_type, universe, operations, relations), translation)
 
 class FO_Submodel(FO_Model):
 
