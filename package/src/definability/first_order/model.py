@@ -285,12 +285,23 @@ class FO_Model(object):
     def __mul__(self, other):
         """
         Calcula el producto entre modelos
+
+        >>> from definability.examples.examples import *
+        >>> j=retcadena2*retrombo
+        >>> r=retcadena2**3
+        >>> bool(j.is_isomorphic(r,tiporet))
+        True
         """
         return FO_Product([self, other])
     
     def __pow__(self, exponent):
         """
         Calcula la potencia de un modelo
+        
+        >>> from definability.examples.examples import *
+        >>> r=retcadena2**2
+        >>> bool(r.is_isomorphic(retrombo,tiporet))
+        True
         """
         return FO_Product([self] * exponent)
 
