@@ -18,7 +18,7 @@ def open_positive_lindenbaum(k, arity, subtype):
     return lindenbaum_algebra(k, arity, morphisms)
 
 def existential_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_embs(k, subtype))
+    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_embs(k, subtype))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def existential_positive_lindenbaum(k, arity, subtype):
