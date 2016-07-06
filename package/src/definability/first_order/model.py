@@ -294,7 +294,22 @@ class FO_Model(object):
         """
         return FO_Product([self] * exponent)
 
+    def continous(self):
+        """
+        Devuelve un modelo isomorfo pero de universo [0..n]
+        """
+        translation = list(self.universe)
+        universe = list(range(len(translation)))
 
+        operations = {}
+        for op in self.operations:
+            operations[op] = self.operations[op].rename(translation)
+            
+        relations = {}
+        for rel in self.relations:
+            relations[rel] = self.relations[rel].rename(translation)
+        
+        return FO_Model(self.fo_type, universe, operations, relations)
 
 class FO_Submodel(FO_Model):
 

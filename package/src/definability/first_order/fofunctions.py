@@ -20,7 +20,17 @@ class FO_Operation(Function):
         Genera la relacion dada por el grafico de la funcion en el universo
         """
         return FO_Relation([tuple(row) for row in self.table()], universe)
-
+    
+    def rename(self, renames):
+        """
+        Devuelve una nueva operacion reemplazando elementos del universo
+        """
+        def operation(*args):
+            args = [renames[i] for i in args]
+            result = self(*args)
+            return renames.index(result)
+            
+        return FO_Operation(operation, d_universe=list(range(len(renames))), arity=self.arity())
 
 class FO_Relation(Function):
 
@@ -43,6 +53,18 @@ class FO_Relation(Function):
         super(FO_Relation, self).__init__(d, d_universe=d_universe, arity=arity)
         self.d_universe = d_universe
         self.relation = True
+
+    def rename(self, renames):
+        """
+        Devuelve una nueva operacion reemplazando elementos del universo
+        """
+        def relaation(*args):
+            args = [renames[i] for i in args]
+            result = self(*args)
+            return result
+            
+        return FO_Relation(relation, d_universe=list(range(len(renames))), arity=self.arity())
+
 
 def FO_Constant(value):
     """
