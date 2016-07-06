@@ -24,11 +24,12 @@ class MinionSol(object):
         a las listas que van a ir siendo soluciones.
         """
         self.id = MinionSol.count
+        MinionSol.count += 1
+
         self.fun = fun
         self.allsols = allsols
-        MinionSol.count += 1
-        self.input_filename = config.minion_path + "input_minion%s" % self.id
 
+        self.input_filename = config.minion_path + "input_minion%s" % self.id
         files.create_pipe(self.input_filename)
 
         minionargs = ["-printsolsonly", "-randomseed", "0"]
@@ -56,6 +57,7 @@ class MinionSol(object):
                 for i, v in enumerate(result):
                     if v == -1:
                         result[i] = None
+                result = {(i,):v for i,v in enumerate(result)}
             except ValueError:
                 str_sol += "\n"
                 # leo toda la respuesta de minion para saber que paso
