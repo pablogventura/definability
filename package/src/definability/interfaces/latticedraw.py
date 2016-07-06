@@ -20,6 +20,10 @@ class LatDraw(object):
         """
         Toma el input para minion, si espera todas las soluciones y una funcion para aplicar
         a las listas que van a ir siendo soluciones.
+        
+        >>> from definability.examples import examples
+        >>> ld = LatDraw(examples.retrombo)
+        >>> ld.kill()
         """
         self.id = LatDraw.count
         self.lattice = lattice
@@ -57,6 +61,17 @@ class LatDraw(object):
                 result+='  ("%s" ())\n'
         result+=")\n"
         return result
+
+    def kill(self):
+        """
+        Mata a LatDraw
+        """
+        if hasattr(self, 'app'):
+            self.app.stdout.close()
+            self.app.stdin.close()
+            self.app.stderr.close()
+            self.app.kill()
+            del self.app
 
 
 
