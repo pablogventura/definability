@@ -73,7 +73,9 @@ retcadena2.operations["Max"] = FO_Constant(1)
 retdiamante = fotheories.Lat.find_models(5)[0]
 retdiamante.name = "Reticulado Diamante"
 rettestlinden = fotheories.DLat.find_models(7)[0]
+rettestlinden.name = "Reticulado 2x3 con cadenita arriba"
 rettestlinden2 = fotheories.DLat.find_models(5)[0]
+rettestlinden2.name = "Reticulado rombo con cadenita arriba"
 retrombo = FO_Model(tiporetacotado, list(range(4)), {'^': FO_Operation({(0, 0): 0,
                                                                         (0, 1): 0,
                                                                         (0, 2): 0,
