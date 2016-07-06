@@ -141,11 +141,11 @@ class MorphMinionSol(MinionSol):
     def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True, without=[]):
         self.morph_type = morph_type
         self.subtype = subtype
-        self.source = source
-        self.target = target
+        self.source, self.source_renames = source.continous()
+        self.target, self.target_renames = target.continous()
         self.inj = inj
         self.surj = surj
-
+        self.EOF = False
         if self.morph_type == Homomorphism:
             input_data = self.__input_homo(without)
         elif self.morph_type == Embedding:
@@ -158,9 +158,9 @@ class MorphMinionSol(MinionSol):
         else:
             raise IndexError("Morphism unknown")
 
-        self.fun = lambda x: self.morph_type(x,
-                                             self.source,
-                                             self.target,
+        self.fun = lambda x: self.morph_type({(self.source_renames[k[0]],):self.target_renames[v] for k,v in x.items()},
+                                             source,
+                                             target,
                                              self.subtype,
                                              antitype=[],
                                              inj=self.inj,

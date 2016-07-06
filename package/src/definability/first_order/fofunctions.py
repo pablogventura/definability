@@ -28,7 +28,13 @@ class FO_Operation(Function):
         def operation(*args):
             args = [renames[i] for i in args]
             result = self(*args)
-            return renames.index(result)
+            try:
+                return renames.index(result)
+            except:
+                # TODO esto no tiene sentido
+                # hace falta porque a veces una subestructura no
+                # es subestructura con alguna funcion, y hay que poder traducirla
+                return result
             
         return FO_Operation(operation, d_universe=list(range(len(renames))), arity=self.arity())
 
@@ -58,7 +64,7 @@ class FO_Relation(Function):
         """
         Devuelve una nueva operacion reemplazando elementos del universo
         """
-        def relaation(*args):
+        def relation(*args):
             args = [renames[i] for i in args]
             result = self(*args)
             return result
