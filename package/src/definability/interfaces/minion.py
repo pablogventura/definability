@@ -53,11 +53,11 @@ class MinionSol(object):
             str_sol = str_sol[:-1]  # borro el \n
             try:
                 result = list(map(int, str_sol.strip().split(" ")))
-                # ACA IRIAN LAS TRADUCCIONES DE NOMBRES EN EL FUTURO
                 for i, v in enumerate(result):
                     if v == -1:
                         result[i] = None
                 result = {(i,):v for i,v in enumerate(result)}
+                # ACA IRIAN LAS TRADUCCIONES DE NOMBRES EN EL FUTURO
             except ValueError:
                 str_sol += "\n"
                 # leo toda la respuesta de minion para saber que paso
