@@ -126,6 +126,9 @@ class Mace4Sol(object):
 
         assert not line
         # Hubo EOF
+        self.error = self.__stderr.read().decode('utf-8')
+        if self.error:
+            raise ValueError("Mace4 Error: " + self.error.replace("\n","").strip())
         self.EOF = True
         self.__terminate()
 
