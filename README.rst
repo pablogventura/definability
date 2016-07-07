@@ -45,7 +45,7 @@ Instalación
 
 4. Instalarlo::
 
-    cd definability/package/src/definability
+    cd definability/
     pip install -r requirements.txt
 
 
