@@ -43,7 +43,6 @@ class Mace4Sol(object):
 
         self.assume_list = assume_list
         self.options = options
-        self.goal_list = []
         maceargs = []
         if domain_cardinality:
             st = str(domain_cardinality)
@@ -84,9 +83,6 @@ class Mace4Sol(object):
             result += st + ".\n"
         result += 'formulas(assumptions).\n'
         for st in self.assume_list:
-            result += st + '.\n'
-        result += 'end_of_list.\nformulas(goals).\n'
-        for st in self.goal_list:
             result += st + '.\n'
         result += 'end_of_list.\n'
         return bytes(result, 'UTF-8')
