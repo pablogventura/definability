@@ -18,6 +18,10 @@ Instalación
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
 
     sudo apt-get install git python-pip python3.4 python3-tk virtualenv
+   
+   Para instalar Minion, LADR y LatDraw en el Home se puede usar el script install.sh con::
+
+    ./install.sh
 
 2. Crear y activar un nuevo
    `virtualenv <http://virtualenv.readthedocs.org/en/latest/virtualenv.html>`_.
