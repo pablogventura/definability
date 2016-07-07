@@ -98,7 +98,7 @@ class Congruence(Eq_Rel):
             for t in self.model.operations[op].domain():
                 for s in self.model.operations[op].domain():
                     if self.relacionados(t, s):
-                        if not (self.model.operations[op].dict[t], self.model.operations[op].dict[s]) in self.d:
+                        if not (self.model.operations[op](*t) == self.model.operations[op](*t)):
                             return False
         return True
 
