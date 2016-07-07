@@ -108,6 +108,19 @@ def FO_Relation_Product(relations, d_universes):
         return all(result)
     return FO_Relation(product_rel, d_universe, arity)
 
+def leq_from_uc(uc,universe=[]):
+    if not isinstance(uc, dict):
+        uc = {i:v for i,v in enumerate(uc)}
+    if not universe:
+        universe = set.union(*([set(l) for l in uc.values()]+[uc.keys()]))
+    def leq(x,y):
+        if x==y or y in uc[x]:
+            return True
+        else:
+            return any(leq(z,y) for z in uc[x])
+            
+    return FO_Relation(leq, d_universe=universe, arity=2)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
