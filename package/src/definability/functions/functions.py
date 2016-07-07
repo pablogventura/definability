@@ -175,7 +175,7 @@ class Function(object):
 
     def vector_call(self, vector):
         """
-        Aplica la funcion a un vector
+        Aplica la funcion a un vector de elementos del dominio.
         """
         return type(vector)(list(map(self, vector)))
 
