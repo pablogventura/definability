@@ -33,8 +33,7 @@ class Mace4Sol(object):
     """
 
     def __init__(self, assume_list,
-                 domain_cardinality=None, one=False, noniso=True, options=[],
-                 infix=[], infix_left=[], infix_right=[], prefix=[], postfix=[]):
+                 domain_cardinality=None, one=False, noniso=True, options=[]):
 
         self.EOF = False
         self.solutions = []

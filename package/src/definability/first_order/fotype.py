@@ -9,7 +9,9 @@ class FO_Type(object):
     """
     Maneja tipos de primer orden:
     Teoricamente es una 4-upla (C,F,R,a)
-    Toma dos diccionarios con nombres y aridades
+    Toma dos diccionarios con nombres y aridades, el primero para las operaciones
+    y el segundo para las relaciones.
+    Las constantes se consideran como operaciones 0-arias.
 
     >>> t = FO_Type({"+":2},{"<":2})
     >>> t
