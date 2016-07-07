@@ -1,0 +1,199 @@
+import subprocess as sp
+import re
+from ..interfaces import config
+from ..first_order.model import FO_Model  # para los contraejemplos
+from ..first_order.fofunctions import FO_Operation, FO_Relation
+from ..first_order.fotype import FO_Type
+from ..misc.misc import indent
+
+
+def getops(li, st, d_universe=None):
+    # TODO , PARECIERA QUE DEBERIA SER UN METODO INTERNO DE LOS MODELOS QUE
+    # DEVUELVE MACE4
+    """extract operations/relations from the Prover9 model, se usa en isofilter y prover9"""
+    result = {}
+    for op in li:
+        if op[0] == st:
+            result[op[1]] = op[3]
+    for oprel in result:
+        if st == "function":
+            result[oprel] = FO_Operation(result[oprel])
+        elif st == "relation":
+            assert d_universe
+            result[oprel] = FO_Relation(result[oprel], d_universe)
+        else:
+            raise KeyError
+    return result
+
+
+class Mace4Sol(object):
+
+    """
+    Maneja las soluciones que genera Mace4 sin usar threads
+    """
+
+    def __init__(self, assume_list,
+                 domain_cardinality=None, one=False, noniso=True, options=[]):
+
+        self.EOF = False
+        self.solutions = []
+
+        self.apps = []  # subprocesos
+
+        self.assume_list = assume_list
+        self.options = options
+        maceargs = []
+        if domain_cardinality:
+            st = str(domain_cardinality)
+            # set skolem_last
+            maceargs = ["-n", st, "-N", st] + \
+                ([] if one else ["-m", "-1"]) + ["-S", "1"]
+        mace4app = sp.Popen([config.ladr_path + "mace4"] + maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        mace4app.stdin.write(self.generate_input())
+        mace4app.stdin.close()  # TENGO QUE MANDAR EL EOF!
+        self.apps.append(mace4app)
+
+        if domain_cardinality is not None and not one and noniso:
+            interp1app = sp.Popen(
+                [config.ladr_path + "interpformat", "standard"], stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            isofilterapp = sp.Popen([config.ladr_path + 'isofilter',
+                                     'check',
+                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<",
+                                     'output',
+                                     "+ * v ^ ' - ~ \\ / -> B C D E F G H I J K P Q R S T U V W b c d e f g h i j k p q r s t 0 1 <= -<"],
+                                    stdin=interp1app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            interp2app = sp.Popen([config.ladr_path + "interpformat", "portable"],
+                                  stdin=isofilterapp.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.apps += [interp1app, isofilterapp, interp2app]
+            self.__stdout = interp2app.stdout
+        else:
+            interpapp = sp.Popen([config.ladr_path + "interpformat", "portable"],
+                                 stdin=mace4app.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            self.apps.append(interpapp)
+            self.__stdout = interpapp.stdout
+        self.__stderr = mace4app.stderr
+
+    def generate_input(self):
+        """
+        Genera la entrada para Mace4 a partir de las opciones
+        """
+        result = ""
+        for st in self.options:
+            result += st + ".\n"
+        result += 'formulas(assumptions).\n'
+        for st in self.assume_list:
+            result += st + '.\n'
+        result += 'end_of_list.\n'
+        return bytes(result, 'UTF-8')
+
+    def __parse_solution(self):
+        """
+        Parsea una solucion devuelta por Mace4
+        """
+        buf = ""
+        line = self.__stdout.readline().decode(
+            'utf-8')  # quita el [ del principio
+        while line:
+            # No hubo EOF
+            if line == "[\n" or line == "]\n":
+                # son las lineas del principio o del final
+                line = self.__stdout.readline().decode('utf-8')
+                continue
+            else:
+                buf += line
+
+            if buf.count("[") and buf.count("[") == buf.count("]"):
+                # hay un modelo completo
+                buf = buf.replace("\n", "")  # quito saltos de linea
+                buf = buf.strip()  # quito espacios para poder sacar la coma
+                if buf[-1] == ",":
+                    buf = buf[:-1]  # saco la coma!
+                m = eval(buf)
+                operations = getops(m[2], 'function')
+                relations = getops(m[2], 'relation', list(range(m[0])))
+                fo_type = FO_Type({name: operations[name].arity() for name in operations.keys()},
+                                  {name: relations[name].arity()
+                                   for name in relations.keys()}
+                                  )
+                return FO_Model(fo_type, list(range(m[0])), operations, relations)
+            else:
+                # no hay un modelo completo
+                line = self.__stdout.readline().decode('utf-8')  # necesita otra linea
+                continue
+
+        assert not line
+        # Hubo EOF
+        self.error = self.__stderr.read().decode('utf-8')
+        if self.error and not "all_models" in self.error:
+            raise ValueError("Mace4 Error: " + self.error.replace("\n","").strip() + "\n" +
+                             "Input:\n" + indent(self.generate_input().decode('utf-8')))
+        self.EOF = True
+        self.__terminate()
+
+    def __iter__(self):
+        """
+        Itera sobre las soluciones ya parseadas y despues
+        sigue con las sin parsear.
+        """
+        for solution in self.solutions:
+            yield solution
+
+        while not self.EOF:
+            solution = self.__parse_solution()
+            if solution:
+                self.solutions.append(solution)
+                yield solution
+
+    def __getitem__(self, index):
+        """
+        Toma un elemento usando __iter__
+        """
+        try:
+            return self.solutions[index]
+        except IndexError:
+            for i, solution in enumerate(self):
+                if i == index:
+                    # no hace falta aplicar self.fun porque esta llamando a
+                    # __iter__
+                    return solution
+            raise IndexError("There aren't so many solutions.")
+
+    def __bool__(self):
+        """
+        Devuelve True si hay soluciones, o bloquea hasta confirmar que no
+        hay y devuelve False.
+        """
+        if self.solutions or self.EOF:
+            return bool(self.solutions)
+        else:
+            solution = self.__parse_solution()
+            if solution:
+                self.solutions.append(solution)
+                return True
+            else:
+                return False
+
+    def __len__(self):
+        """
+        Bloquea hasta parsear todas las soluciones y devuelve la cantidad.
+        """
+        if not self.EOF:
+            for i in self:
+                pass
+        return len(self.solutions)
+
+    def __terminate(self):
+        """
+        Cierra Mace4
+        """
+        self.EOF = True
+        for app in self.apps:
+            app.stdout.close()
+            app.stderr.close()
+            app.kill()
+            app.wait()
+            del app
+
+    def __del__(self):
+        if not self.EOF:
+            self.__terminate()
