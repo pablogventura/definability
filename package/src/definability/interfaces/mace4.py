@@ -4,6 +4,7 @@ from ..interfaces import config
 from ..first_order.model import FO_Model  # para los contraejemplos
 from ..first_order.fofunctions import FO_Operation, FO_Relation
 from ..first_order.fotype import FO_Type
+from ..misc.misc import indent
 
 
 def getops(li, st, d_universe=None):
@@ -128,7 +129,8 @@ class Mace4Sol(object):
         # Hubo EOF
         self.error = self.__stderr.read().decode('utf-8')
         if self.error and not "all_models" in self.error:
-            raise ValueError("Mace4 Error: " + self.error.replace("\n","").strip())
+            raise ValueError("Mace4 Error: " + self.error.replace("\n","").strip() + "\n" +
+                             "Input:\n" + indent(self.generate_input().decode('utf-8')))
         self.EOF = True
         self.__terminate()
 

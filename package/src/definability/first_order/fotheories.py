@@ -67,7 +67,7 @@ def linear(r):
 #########################
 # Graphs
 
-DiGraph = FO_Theory("DiGraph", "Directed Graphs", ["exists x exists y x e y"], options=["op(400, infix, e)"])
+DiGraph = FO_Theory("DiGraph", "Directed Graphs", ["exists x exists y (x e y)"], options=["op(400, infix, e)"])
 
 Graph = DiGraph.subclass("Graph", "Undirected Graphs", [symm("e")])
 
