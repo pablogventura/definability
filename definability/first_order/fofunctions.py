@@ -114,10 +114,15 @@ def leq_from_uc(uc,universe=[]):
     if not universe:
         universe = set.union(*([set(l) for l in uc.values()]+[uc.keys()]))
     def leq(x,y):
-        if x==y or y in uc[x]:
-            return True
-        else:
-            return any(leq(z,y) for z in uc[x])
+        l = list(uc[x])
+        while l:
+            if x==y or y in l:
+                return True
+            else:
+                for z in uc[x]:
+                    l+=uc[z]
+                x = l.pop()
+        return False
             
     return FO_Relation(leq, d_universe=universe, arity=2)
 
