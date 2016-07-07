@@ -102,29 +102,6 @@ def lindenbaum_algebra(k, arity, morphisms):
     return result
 
 
-def closure(t, arrows):
-    """
-    Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.
-    """
-    result = [t]
-
-    checked = []
-
-    while len(result) != len(checked):
-        for t in result:
-            if t not in checked:
-                for i in arrows:
-                    try:
-                        it = i.vector_call(t)
-                    except ValueError:
-                        # no estaba en el dominio
-                        continue
-                    if it not in result:
-                        result.append(it)
-                checked.append(t)
-    return result
-
-
 def closurem(t, m, k, arrows):
     """
     Calcula la clausura de la tupla (o lista de tuplas) t para todo el grupo de flechas.

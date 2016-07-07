@@ -48,10 +48,19 @@ class Model_Family(object):
         False
         >>> isinstance(i,Isomorphism)
         True
+        >>> k = Model_Family([posetrombo,posetrombo2])
+        >>> (b,i) = k.is_open_definable(tipoposet,tipotest)
+        >>> b
+        False
+        >>> isinstance(i,Isomorphism)
+        True
         """
-        for subiso in k_sub_isos(self.without_isos(subtype, supertype), subtype):
-            if not subiso.preserves_type(supertype):
-                return (False, subiso)
+        try:
+            for subiso in k_sub_isos(self.without_isos(subtype, supertype), subtype):
+                if not subiso.preserves_type(supertype):
+                    return (False, subiso)
+        except Counterexample as ce:
+            return (False, ce.morphism)
         return (True, None)
 
     def is_open_positive_definable(self, subtype, supertype):
@@ -70,9 +79,12 @@ class Model_Family(object):
         >>> isinstance(h,Homomorphism)
         True
         """
-        for subhom in k_sub_homs(self.without_isos(subtype, supertype), subtype):
-            if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
-                return (False, subhom)
+        try:
+            for subhom in k_sub_homs(self.without_isos(subtype, supertype), subtype):
+                if not subhom.preserves_type(supertype, check_inverse=subhom.is_embedding()):
+                    return (False, subhom)
+        except Counterexample as ce:
+            return (False, ce.morphism)
         return (True, None)
 
     def is_existential_definable(self, subtype, supertype):
@@ -91,9 +103,12 @@ class Model_Family(object):
         >>> isinstance(e,Embedding)
         True
         """
-        for emb in k_embs(self.without_isos(subtype, supertype), subtype):
-            if not emb.preserves_type(supertype):
-                return (False, emb)
+        try:
+            for emb in k_embs(self.without_isos(subtype, supertype), subtype):
+                if not emb.preserves_type(supertype):
+                    return (False, emb)
+        except Counterexample as ce:
+            return (False, ce.morphism)
         return (True, None)
 
     def is_existential_positive_definable(self, subtype, supertype):
@@ -112,9 +127,12 @@ class Model_Family(object):
         >>> isinstance(h, Homomorphism)
         True
         """
-        for hom in k_homs(self.without_isos(subtype, supertype), subtype):
-            if not hom.preserves_type(supertype):
-                return (False, hom)
+        try:
+            for hom in k_homs(self.without_isos(subtype, supertype), subtype):
+                if not hom.preserves_type(supertype):
+                    return (False, hom)
+        except Counterexample as ce:
+            return (False, ce.morphism)
         return (True, None)
 
     def is_definable(self, subtype, supertype):
@@ -133,10 +151,12 @@ class Model_Family(object):
         >>> isinstance(a,Isomorphism)
         True
         """
-
-        for iso in k_isos(self.without_isos(subtype, supertype), subtype):
-            if not iso.preserves_type(supertype):
-                return (False, iso)
+        try:
+            for iso in k_isos(self.without_isos(subtype, supertype), subtype):
+                if not iso.preserves_type(supertype):
+                    return (False, iso)
+        except Counterexample as ce:
+            return (False, ce.morphism)
         return (True, None)
 
 
