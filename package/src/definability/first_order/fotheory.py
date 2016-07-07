@@ -5,29 +5,21 @@ from ..interfaces.mace4 import Mace4Sol
 
 
 class FO_Theory():
-    FO_Theories = []
-    FirstOrderClasses = []
 
-    def __init__(self, abbr, name, axioms, results=[], options=[]):
+    def __init__(self, name, axioms, results=[], options=[]):
         """
         Define a first-order class of models by a list of first-order axioms
 
         INPUT:
-            abbr    -- a short string without spaces abbreviating the name
             name    -- a string giving the name of the class
             axioms  -- list of strings in the given syntax
             results -- list of strings in the given syntax
             options -- list of strings defining the syntax
         """
-        self.abbr = abbr
         self.name = name
         self.axioms = axioms
         self.results = results
         self.options = options
-        FO_Theory.FO_Theories.append(abbr)
-        FO_Theory.FO_Theories.sort(key=str.lower)
-        FO_Theory.FirstOrderClasses.append(name + " (" + abbr + ")")
-        FO_Theory.FirstOrderClasses.sort(key=str.lower)
 
     def __repr__(self):
         """
@@ -54,19 +46,18 @@ class FO_Theory():
             st += ',\nresults=[\n\"' + '\",\n\"'.join(self.results) + '\"]'
         return st + ')'
 
-    def subclass(self, abbr, name, arg, results=[], options=[]):
+    def subclass(self, name, arg, results=[], options=[]):
         """
         Add a list of axioms or another FO class to the current one.
 
         INPUT:
-            abbr -- a short name (string) for the new FO subclass
             name -- a string naming the new FO subclass
             arg -- a list of axioms or an existing FO_Theory
         """
         if type(arg) != list:
             arg = arg.axioms  # assume its another FO_Theory
         newaxioms = self.axioms + [a for a in arg if a not in self.axioms]
-        return FO_Theory(abbr, name, newaxioms, results, self.options + options)
+        return FO_Theory(name, newaxioms, results, self.options + options)
 
     def find_models(self, cardinality):
         """
