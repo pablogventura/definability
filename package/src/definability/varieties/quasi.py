@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
+from ..first_order.model import FO_Product
+
 def limpiar_isos(algebras):
     """
     Dado un cojunto de álgebras, devuelve el conjunto que deja un representante
@@ -50,7 +52,7 @@ def conj_rsi(algebras):
         suba = a.substructures(a.fo_type)
         for s in suba:
             if not len(s[1]) == 1:
-                sub.append(s[1])
+                sub.append(s[1].continous()[0])
     algebras = limpiar_isos(sub)
     alg = algebras.copy()
     for a in algebras:
@@ -77,14 +79,30 @@ def pertenece_rsi(a, algebras):
     """
     algebras = conj_rsi(algebras)
     if a in algebras:
-        return True
+        return "El álgebra está en el conjunto"
     else:
         F = set()
         ker = {(x, y) for x in a.universe for y in a.universe}
         mincon = {(x, x) for x in a.universe}
+        t = False
         for b in algebras:
             for f in a.homomorphisms_to(b, a.fo_type, surj=True):
                 ker = ker & {tuple(t) for t in f.kernel().table()}
+                F.add(f)
                 if ker == mincon:
-                    return True
-    return False
+                    t = True
+                    break
+            if t:
+                break
+    #P = False
+    #for f in F:
+        #if not P:
+            #P = f.target
+        #else:
+            #P = P * f.target
+    if t:
+        M = [f.target for f in F]
+        P = FO_Product(M)
+        return P
+    else:
+        return False
