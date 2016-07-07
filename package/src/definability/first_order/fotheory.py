@@ -72,12 +72,12 @@ class FO_Theory():
         newaxioms = self.axioms + [a for a in arg if a not in self.axioms]
         return FO_Theory(abbr, name, newaxioms, results, self.options + options)
 
-    def find_models(self, cardinality, seconds=60):
+    def find_models(self, cardinality):
         """
         Find models of given (finite) cardinality for the axioms
         of the FO_Theory self.
         """
-        return Mace4Sol(self.axioms, mace_seconds=seconds, domain_cardinality=cardinality, options=self.options)
+        return Mace4Sol(self.axioms, domain_cardinality=cardinality, options=self.options)
 
 
 if __name__ == "__main__":

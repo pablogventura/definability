@@ -32,7 +32,9 @@ class Mace4Sol(object):
     Maneja las soluciones que genera Mace4 sin usar threads
     """
 
-    def __init__(self, assume_list, mace_seconds=30, domain_cardinality=None, one=False, noniso=True, options=[]):
+    def __init__(self, assume_list,
+                 domain_cardinality=None, one=False, noniso=True, options=[],
+                 infix=[], infix_left=[], infix_right=[], prefix=[], postfix=[]):
 
         self.EOF = False
         self.solutions = []
@@ -48,8 +50,7 @@ class Mace4Sol(object):
             # set skolem_last
             maceargs = ["-n", st, "-N", st] + \
                 ([] if one else ["-m", "-1"]) + ["-S", "1"]
-        mace4app = sp.Popen([config.ladr_path + "mace4", "-t", str(mace_seconds)
-                             ] + maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        mace4app = sp.Popen([config.ladr_path + "mace4"] + maceargs, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
         mace4app.stdin.write(self.generate_input())
         mace4app.stdin.close()  # TENGO QUE MANDAR EL EOF!
         self.apps.append(mace4app)
