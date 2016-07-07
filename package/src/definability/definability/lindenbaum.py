@@ -9,24 +9,68 @@ from datetime import datetime
 
 from collections import defaultdict
 
+def include_inverses(morphisms):
+    """
+    Iterador que devuelve cada vez que puede el inverso del morfismo
+    """
+    for h in morphisms:
+        yield h
+        if h.inj:
+            yield h.inverse()
+
 def open_definable_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_isos(k, subtype))
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(open_definable_lindenbaum(k,2,examples.tiporet))
+    4
+    """
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_isos(k, subtype)))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def open_positive_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype))
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(open_positive_lindenbaum(k,2,examples.tiporet))
+    2
+    """
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype)))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def existential_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_embs(k, subtype))
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(existential_lindenbaum(k,2,examples.tiporet))
+    17
+    """
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_embs(k, subtype)))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def existential_positive_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype))
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(existential_positive_lindenbaum(k,2,examples.tiporet))
+    2
+    """
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_sub_homs(k, subtype)))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def definable_lindenbaum(k, arity, subtype):
-    morphisms = chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_isos(k, subtype))
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(definable_lindenbaum(k,2,examples.tiporet))
+    27
+    """
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(k, subtype),morphsgenerators.k_isos(k, subtype)))
     return lindenbaum_algebra(k, arity, morphisms)
 
 def lindenbaum_algebra(k, arity, morphisms):
@@ -34,11 +78,6 @@ def lindenbaum_algebra(k, arity, morphisms):
     Satura a k por un conjunto de flechas
     Devuelve los join irreducibles del algebra de lindenbaum
     de aridad dada para la familia K, con las flechas en morphisms.
-    >>> from definability.examples import examples
-    >>> from definability.definability import newconstellation2
-    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
-    >>> len(lindenbaum_algebra(k,2,morphsgenerators.k_embs(k,examples.tiporet)))
-    17
     """
     # influye muchisimo el orden en que se recorre k!
     assert isinstance(k,Model_Family)
