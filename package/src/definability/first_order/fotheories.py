@@ -63,7 +63,7 @@ def trans(r):
 
 
 def linear(r):
-    return "(x " + r + " y) || (y " + r + " x)"
+    return "(x " + r + " y) | (y " + r + " x)"
 #########################
 # Graphs
 
