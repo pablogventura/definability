@@ -25,7 +25,7 @@ Instalación
 
 2. Crear y activar un nuevo
    `virtualenv <http://virtualenv.readthedocs.org/en/latest/virtualenv.html>`_.
-   Recomiendo usar `virtualenvwrapper
+   usando `virtualenvwrapper
    <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation>`_.
    Se puede instalar así::
 
