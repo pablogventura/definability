@@ -165,8 +165,7 @@ class Function(object):
 
         result = self.copy()
         if result.func:
-            for t in subuniverse:
-                self.d_universe.remove(t)
+            result.d_universe = subuniverse
         else:
             for t in self.dict:
                 if any(e not in subuniverse for e in t):

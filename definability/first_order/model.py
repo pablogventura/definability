@@ -235,13 +235,9 @@ class FO_Model(object):
         )
         """
         if "<=" not in self.relations:
-            result = {}
-            for t in self.operations["v"].domain():
-                if self.operations["v"](*t) == t[1]:
-                    result[t] = 1
-                else:
-                    result[t] = 0
-            self.relations["<="] = FO_Relation(result, self.universe)
+            def leq(x,y):
+                return self.operations["v"](x,y) == y
+            self.relations["<="] = FO_Relation(leq, self.universe, arity=2)
 
     def draw_lattice(self):
         latticedraw.LatDraw(self)
