@@ -3,7 +3,7 @@
 
 from ..functions.functions import Function
 from itertools import product
-
+import functools
 
 class FO_Operation(Function):
 
@@ -113,6 +113,8 @@ def leq_from_uc(uc,universe=[]):
         uc = {i:v for i,v in enumerate(uc)}
     if not universe:
         universe = set.union(*([set(l) for l in uc.values()]+[uc.keys()]))
+
+    @functools.lru_cache(maxsize=len(universe)**2, typed=False)
     def leq(x,y):
         l = list(uc[x])
         while l:
