@@ -79,6 +79,21 @@ def pertenece_rsi(a, algebras):
     """
     Dada un algebra a, se fija si a pertenece a la cuasivariedad generada por el
     conjunto algebras
+
+    >>> from definability.first_order.fotheories import Lat
+    >>> B = Lat.find_models(5)
+    >>> F = pertenece_rsi(B[3],B[0:3])
+    >>> F
+    Homomorphism(
+      [0] -> (0, 0, 1),
+      [1] -> (1, 1, 1),
+      [2] -> (1, 0, 1),
+      [3] -> (0, 1, 1),
+      [4] -> (0, 0, 0),
+    ,
+      FO_Type({'^': 2, 'v': 2},{})
+    ,
+    )
     """
     a.relations = {}
     algebras = conj_rsi(algebras)
