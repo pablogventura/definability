@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 from ..first_order.model import FO_Product
+from ..functions.morphisms import Homomorphism
 
 def limpiar_isos(algebras):
     """
@@ -52,7 +53,9 @@ def conj_rsi(algebras):
         suba = a.substructures(a.fo_type)
         for s in suba:
             if not len(s[1]) == 1:
-                sub.append(s[1].continous()[0])
+                b = s[1].continous()[0]
+                b.relations = {}
+                sub.append(b)
     algebras = limpiar_isos(sub)
     alg = algebras.copy()
     for a in algebras:
@@ -77,6 +80,7 @@ def pertenece_rsi(a, algebras):
     Dada un algebra a, se fija si a pertenece a la cuasivariedad generada por el
     conjunto algebras
     """
+    a.relations = {}
     algebras = conj_rsi(algebras)
     if a in algebras:
         return "El álgebra está en el conjunto"
@@ -94,15 +98,11 @@ def pertenece_rsi(a, algebras):
                     break
             if t:
                 break
-    #P = False
-    #for f in F:
-        #if not P:
-            #P = f.target
-        #else:
-            #P = P * f.target
     if t:
-        M = [f.target for f in F]
-        P = FO_Product(M)
-        return P
+        target = FO_Product([f.target for f in F])
+        d = {}
+        for x in a.universe:
+            d[(x,)] = tuple([f(x,) for f in F])
+        return Homomorphism(d, a, target, a.fo_type)
     else:
         return False
