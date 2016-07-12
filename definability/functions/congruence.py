@@ -68,7 +68,6 @@ class Congruence(Eq_Rel):
         self.model = model
         self.d = d
         super(Congruence, self).__init__(d, model)
-        assert self.preserva_relaciones()
         assert self.preserva_operaciones()
 
     def relacionados(self, t, s):
@@ -76,20 +75,6 @@ class Congruence(Eq_Rel):
             if not (t[i], s[i]) in self.d:
                 return False
         return True
-
-    def __preserva_relacion(self, rel):
-        for t in self.model.relations[rel]:
-            for s in self.model.relations[rel].domain():
-                if self.relacionados(t, list(s)):
-                    if not list(s) in self.model.relations[rel]:
-                        return False
-        return True
-
-    def preserva_relaciones(self):
-        result = True
-        for rel in self.model.relations:
-            result = result and self.__preserva_relacion(rel)
-        return result
 
     def __preserva_operacion(self, op):
         if self.model.operations[op].arity() == 0:

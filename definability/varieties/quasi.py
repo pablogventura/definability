@@ -54,7 +54,6 @@ def conj_rsi(algebras):
         for s in suba:
             if not len(s[1]) == 1:
                 b = s[1].continous()[0]
-                b.relations = {}
                 sub.append(b)
     algebras = limpiar_isos(sub)
     alg = algebras.copy()
@@ -95,7 +94,6 @@ def pertenece_rsi(a, algebras):
     ,
     )
     """
-    a.relations = {}
     algebras = conj_rsi(algebras)
     if a in algebras:
         return "El álgebra está en el conjunto"
