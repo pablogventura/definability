@@ -2,12 +2,17 @@
 # -*- coding: utf8 -*-
 
 # TERMS
+
+from itertools import chain
 class Term(object):
     """
     Clase general de los terminos de primer orden
     """
     def __init__(self):
         pass
+    
+    def free_vars(self):
+        raise NotImplemented
 
 class Variable(Term):
     """
@@ -18,6 +23,9 @@ class Variable(Term):
     
     def __repr__(self):
         return self.sym
+    
+    def free_vars(self):
+        return {self}
         
 class OpSym(object):
     """
@@ -50,6 +58,9 @@ class OpTerm(Term):
         result += ", ".join(map(repr,self.args))
         result += ")"
         return result
+    
+    def free_vars(self):
+        return set(chain.from_iterable(f.free_vars() for f in self.args))
         
 # FORMULAS
     
