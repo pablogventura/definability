@@ -3,7 +3,6 @@
 
 # TERMS
 
-from itertools import chain
 class Term(object):
     """
     Clase general de los terminos de primer orden
@@ -60,7 +59,7 @@ class OpTerm(Term):
         return result
     
     def free_vars(self):
-        return set(chain.from_iterable(f.free_vars() for f in self.args))
+        return set.union(*[f.free_vars() for f in self.args])
         
 # FORMULAS
     
@@ -80,8 +79,17 @@ class Formula(object):
     >>> -R(f(x,y,z),y) | R(y,x) & R(y,z)
     (¬ R(f(x, y, z), y) ∨ (R(y, x) ∧ R(y, z)))
 
-    >>> forall(x, -R(f(x,y,z),y))
+    >>> a = forall(x, -R(f(x,y,z),y))
+    >>> a
     ∀ x ¬ R(f(x, y, z), y)
+    >>> a.free_vars() == {y,z}
+    True
+    
+    >>> a = R(x,x) & a
+    >>> a
+    (R(x, x) ∧ ∀ x ¬ R(f(x, y, z), y))
+    >>> a.free_vars() == {x, y, z}
+    True
 
     >>> exists(x, R(f(x,y,z),y))
     ∃ x R(f(x, y, z), y)
@@ -97,6 +105,9 @@ class Formula(object):
     
     def __neg__(self):
         return NegFormula(self)
+        
+    def free_vars(self):
+        raise NotImplemented
 
 class NegFormula(Formula):
     """
@@ -107,6 +118,9 @@ class NegFormula(Formula):
     
     def __repr__(self):
         return "¬ %s" % self.f
+    
+    def free_vars(self):
+        return self.f.free_vars()
 
 class OrFormula(Formula):
     """
@@ -120,6 +134,9 @@ class OrFormula(Formula):
         result = "(%s ∨ %s)" % (self.f1, self.f2)
         return result
 
+    def free_vars(self):
+        return self.f1.free_vars().union(self.f2.free_vars())
+
 class AndFormula(Formula):
     """
     Conjuncion entre formulas
@@ -131,6 +148,9 @@ class AndFormula(Formula):
     def __repr__(self):
         result = "(%s ∧ %s)" % (self.f1, self.f2)
         return result
+
+    def free_vars(self):
+        return self.f1.free_vars().union(self.f2.free_vars())
 
 class RelSym(object):
     """
@@ -163,6 +183,10 @@ class RelFormula(Formula):
         result += ", ".join(map(repr,self.args))
         result += ")"
         return result
+    
+    def free_vars(self):
+        return set.union(*[f.free_vars() for f in self.args])
+        
 
 class ForAllFormula(Formula):
     """
@@ -174,6 +198,9 @@ class ForAllFormula(Formula):
     
     def __repr__(self):
         return "∀ %s %s" % (self.var, self.f)
+    
+    def free_vars(self):
+        return self.f.free_vars() - {self.var}
 
 class ExistsFormula(Formula):
     """
@@ -186,6 +213,8 @@ class ExistsFormula(Formula):
     def __repr__(self):
         return "∃ %s %s" % (self.var, self.f)
 
+    def free_vars(self):
+        return self.f.free_vars() - {self.var}
 # Shortcuts
 
 def variables(*lvars):
