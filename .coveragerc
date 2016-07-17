@@ -13,6 +13,8 @@ omit =
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =
+    pass
+    
     # Have to re-enable the standard pragma
     pragma: no cover
 
