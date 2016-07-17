@@ -67,10 +67,10 @@ class Formula(object):
     (R(x, y) ∨ (R(y, x) ∧ R(y, z)))
     
     >>> -R(f(x,y,z),y) | R(y,x) & R(y,z)
-    (¬ (R(f(x, y, z), y)) ∨ (R(y, x) ∧ R(y, z)))
+    (¬ R(f(x, y, z), y) ∨ (R(y, x) ∧ R(y, z)))
 
     >>> forall(x, -R(f(x,y,z),y))
-    ∀ x ¬ (R(f(x, y, z), y))
+    ∀ x ¬ R(f(x, y, z), y)
 
     >>> exists(x, R(f(x,y,z),y))
     ∃ x R(f(x, y, z), y)
@@ -95,7 +95,7 @@ class NegFormula(Formula):
         self.f = f
     
     def __repr__(self):
-        return "¬ (%s)" % self.f
+        return "¬ %s" % self.f
 
 class OrFormula(Formula):
     """
