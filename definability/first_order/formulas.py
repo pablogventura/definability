@@ -3,6 +3,8 @@
 
 # TERMS
 
+from ..misc.unicode import subscript
+
 class Term(object):
     """
     Clase general de los terminos de primer orden
@@ -18,7 +20,10 @@ class Variable(Term):
     Variable de primer orden
     """
     def __init__(self, sym):
-        self.sym = sym
+        if isinstance(sym,int):
+            self.sym = "x" + subscript(sym)
+        else:
+            self.sym = sym
     
     def __repr__(self):
         return self.sym
