@@ -128,35 +128,32 @@ class NegFormula(Formula):
     def free_vars(self):
         return self.f.free_vars()
 
-class OrFormula(Formula):
+class BinaryOpFormula(Formula):
     """
-    Disjuncion entre formulas
+    Clase general de las formulas tipo f1 η f2
     """
     def __init__(self, f1, f2):
         self.f1 = f1
         self.f2 = f2
-    
+
+    def free_vars(self):
+        return self.f1.free_vars().union(self.f2.free_vars())
+        
+class OrFormula(BinaryOpFormula):
+    """
+    Disjuncion entre formulas
+    """
     def __repr__(self):
         result = "(%s ∨ %s)" % (self.f1, self.f2)
         return result
 
-    def free_vars(self):
-        return self.f1.free_vars().union(self.f2.free_vars())
-
-class AndFormula(Formula):
+class AndFormula(BinaryOpFormula):
     """
     Conjuncion entre formulas
     """
-    def __init__(self, f1, f2):
-        self.f1 = f1
-        self.f2 = f2
-    
     def __repr__(self):
         result = "(%s ∧ %s)" % (self.f1, self.f2)
         return result
-
-    def free_vars(self):
-        return self.f1.free_vars().union(self.f2.free_vars())
 
 class RelSym(object):
     """
@@ -193,34 +190,31 @@ class RelFormula(Formula):
     def free_vars(self):
         return set.union(*[f.free_vars() for f in self.args])
         
-
-class ForAllFormula(Formula):
+class QuantifierFormula(Formula):
+    """
+    Clase general de una formula con cuantificador
+    """
+    def __init__(self, var, f):
+        self.var = var
+        self.f = f
+    
+    def free_vars(self):
+        return self.f.free_vars() - {self.var}
+        
+class ForAllFormula(QuantifierFormula):
     """
     Formula Universal
     """
-    def __init__(self, var, f):
-        self.var = var
-        self.f = f
-    
     def __repr__(self):
         return "∀ %s %s" % (self.var, self.f)
-    
-    def free_vars(self):
-        return self.f.free_vars() - {self.var}
 
-class ExistsFormula(Formula):
+class ExistsFormula(QuantifierFormula):
     """
     Formula Existencial
     """
-    def __init__(self, var, f):
-        self.var = var
-        self.f = f
-    
     def __repr__(self):
         return "∃ %s %s" % (self.var, self.f)
 
-    def free_vars(self):
-        return self.f.free_vars() - {self.var}
 # Shortcuts
 
 def variables(*lvars):
