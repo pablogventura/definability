@@ -80,19 +80,11 @@ def pertenece_rsi(a, algebras):
     conjunto algebras
 
     >>> from definability.first_order.fotheories import Lat
+    >>> from definability.functions.morphisms import Homomorphism
     >>> B = Lat.find_models(5)
     >>> F = pertenece_rsi(B[3],B[0:3])
-    >>> F
-    Homomorphism(
-      [0] -> (0, 0, 1),
-      [1] -> (1, 1, 1),
-      [2] -> (1, 0, 1),
-      [3] -> (0, 1, 1),
-      [4] -> (0, 0, 0),
-    ,
-      FO_Type({'^': 2, 'v': 2},{})
-    ,
-    )
+    >>> type(F) == Homomorphism
+    True
     """
     algebras = conj_rsi(algebras)
     if a in algebras:
