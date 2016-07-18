@@ -4,6 +4,7 @@
 # TERMS
 
 from ..misc.unicode import subscript
+from itertools import product
 
 class Term(object):
     """
@@ -239,3 +240,18 @@ def exists(var, formula):
     Devuelve la formula existencial
     """
     return ExistsFormula(var, formula)
+
+def atomics(relations, arity):
+    """
+    Genera todas las formulas atomicas con relations 
+    de arity variables libres
+
+    >>> R = RelSym("R",2)
+    >>> list(atomics([R],2))
+    [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
+    """
+    vs = variables(*range(arity))
+    for r in relations:
+        for t in product(vs,repeat=r.arity):
+            yield r(*t)
+        
