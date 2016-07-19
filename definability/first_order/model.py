@@ -283,6 +283,7 @@ class FO_Model(object):
         Calcula el producto entre modelos
 
         >>> from definability.examples.examples import *
+        >>> retcadena2.fo_type = retrombo.fo_type
         >>> j=retcadena2*retrombo
         >>> r=retcadena2**3
         >>> bool(j.is_isomorphic(r,tiporet))
@@ -349,17 +350,21 @@ class FO_Product(FO_Model):
         Toma una lista de factores
         """
         # TODO falta un armar las operaciones y relaciones
+        fo_type = factors[0].fo_type
+        if any(f.fo_type != fo_type for f in factors):
+            raise ValueError("Factors must be all from same fo_type")
+
         d_universe = list(product(*[f.universe for f in factors]))
 
         operations = {}
-        for op in factors[0].operations:
+        for op in fo_type.operations:
             operations[op] = FO_Operation_Product([f.operations[op] for f in factors],[f.universe for f in factors])
             
         relations = {}
-        for rel in factors[0].relations:
+        for rel in fo_type.relations:
             relations[rel] = FO_Relation_Product([f.relations[rel] for f in factors],[f.universe for f in factors])
 
-        super(FO_Product, self).__init__(factors[0].fo_type,
+        super(FO_Product, self).__init__(fo_type,
                                          d_universe,
                                          operations,
                                          relations)
