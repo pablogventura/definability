@@ -15,6 +15,12 @@ class Term(object):
     
     def free_vars(self):
         raise NotImplemented
+    
+    def evaluate(self, model, vector):
+        """
+        Evalua el termino en el modelo para el vector de valores
+        """
+        raise NotImplemented
 
 class Variable(Term):
     """
@@ -31,6 +37,12 @@ class Variable(Term):
     
     def free_vars(self):
         return {self}
+    
+    def evaluate(self, model, vector):
+        try:
+            return vector[self]
+        except KeyError:
+            raise ValueError("Free variable %s is not defined" % (self))
         
 class OpSym(object):
     """
@@ -66,6 +78,10 @@ class OpTerm(Term):
     
     def free_vars(self):
         return set.union(*[f.free_vars() for f in self.args])
+
+    def evaluate(self, model, vector):
+        args = [t.evaluate(model,vector) for t in self.args]
+        return model.operations[self.sym.op](*args)
         
 # FORMULAS
     
@@ -114,6 +130,9 @@ class Formula(object):
         
     def free_vars(self):
         raise NotImplemented
+    
+    def satisfy(self,model,vector):
+        raise NotImplemented
 
 class NegFormula(Formula):
     """
@@ -127,6 +146,10 @@ class NegFormula(Formula):
     
     def free_vars(self):
         return self.f.free_vars()
+
+    def satisfy(self,model,vector):
+        return not self.f.satisfy(model,vector)
+    
 
 class BinaryOpFormula(Formula):
     """
@@ -146,6 +169,9 @@ class OrFormula(BinaryOpFormula):
     def __repr__(self):
         result = "(%s ∨ %s)" % (self.f1, self.f2)
         return result
+    
+    def satisfy(self,model,vector):
+        return self.f1.satisfy(model,vector) or self.f2.satisfy(model,vector)
 
 class AndFormula(BinaryOpFormula):
     """
@@ -154,6 +180,9 @@ class AndFormula(BinaryOpFormula):
     def __repr__(self):
         result = "(%s ∧ %s)" % (self.f1, self.f2)
         return result
+
+    def satisfy(self,model,vector):
+        return self.f1.satisfy(model,vector) and self.f2.satisfy(model,vector)
 
 class RelSym(object):
     """
@@ -189,6 +218,10 @@ class RelFormula(Formula):
     
     def free_vars(self):
         return set.union(*[f.free_vars() for f in self.args])
+
+    def satisfy(self, model, vector):
+        args = [t.evaluate(model,vector) for t in self.args]
+        return model.relations[self.sym.rel](*args)
         
 class QuantifierFormula(Formula):
     """
@@ -208,12 +241,28 @@ class ForAllFormula(QuantifierFormula):
     def __repr__(self):
         return "∀ %s %s" % (self.var, self.f)
 
+    def satisfy(self, model, vector):
+        for i in model.universe:
+            vector[self.var] = i
+            if not self.f.satisfy(model,vector):
+                return False
+            else:
+                return True
+
 class ExistsFormula(QuantifierFormula):
     """
     Formula Existencial
     """
     def __repr__(self):
         return "∃ %s %s" % (self.var, self.f)
+
+    def satisfy(self, model, vector):
+        for i in model.universe:
+            vector[self.var] = i
+            if self.f.satisfy(model,vector):
+                return True
+            else:
+                return False
 
 # Shortcuts
 
