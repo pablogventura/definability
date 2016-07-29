@@ -7,6 +7,7 @@ from definability.first_order import formulas
 from definability.definability.newconstellation2 import Model_Family
 from definability.definability import lindenbaum
 
+from definability.examples.stringmodel import string_model
 from definability.examples import examples
 
 from definability.interfaces.files import object_to_file, file_to_object
