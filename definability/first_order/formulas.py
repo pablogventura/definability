@@ -246,8 +246,7 @@ class ForAllFormula(QuantifierFormula):
             vector[self.var] = i
             if not self.f.satisfy(model,vector):
                 return False
-            else:
-                return True
+        return True
 
 class ExistsFormula(QuantifierFormula):
     """
@@ -257,12 +256,13 @@ class ExistsFormula(QuantifierFormula):
         return "∃ %s %s" % (self.var, self.f)
 
     def satisfy(self, model, vector):
+        vector = vector.copy()
         for i in model.universe:
             vector[self.var] = i
+            print(vector)
             if self.f.satisfy(model,vector):
                 return True
-            else:
-                return False
+        return False
 
 # Shortcuts
 
