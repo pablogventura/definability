@@ -222,6 +222,26 @@ class RelFormula(Formula):
     def satisfy(self, model, vector):
         args = [t.evaluate(model,vector) for t in self.args]
         return model.relations[self.sym.rel](*args)
+
+class EqFormula(Formula):
+    """
+    Formula de primer orden que es una igualdad entre terminos
+    """
+    def __init__(self, t1, t2):
+        if not (isinstance(t1, Term) and isinstance(t2, Term)):
+            raise ValueError("Must be terms")
+            
+        self.t1=t1
+        self.t2=t2
+    
+    def __repr__(self):
+        return "%s == %s" % (self.t1,self.t2)
+    
+    def free_vars(self):
+        return set.union(self.t1.free_vars(), self.t2.free_vars())
+
+    def satisfy(self, model, vector):
+        return self.t1.evaluate(model,vector) == self.t2.evaluate(model,vector)
         
 class QuantifierFormula(Formula):
     """
@@ -277,6 +297,9 @@ def forall(var, formula):
     Devuelve la formula universal
     """
     return ForAllFormula(var, formula)
+
+def eq(t1,t2):
+    return EqFormula(t1,t2)
 
 def exists(var, formula):
     """
