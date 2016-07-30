@@ -281,7 +281,6 @@ class ExistsFormula(QuantifierFormula):
         vector = vector.copy()
         for i in model.universe:
             vector[self.var] = i
-            print(vector)
             if self.f.satisfy(model,vector):
                 return True
         return False
