@@ -114,6 +114,7 @@ def leq_from_uc(uc,universe=[]):
     if not universe:
         universe = set.union(*([set(l) for l in uc.values()]+[uc.keys()]))
 
+    @FO_Relation_decorator(universe,arity=2)
     @functools.lru_cache(maxsize=len(universe)**2, typed=False)
     def leq(x,y):
         l = list(uc[x])
@@ -126,7 +127,7 @@ def leq_from_uc(uc,universe=[]):
                 x = l.pop()
         return False
             
-    return FO_Relation(leq, d_universe=universe, arity=2)
+    return leq
 
 
 #decorators
