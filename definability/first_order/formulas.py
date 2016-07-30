@@ -171,6 +171,7 @@ class OrFormula(BinaryOpFormula):
         return result
     
     def satisfy(self,model,vector):
+        # el or y el and de python son lazy
         return self.f1.satisfy(model,vector) or self.f2.satisfy(model,vector)
 
 class AndFormula(BinaryOpFormula):
@@ -182,6 +183,7 @@ class AndFormula(BinaryOpFormula):
         return result
 
     def satisfy(self,model,vector):
+        # el or y el and de python son lazy
         return self.f1.satisfy(model,vector) and self.f2.satisfy(model,vector)
 
 class RelSym(object):
