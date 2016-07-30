@@ -84,14 +84,14 @@ def FO_Operation_Product(operations, d_universes):
     y devuelve la operacion en el producto de universos
     coordenada a coordenada
     """
-    d_universe = list(product(*d_universes))
-    arity = operations[0].arity()
+    @FO_Operation_decorator(list(product(*d_universes)),operations[0].arity())
     def product_op(*args):
         result = []
         for i,t in enumerate(zip(*args)):
             result.append(operations[i](*t))
         return tuple(result)
-    return FO_Operation(product_op, d_universe, arity)
+        
+    return product_op
 
 def FO_Relation_Product(relations, d_universes):
     """
@@ -99,14 +99,14 @@ def FO_Relation_Product(relations, d_universes):
     y devuelve la relacion en el producto de universos
     coordenada a coordenada
     """
-    d_universe = list(product(*d_universes))
-    arity = relations[0].arity()
+    @FO_Relation_decorator(list(product(*d_universes)),relations[0].arity())
     def product_rel(*args):
         result = []
         for i,t in enumerate(zip(*args)):
             result.append(relations[i](*t))
         return all(result)
-    return FO_Relation(product_rel, d_universe, arity)
+        
+    return product_rel
 
 def leq_from_uc(uc,universe=[]):
     if not isinstance(uc, dict):
