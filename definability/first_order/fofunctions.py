@@ -133,11 +133,19 @@ def leq_from_uc(uc,universe=[]):
 #decorators
 
 def FO_Operation_decorator(d_universe, arity=None):
+    """
+    Decorador para definir facilmente operaciones de primer orden
+    con funciones en Python
+    """
     def wrap(f):
         return FO_Operation(f,d_universe=d_universe,arity=arity)
     return wrap
 
 def FO_Relation_decorator(d_universe, arity=None):
+    """
+    Decorador para definir facilmente relaciones de primer orden
+    con funciones en Python
+    """
     def wrap(f):
         return FO_Relation(f,d_universe=d_universe,arity=arity)
     return wrap
