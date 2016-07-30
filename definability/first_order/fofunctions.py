@@ -128,6 +128,19 @@ def leq_from_uc(uc,universe=[]):
             
     return FO_Relation(leq, d_universe=universe, arity=2)
 
+
+#decorators
+
+def FO_Operation_decorator(d_universe, arity=None):
+    def wrap(f):
+        return FO_Operation(f,d_universe=d_universe,arity=arity)
+    return wrap
+
+def FO_Relation_decorator(d_universe, arity=None):
+    def wrap(f):
+        return FO_Relation(f,d_universe=d_universe,arity=arity)
+    return wrap
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

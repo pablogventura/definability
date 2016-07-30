@@ -193,8 +193,7 @@ class Function(object):
         except KeyError:
             if self.relation and all(x in self.d_universe for x in args):
                 return False
-            raise ValueError("Value '%s' not in domain" %
-                             str(args) + repr(self))
+            raise ValueError("Value '%s' not in domain of '%s'" % (str(args), repr(self)))
 
         if self.relation:
             return bool(result)
