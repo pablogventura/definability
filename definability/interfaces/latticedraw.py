@@ -58,7 +58,7 @@ class LatDraw(object):
             if [r[1] for r in l.relations["<="].table() if r[0]==e]:
                 result+='  ("%s" ("%s"))\n' % (e, espacio.join(str(r[1]) for r in l.relations["<="].table() if r[0]==e))
             else:
-                result+='  ("%s" ())\n'
+                result+='  ("%s" ())\n' % e
         result+=")\n"
         return result
 
