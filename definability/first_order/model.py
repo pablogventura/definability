@@ -240,7 +240,7 @@ class FO_Model(object):
             self.relations["<="] = FO_Relation(leq, self.universe, arity=2)
 
     def draw_lattice(self):
-        latticedraw.LatDraw(self)
+        return latticedraw.LatDraw(self)
 
     def diagram(self, c, s=0):
         """
