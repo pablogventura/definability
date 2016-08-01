@@ -192,7 +192,10 @@ class FO_Model(object):
         """
         Para ser iguales tienen que tener el mismo tipo
         y el mismo comportamiento en las operaciones/relaciones del tipo
+        y el mismo universo
         """
+        if set(self.universe) != set(other.universe):
+            return False
         if self.fo_type != other.fo_type:
             return False
         for op in self.fo_type.operations:
