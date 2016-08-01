@@ -67,7 +67,8 @@ Ejecución
 3. Para correr ipython en Python 3 correr ipython3
 
 4. Para correr el interprete interactivo para Definability basta con correr::
-   |python main.py
+
+    python main.py
 
 Nombres de versiones
 --------------------
