@@ -46,10 +46,10 @@ Instalación
 
     cd definability/
    
-   Para instalar Minion, LADR y LatDraw en el Home se puede usar el script install.sh con:
+   Para instalar Minion, LADR y LatDraw en el Home se puede usar el script install.sh con::
     ./install.sh
    
-   Para instalar los paquetes Python que utiliza Definability:
+   Para instalar los paquetes Python que utiliza Definability::
     pip install -r requirements.txt
 
 
