@@ -11,7 +11,7 @@ from ..first_order.model import FO_Model
 from ..first_order.fotype import FO_Type
 from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Constant
 
-
+tipovacio = FO_Type({}, {})
 tipoposet = FO_Type({}, {"<=": 2})
 tiporet = FO_Type({"^": 2, "v": 2}, {})
 tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
