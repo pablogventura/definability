@@ -65,6 +65,11 @@ def trans(r):
 def linear(r):
     return "(x " + r + " y) | (y " + r + " x)"
 #########################
+# Sets
+SetsED = FO_Theory("Conjuntos con al menos un elemento distinguido", ["exists x r(x)"], options=['op(400, prefix, "r")'])
+
+
+#########################
 # Graphs
 
 DiGraph = FO_Theory("Directed Graphs", ["exists x exists y (x e y)"], options=['op(400, infix, "e")'])
