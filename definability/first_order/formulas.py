@@ -285,6 +285,33 @@ class ExistsFormula(QuantifierFormula):
                 return True
         return False
 
+class TrueFormula(Formula):
+    """
+    Formula de primer orden constantemente verdadera
+    """
+    
+    def __repr__(self):
+        return "⊤"
+    
+    def free_vars(self):
+        return set()
+
+    def satisfy(self, model, vector):
+        return True
+
+class FalseFormula(Formula):
+    """
+    Formula de primer orden constantemente falsa
+    """
+    
+    def __repr__(self):
+        return "⊥"
+    
+    def free_vars(self):
+        return set()
+
+    def satisfy(self, model, vector):
+        return False
 # Shortcuts
 
 def variables(*lvars):
@@ -308,6 +335,13 @@ def exists(var, formula):
     """
     return ExistsFormula(var, formula)
 
+def true():
+    return TrueFormula()
+
+def false():
+    return FalseFormula()
+
+# Formulas generators
 def atomics(relations, arity):
     """
     Genera todas las formulas atomicas con relations 
@@ -321,4 +355,13 @@ def atomics(relations, arity):
     for r in relations:
         for t in product(vs,repeat=r.arity):
             yield r(*t)
+
+def fo_type_to_relsym(fo_type):
+    result = []
+    for r in fo_type.relations:
+        result.append(RelSym(r,fo_type.relations[r]))
+    
+    return result
+        
+        
         
