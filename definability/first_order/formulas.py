@@ -116,6 +116,10 @@ class Formula(object):
 
     >>> exists(x, R(f(x,y,z),y))
     ∃ x R(f(x, y, z), y)
+    
+    >>> (-(true() & true() & false())) | false()
+    ⊤
+
     """
     def __init__(self):
         pass
