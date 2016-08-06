@@ -5,6 +5,7 @@
 
 from ..misc.unicode import subscript
 from itertools import product
+from collections import defaultdict
 
 class Term(object):
     """
@@ -133,6 +134,12 @@ class Formula(object):
     
     def satisfy(self,model,vector):
         raise NotImplemented
+    
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+        
+    def __hash__(self):
+        return hash(repr(self))
 
 class NegFormula(Formula):
     """
@@ -342,7 +349,7 @@ def false():
     return FalseFormula()
 
 # Formulas generators
-def atomics(relations, arity):
+def atomics(relations, vs):
     """
     Genera todas las formulas atomicas con relations 
     de arity variables libres
@@ -351,9 +358,8 @@ def atomics(relations, arity):
     >>> list(atomics([R],2))
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
-    vs = variables(*range(arity))
     for r in relations:
-        for t in product(vs,repeat=r.arity):
+        for t in product(vs,repeat=len(vs)):
             yield r(*t)
 
 def fo_type_to_relsym(fo_type):
@@ -363,5 +369,30 @@ def fo_type_to_relsym(fo_type):
     
     return result
         
-        
+def bolsas(model, arity):
+    result = {true(): list(product(model.universe,repeat=arity))}
+    vs = variables(*range(arity))
+    formulas = atomics(fo_type_to_relsym(model.fo_type),vs)
+    nuevas = defaultdict(list)
+    for formula in formulas:
+        for foriginal,bolsa in result.items():
+            for tupla in bolsa:
+                if formula.satisfy(model,{v:i for v,i in zip(vs, tupla)}):
+                    nuevas[foriginal & formula].append(tupla)
+                else:
+                    nuevas[foriginal & (-formula)].append(tupla)
+        result = nuevas
+    
+    return result
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
