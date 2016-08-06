@@ -121,12 +121,27 @@ class Formula(object):
         pass
     
     def __and__(self, other):
+        if isinstance(self,TrueFormula):
+            return other
+        elif isinstance(other,TrueFormula):
+            return self
+            
         return AndFormula(self,other)
 
     def __or__(self, other):
+        if isinstance(self,FalseFormula):
+            return other
+        elif isinstance(other,FalseFormula):
+            return self
+            
         return OrFormula(self,other)
     
     def __neg__(self):
+        if isinstance(self,TrueFormula):
+            return false()
+        elif isinstance(self,FalseFormula):
+            return true()
+            
         return NegFormula(self)
         
     def free_vars(self):
