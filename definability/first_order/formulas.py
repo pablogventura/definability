@@ -370,7 +370,8 @@ def atomics(relations, vs):
     de arity variables libres
 
     >>> R = RelSym("R",2)
-    >>> list(atomics([R],2))
+    >>> vs = variables(*range(2))
+    >>> list(atomics([R],vs))
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
     for r in relations:
