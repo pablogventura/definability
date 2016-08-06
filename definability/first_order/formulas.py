@@ -385,7 +385,7 @@ def atomics(relations, vs):
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
     for r in relations:
-        for t in product(vs,repeat=len(vs)):
+        for t in product(vs,repeat=r.arity):
             yield r(*t)
 
 def fo_type_to_relsym(fo_type):
