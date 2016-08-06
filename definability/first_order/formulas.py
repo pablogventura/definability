@@ -44,6 +44,12 @@ class Variable(Term):
             return vector[self]
         except KeyError:
             raise ValueError("Free variable %s is not defined" % (self))
+
+    def __hash__(self):
+        return hash(self.sym)
+    
+    def __eq__(self,other):
+        return self.sym == other.sym
         
 class OpSym(object):
     """
@@ -390,6 +396,14 @@ def fo_type_to_relsym(fo_type):
     return result
         
 def bolsas(model, arity):
+    """
+    >>> from . import fotheories
+    >>> j=fotheories.SetsED.find_models(4)[2]
+    >>> r = RelSym("r",1)
+    >>> x0, = variables(0)
+    >>> bolsas(j,1) == {- r(x0): [(0,)], r(x0): [(1,), (2,), (3,)]}
+    True
+    """
     result = {true(): list(product(model.universe,repeat=arity))}
     vs = variables(*range(arity))
     formulas = atomics(fo_type_to_relsym(model.fo_type),vs)
@@ -403,7 +417,7 @@ def bolsas(model, arity):
                     nuevas[foriginal & (-formula)].append(tupla)
         result = nuevas
     
-    return result
+    return dict(result)
     
     
     
