@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
+import logging
 import time
 from unittest import TestCase
 
@@ -9,22 +10,29 @@ from definability.first_order import formulas
 from definability.definability import lindenbaum
 from definability.definability.newconstellation2 import Model_Family
 
+logging.basicConfig(filename='./order.log',level=logging.INFO)
+
 class TestOld(TestCase):
 
     def setUp(self):
         self.graphs = fotheories.Graph.find_models(4)
-        self.startTime = time.time()
-
-    def tearDown(self):
-        t = time.time() - self.startTime
-        print("%s: %.3f" % (self.id(), t))
 
     def test_len(self):
         self.assertEqual(len(self.graphs), 89) # hay 89 grafos
     
     def test_oldnewalgoritms(self):
-        for g in self.graphs:
+        onew = 0
+        oold = 0
+        for i,g in enumerate(self.graphs):
+            tick = time.time()
             new = sorted(list(formulas.bolsas(g,2).values()))
+            tock = time.time() - tick
+            onew += tock
+            tick = time.time()
             old = sorted([list(d.values())[0] for d in lindenbaum.open_definable_lindenbaum(Model_Family([g]),2,g.fo_type)])
-            self.assertEqual(new, old) # hay 89 grafos
+            tock = time.time() - tick
+            oold += tock
+            self.assertEqual(new, old) # las algebras de lindenbaum son iguales
+        logging.info('\nnew_order=%s, old_order=%s, relation=%s\n' % (onew/len(self.graphs),oold/len(self.graphs),(onew/len(self.graphs))/(oold/len(self.graphs)))) 
+
 
