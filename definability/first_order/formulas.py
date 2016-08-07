@@ -415,7 +415,7 @@ def bolsas(model, arity):
                     nuevas[foriginal & formula].append(tupla)
                 else:
                     nuevas[foriginal & (-formula)].append(tupla)
-        result = nuevas
+        result = nuevas.copy()
     
     return dict(result)
     
