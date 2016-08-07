@@ -4,7 +4,7 @@
 # TERMS
 
 from ..misc.unicode import subscript
-from itertools import product
+from itertools import product, combinations
 from collections import defaultdict
 
 class Term(object):
@@ -22,6 +22,12 @@ class Term(object):
         Evalua el termino en el modelo para el vector de valores
         """
         raise NotImplemented
+
+    def __hash__(self):
+        return hash(repr(self))
+    
+    def __eq__(self,other):
+        return hash(self) == hash(other)
 
 class Variable(Term):
     """
@@ -44,12 +50,6 @@ class Variable(Term):
             return vector[self]
         except KeyError:
             raise ValueError("Free variable %s is not defined" % (self))
-
-    def __hash__(self):
-        return hash(self.sym)
-    
-    def __eq__(self,other):
-        return self.sym == other.sym
         
 class OpSym(object):
     """
@@ -359,6 +359,8 @@ def forall(var, formula):
     return ForAllFormula(var, formula)
 
 def eq(t1,t2):
+    if t1==t2:
+        return true()
     return EqFormula(t1,t2)
 
 def exists(var, formula):
@@ -374,7 +376,7 @@ def false():
     return FalseFormula()
 
 # Formulas generators
-def atomics(relations, vs):
+def atomics(relations, vs, equality=True):
     """
     Genera todas las formulas atomicas con relations 
     de arity variables libres
@@ -382,11 +384,17 @@ def atomics(relations, vs):
     >>> R = RelSym("R",2)
     >>> vs = variables(*range(2))
     >>> list(atomics([R],vs))
+    [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁), x₀ == x₁]
+    >>> list(atomics([R],vs,equality=False))
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
     for r in relations:
         for t in product(vs,repeat=r.arity):
             yield r(*t)
+    
+    if equality:
+        for t in combinations(vs,2):
+            yield eq(*t)
 
 def fo_type_to_relsym(fo_type):
     result = []
@@ -407,15 +415,15 @@ def bolsas(model, arity):
     result = {true(): list(product(model.universe,repeat=arity))}
     vs = variables(*range(arity))
     formulas = atomics(fo_type_to_relsym(model.fo_type),vs)
-    nuevas = defaultdict(list)
     for formula in formulas:
+        nuevas = defaultdict(list)
         for foriginal,bolsa in result.items():
             for tupla in bolsa:
                 if formula.satisfy(model,{v:i for v,i in zip(vs, tupla)}):
                     nuevas[foriginal & formula].append(tupla)
                 else:
                     nuevas[foriginal & (-formula)].append(tupla)
-        result = nuevas.copy()
+        result = nuevas
     
     return dict(result)
     
