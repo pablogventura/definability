@@ -10,7 +10,7 @@ from definability.first_order import formulas
 from definability.definability import lindenbaum
 from definability.definability.newconstellation2 import Model_Family
 
-logging.basicConfig(filename='./order.log',level=logging.INFO)
+#logging.basicConfig(filename='./order.log',level=logging.INFO)
 
 class TestOld(TestCase):
 
@@ -33,6 +33,6 @@ class TestOld(TestCase):
             tock = time.time() - tick
             oold += tock
             self.assertEqual(new, old) # las algebras de lindenbaum son iguales
-        logging.info('\nnew_order=%s, old_order=%s, relation=%s\n' % (onew/len(self.graphs),oold/len(self.graphs),(onew/len(self.graphs))/(oold/len(self.graphs)))) 
+        logging.warning('new_order=%s, old_order=%s, relation=%s' % (onew/len(self.graphs),oold/len(self.graphs),(onew/len(self.graphs))/(oold/len(self.graphs)))) 
 
 
