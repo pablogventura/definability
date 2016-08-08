@@ -370,24 +370,34 @@ def exists(var, formula):
     return ExistsFormula(var, formula)
 
 def true():
+    """
+    Devuelve la formula True
+    """
     return TrueFormula()
 
 def false():
+    """
+    Devuelve la formula False
+    """
     return FalseFormula()
 
 # Formulas generators
 
 def iter_terms(funtions, vs, rec):
+    """
+    Devuelve todos los terminos (en realidad solo para infimo y supremo)
+    usando las funciones y las variables con un anidaminento de rec
+    """
     result = list(vs)
-    pivote = len(vs)//2
+    pivot = len(vs)//2
     for i in range(rec):
-        nuevo = []
+        new = []
         for f in funtions:
-            for t1, t2 in product(result[:pivote],result[pivote:]):
+            for t1, t2 in product(result[:pivot],result[pivot:]):
                 #for t in combinations(result,2): # porque el supremo y el infimo son conmutativos y simetricos
-                nuevo.append(f(t1,t2))
-        pivote = len(result)
-        result += nuevo
+                new.append(f(t1,t2))
+        pivot = len(result)
+        result += new
     return iter(result)
 
 def atomics(relations, terms, equality=True):
@@ -411,6 +421,9 @@ def atomics(relations, terms, equality=True):
             yield eq(*t)
 
 def fo_type_to_relsym(fo_type):
+    """
+    Devuelve una lista de RelSym para un tipo
+    """
     result = []
     for r in fo_type.relations:
         result.append(RelSym(r,fo_type.relations[r]))
@@ -418,6 +431,9 @@ def fo_type_to_relsym(fo_type):
     return result
 
 def fo_type_to_opsym(fo_type):
+    """
+    Devuelve una lista de OpSym para un tipo
+    """
     result = []
     for f in fo_type.operations:
         result.append(OpSym(f,fo_type.operations[f]))
@@ -426,6 +442,9 @@ def fo_type_to_opsym(fo_type):
 
 def bolsas(model, arity):
     """
+    Algoritmo estilo Carlos para generar el algebra de lindenbaum
+    de abiertas definibles en el modelo con la aridad dada
+    
     >>> from . import fotheories
     >>> j=fotheories.SetsED.find_models(4)[2]
     >>> r = RelSym("r",1)
