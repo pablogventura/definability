@@ -379,11 +379,14 @@ def false():
 
 def iter_terms(funtions, vs, rec):
     result = list(vs)
+    pivote = len(vs)//2
     for i in range(rec):
         nuevo = []
         for f in funtions:
-            for t in combinations(result,2): # porque el supremo y el infimo son conmutativos y simetricos
-                nuevo.append(f(*t))
+            for t1, t2 in product(result[:pivote],result[pivote:]):
+                #for t in combinations(result,2): # porque el supremo y el infimo son conmutativos y simetricos
+                nuevo.append(f(t1,t2))
+        pivote = len(result)
         result += nuevo
     return iter(result)
 
@@ -433,8 +436,8 @@ def bolsas(model, arity):
     result = {true(): list(product(model.universe,repeat=arity))}
     vs = variables(*range(arity))
     # lo comentado es para usar terminos con funciones y no solo variables
-    #terms = iter_terms(fo_type_to_opsym(model.fo_type),vs,len(model))
-    formulas = atomics(fo_type_to_relsym(model.fo_type),vs) #terms)
+    terms = iter_terms(fo_type_to_opsym(model.fo_type),vs,len(model))
+    formulas = atomics(fo_type_to_relsym(model.fo_type),terms)
     for formula in formulas:
         nuevas = defaultdict(list)
         for foriginal,bolsa in result.items():
