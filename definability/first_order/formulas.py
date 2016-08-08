@@ -439,6 +439,8 @@ def bolsas(model, arity):
         nuevas = defaultdict(list)
         for foriginal,bolsa in result.items():
             for tupla in bolsa:
+                # TODO CUANDO UNA FORMULA NO TIENE NADIE QUE LA SATISFACE
+                # O TODOS LA SATISFACEN, NO VALE LA PENA AGREGARLA
                 if formula.satisfy(model,{v:i for v,i in zip(vs, tupla)}):
                     nuevas[foriginal & formula].append(tupla)
                 else:
