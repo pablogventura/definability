@@ -376,7 +376,18 @@ def false():
     return FalseFormula()
 
 # Formulas generators
-def atomics(relations, vs, equality=True):
+
+def iter_terms(funtions, vs, rec):
+    result = list(vs)
+    for i in range(rec):
+        nuevo = []
+        for f in funtions:
+            for t in combinations(result,2): # porque el supremo y el infimo son conmutativos y simetricos
+                nuevo.append(f(*t))
+        result += nuevo
+    return iter(result)
+
+def atomics(relations, terms, equality=True):
     """
     Genera todas las formulas atomicas con relations 
     de arity variables libres
@@ -389,11 +400,11 @@ def atomics(relations, vs, equality=True):
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
     for r in relations:
-        for t in product(vs,repeat=r.arity):
+        for t in product(terms,repeat=r.arity):
             yield r(*t)
     
     if equality:
-        for t in combinations(vs,2):
+        for t in combinations(terms,2):
             yield eq(*t)
 
 def fo_type_to_relsym(fo_type):
@@ -402,7 +413,14 @@ def fo_type_to_relsym(fo_type):
         result.append(RelSym(r,fo_type.relations[r]))
     
     return result
-        
+
+def fo_type_to_opsym(fo_type):
+    result = []
+    for f in fo_type.operations:
+        result.append(OpSym(f,fo_type.operations[f]))
+    
+    return result
+
 def bolsas(model, arity):
     """
     >>> from . import fotheories
@@ -414,7 +432,9 @@ def bolsas(model, arity):
     """
     result = {true(): list(product(model.universe,repeat=arity))}
     vs = variables(*range(arity))
-    formulas = atomics(fo_type_to_relsym(model.fo_type),vs)
+    # lo comentado es para usar terminos con funciones y no solo variables
+    #terms = iter_terms(fo_type_to_opsym(model.fo_type),vs,len(model))
+    formulas = atomics(fo_type_to_relsym(model.fo_type),vs) #terms)
     for formula in formulas:
         nuevas = defaultdict(list)
         for foriginal,bolsa in result.items():
