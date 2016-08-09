@@ -383,22 +383,36 @@ def false():
 
 # Formulas generators
 
-def iter_terms(funtions, vs, rec):
+def grafico(term, vs, model):
+    result = {}
+    for tupla in product(model.universe, repeat=len(vs)):
+        result[tupla] = term.evaluate(model,{v:a for v,a in zip(vs,tupla)})
+    return tuple(sorted(result.items()))
+
+def generate_terms(funtions, vs, model):
     """
     Devuelve todos los terminos (en realidad solo para infimo y supremo)
     usando las funciones y las variables con un anidaminento de rec
     """
-    result = list(vs)
-    pivot = len(vs)//2
-    for i in range(rec):
-        new = []
+    result = []
+    graficos = set()
+    
+    for v in vs:
+        g = grafico(v,vs,model)
+        if not g in graficos:
+            result.append(v)
+            graficos.add(g)
+    nuevos=[1]
+    while nuevos:
+        nuevos =[]
         for f in funtions:
-            for t1, t2 in product(result[:pivot],result[pivot:]):
-                #for t in combinations(result,2): # porque el supremo y el infimo son conmutativos y simetricos
-                new.append(f(t1,t2))
-        pivot = len(result)
-        result += new
-    return iter(result)
+            for ts in product(result,repeat=f.arity):
+                g = grafico(f(*ts),vs,model)
+                if not g in graficos:
+                    nuevos.append(f(*ts))
+                    graficos.add(g)
+            result += nuevos
+    return result
 
 def atomics(relations, terms, equality=True):
     """
@@ -412,6 +426,7 @@ def atomics(relations, terms, equality=True):
     >>> list(atomics([R],vs,equality=False))
     [R(x₀, x₀), R(x₀, x₁), R(x₁, x₀), R(x₁, x₁)]
     """
+    terms
     for r in relations:
         for t in product(terms,repeat=r.arity):
             yield r(*t)
@@ -455,8 +470,7 @@ def bolsas(model, arity):
     result = {true(): list(product(model.universe,repeat=arity))}
     vs = variables(*range(arity))
     # lo comentado es para usar terminos con funciones y no solo variables
-    #terms = iter_terms(fo_type_to_opsym(model.fo_type),vs,len(model))
-    terms = vs
+    terms = generate_terms(fo_type_to_opsym(model.fo_type),vs,model)
     formulas = atomics(fo_type_to_relsym(model.fo_type),terms)
     for formula in formulas:
         nuevas = defaultdict(list)
