@@ -136,7 +136,7 @@ class Formula(object):
         elif isinstance(other,TrueFormula):
             return self
             
-        return AndFormula(self,other)
+        return AndFormula([self,other])
 
     def __or__(self, other):
         if isinstance(self,FalseFormula):
@@ -144,7 +144,7 @@ class Formula(object):
         elif isinstance(other,FalseFormula):
             return self
             
-        return OrFormula(self,other)
+        return OrFormula([self,other])
     
     def __neg__(self):
         if isinstance(self,TrueFormula):
@@ -185,38 +185,58 @@ class NegFormula(Formula):
 
 class BinaryOpFormula(Formula):
     """
-    Clase general de las formulas tipo f1 η f2
+    Clase general de las formulas tipo f1 η ... η fn
     """
-    def __init__(self, f1, f2):
-        self.f1 = f1
-        self.f2 = f2
+    def __init__(self, subformulas):
+        self.subformulas = subformulas
 
     def free_vars(self):
-        return self.f1.free_vars().union(self.f2.free_vars())
+        result = set()
+        for f in self.subformulas:
+            result = result.union(f.free_vars())
+        return result
         
 class OrFormula(BinaryOpFormula):
     """
     Disjuncion entre formulas
     """
     def __repr__(self):
-        result = "(%s ∨ %s)" % (self.f1, self.f2)
+        result = " ∨ ".join(str(f) for f in self.subformulas)
+        result = "(" + result + ")"
         return result
+
+    def __or__(self, other):
+        if isinstance(self,FalseFormula):
+            return other
+        elif isinstance(other,FalseFormula):
+            return self
+        
+        return OrFormula(self.subformulas + [other])
     
     def satisfy(self,model,vector):
         # el or y el and de python son lazy
-        return self.f1.satisfy(model,vector) or self.f2.satisfy(model,vector)
+        return any(f.satisfy(model,vector) for f in self.subformulas)
 
 class AndFormula(BinaryOpFormula):
     """
     Conjuncion entre formulas
     """
     def __repr__(self):
-        result = "(%s ∧ %s)" % (self.f1, self.f2)
+        result = " ∧ ".join(str(f) for f in self.subformulas)
+        result = "(" + result + ")"
         return result
-
+        
+    def __and__(self, other):
+        if isinstance(self,TrueFormula):
+            return other
+        elif isinstance(other,TrueFormula):
+            return self
+            
+        return AndFormula(self.subformulas + [other])
+        
     def satisfy(self,model,vector):
         # el or y el and de python son lazy
-        return self.f1.satisfy(model,vector) and self.f2.satisfy(model,vector)
+        return all(f.satisfy(model,vector) for f in self.subformulas)
 
 class RelSym(object):
     """
