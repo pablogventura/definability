@@ -144,7 +144,7 @@ class Lindenbaum_Algebra(object):
     def finish(self):
         for sf in l[0].subformulas:
             h = [f.subformulas for f in filter(lambda f,sf=sf: sf in f.subformulas, l)]
-            result[sf] = set()
+            result[sf] = set(h[0])
             for formulas in h:
                 result[sf]=result[sf].intersection(set(formulas))
         
