@@ -132,6 +132,23 @@ def closurem(t, m, k, arrows):
                     checked[source].sort()
     return result
 
+class Lindenbaum_Algebra(object):
+    def __init__(self, model_family):
+        self.d = defaultdict(defaultdict(list))
+        self.equivalence = defaultdict(list)
+
+    def add_relation(formula, relations):
+        assert isinstance(dict,relations)
+        self.d[formula].update(relations)
+    
+    def finish(self):
+        pass
+        
+    def __repr__(self):
+        pass
+        
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
