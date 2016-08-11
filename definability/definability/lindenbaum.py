@@ -142,7 +142,11 @@ class Lindenbaum_Algebra(object):
         self.d[formula].update(relations)
     
     def finish(self):
-        pass
+        for sf in l[0].subformulas:
+            h = [f.subformulas for f in filter(lambda f,sf=sf: sf in f.subformulas, l)]
+            result[sf] = set()
+            for formulas in h:
+                result[sf]=result[sf].intersection(set(formulas))
         
     def __repr__(self):
         pass
