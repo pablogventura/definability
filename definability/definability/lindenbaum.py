@@ -7,7 +7,7 @@ from ..first_order.fofunctions import FO_Relation
 from ..definability import morphsgenerators
 from datetime import datetime
 
-from collections import defaultdict
+from collections import defaultdict, UserDict
 
 def include_inverses(morphisms):
     """
@@ -131,6 +131,12 @@ def closurem(t, m, k, arrows):
                     checked[source].append(t)
                     checked[source].sort()
     return result
+
+class MultiRelation(UserDict):
+    def __init__(self, model_family):
+        UserDict.__init__(self)
+        self["a"] = 0
+        self["b"] = 0
 
 class Lindenbaum_Algebra(object):
     def __init__(self, model_family):
