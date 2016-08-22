@@ -7,3 +7,5 @@ prueba*
 .coverage
 *egg*
 *.nja
+*.log
+
