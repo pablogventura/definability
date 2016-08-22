@@ -10,7 +10,10 @@ from definability.first_order import formulas
 from definability.definability import lindenbaum
 from definability.definability.newconstellation2 import Model_Family
 
+import subprocess
+
 logging.basicConfig(format='%(asctime)s %(message)s', filename='history.log', level=logging.INFO)
+repo_version = subprocess.check_output(["git", "rev-parse", "HEAD"])
 
 class TestOld(TestCase):
 
@@ -33,6 +36,6 @@ class TestOld(TestCase):
             tock = time.time() - tick
             oold += tock
             self.assertEqual(new, old) # las algebras de lindenbaum son iguales
-        logging.warning('new_order=%s, old_order=%s, relation=%s' % (onew/len(self.graphs),oold/len(self.graphs),(onew/len(self.graphs))/(oold/len(self.graphs)))) 
+        logging.info('version=%s, new_order=%s, old_order=%s, relation=%s' % (repo_version, onew/len(self.graphs),oold/len(self.graphs),(onew/len(self.graphs))/(oold/len(self.graphs)))) 
 
 
