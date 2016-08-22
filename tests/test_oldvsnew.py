@@ -10,7 +10,7 @@ from definability.first_order import formulas
 from definability.definability import lindenbaum
 from definability.definability.newconstellation2 import Model_Family
 
-#logging.basicConfig(filename='./order.log',level=logging.INFO)
+logging.basicConfig(filename='history.log', level=logging.INFO)
 
 class TestOld(TestCase):
 
