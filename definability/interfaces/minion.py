@@ -273,10 +273,8 @@ class MorphMinionSol(MinionSol):
             result += "# que sean suryectivos\n"
         result += "\n"
         result += "**VARIABLES**\n"
-        result += "DISCRETE f[%s]{-1..%s}\n\n" % (
-            max(A.universe) + 1, max(B.universe))
-        result += "DISCRETE g[%s]{-1..%s}\n\n" % (
-            max(B.universe) + 1, max(A.universe))
+        result += "DISCRETE f[%s]{0..%s}\n\n" % (A.cardinality, B.cardinality-1)
+        result += "DISCRETE g[%s]{-1..%s}\n\n" % (B.cardinality, A.cardinality-1)
         result += "**SEARCH**\n"
         result += "PRINT [f]\n\n"  # para que no me imprima los valores de g
         result += "**TUPLELIST**\n"
@@ -326,9 +324,6 @@ class MorphMinionSol(MinionSol):
         for i in A.universe:
             result += "element(g, f[%s], %s)\n" % (i, i)  # g(f(x))=X
 
-        # cant de valores en el rango no en dominio
-        result += "occurrencegeq(f, -1, %s)\n" % (max(A.universe) +
-                                                  1 - A.cardinality)
         # cant de valores en el rango no en dominio
         result += "occurrencegeq(g, -1, %s)\n" % (max(B.universe) +
                                                   1 - A.cardinality)
