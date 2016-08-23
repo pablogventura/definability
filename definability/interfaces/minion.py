@@ -136,6 +136,9 @@ class MinionSol(object):
 class MorphMinionSol(MinionSol):
     """
     Soluciones de Minion que son morfismos
+    
+    Necesita que las estructuras sean de universos del tipo 0...n
+    
     """
 
     def __init__(self, morph_type, subtype, source, target, inj=None, surj=None, allsols=True, without=[]):
