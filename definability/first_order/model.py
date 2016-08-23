@@ -44,6 +44,14 @@ class FO_Model(object):
     def homomorphisms_to(self, target, subtype, inj=None, surj=None, without=[]):
         """
         Genera todos los homomorfismos de este modelo a target, en el subtype.
+
+        >>> from definability.examples.examples import *
+        >>> len(retrombo.homomorphisms_to(retrombo,tiporet))
+        16
+        >>> len(retrombo.homomorphisms_to(rettestlinden,tiporet))
+        49
+        >>> len(rettestlinden.homomorphisms_to(retrombo,tiporet))
+        36
         """
         return minion.homomorphisms(self, target, subtype, inj=inj, surj=surj, without=without)
 
