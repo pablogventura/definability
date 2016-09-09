@@ -70,7 +70,8 @@ def basicAlgebraUACALC(model,name,xmlfather):
         opTable = SubElement(op, 'opTable')
         intArray = SubElement(opTable, 'intArray')
         ntable = defaultdict(list)
-        
+
+
         for r in product(range(len(model)), repeat=model.operations[sym].arity()):
             ntable[r[:-1]].append(model.operations[sym](*r))
             
@@ -82,3 +83,14 @@ def basicAlgebraUACALC(model,name,xmlfather):
             row.text = str(ntable[r])[1:-1].replace(" ","")
 
     return balg
+
+import subprocess as sp
+def congruencesUACALC(model):
+    model_to_UACALC_file(model,"test","test.ua")
+    app = sp.Popen(["jython", "c.py"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+    out = app.stdout.read(1500)
+    err = app.stderr.read(1500)
+    print(out)
+    print(err)
+    return out.decode("utf-8")
+    
