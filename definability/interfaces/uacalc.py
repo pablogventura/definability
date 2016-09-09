@@ -5,10 +5,12 @@
 from xml.etree import ElementTree
 from xml.dom import minidom
 
+from collections import defaultdict
+from itertools import product
 def prettify(elem):
     """Return a pretty-printed XML string for the Element.
     """
-    rough_string = ElementTree.tostring(elem, 'utf-8')
+    rough_string = ElementTree.tostring(elem)
     reparsed = minidom.parseString(rough_string)
     return reparsed.toprettyxml(indent="  ")
     
@@ -33,18 +35,35 @@ from xml.etree.ElementTree import Element, SubElement, Comment
   </op>
 """
 
-def operationUACALC(sym,op):
-    op = Element('op')
-    opSymbol = SubElement(op, 'opSymbol')
-    opName = SubElement(opSymbol, 'opName')
-    opName.text = str(sym)
-    arity = SubElement(opSymbol, 'arity')
-    arity.text = op.arity()
+def modelUACALC(model,name):
+    alg = Element('algebra')
+    balg = SubElement(alg, 'basicAlgebra')
+    algname = SubElement(balg, 'algName')
+    algname.text = str(name)
+    algcard = SubElement(balg, 'cardinality')
+    algcard.text = str(len(model))
+    operations = SubElement(balg, 'operations')
+    for sym in model.operations:
 
-    opTable = SubElement(op, 'opTable')
-    intArray = SubElement(opTable, 'intArray')
-    table = op.table()
-    row = SubElement(intArray, 'intArray',{'r':"[0]"})
-    row.text = "0,0,0,0,0"
+        op = SubElement(operations,'op')
+        opSymbol = SubElement(op, 'opSymbol')
+        opName = SubElement(opSymbol, 'opName')
+        opName.text = str(sym)
+        arity = SubElement(opSymbol, 'arity')
+        arity.text = str(model.operations[sym].arity())
 
-    return prettify(op)
+        opTable = SubElement(op, 'opTable')
+        intArray = SubElement(opTable, 'intArray')
+        ntable = defaultdict(list)
+        
+        for r in product(range(len(model)), repeat=model.operations[sym].arity()):
+            ntable[r[:-1]].append(model.operations[sym](*r))
+            
+        for r in sorted(ntable.keys()):
+            if len(r) > 0:
+                row = SubElement(intArray, 'row',{'r':str(list(r))})
+            else:
+                row = SubElement(intArray, 'row')
+            row.text = str(ntable[r])[1:-1].replace(" ","")
+
+    return prettify(alg)
