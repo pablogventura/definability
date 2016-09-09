@@ -4,40 +4,55 @@
 
 from xml.etree import ElementTree
 from xml.dom import minidom
+from xml.etree.ElementTree import Element, SubElement, Comment
 
 from collections import defaultdict
 from itertools import product
+
+from ..first_order.model import FO_Product
+
 def prettify(elem):
     """Return a pretty-printed XML string for the Element.
     """
     rough_string = ElementTree.tostring(elem)
     reparsed = minidom.parseString(rough_string)
-    return reparsed.toprettyxml(indent="  ")
-    
-    
-from xml.etree.ElementTree import Element, SubElement, Comment
+    return reparsed.toprettyxml(indent="  ")    
 
 """
-  <op>
-    <opSymbol>
-      <opName>meet</opName>
-      <arity>2</arity>
-    </opSymbol>
-    <opTable>
-      <intArray>
-        <row r="[0]">0,0,0,0,0</row>
-        <row r="[1]">0,1,0,0,1</row>
-        <row r="[2]">0,0,2,0,2</row>
-        <row r="[3]">0,0,0,3,3</row>
-        <row r="[4]">0,1,2,3,4</row>
-      </intArray>
-    </opTable>
-  </op>
+<algebra>
+  <productAlgebra>
+    <algName>Prod of r^3</algName>
+    <cardinality>64</cardinality>
+    <factors>
+      <factor>
 """
+
+
+def model_to_UACALC_file(model,name,path):
+    f=open(path,"w")
+    f.write(modelUACALC(model,name))
+    f.close()
+    
 
 def modelUACALC(model,name):
     alg = Element('algebra')
-    balg = SubElement(alg, 'basicAlgebra')
+    if isinstance(model,FO_Product):
+        factors = model.factors
+        palg = SubElement(alg, 'productAlgebra')
+        nalg = SubElement(palg, "algName")
+        nalg.text = str(name)
+        calg = SubElement(palg, "cardinality")
+        calg.text = str(len(model))
+        for f in factors:
+            fact = SubElement(palg, "factor")
+            basicAlgebraUACALC(f,"h",fact)
+    else:
+        basicAlgebraUACALC(model,name,alg)
+    return prettify(alg)
+
+def basicAlgebraUACALC(model,name,xmlfather):
+
+    balg = SubElement(xmlfather, 'basicAlgebra')
     algname = SubElement(balg, 'algName')
     algname.text = str(name)
     algcard = SubElement(balg, 'cardinality')
@@ -66,4 +81,4 @@ def modelUACALC(model,name):
                 row = SubElement(intArray, 'row')
             row.text = str(ntable[r])[1:-1].replace(" ","")
 
-    return prettify(alg)
+    return balg
