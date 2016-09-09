@@ -361,6 +361,12 @@ class FO_Product(FO_Model):
         Toma una lista de factores
         """
         # TODO falta un armar las operaciones y relaciones
+        for f in factors:
+            if isinstance(f,FO_Product):
+                factors.remove(f)
+                factors+=f.factors
+        self.factors = factors
+        
         fo_type = factors[0].fo_type
         if any(f.fo_type != fo_type for f in factors):
             raise ValueError("Factors must be all from same fo_type")
