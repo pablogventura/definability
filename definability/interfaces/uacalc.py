@@ -92,5 +92,5 @@ def congruencesUACALC(model):
     err = app.stderr.read(1500)
     print(out)
     print(err)
-    return out.decode("utf-8")
+    return out.decode("utf-8").split("\n")[-2]
     
