@@ -11,7 +11,7 @@ Instalación
    - Pip
    - Ant
    - Python 3.4 o posterior
-   - `Jython <http://www.jython.org/downloads.html>`_ en ~/jython2.7.0 (descargar y seguir las instrucciones)
+   - `Jython <http://www.jython.org/downloads.html>`_ en ~/jython2.7.0 (descargar y hacer 'java -jar jython_installer-2.7.0.jar')
    - Virtualenv
    - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_ en ~/minion-1.8/bin/minion
    - `LADR 2009 11A <https://www.cs.unm.edu/~mccune/mace4/download/>`_ en ~/LADR-2009-11A/bin
