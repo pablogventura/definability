@@ -1,0 +1,36 @@
+#!/usr/bin/env jython
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+from os.path import expanduser, isfile
+
+if not (isfile(expanduser("~/uacalccli/uacalc.jar")) and isfile(expanduser("~/uacalccli/LatDraw.jar"))):
+    print("downloading uacalc from github")
+    os.mkdir(expanduser("~/uacalccli"))
+    os.chdir(expanduser("~/uacalccli"))
+    os.system("git clone https://github.com/UACalc/uacalcsrc.git")
+    os.chdir("uacalcsrc")
+    print("compiling uacalc")
+    os.system("ant dist")
+    os.chdir(expanduser("~/uacalccli"))
+    os.rename(expanduser("~/uacalccli/dist/lib/uacalc.jar"),expanduser("~/uacalccli/uacalc.jar"))
+    os.rename(expanduser("~/uacalccli/dist/lib/LatDraw.jar"),expanduser("~/uacalccli/LatDraw.jar"))
+    print("removing temps")
+    os.system("rm -rf classes dist local uacalcsrc")
+
+
+
+print("testing installation in " + expanduser("~/uacalccli/"))
+sys.path.append(expanduser("~/uacalccli/uacalc.jar"))
+sys.path.append(expanduser("~/uacalccli/LatDraw.jar"))
+
+try:
+    from org.uacalc.alg import BasicAlgebra
+    from org.uacalc.io import AlgebraIO
+    from org.uacalc.alg import Malcev
+    from org.uacalc.alg.conlat import BasicPartition
+    print ("SUCCESS!: UACALC run from jython!")
+except:
+    print ("ERROR: UACALC doesn't run. Do you have installed 'git' and 'ant'?")
+
