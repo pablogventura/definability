@@ -9,15 +9,18 @@ Instalación
 
    - Git
    - Pip
+   - Ant
    - Python 3.4 o posterior
+   - `Jython <http://www.jython.org/downloads.html>` (descargar y seguir las instrucciones)
    - Virtualenv
    - `Minion 1.8 <http://constraintmodelling.org/minion/download/>`_ en ~/minion-1.8/bin/minion
    - `LADR 2009 11A <https://www.cs.unm.edu/~mccune/mace4/download/>`_ en ~/LADR-2009-11A/bin
-   - `LatDraw 2.0 <http://www.latdraw.org/>`_ en ~/LatDraw2.0/dist/lib (descargar el source en tar y compilar con ant)
+   - `LatDraw 2.0 <http://www.latdraw.org/>`_ en ~/LatDraw2.0/dist/lib (descargar el source en tar y compilar con ant dist)
+   - `UACalc <http://www.uacalc.org/>`_ en ~/uacalccli (descargar el source de github y compilar con ant dist)
 
    En un sistema basado en Debian (como Ubuntu), se puede hacer::
 
-    sudo apt-get install git python-pip python3.4 python3-tk virtualenv
+    sudo apt-get install git python-pip python3.4 python3-tk virtualenv ant
 
 
 2. Crear y activar un nuevo
@@ -49,6 +52,10 @@ Instalación
    Para instalar Minion, LADR y LatDraw en el Home se puede usar el script install.sh con::
    
     ./install.sh
+   
+   Para instalar UACalcCli se puede usar el script installuacalccli con::
+   
+    ./installuacalccli
    
    Para instalar los paquetes Python que utiliza Definability::
    
