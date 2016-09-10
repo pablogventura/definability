@@ -68,11 +68,12 @@ algebra = generador(10,4,5,6,7,8)
 
 h = algebra **2
 
-s,i = h.substructure(h.subuniverse([(2,3),(3,2),(6,7),(6,8)],h.fo_type)[0],h.fo_type)[1].continous()
+# s ya no es un producto sino una subestructura
+s = h.substructure(h.subuniverse([(2,3),(3,2),(6,7),(6,8)],h.fo_type)[0],h.fo_type)[1]
 
 from definability.interfaces import uacalc
 
-print ("\n\n" + uacalc.congruencesUACALC(s))
+print ("\n\n" + uacalc.congruencesUACALC(examples.retrombo**2))
 
 
 

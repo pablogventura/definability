@@ -87,10 +87,7 @@ def basicAlgebraUACALC(model,name,xmlfather):
 import subprocess as sp
 def congruencesUACALC(model):
     model_to_UACALC_file(model,"test","test.ua")
-    app = sp.Popen(["jython", "c.py"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-    out = app.stdout.read(1500)
-    err = app.stderr.read(1500)
-    print(out)
-    print(err)
-    return out.decode("utf-8").split("\n")[-2]
+    out = sp.check_output(["jython","c.py"]).decode("utf-8").split("\n")[-2]
+   
+    return out
     
