@@ -103,8 +103,9 @@ def congruencesUACALC(model):
         from org.uacalc.alg.conlat import BasicPartition
         
         f3 = AlgebraIO.readAlgebraFile("test.ua")
-        conlat = f3.con().getUniverseList()
+        conlat = f3.con()
+        congruencia = conlat.Cg(0,2) # la congruencia mas chica que tiene al (0,2)
         
-        channel.send(conlat.toString())
+        channel.send(congruencia.toString())
     """ % (config.uacalccli_path,config.uacalccli_path))
     return list(channel)[0]
