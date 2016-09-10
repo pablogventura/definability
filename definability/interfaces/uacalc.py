@@ -84,10 +84,27 @@ def basicAlgebraUACALC(model,name,xmlfather):
 
     return balg
 
-import subprocess as sp
+
+import execnet
+from os.path import expanduser
+from ..interfaces import config
 def congruencesUACALC(model):
     model_to_UACALC_file(model,"test","test.ua")
-    out = sp.check_output(["jython","c.py"]).decode("utf-8").split("\n")[-2]
-   
-    return out
-    
+    gw = execnet.makegateway("popen//python=%sjython"%config.jython_path)
+    channel = gw.remote_exec("""
+        import sys
+
+        sys.path.append("%suacalc.jar")
+        sys.path.append("%sLatDraw.jar")
+
+        from org.uacalc.alg import BasicAlgebra
+        from org.uacalc.io import AlgebraIO
+        from org.uacalc.alg import Malcev
+        from org.uacalc.alg.conlat import BasicPartition
+        
+        f3 = AlgebraIO.readAlgebraFile("test.ua")
+        conlat = f3.con().getUniverseList()
+        
+        channel.send(conlat.toString())
+    """ % (config.uacalccli_path,config.uacalccli_path))
+    return list(channel)[0]
