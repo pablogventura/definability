@@ -42,3 +42,29 @@ h=traverse3(G, N)
 print (len(h))
 print (h[5])
 print ("There are "+str(len(h))+" non-isomorphic graphs with "+str(N)+" vertices")
+
+import sqlite3
+conn = sqlite3.connect('graphs.db')
+
+c = conn.cursor()
+# Create table
+c.execute('''CREATE TABLE tests
+             (nnodes INT, nedges INT, ngensubisos INT, natomslindenbaum INT, time BIGINT, graph BLOB)''')
+
+for g in h:
+    #pgraph = cPickle.dumps(g, cPickle.HIGHEST_PROTOCOL)
+    #curr.execute("insert into table (data) values (:data)", sqlite3.Binary(pdata))
+
+
+
+    # Insert a row of data
+    c.execute("INSERT INTO tests VALUES (?, ?, ?, ?, ?, ?)", (g.nof_vertices(),0,0,0,0,"hola"))
+
+# Save (commit) the changes
+conn.commit()
+
+# We can also close the connection if we are done with it.
+# Just be sure any changes have been committed or they will be lost.
+conn.close()
+
+
