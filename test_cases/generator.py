@@ -74,6 +74,7 @@ def generate_database(path,maxcardinality,mincardinality=0):
 def main():
     path = raw_input("Path to db file[graphs.db]: ") or "graphs.db"
     maxcardinality = raw_input("Max cardinality[10]: ") or 10
+    maxcardinality=int(maxcardinality)
     generate_database(path,maxcardinality)
 
 if __name__ == "__main__":
