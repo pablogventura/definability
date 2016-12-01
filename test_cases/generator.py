@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
 # ./geng 1 -q |./vcolg -e0:1 -T -q
 import subprocess as sp
-
 import os
+import sqlite3
 
 home = os.getenv('HOME')
 
@@ -39,23 +42,39 @@ def generate_color_graphs(cardinality):
         line=vcolg.stdout.readline().strip()
     return result
 
-import sqlite3
-conn = sqlite3.connect('graphs.db')
+def generate_database(path,maxcardinality,mincardinality=0):
+    count = 0
+    conn = sqlite3.connect(path)
 
-c = conn.cursor()
-c.execute('''CREATE TABLE tests
-             (nnodes INT, nedges INT, ngensubisos INT, natomslindenbaum INT, time BIGINT, graph BLOB)''')
+    c = conn.cursor()
+    try:
+        c.execute('''CREATE TABLE tests
+                     (nnodes INT, nedges INT, ngensubisos INT, natomslindenbaum INT, time BIGINT, graph BLOB)''')
+        c.execute('''CREATE TABLE register
+                     (nnodes INT)''')
+    except sqlite3.OperationalError:
+        mincardinality = c.execute('SELECT * FROM register').fetchone()[0] + 1
+        print "Already generated up to cardinality %s" % (mincardinality-1)
+    
+    try:
+        for cardinality in range(mincardinality,maxcardinality+1):
+            print "Generating cardinality %s..." % cardinality
+            for g in generate_color_graphs(cardinality):
+                c.execute("INSERT INTO tests VALUES (?, ?, ?, ?, ?, ?)", (g[0],g[1],None,None,None,str(g)))
+                count += 1
+            c.execute("delete from register")
+            c.execute("INSERT INTO register VALUES (?)", (cardinality,))
+            conn.commit()
+            print "Generated %s graphs" % count
+        conn.close()
+    except KeyboardInterrupt:
+        conn.close()
 
-for g in []:
-    # Insert a row of data
-    c.execute("INSERT INTO tests VALUES (?, ?, ?, ?, ?, ?)", (g.nof_vertices(),0,0,0,0,"hola"))
 
-# Save (commit) the changes
-conn.commit()
+def main():
+    path = raw_input("Path to db file[graphs.db]: ") or "graphs.db"
+    maxcardinality = raw_input("Max cardinality[10]: ") or 10
+    generate_database(path,maxcardinality)
 
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
-conn.close()
-
-
-print generate_color_graphs(2)
+if __name__ == "__main__":
+    main()
