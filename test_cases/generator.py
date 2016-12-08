@@ -32,9 +32,9 @@ def parse(line):
                 edges.append((a,b))
         return (nnodes,nedges,color,edges)
 
-def generate_color_graphs(cardinality):
+def generate_color_graphs(cardinality,colors=0):
     geng = sp.Popen([nauty_path + "geng"] + [str(cardinality), "-q"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-    vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % cardinality, "-T", "-q"], stdin=geng.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+    vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=geng.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
     result=[]
     line=vcolg.stdout.readline().strip()
     while line:
