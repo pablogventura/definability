@@ -33,14 +33,26 @@ def parse(line):
         return (nnodes,nedges,color,edges)
 
 def generate_color_graphs(cardinality,colors=0):
-    geng = sp.Popen([nauty_path + "geng"] + [str(cardinality), "-q"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-    vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=geng.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-    result=[]
-    line=vcolg.stdout.readline().strip()
-    while line:
-        result.append(parse(line))
+    if cardinality <= 8:
+        geng = sp.Popen([nauty_path + "geng"] + [str(cardinality), "-q"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=geng.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+        result=[]
         line=vcolg.stdout.readline().strip()
-    return result
+        while line:
+            result.append(parse(line))
+            line=vcolg.stdout.readline().strip()
+        return result
+    else:
+         #./genrang 2 10 | ./shortg
+        genrang = sp.Popen([nauty_path + "genrang"] + [str(cardinality),"10000", "-q", "-S0"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+        shortg = sp.Popen([nauty_path + "shortg"] + ["-q"], stdin=genrang.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+        vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=shortg.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+        result=[]
+        line=vcolg.stdout.readline().strip()
+        while line:
+            result.append(parse(line))
+            line=vcolg.stdout.readline().strip()
+        return result
 
 def generate_database(path,maxcardinality,mincardinality=0):
     count = 0
