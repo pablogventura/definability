@@ -108,6 +108,9 @@ class Function(object):
                 self.arityval = len(inspect.getargspec(self.func).args)
             else:
                 self.arityval = len(list(self.dict.keys())[0])
+                if not all(len(k) == self.arityval for k in self.dict.keys()):
+                    raise ValueError("Inconsistent arity")
+                
         self.relation = False  # maneja si la funcion es booleana
         if not self.d_universe:
             self.d_universe = list(set(chain(*list(self.domain()))))
