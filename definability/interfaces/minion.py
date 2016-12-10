@@ -4,6 +4,7 @@
 # Minion interface code Peter Jipsen 2011-03-26 alpha version
 # requires sage.chapman.edu/sage/minion_20110326.spkg
 
+import codecs
 import subprocess as sp
 from select import poll, POLLIN
 
@@ -184,7 +185,8 @@ class MorphMinionSol(MinionSol):
         else:
             # le agrego espacios para evitar los = que mete b64
             oprel += " " * ((3 - len(oprel)) % 3)
-            return oprel.encode("base64")[:-1]
+            
+            return codecs.encode(bytearray(oprel,"ascii"),"base64").decode("ascii")[:-1]
 
     def __oprel_table(self, symbol, oprel, prefix=""):
         """
