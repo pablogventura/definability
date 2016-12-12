@@ -6,11 +6,9 @@ from definability import *
 
 def main():
 
-    from IPython.terminal.embed import InteractiveShellEmbed
+    from IPython import embed
 
-    ipshell = InteractiveShellEmbed(banner1 = 'Definability\n', exit_msg = 'Leaving Definability')
-
-    ipshell('Hit Ctrl-D to exit interpreter.\n')
+    embed(header='Definability\n', banner1='Hit Ctrl-D to exit interpreter.\n', exit_msg = 'Leaving Definability')
 
 if __name__ == "__main__":
     main()
