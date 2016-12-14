@@ -105,6 +105,46 @@ def lindenbaum_algebra(k, arity, morphisms):
 
     return result
 
+def open_definable_lindenbaum_special(k, arity, subtype):
+    """
+    >>> from definability.examples import examples
+    >>> from definability.definability import newconstellation2
+    >>> k=newconstellation2.Model_Family({examples.retrombo, examples.rettestlinden2})
+    >>> len(open_definable_lindenbaum(k,2,examples.tiporet))
+    4
+    """
+    f=Model_Family({k})
+    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(f, subtype),morphsgenerators.k_sub_isos(f, subtype)))
+    return lindenbaum_algebra_special(k, arity, morphisms)
+
+def lindenbaum_algebra_special(k, arity, morphisms):
+    """
+    Satura a k por un conjunto de flechas
+    Devuelve los join irreducibles del algebra de lindenbaum
+    de aridad dada para la familia K, con las flechas en morphisms.
+    """
+    from .unionfind import UnionFind
+    assert isinstance(k,FO_Model)
+
+    morphisms = list(morphisms)
+    assert all(isinstance(i,Isomorphism) for i in morphisms)
+    
+    result = []
+    nodes = list(product(k.universe, repeat=arity))
+    uf = UnionFind()
+    uf.insert_objects(nodes)
+
+    for u in nodes:
+        for m in morphisms:
+            try:
+                v = m.vector_call(u)
+            except ValueError:
+                # no estaba en el dominio
+                continue
+            if uf.find(u)!=uf.find(v):
+                uf.union(u,v)  
+
+    return uf
 
 def closurem(t, m, k, arrows):
     """

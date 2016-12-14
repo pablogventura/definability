@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class UnionFind(object):
     def __init__(self):
         '''
@@ -53,6 +55,14 @@ class UnionFind(object):
             self.num_weights[on1] = w1+w2
             del self.num_weights[on2]
             self.parent_pointers[on2] = on1
+    def to_list(self):
+        """
+        Returns list of lists
+        """
+        result = defaultdict(list)
+        for key,value in self.parent_pointers.items():
+            result[value].append(key) # TODO aca deberia ir metiendo el ojeto real, no el indice
+        return list(result.values())
     def __str__(self):
         '''
         Included for testing purposes only.
