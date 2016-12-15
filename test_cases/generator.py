@@ -5,6 +5,7 @@
 import subprocess as sp
 import os
 import sqlite3
+import sys
 
 home = os.getenv('HOME')
 
@@ -60,22 +61,35 @@ def generate_database(path,maxcardinality,mincardinality=0):
 
     c = conn.cursor()
     try:
-        c.execute('''CREATE TABLE tests
-                     (nnodes INT, nedges INT, ngensubisos INT, natomslindenbaum INT, time BIGINT, graph BLOB)''')
-        c.execute('''CREATE TABLE register
-                     (nnodes INT)''')
+        c.execute("""CREATE TABLE graphs
+                    (
+                       graph BLOB,
+                       id int NOT NULL,
+                       nnodes int NOT NULL,
+                       nedges int NOT NULL,
+                       ncolors int NOT NULL,
+                       ngensubisos INT,
+                       PRIMARY KEY (id)
+                    )""")
+        c.execute("""CREATE TABLE arities
+                    (
+                       graph_id int NOT NULL,
+                       arity int NOT NULL,
+                       natomslindenbaum int,
+                       time BIGINT,
+                       PRIMARY KEY (graph_id, arity),
+                       FOREIGN KEY (graph_id) REFERENCES graphs(id)
+                    )""")
     except sqlite3.OperationalError:
-        mincardinality = c.execute('SELECT * FROM register').fetchone()[0] + 1
-        print "Already generated up to cardinality %s" % (mincardinality-1)
+        print("Error: The file already exists")
+        sys.exit(1)
     
     try:
         for cardinality in range(mincardinality,maxcardinality+1):
             print "Generating cardinality %s..." % cardinality
             for g in generate_color_graphs(cardinality):
-                c.execute("INSERT INTO tests VALUES (?, ?, ?, ?, ?, ?)", (g[0],g[1],None,None,None,str(g)))
+                c.execute("INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?)", (str(g),count,g[0],g[1],0,None))
                 count += 1
-            c.execute("delete from register")
-            c.execute("INSERT INTO register VALUES (?)", (cardinality,))
             conn.commit()
             print "Generated %s graphs" % count
         conn.close()
@@ -84,8 +98,9 @@ def generate_database(path,maxcardinality,mincardinality=0):
 
 
 def main():
+    print("""Graph Format: (#nodes, #edges, colors, edges)""")
     path = raw_input("Path to db file[graphs.db]: ") or "graphs.db"
-    maxcardinality = raw_input("Max cardinality[20]: ") or 20
+    maxcardinality = raw_input("Max cardinality[50]: ") or 50
     maxcardinality=int(maxcardinality)
     generate_database(path,maxcardinality)
 
