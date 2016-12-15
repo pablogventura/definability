@@ -61,7 +61,7 @@ class UnionFind(object):
         """
         result = defaultdict(list)
         for key,value in self.parent_pointers.items():
-            result[value].append(key) # TODO aca deberia ir metiendo el ojeto real, no el indice
+            result[value].append(self.num_to_objects[key])
         return list(result.values())
     def __str__(self):
         '''
