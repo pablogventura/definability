@@ -107,7 +107,10 @@ class Function(object):
                 # la aridad es la aridad de func
                 self.arityval = len(inspect.getargspec(self.func).args)
             else:
-                self.arityval = len(list(self.dict.keys())[0])
+                try:
+                    self.arityval = len(list(self.dict.keys())[0])
+                except IndexError:
+                    raise ValueError("Arity is not defined")
                 if not all(len(k) == self.arityval for k in self.dict.keys()):
                     raise ValueError("Inconsistent arity")
                 
