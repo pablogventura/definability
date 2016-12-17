@@ -23,19 +23,22 @@ def main():
     c = conn.cursor()
     c.execute('SELECT * FROM graphs')
     for i,g in enumerate(c):
+        graphid = g[1]
         universe,_,_,edges = eval(g[0])
         rel = FO_Relation(edges+[(y,x) for x,y in edges],range(universe),arity=2)
         model = FO_Model(graphsignature,range(universe),{},{"e":rel})
         family= Model_Family({model})
         subisos_time = time.perf_counter()
-        subisos = k_sub_isos(family,model.fo_type)
+        subisos = list(k_sub_isos(family,model.fo_type))
         subisos_time = time.perf_counter() - subisos_time
+        c.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
         
         for arity in range(len(model)):
             algebra_time = time.perf_counter()
             algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
             algebra_time = time.perf_counter() - algebra_time
             print((subisos_time,algebra_time))
+            c.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
         if i == 5:
             break
     conn.close()
