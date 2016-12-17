@@ -69,6 +69,7 @@ def generate_database(path,maxcardinality,mincardinality=0):
                        nedges int NOT NULL,
                        ncolors int NOT NULL,
                        ngensubisos INT,
+                       timegensubisos REAL,
                        PRIMARY KEY (id)
                     )""")
         c.execute("""CREATE TABLE arities
@@ -76,7 +77,7 @@ def generate_database(path,maxcardinality,mincardinality=0):
                        graph_id int NOT NULL,
                        arity int NOT NULL,
                        natomslindenbaum int,
-                       time BIGINT,
+                       time REAL,
                        PRIMARY KEY (graph_id, arity),
                        FOREIGN KEY (graph_id) REFERENCES graphs(id)
                     )""")
@@ -88,7 +89,7 @@ def generate_database(path,maxcardinality,mincardinality=0):
         for cardinality in range(mincardinality,maxcardinality+1):
             print "Generating cardinality %s..." % cardinality
             for g in generate_color_graphs(cardinality):
-                c.execute("INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?)", (str(g),count,g[0],g[1],0,None))
+                c.execute("INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?)", (str(g),count,g[0],g[1],0,None,None))
                 count += 1
             conn.commit()
             print "Generated %s graphs" % count
