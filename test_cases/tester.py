@@ -31,14 +31,15 @@ def main():
         subisos_time = time.perf_counter()
         subisos = list(k_sub_isos(family,model.fo_type))
         subisos_time = time.perf_counter() - subisos_time
-        c.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
-        
-        for arity in range(len(model)):
+        w = conn.cursor()
+        w.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
+        for arity in range(len(model)+1):
             algebra_time = time.perf_counter()
             algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
             algebra_time = time.perf_counter() - algebra_time
             print((subisos_time,algebra_time))
-            c.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
+            w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
+        conn.commit()
         if i == 5:
             break
     conn.close()
