@@ -105,7 +105,7 @@ def lindenbaum_algebra(k, arity, morphisms):
 
     return result
 
-def open_definable_lindenbaum_special(k, arity, subtype):
+def open_definable_lindenbaum_special(k, arity, subtype,morphs=None):
     """
     >>> from definability.examples import examples
     >>> from definability.definability import newconstellation2
@@ -113,9 +113,7 @@ def open_definable_lindenbaum_special(k, arity, subtype):
     >>> len(open_definable_lindenbaum(k,2,examples.tiporet))
     4
     """
-    f=Model_Family({k})
-    morphisms = include_inverses(chain(morphsgenerators.k_isos_no_auts(f, subtype),morphsgenerators.k_sub_isos(f, subtype)))
-    return lindenbaum_algebra_special(k, arity, morphisms)
+    return lindenbaum_algebra_special(k, arity, include_inverses(morphs))
 
 def lindenbaum_algebra_special(k, arity, morphisms):
     """
@@ -144,7 +142,7 @@ def lindenbaum_algebra_special(k, arity, morphisms):
             if uf.find(u)!=uf.find(v):
                 uf.union(u,v)  
 
-    return uf
+    return uf.to_list()
 
 def closurem(t, m, k, arrows):
     """
