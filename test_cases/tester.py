@@ -24,6 +24,7 @@ def main():
     c.execute('SELECT * FROM graphs')
     for i,g in enumerate(c):
         graphid = g[1]
+        print(g)
         universe,_,_,edges = eval(g[0])
         rel = FO_Relation(edges+[(y,x) for x,y in edges],range(universe),arity=2)
         model = FO_Model(graphsignature,range(universe),{},{"e":rel})
@@ -37,11 +38,12 @@ def main():
             algebra_time = time.perf_counter()
             algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
             algebra_time = time.perf_counter() - algebra_time
-            print((subisos_time,algebra_time))
+            print((subisos_time,algebra_time,len(model)+1,graphid,arity))
+            
             w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
-        conn.commit()
         if i == 5:
             break
+    conn.commit()
     conn.close()
 
 if __name__ == "__main__":
