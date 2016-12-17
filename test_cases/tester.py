@@ -41,8 +41,7 @@ def main():
             print((subisos_time,algebra_time,len(model)+1,graphid,arity))
             
             w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
-        if i == 5:
-            break
+
     conn.commit()
     conn.close()
 
