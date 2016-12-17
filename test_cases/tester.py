@@ -22,28 +22,32 @@ def main():
 
     c = conn.cursor()
     c.execute('SELECT * FROM graphs')
-    for i,g in enumerate(c):
-        graphid = g[1]
-        print(g)
-        universe,_,_,edges = eval(g[0])
-        rel = FO_Relation(edges+[(y,x) for x,y in edges],range(universe),arity=2)
-        model = FO_Model(graphsignature,range(universe),{},{"e":rel})
-        family= Model_Family({model})
-        subisos_time = time.perf_counter()
-        subisos = list(k_sub_isos(family,model.fo_type))
-        subisos_time = time.perf_counter() - subisos_time
-        w = conn.cursor()
-        w.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
-        for arity in range(len(model)+1):
-            algebra_time = time.perf_counter()
-            algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
-            algebra_time = time.perf_counter() - algebra_time
-            print((subisos_time,algebra_time,len(model)+1,graphid,arity))
-            
-            w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
-
-    conn.commit()
-    conn.close()
+    try:
+        for i,g in enumerate(c):
+            graphid = g[1]
+            print(g)
+            universe,_,_,edges = eval(g[0])
+            rel = FO_Relation(edges+[(y,x) for x,y in edges],range(universe),arity=2)
+            model = FO_Model(graphsignature,range(universe),{},{"e":rel})
+            family= Model_Family({model})
+            subisos_time = time.perf_counter()
+            subisos = list(k_sub_isos(family,model.fo_type))
+            subisos_time = time.perf_counter() - subisos_time
+            w = conn.cursor()
+            w.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
+            for arity in range(len(model)+1):
+                algebra_time = time.perf_counter()
+                algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
+                algebra_time = time.perf_counter() - algebra_time
+                print((subisos_time,algebra_time,len(model)+1,graphid,arity))
+                print("%s of %s, %s percent..." % (graphid,433366,graphid/433366))
+                
+                w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
+        conn.commit()
+        conn.close()
+    except KeyboardInterrupt:
+        conn.commit()
+        conn.close()
 
 if __name__ == "__main__":
     main()
