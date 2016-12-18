@@ -44,7 +44,7 @@ def main():
                 algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
                 algebra_time = time.perf_counter() - algebra_time
                 print((subisos_time,algebra_time,len(model)+1,graphid,arity))
-                print("%s of %s, %s percent..." % (graphid,433366/numberofinstances,graphid/(433366/numberofinstances)))
+                print("%s of %s, %s percent..." % (graphid,433366/int(numberofinstances),graphid/(433366/int(numberofinstances))))
                 
                 w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
         conn.commit()
