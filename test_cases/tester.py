@@ -21,8 +21,9 @@ def main():
     graphsignature = FO_Type({},{"e":2})
 
     c = conn.cursor()
+    w = conn.cursor()
     instance=input("Value 0-7 to parallelize: ")
-    c.execute('SELECT * FROM graphs where (graph.id % 8) = ?',(instance,))
+    c.execute("SELECT * FROM graphs where (graphs.id % 8) = " + instance)
     try:
         for i,g in enumerate(c):
             graphid = g[1]
@@ -34,7 +35,7 @@ def main():
             subisos_time = time.perf_counter()
             subisos = list(k_sub_isos(family,model.fo_type))
             subisos_time = time.perf_counter() - subisos_time
-            w = conn.cursor()
+
             w.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
             for arity in range(len(model)+1):
                 algebra_time = time.perf_counter()
@@ -44,13 +45,9 @@ def main():
                 print("%s of %s, %s percent..." % (graphid,433366,graphid/433366))
                 
                 w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
-        w.commit()
-        w.close()
         conn.commit()
         conn.close()
     except KeyboardInterrupt:
-        w.commit()
-        w.close()
         conn.commit()
         conn.close()
 
