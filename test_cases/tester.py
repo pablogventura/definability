@@ -21,7 +21,8 @@ def main():
     graphsignature = FO_Type({},{"e":2})
 
     c = conn.cursor()
-    c.execute('SELECT * FROM graphs')
+    instance=input("Value 0-7 to parallelize: ")
+    c.execute('SELECT * FROM graphs where (graph.id % 8) = ?',(instance,))
     try:
         for i,g in enumerate(c):
             graphid = g[1]
