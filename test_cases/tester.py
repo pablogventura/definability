@@ -4,6 +4,7 @@
 import sqlite3
 import importlib.machinery
 import time
+import sys
 
 definability = importlib.machinery.SourceFileLoader('definability','../definability/__init__.py').load_module()
 from definability import FO_Relation
@@ -14,16 +15,17 @@ Model_Family = definability.definability.newconstellation2.Model_Family
 open_definable_lindenbaum_special = definability.definability.lindenbaum.open_definable_lindenbaum_special
 
 
-
 def main():
+    print("tester.py totalparallelprocess thisprocessid")
     path = input("Path to db file[graphs.db]: ") or "graphs.db"
     conn = sqlite3.connect(path)
     graphsignature = FO_Type({},{"e":2})
 
     c = conn.cursor()
     w = conn.cursor()
-    instance=input("Value 0-7 to parallelize: ")
-    c.execute("SELECT * FROM graphs where (graphs.id % 8) = " + instance)
+    numberofinstances= sys.argv[1]
+    instance=sys.argv[2]
+    c.execute("SELECT * FROM graphs where (graphs.id % " + numberofinstances + ") = " + instance)
     try:
         for i,g in enumerate(c):
             graphid = g[1]
