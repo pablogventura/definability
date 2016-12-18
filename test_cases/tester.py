@@ -43,9 +43,13 @@ def main():
                 print("%s of %s, %s percent..." % (graphid,433366,graphid/433366))
                 
                 w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
+        w.commit()
+        w.close()
         conn.commit()
         conn.close()
     except KeyboardInterrupt:
+        w.commit()
+        w.close()
         conn.commit()
         conn.close()
 
