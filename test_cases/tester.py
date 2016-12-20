@@ -38,7 +38,7 @@ def main():
             subisos = list(k_sub_isos(family,model.fo_type))
             subisos_time = time.perf_counter() - subisos_time
 
-            w.execute("UPDATE graphs SET ngensubisos = ? WHERE id = ?",(len(subisos),graphid))
+            w.execute("UPDATE graphs SET ngensubisos = ?,timegensubisos = ? WHERE id = ?",(len(subisos),subisos_time,graphid))
             for arity in range(len(model)+1):
                 algebra_time = time.perf_counter()
                 algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
