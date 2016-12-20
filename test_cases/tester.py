@@ -37,16 +37,24 @@ def main():
             subisos_time = time.perf_counter()
             subisos = list(k_sub_isos(family,model.fo_type))
             subisos_time = time.perf_counter() - subisos_time
-
+            print("*"*80)
+            print("Model %s of %s, %s percent..." % (graphid,433366/int(numberofinstances),graphid/(433366/int(numberofinstances))))
+            print("#Subisos = %s" % len(subisos))
+            print("Subisos time %s sec" % subisos_time)
+            
             w.execute("UPDATE graphs SET ngensubisos = ?,timegensubisos = ? WHERE id = ?",(len(subisos),subisos_time,graphid))
-            for arity in range(len(model)+1):
+            for arity in range(1,len(model)+1):
                 algebra_time = time.perf_counter()
                 algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
                 algebra_time = time.perf_counter() - algebra_time
-                print((subisos_time,algebra_time,len(model)+1,graphid,arity))
-                print("%s of %s, %s percent..." % (graphid,433366/int(numberofinstances),graphid/(433366/int(numberofinstances))))
-                
-                w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
+                print("Arity %s: #atoms=%s, time=%s sec"% (arity,len(algebra),algebra_time))
+                if algebra_time > 1:
+                    #timeout!
+                    print("Timeout! Jump to next model")
+                    w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))                
+                    break
+                else:
+                    w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))
         conn.commit()
         conn.close()
     except KeyboardInterrupt:
