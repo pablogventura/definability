@@ -45,14 +45,15 @@ def generate_color_graphs(cardinality,colors=0):
         return result
     else:
          #./genrang 2 10 | ./shortg
-        genrang = sp.Popen([nauty_path + "genrang"] + [str(cardinality),"10000", "-q", "-S0"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
-        shortg = sp.Popen([nauty_path + "shortg"] + ["-q"], stdin=genrang.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
-        vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=shortg.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
         result=[]
-        line=vcolg.stdout.readline().strip()
-        while line:
-            result.append(parse(line))
+        for nedges in range((cardinality*(cardinality-1)/2)+1):
+            genrang = sp.Popen([nauty_path + "genrang"] + [str(cardinality),"10","-e%s"%nedges, "-q", "-S0"], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
+            shortg = sp.Popen([nauty_path + "shortg"] + ["-q"], stdin=genrang.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
+            vcolg = sp.Popen([nauty_path + "vcolg"] + ["-e0:%s" % colors, "-T", "-q"], stdin=shortg.stdout, stdout=sp.PIPE, stderr=sp.PIPE)
             line=vcolg.stdout.readline().strip()
+            while line:
+                result.append(parse(line))
+                line=vcolg.stdout.readline().strip()
         return result
 
 def generate_database(path,maxcardinality,mincardinality=0):
