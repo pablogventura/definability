@@ -23,9 +23,9 @@ def main():
 
     c = conn.cursor()
     w = conn.cursor()
-    numberofinstances= sys.argv[1]
-    instance=sys.argv[2]
-    c.execute("SELECT * FROM graphs where (graphs.id % " + numberofinstances + ") = " + instance)
+    #numberofinstances= sys.argv[1]
+    #instance=sys.argv[2]
+    c.execute("SELECT * FROM graphs")# where (graphs.id % " + numberofinstances + ") = " + instance)
     try:
         for i,g in enumerate(c):
             graphid = g[1]
@@ -38,7 +38,7 @@ def main():
             subisos = list(k_sub_isos(family,model.fo_type))
             subisos_time = time.perf_counter() - subisos_time
             print("*"*80)
-            print("Model %s of %s, %s percent..." % (graphid,433366/int(numberofinstances),graphid/(433366/int(numberofinstances))))
+            print("Model %s of %s, %s percent..." % (graphid,55597,graphid/(55597)))
             print("#Subisos = %s" % len(subisos))
             print("Subisos time %s sec" % subisos_time)
             
@@ -48,7 +48,7 @@ def main():
                 algebra = open_definable_lindenbaum_special(model, arity, model.fo_type,morphs=subisos)
                 algebra_time = time.perf_counter() - algebra_time
                 print("Arity %s: #atoms=%s, time=%s sec"% (arity,len(algebra),algebra_time))
-                if algebra_time > 1:
+                if algebra_time > 0.5:
                     #timeout!
                     print("Timeout! Jump to next model")
                     w.execute("INSERT INTO arities VALUES (?, ?, ?, ?)", (graphid,arity,len(algebra),algebra_time))                
