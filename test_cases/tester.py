@@ -38,7 +38,7 @@ def main():
             subisos = list(k_sub_isos(family,model.fo_type))
             subisos_time = time.perf_counter() - subisos_time
             print("*"*80)
-            print("Model %s of %s, %s percent..." % (graphid,55597,graphid/(55597)))
+            print("Model %s of %s, %s percent..." % (graphid,25597,graphid/(25597)))
             print("#Subisos = %s" % len(subisos))
             print("Subisos time %s sec" % subisos_time)
             
