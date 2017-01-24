@@ -24,21 +24,21 @@ class Eq_Rel(FO_Relation):
         self.model = model
         self.d = d
         super(Eq_Rel, self).__init__(d, model.universe)
-        assert self.simetrico() and self.reflexivo() and self.transitivo()
+        assert self.symm() and self.refl() and self.trans()
 
-    def reflexivo(self):
+    def refl(self):
         for x in self.model.universe:
             if not (x, x) in self.d:
                 return False
         return True
 
-    def simetrico(self):
+    def symm(self):
         for r in self.d:
             if not (r[1], r[0]) in self.d:
                 return False
         return True
 
-    def transitivo(self):
+    def trans(self):
         for r in self.d:
             for s in self.d:
                 if r[1] == s[0]:
@@ -83,7 +83,7 @@ class Congruence(Eq_Rel):
             for t in self.model.operations[op].domain():
                 for s in self.model.operations[op].domain():
                     if self.relacionados(t, s):
-                        if not (self.model.operations[op](*t) == self.model.operations[op](*t)):
+                        if not (self.model.operations[op](*t), self.model.operations[op](*s)) in self.d:
                             return False
         return True
 
@@ -92,3 +92,27 @@ class Congruence(Eq_Rel):
         for op in self.model.operations:
             result = result and self.__preserva_operacion(op)
         return result
+
+    def __and__(self, other):
+        assert self.model == other.model
+        result = list(set(self.d) & set(other.d))
+        return Congruence(result, self.model)
+
+    def __or__(self, other):
+        assert self.model == other.model
+        result_ant = {}
+        result = set(self.d) | set(other.d)
+        while (result != result_ant):
+            result_ant = result
+            for x in self.model.universe:
+                for y in self.model.universe:
+                    if not (x, y) in result_ant:
+                        for z in self.model.universe:
+                            if (x, z) in result_ant and (z, y) in result_ant:
+                                result = result | {(x, y), (y, x)}
+        return Congruence(list(result), self.model)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
