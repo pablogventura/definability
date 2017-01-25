@@ -3,6 +3,7 @@
 
 from ..first_order.model import FO_Product
 from ..functions.morphisms import Homomorphism
+from ..definability.relationalmodels import check_isos
 
 def limpiar_isos(algebras):
     """
@@ -28,10 +29,8 @@ def limpiar_isos(algebras):
     elim = []
     for i in range(len(algebras)):
         alg.remove(algebras[i])
-        for j in range(len(alg)):
-            if algebras[i].is_isomorphic(alg[j], algebras[i].fo_type):
-                elim.append(algebras[i])
-                break
+        if check_isos(algebras[i], alg, algebras[i].fo_type):
+            elim.append(algebras[i])
     for a in elim:
         algebras.remove(a)
     return algebras
@@ -111,3 +110,8 @@ def pertenece_rsi(a, algebras):
         return Homomorphism(d, a, target, a.fo_type)
     else:
         return False
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
