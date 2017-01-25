@@ -94,11 +94,17 @@ class Congruence(Eq_Rel):
         return result
 
     def __and__(self, other):
+        """
+        Genera la congruencia a partir de la intersección de 2 congruencias
+        """
         assert self.model == other.model
         result = list(set(self.d) & set(other.d))
         return Congruence(result, self.model)
 
     def __or__(self, other):
+        """
+        Genera la congruencia a partir de la unión de 2 congruencias
+        """
         assert self.model == other.model
         result_ant = {}
         result = set(self.d) | set(other.d)

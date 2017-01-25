@@ -4,7 +4,7 @@
 from itertools import product, chain
 
 from ..misc.misc import indent, powerset
-from ..functions.morphisms import Embedding
+from ..functions.morphisms import Embedding, Homomorphism
 from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Relation_Product, FO_Operation_Product
 from ..interfaces import minion
 from ..interfaces import latticedraw
@@ -301,11 +301,11 @@ class FO_Model(object):
         True
         """
         return FO_Product([self, other])
-    
+
     def __pow__(self, exponent):
         """
         Calcula la potencia de un modelo
-        
+
         >>> from definability.examples.examples import *
         >>> r=retcadena2**2
         >>> bool(r.is_isomorphic(retrombo,tiporet))
@@ -326,11 +326,11 @@ class FO_Model(object):
         operations = {}
         for op in self.operations:
             operations[op] = self.operations[op].rename(translation)
-            
+
         relations = {}
         for rel in self.relations:
             relations[rel] = self.relations[rel].rename(translation)
-        
+
         return (FO_Model(self.fo_type, universe, operations, relations), translation)
 
 class FO_Submodel(FO_Model):
@@ -353,6 +353,13 @@ class FO_Submodel(FO_Model):
         result += indent("supermodel= " + repr(self.supermodel) + "\n")
         return result + ")"
 
+    def embedding(self):
+        """
+        Genera el Embedding natural entre el submodelo y el modelo
+        """
+        d = {x: x for x in self.universe}
+        return Embedding(d, self, self.supermodel, self.fo_type)
+
 
 class FO_Product(FO_Model):
 
@@ -366,7 +373,7 @@ class FO_Product(FO_Model):
                 factors.remove(f)
                 factors+=f.factors
         self.factors = factors
-        
+
         fo_type = factors[0].fo_type
         if any(f.fo_type != fo_type for f in factors):
             raise ValueError("Factors must be all from same fo_type")
@@ -376,7 +383,7 @@ class FO_Product(FO_Model):
         operations = {}
         for op in fo_type.operations:
             operations[op] = FO_Operation_Product([f.operations[op] for f in factors],[f.universe for f in factors])
-            
+
         relations = {}
         for rel in fo_type.relations:
             relations[rel] = FO_Relation_Product([f.relations[rel] for f in factors],[f.universe for f in factors])
@@ -385,6 +392,17 @@ class FO_Product(FO_Model):
                                          d_universe,
                                          operations,
                                          relations)
+
+    def projection(self, i):
+        """
+        Genera el morfismo que es la proyección en la coordenada i
+        """
+        d = {(x,): x[i] for x in self.universe}
+        return Homomorphism(d, self, self.factors[i], self.fo_type, surj=True)
+
+    def indices(self):
+        return list(range(len(self.factors)))
+
 
 
 if __name__ == "__main__":
