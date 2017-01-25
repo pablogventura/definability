@@ -42,14 +42,30 @@ def is_open_def_rel_rec(model, spectre, subtype, supertype, S):
             is_open_def_rel_rec(subm, spectre, subtype, supertype, S)
     return True
 
-def dfs(model, relation):
-    model.relations["R"] = relation
+def is_open_rel(model, relations):
+    """
+    from definability.definability.relationalmodels import dfs, Counterexample
+
+    g=fotheories.Graph.find_models(9)
+
+    i=0
+    while True:
+        try:
+            dfs(g[i],g[i+1].relations["e"])
+            assert False, (i,g[i],g[i+1].relations["e"])
+        except Counterexample:
+            i+=1
+    """
     subtype = model.fo_type
-    model.fo_type = model.fo_type + FO_Type({},{"R":relation.arity()})
+    
+    for i in range(len(relations)):
+        model.relations["R%s" % i] = relations[i]
+        
+    model.fo_type = model.fo_type + FO_Type({},{("R%s" % i):relations[i].arity() for i in range(len(relations))})
     supertype = model.fo_type
     
     
-    spectre = calc_spectre(relation)
+    spectre = calc_spectre(sum(map(lambda x: x.table(),relations),[]))
     size = spectre[0]
 
     subuniverses = list(combinations(model.universe,size))
