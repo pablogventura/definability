@@ -441,6 +441,16 @@ class FO_SubdirectProduct(FO_Submodel):
         result += indent("Product= " + repr(self.supermodel) + "\n")
         return result + ")"
 
+    def tita(self, i):
+        assert i in self.supermodel.indices()
+        return (self.supermodel.projection(i).composition(self.natural_embedding())).kernel()
+
+    def sigma(self):
+        result = []
+        for i in self.supermodel.indices():
+            result.append(self.tita(i))
+        return result
+
 
 if __name__ == "__main__":
     import doctest

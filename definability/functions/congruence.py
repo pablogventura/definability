@@ -119,6 +119,7 @@ class Congruence(Eq_Rel):
         return Congruence(list(result), self.model)
 
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
