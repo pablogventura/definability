@@ -353,12 +353,23 @@ class FO_Submodel(FO_Model):
         result += indent("supermodel= " + repr(self.supermodel) + "\n")
         return result + ")"
 
-    def embedding(self):
+    def natural_embedding(self):
         """
         Genera el Embedding natural entre el submodelo y el modelo
         """
-        d = {x: x for x in self.universe}
+        d = {(x,): x for x in self.universe}
         return Embedding(d, self, self.supermodel, self.fo_type)
+
+    def is_subdirect(self):
+        """
+        Dado un submodelo de un producto, decide si es un producto subdirecto o no
+        """
+        if isinstance(self.supermodel, FO_Product):
+            for i in self.supermodel.indices():
+                if not (self.supermodel.projection(i).composition(self.natural_embedding())).image_model().universe == self.supermodel.factors[i].universe:
+                    return False
+            return True
+        return False
 
 
 class FO_Product(FO_Model):
@@ -397,12 +408,38 @@ class FO_Product(FO_Model):
         """
         Genera el morfismo que es la proyección en la coordenada i
         """
+        assert i in self.indices()
         d = {(x,): x[i] for x in self.universe}
         return Homomorphism(d, self, self.factors[i], self.fo_type, surj=True)
 
     def indices(self):
         return list(range(len(self.factors)))
 
+
+class FO_SubdirectProduct(FO_Submodel):
+
+    """
+    Producto Subdirecto
+    """
+
+    def __init__(self, universe, supermodel):
+        assert isinstance(supermodel, FO_Product)
+        super(FO_SubdirectProduct, self).__init__(
+                supermodel.fo_type,
+                universe,
+                {op: supermodel.operations[op].restrict(universe) for op in supermodel.operations},
+                {rel: supermodel.relations[rel].restrict(universe) for rel in supermodel.relations},
+                supermodel)
+        assert self.is_subdirect()
+
+    def __repr__(self):
+        result = "FO_SubdirectProduct(\n"
+        result += indent(repr(self.fo_type) + ",\n")
+        result += indent(repr(self.universe) + ",\n")
+        result += indent(repr(self.operations) + ",\n")
+        result += indent(repr(self.relations) + ",\n")
+        result += indent("Product= " + repr(self.supermodel) + "\n")
+        return result + ")"
 
 
 if __name__ == "__main__":
