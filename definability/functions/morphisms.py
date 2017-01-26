@@ -274,6 +274,12 @@ class Homomorphism(Function):
                     k.append((x, y))
         return Congruence(k, self.source)
 
+    def image_model(self):
+        """
+        Devuelve la imagen como submodelo de target
+        """
+        return self.target.restrict(list(self.image()), self.target.fo_type)
+
 
 class Embedding(Homomorphism):
 
@@ -314,6 +320,12 @@ class Embedding(Homomorphism):
         """
         return super(Embedding, self).preserves_type(supertype, check_inverse)
 
+    def is_subdirect_embedding(self):
+        """
+        Checkea si el embedding es subdirecto
+        """
+        return self.image_model().is_subdirect()
+
 
 class Isomorphism(Embedding):
 
@@ -348,3 +360,4 @@ class Isomorphism(Embedding):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
