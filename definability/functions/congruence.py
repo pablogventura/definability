@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 from ..first_order.fofunctions import FO_Relation
+from ..misc.misc import indent
 
 
 class Eq_Rel(FO_Relation):
@@ -93,6 +94,9 @@ class Congruence(Eq_Rel):
             result = result and self.__preserva_operacion(op)
         return result
 
+    def equiv_class(self, x):
+        return {y for y in self.model.universe if (x, y) in self.d}
+
     def __and__(self, other):
         """
         Genera la congruencia a partir de la intersección de 2 congruencias
@@ -118,6 +122,67 @@ class Congruence(Eq_Rel):
                                 result = result | {(x, y), (y, x)}
         return Congruence(list(result), self.model)
 
+    def __repr__(self):
+        result = "Congruence(\n"
+        table = ["%s," % x for x in self.table()]
+        table = indent("\n".join(table))
+        return result + table + ")"
+
+
+class CongruenceSystem(object):
+
+    """
+    Sistema de Congruecias
+
+    >>> from definability import fotheories
+    >>> C1 = Congruence([(1, 1),(2, 2),(3, 3),(0, 0),(1, 3),(3, 1),(0, 2),(2, 0)], fotheories.Lat.find_models(4)[0])
+    >>> C2 = Congruence([(1, 1),(2, 2),(3, 3),(0, 0),(0, 3),(3, 0),(1, 2),(2, 1)], fotheories.Lat.find_models(4)[0])
+    >>> CS = CongruenceSystem([C1, C2], [2, 3])
+    >>> CS.solutions()
+    {0}
+    """
+
+    def __init__(self, cong, elem):
+        assert cong and isinstance(cong, list)
+        assert elem and isinstance(elem, list)
+        assert len(cong) == len(elem)
+        for tita in cong:
+            assert tita.model == cong[0].model and isinstance(tita, Congruence)
+        for x in elem:
+            assert x in cong[0].model.universe
+        self.model = cong[0].model
+        self.cong = cong
+        self.elem = elem
+        assert self.is_system()
+
+    def is_system(self):
+        for i in list(range(len(self.cong))):
+            for j in list(range(len(self.cong))):
+                if i != j:
+                    if [self.elem[i], self.elem[j]] not in (self.cong[i] | self.cong[j]):
+                        return False
+        return True
+
+    def solutions(self):
+        sol = self.cong[0].equiv_class(self.elem[0])
+        for i in list(range(len(self.cong))):
+            if i != 0:
+                sol = sol & self.cong[i].equiv_class(self.elem[i])
+        return sol
+
+
+def minorice(sigma):
+    """
+    Dado un conjunto de congruecias devuelve el conjunto minimo
+    {tita: tita in sigma tal que no existe delta in sigma con delta contenido en sigma}
+    """
+    for tita in sigma[:]:
+        for delta in sigma:
+            if sigma.index(tita) != sigma.index(delta):
+                if tita & delta == delta:
+                    sigma.remove(tita)
+                    break
+    return sigma
 
 
 if __name__ == "__main__":

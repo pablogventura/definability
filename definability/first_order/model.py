@@ -442,10 +442,16 @@ class FO_SubdirectProduct(FO_Submodel):
         return result + ")"
 
     def tita(self, i):
+        """
+        Congruencia de la forma tita(i) = {(x,y) in A^2 : x(i) = y(i)}
+        """
         assert i in self.supermodel.indices()
         return (self.supermodel.projection(i).composition(self.natural_embedding())).kernel()
 
     def sigma(self):
+        """
+        sigma = {tita(i)}
+        """
         result = []
         for i in self.supermodel.indices():
             result.append(self.tita(i))
