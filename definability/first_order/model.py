@@ -5,6 +5,7 @@ from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding, Homomorphism
+from ..functions.congruence import minorice, is_system, CongruenceSystem
 from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Relation_Product, FO_Operation_Product
 from ..interfaces import minion
 from ..interfaces import latticedraw
@@ -420,6 +421,23 @@ class FO_SubdirectProduct(FO_Submodel):
 
     """
     Producto Subdirecto
+
+    >>> from definability.examples.examples import *
+    >>> M2=FO_Model(tiporetacotado, [0,1], {'^': FO_Operation({(0,0):0,
+                                                                (0,1): 0,
+                                                                (1,0): 0,
+                                                                (1,1): 1}),
+                                            'v': FO_Operation({(0,0):0,
+                                                                (0,1): : 1,
+                                                                (1,0): 1,
+                                                                (1,1): 1}),
+                                            'Max': FO_Constant(1),
+                                            'Min': FO_Constant(0)}, {})
+    >>> P=M2*M2*M2
+    >>> FO_SubdirectProduct([(1,1,1), (0,0,0), (0,1,1)], P).is_global()
+    False
+    >>> FO_SubdirectProduct([(1,1,1), (0,0,0), (0,1,1), (1,0,0)], P).is_global()
+    True
     """
 
     def __init__(self, universe, supermodel):
@@ -456,6 +474,19 @@ class FO_SubdirectProduct(FO_Submodel):
         for i in self.supermodel.indices():
             result.append(self.tita(i))
         return result
+
+    def is_global(self):
+        """
+        Determina si el producto subdirecto es global o no
+        """
+        sigma = minorice(self.sigma())
+        n = len(sigma)
+        for xs in list(product(*[self.universe for i in list(range(n))])):
+            if is_system(sigma, xs):
+                CS = CongruenceSystem(sigma, list(xs))
+                if not CS.has_solution():
+                    return False
+        return True
 
 
 if __name__ == "__main__":

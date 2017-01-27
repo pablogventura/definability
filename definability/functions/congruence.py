@@ -153,15 +153,7 @@ class CongruenceSystem(object):
         self.model = cong[0].model
         self.cong = cong
         self.elem = elem
-        assert self.is_system()
-
-    def is_system(self):
-        for i in list(range(len(self.cong))):
-            for j in list(range(len(self.cong))):
-                if i != j:
-                    if [self.elem[i], self.elem[j]] not in (self.cong[i] | self.cong[j]):
-                        return False
-        return True
+        assert is_system(cong, elem)
 
     def solutions(self):
         sol = self.cong[0].equiv_class(self.elem[0])
@@ -170,19 +162,36 @@ class CongruenceSystem(object):
                 sol = sol & self.cong[i].equiv_class(self.elem[i])
         return sol
 
+    def has_solution(self):
+        if len(self.solutions()) == 0:
+            return False
+        else:
+            return True
+
+def is_system(cong, elem):
+    for i in list(range(len(cong))):
+        for j in list(range(len(cong))):
+            if i != j:
+                if [elem[i], elem[j]] not in (cong[i] | cong[j]):
+                    return False
+    return True
 
 def minorice(sigma):
     """
     Dado un conjunto de congruecias devuelve el conjunto minimo
     {tita: tita in sigma tal que no existe delta in sigma con delta contenido en sigma}
     """
-    for tita in sigma[:]:
-        for delta in sigma:
-            if sigma.index(tita) != sigma.index(delta):
-                if tita & delta == delta:
-                    sigma.remove(tita)
+    rem = []
+    sigma = list(set(sigma))
+    for i in list(range(len(sigma))):
+        if i not in rem:
+            for j in range(i + 1, len(sigma)):
+                if sigma[i] & sigma[j] == sigma[j]:
+                    rem.append(i)
                     break
-    return sigma
+                elif sigma[i] & sigma[j] == sigma[i]:
+                    rem.append(j)
+    return [x for x in sigma if sigma.index(x) not in rem]
 
 
 if __name__ == "__main__":
