@@ -122,6 +122,11 @@ class Congruence(Eq_Rel):
                                 result = result | {(x, y), (y, x)}
         return Congruence(list(result), self.model)
 
+    def __lt__(self, other):
+        if self & other == self and self != other:
+            return True
+        return False
+
     def __repr__(self):
         result = "Congruence(\n"
         table = ["%s," % x for x in self.table()]
@@ -168,6 +173,17 @@ class CongruenceSystem(object):
         else:
             return True
 
+
+def maxcon(model):
+    univ = [(x, y) for x in model.universe for y in model.universe]
+    return Congruence(univ, model)
+
+
+def mincon(model):
+    univ = [(x, x) for x in model.universe]
+    return Congruence(univ, model)
+
+
 def is_system(cong, elem):
     for i in list(range(len(cong))):
         for j in list(range(len(cong))):
@@ -175,6 +191,7 @@ def is_system(cong, elem):
                 if [elem[i], elem[j]] not in (cong[i] | cong[j]):
                     return False
     return True
+
 
 def minorice(sigma):
     """

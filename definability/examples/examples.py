@@ -37,7 +37,7 @@ posetrombo = FO_Model(tipoposet, list(range(4)), {},
                                           (3, 2): 0,
                                           (3, 3): 1}, list(range(4))),
                        'P': FO_Relation([(2,),(3,)], list(range(4)))}, name="Poset Rombo")
-                                          
+
 posetrombo2 = FO_Model(tipoposet, list(range(4)), {},
                       {'<=': FO_Relation({(0, 0): 1,
                                           (0, 1): 1,

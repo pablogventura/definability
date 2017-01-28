@@ -5,8 +5,9 @@ from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding, Homomorphism
-from ..functions.congruence import minorice, is_system, CongruenceSystem
-from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Relation_Product, FO_Operation_Product
+from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon
+from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Relation_Product, FO_Operation_Product, FO_Constant
+from ..first_order.fotype import FO_Type
 from ..interfaces import minion
 from ..interfaces import latticedraw
 
@@ -333,6 +334,29 @@ class FO_Model(object):
             relations[rel] = self.relations[rel].rename(translation)
 
         return (FO_Model(self.fo_type, universe, operations, relations), translation)
+
+    def congruence_lattice(self):
+        """
+        Con(A)
+        Devuelve el reticulado que forman las congruencias del modelo con el
+        orden inducido por la contención.
+        Para graficarlo hay que primero convertirlo a un modelo isomorfo con
+        continous()
+        """
+        univ = [f.kernel() for f in self.homomorphisms_to(self, self.fo_type)]
+        maxc = maxcon(self)
+        minc = mincon(self)
+        univ.append(maxc)
+        univ.append(minc)
+        universe = list(set(univ))
+        tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
+        lat = FO_Model(tiporetacotado, universe, {
+                    'Max': FO_Constant(maxc),
+                    'Min': FO_Constant(minc),
+                    '^': FO_Operation({(x,y): x & y for x in universe for y in universe}),
+                    'v': FO_Operation({(x,y): x | y for x in universe for y in universe})}, {})
+        return lat
+
 
 class FO_Submodel(FO_Model):
 

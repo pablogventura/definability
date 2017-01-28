@@ -5,6 +5,7 @@ from ..functions.functions import Function
 from itertools import product
 import functools
 
+
 class FO_Operation(Function):
 
     r"""
@@ -20,7 +21,7 @@ class FO_Operation(Function):
         Genera la relacion dada por el grafico de la funcion en el universo
         """
         return FO_Relation([tuple(row) for row in self.table()], universe)
-    
+
     def rename(self, renames):
         """
         Devuelve una nueva operacion reemplazando elementos del universo
@@ -35,8 +36,9 @@ class FO_Operation(Function):
                 # hace falta porque a veces una subestructura no
                 # es subestructura con alguna funcion, y hay que poder traducirla
                 return result
-            
+
         return FO_Operation(operation, d_universe=list(range(len(renames))), arity=self.arity())
+
 
 class FO_Relation(Function):
 
@@ -68,7 +70,7 @@ class FO_Relation(Function):
             args = [renames[i] for i in args]
             result = self(*args)
             return result
-            
+
         return FO_Relation(relation, d_universe=list(range(len(renames))), arity=self.arity())
 
 
@@ -78,20 +80,22 @@ def FO_Constant(value):
     """
     return FO_Operation({(): value})
 
+
 def FO_Operation_Product(operations, d_universes):
     """
     Toma una lista de operaciones y de universos
     y devuelve la operacion en el producto de universos
     coordenada a coordenada
     """
-    @FO_Operation_decorator(list(product(*d_universes)),operations[0].arity())
+    @FO_Operation_decorator(list(product(*d_universes)), operations[0].arity())
     def product_op(*args):
         result = []
-        for i,t in enumerate(zip(*args)):
+        for i, t in enumerate(zip(*args)):
             result.append(operations[i](*t))
         return tuple(result)
-        
+
     return product_op
+
 
 def FO_Relation_Product(relations, d_universes):
     """
@@ -99,13 +103,13 @@ def FO_Relation_Product(relations, d_universes):
     y devuelve la relacion en el producto de universos
     coordenada a coordenada
     """
-    @FO_Relation_decorator(list(product(*d_universes)),relations[0].arity())
+    @FO_Relation_decorator(list(product(*d_universes)), relations[0].arity())
     def product_rel(*args):
         result = []
-        for i,t in enumerate(zip(*args)):
+        for i, t in enumerate(zip(*args)):
             result.append(relations[i](*t))
         return all(result)
-        
+
     return product_rel
 
 
@@ -117,8 +121,9 @@ def FO_Operation_decorator(d_universe, arity=None):
     con funciones en Python
     """
     def wrap(f):
-        return FO_Operation(f,d_universe=d_universe,arity=arity)
+        return FO_Operation(f, d_universe=d_universe, arity=arity)
     return wrap
+
 
 def FO_Relation_decorator(d_universe, arity=None):
     """
@@ -126,7 +131,7 @@ def FO_Relation_decorator(d_universe, arity=None):
     con funciones en Python
     """
     def wrap(f):
-        return FO_Relation(f,d_universe=d_universe,arity=arity)
+        return FO_Relation(f, d_universe=d_universe, arity=arity)
     return wrap
 
 if __name__ == "__main__":
