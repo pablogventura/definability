@@ -447,16 +447,7 @@ class FO_SubdirectProduct(FO_Submodel):
     Producto Subdirecto
 
     >>> from definability.examples.examples import *
-    >>> M2=FO_Model(tiporetacotado, [0,1], {'^': FO_Operation({(0,0):0,
-                                                                (0,1): 0,
-                                                                (1,0): 0,
-                                                                (1,1): 1}),
-                                            'v': FO_Operation({(0,0):0,
-                                                                (0,1): : 1,
-                                                                (1,0): 1,
-                                                                (1,1): 1}),
-                                            'Max': FO_Constant(1),
-                                            'Min': FO_Constant(0)}, {})
+    >>> M2=FO_Model(tiporetacotado, [0,1], {'^': FO_Operation({(0,0):0,(0,1): 0,(1,0): 0,(1,1): 1}),'v': FO_Operation({(0,0):0,(0,1): 1,(1,0): 1,(1,1): 1}),'Max': FO_Constant(1),'Min': FO_Constant(0)}, {})
     >>> P=M2*M2*M2
     >>> FO_SubdirectProduct([(1,1,1), (0,0,0), (0,1,1)], P).is_global()
     False

@@ -208,6 +208,8 @@ qRA = BLat.subclass("Relation algebras",
                     ["(x*y)*z=x*(y*z)", "x*e = x", "(x v y)*z = (x*z) v (y*z)", "c(c(x))=x",
                      "c(x v y)=c(x) v c(y)", "c(x*y)=c(y)*c(x)", "(c(x)*((x*y)'))v y'=y'"])
 
+DBDLat = BDLat.subclass("Bounded distributive lattices with dense and dual dense element",
+                    ["x ^ 2 = 0 -> x = 0", "x v 2 = 1 -> x = 1"])
 
 ##########################
 # Lattice-ordered algebras
