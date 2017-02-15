@@ -335,29 +335,6 @@ class FO_Model(object):
 
         return (FO_Model(self.fo_type, universe, operations, relations), translation)
 
-    def congruence_lattice(self):
-        """
-        Con(A)
-        Devuelve el reticulado que forman las congruencias del modelo con el
-        orden inducido por la contención.
-        Para graficarlo hay que primero convertirlo a un modelo isomorfo con
-        continous()
-        """
-        univ = [f.kernel() for f in self.homomorphisms_to(self, self.fo_type)]
-        maxc = maxcon(self)
-        minc = mincon(self)
-        univ.append(maxc)
-        univ.append(minc)
-        universe = list(set(univ))
-        tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
-        lat = FO_Model(tiporetacotado, universe, {
-                    'Max': FO_Constant(maxc),
-                    'Min': FO_Constant(minc),
-                    '^': FO_Operation({(x,y): x & y for x in universe for y in universe}),
-                    'v': FO_Operation({(x,y): x | y for x in universe for y in universe})}, {})
-        return lat
-
-
 class FO_Submodel(FO_Model):
 
     """
