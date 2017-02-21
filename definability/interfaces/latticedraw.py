@@ -20,7 +20,7 @@ class LatDraw(object):
         """
         Toma el input para minion, si espera todas las soluciones y una funcion para aplicar
         a las listas que van a ir siendo soluciones.
-        
+
         >>> from definability.examples import examples
         >>> ld = LatDraw(examples.retrombo)
         >>> ld.kill()

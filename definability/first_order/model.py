@@ -291,6 +291,7 @@ class FO_Model(object):
         (103, 103)
         """
         return hash(frozenset(chain([self.fo_type], self.universe, self.operations.items(), self.relations.items())))
+
     def __mul__(self, other):
         """
         Calcula el producto entre modelos
@@ -334,6 +335,14 @@ class FO_Model(object):
             relations[rel] = self.relations[rel].rename(translation)
 
         return (FO_Model(self.fo_type, universe, operations, relations), translation)
+
+    def pertenece(self, Q):
+        """
+        Dada una cuasivariedad Q, se fija si el modelo pertenece a Q. En caso
+        de pertenecer, devuelve el morfismo que de la representacion con las
+        relativamente subdirectamente irreducibles.
+        """
+        return Q.contiene(self)
 
 class FO_Submodel(FO_Model):
 

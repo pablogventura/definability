@@ -3,6 +3,7 @@ from definability.first_order.fotype import FO_Type
 from definability.first_order.model import FO_Model, FO_Product
 from definability.first_order import fotheories
 from definability.first_order import formulas
+from definability.first_order import classes
 
 from definability.definability.newconstellation2 import Model_Family
 from definability.definability import lindenbaum

@@ -127,6 +127,18 @@ class Congruence(Eq_Rel):
             return True
         return False
 
+    def __eq__(self, other):
+        if self.model != other.model:
+            return False
+        if set(self.d) != set(other.d):
+            return False
+        return True
+
+
+    def __hash__(self):
+        return hash(frozenset(self.dict.items()))
+
+
     def __repr__(self):
         result = "Congruence(\n"
         table = ["%s," % x for x in self.table()]
