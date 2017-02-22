@@ -5,7 +5,7 @@ from ..first_order.model import FO_Model, FO_Product
 from ..functions.morphisms import Homomorphism
 from ..first_order.fofunctions import FO_Operation, FO_Constant
 from ..first_order.fotype import FO_Type
-from ..functions.congruence import mincon, maxcon
+from ..functions.congruence import mincon, maxcon, minorice
 from ..definability.relationalmodels import check_isos
 import itertools
 
@@ -16,7 +16,6 @@ class Quasivariety(object):
     """
 
     def __init__(self, generators, name=""):
-        generators = list(set(generators))
         self.fo_type = generators[0].fo_type
         for i in range(len(generators)):
             assert generators[i].fo_type == self.fo_type, "Los generadores no tienen el mismo tipo"
@@ -128,7 +127,7 @@ class Quasivariety(object):
                      'Max': FO_Constant(maxcon(a)),
                      'Min': FO_Constant(mincon(a)),
                      '^': FO_Operation({(x,y): x & y for x in univ for y in univ}),
-                     'v': FO_Operation({(x,y): x | y for x in univ for y in univ})}, {})
+                     'v': FO_Operation({(x,y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
             return lat
         return "El álgebra no pertenece a Q"
 
@@ -144,13 +143,26 @@ def limpiar_isos(algebras):
     >>> len(limpiar_isos( list(Lat.find_models(5)) + [Lat.find_models(5)[1]] ))
     5
     """
-    algebras = list(set(algebras))
     n = len(algebras)
     for i in range(n - 1, 0, -1):
         if check_isos(algebras[i], algebras[0:i], algebras[i].fo_type):
             algebras.pop(i)
     return algebras
 
+
+def supQ(cmi, x, y):
+    xcmi = {c for c in cmi if set(x.d) <= set(c.d)}
+    ycmi = {c for c in cmi if set(y.d) <= set(c.d)}
+    xycmi = xcmi & ycmi
+    e = maxcon(x.model)
+    for r in xycmi:
+        e = e & r
+    return e
+
+
+def atoms(lat, model):
+    mc = mincon(model)
+    return minorice([x for x in lat.universe if x != mc])
 
 if __name__ == "__main__":
     import doctest
