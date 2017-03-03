@@ -127,6 +127,11 @@ class Congruence(Eq_Rel):
             return True
         return False
 
+    def __le__(self, other):
+        if self & other == self:
+            return True
+        return False
+
     def __eq__(self, other):
         if self.model != other.model:
             return False

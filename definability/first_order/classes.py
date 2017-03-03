@@ -19,7 +19,7 @@ class Quasivariety(object):
         self.fo_type = generators[0].fo_type
         for i in range(len(generators)):
             assert generators[i].fo_type == self.fo_type, "Los generadores no tienen el mismo tipo"
-        self.generators = limpiar_isos(generators)
+        self.generators = generators
         self.name = name
 
     def rsi(self):
@@ -53,6 +53,7 @@ class Quasivariety(object):
                             break
                 if t:
                     break
+        self.rsi = sub
         return sub
 
     def contiene(self, a):
@@ -64,7 +65,10 @@ class Quasivariety(object):
         >>> type(Quasivariety(list(Lat.find_models(5))[0:3]).contiene(list(Lat.find_models(5))[3])) == Homomorphism
         True
         """
-        rsi = self.rsi()
+        if type(self.rsi) == list:
+            rsi = self.rsi
+        else:
+            rsi = self.rsi()
         if check_isos(a, rsi, self.fo_type):
             return "El álgebra es relativamente subirectamente irreducible"
         else:
@@ -163,6 +167,34 @@ def supQ(cmi, x, y):
 def atoms(lat, model):
     mc = mincon(model)
     return minorice([x for x in lat.universe if x != mc])
+
+
+def increasing_lattice(sublat, cmi, model):
+    """
+    Dado un subreticulado de congruencias, le agrega los elementos para que
+    quede un subreticulado creciente
+    """
+    minc = mincon(model)
+    maxc = maxcon(model)
+    atomss = atoms(sublat, model)
+    tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
+    for delta in cmi:
+        if delta not in sublat.universe:
+            for atom in atomss:
+                if atom <= delta:
+                    univ = sublat.universe
+                    for c in sublat.universe:
+                        univ.append(c & delta)
+                    univ = list(set(univ))
+                    sublat = FO_Model(tiporetacotado, univ, {
+                     'Max': FO_Constant(minc),
+                     'Min': FO_Constant(maxc),
+                     '^': FO_Operation({(x,y): x & y for x in univ for y in univ}),
+                     'v': FO_Operation({(x,y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+                    atomss = atoms(sublat, model)
+                    break
+    return (sublat, atomss)
+
 
 if __name__ == "__main__":
     import doctest
