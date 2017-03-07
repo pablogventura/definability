@@ -169,32 +169,56 @@ def atoms(lat, model):
     return minorice([x for x in lat.universe if x != mc])
 
 
+def gen_lattice_cmi(universe, cmi, model, delta):
+    tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
+    univ = universe.copy()
+    for c in universe:
+        univ.append(c & delta)
+    univ = list(set(univ))
+    lat = FO_Model(tiporetacotado, univ, {
+         'Max': FO_Constant(mincon(model)),
+         'Min': FO_Constant(maxcon(model)),
+         '^': FO_Operation({(x, y): x & y for x in univ for y in univ}),
+         'v': FO_Operation({(x, y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+    return lat
+
+
 def increasing_lattice(sublat, cmi, model):
     """
     Dado un subreticulado de congruencias, le agrega los elementos para que
     quede un subreticulado creciente
     """
-    minc = mincon(model)
-    maxc = maxcon(model)
-    atomss = atoms(sublat, model)
-    tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
+    atomss = set(atoms(sublat, model))
     for delta in cmi:
         if delta not in sublat.universe:
             for atom in atomss:
                 if atom <= delta:
-                    univ = sublat.universe
-                    for c in sublat.universe:
-                        univ.append(c & delta)
-                    univ = list(set(univ))
-                    sublat = FO_Model(tiporetacotado, univ, {
-                     'Max': FO_Constant(minc),
-                     'Min': FO_Constant(maxc),
-                     '^': FO_Operation({(x,y): x & y for x in univ for y in univ}),
-                     'v': FO_Operation({(x,y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
-                    atomss = atoms(sublat, model)
+                    sublat = gen_lattice_cmi(sublat.universe, cmi, model, delta)
+                    atomss = set(atoms(sublat, model))
                     break
     return (sublat, atomss)
 
+
+def gen_atomics(cmi, model):
+    result = []
+    for delta in cmi:
+        lat = gen_lattice_cmi([mincon(model), maxcon(model)], cmi, model, delta)
+        s = increasing_lattice(lat, cmi, model)
+        if len(s[1]) > 1:
+            result.append(s[1])
+        iterar(cmi, model, s[0], result)
+    return result
+
+
+def iterar(cmi, model, lat, result):
+    for delta in set(cmi) - set(lat.universe):
+        lat = gen_lattice_cmi(lat.universe, cmi, model, delta)
+        s = increasing_lattice(lat, cmi, model)
+        if s[1] in result:
+            break
+        if len(s[1]) > 1:
+            result.append(s[1])
+        iterar(cmi, model, s[0], result)
 
 if __name__ == "__main__":
     import doctest
