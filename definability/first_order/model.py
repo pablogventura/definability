@@ -336,6 +336,9 @@ class FO_Model(object):
 
         return (FO_Model(self.fo_type, universe, operations, relations), translation)
 
+    def draw_continous_lattice(self):
+        return (self.continous()[0]).draw_lattice()
+
     def pertenece(self, Q):
         """
         Dada una cuasivariedad Q, se fija si el modelo pertenece a Q. En caso
