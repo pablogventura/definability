@@ -5,7 +5,7 @@ from ..first_order.model import FO_Model, FO_Product
 from ..functions.morphisms import Homomorphism
 from ..first_order.fofunctions import FO_Operation, FO_Constant
 from ..first_order.fotype import FO_Type
-from ..functions.congruence import mincon, maxcon, minorice
+from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon
 from ..definability.relationalmodels import check_isos
 import itertools
 
@@ -135,6 +135,27 @@ class Quasivariety(object):
             return lat
         return "El álgebra no pertenece a Q"
 
+    def is_rgi(self, a):
+        """
+        Determina si el algebra a es relativamente subdirectamente
+        indescomponible en Q
+        """
+        cmi = self.cmi(a)
+        atomics = gen_atomics(cmi, a)
+        for atomic in atomics:
+            n = len(atomic)
+            atomic = list(atomic)
+            for xs in list(itertools.product(*[a.universe for i in list(range(n))])):
+                result = False
+                if is_system(atomic, xs):
+                    CS = CongruenceSystem(atomic, list(xs))
+                    if not CS.has_solution():
+                        result = True
+                        break
+            if not result:
+                return False
+        return True
+
 
 def limpiar_isos(algebras):
     """
@@ -155,6 +176,9 @@ def limpiar_isos(algebras):
 
 
 def supQ(cmi, x, y):
+    """
+    Devuelve el supremo entre x e y dentro del reticulado de congruencias en Q
+    """
     xcmi = {c for c in cmi if set(x.d) <= set(c.d)}
     ycmi = {c for c in cmi if set(y.d) <= set(c.d)}
     xycmi = xcmi & ycmi
@@ -165,11 +189,17 @@ def supQ(cmi, x, y):
 
 
 def atoms(lat, model):
+    """
+    Devuelve los atomos del reticulado lat
+    """
     mc = mincon(model)
     return minorice([x for x in lat.universe if x != mc])
 
 
 def gen_lattice_cmi(universe, cmi, model, delta):
+    """
+    genera un reticulado apartir de un universo y una congruencia cmi
+    """
     tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
     univ = universe.copy()
     for c in universe:
@@ -200,6 +230,9 @@ def increasing_lattice(sublat, cmi, model):
 
 
 def gen_atomics(cmi, model):
+    """
+    Genera todas las tuplas atómicas a partir del conjunto de las cmi
+    """
     result = []
     for delta in cmi:
         lat = gen_lattice_cmi([mincon(model), maxcon(model)], cmi, model, delta)

@@ -347,6 +347,13 @@ class FO_Model(object):
         """
         return Q.contiene(self)
 
+    def is_rgi(self, Q):
+        """
+        Dada una cuasivariedad Q, se fija si el modelo es relativamente
+        globalmente indescomponible en Q.
+        """
+        return Q.is_rgi(self)
+
 class FO_Submodel(FO_Model):
 
     """
