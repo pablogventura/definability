@@ -503,6 +503,44 @@ class FO_SubdirectProduct(FO_Submodel):
         return True
 
 
+class FO_Quotient(FO_Model):
+
+    """
+    Modelo Cociente
+    """
+
+    def __init__(self, supermodel, congruence):
+        assert supermodel.fo_type.relations == {}
+        self.congruence = congruence
+        self.supermodel = supermodel
+        universe = supermodel.universe.copy()
+        for i in universe:
+            for j in universe:
+                if (i != j) and ([i,j] in congruence):
+                    universe.remove(j)
+        operations = {}
+        for op in supermodel.operations:
+            ope = supermodel.operations[op].restrict(universe)
+            for i in ope.dict.keys():
+                if not ope.dict[i] in universe:
+                    for j in universe:
+                        if [ope.dict[i], j] in congruence:
+                            ope.dict[i] = j
+            operations[op] = ope
+        super(FO_Quotient, self).__init__(
+            supermodel.fo_type, universe, operations, {})
+
+    def __repr__(self):
+        result = "FO_Quotient(\n"
+        result += indent(repr(self.fo_type) + ",\n")
+        result += indent(repr(self.universe) + ",\n")
+        result += indent(repr(self.operations) + ",\n")
+        result += indent(repr(self.relations) + ",\n")
+        result += indent("congruence= " + repr(self.congruence) + "\n")
+        return result + ")"
+
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
