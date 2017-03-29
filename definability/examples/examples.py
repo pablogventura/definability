@@ -18,7 +18,7 @@ tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
 tipotest = FO_Type({}, {"P": 1, "<=": 2})
 tipotest2 = FO_Type({}, {"R": 1, "<=": 2})
 tipodistinto = FO_Type({}, {"!=": 2})
-tipoimplicativas = FO_Type({"->": 2}, {})
+tipoimplicativas = FO_Type({"->": 2, "Max": 0}, {})
 
 posetrombo = FO_Model(tipoposet, list(range(4)), {},
                       {'<=': FO_Relation({(0, 0): 1,
@@ -481,6 +481,7 @@ rettest102 = FO_Model(tiporet,
                       )
 
 implicativacadena2 = FO_Model(tipoimplicativas, list(range(2)), {
+                                                'Max': FO_Operation({(): 1}),
                                                 '->': FO_Operation({(0, 0): 1,
                                                                     (0, 1): 1,
                                                                     (1, 0): 0,

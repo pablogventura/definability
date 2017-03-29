@@ -414,7 +414,10 @@ class FO_Product(FO_Model):
 
         operations = {}
         for op in fo_type.operations:
-            operations[op] = FO_Operation_Product([f.operations[op] for f in factors],[f.universe for f in factors])
+            if fo_type.operations[op] == 0:
+                operations[op] = FO_Constant(tuple([f.operations[op]() for f in factors]))
+            else:
+                operations[op] = FO_Operation_Product([f.operations[op] for f in factors],[f.universe for f in factors])
 
         relations = {}
         for rel in fo_type.relations:

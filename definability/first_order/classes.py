@@ -140,21 +140,23 @@ class Quasivariety(object):
         Determina si el algebra a es relativamente subdirectamente
         indescomponible en Q
         """
+        if type(self.rsi) == list:
+            rsi = self.rsi
+        else:
+            rsi = self.rsi()
+        if a in rsi:
+            return True
         cmi = self.cmi(a)
-        atomics = gen_atomics(cmi, a)
-        for atomic in atomics:
-            n = len(atomic)
-            atomic = list(atomic)
-            for xs in list(itertools.product(*[a.universe for i in list(range(n))])):
-                result = False
-                if is_system(atomic, xs):
-                    CS = CongruenceSystem(atomic, list(xs))
-                    if not CS.has_solution():
-                        result = True
-                        break
-            if not result:
-                return False
-        return True
+        tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
+        univ = [maxcon(a), mincon(a)]
+        lat = FO_Model(tiporetacotado, univ, {
+         'Max': FO_Constant(mincon(a)),
+         'Min': FO_Constant(maxcon(a)),
+         '^': FO_Operation({(x, y): x & y for x in univ for y in univ}),
+         'v': FO_Operation({(x, y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+        atomics = []
+        t = gen_atomics_rec(cmi, a, lat, atomics)
+        return t
 
 
 def limpiar_isos(algebras):
@@ -229,29 +231,31 @@ def increasing_lattice(sublat, cmi, model):
     return (sublat, atomss)
 
 
-def gen_atomics(cmi, model):
+def every_system_has_solution(atomic, model):
     """
-    Genera todas las tuplas atómicas a partir del conjunto de las cmi
+    Chequea si todo sistema tiene solución para una tupla atómica dada
     """
-    result = []
-    for delta in cmi:
-        lat = gen_lattice_cmi([mincon(model), maxcon(model)], cmi, model, delta)
-        s = increasing_lattice(lat, cmi, model)
-        if len(s[1]) > 1:
-            result.append(s[1])
-        iterar(cmi, model, s[0], result)
-    return result
+    n = len(atomic)
+    atomic = list(atomic)
+    for xs in list(itertools.product(*[model.universe for i in list(range(n))])):
+        if is_system(atomic, xs):
+            CS = CongruenceSystem(atomic, list(xs))
+            if not CS.has_solution():
+                return False
+    return True
 
 
-def iterar(cmi, model, lat, result):
+def gen_atomics_rec(cmi, model, lat, atomics):
     for delta in set(cmi) - set(lat.universe):
         lat = gen_lattice_cmi(lat.universe, cmi, model, delta)
-        s = increasing_lattice(lat, cmi, model)
-        if s[1] in result:
-            break
-        if len(s[1]) > 1:
-            result.append(s[1])
-        iterar(cmi, model, s[0], result)
+        (lat, atomic) = increasing_lattice(lat, cmi, model)
+        if (len(atomic) > 1) & (atomic not in atomics):
+            atomics.append(atomic)
+            if every_system_has_solution(atomic, model):
+                return False
+            if not gen_atomics_rec(cmi, model, lat, atomics):
+                return False
+    return True
 
 if __name__ == "__main__":
     import doctest
