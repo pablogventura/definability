@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from ..first_order.model import FO_Model, FO_Product
+from ..first_order.model import FO_Model, FO_Product, FO_Quotient, FO_SubdirectProduct
 from ..functions.morphisms import Homomorphism
 from ..first_order.fofunctions import FO_Operation, FO_Constant
 from ..first_order.fotype import FO_Type
@@ -157,6 +157,24 @@ class Quasivariety(object):
         atomics = []
         t = gen_atomics_rec(cmi, a, lat, atomics)
         return t
+
+    def has_global_desc_of(self, a):
+        if not self.contiene(a):
+            return "El álgebra no pertenece a la cuasivariedad"
+        con = self.congruence_lattice(a).universe.copy()
+        con.remove(maxcon(a))
+        con.remove(mincon(a))
+        if con == []:
+            return True
+        cocientes = [FO_Quotient(a, c) for c in con]
+        cocientes = [a for a in cocientes if self.is_rgi(a)]
+        producto = FO_Product(cocientes)
+        univ = []
+        for i in a.universe:
+            x = [C.natural_map()(i,) for C in producto.factors]
+            univ.append(tuple(x))
+        subdirect = FO_SubdirectProduct(univ, producto)
+        return subdirect.is_global()
 
 
 def limpiar_isos(algebras):

@@ -387,7 +387,7 @@ class FO_Submodel(FO_Model):
         """
         if isinstance(self.supermodel, FO_Product):
             for i in self.supermodel.indices():
-                if not (self.supermodel.projection(i).composition(self.natural_embedding())).image_model().universe == self.supermodel.factors[i].universe:
+                if not set((self.supermodel.projection(i).composition(self.natural_embedding())).image_model().universe) == set(self.supermodel.factors[i].universe):
                     return False
             return True
         return False
@@ -511,24 +511,50 @@ class FO_Quotient(FO_Model):
 
     def __init__(self, supermodel, congruence):
         assert supermodel.fo_type.relations == {}
-        self.congruence = congruence
-        self.supermodel = supermodel
-        universe = supermodel.universe.copy()
-        for i in universe:
-            for j in universe:
-                if (i != j) and ([i,j] in congruence):
-                    universe.remove(j)
+        uni = list(supermodel.universe)
+        elim = []
+        n = len(uni)
+        for i in range(n):
+            if uni[i] not in elim:
+                for j in range(i + 1, n):
+                    if [uni[i], uni[j]] in congruence:
+                        elim.append(uni[j])
+        for i in elim:
+            uni.remove(i)
         operations = {}
         for op in supermodel.operations:
-            ope = supermodel.operations[op].restrict(universe)
-            for i in ope.dict.keys():
-                if not ope.dict[i] in universe:
-                    for j in universe:
-                        if [ope.dict[i], j] in congruence:
-                            ope.dict[i] = j
-            operations[op] = ope
+            ope = supermodel.operations[op].restrict(uni)
+            d = {}
+            if supermodel.operations[op].arity() != 0:
+                for i in list(ope.domain()):
+                    if not ope(*i) in uni:
+                        for j in uni:
+                            if [ope(*i), j] in congruence:
+                                d[i] = j
+                                break
+                    else:
+                        d[i] = ope(*i)
+                operations[op] = FO_Operation(d, uni, ope.arity())
+            else:
+                if not ope() in uni:
+                    for j in uni:
+                        if [ope(), j] in congruence:
+                            operations[op] = FO_Constant(j)
+                else:
+                    operations[op] = ope
         super(FO_Quotient, self).__init__(
-            supermodel.fo_type, universe, operations, {})
+            supermodel.fo_type, uni, operations, {})
+        self.congruence = congruence
+        self.supermodel = supermodel
+
+    def natural_map(self):
+        d = {}
+        for i in self.supermodel.universe:
+            for j in self.universe:
+                if [i, j] in self.congruence:
+                    d[(i,)] = j
+                    break
+        return Homomorphism(d, self.supermodel, self, self.fo_type, surj=True)
 
     def __repr__(self):
         result = "FO_Quotient(\n"
