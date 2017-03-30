@@ -159,6 +159,10 @@ class Quasivariety(object):
         return t
 
     def has_global_desc_of(self, a):
+        """
+        Dado un álgebra, decide si se descompone como producto global de
+        elementos RGI en la cuasivariedad
+        """
         if not self.contiene(a):
             return "El álgebra no pertenece a la cuasivariedad"
         con = self.congruence_lattice(a).universe.copy()

@@ -507,6 +507,7 @@ class FO_Quotient(FO_Model):
 
     """
     Modelo Cociente
+    Dado un algebra y una congruencia, devuelve el álgebra cociente
     """
 
     def __init__(self, supermodel, congruence):
@@ -548,6 +549,9 @@ class FO_Quotient(FO_Model):
         self.supermodel = supermodel
 
     def natural_map(self):
+        """
+        Devuelve el mapa natural entre el álgebra y el cociente
+        """
         d = {}
         for i in self.supermodel.universe:
             for j in self.universe:
