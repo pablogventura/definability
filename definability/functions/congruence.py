@@ -155,6 +155,8 @@ class CongruenceSystem(object):
 
     """
     Sistema de Congruecias
+    Dado una lista de congruencias, una lista de elementos y un sigma generador
+    del proyecto, genera el Sistema de Congruencias para ese proyectivo
 
     >>> from definability import fotheories
     >>> C1 = Congruence([(1, 1),(2, 2),(3, 3),(0, 0),(1, 3),(3, 1),(0, 2),(2, 0)], fotheories.Lat.find_models(4)[0])
@@ -164,7 +166,7 @@ class CongruenceSystem(object):
     {0}
     """
 
-    def __init__(self, cong, elem):
+    def __init__(self, cong, elem, sigma=None):
         assert cong and isinstance(cong, list)
         assert elem and isinstance(elem, list)
         assert len(cong) == len(elem)
@@ -175,7 +177,11 @@ class CongruenceSystem(object):
         self.model = cong[0].model
         self.cong = cong
         self.elem = elem
-        assert is_system(cong, elem)
+        if sigma:
+            assert is_system(cong, elem, lambda x, y: sup_proj(sigma, x, y))
+        else:
+            assert is_system(cong, elem)
+        self.sigma = sigma
 
     def solutions(self):
         sol = self.cong[0].equiv_class(self.elem[0])
@@ -201,11 +207,23 @@ def mincon(model):
     return Congruence(univ, model)
 
 
-def is_system(cong, elem):
+def sup_proj(sigma, x, y):
+    """
+    Devuelve el supremo entre x e y dentro del reticulado de congruencias
+    generado por el conjunto sigma
+    """
+    xy_up = {c for c in sigma if (set(x.d) <= set(c.d) and set(y.d) <= set(c.d))}
+    e = maxcon(x.model)
+    for r in xy_up:
+        e = e & r
+    return e
+
+
+def is_system(cong, elem, sup=lambda x, y: x | y):
     for i in list(range(len(cong))):
         for j in list(range(len(cong))):
             if i != j:
-                if [elem[i], elem[j]] not in (cong[i] | cong[j]):
+                if [elem[i], elem[j]] not in sup(cong[i], cong[j]):
                     return False
     return True
 

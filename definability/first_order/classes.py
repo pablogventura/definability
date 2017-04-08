@@ -5,7 +5,7 @@ from ..first_order.model import FO_Model, FO_Product, FO_Quotient, FO_SubdirectP
 from ..functions.morphisms import Homomorphism
 from ..first_order.fofunctions import FO_Operation, FO_Constant
 from ..first_order.fotype import FO_Type
-from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon
+from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon, sup_proj
 from ..definability.relationalmodels import check_isos
 import itertools
 
@@ -131,7 +131,7 @@ class Quasivariety(object):
                      'Max': FO_Constant(maxcon(a)),
                      'Min': FO_Constant(mincon(a)),
                      '^': FO_Operation({(x,y): x & y for x in univ for y in univ}),
-                     'v': FO_Operation({(x,y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+                     'v': FO_Operation({(x,y): sup_proj(cmi, x, y) for x in univ for y in univ})}, {})
             return lat
         return "El álgebra no pertenece a Q"
 
@@ -153,8 +153,9 @@ class Quasivariety(object):
          'Max': FO_Constant(mincon(a)),
          'Min': FO_Constant(maxcon(a)),
          '^': FO_Operation({(x, y): x & y for x in univ for y in univ}),
-         'v': FO_Operation({(x, y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+         'v': FO_Operation({(x, y): sup_proj(cmi, x, y) for x in univ for y in univ})}, {})
         atomics = []
+        lat = increasing_lattice(lat, cmi, a)
         t = gen_atomics_rec(cmi, a, lat, atomics)
         return t
 
@@ -199,19 +200,6 @@ def limpiar_isos(algebras):
     return algebras
 
 
-def supQ(cmi, x, y):
-    """
-    Devuelve el supremo entre x e y dentro del reticulado de congruencias en Q
-    """
-    xcmi = {c for c in cmi if set(x.d) <= set(c.d)}
-    ycmi = {c for c in cmi if set(y.d) <= set(c.d)}
-    xycmi = xcmi & ycmi
-    e = maxcon(x.model)
-    for r in xycmi:
-        e = e & r
-    return e
-
-
 def atoms(lat, model):
     """
     Devuelve los atomos del reticulado lat
@@ -233,7 +221,7 @@ def gen_lattice_cmi(universe, cmi, model, delta):
          'Max': FO_Constant(mincon(model)),
          'Min': FO_Constant(maxcon(model)),
          '^': FO_Operation({(x, y): x & y for x in univ for y in univ}),
-         'v': FO_Operation({(x, y): supQ(cmi, x, y) for x in univ for y in univ})}, {})
+         'v': FO_Operation({(x, y): sup_proj(cmi, x, y) for x in univ for y in univ})}, {})
     return lat
 
 
@@ -253,28 +241,30 @@ def increasing_lattice(sublat, cmi, model):
     return (sublat, atomss)
 
 
-def every_system_has_solution(atomic, model):
+def every_system_has_solution(atomic, model, cmi):
     """
     Chequea si todo sistema tiene solución para una tupla atómica dada
     """
     n = len(atomic)
     atomic = list(atomic)
     for xs in list(itertools.product(*[model.universe for i in list(range(n))])):
-        if is_system(atomic, xs):
-            CS = CongruenceSystem(atomic, list(xs))
+        if is_system(atomic, xs, lambda x, y: sup_proj(cmi, x, y)):
+            CS = CongruenceSystem(atomic, list(xs), cmi)
             if not CS.has_solution():
                 return False
     return True
 
 
-def gen_atomics_rec(cmi, model, lat, atomics):
-    for delta in set(cmi) - set(lat.universe):
-        lat = gen_lattice_cmi(lat.universe, cmi, model, delta)
-        (lat, atomic) = increasing_lattice(lat, cmi, model)
-        if (len(atomic) > 1) & (atomic not in atomics):
-            atomics.append(atomic)
-            if every_system_has_solution(atomic, model):
-                return False
+def gen_atomics_rec(cmi, model, inc_lat, atomics):
+    if (len(inc_lat[1]) > 1) & (inc_lat[1] not in atomics):
+        atomics.append(inc_lat[1])
+        if every_system_has_solution(inc_lat[1], model, cmi):
+            return False
+    if (inc_lat[1] not in atomics):
+        cmi_set = set(cmi) - set(inc_lat[0].universe)
+        for delta in cmi_set:
+            lat = gen_lattice_cmi(inc_lat[0].universe, cmi, model, delta)
+            lat = increasing_lattice(lat, cmi, model)
             if not gen_atomics_rec(cmi, model, lat, atomics):
                 return False
     return True

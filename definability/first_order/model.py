@@ -5,7 +5,7 @@ from itertools import product, chain
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding, Homomorphism
-from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon
+from ..functions.congruence import minorice, is_system, CongruenceSystem, Congruence, maxcon, mincon, sup_proj
 from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Relation_Product, FO_Operation_Product, FO_Constant
 from ..first_order.fotype import FO_Type
 from ..interfaces import minion
@@ -493,11 +493,12 @@ class FO_SubdirectProduct(FO_Submodel):
         """
         Determina si el producto subdirecto es global o no
         """
-        sigma = minorice(self.sigma())
-        n = len(sigma)
+        sigma = self.sigma()
+        sigma_m = minorice(sigma)
+        n = len(sigma_m)
         for xs in list(product(*[self.universe for i in list(range(n))])):
-            if is_system(sigma, xs):
-                CS = CongruenceSystem(sigma, list(xs))
+            if is_system(sigma_m, xs, lambda x, y: sup_proj(sigma, x, y)):
+                CS = CongruenceSystem(sigma_m, list(xs), sigma)
                 if not CS.has_solution():
                     return False
         return True
