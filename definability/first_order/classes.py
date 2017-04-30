@@ -99,14 +99,19 @@ class Quasivariety(object):
         Dada un algebra a que pertenece a Q devuelve el conjunto de las
         congruencias completamente meet irreducibles.
         """
+        if type(self.rsi) == list:
+            rsi = self.rsi
+        else:
+            rsi = self.rsi()
         f = self.contiene(a)
         if type(f) == bool:
             return "El álgebra no pertenece a Q"
         elif type(f) == Homomorphism:
             result = []
-            for i in f.target.indices():
-                result.append(f.target.projection(i).composition(f).kernel())
-            return result
+            for b in rsi:
+                for f in a.homomorphisms_to(b, a.fo_type, surj=True):
+                    result.append(f.kernel())
+            return list(set(result))
         return [mincon(a)]
 
     def congruence_lattice(self, a):
