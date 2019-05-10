@@ -14,6 +14,7 @@ from ..first_order.fofunctions import FO_Relation, FO_Operation, FO_Constant
 tipovacio = FO_Type({}, {})
 tipoposet = FO_Type({}, {"<=": 2})
 tiporet = FO_Type({"^": 2, "v": 2}, {})
+tiposemiret = FO_Type({"v": 2}, {})
 tiporetacotado = FO_Type({"^": 2, "v": 2, "Max": 0, "Min": 0}, {})
 tipotest = FO_Type({}, {"P": 1, "<=": 2})
 tipotest2 = FO_Type({}, {"R": 1, "<=": 2})
@@ -83,6 +84,8 @@ posetdiamante = FO_Model(tipoposet, list(range(5)), {}, {"<=": FO_Relation({(0, 
                                                                             (4, 2): 0,
                                                                             (4, 3): 0,
                                                                             (4, 4): 1}, list(range(5)))}, name="Poset Diamante")
+
+
 
 posetcadena2 = FO_Model(tipoposet, list(range(
     2)), {}, {"<=": FO_Relation({(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 1}, list(range(2)))},name="Poset C2")
@@ -226,6 +229,97 @@ retrombo2 = FO_Model(tiporetacotado, [1, 2, 3, 4], {'^': FO_Operation({(1, 1): 1
                       "P": FO_Relation({(1,): 0, (2,): 0, (3,): 1, (4,): 1}, [1, 2, 3, 4])
                       }, name="Reticulado Rombo que empieza en 1")
 
+cadena2sl = FO_Model(tiposemiret, [1, 2], {'v': FO_Operation({(1, 1):1,
+                                                                (1, 2):1,
+                                                                (2, 1):1,
+                                                                (2, 2):2,
+                                                               }
+                                                              ),
+                                                    },
+                     {}, name="Semireticulado dos")
+
+
+cadena3sl = FO_Model(tiposemiret, [1, 2, 3], {'v': FO_Operation({(1, 1):1,
+                                                                    (1, 2):1,
+                                                                    (1, 3):1,
+                                                                    (2, 1):1,
+                                                                    (2, 2):2,
+                                                                    (2, 3):2,
+                                                                    (3, 1):1,
+                                                                    (3, 2):2,
+                                                                    (3, 3):3,
+                                                                   }
+                                                                  ),
+                                                    },
+                     {}, name="Semireticulado tres")
+                     
+carpasl = FO_Model(tiposemiret, [1, 2, 3], {'v': FO_Operation({(1, 1):1,
+                                                                    (1, 2):1,
+                                                                    (1, 3):1,
+                                                                    (2, 1):1,
+                                                                    (2, 2):2,
+                                                                    (2, 3):1,
+                                                                    (3, 1):1,
+                                                                    (3, 2):1,
+                                                                    (3, 3):3,
+                                                                   }
+                                                                  ),
+                                                    },
+                     {}, name="Semireticulado carpa")
+
+cascosl = FO_Model(tiposemiret, [1, 2, 3, 4, 5, 6, 7], {'v': FO_Operation({(1, 1):1,
+                                                                                (1, 2):1,
+                                                                                (1, 4):1,
+                                                                                (1, 5):1,
+                                                                                (1, 6):1,
+                                                                                (1, 7):1,
+                                                                                (2, 1):1,
+                                                                                (2, 2):2,
+                                                                                (2, 4):1,
+                                                                                (2, 5):2,
+                                                                                (2, 6):2,
+                                                                                (2, 7):1,
+                                                                                (4, 1):1,
+                                                                                (4, 2):1,
+                                                                                (4, 4):4,
+                                                                                (4, 5):1,
+                                                                                (4, 6):4,
+                                                                                (4, 7):4,
+                                                                                (5, 1):1,
+                                                                                (5, 2):2,
+                                                                                (5, 4):1,
+                                                                                (5, 5):5,
+                                                                                (5, 6):2,
+                                                                                (5, 7):3,
+                                                                                (6, 1):1,
+                                                                                (6, 2):2,
+                                                                                (6, 4):4,
+                                                                                (6, 5):2,
+                                                                                (6, 6):6,
+                                                                                (6, 7):4,
+                                                                                (7, 1):1,
+                                                                                (7, 2):1,
+                                                                                (7, 4):4,
+                                                                                (7, 5):3,
+                                                                                (7, 6):4,
+                                                                                (7, 7):7,
+                                                                                (3, 1):1,
+                                                                                (3, 2):1,
+                                                                                (3, 4):1,
+                                                                                (3, 5):3,
+                                                                                (3, 6):1,
+                                                                                (3, 7):3,
+                                                                                (3, 3):3,
+                                                                                (1, 3):1,
+                                                                                (2, 3):1,
+                                                                                (4, 3):1,
+                                                                                (5, 3):3,
+                                                                                (6, 3):1,
+                                                                                (7, 3):3,
+                                                                       }
+                                                                      ),
+                                                    },
+                     {}, name="Semireticulado casco")
 
 rettest10 = FO_Model(tiporet, list(range(10)), {'^': FO_Operation([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
