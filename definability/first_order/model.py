@@ -354,6 +354,14 @@ class FO_Model(object):
         """
         return Q.is_rgi(self)
 
+    def congruences_in(self, factors):
+        congruences=set()
+        for f in factors:
+            hs = self.homomorphisms_to(f,surj=True)
+            for h in hs:
+                congruences.add(h.kernel())
+        return congruences
+
 class FO_Submodel(FO_Model):
 
     """
