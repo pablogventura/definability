@@ -41,6 +41,7 @@ def create_pipe(path):
     Crea un named pipe
 
     """
+
     try:
         os.mkfifo(path)
     except OSError:

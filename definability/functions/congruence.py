@@ -3,6 +3,9 @@
 
 from ..first_order.fofunctions import FO_Relation
 from ..misc.misc import indent
+from ..interfaces.minion_limpio import MinionSolLimpio
+from itertools import combinations
+
 
 
 class Eq_Rel(FO_Relation):
@@ -218,6 +221,29 @@ def sup_proj(sigma, x, y):
         e = e & r
     return e
 
+def minimal_systems(sigma):
+    model = list(sigma)[0].model
+    sigma_m = minorice(sigma)
+    joins = dict()
+    for i, j in combinations(range(len(sigma_m)), r=2):
+        joins[(i, j)] = sup_proj(sigma, sigma_m[i], sigma_m[j])
+        
+        
+    to_minion = "MINION 3\n\n"
+    to_minion += "**VARIABLES**\n"
+    to_minion += "DISCRETE x[%s]{0..%s}\n\n" % (len(sigma_m),len(model)-1)
+    to_minion += "**TUPLELIST**\n"
+    for (i,j) in joins:
+        to_minion+="J%sJ%s %s 2\n" % (i,j, len(joins[(i,j)].d))
+        for a,b in joins[(i,j)].d:
+            to_minion += "%s %s\n" % (a,b)
+        to_minion+="\n"
+    to_minion +="**CONSTRAINTS**\n"
+    for (i,j) in joins:
+        to_minion+="table([x[%s],x[%s]],J%sJ%s)\n" % (i,j,i,j)
+    to_minion += "\n\n"
+    to_minion += "**EOF**"
+    return MinionSolLimpio(to_minion)
 
 def is_system(cong, elem, sup=lambda x, y: x | y):
     for i in list(range(len(cong))):

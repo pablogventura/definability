@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from itertools import product, chain
+from itertools import product, chain, combinations
 
 from ..misc.misc import indent, powerset
 from ..functions.morphisms import Embedding, Homomorphism
@@ -357,10 +357,18 @@ class FO_Model(object):
     def congruences_in(self, factors):
         congruences=set()
         for f in factors:
-            hs = self.homomorphisms_to(f,surj=True)
+            hs = self.homomorphisms_to(f,f.fo_type,surj=True)
             for h in hs:
                 congruences.add(h.kernel())
         return congruences
+
+    def has_global_descomposition_in(self, factors):
+        sigma = self.congruences_in(factors)
+        sigma_m = minorice(sigma)
+        joins = dict()
+        for i,j in combinations(range(len(sigma_m)),r=2):
+            joins[(i,j)] = sup_proj(sigma, sigma_m[i], sigma_m[j])
+        return joins
 
 class FO_Submodel(FO_Model):
 
