@@ -314,7 +314,7 @@ def all_min_systems_solvable(sigma):
     e_i = empty_intersections(sigma_m)
     print("empiezo")
     for i,solution in enumerate(find_system_output(sigma, sigma_m, e_i)):
-        if i%10==0:
+        if i%100==0:
             print(i)
         if solution:
             return g
