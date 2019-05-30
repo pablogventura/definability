@@ -138,7 +138,7 @@ class ParallelMinionSolLimpio(object):
     Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
     """
 
-    def __init__(self, minion_inputs, allsols=False, cores=100):
+    def __init__(self, minion_inputs, allsols=False, cores=10):
 
         self.minion_inputs = iter(minion_inputs)
         self.allsols = allsols

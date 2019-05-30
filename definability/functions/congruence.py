@@ -268,7 +268,7 @@ def find_system(sigma, con_list, tuple_of_sets):
     to_minion += "**EOF**"
     return MinionSolLimpio(to_minion,allsols=False)
 
-def find_system_output(sigma, con_list, tuple_of_sets):
+def find_system_output(sigma, con_list, e_i):
     model = list(sigma)[0].model
     joins = dict()
     for i, j in combinations(range(len(con_list)), r=2):
@@ -278,34 +278,42 @@ def find_system_output(sigma, con_list, tuple_of_sets):
     to_minion += "**VARIABLES**\n"
     to_minion += "DISCRETE x[%s]{0..%s}\n\n" % (len(con_list), len(model) - 1)
     to_minion += "**TUPLELIST**\n"
-    for i,s in enumerate(tuple_of_sets):
-        to_minion += "D%s %s 1\n" % (i, len(s))
-        for a in s:
-            to_minion += "%s\n" % a
-        to_minion += "\n"
+    
+    to_minion2=""
     for (i, j) in joins:
-        to_minion += "J%sJ%s %s 2\n" % (i, j, len(joins[(i, j)].d))
+        to_minion2 += "J%sJ%s %s 2\n" % (i, j, len(joins[(i, j)].d))
         for a, b in joins[(i, j)].d:
-            to_minion += "%s %s\n" % (a, b)
-        to_minion += "\n"
-    to_minion += "**CONSTRAINTS**\n"
-    for i in range(len(tuple_of_sets)):
-        to_minion += "table([x[%s]],D%s)\n" % (i, i)
+            to_minion2 += "%s %s\n" % (a, b)
+        to_minion2 += "\n"
+    to_minion2 += "**CONSTRAINTS**\n"
+    
+
+    
+    to_minion4=""
     for (i, j) in joins:
-        to_minion += "table([x[%s],x[%s]],J%sJ%s)\n" % (i, j, i, j)
-    to_minion += "\n\n"
-    to_minion += "**EOF**"
-    return to_minion
+        to_minion4 += "table([x[%s],x[%s]],J%sJ%s)\n" % (i, j, i, j)
+    to_minion4 += "\n\n"
+    to_minion4 += "**EOF**"
+    
+    for tuple_of_sets in e_i:
+        to_minion1=""
+        to_minion3 = ""
+        for i,s in enumerate(tuple_of_sets):
+            to_minion1 += "D%s %s 1\n" % (i, len(s))
+            for a in s:
+                to_minion1 += "%s\n" % a
+            to_minion1 += "\n"
+            to_minion3 += "table([x[%s]],D%s)\n" % (i, i)
+        
+        yield MinionSolLimpio(to_minion + to_minion1 + to_minion2 + to_minion3 + to_minion4,allsols=False)
+
+
 
 def all_min_systems_solvable(sigma):
     sigma_m = minorice(sigma)
     e_i = empty_intersections(sigma_m)
-    minion_inputs = (find_system_output(sigma, sigma_m, c) for c in e_i)
-    for i in minion_inputs:
-        print (i)
-    minion_inputs = (find_system_output(sigma, sigma_m, c) for c in e_i)
     print("empiezo")
-    for i,solution in enumerate(ParallelMinionSolLimpio(minion_inputs,allsols=False)):
+    for i,solution in enumerate(find_system_output(sigma, sigma_m, e_i)):
         if i%10==0:
             print(i)
         if solution:
