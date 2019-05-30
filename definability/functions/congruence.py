@@ -317,7 +317,7 @@ def all_min_systems_solvable(sigma):
         if i%100==0:
             print(i)
         if solution:
-            return g
+            return solution
     return True
 
 
