@@ -35,7 +35,7 @@ class MinionSol(object):
 
         minionargs = ["-printsolsonly", "-randomseed", "0"]
         if allsols:
-            minionargs += ["-findallsols"]
+            mg=functions.congruence.find_system(sigma,sigma_m, next(e_i));bool(g)inionargs += ["-findallsols"]
         minionargs += [self.input_filename]
 
         self.minionapp = sp.Popen([config.minion_path + "minion"] + minionargs,

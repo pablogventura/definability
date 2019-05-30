@@ -4,8 +4,8 @@
 from ..first_order.fofunctions import FO_Relation
 from ..misc.misc import indent
 from ..interfaces.minion_limpio import MinionSolLimpio
-from itertools import combinations
-
+from itertools import combinations, product
+from functools import lru_cache
 
 
 class Eq_Rel(FO_Relation):
@@ -97,6 +97,14 @@ class Congruence(Eq_Rel):
             result = result and self.__preserva_operacion(op)
         return result
 
+    @lru_cache(maxsize=None)
+    def classes(self):
+        result = set()
+        for x in self.model.universe:
+            result.add(frozenset(self.equiv_class(x)))
+        return result
+    
+    
     def equiv_class(self, x):
         return {y for y in self.model.universe if (x, y) in self.d}
 
@@ -220,6 +228,56 @@ def sup_proj(sigma, x, y):
     for r in xy_up:
         e = e & r
     return e
+
+def empty_intersections(con_list):
+    l=[]
+    for c in con_list:
+        l.append(sorted(c.classes(),key=len))
+    for t in product(*l):
+        r = frozenset.intersection(*t)
+        if not r:
+            yield t
+
+
+def find_system(sigma, con_list, tuple_of_sets):
+    model = list(sigma)[0].model
+    joins = dict()
+    for i, j in combinations(range(len(con_list)), r=2):
+        joins[(i, j)] = sup_proj(sigma, con_list[i], con_list[j])
+
+    to_minion = "MINION 3\n\n"
+    to_minion += "**VARIABLES**\n"
+    to_minion += "DISCRETE x[%s]{0..%s}\n\n" % (len(con_list), len(model) - 1)
+    to_minion += "**TUPLELIST**\n"
+    for i,s in enumerate(tuple_of_sets):
+        to_minion += "D%s %s 1\n" % (i, len(s))
+        for a in s:
+            to_minion += "%s\n" % a
+        to_minion += "\n"
+    for (i, j) in joins:
+        to_minion += "J%sJ%s %s 2\n" % (i, j, len(joins[(i, j)].d))
+        for a, b in joins[(i, j)].d:
+            to_minion += "%s %s\n" % (a, b)
+        to_minion += "\n"
+    to_minion += "**CONSTRAINTS**\n"
+    for i in range(len(tuple_of_sets)):
+        to_minion += "table([x[%s]],D%s)\n" % (i, i)
+    for (i, j) in joins:
+        to_minion += "table([x[%s],x[%s]],J%sJ%s)\n" % (i, j, i, j)
+    to_minion += "\n\n"
+    to_minion += "**EOF**"
+    return MinionSolLimpio(to_minion,allsols=False)
+
+
+def all_min_systems_solvable(sigma):
+    sigma_m = minorice(sigma)
+    e_i = empty_intersections(sigma_m)
+    for i, c in enumerate(e_i):
+        g = find_system(sigma, sigma_m, next(e_i))
+        if g:
+            return g
+    return True
+
 
 def minimal_systems(sigma):
     model = list(sigma)[0].model
