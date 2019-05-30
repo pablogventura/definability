@@ -3,7 +3,7 @@
 
 from ..first_order.fofunctions import FO_Relation
 from ..misc.misc import indent
-from ..interfaces.minion_limpio import MinionSolLimpio
+from ..interfaces.minion_limpio import MinionSolLimpio,ParallelMinionSolLimpio
 from itertools import combinations, product
 from functools import lru_cache
 
@@ -268,13 +268,47 @@ def find_system(sigma, con_list, tuple_of_sets):
     to_minion += "**EOF**"
     return MinionSolLimpio(to_minion,allsols=False)
 
+def find_system_output(sigma, con_list, tuple_of_sets):
+    model = list(sigma)[0].model
+    joins = dict()
+    for i, j in combinations(range(len(con_list)), r=2):
+        joins[(i, j)] = sup_proj(sigma, con_list[i], con_list[j])
+
+    to_minion = "MINION 3\n\n"
+    to_minion += "**VARIABLES**\n"
+    to_minion += "DISCRETE x[%s]{0..%s}\n\n" % (len(con_list), len(model) - 1)
+    to_minion += "**TUPLELIST**\n"
+    for i,s in enumerate(tuple_of_sets):
+        to_minion += "D%s %s 1\n" % (i, len(s))
+        for a in s:
+            to_minion += "%s\n" % a
+        to_minion += "\n"
+    for (i, j) in joins:
+        to_minion += "J%sJ%s %s 2\n" % (i, j, len(joins[(i, j)].d))
+        for a, b in joins[(i, j)].d:
+            to_minion += "%s %s\n" % (a, b)
+        to_minion += "\n"
+    to_minion += "**CONSTRAINTS**\n"
+    for i in range(len(tuple_of_sets)):
+        to_minion += "table([x[%s]],D%s)\n" % (i, i)
+    for (i, j) in joins:
+        to_minion += "table([x[%s],x[%s]],J%sJ%s)\n" % (i, j, i, j)
+    to_minion += "\n\n"
+    to_minion += "**EOF**"
+    return to_minion
 
 def all_min_systems_solvable(sigma):
     sigma_m = minorice(sigma)
     e_i = empty_intersections(sigma_m)
-    for i, c in enumerate(e_i):
-        g = find_system(sigma, sigma_m, next(e_i))
-        if g:
+    minion_inputs = (find_system_output(sigma, sigma_m, c) for c in e_i)
+    for i in minion_inputs:
+        print (i)
+    minion_inputs = (find_system_output(sigma, sigma_m, c) for c in e_i)
+    print("empiezo")
+    for i,solution in enumerate(ParallelMinionSolLimpio(minion_inputs,allsols=False)):
+        if i%10==0:
+            print(i)
+        if solution:
             return g
     return True
 
@@ -333,3 +367,11 @@ def minorice(sigma):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+"""
+d = examples.cadena2sl
+t = examples.cadena3sl
+carpa = examples.carpasl
+c = examples.cascosl
+sigma = c.congruences_in([d,t,carpa])
+functions.congruence.all_min_systems_solvable(sigma)
+"""
