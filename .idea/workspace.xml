@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="854a6308-feec-4729-a78c-065ddfdb8251" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/definability/functions/congruence.py" beforeDir="false" afterPath="$PROJECT_DIR$/definability/functions/congruence.py" afterDir="false" />
-    </list>
+    <list default="true" id="854a6308-feec-4729-a78c-065ddfdb8251" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +203,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1020" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21835443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
