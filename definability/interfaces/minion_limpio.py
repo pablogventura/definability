@@ -132,6 +132,89 @@ class MinionSolLimpio(object):
         if not self.EOF:
             self.__terminate()
 
+class ParallelMinionSolLimpio(object):
+
+    """
+    Maneja varias consultas del mismo tipo a Minion que corren en paralelo.
+    """
+
+    def __init__(self, minion_inputs, allsols=False, cores=10):
+
+        self.minion_inputs = iter(minion_inputs)
+        self.allsols = allsols
+        self.solution = None
+
+        self.poll = poll()
+        self.minions = {}
+        self.iterators = {}
+
+        for i in range(cores):
+            self.next_to_running()
+
+    def next_to_running(self):
+        """
+        Pone a la siguiente instancia de Minion a andar
+        """
+        try:
+            minion_input = next(self.minion_inputs)
+            new_minion = MinionSolLimpio(minion_input,allsols=self.allsols)
+            fd = new_minion.minionapp.stdout.fileno()
+            self.minions[fd] = new_minion
+            self.iterators[fd] = iter(new_minion)
+            self.poll.register(fd, POLLIN)
+        except StopIteration:
+            return
+
+    def read(self, fd):
+        """
+        Lee un file descriptor y lo vuelve a poner en el poll
+        """
+        if self.minions[fd]:
+            result = self.minions[fd][0]
+        else:
+            result = False
+        del self.minions[fd]
+        del self.iterators[fd]
+        self.poll.unregister(fd)
+        return result
+
+    def solve(self):
+        """
+        Devuelve si hay una solucion, en cuyo caso la devuelve.
+        """
+        if self.solution is None:
+            while self.queue or self.minions:
+                for (fd, event) in self.poll.poll():
+                    result = self.read(fd)
+                    if result:
+                        self.solution = result
+                        if not self.allsols:
+                            for f in list(self.minions.keys()):
+                                self.minions[f].__del__()
+                        return self.solution
+                    else:
+                        if self.queue:
+                            self.next_to_running()
+            self.solution = False
+            return False
+        else:
+            return self.solution
+
+    def __iter__(self):
+        while self.minions:
+            for (fd, event) in self.poll.poll():
+                try:
+                    result = next(self.iterators[fd])
+                    assert not self.minions[fd].EOF
+                    self.poll.register(fd, POLLIN)
+                    yield result
+                except StopIteration:
+                    assert self.minions[fd].EOF
+                    self.poll.unregister(fd)
+                    self.minions[fd].__del__()
+                    del self.minions[fd]
+                    self.next_to_running()
+
 
 if __name__ == "__main__":
     import doctest

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="854a6308-feec-4729-a78c-065ddfdb8251" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="854a6308-feec-4729-a78c-065ddfdb8251" name="Default Changelist" comment="" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/definability/first_order/model.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="22">
               <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
             </state>
@@ -34,6 +39,10 @@
               <folding>
                 <element signature="e#55#91#0" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="1245">
+              <caret line="356" column="22" selection-start-line="356" selection-start-column="8" selection-end-line="356" selection-end-column="22" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
             </state>
           </provider>
         </entry>
@@ -46,17 +55,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/definability/examples/examples.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6974">
+            <state relative-caret-position="779">
               <caret line="321" column="53" selection-start-line="321" selection-start-column="53" selection-end-line="321" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/definability/functions/congruence.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="5544">
               <caret line="256" column="24" selection-start-line="256" selection-start-column="24" selection-end-line="256" selection-end-column="24" />
+=======
+            <state relative-caret-position="415">
+              <caret line="319" column="27" selection-start-line="319" selection-start-column="27" selection-end-line="319" selection-end-column="27" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
               <folding>
                 <element signature="e#46#95#0" expanded="true" />
               </folding>
@@ -67,8 +81,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/definability/interfaces/minion.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="7788">
               <caret line="363" selection-start-line="363" selection-end-line="363" />
+=======
+            <state relative-caret-position="418">
+              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
               <folding>
                 <element signature="e#163#176#0" expanded="true" />
               </folding>
@@ -79,8 +98,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/definability/interfaces/minion_limpio.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="198">
               <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+=======
+            <state relative-caret-position="22">
+              <caret line="140" column="61" selection-start-line="140" selection-start-column="61" selection-end-line="140" selection-end-column="61" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
               <folding>
                 <element signature="e#163#176#0" expanded="true" />
               </folding>
@@ -95,6 +119,7 @@
       <find>casco</find>
       <find>minions</find>
       <find>poll</find>
+      <find>inionSolLimpio</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,8 +131,8 @@
         <option value="$PROJECT_DIR$/definability/first_order/model.py" />
         <option value="$PROJECT_DIR$/definability/interfaces/files.py" />
         <option value="$PROJECT_DIR$/definability/examples/examples.py" />
-        <option value="$PROJECT_DIR$/definability/interfaces/minion_limpio.py" />
         <option value="$PROJECT_DIR$/definability/interfaces/minion.py" />
+        <option value="$PROJECT_DIR$/definability/interfaces/minion_limpio.py" />
         <option value="$PROJECT_DIR$/definability/functions/congruence.py" />
       </list>
     </option>
@@ -180,7 +205,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$USER_HOME$/Escritorio/OpenDefAlg" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -215,9 +245,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1020" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21835443" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21835443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -229,7 +258,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Pylint" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33219567" />
+=======
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32992035" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.3295583" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -239,9 +272,22 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/definability/interfaces/files.py">
+<<<<<<< HEAD
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
           <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/definability/first_order/model.py">
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="356" column="22" selection-start-line="356" selection-start-column="8" selection-end-line="356" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -252,6 +298,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/definability/examples/examples.py">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6974">
           <caret line="321" column="53" selection-start-line="321" selection-start-column="53" selection-end-line="321" selection-end-column="53" />
@@ -265,13 +312,23 @@
           <folding>
             <element signature="e#46#95#0" expanded="true" />
           </folding>
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="321" column="53" selection-start-line="321" selection-start-column="53" selection-end-line="321" selection-end-column="53" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/definability/interfaces/minion.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="7788">
           <caret line="363" selection-start-line="363" selection-end-line="363" />
+=======
+        <state relative-caret-position="418">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
           <folding>
             <element signature="e#163#176#0" expanded="true" />
           </folding>
@@ -280,16 +337,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/definability/interfaces/minion_limpio.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="198">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+=======
+        <state relative-caret-position="22">
+          <caret line="140" column="61" selection-start-line="140" selection-start-column="61" selection-end-line="140" selection-end-column="61" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
           <folding>
             <element signature="e#163#176#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/definability/first_order/model.py">
+    <entry file="file://$PROJECT_DIR$/definability/functions/congruence.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="22">
           <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
@@ -301,6 +364,12 @@
           <caret line="498" column="22" selection-start-line="498" selection-start-column="18" selection-end-line="498" selection-end-column="22" />
           <folding>
             <element signature="e#55#91#0" expanded="true" />
+=======
+        <state relative-caret-position="415">
+          <caret line="319" column="27" selection-start-line="319" selection-start-column="27" selection-end-line="319" selection-end-column="27" />
+          <folding>
+            <element signature="e#46#95#0" expanded="true" />
+>>>>>>> 7ac18135ee4ab6556cdceb35552eebdc1a92245c
           </folding>
         </state>
       </provider>
