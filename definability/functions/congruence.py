@@ -4,9 +4,9 @@
 from ..first_order.fofunctions import FO_Relation
 from ..misc.misc import indent
 from ..interfaces.minion_limpio import MinionSolLimpio,ParallelMinionSolLimpio
-from itertools import combinations, product
+from itertools import combinations, product, chain
 from functools import lru_cache
-
+from functools import reduce
 
 class Eq_Rel(FO_Relation):
 
@@ -72,7 +72,7 @@ class Congruence(Eq_Rel):
         self.model = model
         self.d = d
         super(Congruence, self).__init__(d, model)
-        assert self.preserva_operaciones()
+        #assert self.preserva_operaciones()
 
     def relacionados(self, t, s):
         for i in range(len(t)):
@@ -317,7 +317,9 @@ def all_min_systems_solvable(sigma):
         if i%100==0:
             print(i)
         if solution:
+            print(i)
             return solution
+    print(i)
     return True
 
 
@@ -372,6 +374,36 @@ def minorice(sigma):
     return [x for x in sigma if sigma.index(x) not in rem]
 
 
+
+def subspectra(congruences):
+    model = list(congruences)[0].model
+    A_old=[[i] for i in range(len(congruences))]
+    Adelta_old = []
+    while A_old or Adelta_old:
+        A=[]
+        Adelta=[]
+        for cs in A_old:
+            for other in range(cs[-1] + 1, len(congruences)):
+                if all(not congruences[other] < congruences[c] and not congruences[c] < congruences[other] for c in cs):
+                    new = cs + [other]
+                    
+                    if reduce(lambda x,y: x & y, [congruences[i] for i in new],) == mincon(model):
+                        
+                        Adelta.append(new)
+                        yield [congruences[i] for i in new]
+                    else:
+                        A.append(new)
+        for cs in Adelta_old:
+            for other in range(cs[-1] + 1, len(congruences)):
+                if all(not congruences[other] < congruences[c] and not congruences[c] < congruences[other] for c in cs):
+                    new = cs + [other]
+                    Adelta.append(new)
+                    yield [congruences[i] for i in new]
+        A_old = A
+        Adelta_old = Adelta
+                
+                
+            
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
