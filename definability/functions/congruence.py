@@ -272,7 +272,7 @@ def find_system_output(sigma, con_list, e_i):
     model = list(sigma)[0].model
     joins = dict()
     for i, j in combinations(range(len(con_list)), r=2):
-        joins[(i, j)] = sup_proj(sigma, con_list[i], con_list[j])
+        joins[(i, j)] = con_list[i] | con_list[j]
 
     to_minion = "MINION 3\n\n"
     to_minion += "**VARIABLES**\n"
@@ -299,9 +299,8 @@ def find_system_output(sigma, con_list, e_i):
         to_minion1=""
         to_minion3 = ""
         for i,s in enumerate(tuple_of_sets):
-            to_minion1 += "D%s %s 1\n" % (i, len(s))
-            for a in s:
-                to_minion1 += "%s\n" % a
+            to_minion1 += "D%s 1 1\n" % i
+            to_minion1 += "%s\n" % next(iter(s))
             to_minion1 += "\n"
             to_minion3 += "table([x[%s]],D%s)\n" % (i, i)
         
@@ -309,18 +308,16 @@ def find_system_output(sigma, con_list, e_i):
 
 
 
-def all_min_systems_solvable(sigma):
+def not_all_min_systems_solvable(sigma):
     sigma_m = minorice(sigma)
     e_i = empty_intersections(sigma_m)
-    print("empiezo")
     for i,solution in enumerate(find_system_output(sigma, sigma_m, e_i)):
         if i%100==0:
-            print(i)
+            print("\t%s"%i)
         if solution:
-            print(i)
+            print("\t%s"%i)
             return solution
-    print(i)
-    return True
+    return False
 
 
 def minimal_systems(sigma):
