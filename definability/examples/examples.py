@@ -606,6 +606,8 @@ implicativacadena2 = FO_Model(tipoimplicativas, list(range(2)), {
 name="Implicativa C2")
 
 
+cubosl=(cadena2sl**3).continous()[0]
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
