@@ -393,9 +393,6 @@ def subspectra(congruences):
         Adelta_old = Adelta
 
 
-def find_congruences(A, F):
-    pass
-
 def antichain(sigma, i, deltas):
     pass
  
@@ -413,11 +410,11 @@ def all_subspectra(A, sigma, all=True):
     for i in range(n):
         for (deltas, intersection, vectors) in H_old:
             if antichain(sigma, i, deltas):
-                intersection_new = intersection.intersection(sigma[i])
+                intersection_new = intersection & sigma[i]
                 deltas_new = deltas.append(i)
-                vectors_new = extend_const_sys(sigma, h, i)
+                vectors_new = extend_const_sys(sigma, deltas, i)
                 for vector in vectors:
-                    vectors_new = vectors_new + extend_non_sol_sys(sigma, h, i, vector)
+                    vectors_new = vectors_new + extend_non_sol_sys(sigma, deltas, i, vector)
                 new_tuple = (deltas_new, intersection_new, vectors_new)
                 if intersection == mincon(A) and vectors == []:
                     if all == False:
@@ -429,7 +426,7 @@ def all_subspectra(A, sigma, all=True):
     return solutions
  
 def all_global_desc(A, F, all=True):
-    sigma = find_congruences(A, F)
+    sigma = A.congruences_in(F)
     return all_subspectra(A, sigma, all)
 
 
