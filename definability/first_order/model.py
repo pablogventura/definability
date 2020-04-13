@@ -355,11 +355,13 @@ class FO_Model(object):
         return Q.is_rgi(self)
 
     def congruences_in(self, factors):
-        congruences=set()
+        congruences = []
         for f in factors:
             hs = self.homomorphisms_to(f,f.fo_type,surj=True)
             for h in hs:
-                congruences.add(h.kernel())
+                con = h.kernel()
+                if con not in congruences:
+                    congruences.append(con)
         return congruences
 
     def has_global_descomposition_in(self, factors):

@@ -6,52 +6,175 @@ from ..misc.misc import indent
 from ..interfaces.minion_limpio import MinionSolLimpio, ParallelMinionSolLimpio
 from itertools import combinations, product, chain
 from functools import lru_cache
-from functools import reduce
+from functools import reduce, total_ordering
+from collections import defaultdict
 
 
-class Eq_Rel(FO_Relation):
-    """
-    Relacion binaria que cumple los axiomas de equivalencia
+class _CardinalBlock(object):
+    def __init__(self, value):
+        self.value = value
 
-    >>> from definability.examples import examples
-    >>> rel = Eq_Rel([(0, 0),(1, 1),(2, 2),(3, 3),(4, 4),(2, 3),(3, 2)], examples.retdiamante)
-    >>> rel(2, 3)
-    True
-    >>> rel(4, 3)
-    False
-    >>> rel.table()
-    [[0, 0], [1, 1], [2, 2], [2, 3], [3, 2], [3, 3], [4, 4]]
-    """
+
+class Partition(object):
+    def __init__(self, iter_of_iter=()):
+        self.v = dict()
+        self.from_table(iter_of_iter)
     
-    def __init__(self, d, model):
-        assert d and isinstance(d, list) and isinstance(d[0], tuple)
-        self.model = model
-        self.d = d
-        super(Eq_Rel, self).__init__(d, model.universe)
-        assert self.symm() and self.refl() and self.trans()
+    def __call__(self, a, b):
+        return self.root(a) == self.root(b)
     
-    def refl(self):
-        for x in self.model.universe:
-            if not (x, x) in self.d:
-                return False
-        return True
+    def from_table(self, l):
+        for a, b in l:
+            self.add_element(a)
+            self.add_element(b)
+            self.join_blocks(a, b)
     
-    def symm(self):
-        for r in self.d:
-            if not (r[1], r[0]) in self.d:
-                return False
-        return True
+    def table(self):
+        result = set()
+        for a in self.v:
+            for b in self.v:
+                if self(a, b):
+                    result.add((a, b))
+        return result
     
-    def trans(self):
-        for r in self.d:
-            for s in self.d:
-                if r[1] == s[0]:
-                    if not (r[0], s[1]) in self.d:
-                        return False
-        return True
+    def copy(self):
+        result = Partition()
+        result.v = self.v.copy()
+        return result
+    
+    def from_blocks(self, ls):
+        """
+        Extiende la particion con una lista de listas
+        :param list:
+        :return:
+        """
+        for l in ls:
+            for e in l:
+                self.add_element(e)
+                self.join_blocks(e, l[0])
+    
+    def add_element(self, e):
+        if e not in self.v:
+            self.v[e] = _CardinalBlock(-1)
+    
+    def root(self, e):
+        """
+        Representante de la clase de equivalencia de e
+        """
+        # TODO NO DEBERIA SER RECURSIVO
+        # deberia avanzar recordando los que no tienen al root como padre y acomodar todo al final
+        if self.is_root(e):
+            return e
+        else:
+            self.v[e] = self.root(self.v[e])
+            return self.v[e]
+    
+    def join_blocks(self, i, j):
+        
+        ri = self.root(i)
+        rj = self.root(j)
+        if ri != rj:
+            si = self.v[ri].value
+            sj = self.v[rj].value
+            if si > sj:
+                self.v[ri] = rj
+                self.v[rj] = _CardinalBlock(si + sj)
+            else:
+                self.v[rj] = ri
+                self.v[ri] = _CardinalBlock(si + sj)
+    
+    def to_list(self):
+        result = defaultdict(list)
+        for e in self.v:
+            result[self.root(e)].append(e)
+        return list(result.values())
+    
+    def __eq__(self, other):
+        return self.table() == other.table()
+
+    def __lt__(self, other):
+        return self.table() < other.table()
+
+    def __le__(self, other):
+        return self == other or self < other
+    
+    def __ge__(self, other):
+        return other <= self
+    
+    def __gt__(self, other):
+        return other < self
+    
+    def __repr__(self):
+        result = repr(self.to_list())[1:-1].replace("[", "|").replace("]", "|")
+        return "[" + result + "]"
+    
+    def meet(self, other):
+        """
+
+        :type other: Partition
+        """
+        result = Partition()
+        ht = dict()
+        for e in self.v:
+            r1 = self.root(e)
+            r2 = other.root(e)
+            if (r1, r2) in ht:
+                r = ht[r1, r2]
+                result.v[r] = _CardinalBlock(result.v[r].value + 1)
+                result.v[e] = r
+            else:
+                ht[(r1, r2)] = e
+                result.v[e] = _CardinalBlock(-1)
+        return result
+    
+    def is_root(self, e):
+        return isinstance(self.v[e], _CardinalBlock)
+    
+    def join(self, other):
+        """
+        The join(U, V)
+            for each i which is not a root of U
+                join-blocks(i, U[i], V)
+        :type other: Partition
+        """
+        result = other.copy()
+        for e in self.v:
+            if not self.is_root(e):  # not a root
+                result.join_blocks(e, self.root(e))
+        return result
+    
+    def iter_tuples(self):
+        for a in self.v:
+            for b in self.v:
+                if self(a, b):
+                    yield (a, b)
+    
+    def block(self, e):
+        result = set()
+        r = self.root(e)
+        for i in self.v:
+            if self.root(i) == r:
+                result.add(i)
+        return frozenset(result)
+    
+    def iter_blocks(self):
+        for e in self.v:
+            if self.is_root(e):
+                yield self.block(e)
+
+    def roots(self):
+        for e in self.v:
+            if self.is_root(e):
+                yield e
+    
+    def to_congruence(self, model):
+        return Congruence(self.table(), model)
+    
+    def __hash__(self):
+        return hash(frozenset(self.v.items()))
 
 
-class Congruence(Eq_Rel):
+class Congruence(Partition):
     """
     Congruencia
 
@@ -65,97 +188,92 @@ class Congruence(Eq_Rel):
     [[0, 0], [0, 2], [1, 1], [1, 3], [2, 0], [2, 2], [3, 1], [3, 3]]
     """
     
-    def __init__(self, d, model):
-        assert d and isinstance(d, list) and isinstance(d[0], tuple)
-        assert model
+    def __init__(self, table, model, check_operations=False):
         self.model = model
-        self.d = d
-        super(Congruence, self).__init__(d, model)
-        # assert self.preserva_operaciones()
+        super(Congruence, self).__init__(table)
+        self_relation = []
+        for i in model.universe:
+            self_relation.append((i,i))
+        self.from_table(self_relation)
+        if check_operations:
+            assert self.are_operations_preserved()
     
-    def relacionados(self, t, s):
-        for i in range(len(t)):
-            if not (t[i], s[i]) in self.d:
-                return False
-        return True
-    
-    def __preserva_operacion(self, op):
+    def __is_operation_preserved(self, op):
         if self.model.operations[op].arity() == 0:
             pass
         else:
             for t in self.model.operations[op].domain():
                 for s in self.model.operations[op].domain():
-                    if self.relacionados(t, s):
-                        if not (self.model.operations[op](*t), self.model.operations[op](*s)) in self.d:
+                    if self.are_tuples_related(t, s):
+                        if not self(self.model.operations[op](*t), self.model.operations[op](*s)):
                             return False
         return True
     
-    def preserva_operaciones(self):
+    def are_operations_preserved(self):
         result = True
         for op in self.model.operations:
-            result = result and self.__preserva_operacion(op)
+            result = result and self.__is_operation_preserved(op)
         return result
     
-    @lru_cache(maxsize=None)
+    def are_tuples_related(self, t, s):
+        for i in range(len(t)):
+            if not self(t[i], s[i]):
+                return False
+        return True
+
     def classes(self):
-        result = set()
-        for x in self.model.universe:
-            result.add(frozenset(self.equiv_class(x)))
-        return result
-    
+        return self.iter_blocks()
+
     def equiv_class(self, x):
-        return {y for y in self.model.universe if (x, y) in self.d}
+        return self.block(x)
+
+    def copy(self):
+        return Congruence(self.table(), self.model)
     
     def __and__(self, other):
         """
         Genera la congruencia a partir de la intersección de 2 congruencias
         """
         assert self.model == other.model
-        result = list(set(self.d) & set(other.d))
-        return Congruence(result, self.model)
+        return self.meet(other).to_congruence(self.model)
     
     def __or__(self, other):
         """
         Genera la congruencia a partir de la unión de 2 congruencias
         """
         assert self.model == other.model
-        result_ant = {}
-        result = set(self.d) | set(other.d)
-        while (result != result_ant):
-            result_ant = result
-            for x in self.model.universe:
-                for y in self.model.universe:
-                    if not (x, y) in result_ant:
-                        for z in self.model.universe:
-                            if (x, z) in result_ant and (z, y) in result_ant:
-                                result = result | {(x, y), (y, x)}
-        return Congruence(list(result), self.model)
-    
-    def __lt__(self, other):
-        if self & other == self and self != other:
-            return True
-        return False
-    
-    def __le__(self, other):
-        if self & other == self:
-            return True
-        return False
+        return self.join(other).to_congruence(self.model)
     
     def __eq__(self, other):
         if self.model != other.model:
             return False
-        if set(self.d) != set(other.d):
+        return super(Congruence, self).__eq__(other)
+
+    def __lt__(self, other):
+        if self.model != other.model:
             return False
-        return True
+        return super(Congruence, self).__lt__(other)
+
+    def __le__(self, other):
+        if self.model != other.model:
+            return False
+        return super(Congruence, self).__le__(other)
     
-    def __hash__(self):
-        return hash(frozenset(self.dict.items()))
+    def __ge__(self, other):
+        if self.model != other.model:
+            return False
+        return super(Congruence, self).__ge__(other)
+    
+    def __gt__(self, other):
+        if self.model != other.model:
+            return False
+        return super(Congruence, self).__gt__(other)
     
     def __repr__(self):
-        result = "Congruence(\n"
-        table = ["%s," % x for x in self.table()]
-        table = indent("\n".join(table))
-        return result + table + ")"
+        return "Congruence(" + super(Congruence, self).__repr__() + ")"
+    
+    def __hash__(self):
+        return hash(frozenset(self.v.items()))
 
 
 class CongruenceSystem(object):
@@ -172,28 +290,33 @@ class CongruenceSystem(object):
     {0}
     """
     
-    def __init__(self, cong, elem, sigma=None):
-        assert cong and isinstance(cong, list)
-        assert elem and isinstance(elem, list)
-        assert len(cong) == len(elem)
-        for tita in cong:
-            assert tita.model == cong[0].model and isinstance(tita, Congruence)
-        for x in elem:
-            assert x in cong[0].model.universe
-        self.model = cong[0].model
-        self.cong = cong
-        self.elem = elem
-        if sigma:
-            assert is_system(cong, elem, lambda x, y: sup_proj(sigma, x, y))
-        else:
-            assert is_system(cong, elem)
+    def __init__(self, congruences, elements, sigma=None, check_system=False):
+        assert congruences and isinstance(congruences, list)
+        assert elements and isinstance(elements, list)
+        assert len(elements) == len(elements)
+        n = len(elements)
+        model = congruences[0].model
+        for tita in congruences:
+            assert isinstance(tita, Congruence)
+            assert tita.model == model
+        for x in elements:
+            assert x in model.universe
+        self.model = model
+        self.n = n
+        self.congruences = congruences
+        self.elements = elements
+        if check_system:
+            if sigma:
+                assert self.is_system(lambda x, y: sup_proj(sigma, x, y))
+            else:
+                assert self.is_system()
         self.sigma = sigma
     
     def solutions(self):
-        sol = self.cong[0].equiv_class(self.elem[0])
-        for i in list(range(len(self.cong))):
+        sol = self.congruences[0].equiv_class(self.elements[0])
+        for i in list(range(self.n)):
             if i != 0:
-                sol = sol & self.cong[i].equiv_class(self.elem[i])
+                sol = sol & self.congruences[i].equiv_class(self.elements[i])
         return sol
     
     def has_solution(self):
@@ -201,6 +324,14 @@ class CongruenceSystem(object):
             return False
         else:
             return True
+    
+    def is_system(self, sup=lambda x, y: x | y):
+        for i in list(range(self.n)):
+            for j in list(range(self.n)):
+                if i != j:
+                    if [self.elements[i], self.elements[j]] not in sup(self.congruences[i], self.congruences[j]):
+                        return False
+        return True
 
 
 def maxcon(model):
@@ -218,7 +349,8 @@ def sup_proj(sigma, x, y):
     Devuelve el supremo entre x e y dentro del reticulado de congruencias
     generado por el conjunto sigma
     """
-    xy_up = {c for c in sigma if (set(x.d) <= set(c.d) and set(y.d) <= set(c.d))}
+    assert x.model == y.model
+    xy_up = [c for c in sigma if (x <= c and y <= c)]
     e = maxcon(x.model)
     for r in xy_up:
         e = e & r
@@ -394,40 +526,76 @@ def subspectra(congruences):
 
 
 def antichain(sigma, i, deltas):
-    pass
+    for j in deltas:
+        if sigma[i] <= sigma[j] or sigma[j] <= sigma[i]:
+            return False
+    return True
+
+def does_extend(sigma, deltas, x_tuple, i, z):
+    assert len(deltas) == len(x_tuple)
+    n = len(deltas)
+    for j in range(n):
+        join = sigma[deltas[j]] | sigma[i]
+        if x_tuple[j] not in join.block(z):
+            return False
+    return True
+
+def has_solution(sigma, deltas, x_tuple, i, z):
+    n = len(deltas)
+    inters_class = sigma[i].block(z)
+    for j in range(n):
+        inters_class = inters_class & sigma[deltas[j]].block(x_tuple[j])
+    return inters_class != frozenset({})
+
+def extend_const_sys(sigma, intersection, deltas, i):
+    output = []
+    n = len(deltas)
+    for a in intersection.roots():
+        clase_inter = intersection.block(a)
+        for z in sigma[i].roots():
+            clase_i = sigma[i].block(z)
+            if clase_inter & clase_i == frozenset({}):
+                a_tuple = n * [a]
+                if does_extend(sigma, deltas, a_tuple, i, z):
+                    output.append(a_tuple + [z])
+    return output
  
-def extend_const_sys(sigma, h, i):
-    pass
+def extend_non_sol_sys(sigma, deltas, i, vector):
+    output = []
+    for z in sigma[i].roots():
+        if does_extend(sigma, deltas, vector, i, z):
+            if not has_solution(sigma, deltas, vector, i, z):
+                output.append(vector + [z])
+    return output
  
-def extend_non_sol_sys(sigma, h, i, vector):
-    pass
- 
-def all_subspectra(A, sigma, all=True):
+def all_subspectra(A, sigma, all_solutions=True):
     n = len(sigma)
+    print(n)
     H_old = [([] ,maxcon(A), [])]
-    H_new = H_old
+    H_new = H_old.copy()
     solutions = []
     for i in range(n):
         for (deltas, intersection, vectors) in H_old:
             if antichain(sigma, i, deltas):
                 intersection_new = intersection & sigma[i]
-                deltas_new = deltas.append(i)
-                vectors_new = extend_const_sys(sigma, deltas, i)
+                deltas_new = deltas.copy()
+                deltas_new.append(i)
+                vectors_new = extend_const_sys(sigma, intersection, deltas, i)
                 for vector in vectors:
                     vectors_new = vectors_new + extend_non_sol_sys(sigma, deltas, i, vector)
                 new_tuple = (deltas_new, intersection_new, vectors_new)
-                if intersection == mincon(A) and vectors == []:
-                    if all == False:
+                if intersection_new == mincon(A) and vectors_new == []:
+                    if all_solutions == False:
                         return new_tuple
-                    else:
-                        solutions.append(new_tuple)
+                    solutions.append(new_tuple)
                 H_new.append(new_tuple)
-    H_old = H_new
+        H_old = H_new
+        print(i, len(H_old))
     return solutions
  
-def all_global_desc(A, F, all=True):
+def all_global_desc(A, F, all_solutions=True):
     sigma = A.congruences_in(F)
-    return all_subspectra(A, sigma, all)
+    return all_subspectra(A, list(sigma), all_solutions)
 
 
 if __name__ == "__main__":
