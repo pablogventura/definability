@@ -1,6 +1,15 @@
 Definability
 ================================================
 
+**Definibilidad abierta (QF / sin cuantificadores):** el desarrollo activo está en
+`fopy <https://github.com/pablogventura/fopy>`_ (Python 3), que delega el kernel HIT
+en `OpenDefAlgSplitting <https://github.com/pablogventura/OpenDefAlgSplitting>`_ (Rust).
+Use ``fopy.finite.is_open_definable`` o ``explain_definability`` en lugar del flujo
+Minion/constelaciones de este repositorio.
+
+Este paquete se conserva congelado para reproducir el pipeline histórico (Lindenbaum
+∃⁺ por morfismos, Minion, LatDraw, UACalc) descrito en la tesis y en papers previos.
+
 
 Instalación
 -----------
